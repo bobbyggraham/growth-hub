@@ -80,6 +80,25 @@ html,body{width:100%;height:100%;background:var(--bg);font-family:var(--font-bod
 .map-legend span{display:flex;align-items:center;gap:7px;}
 .map-legend i{width:11px;height:11px;border-radius:50%;display:inline-block;flex-shrink:0;}
 .quiet{font-size:clamp(11px,1.2vw,14px);font-style:italic;color:var(--text-subtle);margin-top:18px;line-height:1.5;}
+/* ---------- Lines of Business matrix ---------- */
+.lob{display:grid;grid-template-columns:minmax(120px,0.42fr) 1fr 1fr;gap:7px;width:100%;}
+.lob-h{font-family:var(--font-head);font-size:clamp(9px,1vw,12px);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);padding:8px 14px 2px;}
+.lob-h small{display:block;font-family:var(--font-body);font-weight:400;font-size:clamp(8px,.85vw,10px);letter-spacing:.02em;text-transform:none;color:var(--text-subtle);margin-top:2px;}
+.lob-line{font-family:var(--font-head);font-size:clamp(12px,1.35vw,16px);font-weight:600;color:var(--text);background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px 14px;display:flex;align-items:center;line-height:1.2;}
+.lob-cell{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:11px 14px;font-size:clamp(10px,1.05vw,12.5px);color:var(--text-muted);line-height:1.5;display:flex;align-items:center;}
+.lob-row-hi .lob-line{border-color:var(--accent);color:var(--accent);}
+.lob-row-hi .lob-cell{border-color:var(--accent);box-shadow:inset 0 0 40px var(--accent-glow);color:var(--text);}
+.lob-mode{display:none;}
+.lob-foot{margin-top:12px;background:var(--surface);border:1px solid var(--accent);border-radius:10px;padding:14px 18px;box-shadow:inset 0 0 50px var(--accent-glow);font-size:clamp(10px,1.15vw,13.5px);color:var(--text-muted);line-height:1.55;}
+.lob-foot b{color:var(--text);}
+.lob-foot .hl{font-weight:700;}
+@media (max-width:640px){
+  .lob{grid-template-columns:1fr;gap:6px;}
+  .lob-h{display:none;}
+  .lob-line{padding:10px 14px;margin-top:8px;}
+  .lob-mode{display:inline-block;font-family:var(--font-head);font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-right:8px;flex-shrink:0;}
+  .lob-cell{align-items:flex-start;}
+}
 .anthem-lines{font-size:clamp(13px,1.6vw,19px);font-style:italic;color:var(--text-muted);line-height:1.9;}
 .anthem-lines b{color:var(--text);font-weight:600;font-style:normal;}
 .ph{color:var(--accent);background:rgba(235,176,24,.08);border-bottom:1px dashed var(--accent);padding:0 5px;border-radius:3px;font-style:normal;white-space:nowrap;}
@@ -185,8 +204,8 @@ html,body{width:100%;height:100%;background:var(--bg);font-family:var(--font-bod
   <div class="slide">
     <div class="l-statement">
       <div class="eyebrow">What &middot; Your Simpler Path</div>
-      <h1 class="big"><em class="hl">One Partner.</em> Every System.<br>For Life.</h1>
-      <p class="sub">FSG is vertically integrated — we design, fabricate, install, and support with our own people. One point of contact replaces your vendor list, so your people can get back to their good work.</p>
+      <h1 class="big"><em class="hl">One Partner.</em> Every System.<br>Every Budget. For Life.</h1>
+      <p class="sub">Capital project or service call — same partner. FSG is vertically integrated: we design, fabricate, install, and support with our own people. One point of contact replaces your vendor list, so your people can get back to their good work.</p>
       <div class="rule"></div>
     </div>
   </div>
@@ -221,28 +240,35 @@ html,body{width:100%;height:100%;background:var(--bg);font-family:var(--font-bod
     <div class="l-section">
       <div class="eyebrow">How &middot; Everything You Need</div>
       <h2 class="big">Everything your facility needs.<br>One <em class="hl">roof</em>.</h2>
-      <div class="grid">
-        <div class="card">
-          <div class="c-label">Service Line</div>
-          <div class="c-title">Lighting &amp; Electric</div>
-          <div class="c-body">Construction, retrofits, service, and disaster recovery — designed and self-performed by FSG crews.</div>
-        </div>
-        <div class="card">
-          <div class="c-label">Service Line</div>
-          <div class="c-title">Signs</div>
-          <div class="c-body">Design, fabrication, installation, and maintenance — from single sites to national brand programs.</div>
-        </div>
-        <div class="card hi">
-          <div class="c-label">Service Line</div>
-          <div class="c-title">ECM Projects &amp; Roll-outs</div>
-          <div class="c-body">Solar, EV Charging, and Large ECM projects with measurable, verified savings — solar returns exceeding 10% IRR over 20 years, plus rebates captured for you.</div>
-        </div>
-        <div class="card">
-          <div class="c-label">Service Line</div>
-          <div class="c-title">BAS &amp; Technology</div>
-          <div class="c-body">Building Automation Systems, structured cabling, A/V, and security — with real-time dashboards you can act on.</div>
+      <p class="desc" style="margin-top:-14px;margin-bottom:18px;">Five lines. Both budgets. One partner.</p>
+      <div class="lob">
+        <div class="lob-h"></div>
+        <div class="lob-h">Construction<small>Capital projects</small></div>
+        <div class="lob-h">Service<small>Programs &amp; response</small></div>
+
+        <div class="lob-line">Electrical</div>
+        <div class="lob-cell"><span class="lob-mode">Build</span>Mission-critical builds, ground-up, tenant finish-out</div>
+        <div class="lob-cell"><span class="lob-mode">Service</span>Emergency response, on-demand, preventive maintenance</div>
+
+        <div class="lob-line">Lighting</div>
+        <div class="lob-cell"><span class="lob-mode">Build</span>LED retrofit projects, new install</div>
+        <div class="lob-cell"><span class="lob-mode">Service</span>Lamp &amp; ballast programs, national account maintenance</div>
+
+        <div class="lob-line">Signs</div>
+        <div class="lob-cell"><span class="lob-mode">Build</span>Fabrication, install, rebrand rollouts</div>
+        <div class="lob-cell"><span class="lob-mode">Service</span>Maintenance, repair, permitting &amp; surveys</div>
+
+        <div class="lob-line">Technology Infrastructure</div>
+        <div class="lob-cell"><span class="lob-mode">Build</span>Structured cabling, AV, security, DAS builds</div>
+        <div class="lob-cell"><span class="lob-mode">Service</span>Moves / adds / changes, break-fix, monitoring</div>
+
+        <div class="lob-row-hi" style="display:contents;">
+          <div class="lob-line">Energy Management</div>
+          <div class="lob-cell"><span class="lob-mode">Build</span>EMS installs &amp; retrofits, solar, EV charging, storage</div>
+          <div class="lob-cell"><span class="lob-mode">Service</span>EMS monitoring, alarm response, portfolio optimization, utility programs</div>
         </div>
       </div>
+      <div class="lob-foot"><b>The Energy Management flywheel:</b> EMS data sees the problem across HVAC, lighting, refrigeration, and signs — and FSG <b>self-performs the fix</b> from 43+ offices. Monitoring platforms can watch. <span class="hl" style="color:var(--accent);">We fix.</span> Solar returns exceeding 10% IRR over 20 years.</div>
     </div>
   </div>
 
@@ -386,16 +412,16 @@ const CLIENTS = [
   q:'&ldquo;FSG gave us one team, one price, and total visibility across four states. The reporting alone changed how we run capital programs.&rdquo; — Liz Perez, Senior Project Manager, JLL — U.S. Bank Account',
   stats:[{n:'$8.9M',l:'Program delivering — 353 approved proposals',hi:1},{n:'354',l:'Locations'},{n:'4',l:'States — CA · OR · CO · MN'},{n:'100%',l:'Quality · Safety · Bank Security — exceeded at every location, start to finish'}],
   foot:"Every claim auditable: per-site corporate security clearance, after-hours access logs, OSHA safety compliance, workmanship QA, and completion photo documentation — maintained live in the client's own tracking system."},
- {name:'Circle K', vert:'C-Store · BAS/EMS · Solar · LED Retrofit',
+ {name:'Circle K', vert:'C-Store · EMS/BAS · Solar · Generators · Energy Blankets · Lighting · Electrical',
   s1:'<em>Circle K</em> needed to cut energy consumption 3% across lighting, HVAC, and refrigeration at 8,000 locations — a nationwide challenge most vendors can\'t even scope.',
-  s2:'FSG deployed the Clarity EMS platform with real-time control and monitoring, backed by our Smart Buildings Customer Support Center. Result: 3% average energy reduction across US stores, fewer service calls, ESG milestones hit, and OPEX down — a partnership that\'s grown into '+PH('[solar / LED scope]')+'.',
+  s2:'FSG deployed the Clarity EMS platform — 3% average energy reduction network-wide — and the partnership kept growing: energy blankets in ~2,000 stores, solar and transfer switches, generators, lighting, and electrical service. Today FSG serves 30 Circle K business units with named regional account managers, so every BU leader knows their FSG contact by name.',
+  q:'&ldquo;FSG has built a strong operational foundation with Circle K — proven deployment execution across thousands of stores, an established executive relationship, and direct field coverage in every region we operate.&rdquo; — Lee Hawkinson, Senior Director, Energy &amp; Sustainability, Circle K',
+  stats:[{n:'$300M+',l:'Delivered from inception to today',hi:1},{n:'8,000',l:'Locations on Clarity EMS — 3% energy reduction'},{n:'30',l:'Business units served, BU-level coverage'},{n:'6',l:'Categories — EMS · Solar · Generators · Blankets · Lighting · Electrical'}]},
+ {name:'HEB', vert:'Grocery · Signage · Fleet Service + New-Store Construction',
+  s1:'<em>H-E-B</em> — Texas\'s grocery giant — needs every sign right, twice over: the operating fleet stays sharp while new stores open on construction schedules that don\'t move.',
+  s2:'FSG runs both programs: sign service across the existing fleet — canopies, storefronts, specialty signage, store by store — and complete new-store sign packages delivered inside HEB\'s own Projectmates construction platform. When the client runs you through their system, you\'re not a vendor anymore — you\'re part of how they build.',
   q:'&ldquo;'+PH('[Client quote]')+'&rdquo; — '+PH('[Name, Title]'),
-  stats:[{n:'8,000',l:'Locations on Clarity EMS',hi:1},{n:'3%',l:'Average energy reduction, network-wide'},{n:PH('[$X.XM]'),l:'Program value'},{n:'3',l:'Categories — BAS · Solar · LED'}]},
- {name:'HEB', vert:'Grocery · Signage',
-  s1:'<em>H-E-B</em> needed '+PH('[signage program scope — fabrication, install, maintenance]')+' across '+PH('[region / footprint]')+'.',
-  s2:'FSG delivers '+PH('[design-to-maintenance signage program details]')+' — one accountable partner for the brand on every storefront.',
-  q:'&ldquo;'+PH('[Client quote]')+'&rdquo; — '+PH('[Name, Title]'),
-  stats:[{n:PH('[$X.XM]'),l:'Program value',hi:1},{n:PH('[XXX]'),l:'Locations'},{n:PH('[X]'),l:'States'},{n:PH('[100%]'),l:'On-time delivery'}]},
+  stats:[{n:'230',l:'Active sign projects right now',hi:1},{n:'$11M+',l:'Active program value in motion'},{n:'2',l:'Programs — fleet service · new-store construction'},{n:'100%',l:'New-store work managed inside HEB\'s Projectmates platform'}]},
  {name:'ALDI', vert:'Grocery · Owner-Supplied Lighting Packages',
   s1:'<em>ALDI</em> buys lighting the smart way — owner-supplied packages that strip stacked markups out of every new store and remodel.',
   s2:'FSG designs, procures, and delivers '+PH('[lighting package scope]')+' across '+PH('[XXX]')+' sites — the owner keeps the design, the savings, and the schedule.',
