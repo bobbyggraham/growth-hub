@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speak So They Buy — FSG Sales Communication Playbook</title>
+<style>
+  :root {
+    --fsg-deep-navy: #0b1421;
+    --fsg-dark-navy: #133865;
+    --fsg-brand-blue: #365aa0;
+    --fsg-steel-blue: #718dbc;
+    --fsg-light-blue: #c5d9fa;
+    --fsg-light-gray: #ededed;
+    --fsg-gold: #ebb018;
+    --fsg-bright-blue: #4e84de;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Open Sans', Arial, Helvetica, sans-serif; color: var(--fsg-deep-navy); background: #fff; line-height: 1.55; }
+  h1, h2, h3 { font-family: 'Oswald', 'Arial Narrow', Arial, sans-serif; color: var(--fsg-dark-navy); }
+  .page { max-width: 880px; margin: 0 auto; padding: 0 40px 48px; }
+
+  /* Cover */
+  .cover { background: var(--fsg-dark-navy); color: #fff; padding: 56px 40px 44px; }
+  .cover .inner { max-width: 880px; margin: 0 auto; }
+  .wordmark { font-family: 'Oswald', Arial, sans-serif; letter-spacing: 3px; font-size: 15px; color: #fff; text-transform: uppercase; }
+  .wordmark span { color: var(--fsg-gold); }
+  .cover .rule { border-top: 2px solid var(--fsg-gold); margin: 22px 0 26px; width: 120px; }
+  .cover h1 { color: #fff; font-size: 40px; line-height: 1.15; text-transform: uppercase; letter-spacing: 0.5px; }
+  .cover .sub { color: var(--fsg-light-blue); font-size: 17px; margin-top: 14px; max-width: 620px; }
+  .cover .meta { color: var(--fsg-steel-blue); font-size: 12px; margin-top: 26px; letter-spacing: 1px; text-transform: uppercase; }
+
+  section { margin-top: 44px; }
+  h2 { font-size: 26px; text-transform: uppercase; letter-spacing: 0.5px; padding-bottom: 8px; border-bottom: 2px solid var(--fsg-gold); }
+  h2 .num { color: var(--fsg-gold); margin-right: 10px; }
+  h3 { font-size: 17px; color: var(--fsg-brand-blue); margin: 22px 0 8px; }
+  p { margin: 10px 0; font-size: 15px; }
+  ul, ol { margin: 10px 0 10px 24px; font-size: 15px; }
+  li { margin: 6px 0; }
+  strong { color: var(--fsg-dark-navy); }
+
+  .callout { background: var(--fsg-light-blue); border-left: 4px solid var(--fsg-gold); padding: 14px 18px; margin: 18px 0; font-size: 14px; color: var(--fsg-dark-navy); border-radius: 0 4px 4px 0; }
+  .principle { background: var(--fsg-deep-navy); color: #fff; padding: 22px 26px; margin: 24px 0; border-radius: 6px; }
+  .principle h3 { color: var(--fsg-gold); margin: 0 0 6px; font-family: 'Oswald', Arial, sans-serif; text-transform: uppercase; letter-spacing: 1px; font-size: 14px; }
+  .principle p { color: #fff; font-size: 18px; font-weight: 600; margin: 0; }
+
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  th { background: var(--fsg-dark-navy); color: #fff; text-align: left; padding: 10px 12px; font-weight: 700; }
+  td { padding: 10px 12px; vertical-align: top; }
+  tr:nth-child(even) td { background: var(--fsg-light-blue); }
+  tr:nth-child(odd) td { background: #fff; }
+
+  .frames { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 18px 0; }
+  .frame { background: var(--fsg-light-gray); border-top: 4px solid var(--fsg-gold); padding: 14px; border-radius: 0 0 6px 6px; }
+  .frame h4 { font-family: 'Oswald', Arial, sans-serif; color: var(--fsg-dark-navy); font-size: 18px; text-transform: uppercase; margin-bottom: 4px; }
+  .frame p { font-size: 13px; margin: 4px 0; }
+  .frame .q { color: var(--fsg-brand-blue); font-style: italic; font-size: 12.5px; }
+
+  .shapes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 18px 0; }
+  .shape-card { text-align: center; padding: 18px 12px; background: #fff; border: 1px solid var(--fsg-light-gray); border-radius: 6px; }
+  .shape-card svg { margin-bottom: 8px; }
+  .shape-card h4 { font-family: 'Oswald', Arial, sans-serif; color: var(--fsg-dark-navy); font-size: 15px; text-transform: uppercase; }
+  .shape-card p { font-size: 12.5px; color: var(--fsg-steel-blue); margin: 4px 0 0; }
+
+  .script { background: var(--fsg-light-gray); border-radius: 6px; padding: 14px 18px; margin: 12px 0; font-size: 14px; }
+  .script .label { font-family: 'Oswald', Arial, sans-serif; text-transform: uppercase; letter-spacing: 1px; font-size: 11px; color: var(--fsg-brand-blue); display: block; margin-bottom: 6px; }
+  .script em { color: var(--fsg-dark-navy); }
+
+  footer { background: var(--fsg-deep-navy); color: var(--fsg-steel-blue); padding: 22px 40px; margin-top: 56px; font-size: 12px; }
+  footer .inner { max-width: 880px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+  @media (max-width: 700px) { .frames { grid-template-columns: repeat(2, 1fr); } .shapes { grid-template-columns: 1fr; } .cover h1 { font-size: 30px; } }
+  @media print { .cover { -webkit-print-color-adjust: exact; print-color-adjust: exact; } body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="inner">
+    <div class="wordmark">Facility Solutions Group <span>|</span> Growth Organization</div>
+    <div class="rule"></div>
+    <h1>Speak So They Buy</h1>
+    <div class="sub">The FSG Sales Communication Playbook — three field-ready techniques to make every pitch, proposal walkthrough, and follow-up impossible to forget.</div>
+    <div class="meta">Sales Leadership &nbsp;·&nbsp; August 2026 &nbsp;·&nbsp; Internal Enablement</div>
+  </div>
+</div>
+
+<div class="page">
+
+  <section>
+    <h2>Why This Playbook Exists</h2>
+    <p>Getting a customer to <strong>listen</strong> is table stakes. Getting them to <strong>remember</strong> is how deals move. Most FSG pitches lose deals not because the solution is wrong, but because three days later the facility director can't repeat what we said to their CFO.</p>
+    <p>This playbook gives every FSG seller three techniques to make our message stick — in discovery calls, proposal reviews, and every follow-up in between.</p>
+    <div class="principle">
+      <h3>The Core Principle</h3>
+      <p>You're not selling to the person in the room. You're arming the person who has to sell <em>you</em> to their boss next week. When they believe in you and can repeat you, the deal moves. Make both effortless.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">01</span>The Rule of Three</h2>
+    <p><strong>The rule:</strong> Never give a customer more than three points at a time. One, two, three — anything past three, they remember nothing. Including the first three.</p>
+    <h3>Where FSG sellers apply it</h3>
+    <ul>
+      <li><strong>Discovery recap:</strong> "I heard three priorities today: energy cost, maintenance burden, and uptime. Did I get those right?"</li>
+      <li><strong>Proposal exec summary:</strong> Three outcomes at the top. Everything else is supporting detail.</li>
+      <li><strong>Voicemail / video update:</strong> One update, one insight, one ask. Done.</li>
+      <li><strong>Objection handling:</strong> Answer with three reasons, then stop talking.</li>
+    </ul>
+    <div class="script">
+      <span class="label">Talk Track — LED Retrofit Pitch</span>
+      <em>"There are three ways this retrofit pays for you: your energy bill drops the first month, your maintenance calls nearly disappear, and your rebates offset the install. Let's walk through each."</em>
+    </div>
+    <div class="callout"><strong>Field test:</strong> If your customer can't repeat your three points back at the end of the meeting, you had more than three — or you didn't label them as three.</div>
+  </section>
+
+  <section>
+    <h2><span class="num">02</span>Put Ideas Into Shapes</h2>
+    <p><strong>The rule:</strong> When you're presenting (deck, whiteboard, one-pager), put your key ideas inside simple geometric shapes — circles, triangles, squares. The brain takes a snapshot of a shape far more easily than a paragraph. The customer remembers the picture, and the picture carries your points.</p>
+    <h3>FSG shape library</h3>
+    <div class="shapes">
+      <div class="shape-card">
+        <svg width="120" height="70" viewBox="0 0 120 70"><circle cx="35" cy="35" r="28" fill="none" stroke="#133865" stroke-width="3"/><circle cx="60" cy="35" r="28" fill="none" stroke="#365aa0" stroke-width="3"/><circle cx="85" cy="35" r="28" fill="none" stroke="#ebb018" stroke-width="3"/></svg>
+        <h4>Three Circles</h4>
+        <p>Value pillars: Cost · Reliability · Sustainability. Where they overlap: FSG.</p>
+      </div>
+      <div class="shape-card">
+        <svg width="120" height="70" viewBox="0 0 120 70"><polygon points="60,8 105,62 15,62" fill="none" stroke="#133865" stroke-width="3"/></svg>
+        <h4>Triangle</h4>
+        <p>Scope · Schedule · Budget. Move one corner, the others move too.</p>
+      </div>
+      <div class="shape-card">
+        <svg width="120" height="70" viewBox="0 0 120 70"><rect x="18" y="10" width="38" height="22" fill="none" stroke="#133865" stroke-width="3"/><rect x="64" y="10" width="38" height="22" fill="none" stroke="#365aa0" stroke-width="3"/><rect x="18" y="38" width="38" height="22" fill="none" stroke="#365aa0" stroke-width="3"/><rect x="64" y="38" width="38" height="22" fill="none" stroke="#ebb018" stroke-width="3"/></svg>
+        <h4>Four Squares</h4>
+        <p>Assess → Design → Install → Maintain. The FSG lifecycle in one glance.</p>
+      </div>
+    </div>
+    <div class="callout"><strong>When it works:</strong> Shapes need eyes on them — decks, whiteboards, one-pagers, site-walk sketches. On a phone call or in a hallway conversation, skip the shapes and go straight to Technique 03.</div>
+  </section>
+
+  <section>
+    <h2><span class="num">03</span>The 4-Mat: Why · What · How · Now</h2>
+    <p><strong>The rule:</strong> Structure any explanation in four frames, in this order. It answers the customer's four built-in objections before they say them out loud.</p>
+    <div class="frames">
+      <div class="frame">
+        <h4>Why</h4>
+        <p class="q">"Why does this matter right now?"</p>
+        <p>Urgency and stakes. Rate hikes, failing fixtures, compliance deadlines, budget cycles.</p>
+      </div>
+      <div class="frame">
+        <h4>What</h4>
+        <p class="q">"What is this, at 10,000 feet?"</p>
+        <p>The big picture in three pieces (see Technique 01).</p>
+      </div>
+      <div class="frame">
+        <h4>How</h4>
+        <p class="q">"How does this affect me?"</p>
+        <p>Connect each piece to their site, their budget, their team.</p>
+      </div>
+      <div class="frame">
+        <h4>Now</h4>
+        <p class="q">"What do I do with this?"</p>
+        <p>One domino. A single, specific action step — never a list.</p>
+      </div>
+    </div>
+    <div class="script">
+      <span class="label">Talk Track — Service Agreement Close</span>
+      <em>"<strong>Why now:</strong> your fixtures are past rated life and every failure is an emergency call. <strong>What:</strong> a planned maintenance program with three parts — quarterly inspections, priority response, fixed pricing. <strong>How:</strong> here's what that means for your two DFW sites specifically. <strong>Now:</strong> you don't have to remember any of this — just get me 30 minutes with your regional director next week, and I'll bring the one-pager."</em>
+    </div>
+    <div class="callout"><strong>The "Now" is the whole game.</strong> End every customer interaction with exactly one action step. If they remember nothing else, they remember the domino.</div>
+  </section>
+
+  <section>
+    <h2>Where Each Technique Fits</h2>
+    <table>
+      <tr><th>Selling Moment</th><th>Lead Technique</th><th>What It Sounds Like</th></tr>
+      <tr><td>Discovery call</td><td>Rule of Three</td><td>"I'm hearing three priorities…"</td></tr>
+      <tr><td>Proposal walkthrough</td><td>Shapes + 4-Mat</td><td>Open on the three-circle slide, walk Why → What → How → Now</td></tr>
+      <tr><td>Follow-up email</td><td>4-Mat</td><td>Four short paragraphs, one ask at the bottom</td></tr>
+      <tr><td>Weekly video update</td><td>Rule of Three</td><td>One update, one insight, one ask</td></tr>
+      <tr><td>Whiteboard / site walk</td><td>Shapes</td><td>Sketch the triangle: scope, schedule, budget</td></tr>
+      <tr><td>Exec briefing</td><td>4-Mat</td><td>Lead with Why now; close with one domino</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Do / Don't</h2>
+    <table>
+      <tr><th>Do</th><th>Don't</th></tr>
+      <tr><td>Label your points: "There are three reasons…"</td><td>Ramble through five benefits and hope one lands</td></tr>
+      <tr><td>End with one specific action step</td><td>Close with "let me know if you have questions"</td></tr>
+      <tr><td>Sketch a shape when you have a surface</td><td>Read dense slides word-for-word</td></tr>
+      <tr><td>Answer Why before What</td><td>Open with FSG's history and capabilities</td></tr>
+      <tr><td>Stop talking after your third point</td><td>Fill silence with a fourth point</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Rollout: One Habit Per Week</h2>
+    <p>Don't try all three at once — that breaks Rule of Three math. Build one habit at a time:</p>
+    <ol>
+      <li><strong>Week 1 — Rule of Three.</strong> Use it in every conversation: customer calls, internal syncs, even at home. Managers: listen for it on call reviews.</li>
+      <li><strong>Week 2 — Shapes.</strong> Add one shape to every deck and proposal going out. Whiteboard at least once.</li>
+      <li><strong>Week 3 — 4-Mat.</strong> Structure every pitch and follow-up email as Why → What → How → Now.</li>
+      <li><strong>Week 4 — Stack them.</strong> All three, every customer touch. Sales leaders spot-check one proposal and one recorded call per rep.</li>
+    </ol>
+    <div class="principle">
+      <h3>The Payoff</h3>
+      <p>Customers don't buy from the seller they liked most. They buy from the one they can re-explain to their boss. Be that seller.</p>
+    </div>
+  </section>
+
+  <p style="font-size:12px; color:var(--fsg-steel-blue); margin-top:36px;">Techniques adapted from Sharran Srivatsaa's "How to Speak so Clearly People Think You're a Genius" (Aug 2026), tailored for FSG selling motions.</p>
+
+</div>
+
+<footer>
+  <div class="inner">
+    <div>Facility Solutions Group · Growth Organization · Internal Use</div>
+    <div>Questions: Bobby Graham · bobby.graham@fsgi.com</div>
+  </div>
+</footer>
+
+</body>
+</html>
