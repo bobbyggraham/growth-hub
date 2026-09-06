@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>One Partner — FSG Master Presentation</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAFJ0lEQVR42u2bfUxVZRjAn+d93yNrChsEhIUfgFibWE5DEpm7s3Qqqy2pzS3/qNbH5la5os25DHXlzGCTP0pdzZal05Vzy5JGQ2+EIYS6/EbuBRJjXS4YARrce97n6Y97TzpXG/fuoOdy7/Pn/Tj3PL/n+znvxYnpOQxxLALiXBIAEgASABIAEgDiWdRYXRgRGRGZiAQAQOG8OedLly3xL1xQmJabMy0rLTU19THXii5E5Ob6mhxmZkTE0V5fa9Kp9880HAlACEFEJJgZlz7uanl9zUuypLhotlJy1v98XkQKYGjo+hAAOA+AlFJrreW9aanXqrZuvPTM008W37Sa1paSQoiowo+ISAghun7v9gFAiqMAWMo/9GC+98CeXTIvd3qx1lqH35NSSgkAwMxRt98clpOnz/gAIN8xAIQQpLWW+TNyO44c2puSmZGeEQyaQcNQhs25BRERv689ast1hV0JDwAgOXnS4FdffoKZGekZpqlNu5UnIkJE7Lra3V137KcCxwCwkl7llopfZ+TlTA8GzaBS0vb8QsSEiLj7832Xr9+4MdExALTWsqhw7tnnVpWVjIXlLetLKeQfvh7frt1fzBVCkKMaofK1a4ZD4QBot/LMzFqTRkRc+/aGzoGBwRQr7BwBYGZ+XvtiV8nDzMxWprdTecurKrfvcH9b80ORVW0cA+Cp0qVXkiZMSCIislN5rbVmZjYMZez6dE/9xvc/dCklTau7dEwrvGjhghSrRNlhcQuklFISEVW8t81dVb3TFbI8SWZGRwHIy5ueaZraDN0802iUREQM90NofVdKIYUQwgqjE80nz27Y/AE3NrW47HR72wFMm5KdHdWPK0kIyLeWzP7+v/obGptb9+4/CIeP1Bbd2mE6dhqsqt7pjiT7MwMjAvr9fbMAALZsq3b39PYKj7cj+fyF1in+3r6i2zvMMZtanbgWF0IQIvJYKm6rB+z7bMcJiKT+MzAg4DubtmZ1dF6ZahgqGBqfAYlI2Jnl74gHDPnbo/re4uVl55pbTheMZYzfEQ8IBIKBSOZ7qwqYpinvdrjZAkApqaIBYFc764hZIFZF3e0bQERWUpqIELE3mKZWMQ0g1AwyjgQCSXHpAcPDI0bWfZm+deWvtTIxRDJKEBG8ua5ikSPK4IDPQ9EkwbnFS9oNpXRTfU1Uy81JGbkQ6yEAptbSGoYimSbDE+OE8ZEElVSRA0BnrcTiugyGdgCjN8jt1iYiitwDmOwwoG2dYHRTHxIiRvWYTAh7vNcWABcuXvZEUsKYQyVv+O+RJEDgi5faPNZrkVwDAGaMy31AzOWAd9e/5Y7GAz7auXs2IvKaV184F40HbN5S5YrpfcD8Rcs8CMgx3wj91nX16gOTJ2eNNpPf3AdogYgQ842Q19vZM21KdrZ1eCGCfcD4aITqjzcOWIrFWhK0BcA339VOHQkERqI99hLzAC63eXOPuhvOICJaR2LiCgAAQOX2j+8JhQFw3AGQUuqmX04V7N1/sEEpqYJBMxhXAMLJn8rXb3rE4+3oNAxlmKY24waA9bh6cHAo+dnVL7Ovx98TK55gWw4gIiGl1G2e9pzSlasHve2dnYahDB2WcQ8AIHRYSkqpL7W25S1eXpby9aHDP996QFJrra3Zf1wCsCAIIajv2p9pz7/yRvHKVS+2HPvx+CnT1KaUUoqwjKtp8L/CwTotXlvnfrS2zg2F8+acX7HsCX/Jgvn/nhZ3wkYIE3+bi3NJAEgASABIAEgASACIY/kHr3jU3AuSnhkAAAAASUVORK5CYII=">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -27,6 +28,12 @@ html,body{width:100%;height:100%;background:var(--bg);font-family:var(--font-bod
 .dot{width:7px;height:7px;border-radius:50%;background:var(--text-subtle);cursor:pointer;transition:background .2s,transform .2s;}
 .dot:hover{background:var(--text-muted);}
 .dot.on{background:var(--accent);transform:scale(1.35);}
+#notes{display:none;position:fixed;left:24px;bottom:52px;max-width:500px;max-height:62vh;overflow-y:auto;background:rgba(11,20,33,.94);border:1px solid var(--accent);border-left:4px solid var(--accent);border-radius:10px;padding:14px 18px;z-index:110;font-size:13px;line-height:1.55;color:var(--light-blue,#c5d9fa);box-shadow:0 8px 30px rgba(0,0,0,.5);}
+#notes.show{display:block;}
+#notes .n-label{font-family:var(--font-head);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:5px;}
+#notes b{color:var(--accent);font-family:var(--font-head);font-size:11px;letter-spacing:.1em;text-transform:uppercase;}
+#notes .q{color:#fff;font-style:italic;}
+@media (max-width:640px){#notes{left:12px;right:12px;max-width:none;bottom:16px;}}
 #hint{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:11px;color:var(--text-subtle);letter-spacing:.07em;z-index:100;user-select:none;}
 #home-link{position:fixed;top:24px;left:28px;z-index:100;font-family:var(--font-head);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text-subtle);text-decoration:none;transition:color .2s;}
 #home-link:hover{color:var(--accent);}
@@ -81,7 +88,7 @@ html,body{width:100%;height:100%;background:var(--bg);font-family:var(--font-bod
 .map-legend i{width:11px;height:11px;border-radius:50%;display:inline-block;flex-shrink:0;}
 .quiet{font-size:clamp(11px,1.2vw,14px);font-style:italic;color:var(--text-subtle);margin-top:18px;line-height:1.5;}
 /* ---------- Lines of Business matrix ---------- */
-.lob{display:grid;grid-template-columns:minmax(120px,0.42fr) 1fr 1fr;gap:7px;width:100%;}
+.lob{display:grid;grid-template-columns:minmax(110px,0.38fr) 1fr 1fr 1fr;gap:7px;width:100%;}
 .lob-h{font-family:var(--font-head);font-size:clamp(9px,1vw,12px);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);padding:8px 14px 2px;}
 .lob-h small{display:block;font-family:var(--font-body);font-weight:400;font-size:clamp(8px,.85vw,10px);letter-spacing:.02em;text-transform:none;color:var(--text-subtle);margin-top:2px;}
 .lob-line{font-family:var(--font-head);font-size:clamp(12px,1.35vw,16px);font-weight:600;color:var(--text);background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px 14px;display:flex;align-items:center;line-height:1.2;}
@@ -111,6 +118,21 @@ html,body{width:100%;height:100%;background:var(--bg);font-family:var(--font-bod
 .cchip.on{background:var(--accent);border-color:var(--accent);color:var(--bg);font-weight:700;}
 .proof-vert{font-family:var(--font-head);font-size:clamp(9px,.95vw,11px);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px;}
 
+@media (max-height: 520px) and (orientation: landscape){
+  .slide{align-items:flex-start;overflow-y:auto;padding:5vh 7vw 7vh;}
+  #nav-dots{display:none;}
+  #hint{display:none;}
+  #counter{top:14px;right:20px;font-size:10px;}
+  #home-link{top:12px;left:16px;font-size:10px;}
+  .l-statement .big{font-size:clamp(26px,5vw,44px);}
+  .l-section .big{font-size:clamp(20px,3.6vw,32px);margin-bottom:16px;}
+  .cover h1{font-size:clamp(28px,5.5vw,48px);margin-bottom:20px;}
+  .cover-content{padding:4vh 7vw 0;}
+  .card{padding:12px 16px;}
+  .stat{padding:12px 14px;}
+  .proof-foot{position:static;margin-top:16px;}
+  .l-split{gap:28px;}
+}
 @media (max-width: 640px){
   .slide{padding:8vh 6vw 10vh;align-items:flex-start;overflow-y:auto;}
   .grid,.grid3,.grid4{grid-template-columns:1fr;gap:10px;}
@@ -130,10 +152,11 @@ html,body{width:100%;height:100%;background:var(--bg);font-family:var(--font-bod
 <div id="deck">
   <div class="glow glow-a"></div>
   <div class="glow glow-b"></div>
-  <a id="home-link" href="../index.html">&larr; Growth HQ</a>
-  <div id="counter"><b>01</b> / 12</div>
+  <a id="home-link" href="../index.html">&larr; Growth Hub</a>
+  <div id="counter"><b>01</b> / 14</div>
   <div id="nav-dots"></div>
-  <div id="hint">arrows or swipe to navigate &middot; F for fullscreen</div>
+  <div id="hint">arrows or swipe &middot; F fullscreen &middot; N presenter notes</div>
+  <div id="notes"><div class="n-label">Presenter Notes</div><div id="notesText"></div></div>
 
   <!-- 1 · COVER -->
   <div class="slide active" style="padding:0;">
@@ -183,7 +206,7 @@ html,body{width:100%;height:100%;background:var(--bg);font-family:var(--font-bod
       <div>
         <div class="eyebrow">Why Us &middot; A Guide Who's Been There</div>
         <h2 class="big">We've seen every facility challenge since <em class="hl">1982</em>.</h2>
-        <p class="desc">From single-store retail to Fortune 500 portfolios — your challenge isn't new to us. FSG grew from a wholesale lighting supplier into a single-source facility partner — consistently ranked a Top 20 U.S. electrical contractor, with revenue up 60% in the last five years.</p>
+        <p class="desc">From single-store retail to Fortune 500 portfolios — your challenge isn't new to us. FSG grew from a wholesale lighting supplier into a single-source facility partner — ranked #18 on EC&amp;M's 2026 Top Electrical Contractors list — up four spots — with revenue up 60% in the last five years.</p>
         <p class="quiet">Empowering people to do good work since 1982 — ours, yours, and the communities we serve.</p>
       </div>
       <div>
@@ -240,35 +263,41 @@ html,body{width:100%;height:100%;background:var(--bg);font-family:var(--font-bod
     <div class="l-section">
       <div class="eyebrow">How &middot; Everything You Need</div>
       <h2 class="big">Everything your facility needs.<br>One <em class="hl">roof</em>.</h2>
-      <p class="desc" style="margin-top:-14px;margin-bottom:18px;">Five lines. Both budgets. One partner.</p>
+      <p class="desc" style="margin-top:-14px;margin-bottom:18px;">Five lines. Three ways to buy. One partner.</p>
       <div class="lob">
         <div class="lob-h"></div>
         <div class="lob-h">Construction<small>Capital projects</small></div>
         <div class="lob-h">Service<small>Programs &amp; response</small></div>
+        <div class="lob-h">Distribution<small>Specified, designed &amp; delivered</small></div>
 
         <div class="lob-line">Electrical</div>
         <div class="lob-cell"><span class="lob-mode">Build</span>Mission-critical builds, ground-up, tenant finish-out</div>
         <div class="lob-cell"><span class="lob-mode">Service</span>Emergency response, on-demand, preventive maintenance</div>
+        <div class="lob-cell"><span class="lob-mode">Supply</span>Wholesale electrical materials &amp; gear packages</div>
 
         <div class="lob-line">Lighting</div>
         <div class="lob-cell"><span class="lob-mode">Build</span>LED retrofit projects, new install</div>
         <div class="lob-cell"><span class="lob-mode">Service</span>Lamp &amp; ballast programs, national account maintenance</div>
+        <div class="lob-cell"><span class="lob-mode">Supply</span>Owner-supplied lighting packages — specified, procured, delivered</div>
 
         <div class="lob-line">Signs</div>
         <div class="lob-cell"><span class="lob-mode">Build</span>Fabrication, install, rebrand rollouts</div>
         <div class="lob-cell"><span class="lob-mode">Service</span>Maintenance, repair, permitting &amp; surveys</div>
+        <div class="lob-cell"><span class="lob-mode">Supply</span>Brand sign packages &amp; components, delivered to site</div>
 
         <div class="lob-line">Technology Infrastructure</div>
         <div class="lob-cell"><span class="lob-mode">Build</span>Structured cabling, AV, security, DAS builds</div>
         <div class="lob-cell"><span class="lob-mode">Service</span>Moves / adds / changes, break-fix, monitoring</div>
+        <div class="lob-cell"><span class="lob-mode">Supply</span>Devices &amp; materials, kitted and shipped to site</div>
 
         <div class="lob-row-hi" style="display:contents;">
-          <div class="lob-line">Energy Management</div>
+          <div class="lob-line">Energy Performance</div>
           <div class="lob-cell"><span class="lob-mode">Build</span>EMS installs &amp; retrofits, solar, EV charging, storage</div>
           <div class="lob-cell"><span class="lob-mode">Service</span>EMS monitoring, alarm response, portfolio optimization, utility programs</div>
+          <div class="lob-cell"><span class="lob-mode">Supply</span>EV chargers, solar equipment &amp; EMS hardware, delivered</div>
         </div>
       </div>
-      <div class="lob-foot"><b>The Energy Management flywheel:</b> EMS data sees the problem across HVAC, lighting, refrigeration, and signs — and FSG <b>self-performs the fix</b> from 43+ offices. Monitoring platforms can watch. <span class="hl" style="color:var(--accent);">We fix.</span> Solar returns exceeding 10% IRR over 20 years.</div>
+      <div class="lob-foot"><b>Energy is the flywheel:</b> the data sees the problem across HVAC, lighting, refrigeration, and signs — FSG <b>self-performs the fix</b> from 43+ offices, <b>and guarantees the savings</b>. Monitoring platforms can watch. <span class="hl" style="color:var(--accent);">We fix.</span> Holistic solutions for one facility — or many. Solar exceeding 10% IRR over 20 years.</div>
     </div>
   </div>
 
@@ -335,8 +364,8 @@ html,body{width:100%;height:100%;background:var(--bg);font-family:var(--font-bod
           <div class="grid" id="pStats"></div>
         </div>
       </div>
+      <div class="proof-foot" id="pFoot"></div>
     </div>
-    <div class="proof-foot" id="pFoot"></div>
   </div>
 
   <!-- 9 · WHAT YOU GET -->
@@ -354,6 +383,57 @@ html,body{width:100%;height:100%;background:var(--bg);font-family:var(--font-bod
         <div class="feat"><div class="fdot"></div><div><div class="ft">Time</div><div class="fs">One point of contact replaces a dozen vendor threads.</div></div></div>
         <div class="feat"><div class="fdot"></div><div><div class="ft">Visibility</div><div class="fs">Reporting and analytics show status and spend, every site, in real time.</div></div></div>
         <div class="feat"><div class="fdot"></div><div><div class="ft">Peace of Mind</div><div class="fs">Nationwide coverage and 24/7 support — help is always close.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 11 · THE 90-DAY LOOP -->
+  <div class="slide">
+    <div class="l-section">
+      <div class="eyebrow">How &middot; The FSG Loop</div>
+      <h2 class="big">Ninety days. One problem. <em class="hl">Solved</em>.</h2>
+      <div class="grid4">
+        <div class="card">
+          <div class="c-label" style="font-size:12px;">1 &middot; Problem</div>
+          <div class="c-title">Name it</div>
+          <div class="c-body">We start with the problem, not a pitch. The walk-through names the specific problem costing you money, time, or sleep — in writing.</div>
+        </div>
+        <div class="card">
+          <div class="c-label" style="font-size:12px;">2 &middot; Solution</div>
+          <div class="c-title">Build it</div>
+          <div class="c-body">Designed, scoped, and self-performed by FSG crews — one accountable partner from plan to power-on.</div>
+        </div>
+        <div class="card">
+          <div class="c-label" style="font-size:12px;">3 &middot; Measure</div>
+          <div class="c-title">Prove it</div>
+          <div class="c-body">Results verified at the meter and reported live — savings, uptime, and delivery measured against the plan, not the promise.</div>
+        </div>
+        <div class="card hi">
+          <div class="c-label" style="font-size:12px;">4 &middot; Maintain &middot; Repeat</div>
+          <div class="c-title">Then again</div>
+          <div class="c-body">We keep it performing for life — then take the next problem, the next category, the next set of sites. The loop runs again.</div>
+        </div>
+      </div>
+      <p class="desc" style="margin-top:16px;"><em>That loop is how one facility becomes a portfolio</em> — it's how an EMS challenge at Circle K grew into six categories and $300M+ delivered.</p>
+      <p class="quiet" style="margin-top:8px;">&ldquo;The reporting alone changed how we run capital programs.&rdquo; — Liz Perez, Senior Project Manager, JLL — U.S. Bank Account</p>
+    </div>
+  </div>
+
+  <!-- 12 · PRICING PHILOSOPHY -->
+  <div class="slide">
+    <div class="l-split">
+      <div>
+        <div class="eyebrow">How We Price</div>
+        <h2 class="big">A proposal that defends its <em class="hl">price</em>.</h2>
+        <p class="desc">We'll talk about money before you have to ask. Every FSG proposal is built to survive procurement — and to still make sense in year five.</p>
+        <p class="quiet">Lowest bid and lowest total cost are rarely the same number. We compete on the second.</p>
+      </div>
+      <div class="feat-list">
+        <div class="feat"><div class="fdot"></div><div><div class="ft">Transparent scopes</div><div class="fs">Every line item visible — you see what you're buying and why.</div></div></div>
+        <div class="feat"><div class="fdot"></div><div><div class="ft">Standardized national pricing</div><div class="fs">One contracted price for materials and labor across every site — the model behind 9,000 Starbucks stores and 354 U.S. Bank branches.</div></div></div>
+        <div class="feat"><div class="fdot"></div><div><div class="ft">No change-order ambush</div><div class="fs">Surprises are scoped out up front. If conditions change, you approve before we proceed.</div></div></div>
+        <div class="feat"><div class="fdot"></div><div><div class="ft">Savings guaranteed in writing</div><div class="fs">On energy performance work, the ROI is in the contract — proven at the meter.</div></div></div>
       </div>
     </div>
   </div>
@@ -393,10 +473,28 @@ html,body{width:100%;height:100%;background:var(--bg);font-family:var(--font-bod
   const dotsEl=document.getElementById('nav-dots');
   slides.forEach((_,i)=>{const d=document.createElement('div');d.className='dot'+(i===0?' on':'');d.addEventListener('click',()=>go(i));dotsEl.appendChild(d);});
   function updateUI(){const n=String(cur+1).padStart(2,'0');document.getElementById('counter').innerHTML='<b>'+n+'</b> / '+total;dotsEl.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('on',i===cur));}
-  function go(n){if(n===cur)return;slides[cur].classList.add('out');slides[cur].classList.remove('active');setTimeout(()=>slides[n].classList.remove('out'),380);cur=Math.max(0,Math.min(total-1,n));slides[cur].classList.add('active');updateUI();}
+  function go(n){if(n===cur)return;slides[cur].classList.add('out');slides[cur].classList.remove('active');setTimeout(()=>slides[n].classList.remove('out'),380);cur=Math.max(0,Math.min(total-1,n));slides[cur].classList.add('active');updateUI();if(notesEl.classList.contains('show'))updateNotes();}
   function next(){if(cur<total-1)go(cur+1);}
   function prev(){if(cur>0)go(cur-1);}
-  document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')next();if(e.key==='ArrowLeft'||e.key==='ArrowUp')prev();if(e.key==='f'||e.key==='F')document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();});
+  const NOTES=[
+ "<b>Ask:</b> <span class=\"q\">\u201CBefore I show you anything \u2014 what\u2019s eating the most time on your facilities plate right now?\u201D</span><br><b>Listen:</b> vendor count, downtime, energy spend, a stalled project \u2014 their answer picks your path through this deck.<br><b>Move:</b> don\u2019t read the slide. One line: \u201Cwe help facility teams get out of vendor management and back to their real jobs.\u201D",
+ "<b>Ask:</b> <span class=\"q\">\u201CWhich of these four is your Tuesday?\u201D</span> then <span class=\"q\">\u201CWhat does that cost you in a bad month?\u201D</span><br><b>Listen:</b> vendor sprawl \u2192 consolidation play \u00B7 energy \u2192 Energy Performance \u00B7 aging \u2192 Construction/retrofit \u00B7 no visibility \u2192 EMS + reporting.<br><b>Move:</b> get the pain in THEIR numbers \u2014 you\u2019ll hand those words back on the pricing slide.",
+ "<b>Ask:</b> <span class=\"q\">\u201CWho handles this for you today \u2014 and how many vendors is that across all your sites?\u201D</span><br><b>Listen:</b> more than three \u2192 consolidation story. One entrenched incumbent \u2192 wedge in with a single category and let the loop expand.<br><b>Move:</b> twenty seconds of credibility \u2014 20,000 technicians, 60% growth \u2014 then back to them.<br><b>Know:</b> EC&M ranks U.S. electrical contractors by actual construction revenue \u2014 no nominations, no voting. FSG is #18 in 2026, up 4 spots, and our distribution business ranks #47 on its own national list \u2014 few companies in America appear on both. Source: EC&M 2026 ranking (link in Growth Hub guide).",
+ "<b>Ask:</b> <span class=\"q\">\u201CIf one partner owned all of it \u2014 what would your team do with the time back?\u201D</span><br><b>Move:</b> this is the sentence they repeat to their boss. Say it slowly. Then be quiet.",
+ "<b>Ask:</b> <span class=\"q\">\u201CIf we walked your toughest site tomorrow, what would we find?\u201D</span><br><b>Listen:</b> that answer IS the problem statement \u2014 write it down in their words.<br><b>Move:</b> land the ladder: step 1 costs them nothing but a walk.",
+ "<b>THE SOLUTION-MAPPING SLIDE.</b><br><b>Ask:</b> <span class=\"q\">\u201CWalk me across this grid \u2014 what do you buy today, and how do you buy it?\u201D</span> then <span class=\"q\">\u201CWhich of these do you wish someone else owned?\u201D</span><br><b>Listen:</b> WHAT they buy = the product line. WHOSE budget pays = the method: capital project \u2192 Construction \u00B7 operating budget \u2192 Service \u00B7 they buy the material themselves \u2192 Distribution.<br><b>Move:</b> point at their empty cells: \u201Cthat\u2019s usually where money leaks.\u201D Problem + cell = the solution, named in under two minutes.<br><b>Know:</b> EMS = energy management system (monitors & controls HVAC, lighting, refrigeration) \u00B7 DAS = distributed antenna system (in-building cellular coverage) \u00B7 EBV\u00AE = Equal or Better Value, FSG\u2019s owner-supplied lighting standard \u00B7 IRR = internal rate of return \u2014 10%+ IRR beats most corporate investment hurdles.",
+ "<b>Ask:</b> <span class=\"q\">\u201CWhere do your sites give you the most trouble \u2014 and who covers them today?\u201D</span><br><b>Listen:</b> coverage gaps, region-to-region inconsistency, the site nobody visits.<br><b>Move:</b> regional buyer? Flip it: \u201Clocal crew, national backbone.\u201D",
+ "<b>Ask:</b> <span class=\"q\">\u201CWhat does your risk team require from vendors \u2014 and who\u2019s actually meeting it?\u201D</span><br><b>Move:</b> frame safety as THEIR liability reduction: fewer incidents on their property, work that doesn\u2019t stop.<br><b>Know:</b> EMR (Experience Modification Rate) = the insurance industry\u2019s risk score; 1.0 is average \u2014 FSG\u2019s .73 means 27% safer than the industry, which lowers the client\u2019s insured cost of having us on site \u00B7 TRIR (Total Recordable Incident Rate) = OSHA-recordable injuries per 100 full-time workers per year \u00B7 DART (Days Away, Restricted, or Transferred) = injuries serious enough to cost work time \u00B7 ISO 45001 = the international occupational health & safety management standard. Procurement screens on all four \u2014 know them cold.",
+ "<b>Ask:</b> <span class=\"q\">\u201CWhich of these looks most like your world?\u201D</span> \u2014 then tap that chip.<br><b>Listen:</b> whatever they probe on (price? timeline? disruption?) is their real buying criteria. Sell to that from here on.<br><b>Move:</b> pre-select their chip before the meeting. NEVER tap a bracketed chip live.",
+ "<b>Ask:</b> <span class=\"q\">\u201CWhat\u2019s your worst fear about consolidating vendors? Say it out loud.\u201D</span><br><b>Move:</b> name the basket fear before they do \u2014 disarming it yourself is the power move. Accountability concentrated is leverage.",
+ "<b>Ask:</b> <span class=\"q\">\u201CWhat\u2019s the ONE problem you\u2019d hand us first?\u201D</span> then <span class=\"q\">\u201CAt day 90, what number tells you it worked?\u201D</span><br><b>Listen:</b> their metric becomes the contract KPI \u2014 write it down verbatim.<br><b>Move:</b> the fourth card sells the expansion. You never have to pitch it.",
+ "<b>Ask:</b> <span class=\"q\">\u201CWhat\u2019s blown up a vendor relationship on price for you before?\u201D</span><br><b>Listen:</b> change orders \u00B7 opaque scopes \u00B7 bid-low-bill-high \u2014 match their scar to the commitment on this slide.<br><b>Move:</b> do NOT skip this slide. Talking price unprompted separates you from every vendor they\u2019ve met.",
+ "<b>Move:</b> slow down. No questions here \u2014 this is the why. Let it breathe.",
+ "<b>Ask:</b> <span class=\"q\">\u201CWhich site should we walk first?\u201D</span><br><b>Move:</b> assumptive and open at once. Offer two specific dates, never \u201Clet me know.\u201D Then silence \u2014 the first one to speak loses the calendar."
+];
+const notesEl=document.getElementById('notes');
+function updateNotes(){document.getElementById('notesText').innerHTML=NOTES[cur]||'';}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')next();if(e.key==='ArrowLeft'||e.key==='ArrowUp')prev();if(e.key==='f'||e.key==='F')document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();if(e.key==='n'||e.key==='N'){notesEl.classList.toggle('show');updateNotes();}});
   let tx=0;document.addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});document.addEventListener('touchend',e=>{const dx=tx-e.changedTouches[0].clientX;if(Math.abs(dx)>40)dx>0?next():prev();},{passive:true});
   updateUI();
 })();
@@ -496,6 +594,8 @@ const CLIENTS = [
 const chipsEl=document.getElementById('clientChips');
 if(chipsEl){
   CLIENTS.forEach((cl,i)=>{const ch=document.createElement('div');ch.className='cchip'+(i===0?' on':'');ch.textContent=cl.name;ch.addEventListener('click',e=>{e.stopPropagation();render(i);});chipsEl.appendChild(ch);});
+  // Isolate horizontal chip scrolling from deck swipe navigation
+  ['touchstart','touchmove','touchend'].forEach(ev=>chipsEl.addEventListener(ev,e=>e.stopPropagation(),{passive:true}));
   function render(i){
     const cl=CLIENTS[i];
     chipsEl.querySelectorAll('.cchip').forEach((ch,j)=>ch.classList.toggle('on',j===i));
