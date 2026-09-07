@@ -112,7 +112,22 @@ body{font-family:'Open Sans',Arial,sans-serif;color:var(--deep);background:#f7f9
     </div>
     <div class="two">
       <div class="f"><label>Client name</label><input id="fName" placeholder="e.g., Circle K"></div>
-      <div class="f"><label>Vertical &middot; categories</label><input id="fVert" placeholder="e.g., C-Store · EMS · Solar · Lighting"></div>
+      <div class="f"><label>Vertical</label><select id="fVert">
+        <option value="">Select vertical…</option>
+        <option>Commercial Real Estate &amp; Office</option>
+        <option>Retail</option>
+        <option>Convenience &amp; Fuel</option>
+        <option>Restaurant &amp; Food Service</option>
+        <option>Industrial &amp; Manufacturing</option>
+        <option>Data Center &amp; Mission Critical</option>
+        <option>Healthcare</option>
+        <option>Senior Living &amp; Post-Acute</option>
+        <option>Education</option>
+        <option>Hospitality &amp; Entertainment</option>
+        <option>Government &amp; Public Infrastructure</option>
+        <option>Faith &amp; Community</option>
+        <option>Multifamily &amp; Residential Communities</option>
+      </select></div>
     </div>
     <h2 style="margin-top:20px;">The Cell — Product &times; Delivery &times; Type</h2>
     <div class="two">
@@ -261,6 +276,7 @@ function refresh(){
   $('pvCreditName').textContent = sub ? 'Proof submitted by ' + sub : '';
 }
 document.querySelectorAll('input,textarea').forEach(el=>el.addEventListener('input', refresh));
+$('fVert').addEventListener('change', refresh);
 document.querySelectorAll('.perm input').forEach(el=>el.addEventListener('change', refresh));
 
 // ---- file drops ----
