@@ -1,0 +1,810 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engage Live — Seasons 1 &amp; 2 Training Guide</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='115' fill='%23133865'/><g stroke='%23c5d9fa' stroke-width='22' stroke-linecap='round'><line x1='256' y1='256' x2='256' y2='96'/><line x1='256' y1='256' x2='394.6' y2='176'/><line x1='256' y1='256' x2='394.6' y2='336'/><line x1='256' y1='256' x2='256' y2='416'/><line x1='256' y1='256' x2='117.4' y2='336'/><line x1='256' y1='256' x2='117.4' y2='176'/></g><circle cx='256' cy='96' r='42' fill='%23ffffff'/><circle cx='394.6' cy='176' r='42' fill='%23c5d9fa'/><circle cx='394.6' cy='336' r='42' fill='%23ffffff'/><circle cx='256' cy='416' r='42' fill='%23c5d9fa'/><circle cx='117.4' cy='336' r='42' fill='%23ffffff'/><circle cx='117.4' cy='176' r='42' fill='%23ebb018'/><circle cx='256' cy='256' r='76' fill='%23ebb018'/></svg>">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{--deep:#0b1421;--navy:#133865;--blue:#365aa0;--steel:#718dbc;--ice:#c5d9fa;--lgray:#ededed;--gold:#ebb018;--bright:#4e84de;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Open Sans',Arial,sans-serif;color:var(--deep);background:#f7f9fc;line-height:1.55;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .backbar{max-width:980px;margin:0 auto;padding:18px 20px 0;}
+  .backbar a{font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--steel);text-decoration:none;}
+  .backbar a:hover{color:var(--gold);}
+  .backbar span{color:var(--ice);margin:0 8px;}
+  .wrap{max-width:980px;margin:0 auto;padding:0 20px 70px;}
+
+  .hero{background:linear-gradient(160deg,var(--deep),var(--navy));border-radius:12px;padding:30px 30px 26px;color:#fff;margin-top:14px;border-bottom:3px solid var(--gold);}
+  .hero .eyebrow{font-family:'Oswald',sans-serif;font-weight:600;font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--ice);margin-bottom:6px;}
+  .hero h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(30px,6vw,46px);line-height:1.08;}
+  .hero .facts{font-family:'Oswald',sans-serif;font-weight:500;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin:10px 0 8px;}
+  .hero p{color:var(--ice);font-size:14.5px;max-width:680px;}
+  .hero .links{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;}
+  .hero .links a{font-family:'Oswald',sans-serif;font-size:11.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border-radius:6px;padding:9px 15px;}
+  .hero .links a.gold{background:var(--gold);color:var(--deep);}
+  .hero .links a.ghost{border:1.5px solid var(--steel);color:var(--ice);}
+  .hero .links a.ghost:hover{border-color:var(--gold);color:#fff;}
+
+  h2.sec{font-family:'Oswald',sans-serif;font-weight:700;font-size:26px;color:var(--navy);text-transform:uppercase;letter-spacing:.5px;margin:40px 0 6px;padding-bottom:6px;border-bottom:2px solid var(--gold);}
+  h3.sub{font-family:'Oswald',sans-serif;font-weight:600;font-size:19px;color:var(--blue);margin:24px 0 8px;}
+  p.body{margin:10px 0;max-width:760px;}
+
+  .arc{display:grid;grid-template-columns:1fr;gap:10px;margin:16px 0;}
+  @media(min-width:700px){.arc{grid-template-columns:repeat(3,1fr);}}
+  .arc .a{background:var(--deep);border-radius:8px;padding:16px 18px;color:var(--ice);font-size:13.5px;border-top:3px solid var(--gold);}
+  .arc .a b{display:block;font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+  .launch{background:var(--ice);border-left:4px solid var(--gold);border-radius:0 6px 6px 0;padding:14px 20px;margin:16px 0;color:var(--navy);font-size:14.5px;}
+  ul.how{margin:12px 0 0 22px;max-width:760px;}
+  ul.how li{margin-bottom:8px;}
+
+  /* find bar */
+  .findbar{position:sticky;top:0;z-index:40;background:#fff;box-shadow:0 2px 12px rgba(11,20,33,.10);border-radius:0 0 10px 10px;padding:12px 16px;margin-top:26px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+  .findbar input{flex:1;min-width:200px;border:2px solid var(--lgray);border-radius:8px;padding:11px 14px;font-family:'Open Sans',Arial,sans-serif;font-size:16px;outline:none;}
+  .findbar input:focus{border-color:var(--gold);}
+  .findbar .jump{font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:8px 13px;border-radius:16px;border:1.5px solid var(--steel);color:var(--navy);background:#fff;cursor:pointer;text-decoration:none;white-space:nowrap;}
+  .findbar .jump:hover{border-color:var(--gold);}
+
+  .season-div{background:linear-gradient(160deg,var(--deep),#101c30);border-radius:10px;border-left:4px solid var(--gold);padding:18px 22px;color:#fff;margin:34px 0 14px;}
+  .season-div .s{font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);}
+  .season-div h3{font-family:'Oswald',sans-serif;font-weight:700;font-size:24px;text-transform:uppercase;letter-spacing:1px;}
+  .season-div .r{font-size:13px;color:var(--ice);margin-top:2px;}
+  .arcnote{font-size:13.5px;color:#4a5568;font-style:italic;max-width:760px;margin:0 0 14px;}
+
+  /* episode cards */
+  details.ep{background:#fff;border:1px solid var(--lgray);border-left:4px solid var(--blue);border-radius:8px;margin-bottom:10px;overflow:hidden;}
+  details.ep[open]{border-left-color:var(--gold);box-shadow:0 4px 14px rgba(19,56,101,.10);}
+  details.ep summary{display:flex;align-items:center;gap:14px;padding:14px 16px;cursor:pointer;list-style:none;}
+  details.ep summary::-webkit-details-marker{display:none;}
+  .epnum{flex-shrink:0;width:44px;height:44px;border-radius:8px;background:var(--navy);color:var(--gold);font-family:'Oswald',sans-serif;font-weight:700;font-size:20px;display:flex;align-items:center;justify-content:center;}
+  .epmain{flex:1;min-width:0;}
+  .eptitle{display:block;font-family:'Oswald',sans-serif;font-weight:600;font-size:18px;color:var(--navy);line-height:1.2;}
+  .epfocus{display:block;font-size:12.5px;color:var(--steel);font-weight:600;letter-spacing:.3px;}
+  .chev{color:var(--steel);transition:transform .15s;}
+  details.ep[open] .chev{transform:rotate(180deg);color:var(--gold);}
+  .epbody{padding:2px 18px 18px 74px;}
+  @media(max-width:560px){.epbody{padding:2px 16px 16px 16px;}}
+  .mantra{font-style:italic;font-size:15px;color:var(--navy);font-weight:600;margin:4px 0 8px;}
+  .creed{font-size:13px;background:var(--deep);color:var(--ice);border-radius:6px;padding:10px 14px;margin:8px 0 4px;}
+  .creed b{color:var(--gold);font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:1px;text-transform:uppercase;font-size:11px;display:block;margin-bottom:2px;}
+  .epbody h4{font-family:'Oswald',sans-serif;color:var(--blue);font-size:14px;letter-spacing:1px;text-transform:uppercase;margin:14px 0 4px;}
+  .epbody p{font-size:14px;}
+  .epbody ul{margin:6px 0 0 20px;font-size:14px;}
+  .epbody li{margin-bottom:5px;}
+  .play{background:#fafbfd;border:1px solid var(--lgray);border-left:4px solid var(--blue);border-radius:6px;padding:10px 14px;font-size:13.5px;margin:12px 0 2px;}
+  .play b{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:2px;}
+  .move{background:var(--ice);border-left:4px solid var(--gold);border-radius:0 6px 6px 0;padding:11px 14px;font-size:13.5px;color:var(--navy);margin-top:14px;}
+  .move b{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:2px;}
+  .noep{display:none;text-align:center;color:var(--steel);padding:26px;font-size:15px;}
+
+  .vc{margin-top:44px;padding-top:18px;border-top:3px solid var(--gold);}
+  .vc h3{font-family:'Oswald',sans-serif;color:var(--navy);font-size:18px;margin-bottom:10px;}
+  table.vc-table{width:100%;border-collapse:collapse;font-size:14px;background:#fff;}
+  table.vc-table th{background:var(--navy);color:#fff;text-align:left;padding:8px 12px;font-weight:700;}
+  table.vc-table td{padding:8px 12px;border:1px solid var(--lgray);}
+  .living{font-size:12.5px;color:var(--steel);font-style:italic;margin-top:10px;}
+  footer{background:var(--deep);color:var(--steel);padding:22px;text-align:center;font-size:12px;margin-top:50px;}
+  footer .grind{font-family:'Oswald',sans-serif;font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+</style>
+</head>
+<body>
+
+<!-- ============ GROWTH HUB GATE ============ -->
+<style>
+  html.gh-locked > body > :not(#ghGate){display:none !important;}
+  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
+  html:not(.gh-locked) #ghGate{display:none;}
+  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
+  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
+  #ghGate .gh-brand svg{width:30px;height:30px;}
+  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
+  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
+  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;}
+  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
+  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
+  #ghGate input:focus{border-color:#4e84de;}
+  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
+  #ghGate button:hover{filter:brightness(1.06);}
+  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
+  #ghGate .gh-shake{animation:ghshake .3s;}
+  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+<div id="ghGate">
+  <div class="gh-wrap">
+    <div class="gh-brand">
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#c5d9fa" stroke-width="14" stroke-linecap="round" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g><circle cx="150" cy="50" r="26" fill="#ffffff"/><circle cx="236.6" cy="100" r="26" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="26" fill="#ffffff"/><circle cx="150" cy="250" r="26" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="26" fill="#ffffff"/><circle cx="63.4" cy="100" r="26" fill="#c5d9fa"/><circle cx="150" cy="150" r="44" fill="#ebb018"/></svg>
+      <span>Growth Hub</span>
+    </div>
+    <div class="gh-card">
+      <h2>Passcode</h2>
+      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
+      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
+      <button id="ghGo" type="button">Enter the Hub</button>
+      <div class="gh-err" id="ghErr"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
+  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+  if(!unlocked()) document.documentElement.classList.add('gh-locked');
+  function open(){ document.documentElement.classList.remove('gh-locked'); }
+  async function check(){
+    var v=document.getElementById('ghPass').value;
+    var ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        ok=(hex===HASH);
+      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
+    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
+    if(ok){ remember(); open(); }
+    else{
+      var card=document.querySelector('#ghGate .gh-card');
+      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
+      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
+      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    if(unlocked()) return;
+    document.getElementById('ghGo').addEventListener('click', check);
+    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
+  });
+})();
+</script>
+<!-- ============ /GROWTH HUB GATE ============ -->
+
+<div class="backbar">
+  <a href="../../index.html">&larr; Growth Hub</a><span>|</span><a href="../fsg-app-faq.html">&larr; FSG App FAQs</a>
+</div>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Facility Solutions Group · The Webinar Series Playbook</div>
+    <h1>ENGAGE LIVE — Seasons 1 &amp; 2</h1>
+    <div class="facts">Two Seasons · 24 Episodes · Live on Zoom · 30 Minutes · Clients as the Hero</div>
+    <p>The Exceptional Experience with Technology. This is not software training — it's how we run the business. Every episode connects a piece of Engage to the job it powers, the teammate it serves, and the client it ultimately helps win.</p>
+    <div class="links">
+      <a class="gold" href="engage-live-one-sheet.html">The One Sheet</a>
+      <a class="ghost" href="https://engage.fsgapps.com" target="_blank" rel="noopener">engage.fsgapps.com</a>
+    </div>
+  </section>
+
+  <h2 class="sec">Why Engage Live Exists</h2>
+  <p class="body">Engage Live is FSG's enterprise webinar series on how we use Engage — our CRM and technology launch pad — to deliver an exceptional experience for our clients and excel in every role across the company.</p>
+  <p class="body">Our clients feel our technology even when they never see it. When every conversation is captured, every commitment tracked, and every team working from the same record, the client experiences one seamless FSG — prepared, responsive, and impossible to surprise. That's the exceptional experience, and Engage is what makes it possible at scale.</p>
+
+  <h3 class="sub">The Story We Tell</h3>
+  <p class="body">At FSG, the client is the hero, and we are the guide. Every pursuit, project, and renewal follows the same arc:</p>
+  <div class="arc">
+    <div class="a"><b>Problem</b>We start where the client starts — the facility challenge, the risk, the cost, the frustration. The client's problem is the opening scene of every story we tell.</div>
+    <div class="a"><b>Solution</b>FSG shows up as the expert guide. Engage is how we show up prepared — every conversation, quote, and commitment captured so the client never repeats themselves and never wonders where things stand.</div>
+    <div class="a"><b>Results</b>The client wins: savings delivered, facilities running, promises kept. Their success is the ending — and in Engage, it becomes the proof that opens the next story.</div>
+  </div>
+  <div class="launch"><b>Engage is the launch pad.</b> Every episode answers the same question: how does this feature, this role, or this handoff help us tell that story better? Engage isn't the point — the client's result is the point.</div>
+
+  <h3 class="sub">A.B.C. — Always Be Capturing</h3>
+  <p class="body">Every great sales story has its mantra. Ours is a friendly remake of the classic: <b>Always Be Capturing</b>. Every conversation logged, every commitment tracked, every opportunity in Engage — because a deal that isn't captured can't be closed, coached, forecasted, or delivered.</p>
+  <p class="body">Every episode carries a line from <b>The Closer's Creed</b> — 24 original mantras, one per episode, written with a wink to the greatest sales movie ever made. First prize: your pipeline runs itself. Second prize: a set of steak knives. Third prize: you're still living in spreadsheets.</p>
+
+  <h3 class="sub">How the Series Works</h3>
+  <ul class="how">
+    <li><b>Live webinars on Zoom, 30 minutes,</b> open to all of FSG Enterprise — every role, every division.</li>
+    <li><b>Live in Engage the whole time.</b> Real records, real workflows, real speed — no slide decks.</li>
+    <li><b>Every episode opens with a Play of the Week:</b> one teammate, one real client win powered by Engage.</li>
+    <li><b>Every episode closes with Your One Move:</b> a single action every attendee takes before the next session.</li>
+    <li><b>Season One masters the tool. Season Two masters the machine</b> — every role, division, and handoff in the enterprise.</li>
+  </ul>
+
+  <div class="findbar">
+    <input type="text" id="find" placeholder="Find an episode — try: pipeline, leads, handoff, solutions team…" aria-label="Find an episode">
+    <a class="jump" href="#season1">Season 1</a>
+    <a class="jump" href="#season2">Season 2</a>
+    <span class="jump" id="expandAll" role="button">Expand all</span>
+  </div>
+
+  <!-- ================= SEASON ONE ================= -->
+  <div class="season-div" id="season1">
+    <div class="s">Season One</div>
+    <h3>Master the Tool</h3>
+    <div class="r">Episodes 1–11 · Every core Engage feature, live</div>
+  </div>
+
+  <details class="ep" id="ep1" data-season="1">
+    <summary>
+      <span class="epnum">1</span>
+      <span class="epmain">
+        <span class="eptitle">Mission Control</span>
+        <span class="epfocus">Dashboard, Navigation &amp; Find</span>
+      </span>
+      <span class="chev" aria-hidden="true">▾</span>
+    </summary>
+    <div class="epbody">
+      <div class="mantra">“Get anywhere in Engage in three clicks or less.”</div>
+      <div class="creed"><b>The Closer's Creed — No. 1</b> “You can't close what you can't find.”</div>
+      <h4>What Attendees Walk Away With</h4>
+      <p>Every attendee can navigate the Engage dashboard, customize their home view, and find any account, contact, or opportunity in under 10 seconds.</p>
+      <h4>The Opening Hook</h4>
+      <p>Live race: host finds a random account, contact, and open opportunity in under 30 seconds. Then challenge: "By the end of this session, you'll beat that time."</p>
+      <div class="play"><b>Play of the Week</b> A rep shows how they found a dormant account through search and re-opened a conversation that turned into a quote.</div>
+      <h4>What We Cover</h4>
+      <ul><li>Dashboard tour — what each panel tells you and why it matters to your number</li><li>Global search — exact match vs. partial match, and search shortcuts that save clicks</li><li>Navigation menu — Accounts, Leads, Opportunities, Tasks: where everything lives</li><li>Customizing your home view — pin what you touch daily, hide what you don't</li><li>The 'My Accounts' view — your book of business at a glance</li></ul>
+      <div class="move"><b>Your One Move — before the next episode</b> Customize your dashboard home view before Friday — pin My Accounts and your open Tasks panel.</div>
+    </div>
+  </details>
+  <details class="ep" id="ep2" data-season="1">
+    <summary>
+      <span class="epnum">2</span>
+      <span class="epmain">
+        <span class="eptitle">Know Your Territory</span>
+        <span class="epfocus">Accounts</span>
+      </span>
+      <span class="chev" aria-hidden="true">▾</span>
+    </summary>
+    <div class="epbody">
+      <div class="mantra">“Your book of business is your kingdom. Learn every corner of it.”</div>
+      <div class="creed"><b>The Closer's Creed — No. 2</b> “The leads aren't weak. Weak account data is weak.”</div>
+      <h4>What Attendees Walk Away With</h4>
+      <p>Every attendee understands account records end-to-end: fields that matter, ownership, hierarchy, and how account data drives everything downstream.</p>
+      <h4>The Opening Hook</h4>
+      <p>Show two account records side by side — one complete, one bare. Ask: "Which rep gets the callback? Which one wins the renewal?" Data quality = revenue.</p>
+      <div class="play"><b>Play of the Week</b> A rep walks through how a fully-built account record helped them spot a cross-sell into a second service line.</div>
+      <h4>What We Cover</h4>
+      <ul><li>Anatomy of an account record — the fields that actually drive reporting and commissions</li><li>Account ownership — who owns what, and how ownership affects your pipeline visibility</li><li>Parent/child hierarchy — national accounts, locations, and rollups (JLL, CBRE examples)</li><li>Account lists and filters — slicing your territory by sector, size, and activity</li><li>Linking contacts to accounts — building the org map inside the record</li></ul>
+      <div class="move"><b>Your One Move — before the next episode</b> Pick your top 5 accounts and complete every core field on each record this week.</div>
+    </div>
+  </details>
+  <details class="ep" id="ep3" data-season="1">
+    <summary>
+      <span class="epnum">3</span>
+      <span class="epmain">
+        <span class="eptitle">The Film Room</span>
+        <span class="epfocus">Account Review</span>
+      </span>
+      <span class="chev" aria-hidden="true">▾</span>
+    </summary>
+    <div class="epbody">
+      <div class="mantra">“Break down the tape. Find the openings. Call the next play.”</div>
+      <div class="creed"><b>The Closer's Creed — No. 3</b> “Winners watch the tape.”</div>
+      <h4>What Attendees Walk Away With</h4>
+      <p>Every attendee can run a structured account review inside Engage: activity history, open opportunities, service line coverage, and whitespace.</p>
+      <h4>The Opening Hook</h4>
+      <p>Coach-style cold open: pull up a real (sanitized) account and break it down like game film — "Here's what we ran, here's what worked, here's the gap in their coverage."</p>
+      <div class="play"><b>Play of the Week</b> A rep shows an account review that surfaced an expiring competitor contract — and the opportunity they created from it.</div>
+      <h4>What We Cover</h4>
+      <ul><li>The account review flow — where to start and what to check first</li><li>Activity timeline — reading the story of the relationship at a glance</li><li>Open vs. closed opportunities — momentum check and win/loss patterns</li><li>Service line coverage map — what they buy from us vs. what they could</li><li>Whitespace spotting — turning gaps into your next three opportunities</li></ul>
+      <div class="move"><b>Your One Move — before the next episode</b> Run a full film-room review on one strategic account and log one new opportunity from the whitespace you find.</div>
+    </div>
+  </details>
+  <details class="ep" id="ep4" data-season="1">
+    <summary>
+      <span class="epnum">4</span>
+      <span class="epmain">
+        <span class="eptitle">Built Right the First Time</span>
+        <span class="epfocus">Account Setup</span>
+      </span>
+      <span class="chev" aria-hidden="true">▾</span>
+    </summary>
+    <div class="epbody">
+      <div class="mantra">“Five minutes of setup saves five hours of cleanup.”</div>
+      <div class="creed"><b>The Closer's Creed — No. 4</b> “Build it right once, or rebuild it forever.”</div>
+      <h4>What Attendees Walk Away With</h4>
+      <p>Every attendee can create a new account correctly the first time: naming conventions, required fields, hierarchy placement, and contact linkage.</p>
+      <h4>The Opening Hook</h4>
+      <p>Show the downstream damage of one badly-created account — broken reporting, missed commissions, duplicate records. Then show the 5-minute setup that prevents all of it.</p>
+      <div class="play"><b>Play of the Week</b> A rep shows a national account they set up right — and how clean rollup reporting made the QBR prep effortless.</div>
+      <h4>What We Cover</h4>
+      <ul><li>Before you create: the duplicate check that saves everyone a headache</li><li>Naming conventions — FSG standards, including JLL / CBRE / Cushman &amp; Wakefield formats</li><li>Required fields walkthrough — what to fill, what it feeds, why it matters</li><li>Placing the account in hierarchy — standalone vs. parent/child</li><li>Adding the first contacts and setting the account owner</li></ul>
+      <div class="move"><b>Your One Move — before the next episode</b> Audit the last account you created. Fix naming, fields, and hierarchy to standard.</div>
+    </div>
+  </details>
+  <details class="ep" id="ep5" data-season="1">
+    <summary>
+      <span class="epnum">5</span>
+      <span class="epmain">
+        <span class="eptitle">The Hunt</span>
+        <span class="epfocus">Leads</span>
+      </span>
+      <span class="chev" aria-hidden="true">▾</span>
+    </summary>
+    <div class="epbody">
+      <div class="mantra">“Every lead is a door. Learn to open them fast.”</div>
+      <div class="creed"><b>The Closer's Creed — No. 5</b> “A lead only goes cold if you let it.”</div>
+      <h4>What Attendees Walk Away With</h4>
+      <p>Every attendee can capture, qualify, work, and convert (or disqualify) leads in Engage without letting anything rot in the queue.</p>
+      <h4>The Opening Hook</h4>
+      <p>Show the lead aging report. Every gray-haired lead on that list is money someone left on the table. Today we fix that.</p>
+      <div class="play"><b>Play of the Week</b> A rep shows a lead they converted within 24 hours of it hitting the queue — speed-to-lead in action.</div>
+      <h4>What We Cover</h4>
+      <ul><li>Where leads come from — web, referrals, campaigns, and manual entry</li><li>Lead record essentials — capturing enough to act, not so much you stall</li><li>Qualification flow — the questions that decide convert vs. disqualify</li><li>Converting a lead — what happens to the account, contact, and opportunity</li><li>Working the queue — daily lead hygiene in under 10 minutes</li></ul>
+      <div class="move"><b>Your One Move — before the next episode</b> Clear your lead queue this week: every lead gets converted, disqualified, or a next action logged.</div>
+    </div>
+  </details>
+  <details class="ep" id="ep6" data-season="1">
+    <summary>
+      <span class="epnum">6</span>
+      <span class="epmain">
+        <span class="eptitle">Money in Motion</span>
+        <span class="epfocus">Opportunities</span>
+      </span>
+      <span class="chev" aria-hidden="true">▾</span>
+    </summary>
+    <div class="epbody">
+      <div class="mantra">“If it's not an opportunity in Engage, it doesn't exist.”</div>
+      <div class="creed"><b>The Closer's Creed — No. 6</b> “Put. That deal. In Engage.”</div>
+      <h4>What Attendees Walk Away With</h4>
+      <p>Every attendee can create, stage, value, and advance opportunities correctly — the single most important record type for forecasting and commissions.</p>
+      <h4>The Opening Hook</h4>
+      <p>One sentence on screen: "If it's not in Engage, it doesn't exist — not to leadership, not to forecasting, not to your commission statement." Then build one live in 90 seconds.</p>
+      <div class="play"><b>Play of the Week</b> A rep shows an opportunity they moved from create to close-won, stage by stage, and what triggered each advance.</div>
+      <h4>What We Cover</h4>
+      <ul><li>Creating an opportunity — from an account, from a lead, from an email</li><li>The fields that matter — value, service line, close date, and stage</li><li>Pipeline stages explained — what each stage means and what earns the move</li><li>Attaching quotes, docs, and activity to the opp record</li><li>Close it right — won/lost reasons and why they feed the win-rate machine</li></ul>
+      <div class="move"><b>Your One Move — before the next episode</b> Review every open opportunity you own — correct stage, value, and close date on each.</div>
+    </div>
+  </details>
+  <details class="ep" id="ep7" data-season="1">
+    <summary>
+      <span class="epnum">7</span>
+      <span class="epmain">
+        <span class="eptitle">Face Time Wins</span>
+        <span class="epfocus">Meetings</span>
+      </span>
+      <span class="chev" aria-hidden="true">▾</span>
+    </summary>
+    <div class="epbody">
+      <div class="mantra">“Deals move at the speed of meetings. Log them like they matter.”</div>
+      <div class="creed"><b>The Closer's Creed — No. 7</b> “Deals move at the speed of meetings.”</div>
+      <h4>What Attendees Walk Away With</h4>
+      <p>Every attendee can schedule, log, and follow up on meetings in Engage so every customer conversation builds the account story.</p>
+      <h4>The Opening Hook</h4>
+      <p>Two reps, same account, six months apart. One logged every meeting; one logged nothing. Show what the second rep walked into blind.</p>
+      <div class="play"><b>Play of the Week</b> A rep shows how a logged meeting note from eight months ago won them a renewal conversation.</div>
+      <h4>What We Cover</h4>
+      <ul><li>Scheduling a meeting from the account or opportunity record</li><li>Meeting logging — the 2-minute post-meeting habit that compounds</li><li>Linking meetings to opportunities so activity drives stage movement</li><li>Meeting notes that your future self (and your teammates) can actually use</li><li>Follow-up tasks — never leave a meeting without the next action logged</li></ul>
+      <div class="move"><b>Your One Move — before the next episode</b> Log every customer meeting this week within 24 hours — notes plus one follow-up task.</div>
+    </div>
+  </details>
+  <details class="ep" id="ep8" data-season="1">
+    <summary>
+      <span class="epnum">8</span>
+      <span class="epmain">
+        <span class="eptitle">Inbox to Income</span>
+        <span class="epfocus">Email</span>
+      </span>
+      <span class="chev" aria-hidden="true">▾</span>
+    </summary>
+    <div class="epbody">
+      <div class="mantra">“Your inbox is a pipeline feed. Plug it in.”</div>
+      <div class="creed"><b>The Closer's Creed — No. 8</b> “Your inbox is full of money. Log it.”</div>
+      <h4>What Attendees Walk Away With</h4>
+      <p>Every attendee can connect email activity to Engage records, log key threads, and turn inbound emails into tracked opportunities.</p>
+      <h4>The Opening Hook</h4>
+      <p>Live demo: take a real inbound customer email and turn it into a logged opportunity in under three minutes. Inbox to income.</p>
+      <div class="play"><b>Play of the Week</b> A rep shows an email thread that became a quoted opportunity because it got logged the moment it landed.</div>
+      <h4>What We Cover</h4>
+      <ul><li>Email integration overview — what syncs automatically and what doesn't</li><li>Logging an email thread to an account, contact, or opportunity</li><li>From email to opportunity — capturing the ask before it slips</li><li>Email templates — consistent FSG voice at speed</li><li>What NOT to log — keeping the record signal-rich, not noisy</li></ul>
+      <div class="move"><b>Your One Move — before the next episode</b> Log every opportunity-relevant email thread this week to its account or opp record.</div>
+    </div>
+  </details>
+  <details class="ep" id="ep9" data-season="1">
+    <summary>
+      <span class="epnum">9</span>
+      <span class="epmain">
+        <span class="eptitle">Nothing Slips</span>
+        <span class="epfocus">Tasks</span>
+      </span>
+      <span class="chev" aria-hidden="true">▾</span>
+    </summary>
+    <div class="epbody">
+      <div class="mantra">“Winners don't have better memories. They have better systems.”</div>
+      <div class="creed"><b>The Closer's Creed — No. 9</b> “You don't need a better memory. You need a better system.”</div>
+      <h4>What Attendees Walk Away With</h4>
+      <p>Every attendee runs their day from the Engage task list: creating, prioritizing, and closing tasks tied to accounts and opportunities.</p>
+      <h4>The Opening Hook</h4>
+      <p>Ask the room: "What's the follow-up you're most afraid you forgot?" Pause. "Right. Let's make sure that never happens again."</p>
+      <div class="play"><b>Play of the Week</b> A rep shows their morning task routine — 10 minutes that sets the whole day.</div>
+      <h4>What We Cover</h4>
+      <ul><li>Task anatomy — subject, due date, priority, and what to link it to</li><li>Creating tasks from meetings, emails, and opportunity records</li><li>The daily task view — running your morning from one screen</li><li>Prioritization — Big Rock first: sorting by deal impact, not noise</li><li>Completing and rolling tasks — closing the loop without losing the thread</li></ul>
+      <div class="move"><b>Your One Move — before the next episode</b> Start every workday this week from your Engage task view before opening your inbox.</div>
+    </div>
+  </details>
+  <details class="ep" id="ep10" data-season="1">
+    <summary>
+      <span class="epnum">10</span>
+      <span class="epmain">
+        <span class="eptitle">Own Your Pipeline</span>
+        <span class="epfocus">Pipeline Management</span>
+      </span>
+      <span class="chev" aria-hidden="true">▾</span>
+    </summary>
+    <div class="epbody">
+      <div class="mantra">“Your pipeline is your paycheck's rough draft. Edit it weekly.”</div>
+      <div class="creed"><b>The Closer's Creed — No. 10</b> “Your pipeline is your paycheck's rough draft. Edit it weekly.”</div>
+      <h4>What Attendees Walk Away With</h4>
+      <p>Every attendee can read, groom, and defend their pipeline: stage accuracy, close-date discipline, coverage ratios, and the weekly review habit.</p>
+      <h4>The Opening Hook</h4>
+      <p>Put a real (sanitized) pipeline on screen and stress-test it live: "Would you bet your commission on this close date? On this stage? Let's find out."</p>
+      <div class="play"><b>Play of the Week</b> A rep shows how weekly grooming caught a stalled deal early enough to save it.</div>
+      <h4>What We Cover</h4>
+      <ul><li>Pipeline views — by stage, by close date, by service line</li><li>Stage discipline — the honest-stage test for every opportunity</li><li>Close-date hygiene — killing the perpetual 'end of this month' deal</li><li>Coverage math — how much pipeline you need for your number</li><li>The weekly pipeline review — a 20-minute ritual that protects your quarter</li></ul>
+      <div class="move"><b>Your One Move — before the next episode</b> Block 20 minutes on your calendar for a weekly pipeline review — recurring, non-negotiable.</div>
+    </div>
+  </details>
+  <details class="ep" id="ep11" data-season="1">
+    <summary>
+      <span class="epnum">11</span>
+      <span class="epmain">
+        <span class="eptitle">The Scouting Report</span>
+        <span class="epfocus">Account Review — Capstone</span>
+      </span>
+      <span class="chev" aria-hidden="true">▾</span>
+    </summary>
+    <div class="epbody">
+      <div class="mantra">“Everything you've learned, deployed on one account. Season finale.”</div>
+      <div class="creed"><b>The Closer's Creed — No. 11</b> “Do the film work. Win on game day.”</div>
+      <h4>What Attendees Walk Away With</h4>
+      <p>Every attendee can produce a complete scouting report on a strategic account — combining navigation, account data, activity history, opportunities, and pipeline strategy into one Protect/Land/Expand game plan.</p>
+      <h4>The Opening Hook</h4>
+      <p>Season finale energy: "Ten episodes. Ten skills. Today we put them all on the field against one account — live."</p>
+      <div class="play"><b>Play of the Week</b> Season highlight reel: the three best Plays of the Week from the season, 60 seconds each.</div>
+      <h4>What We Cover</h4>
+      <ul><li>The Scouting Report framework — Protect / Land / Expand applied to one account</li><li>Pulling the full picture — dashboard, record, activity, opps, and tasks in one pass</li><li>Threat assessment — competitor presence, contract timing, relationship gaps</li><li>Building the play sheet — three concrete moves with owners and dates, logged as tasks and opportunities</li><li>Presenting the report — the 5-minute account briefing your leadership wants to hear</li></ul>
+      <div class="move"><b>Your One Move — before the next episode</b> Build a full Scouting Report on your #1 strategic account and share it with your manager.</div>
+    </div>
+  </details>
+
+  <!-- ================= SEASON TWO ================= -->
+  <div class="season-div" id="season2">
+    <div class="s">Season Two</div>
+    <h3>Master the Machine</h3>
+    <div class="r">Episodes 12–24 · Every role, every division, every handoff</div>
+  </div>
+  <p class="arcnote">The Season Two arc: Episodes 12–16 introduce the roles (Meet the Machine). Episodes 17–21 show how the enterprise plugs in — accounting, ops, service, construction, and project management. Episodes 22–23 build the excellence habits (QBRs and reporting). Episode 24 — The Handoff — is the capstone: the moment where every role in the series meets on one deal, and the client feels one FSG.</p>
+
+  <details class="ep" id="ep12" data-season="2">
+    <summary>
+      <span class="epnum">12</span>
+      <span class="epmain">
+        <span class="eptitle">The Quarterback</span>
+        <span class="epfocus">Role of an Account Manager</span>
+      </span>
+      <span class="chev" aria-hidden="true">▾</span>
+    </summary>
+    <div class="epbody">
+      <div class="mantra">“You call the plays. Engage is your headset.”</div>
+      <div class="creed"><b>The Closer's Creed — No. 12</b> “Every account needs a play-caller. Be the play-caller.”</div>
+      <h4>What Attendees Walk Away With</h4>
+      <p>Every attendee understands the Account Manager's role in the FSG revenue engine — what AMs own in Engage, the records they drive, and how their work shows up for every other role.</p>
+      <h4>The Opening Hook</h4>
+      <p>Open with the play-caller framing: "Every account has one quarterback. When nobody's calling the play, the account stalls. Today: what the QB owns, snap by snap."</p>
+      <div class="play"><b>Play of the Week</b> A top AM shows one account they quarterbacked from single-service to multi-service using Engage records.</div>
+      <h4>What We Cover</h4>
+      <ul><li>The AM's book of business — Account Portfolio Manager ownership and what it means in Engage</li><li>Daily rhythm — the AM's morning screen: tasks, open opps, and account alerts</li><li>Protect and expand — how AMs run account reviews and log whitespace opportunities</li><li>The relationships layer — contacts, org maps, and meeting cadence per account</li><li>Where the AM hands off and where the AM stays engaged — the boundaries that keep deals moving</li></ul>
+      <div class="move"><b>Your One Move — before the next episode</b> Map your top 3 accounts: confirm you're set as owner and every account has one open opportunity or a logged next action.</div>
+    </div>
+  </details>
+  <details class="ep" id="ep13" data-season="2">
+    <summary>
+      <span class="epnum">13</span>
+      <span class="epmain">
+        <span class="eptitle">The Rainmakers</span>
+        <span class="epfocus">Role of Business Development</span>
+      </span>
+      <span class="chev" aria-hidden="true">▾</span>
+    </summary>
+    <div class="epbody">
+      <div class="mantra">“New logos don't walk in the door. Rainmakers go get them.”</div>
+      <div class="creed"><b>The Closer's Creed — No. 13</b> “New logos don't walk in the door. Somebody walks them in.”</div>
+      <h4>What Attendees Walk Away With</h4>
+      <p>Every attendee understands how Business Development operates in Engage — net-new pursuit, the Business Development field, lead-to-opportunity flow, and how BD and AM work the same accounts without collision.</p>
+      <h4>The Opening Hook</h4>
+      <p>Show the revenue mix on screen: existing accounts vs. net-new. "Somebody has to make it rain on the new-logo side. Here's how they do it — and how the rest of us support the storm."</p>
+      <div class="play"><b>Play of the Week</b> A BD rep shows a cold target they landed — every Engage touch from first lead to signed first project.</div>
+      <h4>What We Cover</h4>
+      <ul><li>The BD field in Engage — what it means when BD is added to an account</li><li>Prospecting workflow — from target list to logged lead to first meeting</li><li>New-logo opportunity creation — staging deals that have no history yet</li><li>BD + AM on the same account — the rules of engagement that prevent collisions</li><li>Handing a won logo to account management — what transfers and when</li></ul>
+      <div class="move"><b>Your One Move — before the next episode</b> BD attendees: log every active pursuit as a lead or opportunity this week. Everyone else: check your accounts for a BD partner and confirm alignment.</div>
+    </div>
+  </details>
+  <details class="ep" id="ep14" data-season="2">
+    <summary>
+      <span class="epnum">14</span>
+      <span class="epmain">
+        <span class="eptitle">Air Support</span>
+        <span class="epfocus">Campaigns &amp; SDR — The Guide</span>
+      </span>
+      <span class="chev" aria-hidden="true">▾</span>
+    </summary>
+    <div class="epbody">
+      <div class="mantra">“Ground troops win deals. Air support softens the target first.”</div>
+      <div class="creed"><b>The Closer's Creed — No. 14</b> “Every closed deal was once a first touch.”</div>
+      <h4>What Attendees Walk Away With</h4>
+      <p>Every attendee understands how campaigns and SDR motion generate and route pipeline in Engage — what a campaign touch looks like, how SDR-qualified leads arrive, and what the field owes back.</p>
+      <h4>The Opening Hook</h4>
+      <p>Pull up a closed-won deal and trace it backwards to the campaign email that started it. "This deal didn't start with a handshake. It started with air support."</p>
+      <div class="play"><b>Play of the Week</b> An SDR and a rep tag-team: the SDR shows the qualification call notes, the rep shows the meeting and opp that followed.</div>
+      <h4>What We Cover</h4>
+      <ul><li>Campaign anatomy in Engage — how campaign touches attach to leads and contacts</li><li>The SDR handoff — what a qualified lead looks like when it lands in your queue</li><li>Speed-to-lead — the response-time standard and why minutes matter</li><li>Feedback loop — disposition codes that make the next campaign smarter</li><li>Requesting air support — how the field asks for campaign coverage on a target list</li></ul>
+      <div class="move"><b>Your One Move — before the next episode</b> Respond to every SDR-routed lead within one business day this week, and log a disposition on each.</div>
+    </div>
+  </details>
+  <details class="ep" id="ep15" data-season="2">
+    <summary>
+      <span class="epnum">15</span>
+      <span class="epmain">
+        <span class="eptitle">A Day in the Life — The Sales Coach</span>
+        <span class="epfocus">Sales Coach</span>
+      </span>
+      <span class="chev" aria-hidden="true">▾</span>
+    </summary>
+    <div class="epbody">
+      <div class="mantra">“Great coaches don't run the plays. They make everyone who does better.”</div>
+      <div class="creed"><b>The Closer's Creed — No. 15</b> “Great coaches see the stall before the rep does.”</div>
+      <h4>What Attendees Walk Away With</h4>
+      <p>Every attendee sees how a Sales Coach uses Engage to spot coaching moments — pipeline reviews, stage stall detection, activity patterns — and how to get the most out of coaching time.</p>
+      <h4>The Opening Hook</h4>
+      <p>Coach's-eye view: put a rep's pipeline on screen and narrate what a coach sees in 60 seconds that the rep might miss in a week.</p>
+      <div class="play"><b>Play of the Week</b> A rep shares a deal that was slipping until a coaching session in Engage changed the play — and won it.</div>
+      <h4>What We Cover</h4>
+      <ul><li>The coach's dashboard — what a Sales Coach looks at before every 1:1</li><li>Stall detection — finding opportunities stuck in stage and why they stick</li><li>Activity patterns — reading meeting and task data as leading indicators</li><li>The coaching 1:1 in Engage — running the conversation from live records, not slide decks</li><li>Coachable moments — how reps can flag deals for a second set of eyes</li></ul>
+      <div class="move"><b>Your One Move — before the next episode</b> Bring one live opportunity to your next 1:1 and work it in Engage together, screen-shared.</div>
+    </div>
+  </details>
+  <details class="ep" id="ep16" data-season="2">
+    <summary>
+      <span class="epnum">16</span>
+      <span class="epmain">
+        <span class="eptitle">A Day in the Life — The Solutions Team</span>
+        <span class="epfocus">Solutions Team</span>
+      </span>
+      <span class="chev" aria-hidden="true">▾</span>
+    </summary>
+    <div class="epbody">
+      <div class="mantra">“When the deal gets technical, this is who has your back.”</div>
+      <div class="creed"><b>The Closer's Creed — No. 16</b> “Complexity is where we win.”</div>
+      <h4>What Attendees Walk Away With</h4>
+      <p>Every attendee knows when and how to engage the Solutions Team — what they need from the opportunity record, how their work gets logged, and how good handoffs to Solutions speed up close dates.</p>
+      <h4>The Opening Hook</h4>
+      <p>Two opportunity records on screen: one with full scoping details, one that says 'customer wants lighting.' Ask which one gets a same-week solution design. Point made.</p>
+      <div class="play"><b>Play of the Week</b> A Solutions engineer shows a complex multi-site deal where a complete opp record cut design time in half.</div>
+      <h4>What We Cover</h4>
+      <ul><li>When to pull in Solutions — deal signals that call for technical firepower</li><li>The request — what a complete Solutions engagement ask looks like in the opp record</li><li>A day in their queue — how Solutions prioritizes and works requests</li><li>Scoping artifacts — where designs, site data, and quotes live on the opportunity</li><li>Closing the loop — how Solutions input moves the stage and sharpens the proposal</li></ul>
+      <div class="move"><b>Your One Move — before the next episode</b> Audit your open opportunities: any deal in a technical stage gets its scoping fields completed this week.</div>
+    </div>
+  </details>
+  <details class="ep" id="ep17" data-season="2">
+    <summary>
+      <span class="epnum">17</span>
+      <span class="epmain">
+        <span class="eptitle">Follow the Money</span>
+        <span class="epfocus">Corporate Accounting Engagement</span>
+      </span>
+      <span class="chev" aria-hidden="true">▾</span>
+    </summary>
+    <div class="epbody">
+      <div class="mantra">“Clean records upstream mean clean invoices downstream — and faster cash.”</div>
+      <div class="creed"><b>The Closer's Creed — No. 17</b> “Clean data upstream. Fast cash downstream.”</div>
+      <h4>What Attendees Walk Away With</h4>
+      <p>Every attendee understands how Engage data flows into accounting — customer setup, billing details, PO requirements — and how field-entered data quality directly affects invoicing speed and payment.</p>
+      <h4>The Opening Hook</h4>
+      <p>Show the lifecycle of one dollar: from opportunity field to invoice to cash. Then show where a missing Customer # stalls the whole train.</p>
+      <div class="play"><b>Play of the Week</b> An accounting partner shows a same-week invoice made possible by a complete record — and the rep who set it up right.</div>
+      <h4>What We Cover</h4>
+      <ul><li>The account-to-customer connection — Customer # and what accounting sees from Engage</li><li>New customer setup — the fields accounting needs before the first invoice can go out</li><li>Billing requirements — POs, terms, and billing contacts captured at the opportunity level</li><li>Where deals get stuck — the top data gaps that delay invoicing (and commissions)</li><li>Escalation paths — who to call when a billing setup issue is blocking a job</li></ul>
+      <div class="move"><b>Your One Move — before the next episode</b> Check your top 5 active accounts for a valid Customer # and current billing contact. Fix any gaps.</div>
+    </div>
+  </details>
+  <details class="ep" id="ep18" data-season="2">
+    <summary>
+      <span class="epnum">18</span>
+      <span class="epmain">
+        <span class="eptitle">Boots on the Ground</span>
+        <span class="epfocus">Operations in Engage</span>
+      </span>
+      <span class="chev" aria-hidden="true">▾</span>
+    </summary>
+    <div class="epbody">
+      <div class="mantra">“Sales makes the promise. Ops keeps it. Engage is where they meet.”</div>
+      <div class="creed"><b>The Closer's Creed — No. 18</b> “Sales makes the promise. Ops keeps it.”</div>
+      <h4>What Attendees Walk Away With</h4>
+      <p>Every attendee understands how Operations consumes Engage data — what ops teams see, what they need from a won opportunity, and how field execution status flows back to account teams.</p>
+      <h4>The Opening Hook</h4>
+      <p>Read a real (sanitized) won-opp record aloud as if you're the ops manager assigned to it. Every missing detail = a phone call, a delay, or a change order. Count them live.</p>
+      <div class="play"><b>Play of the Week</b> An ops manager shows a job that launched 2 weeks faster because the won opportunity was complete on arrival.</div>
+      <h4>What We Cover</h4>
+      <ul><li>What ops sees — the view from the operations side when a deal closes</li><li>The complete won-opp — scope, site details, contacts, and timing ops needs on day one</li><li>Job status visibility — tracking execution progress from the account record</li><li>Change management — how scope changes get communicated and logged</li><li>The feedback loop — how ops flags account risks and upsell signals back to sales</li></ul>
+      <div class="move"><b>Your One Move — before the next episode</b> Review your most recent closed-won opportunity as if you were ops. Fill every gap you find.</div>
+    </div>
+  </details>
+  <details class="ep" id="ep19" data-season="2">
+    <summary>
+      <span class="epnum">19</span>
+      <span class="epmain">
+        <span class="eptitle">Service Labs 101</span>
+        <span class="epfocus">Service Labs</span>
+      </span>
+      <span class="chev" aria-hidden="true">▾</span>
+    </summary>
+    <div class="epbody">
+      <div class="mantra">“Recurring service is the revenue that shows up while you sleep.”</div>
+      <div class="creed"><b>The Closer's Creed — No. 19</b> “Recurring revenue: the only rerun worth watching.”</div>
+      <h4>What Attendees Walk Away With</h4>
+      <p>Every attendee understands the Service Labs offering — what it covers, which accounts are candidates, and how to identify, log, and advance service opportunities in Engage.</p>
+      <h4>The Opening Hook</h4>
+      <p>One chart: project revenue (spiky) vs. service revenue (steady). "One of these lets you forecast your year in January. Let's go get more of it."</p>
+      <div class="play"><b>Play of the Week</b> A rep shows a project customer they converted into a multi-year service agreement — and the account review that surfaced it.</div>
+      <h4>What We Cover</h4>
+      <ul><li>Service Labs overview — the offering, the value story, and who buys it</li><li>Spotting the candidate — account signals that say 'service opportunity here'</li><li>Logging a service opportunity — service line, term, and value fields done right</li><li>The service sales cycle — how it differs from project pursuit in stage and pace</li><li>Renewals and expansion — keeping the recurring engine growing inside Engage</li></ul>
+      <div class="move"><b>Your One Move — before the next episode</b> Identify one service-candidate account in your book and log the opportunity or a discovery task this week.</div>
+    </div>
+  </details>
+  <details class="ep" id="ep20" data-season="2">
+    <summary>
+      <span class="epnum">20</span>
+      <span class="epmain">
+        <span class="eptitle">Construction Labs 101</span>
+        <span class="epfocus">Construction Labs</span>
+      </span>
+      <span class="chev" aria-hidden="true">▾</span>
+    </summary>
+    <div class="epbody">
+      <div class="mantra">“Big builds, big numbers, big coordination. Here's how the pursuit works.”</div>
+      <div class="creed"><b>The Closer's Creed — No. 20</b> “Long game. Big prize. Track every inning.”</div>
+      <h4>What Attendees Walk Away With</h4>
+      <p>Every attendee understands the Construction Labs offering — project types, pursuit motion, bid tracking in Engage, and how construction opportunities differ in stage discipline and team coordination.</p>
+      <h4>The Opening Hook</h4>
+      <p>Put a construction pursuit timeline on screen — months of bid, budget, and buyout. "Long game, big prize. The teams that track the pursuit win it. Here's the system."</p>
+      <div class="play"><b>Play of the Week</b> A rep shows a construction win where every bid milestone was logged — and how that record won leadership support at the decision moment.</div>
+      <h4>What We Cover</h4>
+      <ul><li>Construction Labs overview — project types, deal sizes, and the pursuit landscape</li><li>Bid tracking in Engage — logging pursuits so the pipeline reflects reality</li><li>Stage discipline on long-cycle deals — what moves a construction opp and what doesn't</li><li>Team pursuit — coordinating estimating, ops, and sales on one opportunity record</li><li>Win/loss capture — feeding the bid history that sharpens the next pursuit</li></ul>
+      <div class="move"><b>Your One Move — before the next episode</b> Log every active bid you're pursuing as an opportunity with a real close date and current stage.</div>
+    </div>
+  </details>
+  <details class="ep" id="ep21" data-season="2">
+    <summary>
+      <span class="epnum">21</span>
+      <span class="epmain">
+        <span class="eptitle">Command Center</span>
+        <span class="epfocus">Project Management — APEX Dashboard &amp; Client UI</span>
+      </span>
+      <span class="chev" aria-hidden="true">▾</span>
+    </summary>
+    <div class="epbody">
+      <div class="mantra">“Your customers can see the mission. Make sure it looks like control.”</div>
+      <div class="creed"><b>The Closer's Creed — No. 21</b> “Let the client see the control.”</div>
+      <h4>What Attendees Walk Away With</h4>
+      <p>Every attendee can navigate the APEX Dashboard, understand what customers see in the Client UI, and use project visibility as a selling and retention weapon.</p>
+      <h4>The Opening Hook</h4>
+      <p>Flip to the customer's view live: "This is what your client sees when they log in. Is it a confidence builder or a support ticket generator? Today we make it the former."</p>
+      <div class="play"><b>Play of the Week</b> A rep shows a renewal conversation where walking the customer through their own APEX dashboard sealed the deal.</div>
+      <h4>What We Cover</h4>
+      <ul><li>APEX Dashboard tour — project status, milestones, and health at a glance</li><li>The Client UI — exactly what customers see and how to walk them through it</li><li>Selling with transparency — using APEX access as a differentiator in pursuits</li><li>Reading project health — the signals that tell an account team to lean in</li><li>APEX + Engage together — connecting project execution to the account record</li></ul>
+      <div class="move"><b>Your One Move — before the next episode</b> Log into APEX and review one active project for a key account. Know what your customer sees before they call you about it.</div>
+    </div>
+  </details>
+  <details class="ep" id="ep22" data-season="2">
+    <summary>
+      <span class="epnum">22</span>
+      <span class="epmain">
+        <span class="eptitle">The Boardroom</span>
+        <span class="epfocus">QBR — Quarterly Business Reviews</span>
+      </span>
+      <span class="chev" aria-hidden="true">▾</span>
+    </summary>
+    <div class="epbody">
+      <div class="mantra">“The QBR is where renewals are won — three quarters before they're signed.”</div>
+      <div class="creed"><b>The Closer's Creed — No. 22</b> “Renewals are won three quarters before they're signed.”</div>
+      <h4>What Attendees Walk Away With</h4>
+      <p>Every attendee can build and deliver a customer QBR powered by Engage data — activity history, project performance, service metrics, and a forward plan that sets up expansion.</p>
+      <h4>The Opening Hook</h4>
+      <p>Two QBR decks side by side: one built from memory, one built from Engage data. Ask which customer renews. Then show how the second one took less time to build.</p>
+      <div class="play"><b>Play of the Week</b> A rep shows a QBR that surfaced a customer's expansion budget — and the opportunity they logged before leaving the room.</div>
+      <h4>What We Cover</h4>
+      <ul><li>The QBR structure — look back, current state, look forward: the agenda that works</li><li>Pulling the story from Engage — activity, opportunities, and project data as your source</li><li>Performance proof — service metrics and project outcomes that show value delivered</li><li>The forward plan — turning QBR insights into logged opportunities on the spot</li><li>Cadence and prep — the 45-minute prep routine for a boardroom-ready QBR</li></ul>
+      <div class="move"><b>Your One Move — before the next episode</b> Schedule a QBR with one strategic account this quarter and build the deck from Engage data.</div>
+    </div>
+  </details>
+  <details class="ep" id="ep23" data-season="2">
+    <summary>
+      <span class="epnum">23</span>
+      <span class="epmain">
+        <span class="eptitle">By the Numbers</span>
+        <span class="epfocus">Reports</span>
+      </span>
+      <span class="chev" aria-hidden="true">▾</span>
+    </summary>
+    <div class="epbody">
+      <div class="mantra">“The numbers already know. Learn to ask them the right questions.”</div>
+      <div class="creed"><b>The Closer's Creed — No. 23</b> “The numbers already know. Ask them.”</div>
+      <h4>What Attendees Walk Away With</h4>
+      <p>Every attendee can run, read, and build the core Engage reports — pipeline, activity, win rate, and account coverage — and use them to run their own business like a P&amp;L owner.</p>
+      <h4>The Opening Hook</h4>
+      <p>Rapid-fire: answer five real business questions in five minutes, each with one report. "How much pipeline do I need? What's my win rate? Which accounts went quiet?" The numbers already know.</p>
+      <div class="play"><b>Play of the Week</b> A rep shows the saved report that flagged a quiet account — and the win that followed the wake-up call.</div>
+      <h4>What We Cover</h4>
+      <ul><li>The core four — pipeline, activity, win rate, and coverage reports every seller should own</li><li>Reading a report like an owner — trends over snapshots, ratios over raw counts</li><li>Building your own — filters, groupings, and saving custom views</li><li>Leadership's view — the reports your managers see and how to stay ahead of them</li><li>From report to action — turning every insight into a task or opportunity, same day</li></ul>
+      <div class="move"><b>Your One Move — before the next episode</b> Build and save one custom report on your own book — pipeline by stage or accounts with no activity in 60 days.</div>
+    </div>
+  </details>
+  <details class="ep" id="ep24" data-season="2">
+    <summary>
+      <span class="epnum">24</span>
+      <span class="epmain">
+        <span class="eptitle">The Handoff</span>
+        <span class="epfocus">Sales-to-Ops Transition — Season Finale</span>
+      </span>
+      <span class="chev" aria-hidden="true">▾</span>
+    </summary>
+    <div class="epbody">
+      <div class="mantra">“Deals aren't lost at the close. They're fumbled at the handoff.”</div>
+      <div class="creed"><b>The Closer's Creed — No. 24</b> “Coffee is for closers. Handoffs are for champions.”</div>
+      <h4>What Attendees Walk Away With</h4>
+      <p>Every attendee can execute a clean sales-to-ops handoff — the complete won-opportunity standard, the handoff meeting, role clarity through delivery, and the account team's job after the baton passes.</p>
+      <h4>The Opening Hook</h4>
+      <p>Season finale, relay-race framing: "The fastest team in the world loses if they drop the baton. Every role we've met this season touches this one moment. Today we perfect the pass."</p>
+      <div class="play"><b>Play of the Week</b> Season highlight reel: the best Plays of the Week from Season Two — followed by one full-cycle story: lead to close to handoff to expansion.</div>
+      <h4>What We Cover</h4>
+      <ul><li>The handoff standard — the complete won-opp checklist, drawn from everything ops told us in Episode 18</li><li>The handoff meeting — who's in the room, the agenda, and the record everyone works from</li><li>Role clarity through delivery — AM, BD, Solutions, PM, and Ops: who owns what after the win</li><li>Staying engaged — the account team's rhythm during execution: APEX checks, status touchpoints, issue escalation</li><li>The next deal starts now — how a clean delivery sets up the expansion opportunity before the job even closes</li></ul>
+      <div class="move"><b>Your One Move — before the next episode</b> Build your personal handoff checklist from today's standard and run it on your next closed-won deal.</div>
+    </div>
+  </details>
+
+  <div class="noep" id="noep">No episode matches that — try another word, or clear the search.</div>
+
+  <!-- LIVING DOCUMENT: to update an episode, edit its <details> block above.
+       To add Season 3, copy a season-div + episode blocks and keep the pattern. -->
+  <div class="vc">
+    <h3>Version Control — Living Document</h3>
+    <table class="vc-table">
+      <tr><th>Version</th><th>Date</th><th>Owner</th><th>Change Summary</th></tr>
+      <tr><td>1.1</td><td>September 2026</td><td>Bobby Graham — Growth</td><td>Web living document — full S1–S2 playbook from the Seasons guide; schedule details removed (dates announced by email/Slack)</td></tr>
+      <tr><td>1.0</td><td>September 2026</td><td>Bobby Graham — Growth</td><td>Initial Seasons playbook (Word draft)</td></tr>
+    </table>
+    <div class="living">This page is the source of truth for the series. Update this file and recommit — the Word draft is retired.</div>
+  </div>
+</div>
+
+<footer>
+  <div class="grind">Always Be Capturing</div>
+  FSG Engage &nbsp;|&nbsp; Internal Enablement &nbsp;|&nbsp; Prepared by the Growth Organization
+</footer>
+
+<script>
+var find = document.getElementById('find');
+var eps = Array.prototype.slice.call(document.querySelectorAll('details.ep'));
+var noep = document.getElementById('noep');
+function norm(s){ return s.toLowerCase(); }
+find.addEventListener('input', function(){
+  var q = norm(find.value).trim();
+  var words = q ? q.split(/\s+/) : [];
+  var shown = 0;
+  eps.forEach(function(el){
+    var hay = norm(el.textContent);
+    var ok = !words.length || words.every(function(w){ return hay.indexOf(w) !== -1; });
+    el.style.display = ok ? '' : 'none';
+    if (ok) shown++;
+    if (ok && words.length) el.open = true;
+    if (!words.length) el.open = false;
+  });
+  document.querySelectorAll('.season-div, .arcnote').forEach(function(el){ el.style.display = words.length && !shown ? 'none' : ''; });
+  noep.style.display = shown ? 'none' : 'block';
+});
+var allOpen = false;
+document.getElementById('expandAll').addEventListener('click', function(){
+  allOpen = !allOpen;
+  eps.forEach(function(el){ if (el.style.display !== 'none') el.open = allOpen; });
+  this.textContent = allOpen ? 'Collapse all' : 'Expand all';
+});
+</script>
+</body>
+</html>
