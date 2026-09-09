@@ -1,0 +1,351 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engage Plays — Opportunity Fields That Matter</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='115' fill='%23133865'/><g stroke='%23c5d9fa' stroke-width='22' stroke-linecap='round'><line x1='256' y1='256' x2='256' y2='96'/><line x1='256' y1='256' x2='394.6' y2='176'/><line x1='256' y1='256' x2='394.6' y2='336'/><line x1='256' y1='256' x2='256' y2='416'/><line x1='256' y1='256' x2='117.4' y2='336'/><line x1='256' y1='256' x2='117.4' y2='176'/></g><circle cx='256' cy='96' r='42' fill='%23ffffff'/><circle cx='394.6' cy='176' r='42' fill='%23c5d9fa'/><circle cx='394.6' cy='336' r='42' fill='%23ffffff'/><circle cx='256' cy='416' r='42' fill='%23c5d9fa'/><circle cx='117.4' cy='336' r='42' fill='%23ffffff'/><circle cx='117.4' cy='176' r='42' fill='%23ebb018'/><circle cx='256' cy='256' r='76' fill='%23ebb018'/></svg>">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fsg-deep-navy: #0b1421;
+    --fsg-dark-navy: #133865;
+    --fsg-brand-blue: #365aa0;
+    --fsg-steel-blue: #718dbc;
+    --fsg-light-blue: #c5d9fa;
+    --fsg-light-gray: #ededed;
+    --fsg-gold: #ebb018;
+    --fsg-bright-blue: #4e84de;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    color: var(--fsg-deep-navy);
+    background: #ffffff;
+    line-height: 1.55;
+    font-size: 16px;
+  }
+  .page { max-width: 960px; margin: 0 auto; padding: 32px 24px 48px; }
+
+  .hero {
+    background: var(--fsg-dark-navy);
+    border-radius: 8px;
+    padding: 28px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .hero .eyebrow {
+    color: var(--fsg-light-blue);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .hero h1 {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    color: #ffffff;
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+  .hero .subtitle { color: var(--fsg-light-blue); font-size: 14px; max-width: 560px; }
+  .hero .org { text-align: right; color: #fff; }
+  .hero .org .fsg { font-family: 'Oswald', Arial, sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 1px; }
+  .hero .org .sub { color: var(--fsg-steel-blue); font-size: 12px; margin-top: 4px; }
+  .gold-rule { border: none; border-top: 3px solid var(--fsg-gold); margin: 18px 0 28px; }
+
+  h2 {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 700;
+    color: var(--fsg-dark-navy);
+    font-size: 26px;
+    margin: 38px 0 6px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--fsg-gold);
+  }
+  p { margin: 12px 0; }
+  b { color: var(--fsg-deep-navy); }
+
+  .callout {
+    background: var(--fsg-light-blue);
+    border-left: 4px solid var(--fsg-gold);
+    border-radius: 0 6px 6px 0;
+    padding: 14px 20px;
+    margin: 20px 0;
+    color: var(--fsg-dark-navy);
+    font-size: 15px;
+  }
+
+  table.brand { width: 100%; border-collapse: collapse; font-size: 15px; margin: 16px 0; }
+  table.brand th {
+    background: var(--fsg-dark-navy);
+    color: #fff;
+    text-align: left;
+    padding: 10px 14px;
+    font-weight: 700;
+  }
+  table.brand td { padding: 10px 14px; vertical-align: top; }
+  table.brand tr:nth-child(even) td { background: var(--fsg-light-blue); }
+  table.brand td:first-child { font-weight: 700; white-space: nowrap; }
+
+  .tile {
+    display: flex;
+    align-items: stretch;
+    background: var(--fsg-light-gray);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 14px 0;
+  }
+  .tile .badge {
+    background: var(--fsg-dark-navy);
+    color: #fff;
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 64px;
+  }
+  .tile .badge.gold { color: var(--fsg-gold); }
+  .tile .body { padding: 14px 18px; }
+  .tile .body h4 {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-size: 18px;
+    color: var(--fsg-dark-navy);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .tile .body p { margin: 0; font-size: 15px; }
+
+  ul.misses { margin: 14px 0 0 22px; }
+  ul.misses li { margin-bottom: 10px; }
+
+  .vc { margin-top: 40px; padding-top: 18px; border-top: 3px solid var(--fsg-gold); }
+  .vc h3 {
+    font-family: 'Oswald', Arial, sans-serif;
+    color: var(--fsg-dark-navy);
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  table.vc-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table.vc-table th { background: var(--fsg-dark-navy); color: #fff; text-align: left; padding: 8px 12px; font-weight: 700; }
+  table.vc-table td { padding: 8px 12px; border: 1px solid var(--fsg-light-gray); }
+
+  footer { text-align: center; color: var(--fsg-steel-blue); font-size: 13px; margin-top: 40px; }
+  a { color: var(--fsg-bright-blue); }
+</style>
+</head>
+<body>
+
+<!-- ============ GROWTH HUB GATE ============ -->
+<style>
+  html.gh-locked > body > :not(#ghGate){display:none !important;}
+  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
+  html:not(.gh-locked) #ghGate{display:none;}
+  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
+  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
+  #ghGate .gh-brand svg{width:30px;height:30px;}
+  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
+  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
+  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;}
+  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
+  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
+  #ghGate input:focus{border-color:#4e84de;}
+  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
+  #ghGate button:hover{filter:brightness(1.06);}
+  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
+  #ghGate .gh-shake{animation:ghshake .3s;}
+  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+<div id="ghGate">
+  <div class="gh-wrap">
+    <div class="gh-brand">
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#c5d9fa" stroke-width="14" stroke-linecap="round" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g><circle cx="150" cy="50" r="26" fill="#ffffff"/><circle cx="236.6" cy="100" r="26" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="26" fill="#ffffff"/><circle cx="150" cy="250" r="26" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="26" fill="#ffffff"/><circle cx="63.4" cy="100" r="26" fill="#c5d9fa"/><circle cx="150" cy="150" r="44" fill="#ebb018"/></svg>
+      <span>Growth Hub</span>
+    </div>
+    <div class="gh-card">
+      <h2>Passcode</h2>
+      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
+      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
+      <button id="ghGo" type="button">Enter the Hub</button>
+      <div class="gh-err" id="ghErr"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
+  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+  if(!unlocked()) document.documentElement.classList.add('gh-locked');
+  function open(){ document.documentElement.classList.remove('gh-locked'); }
+  async function check(){
+    var v=document.getElementById('ghPass').value;
+    var ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        ok=(hex===HASH);
+      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
+    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
+    if(ok){ remember(); open(); }
+    else{
+      var card=document.querySelector('#ghGate .gh-card');
+      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
+      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
+      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    if(unlocked()) return;
+    document.getElementById('ghGo').addEventListener('click', check);
+    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
+  });
+})();
+</script>
+<!-- ============ /GROWTH HUB GATE ============ -->
+
+<div style="max-width:960px;margin:0 auto;padding:18px 24px 0;"><a href="../../index.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">&larr; Growth Hub</a><span style="color:#c5d9fa;margin:0 8px;">|</span><a href="../fsg-app-faq.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">&larr; FSG App FAQs</a></div>
+<div class="page">
+
+  <div class="hero">
+    <div>
+      <div class="eyebrow">Engage Plays</div>
+      <h1>Opportunity Fields That Matter</h1>
+      <div class="subtitle">The fields that matter, the stages that move, and three easy steps to keep your pipeline real.</div>
+    </div>
+    <div class="org">
+      <div class="fsg">FACILITY SOLUTIONS GROUP</div>
+      <div class="sub">Growth Organization &nbsp;·&nbsp; 2026</div>
+    </div>
+  </div>
+  <hr class="gold-rule">
+
+  <h2>Why This Matters</h2>
+  <p><b>Closers are on their game.</b> To be effective, you need to know what to act on today — and if your pipeline is unclear, how do you know where to start? A clean pipeline is your game plan: open the dashboard, and your next move is already in front of you. No digging, no guessing, no wasted morning — it isn't admin — it's how closers stay ready.</p>
+  <div class="callout"><b>Five minutes a day keeps your entire pipeline current.</b> Know your next move before the coffee's cold.</div>
+
+  <h2>The Fields That Matter</h2>
+  <p>These fields drive our Growth pipeline, forecasts, and the Enterprise.</p>
+  <table class="brand">
+    <tr><th>Field</th><th>What it tells us</th><th>Rule of thumb</th></tr>
+    <tr><td>Follow-Up Date</td><td>When you take your next action on this deal.</td><td>Never blank on an open opportunity.</td></tr>
+    <tr><td>Estimated Close Date</td><td>When the customer plans to buy.</td><td>Unsure on budget? Push to January of next year and use your follow-up date to check in this year.</td></tr>
+    <tr><td>Estimated Value</td><td>The dollars this deal represents in our pipeline.</td><td>Never $0 or blank. Enter $1 if unknown, or a humble estimate, until Operations gives you a real number.</td></tr>
+    <tr><td>Business Line</td><td>Your delivery method — how FSG delivers this solution.</td><td>You can only select one. Keep it simple.</td></tr>
+    <tr><td>Product</td><td>The specific product the solution is for.</td><td>One product. Multiple ECMs in one deal? Retrofit is the catch-all. #KeepitSimple</td></tr>
+    <tr><td>Stage</td><td>Where the deal stands.</td><td>Keep it honest. If it's dead, close it.</td></tr>
+  </table>
+
+  <h2>The Stages</h2>
+  <p><b>One owner, one assignee, one follow-up date.</b> The Owner owns the record from cradle to cash. The Assignee has the ball — it changes by stage. The Follow-Up Date is when the Owner needs it back.</p>
+  <table class="brand">
+    <tr><th>Stage</th><th>Purpose</th><th>Assignee</th><th>Exit when</th></tr>
+    <tr><td>1 Qualifying</td><td>Confirm real interest and fit. Sales Manager green-lights the pursuit. Set the Bid Due Date here.</td><td>Sales (AE / AM)</td><td>Prospect is a fit and wants a solution proposed</td></tr>
+    <tr><td>2 Scope Development</td><td>Build the right solution. Tasks show the work: Audit, Design, Rebate, Pricing / Proforma.</td><td>Solutions Team</td><td>Solution and pricing complete, ready to propose</td></tr>
+    <tr><td>3 Proposing</td><td>Tailored proposal with design and pricing, presented to the customer.</td><td>Sales (AE / AM)</td><td>Proposal delivered by the Bid Due Date</td></tr>
+    <tr><td>4 Negotiating</td><td>Final scope, insurance review, contract terms.</td><td>Sales + Legal / Finance</td><td>Contract signed</td></tr>
+    <tr><td>5 Closed Won</td><td>Deal signed. Opportunity converts to work — JOB# / Work Order created.</td><td>Sales, handoff to Ops</td><td>WO issued and kickoff scheduled</td></tr>
+    <tr><td>Off-ramps</td><td colspan="3"><b>Project On Hold</b> — paused, not lost (budget freeze, reorg, deferral). <b>Closed Lost</b> — will not move forward. Both require a reason note.</td></tr>
+  </table>
+
+
+  <h3 style="font-family:'Oswald',Arial,sans-serif;color:var(--fsg-brand-blue);font-size:20px;margin:26px 0 8px;">Straight from Engage — Stage Definitions</h3>
+  <table class="brand">
+    <tr><th>Stage</th><th>Engage definition</th></tr>
+    <tr><td>Qualifying</td><td>Potential customer has indicated interest in FSG and would like a solution proposed. The Sales Manager determines if the prospect is a good fit.</td></tr>
+    <tr><td>Scope Development</td><td>The sales team is actively learning about the prospect's business challenges, goals, and success criteria.</td></tr>
+    <tr><td>Proposing</td><td>A tailored solution or proposal is being developed with design and pricing, as appropriate. The proposal is then presented to the customer.</td></tr>
+    <tr><td>Negotiating</td><td>Proposal verbally accepted, finalizing scope, insurance review, and signing contracts. Proceed to Closed Won on signing.</td></tr>
+    <tr><td>Project On Hold</td><td>Opportunity is temporarily paused but not lost. Examples may include budget freeze, internal reorganization at prospect, deferred initiatives.</td></tr>
+    <tr><td>Closed Won</td><td>Contract signed. The deal is completed successfully.</td></tr>
+    <tr><td>Closed Lost</td><td>Opportunity will not move forward.</td></tr>
+  </table>
+
+  <h3 style="font-family:'Oswald',Arial,sans-serif;color:var(--fsg-brand-blue);font-size:20px;margin:26px 0 8px;">Closing It Lost? Pick the Right Reason</h3>
+  <p>Closed Lost requires a Lost Reason — it's how we learn where deals die. Pick the one that actually happened:</p>
+  <table class="brand">
+    <tr><th>Lost Reason</th><th>What it means</th></tr>
+    <tr><td>No Decision</td><td>Customer chose to do nothing — status quo won. No vendor was selected.</td></tr>
+    <tr><td>Pricing</td><td>We were the right fit, but cost or perceived value didn't align with their budget or expectations.</td></tr>
+    <tr><td>Competitor</td><td>Lost head-to-head to another vendor on fit, price, relationships, or timing.</td></tr>
+    <tr><td>Customer Not Awarded</td><td>Our customer didn't win their project — the deal died upstream, not with us.</td></tr>
+    <tr><td>Qualification</td><td>Opportunity wasn't real — bad fit, no budget authority, unclear need, or not ready to buy.</td></tr>
+    <tr><td>Duplicate</td><td>Record already exists. Housekeeping only.</td></tr>
+    <tr><td>Internal Misalignment</td><td>We tripped over ourselves — Sales, Solutions, Ops, or Pricing weren't aligned on scope, fit, or delivery.</td></tr>
+  </table>
+
+  <h2>Three Easy Steps to Stay Healthy</h2>
+  <p>Work your list top to bottom. No sorting, no overthinking — the Dashboard already puts the oldest in front of you.</p>
+
+  <div class="tile"><div class="badge">1</div><div class="body">
+    <h4>Open Your Dashboard</h4>
+    <p>Click the first opportunity on the list. That's it — start at the top.</p>
+  </div></div>
+
+  <div class="tile"><div class="badge">2</div><div class="body">
+    <h4>Update the Follow-Up Date</h4>
+    <p>When do you need to act next? Set the date. If there's no next action, ask yourself whether the deal is still alive.</p>
+  </div></div>
+
+  <div class="tile"><div class="badge">3</div><div class="body">
+    <h4>Update the Estimated Close Date</h4>
+    <p>When do they plan to buy? If the budget is unsure, push the close date to January of next year — and use your follow-up date to check in this year. While you're in there: if Estimated Value is blank or $0, enter $1 or a humble estimate until Operations gives you a real number.</p>
+  </div></div>
+
+  <p><b>Then click the next one.</b> Repeat until the list is clear.</p>
+
+  <h2>Common Misses</h2>
+  <ul class="misses">
+    <li><b>Blank follow-up date</b> — the opportunity falls off your radar and off the dashboard. Nobody chases what nobody sees.</li>
+    <li><b>Close date in the past</b> — the deal reads as dead or forgotten in every pipeline report, even if you're actively working it.</li>
+    <li><b>$0 or blank value</b> — your deal contributes nothing to the dollar roll-up. Your pipeline looks empty when it isn't.</li>
+    <li><b>The $1 that never grows</b> — the placeholder is a bridge, not a home. Update it the moment Operations gives you a real estimate.</li>
+  </ul>
+
+  <h2>The Practice — Base Hits Win Championships</h2>
+  <p><b>You don't need a grand slam.</b> Championships are won on base hits — small, consistent swings, every single day. Here's the practice:</p>
+
+  <div class="tile"><div class="badge gold">D</div><div class="body">
+    <h4>Daily — Take Your Swings (5 min)</h4>
+    <p>Open the Dashboard and run the three steps on the opportunities at the top of your list. A few base hits a day keeps your whole pipeline moving.</p>
+  </div></div>
+
+  <div class="tile"><div class="badge gold">W</div><div class="body">
+    <h4>Weekly — Clear the Bases (Friday, 15 min)</h4>
+    <p>Knock out past-due close dates and blank follow-up dates before the weekend. Don't leave runners stranded.</p>
+  </div></div>
+
+  <div class="tile"><div class="badge gold">M</div><div class="body">
+    <h4>Monthly — Check Your Average (First Monday)</h4>
+    <p>Scan your full open list. Every opportunity should have a follow-up date, a real close date, and a value. That's a 1.000 batting average — and it's the only stat leadership reads.</p>
+  </div></div>
+
+  <h2>The Goal</h2>
+  <p><b>Every opportunity current.</b> Follow-up date set, close date real, value entered. If you're carrying a heavy pipeline, don't try to fix it all in one sitting — work within a 30–60-day window until you're caught up. Current beats perfect.</p>
+  <div class="callout"><b>Base hits win championships.</b> Healthy pipeline, honest forecast, visible work — that's what five minutes a day buys you.</div>
+
+  <div class="vc">
+    <h3>Version Control</h3>
+    <table class="vc-table">
+      <tr><th>Version</th><th>Date</th><th>Owner</th><th>Change Summary</th></tr>
+      <tr><td>1.0</td><td>September 2026</td><td>Bobby Graham — Growth</td><td>Initial publication to sales team</td></tr>
+    </table>
+  </div>
+
+  <footer>FSG Engage &nbsp;|&nbsp; Internal Enablement</footer>
+</div>
+</body>
+</html>
