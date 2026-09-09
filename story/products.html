@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FSG — Facility Problems End Here</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><path fill='%23ebb018' d='M28 8C31.5 22 38 28.5 52 32 38 35.5 31.5 42 28 56 24.5 42 18 35.5 4 32 18 28.5 24.5 22 28 8Z'/><path fill='%23ebb018' d='M50 6h5v7h7v5h-7v7h-5v-7h-7v-5h7z'/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='115' fill='%23133865'/><g stroke='%23c5d9fa' stroke-width='22' stroke-linecap='round'><line x1='256' y1='256' x2='256' y2='96'/><line x1='256' y1='256' x2='394.6' y2='176'/><line x1='256' y1='256' x2='394.6' y2='336'/><line x1='256' y1='256' x2='256' y2='416'/><line x1='256' y1='256' x2='117.4' y2='336'/><line x1='256' y1='256' x2='117.4' y2='176'/></g><circle cx='256' cy='96' r='42' fill='%23ffffff'/><circle cx='394.6' cy='176' r='42' fill='%23c5d9fa'/><circle cx='394.6' cy='336' r='42' fill='%23ffffff'/><circle cx='256' cy='416' r='42' fill='%23c5d9fa'/><circle cx='117.4' cy='336' r='42' fill='%23ffffff'/><circle cx='117.4' cy='176' r='42' fill='%23ebb018'/><circle cx='256' cy='256' r='76' fill='%23ebb018'/></svg>">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -54,7 +55,21 @@ body{font-family:'Open Sans',Arial,sans-serif;color:var(--deep-navy);background:
 .detail .d-desc{font-size:14px;color:#4a5568;margin-bottom:16px;line-height:1.6;}
 .d-label{font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--dark-navy);margin:16px 0 8px;}
 .types{display:flex;flex-wrap:wrap;gap:7px;}
-.type-chip{font-family:'Oswald',sans-serif;font-size:11px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;padding:6px 12px;border-radius:14px;background:var(--light-blue);color:var(--dark-navy);}
+.type-chip{font-family:'Oswald',sans-serif;font-size:11px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;padding:6px 26px 6px 12px;border-radius:14px;background:var(--light-blue);color:var(--dark-navy);border:none;cursor:pointer;position:relative;transition:all .15s ease;min-height:30px;}
+.type-chip::after{content:"+";position:absolute;right:10px;top:50%;transform:translateY(-50%);font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;color:var(--brand-blue);opacity:.75;}
+.type-chip:hover{background:var(--dark-navy);color:#fff;}
+.type-chip:hover::after{color:var(--gold);opacity:1;}
+.d-hint{font-family:'Open Sans',sans-serif;font-weight:400;font-size:11px;letter-spacing:0;text-transform:none;color:var(--steel-blue);}
+.mx-cell .more{color:var(--gold);font-family:'Oswald',sans-serif;font-weight:600;font-size:11px;letter-spacing:.5px;white-space:nowrap;}
+
+/* TYPE MODAL (level 3) */
+#tOverlay{z-index:120;}
+.tmodal{max-width:520px;border-top-color:var(--brand-blue);}
+.coming{display:flex;align-items:center;gap:10px;background:#fafbfd;border:1.5px dashed var(--steel-blue);border-radius:8px;padding:14px 16px;font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--steel-blue);margin-top:18px;}
+.c-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex:none;animation:cpulse 1.6s ease-in-out infinite;}
+@keyframes cpulse{0%,100%{opacity:.35;}50%{opacity:1;}}
+.t-back{margin-top:18px;font-family:'Oswald',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border:1.5px solid var(--gold);background:#fff;color:var(--dark-navy);border-radius:6px;padding:8px 16px;cursor:pointer;min-height:36px;}
+.t-back:hover{background:var(--gold);}
 .proofs{display:flex;flex-wrap:wrap;gap:7px;}
 .proof-chip{font-size:12px;font-weight:600;padding:5px 12px;border-radius:14px;border:1.5px solid var(--gold);color:var(--dark-navy);background:rgba(235,176,24,.08);}
 .res{display:flex;align-items:center;gap:10px;padding:11px 14px;background:#fafbfd;border:1px solid var(--light-gray);border-radius:8px;margin-bottom:7px;}
@@ -117,7 +132,7 @@ footer .grind{font-family:'Oswald',sans-serif;font-size:12px;font-weight:500;let
 <div id="ghGate">
   <div class="gh-wrap">
     <div class="gh-brand">
-      <svg viewBox="0 0 64 64" aria-hidden="true"><path fill="#ebb018" d="M28 8C31.5 22 38 28.5 52 32 38 35.5 31.5 42 28 56 24.5 42 18 35.5 4 32 18 28.5 24.5 22 28 8Z"/><path fill="#ebb018" d="M50 6h5v7h7v5h-7v7h-5v-7h-7v-5h7z"/></svg>
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#c5d9fa" stroke-width="14" stroke-linecap="round" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g><circle cx="150" cy="50" r="26" fill="#ffffff"/><circle cx="236.6" cy="100" r="26" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="26" fill="#ffffff"/><circle cx="150" cy="250" r="26" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="26" fill="#ffffff"/><circle cx="63.4" cy="100" r="26" fill="#c5d9fa"/><circle cx="150" cy="150" r="44" fill="#ebb018"/></svg>
       <span>Growth Hub</span>
     </div>
     <div class="gh-card">
@@ -170,7 +185,7 @@ footer .grind{font-family:'Oswald',sans-serif;font-size:12px;font-weight:500;let
     <a class="back" href="../index.html">&larr; Growth Hub</a>
     <img class="logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUMAAACgCAYAAACWlA6fAAAgl0lEQVR42u2debRkVXXGf7uqXjMINDMKSpQZ1DiBzYwYIYCoaBTjYgiIInGEBGdYgCHKoIgaYwS01RADBCKIAoLiwCAJ0kwtSDfagGHugaahx1e188fZp+twu+q9elX3vle3an9r1aqm3mu67t33+86399nnHGGKoaoVoAI0RKSR+dlmwA7AzsBOwDbAlsBmwPrA2sA0YC8RuUNVqwAiUlfV/YHrgIb9/8uE+J0fAl4lIqtUVURE++HLqarY9xMRGc38bC2L004Wt+2BrYEtgA0tZusCl4nIMapaE5FRVa1a3K4EDgbqQLVkcRsFRoDPiMh58dr65ct1wLXtgV2AHS2GW3XItT2BX5aUaxHLalNMJkSkbjcRVX0xMAPYx953ADbv4H8pLT6rWPC0zc/7GfE7V00U+opMRvC6fTYCvAbYG9jL/vwyI89Y1zbS5ucjFrcyEqtqL+2jmLXj2hbGsX2BN5oAdss1KTHXIlbVpiIwFpRIppcBbwXeAewJbNDGKWly42Wc4LQiXxnFcFkcwafSFZoISiSTCeC+wDuBA81RtLqGRiZGkrgnHePa6SdBmWDcAJ7vFxHMcO2lwCHAYca16c61JtdqUxEYs9gHAccAf202PKKefMFK8j7WwzdoiNf1XLx/UyGGJoJEQVbV7YAjgPdaCpxNESXzqnboLAYF8dqe7RcRtBgeBPydvW/gXGuJJbVJCE41Ccx6wJHACZZOpUGJqW0VR8TC5L7Up4hQqOoM4KPAuwj1vuggYipbAWoertViuGAqBCTDtRfZwPX3wGuda+M6w4W1AgOzuk5hRfUPACcB22bsuAel/Sj8xGS7qaToX1fV3YDPmAimDrCSvBxNxPvx1GSKYYZr04DjjGvbO9c65trjtYIJhaq+CzgDeFUyMokTqSM8MskpsdrM7tbAqcD7LU6auEB3gGM7jKWTKYYZrr0TOB34S+fahPFQLefACNZuoarbA+cQirVpYHxk6hwPTrIbRFU/BpwGbJLErepx61gMnwDmT1IpI3JtW+BcwoSWc607zKnlGJxYr1BV/TDwRcJslQdm4oj3am6RDiOpDY6q6k7AN4E3J+lwzeM24XRrnvWFVrK9fAVx7QTgS4QeTuda96WN+2o5BSc2zm4O/FtmhPLAdOcwFgN/tM8aBRAqpsV1VT0WOJ8w0zhqMfN0uDsxvDchWRFxi1zbFPgW8G7nWs9cWwL8oZZjcPYC/h14RUIoD87E0bD7NkdEFhTRVpOs9hhR1W8AH0oI5SLYHeIk1x1FlzNUdXfgYsJkpHOtdzH8I/BYrYfApCnW3wEXELrQR51QuTiM25OUeTRHQkUhfDFwKaF52gmVT2mjkYhhI8eYCVA1rh0FXAis5VzLxXhUgDtERCs9BKdipDoF+B5hVUHDg5Obw/hNQc6irqo7AzcnQlhjsJuhJ4NUmMPItc6bMR2fBX5Ac7micy0f3EQ3NzMjhOcR+pnqeN9ZXq6wCiwzscrNYSQp1q7ANYQF+O4s8hNDAW6ye5zLBg0Zrp0LnOxcy5VrNePAxMUwY9e/QViVEFMsdxb5kKpqtv3RvGYkEyF8I/AzmjOPLoT5uXmxQaaI1PhrwMeda4Vw7R5gnqrKREeXGJyvmBCu8hQr99EK4Mf2XsmBVDFmrwGuTYTQ64P5uvlnCNtYQT5LJ2PczjEhdK4Vw7WrbYKyWpkAqaK7+DzwDxacEb+nuaJq9/XKPFJkc5Z1Vf0Lcy0buxDmjrjZwQ0istAGH+0xbpFrnwE+6VwrjGsN4Ip42ysTDM6RwJl4rakoUgHcIiJze02RLc1CVdcHriZsiutCWFyKfHHy33kI4fsIzdTOteK4druI3BtNQ6WD4ES7vhvwnYRQbteLIdZ3e02Rk3pTg9D7+Wqa9SZHfoh1p4eB6+2+13uIW+TaG4CZzrXCuTYz5VplvDQrvOnGwGWEKX3x4BRCqgrwOPCjXklFs950CmHT3FXuLgqLG8BMEVlu972rFNlirqq6oXFtLedaIYi79yyw+7zaKY7nPmKqdiHwcprbNznyJ5UAF4nIcz2SKgrhfsA/eZpVKKmqhF2tL8qIY7cDWIOweGEb51qhKbIA3xeRRVaW0DHFMCHVcYT97JxUxZJqCfAtcwhdkSpxF+sTGuFjjN1dFEeqi60NqtptjTfh2jHAe5xrhbvCZcDXs1yrjJEeN+x8kvOS2oijOFJdICKPJ268G8S/e647+Ukh1XLgnDgIdSmEkWtbAV+l3CfMlYFrFXOFD2e51u6mx80Bvk7YyaTMp16VgVTPAOf2SKq45nhvwsYL3lRdPKkuEpE/9TiARa59jdADqi6GhXLteeCLrbhWGYNUBxM2ZvV2jOJJdbaIPEmzbtRtelwFvuG3dVJItQg4M6cB7EDgb5xrk8K180Tkz60GsEobUo0AX3ZHWChi6WEucL6lS93OIEcRPYZw+I+30RRPqtNtAKv0OIDVjGuO4rn2sJU1Wu41WWlDqqOBXbx+UXiABPiotWV0tW9hbMOx09BO9zSrcCGsEbbp+qY58W7T48i1Iwh9oO4Ki+faJ6xboyXXKi1ItTbwOXeFhSLOFs4UkeuTbdy7JZUSTh98qQ9ghabHMXbHx3j1OICtBZziXJsUrl0qIleNxbVKC1L9LaHPyUlV3ChVAx4CTmxn2SdIqnUI68WdVMW6wqqlx7Pi3pA9DmDvAbZzrhWeHj8GfCQuImn3y2kA6mb7T2KSD78eMncRz7A9WkSe7TY9bkGqrZ1UhafHNxJmImv0tkKoYcT8B+da4VwT4BgRWWBca4wphslOG28inLmqXr8o1LJ/SkRu6tFdRFIJYTs1J1Wx7uJx4Mj4WY8rhBrAPsDrnGuFc+00EbmhE65lXcQHE0V15Iu4DdPFIvLlXndDTki1K7Cbk6owd6FGrMNzaIpPcXwito78hXAEuEJEvtCpk6/Y6Wt1Vd0COAQ/d7XI4NwEHGfliF43AI21waOdVIUJYawTHiciN/fq5BOubQq8NZY6/FYX4gj/Fzgqtqx14uQrSTAOBdanuTzMkW9wZgOHichKwnnF2iOpRm3i5B1tXL6jdyGsAZ8RkR/kdK5J5NpbgenOtcK4Nhd4u4gsg85n/NPZlXfhdacig3OQ7YScR5oVhW8P4GX4xElRQnimiJyd1wFPLbjmfMufaw8Dfy0iT05084y4LfwmwN42Sjmp8g3OA8Bbet3ZpE2KfChe481bCGPr0z+LyKl5nnRnXNuIMHni5aj8uTbPuDavm97d1GFs4LY9N8TNVO8A9heRR3psrM6ibrPIb/YBLDc0klT2syJySg4tNK24tjuwEc22D0c+XJsNvElEHuyWazFA+2VsvKN7ZxEnS64B3iwij+cphJZmK/AXwM4Zp+jocnAxLtSB94vIWdER9nq4Uws3v39GfB29c+0XwH69mo4ohjOcVLkQSmyU+jpwqIg8Gw+byfHfiTHbjXAMg7v53lOsuErhQBGZmWONsJXz3MO5livXvs0L6/Fdc61i55vslCGaY+IjVBV4DjhWRD4BiNWJinIAu7mb75lQSnNlyR4i8ssihDA+B6o6nbABinOtd64tA04QkRMIZaOeJyYrJoSb+mjV8wh1qxHqe9ZHqDmmWK0cxms9Zj0TqkHY6ectSYo1WsC/GWO0HeHsal9D3hvXbgf2EpFvG9fIw3RUgFfaP1L3+z0hQWokI9SpwL4iMjs25hYhhInDGAG2dTHsSgRTQu0rImfYvc27nNGqtLFjQmxH51yLze8rCYec7S0id+bNtVqSIjs6C0y67O0nhJnH2QmhRgv89+OuypsBL3Ex7FgE48BVAxYCZwHni8iqJC2ejHLDDh6Orrn2M+PanUVxrZY4DMfYZEpbWH5HaMi9ygITZx6LniGMwrclsI6nWx2595oRajnwXcIRC49M0uCVxSs8LBPm2l2Ens/LI9cIy+ty51qNsCGoO4zxyYSlVucDl1i6WrF6xegkf7cXJ9/RG3fXJBN2X+IBQD80J3hf0YQa41mKg5hzrTOuzSIckvVDW3paONdq+ORJlkhxhrFir5XAdYSjPH+6+pfzbaKeqDPcLPnOwx6z1E1UEzLNMxGcKSJ/jDEjbL81OgXfE2AT59qYXFsF3ABcAFwdB6vJ4lqNsPJk2AKR1iRIgpG6rFnAj4DLReQPWRGcAiFMsfEQC58m5YFqJqVaRGjAvRS4VkSeT0RQpyJmNukVTy5cf0i5ljr2Vly7x7h2WXTvmcFrUuJWI3Rwj5b4Zrc7qjHOHqapZCUZlbPp5UITwF8AP4uFWgtKJTj0KRfBiHXt2soYt/id293Huv1OPXFRMW7SIsZzgVsIBfZf2Yl1JOlwo09iNi3hWhk31uiFa9klo4sItcBfWNzuiDPCkWtTEbcasN4AjEAjbR6+VoeorwIWAH8G5lhQ7gDuFZH5mVE9kqnflk5tbNdWxkPi43ee3ubnG7a5tiXAk5b+/t4GrlnAA2naG/vOpigdHu8Z3bKkMRuPayNjcG0h8H+EDUvuNq7dIyJP9xvXasDHB0AM/5SkvhG/Bz5G6ANcCjxjIvg08LQdGZhNaaKFb4hIv5Epvb7L7ZrL6DDid34gc03x/cuW5j5PWNGzEJhvcZvfKiYZAeyrHr6kB24F8GFCF8CgcW2OcW25xW1xhmtLxuKalTCmnGtDW8i1XV8qifVvFLRixJFv3CrJABCJ5HFzrvUuhmZPy441utAtANVMXSO+l5pAGUEo7WW0cnHm8iQTt9UboZY8bs41h8PhcPQ3hskZDpJ7GhZnqBl36M6wD7k2MGLo44GjxCUCrxk6cnWGxw+AoP+3iDxtbhBrct2K5hkhZb2uJdjSvygEtgxwBmELrzJuHa8mZnNF5MbkmmJz8sGEJaJLac4mx5nJBa1aLzKzyX0Zb1WdBvwtzTXlpefaoA1CoqqDcEF7iMhtyd5mdVU9CLi25Ne1AHiJ7a4iQNXWaX4VOLHk13aliLwzbnIRV/ao6q9oHkORYjHwBKHPcDahx/BOE9V6vwpjIvIbAk/Ruk+vlFzrtzamXlGjvKtPossQQnNnFispb7d//M5PtInPQporUMpWh4rf+dk2P19McwVKjebqhen22hE4yH63DsxR1VsI68d/kzbz9lnTvBL6JTejnLsNjcW1gRHDMhd1Y4CkjaWvlVwMV0Z3Y+4i/nxpEreyrkJpN7lVTUSwmsQ5vmfXJu9srw8AC1T158AlwPUisjRxi9oHohj5VmYxHNh5Bj+HoX8fPKJ7itsXJVg0ZPdDEodYTcQ0bgAQneQmwHsJi/7vUdXTVfXltqa8oarVWFd2OFwMyyWGTydikH7+VObzYUUUyFQc6yaQ2wKnmSh+S1V3ilvED0iLi8PFcKjwaBvRe8Lj11Yc46au0TGuD5wAzFLVr6vqVnEdbAvH7XAxdPQp5rVxjI8TNqBot6WSo+kY4/ZS6xA2E7hLVU+y2dCGu0SHi2H/OxyABzMimKbJT2Q+c7S/l6kobgqcB9ysqjOsrUfcJTr8Aeg/xBPB6oStkVYLntW7KiKyqoVQOiYmirubIJ4iIhonWPw2uRg6+ksMIdQLH2kheDFmd7sY9iSK8Szef1LV662WWPe02cXQ0X9ieK+IrLDaVivBuz2TUjsmhugCR4EDgNtUdV9Lm10QXQwdfSSGt7QRu9g4/DvCaoCqu8OeXeIoYT30z1X1aBdEF0NHf8XkN63S4LipAWGm+X5PlXNBXKlUA76vqidHQfQmbRdDx9QgLsN7lLARQeoEX5DiWep8Iy88htHROxfqwLmqerr1I/qkiouhY4rEUIEbRWTZGPXC+NlPWPMYRkdvaXPF0ubToiB6yuxi6JgaMgpwRfLf7UQT4FbCMYwVd4e5xqCaCOLJLoguho7JRewvfJJwuHZM2dZkq62vFZFlwFVjpNOO3gXxXFU9wgXRxdAxeYjCd4WIPGdip+OIJ8APPJaFCmIdmKmqe8ZNaP3WuBg6io+FAt/JiB1t3GHdlpDdTmizkXZO0tFz2WIE+C9V3QJo+NI9F0NHsa5QCDs1z7Ild50IW8Xc4zfx5usiOVIHtgQutvtd8ZYbF0NHsS7kKxOMS91IeRnwZ3wipSjE+uFbVPWz3nIzmPCCcH+4wgpwF3CNucKOzqVJJlKW2iFR5yX/P0f+glgHvqCq14rIXYN4KFI3sAG59M+ci2H/uMIzrA44UccR3eGFwD9aOtfABbGIGEXOXKCqe0QhGPZzm+36Sz8ouBhOvSusEvoFr5pArbCVO3xOVc8ALvBUufB0eTfg70XkX2zwGkp3mByDujGwF+U86Go1F10M+wMnx70Kuw2k/d2ZwEeA1yRC68hfEBvAGap6GTDfBrFhHIDi5NKrgB8PwsU4pgaxCP9dEfltL/UnS1PEao2f8FtbeLrcADYGPm8iKP4sUyfsolQv6es5F8OpQazpPQl8ylxdT3WnWG8UkV8T6ocxpXMU5w6PV9VX4L2HsUG91C8Xw6kVww+LyAJzdXmkWZGUnyTskh1J6yjGHa4NfDI6c78tniY7Jp5S1IDviMh/2+RHLgX4JF1eDByTkNb3OyzGHSpwlKpumawIcrgYOjpA3YRwNvDxImYi4zkeIvJL4HSaOzk78neHdWA94APOJxdDx8RSYwGWAIeLyFJAC+pRi4J4BmHPwxEXxEL5c6yqrk2z59PhYuhog7gbdQU4QkTuj4eYF2JZrAnW0rYjgN/TPBHOkS9/6sDLgbfEdct+W1wMHe2FMKbHHxWRq/OsE44jiIjIs8DbCIfOD22DcMHxVeAovxUuho5xUlYTwtNE5JsmhJOSssaD0UVkHnAI8IwLYu6oEsofB6jqRlaz9VTZxdCRcQxx5vhLIvKFyRTCRBBj/fBOE8RnXRDzvcV2LzcC9k8E0uFi6KBZI6wRNmD4nG0ZPyUCFLesF5HfAgcC8/Gm7CJS5UP8VrgYOl6YFseO/BNF5PQohFO5u0kiiP9jDmYe3naTJ48E2Gcq3L/DxbAfEdcbPw+8R0S+FsnRD9s8JYI4G9gbuCURRG/M7p1H2wLbAXgDtovhMKdJsT54P7CPiFzejy4hHmokIo8BfwVcZN/bz1DpPSOoAm9wbrkYDrMbFBOU/wD2FJE7+zldikvHRGSFiHwQ+CDwHM06orvE7gZEgF39VrgYDhsaNCdJ5gPHisiRIvKMOa++rhtZ243Yd70I2B34deISve41wVtq769Kng+Hi+HAi2A8Z6QCXALsKiLfU9Wq7f5binRTRDRpvfk9YWLlJGCRieJAbOc+yWK4jd3PhvcbuhgOgwhWgVnAoSLyPhF5OG7OWsbzMKyOWLE/nw+8Hvie/biaiKKnz+OL4RbApn47XAwHDVEEGokI3k+osc0QkZ+aG6yU/ZQ0EWkk56k8JCLHAnsCV9FsFYrps6eA7cXwRSaI6WcOF8NSC2DaL1gBfgccB7xeRC5KZmXrg3T+RXSJdm23ichhhMN+LgGWW/ocz2d2YVwzewDY3MWwfPADoZqrRZQXbl8OsBi4lnDQ0g0xBbZ9CBuDemZuFPckdb4VuFVVdwSOBA4HdkgGU00Gj/Q1jM8SwCYuhuUUQx2Ah288oUv/O/071UQAIxYRju68ErhWRB5d/ZcHXATHEUURkQeAU1X1TGA/4J3AAYRm4+zAmtYYJXlvtIgDLWKkJXw2Yzll/Q6ubRC5piXWE62VfPSSMUbg6E7Gc78LgQeA2witJbeJyJMZAcTS4aGcWc2IYkVEVgDXA9er6lrA64B9Cata/hJ4Ge03K5g2TlYy0mHc+hEj9r7BGNdeVtfcCdfKvEHFtBrwdMmdoRCOKMxipV3bcvvzEmAB8DjwEDDXRPBBO5SJRABj28zQCuAYohhbRmIKvcIGktuAc2zH51dYGr2DucaXApsB000QXkTYTqwVFljcynjuc1yFtKLNs/qEPatlPECqE641KO88xHJR1Q0GgKfPZ0XLNkdY14K3aqwmaCN3bCFplLE9ZsoY0hRGIRxjUB/nd6fZa1RElrX4nXUpfy17uYisbHHt61H+OmIrrlVtgCv1oyxDRtxKZuRy8StGHLOTKH6fHf2f+QxCl3w7kqXX5kTsG6EcM27D8jz6tfUfagzArryq2nLlhwtg34hfq3abdkv9KmVPJVW10ab3dCC5lpSZyi30TllHzulxLEM0BqkZ3TEcafLHBuA6LhWRp2yTBHeDkyeAsQbbcuJEVacR1ulubu8bEQrt6wFzROR6W8rYiLFT1bcRjt4s44xrnE29RURmxWuze7EW4QS9dQaFazH7UtWXAO8uacwiRkVVB0E89hCR2+LyOJepwh1gFMBG8vlawM6ETR5eD+xiorY5rWcarxKRw+K+jzF2qvprQs9imXGqiJyZHvdgXRtP0+yzLD3XTAzrqrof8KuyP9tlPwNjrN4nR/4uMG5PVrfPXkrY9usgYA9Cf+FYrkktVjXCUsdWeMaeyTL3GS5s8bNVhB7XrShnP95YXFtFc516WfsMl9Uod09XDJDXPidHBFHVDYFDgfcSluSt30IQYM11yuk65rEm7qo0N5gtY1G+Bixt8fnKZCAosxi2W4FS1utaHTffqMHRqQjuQti1573mbiLiGuRYPxzmZ0oSd4uVEjRu+KuqS/zJ6u9RzOFIRVCA1ccWqOobCLtfvxtYKxFAaO7x6GjeD1hziavYgDE/cVkOF0NHHwthnIAaVdUdgM8RtuyqJilw1QVwzDSyDjyVEb24/+NjLoYuho7+d4MVS+XWBT4F/COhBSY6wYo/Lx1hEfBkG9F7yG+Pi6Gjf4Uw9sLVVfUA4KvAKxMRdCc4MWf4fyLybJue1zl+m/oXvu2/p8UNVZ2mql8h7FH4SppnJ7sIdo7Yc/lAC25lf+b31Z2ho4+EMDY770Q4CW9GQlp/LrrHXfaeXYcN8CBhv8ZNKPdqDXeGjoETwrcTjjiYYW6w4s9Ez1y6PSOAcclaRUQWA/dl3KLDxdAxBSIolhqPquqJhGNANyLUBt0N9nBrjUvPAne3EbvItd9mxdLhYuiYZCGkOWN8FmGipGEvr2H1hih8d4rIfHOB2kIwobmG17nnYuiYYiH8F+DTlhaLPwO5OUOAG8bgVRTM2wjtNxV3hy6GjskXwmoihB+huUbWC/j5IJ6fc027FNjqhlURWQTcRPvNbR0uho6iiGo1wrMSIRzx25JriiyEiZF74jrkNr8bB58r8A1GXAwdk+oKa8lkyaddCAsTQ4DLTQTHqr9GkbyGsIVZ1VNlF0NH8UIYHeGhhMmSuNeeI/8UeRXww4w4MkaqPB/4SUYgHS6GjgKEME6WbA9cTHOfOU/L8kUUshtFZE66zX8HuNA56GLoKFYIhXC2zTTgEmA6zT44R/4Q4BvJn8f+5TBIVQiTKLNo7nTjcDF05J22We3qbMJZJHHbLUf+rrACzAauG2fiZA3emYM8z926i6GjGFcY64T7Aye6EE6KKzy7g4mTNYTUHPzlwFya+x06XAwdOaXHqqrrABckqbE7j+Jc4X3ApZb2dpzq2uqUqoisAM6kuRO2w8XQkUcsLfX6HLBdQlhHca7w8yKyKujbhM/rjrXDHwL3mLP02qGLoaNHV1gBGqq6DWGHal9vXKwrrAK/FJEruz2r28RT7KyZk/22uhg6cnIpRq4zgXVoropw5Dzu2Pso8IkcglY3Mb2BUD90d+hi6OjBFVbNFb6WcIxnA2+uLtoVni0i93brCtcMoQphwusZG8R8MsXF0NGlw1Dg8/isZNFCWCPU974QB6EcYtcg1HsfNUH0GLoYOrqwFHGlyU7AYZbGuSssLj1eCRwtIiuxA+JzGszqto78+8BlFsNRv+0uho6Jx+8jRiCvNxWD2K95kojcbcKVt3uLs8vHA3+0eLpDdDF0dOAKxRqsNwTeZx/7DHL+iDv9zBSRf407AeX9jySzy4uBw4HlGVfqcDF0tEEUvsMIp63V8RnkIhzhCHAz8CGrExbmvpN0eRZwrPGz7oLoYugYGzGFOtLJUgjihMkc4F3WXJ1bnXAMQRw1QbyEsAellz9cDB1jpMgVO/x9a2Av/CyTIoSwCjwKHCwiT1sbzaTU8BJBPAc4xwRxlYfFxdDRPm4HAWvTPNzJkU9qXAUeBw4QkT/l1E84YUE2Qfw0cL6l66OeBbgYOjLm0N4P9luRuxDWgIeAN4vI/VMkhHFCJa5QOQk4l+YMswuii6Ej7punqi8C9rCPfRY5PyG8G9hPRP4wVUKYEcSGfY9PAZ+1WPsqFRdDRxKzVwNbmEvwFLk3lx0nS34KvElEHplqIWwhiDUROQs4itB2U8Ebs10MhxxR+N5o7z7T2D1iO1IVOEdEDhWRZ+LKnr4JuIgmkyoXA28CHqS5UsXTZhfDocaufgt6doNV4CngPSLyaVWtWBmiL1PQRBD/B9gd+C8TRD9HxcVwaN0MwC4ew65EcDRxgz8G3igil8cldkX3EeYkiFURWSAihwMfAhbR3P7La4kuhkPA5OBaVFU3ALbOpM2OzlLiGvAY8H4ReYeIPBzPjinLhdgEmlg6f4FlCVeYIFZcFF0MhwFR+F5MWILn6MwJYkKxAvga8DoRmWlpcV/VBycgiGqN9zUR+ZOIvJuwNPNuF0UXw2ESw5fQ3PfOneGaaCTpcJxk+HdgVxE5UUSeiitK+rU+OMG0OYr6VYSJtRMIywiryXPia5xdDAfWGeIPd0sBjKcC1oDFwIUmgkeLyGxVrU7wjOMyCGLDXGJVRFaKyLeB1wEfJBxUX6HZn1h3YWwN3wi0nNhkyMVQM6+aET4O7ncTTp37TxH5M6w+HkEHSQRbiGI8j7kiIkuBi1T1u8CBwDGE5ZvTk78SRTGubR/qLMPFsJyYPmSClwp/JG2WuPcB1wE/Am6N6e8wiGBGEOMyviiKdbsv16nqVsAhhNrinsCGbRy2JpnI0Ahk2cVwWEeydUtc5qiMEzvJPJutfm8p8DBwF2GvwZuB2Wn9T1VrQH1YRHA8UbTPHrWywYWqujkwA9jH3nckrGiq5BDbMqJSA5aV3D0M6zrNZTTX05YJ8TuvaPPzFSZ2S+0aFwFPmPjNBe4HHgDmZdthTAAVaJSpVWYyRNHuTywlNETkKeBqe6GqmwLbAzubMG4DbAVsBmxA2B1ppA3XGharRokFcfn/A86uA0YzVG8CAAAAAElFTkSuQmCC" alt="FSG">
     <h1>Facility Problems End Here.</h1>
-    <p>Blown schedules, dark sites, budgets that bleed — that's what juggling vendors gets you. FSG replaces the list with one accountable partner: five product lines, delivered three ways, self-performed coast to coast. Tap any cell to see the results — $300M+ for Circle K, 9,000 Starbucks stores, 354 U.S. Bank branches — and pull the exact plays for your situation.</p>
+    <p>Blown schedules, dark sites, budgets that bleed — that's what juggling vendors gets you. FSG replaces the list with one accountable partner: five product lines, delivered three ways, self-performed coast to coast. Tap any cell to see the results.</p>
   </div>
 </section>
 
@@ -180,7 +195,7 @@ footer .grind{font-family:'Oswald',sans-serif;font-size:12px;font-weight:500;let
   <div class="matrix" id="matrix"></div>
 </div>
 <div class="fly">
-  <div class="fly-inner"><b>Energy is the flywheel:</b> energy data sees the problem across HVAC, lighting, refrigeration, and signs — and FSG <b>self-performs the fix</b> from 43+ offices. Monitoring platforms can watch. <span class="gold">We fix.</span> Holistic solutions for one facility — or many.</div>
+  <div class="fly-inner"><b>Energy is the flywheel:</b> every product we deliver — electrical, lighting, signs, technology infrastructure, energy performance — is built to <b>reduce your energy spend</b> and make your facilities <b>efficient and effective</b>. Energy data sees the problem across HVAC, lighting, refrigeration, and signs; FSG <b>self-performs the fix</b> from 43+ offices. Monitoring platforms can watch. <span class="gold">We fix.</span></div>
 </div>
 
 <!-- DETAIL MODAL -->
@@ -191,12 +206,24 @@ footer .grind{font-family:'Oswald',sans-serif;font-size:12px;font-weight:500;let
     <h3 id="dTitle"></h3>
     <div class="d-tagline" id="dTagline"></div>
     <p class="d-desc" id="dDesc"></p>
-    <div class="d-label">Types of work</div>
+    <div class="d-label">Types of work <span class="d-hint">&mdash; tap any type for the definition</span></div>
     <div class="types" id="dTypes"></div>
     <div class="d-label" id="dProofLabel">Proven with</div>
     <div class="proofs" id="dProofs"></div>
     <div class="d-label">Decks, plays &amp; tools</div>
     <div id="dRes"></div>
+  </div>
+</div>
+
+<!-- TYPE MODAL -->
+<div class="overlay" id="tOverlay">
+  <div class="detail tmodal">
+    <button class="close" id="tyClose">&times;</button>
+    <div class="d-mode" id="tyMode"></div>
+    <h3 id="tyTitle"></h3>
+    <p class="d-desc" id="tyDef" style="margin-top:10px;"></p>
+    <div class="coming"><span class="c-dot"></span>Content coming soon &mdash; decks, proof &amp; plays for this type are in build.</div>
+    <button class="t-back" id="tyBack">&larr; Back</button>
   </div>
 </div>
 
@@ -244,49 +271,108 @@ const LINES = [
  {name:'Electrical', tag:'"Power that never quits."',
   cells:{
    construction:{desc:'We build and wire your facilities — blueprint to power-on. Mission-critical builds, ground-up, and tenant finish-out, self-performed by FSG crews so the schedule holds.',
-     types:['Mission critical','Ground-up','Tenant finish-out','Design-build'], proofs:['Boeing'], res:['master','datacenter','commercial','templates']},
+     types:['Mission critical','Ground-up','Tenant finish-out','Design-build','EV charging'], proofs:['Boeing'], res:['master','datacenter','commercial','templates']},
    service:{desc:'We keep your power on, 24/7. Emergency response, on-demand repair, and preventive maintenance nationwide — so downtime never picks the date.',
-     types:['Emergency','On-demand','Preventive maintenance','Generator programs'], proofs:['Walmart'], res:['master','templates']},
+     types:['Emergency','On-demand','Preventive maintenance','Generator programs','EV charging'], proofs:['Walmart'], res:['master','templates']},
    distribution:{desc:'We deliver the gear before the crew needs it — wholesale electrical materials and gear packages, specified, kitted, and delivered to site.',
-     types:['Gear packages','Wholesale materials','Site logistics'], proofs:[], res:['master']}
+     types:['Gear packages','Wholesale materials','Site logistics','EV charging'], proofs:[], res:['master']}
   }},
- {name:'Lighting', tag:'"We find what others can\u2019t."',
+ {name:'Lighting', tag:'"We find what others can’t."',
   cells:{
    construction:{desc:'We light new builds and retrofits — designed, engineered, and self-performed at single sites or across national fleets.',
      types:['LED retrofit','New install','Design & photometrics'], proofs:['U.S. Bank','HCA'], res:['master','usbank','roi','retailplay']},
    service:{desc:'We keep every site lit — and find the parts nobody else can. Lamp & ballast programs, national account maintenance, code-critical emergency lighting, and MRO sourcing for the fixtures everyone else gave up on.',
-     types:['Lamp & ballast programs','National account maintenance','Emergency lighting','MRO sourcing'], proofs:['Starbucks','ULTA','Crash Champions'], res:['master','crash','retailplay']},
-   distribution:{desc:'We spec it, buy it at wholesale, and deliver it — you keep the design, the savings, and the schedule. The EBV\u00AE standard: Equal or Better Value, never value-engineered away.',
-     types:['Owner-supplied packages','Design & procurement','EBV\u00AE standard','Freight & logistics'], proofs:['ALDI'], res:['lightplay','gcec','roi','mmc']}
+     types:['Lamp & ballast programs','National account maintenance','Emergency lighting','MRO sourcing','Retrofits','National rollouts'], proofs:['Starbucks','ULTA','Crash Champions'], res:['master','crash','retailplay']},
+   distribution:{desc:'We spec it, buy it at wholesale, and deliver it — you keep the design, the savings, and the schedule. The EBV® standard: Equal or Better Value, never value-engineered away.',
+     types:['Owner-supplied packages','Design & procurement','EBV® standard','Design & photometrics','Freight & logistics','Wholesale materials','Site logistics'], proofs:['ALDI'], res:['lightplay','gcec','roi','mmc']}
   }},
  {name:'Signs', tag:'"Impossible to miss."',
   cells:{
    construction:{desc:'We fabricate and install — one storefront or a national rebrand, delivered on a construction schedule your brand can bank on.',
      types:['Fabrication','Install','Rebrand rollouts','Permitting'], proofs:['Valero'], res:['master','sunoco','cstore']},
    service:{desc:'We keep the brand lit at every location — maintenance, repair, surveys, and permitting managed as one program.',
-     types:['Maintenance','Repair','Permitting & surveys'], proofs:['HEB'], res:['master']},
+     types:['Maintenance','Repair','Permitting & surveys','Permitting','Retrofits','National rollouts'], proofs:['HEB'], res:['master']},
    distribution:{desc:'We build the package and ship it to site — brand sign packages and components, install-ready for any qualified crew.',
      types:['Brand packages','Components','Delivered to site'], proofs:[], res:['master']}
   }},
  {name:'Technology Infrastructure', tag:'"Buildings that think."',
   cells:{
    construction:{desc:'We build the backbone — structured cabling, AV, security, and DAS, engineered and installed by FSG.',
-     types:['Structured cabling','AV','Security','DAS builds'], proofs:[], res:['master','datacenter','commercial']},
+     types:['Structured cabling','AV','Security','DAS'], proofs:[], res:['master','datacenter','commercial']},
    service:{desc:'We keep it connected and current — moves, adds, and changes; break-fix; and monitoring at the speed your business actually moves.',
-     types:['Moves / adds / changes','Break-fix','Monitoring'], proofs:[], res:['master']},
+     types:['Moves / adds / changes','Break-fix','Monitoring','AV','Security'], proofs:[], res:['master']},
    distribution:{desc:'We kit it and ship it, deployment-ready — standardized devices and staged materials for rollout anywhere.',
      types:['Kitted devices','Staged materials'], proofs:[], res:['master']}
   }},
  {name:'Energy Performance', hi:true, tag:'"Energy that performs."',
   cells:{
-   construction:{desc:'We install what cuts the bill — EMS installs and retrofits, solar (\u201COwn your power\u201D), EV charging (\u201CReady to charge\u201D), and storage. Solar returns exceeding 10% IRR over 20 years.',
-     types:['EMS installs & retrofits','Solar','EV charging','Storage'], proofs:['Tesla','IKEA','Sunbelt','Public Storage','Boeing','Lillibridge'], res:['master','roi']},
-   service:{desc:'We watch the meters and fix what they find — EMS monitoring, alarm response, portfolio optimization, and utility programs. We cut your energy costs and guarantee the savings — proven at the meter.',
-     types:['EMS monitoring','Alarm response','Portfolio optimization','Utility programs'], proofs:['Circle K','ULTA','Bass Pro'], res:['master','cstore']},
+   construction:{desc:'We install what cuts the bill — EMS installs, solar (“Own your power”), EV charging (“Ready to charge”), and storage. Solar returns exceeding 10% IRR over 20 years.',
+     types:['EMS installs','Solar','EV charging','Storage'], proofs:['Tesla','IKEA','Sunbelt','Public Storage','Boeing','Lillibridge'], res:['master','roi']},
+   service:{desc:'We watch the meters and fix what they find — EMS monitoring, alarm response, portfolio optimization, utility programs, retrofits, and national rollouts. We cut your energy costs and guarantee the savings — proven at the meter.',
+     types:['EMS monitoring','Alarm response','Portfolio optimization','Utility programs','Retrofits','National rollouts','Solar Maintenance & Monitoring','EV charging'], proofs:['Circle K','ULTA','Bass Pro'], res:['master','cstore']},
    distribution:{desc:'We supply the hardware — EV chargers, solar equipment, and EMS hardware, specified and delivered for deployment anywhere you operate.',
-     types:['EV chargers','Solar equipment','EMS hardware'], proofs:[], res:['master']}
+     types:['EV chargers','Solar equipment','EMS hardware','EV charging'], proofs:[], res:['master']}
   }}
 ];
+
+// ================= TYPE DEFINITIONS (from Growth Hub taxonomy sheet) =================
+const TYPEDEFS = {
+ "Mission critical": "Electrical work for facilities that can't go dark — data centers, hospitals, 24/7 operations.",
+ "Ground-up": "Complete electrical systems for new construction, from service entrance to final trim.",
+ "Tenant finish-out": "Electrical scope that turns shell space into a move-in-ready tenant suite.",
+ "Design-build": "Single-source design and installation — FSG engineers the system it builds.",
+ "Emergency": "24/7 response when power or critical equipment goes down.",
+ "On-demand": "Single-visit electrical service calls, scheduled as needs come up.",
+ "Preventive maintenance": "Scheduled inspection and testing that catches electrical problems before they cause downtime.",
+ "Generator programs": "Testing, service, and load-bank support that keep backup generators ready to run.",
+ "Gear packages": "Switchgear, panels, and distribution equipment supplied as one coordinated package.",
+ "Wholesale materials": "Electrical and lighting material supplied at distribution pricing, no install.",
+ "Site logistics": "Staging, delivery, and material coordination timed to the site schedule.",
+ "LED retrofit": "Replacing existing fixtures and lamps with LED to cut energy and maintenance cost.",
+ "New install": "New lighting systems installed in new or renovated space.",
+ "Design & photometrics": "Layouts and light-level modeling that prove the design before anything is purchased.",
+ "Lamp & ballast programs": "Ongoing lamp, ballast, and driver replacement across a facility.",
+ "National account maintenance": "One lighting maintenance program covering every site in a multi-location portfolio.",
+ "Emergency lighting": "Testing and repair of exit and egress lighting to keep sites code-compliant.",
+ "MRO sourcing": "Sourcing and stocking replacement lighting parts for in-house maintenance teams.",
+ "Owner-supplied packages": "Fixture packages bought through FSG for someone else's crew to install.",
+ "Design & procurement": "Design support paired with procurement of the specified fixture package.",
+ "EBV® standard": "FSG's Equal or Better Value standard — any substitution matches or beats the specified fixture, so the design is never value-engineered away.",
+ "Freight & logistics": "Freight, warehousing, and delivery of lighting material to the job site.",
+ "Fabrication": "Custom sign manufacturing in FSG's own fabrication shops.",
+ "Install": "Setting and connecting signage on site, including permits and inspection support.",
+ "Rebrand rollouts": "Coordinated sign replacement across many locations to a new brand standard.",
+ "Permitting": "Managing sign permit applications and municipal approvals on the customer's behalf.",
+ "Maintenance": "Scheduled sign and lighting upkeep that keeps the storefront looking new.",
+ "Repair": "Fixing damaged, dark, or failing signage — including neon and channel letters.",
+ "Permitting & surveys": "Site and aerial surveys that document existing signage before pricing work.",
+ "Brand packages": "Complete brand-standard sign packages supplied for a location or rollout.",
+ "Components": "Individual sign parts — faces, letters, raceways, power supplies — supplied as needed.",
+ "Delivered to site": "Manufactured signage shipped direct to the site for another crew to install.",
+ "Structured cabling": "Network cabling, racks, and pathways installed to industry standards.",
+ "AV": "Audio-visual systems designed, installed, and supported — displays, sound, conferencing.",
+ "Security": "Access control, cameras, and alarm systems installed and maintained.",
+ "DAS": "In-building cellular coverage systems for large or hard-to-reach facilities.",
+ "Moves / adds / changes": "Day-to-day cabling and device changes as people and equipment move.",
+ "Break-fix": "On-call repair when network, AV, or security hardware fails.",
+ "Monitoring": "Ongoing remote monitoring of connected systems with alerting and reporting.",
+ "Kitted devices": "Devices configured, labeled, and kitted by site before they ship.",
+ "Staged materials": "Technology material received and staged ahead of the install window.",
+ "EMS installs": "Energy management and building control systems installed and commissioned.",
+ "Solar": "Rooftop, ground, and carport solar systems designed and installed.",
+ "Solar Maintenance & Monitoring": "Scheduled maintenance and remote monitoring that keeps installed solar arrays producing at expected output.",
+ "EV charging": "EV charging stations installed, from service upgrade through activation.",
+ "Storage": "Battery storage that shaves peak demand and backs up critical load.",
+ "EMS monitoring": "Ongoing monitoring of building systems to hold energy savings in place.",
+ "Alarm response": "Response to energy and building-system alarms as they trigger.",
+ "Portfolio optimization": "Portfolio-wide review that ranks sites by savings opportunity and payback.",
+ "Utility programs": "Capturing utility rebates and incentive dollars to offset project cost.",
+ "Retrofits": "Upgrading existing equipment to higher-efficiency systems at one site or many.",
+ "National rollouts": "Multi-site programs executed to one standard, one schedule, one point of contact.",
+ "EV chargers": "EV charging hardware supplied for another party to install.",
+ "Solar equipment": "Panels, inverters, and racking supplied as an equipment-only package.",
+ "EMS hardware": "Controls, sensors, and metering hardware supplied without installation."
+};
 
 // ================= MATRIX RENDER =================
 const mx = document.getElementById('matrix');
@@ -300,7 +386,7 @@ LINES.forEach((line, li) => {
   let inner = '<div class="mx-line">'+line.name+'</div>';
   MODES.forEach(m => {
     const cell = line.cells[m.key];
-    inner += '<div class="mx-cell" data-line="'+li+'" data-mode="'+m.key+'"><span class="mode-tag">'+m.name+'</span>'+cell.types.slice(0,3).join(', ')+'</div>';
+    inner += '<div class="mx-cell" data-line="'+li+'" data-mode="'+m.key+'"><span class="mode-tag">'+m.name+'</span>'+cell.types.join(' \u00B7 ')+'</div>';
   });
   wrap.innerHTML = inner;
   mx.appendChild(wrap);
@@ -333,7 +419,8 @@ mx.addEventListener('click', async e => {
   document.getElementById('dTitle').textContent = line.name;
   document.getElementById('dTagline').textContent = line.tag || '';
   document.getElementById('dDesc').textContent = d.desc;
-  document.getElementById('dTypes').innerHTML = d.types.map(t=>'<span class="type-chip">'+t+'</span>').join('');
+  CUR = {line: line.name, mode: mode.name};
+  document.getElementById('dTypes').innerHTML = d.types.map(t=>'<button type="button" class="type-chip" data-type="'+t.replace(/"/g,'&quot;')+'">'+t+'</button>').join('');
   const pl = document.getElementById('dProofLabel'), pr = document.getElementById('dProofs');
   if(d.proofs.length){ pl.style.display='block'; pr.style.display='flex'; pr.innerHTML = d.proofs.map(p=>'<span class="proof-chip">'+p+'</span>').join(''); }
   else { pl.style.display='none'; pr.style.display='none'; }
@@ -346,6 +433,29 @@ mx.addEventListener('click', async e => {
       + '</div>';
   }).join('');
   overlay.classList.add('open');
+});
+
+// ================= TYPE MODAL =================
+let CUR = {line:'', mode:''};
+const tOverlay = document.getElementById('tOverlay');
+function openType(t){
+  document.getElementById('tyMode').textContent = CUR.line + ' \u00B7 ' + CUR.mode + ' \u00B7 Type of Work';
+  document.getElementById('tyTitle').textContent = t;
+  document.getElementById('tyDef').textContent = TYPEDEFS[t] || '';
+  tOverlay.classList.add('open');
+}
+function closeType(){ tOverlay.classList.remove('open'); }
+document.getElementById('dTypes').addEventListener('click', e => {
+  const chip = e.target.closest('.type-chip');
+  if(chip) openType(chip.dataset.type);
+});
+document.getElementById('tyClose').addEventListener('click', closeType);
+document.getElementById('tyBack').addEventListener('click', closeType);
+tOverlay.addEventListener('click', e => { if(e.target===tOverlay) closeType(); });
+document.addEventListener('keydown', e => {
+  if(e.key!=='Escape') return;
+  if(tOverlay.classList.contains('open')) closeType();
+  else overlay.classList.remove('open');
 });
 
 // ================= PITCH BUILDER =================
