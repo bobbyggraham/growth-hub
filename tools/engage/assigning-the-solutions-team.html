@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engage Plays — Assigning the Solutions Team</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='115' fill='%23133865'/><g stroke='%23c5d9fa' stroke-width='22' stroke-linecap='round'><line x1='256' y1='256' x2='256' y2='96'/><line x1='256' y1='256' x2='394.6' y2='176'/><line x1='256' y1='256' x2='394.6' y2='336'/><line x1='256' y1='256' x2='256' y2='416'/><line x1='256' y1='256' x2='117.4' y2='336'/><line x1='256' y1='256' x2='117.4' y2='176'/></g><circle cx='256' cy='96' r='42' fill='%23ffffff'/><circle cx='394.6' cy='176' r='42' fill='%23c5d9fa'/><circle cx='394.6' cy='336' r='42' fill='%23ffffff'/><circle cx='256' cy='416' r='42' fill='%23c5d9fa'/><circle cx='117.4' cy='336' r='42' fill='%23ffffff'/><circle cx='117.4' cy='176' r='42' fill='%23ebb018'/><circle cx='256' cy='256' r='76' fill='%23ebb018'/></svg>">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fsg-deep-navy: #0b1421;
+    --fsg-dark-navy: #133865;
+    --fsg-brand-blue: #365aa0;
+    --fsg-steel-blue: #718dbc;
+    --fsg-light-blue: #c5d9fa;
+    --fsg-light-gray: #ededed;
+    --fsg-gold: #ebb018;
+    --fsg-bright-blue: #4e84de;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    color: var(--fsg-deep-navy);
+    background: #ffffff;
+    line-height: 1.55;
+    font-size: 16px;
+  }
+  .page { max-width: 960px; margin: 0 auto; padding: 32px 24px 48px; }
+
+  .hero { background: var(--fsg-dark-navy); border-radius: 8px; padding: 28px 32px; }
+  .hero .eyebrow { color: var(--fsg-light-blue); font-weight: 700; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+  .hero h1 { font-family: 'Oswald', Arial, sans-serif; font-weight: 700; font-size: 40px; color: #fff; line-height: 1.15; margin-bottom: 10px; }
+  .hero .subtitle { color: var(--fsg-light-blue); font-size: 14px; }
+  .gold-rule { border: none; border-top: 3px solid var(--fsg-gold); margin: 18px 0 28px; }
+
+  h2 { font-family: 'Oswald', Arial, sans-serif; font-weight: 700; color: var(--fsg-dark-navy); font-size: 26px; margin: 34px 0 12px; }
+  p { margin: 12px 0; }
+  b { color: var(--fsg-deep-navy); }
+
+  .glance { display: flex; gap: 6px; margin: 14px 0 8px; flex-wrap: wrap; }
+  .glance .chip { flex: 1 1 160px; background: var(--fsg-dark-navy); color: #fff; font-weight: 700; font-size: 13px; text-align: center; padding: 12px 10px; border-radius: 6px; }
+  .glance .chip:nth-child(even) { background: var(--fsg-brand-blue); }
+
+  .step { margin-top: 40px; }
+  .step-header { display: flex; align-items: stretch; background: var(--fsg-light-gray); border-radius: 6px; overflow: hidden; }
+  .step-num { background: var(--fsg-dark-navy); color: #fff; font-family: 'Oswald', Arial, sans-serif; font-weight: 700; font-size: 28px; display: flex; align-items: center; justify-content: center; min-width: 64px; }
+  .step-title { font-family: 'Oswald', Arial, sans-serif; font-weight: 700; font-size: 22px; color: var(--fsg-dark-navy); text-transform: uppercase; padding: 14px 18px; display: flex; align-items: center; }
+  .step p { margin: 16px 0 10px; }
+  .step ul { margin: 10px 0 14px 22px; }
+  .step li { margin-bottom: 9px; }
+  .step h4 { font-family: 'Oswald', Arial, sans-serif; color: var(--fsg-brand-blue); font-size: 17px; margin: 18px 0 4px; }
+
+  table.brand { width: 100%; border-collapse: collapse; font-size: 15px; margin: 16px 0; }
+  table.brand th { background: var(--fsg-dark-navy); color: #fff; text-align: left; padding: 10px 14px; font-weight: 700; }
+  table.brand td { padding: 10px 14px; vertical-align: top; }
+  table.brand tr:nth-child(even) td { background: var(--fsg-light-blue); }
+  table.brand td:first-child { font-weight: 700; }
+  table.brand td ul { margin: 6px 0 0 18px; }
+  table.brand td li { margin-bottom: 4px; }
+
+  .callout { background: var(--fsg-light-blue); border-left: 4px solid var(--fsg-gold); border-radius: 0 6px 6px 0; padding: 20px 24px; margin: 42px 0 24px; }
+  .callout h3 { font-family: 'Oswald', Arial, sans-serif; color: var(--fsg-dark-navy); font-size: 20px; margin-bottom: 10px; }
+  .callout ul { margin-left: 20px; }
+  .callout li { margin-bottom: 7px; font-size: 15px; color: var(--fsg-dark-navy); }
+
+  .contact-line { font-style: italic; color: var(--fsg-steel-blue); font-size: 14px; margin: 24px 0 0; }
+
+  .vc { margin-top: 28px; padding-top: 18px; border-top: 3px solid var(--fsg-gold); }
+  .vc h3 { font-family: 'Oswald', Arial, sans-serif; color: var(--fsg-dark-navy); font-size: 18px; margin-bottom: 10px; }
+  table.vc-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table.vc-table th { background: var(--fsg-dark-navy); color: #fff; text-align: left; padding: 8px 12px; font-weight: 700; }
+  table.vc-table td { padding: 8px 12px; border: 1px solid var(--fsg-light-gray); }
+
+  footer { text-align: center; color: var(--fsg-steel-blue); font-size: 13px; margin-top: 40px; }
+  a { color: var(--fsg-bright-blue); }
+</style>
+</head>
+<body>
+
+<!-- ============ GROWTH HUB GATE ============ -->
+<style>
+  html.gh-locked > body > :not(#ghGate){display:none !important;}
+  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
+  html:not(.gh-locked) #ghGate{display:none;}
+  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
+  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
+  #ghGate .gh-brand svg{width:30px;height:30px;}
+  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
+  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
+  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;}
+  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
+  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
+  #ghGate input:focus{border-color:#4e84de;}
+  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
+  #ghGate button:hover{filter:brightness(1.06);}
+  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
+  #ghGate .gh-shake{animation:ghshake .3s;}
+  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+<div id="ghGate">
+  <div class="gh-wrap">
+    <div class="gh-brand">
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#c5d9fa" stroke-width="14" stroke-linecap="round" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g><circle cx="150" cy="50" r="26" fill="#ffffff"/><circle cx="236.6" cy="100" r="26" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="26" fill="#ffffff"/><circle cx="150" cy="250" r="26" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="26" fill="#ffffff"/><circle cx="63.4" cy="100" r="26" fill="#c5d9fa"/><circle cx="150" cy="150" r="44" fill="#ebb018"/></svg>
+      <span>Growth Hub</span>
+    </div>
+    <div class="gh-card">
+      <h2>Passcode</h2>
+      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
+      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
+      <button id="ghGo" type="button">Enter the Hub</button>
+      <div class="gh-err" id="ghErr"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
+  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+  if(!unlocked()) document.documentElement.classList.add('gh-locked');
+  function open(){ document.documentElement.classList.remove('gh-locked'); }
+  async function check(){
+    var v=document.getElementById('ghPass').value;
+    var ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        ok=(hex===HASH);
+      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
+    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
+    if(ok){ remember(); open(); }
+    else{
+      var card=document.querySelector('#ghGate .gh-card');
+      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
+      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
+      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    if(unlocked()) return;
+    document.getElementById('ghGo').addEventListener('click', check);
+    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
+  });
+})();
+</script>
+<!-- ============ /GROWTH HUB GATE ============ -->
+
+<div style="max-width:960px;margin:0 auto;padding:18px 24px 0;"><a href="../../index.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">&larr; Growth Hub</a><span style="color:#c5d9fa;margin:0 8px;">|</span><a href="../fsg-app-faq.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">&larr; FSG App FAQs</a></div>
+<div class="page">
+
+  <div class="hero">
+    <div class="eyebrow">Engage Plays</div>
+    <h1>Assigning the Solutions Team</h1>
+    <div class="subtitle">Get the Right Expert on the Deal &nbsp;•&nbsp; Sales Team Quick Guide &nbsp;•&nbsp; Opportunities Module</div>
+  </div>
+  <hr class="gold-rule">
+
+  <h2>Why This Play Matters</h2>
+  <p>The Solutions Team turns your opportunity into a proposal — but only as fast and as accurately as the information you hand them. Right assignee, complete fields, docs uploaded: that's the difference between a quote in days and a stalled deal waiting on questions.</p>
+
+  <h2>The Play at a Glance</h2>
+  <div class="glance">
+    <div class="chip">1. Pick the Right Assignee</div>
+    <div class="chip">2. Complete the Required Fields</div>
+    <div class="chip">3. Upload the Docs</div>
+    <div class="chip">4. Assign &amp; Notify</div>
+    <div class="chip">5. Watch for the 48-Hour Confirm</div>
+  </div>
+
+  <div class="step">
+    <div class="step-header"><div class="step-num">1</div><div class="step-title">Pick the Right Assignee</div></div>
+    <p>Assignment follows the Product and Delivery Method on the opportunity — both required fields in Engage. Type is optional and multi-select; Product Owners add types. One owner per lane — they pull in additional team members if needed.</p>
+    <table class="brand">
+      <tr><th>Product</th><th>Delivery Method</th><th>Type options (multi-select)</th><th>Product Owner</th></tr>
+      <tr><td>Lighting</td><td>Construction</td><td>Electrical, Design Build, Data Center, Engineering, General Construction Services</td><td>Lee Wills</td></tr>
+      <tr><td>Lighting</td><td>Services</td><td>Electrical, Project, Audit, Contract, Controls, Retrofit, EV Charging</td><td>Stephen (Chad) Jones, Steven Miller</td></tr>
+      <tr><td>Lighting</td><td>Distribution</td><td>Wholesale</td><td>Courtney Mitchell</td></tr>
+      <tr><td>Signs</td><td>Services</td><td>Retrofit, Signs</td><td>Michael Taylor</td></tr>
+      <tr><td>Technology Infrastructure</td><td>Construction</td><td>Visual, Data, Voice, Security, Distributed Antenna System</td><td>Michael Oshea</td></tr>
+      <tr><td>Energy Performance</td><td>Services</td><td>Building Management System, Solar M&amp;M</td><td>Stephen Sparling</td></tr>
+      <tr><td>Energy Performance</td><td>Construction</td><td>Solar Construction</td><td>Michael Mastriano</td></tr>
+      <tr><td>Energy Performance</td><td>Services</td><td>Retrofit, Mechanical, Energy Conservation Measures, Power Generation, Planned Maintenance, IR/ARC</td><td>Cameron Carpenter, Francisco (Frank) Agraz</td></tr>
+    </table>
+    <p><i>Product and Delivery Method mirror the required Engage fields — match them and the owner is your assignee. Additional team members are added by the Product Owner. Do not add David Burrough — he's the escalation path, not the default assignee.</i></p>
+  </div>
+
+  <div class="step">
+    <div class="step-header"><div class="step-num">2</div><div class="step-title">Complete the Required Fields</div></div>
+    <table class="brand">
+      <tr><th>Field</th><th>What goes in it</th></tr>
+      <tr><td>Opportunity Name</td><td>[Customer] – [Location] – [Work Type] &nbsp;•&nbsp; 30–60 characters</td></tr>
+      <tr><td>Status</td><td>Set to "Scope Development"</td></tr>
+      <tr><td>Bid Due Date</td><td>The actual deadline for the quote or proposal</td></tr>
+      <tr><td>Customer Problem</td><td>All project details in one place — <b>do not scatter across notes</b>. Include:
+        <ul>
+          <li><b>Project Specifics</b> — detailed description of what is needed</li>
+          <li><b>Quote Type</b> — ROM / Budget or Hard Quote</li>
+          <li><b>Customer Triggers</b> — what's driving the project (ROI, IRR, total dollar, compliance, etc.)</li>
+        </ul>
+      </td></tr>
+    </table>
+  </div>
+
+  <div class="step">
+    <div class="step-header"><div class="step-num">3</div><div class="step-title">Upload the Docs</div></div>
+    <p>All files provided at the onset of the project go in the Files folder on the opportunity. The more information shared upfront, the faster and more accurate the proposal.</p>
+    <h4>Turnkey Lighting</h4>
+    <ul>
+      <li><b>Specify the ask</b> — ROI/proforma needed or just a quote? Turnkey or material-only?</li>
+      <li><b>Utility bill</b> — upload a recent bill if ROI is needed.</li>
+      <li><b>Existing fixture info</b> — lamp type, wattage, quantity — if the audit wasn't performed by the Solutions Team.</li>
+    </ul>
+    <h4>Rebates (for accurate estimates)</h4>
+    <ul>
+      <li><b>The package</b> — full utility bill (name must match), signed LOA, signed proposal, line-by-line SOW.</li>
+      <li><b>A responsive POC</b> — name, phone, email. Site maps if more than 200 lines.</li>
+      <li><b>Set expectations</b> — processing takes 6–8 weeks. Do not guarantee estimates to customers.</li>
+    </ul>
+    <h4>Electrical</h4>
+    <ul>
+      <li><b>Plans &amp; specs</b> — upload if available; otherwise complete the Electrical Job Bidding Checklist.</li>
+      <li><b>Job type &amp; scope</b> — include voltage, amperage, footage, site conditions, and any other relevant details.</li>
+    </ul>
+  </div>
+
+  <div class="step">
+    <div class="step-header"><div class="step-num">4</div><div class="step-title">Assign &amp; Notify</div></div>
+    <ul>
+      <li><b>Assign per Step 1</b> — add team members only if the table specifies.</li>
+      <li><b>Send a follow-up</b> — email or Slack the assignee with the opportunity link (recommended).</li>
+      <li><b>Rush request?</b> Email David Burrough with CC to Frank Agraz &amp; Chad Jones (Lighting), Cameron Carpenter (ECMs), or Steven Miller (Electrical).</li>
+    </ul>
+  </div>
+
+  <div class="step">
+    <div class="step-header"><div class="step-num">5</div><div class="step-title">Watch for the 48-Hour Confirm</div></div>
+    <p>The Solutions Team responds within 48 hours with confirmation, an ETA, and any questions. Monitor the Notes on the opportunity — unanswered questions stall the clock.</p>
+    <table class="brand">
+      <tr><th>Project Type</th><th>Turnaround</th></tr>
+      <tr><td>Electrical Estimation</td><td>7–10 business days</td></tr>
+      <tr><td>Budgetary / ROM Quotes</td><td>3–5 business days</td></tr>
+      <tr><td>Turnkey Lighting</td><td>Varies — ETA provided within 48 hours</td></tr>
+    </table>
+  </div>
+
+  <div class="callout">
+    <h3>Common Misses — Check Before You Walk Away</h3>
+    <ul>
+      <li><b>Details scattered across notes</b> — everything belongs in the Customer Problem field, one place, complete.</li>
+      <li><b>Bid Due Date set to a placeholder</b> — the Solutions Team plans around it. Enter the real deadline.</li>
+      <li><b>David Burrough added by default</b> — David is the escalation path. Every lane in the matrix has a Product Owner — route to them.</li>
+      <li><b>Rebate estimates promised to the customer</b> — processing takes 6–8 weeks and estimates are never guaranteed.</li>
+      <li><b>ROI requested, no utility bill uploaded</b> — no bill, no proforma. Upload it with the request.</li>
+      <li><b>Vague electrical scope</b> — missing voltage, amperage, or footage means a round of questions before work starts.</li>
+    </ul>
+  </div>
+
+  <p class="contact-line">Engage Support: apphelp@fsgi.com &nbsp;|&nbsp; Escalations &amp; Strategy: David Burrough — always available, call or text.</p>
+
+  <div class="vc">
+    <h3>Version Control</h3>
+    <table class="vc-table">
+      <tr><th>Version</th><th>Date</th><th>Owner</th><th>Change Summary</th></tr>
+      <tr><td>1.0</td><td>September 2026</td><td>Bobby Graham — Growth</td><td>Initial publication to sales team</td></tr>
+    </table>
+  </div>
+
+  <footer>FSG Engage &nbsp;|&nbsp; Internal Enablement</footer>
+</div>
+</body>
+</html>
