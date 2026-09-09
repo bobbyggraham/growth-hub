@@ -1,0 +1,348 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Growth Hub — Brand Standards</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='115' fill='%23133865'/><g stroke='%23c5d9fa' stroke-width='22' stroke-linecap='round'><line x1='256' y1='256' x2='256' y2='96'/><line x1='256' y1='256' x2='394.6' y2='176'/><line x1='256' y1='256' x2='394.6' y2='336'/><line x1='256' y1='256' x2='256' y2='416'/><line x1='256' y1='256' x2='117.4' y2='336'/><line x1='256' y1='256' x2='117.4' y2='176'/></g><circle cx='256' cy='96' r='42' fill='%23ffffff'/><circle cx='394.6' cy='176' r='42' fill='%23c5d9fa'/><circle cx='394.6' cy='336' r='42' fill='%23ffffff'/><circle cx='256' cy='416' r='42' fill='%23c5d9fa'/><circle cx='117.4' cy='336' r='42' fill='%23ffffff'/><circle cx='117.4' cy='176' r='42' fill='%23ebb018'/><circle cx='256' cy='256' r='76' fill='%23ebb018'/></svg>">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<style>
+  :root{
+    --navy:#133865; --blue:#365aa0; --gold:#ebb018;
+    --steel:#718dbc; --ice:#c5d9fa; --paper:#fdfdfb; --line:#e4e7ee;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--paper); color:var(--navy);
+    line-height:1.6; font-size:17px;
+  }
+  h1,h2,h3,.rounded{
+    font-family:ui-rounded,"Arial Rounded MT Bold","Nunito","Segoe UI",Arial,sans-serif;
+  }
+  .wrap{max-width:860px;margin:0 auto;padding:0 28px;}
+
+  /* hero */
+  .hero{background:var(--navy);color:#fff;padding:72px 0 64px;}
+  .hero .logo{max-width:440px;width:80%;display:block;}
+  .hero p.tag{
+    margin-top:34px;font-size:1.45rem;letter-spacing:.16em;
+    font-weight:700;color:var(--ice);
+  }
+  .hero p.tag span{color:var(--gold);}
+  .hero p.sub{margin-top:10px;color:var(--steel);max-width:34em;}
+
+  section{padding:58px 0 8px;}
+  h2{font-size:1.7rem;margin-bottom:18px;letter-spacing:.02em;}
+  h3{font-size:1.12rem;margin:26px 0 8px;}
+  p{max-width:38em;margin-bottom:14px;}
+  .lead{font-size:1.12rem;}
+
+  /* equation */
+  .equation{
+    margin:26px 0 10px;padding:30px 34px;background:var(--navy);
+    border-radius:18px;color:#fff;text-align:center;
+  }
+  .equation .eq{
+    font-size:clamp(1.3rem,4vw,2rem);font-weight:700;letter-spacing:.04em;
+  }
+  .equation .eq b{color:var(--gold);}
+  .equation small{display:block;margin-top:8px;color:var(--steel);}
+
+  /* spokes */
+  .spoke{display:flex;gap:16px;align-items:flex-start;margin:0 0 20px;max-width:44em;}
+  .dot{flex:0 0 14px;height:14px;border-radius:50%;background:var(--blue);margin-top:7px;}
+  .dot.res{background:var(--navy);} .dot.gold{background:var(--gold);}
+  .spoke b{display:block;}
+  .loopnote{
+    border-left:4px solid var(--gold);padding:6px 0 6px 18px;margin:26px 0 8px;
+    max-width:40em;font-style:italic;color:var(--blue);
+  }
+
+  /* voice + style lists */
+  ul.rules{list-style:none;max-width:42em;}
+  ul.rules li{padding:10px 0 10px 26px;position:relative;border-bottom:1px solid var(--line);}
+  ul.rules li::before{
+    content:"";position:absolute;left:2px;top:19px;width:9px;height:9px;
+    border-radius:50%;background:var(--steel);
+  }
+  ul.rules b{color:var(--navy);}
+
+  /* logo grid */
+  .logogrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;margin:10px 0 6px;}
+  .swatchcard{border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+  .swatchcard .pane{padding:26px;display:flex;align-items:center;justify-content:center;min-height:170px;}
+  .pane.dark{background:var(--navy);} .pane.light{background:#fff;}
+  .swatchcard figcaption{padding:12px 16px;font-size:.86rem;color:var(--blue);border-top:1px solid var(--line);}
+  .swatchcard svg,.swatchcard img{max-width:100%;height:auto;}
+  .marksize{width:130px;}
+  .favsize{width:96px;border-radius:22px;}
+
+  /* colors */
+  .palette{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-top:8px;}
+  .chip{border-radius:14px;overflow:hidden;border:1px solid var(--line);}
+  .chip .c{height:84px;}
+  .chip .m{padding:10px 12px;font-size:.82rem;line-height:1.45;}
+  .chip .m b{display:block;}
+
+  /* type spec */
+  .typespec{border:1px solid var(--line);border-radius:14px;padding:26px;margin-top:8px;}
+  .typespec .big{font-size:2rem;font-weight:700;letter-spacing:.04em;}
+  .typespec .mid{font-size:1.1rem;color:var(--blue);margin-top:6px;}
+  .typespec p{font-size:.95rem;color:var(--blue);margin:14px 0 0;}
+
+  footer{padding:48px 0 64px;color:var(--steel);font-size:.85rem;}
+  @media (max-width:560px){ .hero{padding:52px 0 44px;} section{padding:44px 0 4px;} }
+</style>
+</head>
+<body>
+
+<!-- ============ GROWTH HUB GATE ============ -->
+<style>
+  html.gh-locked > body > :not(#ghGate){display:none !important;}
+  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
+  html:not(.gh-locked) #ghGate{display:none;}
+  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
+  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
+  #ghGate .gh-brand svg{width:30px;height:30px;}
+  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
+  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
+  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;}
+  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
+  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
+  #ghGate input:focus{border-color:#4e84de;}
+  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
+  #ghGate button:hover{filter:brightness(1.06);}
+  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
+  #ghGate .gh-shake{animation:ghshake .3s;}
+  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+<div id="ghGate">
+  <div class="gh-wrap">
+    <div class="gh-brand">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><path fill="#ebb018" d="M28 8C31.5 22 38 28.5 52 32 38 35.5 31.5 42 28 56 24.5 42 18 35.5 4 32 18 28.5 24.5 22 28 8Z"/><path fill="#ebb018" d="M50 6h5v7h7v5h-7v7h-5v-7h-7v-5h7z"/></svg>
+      <span>Growth Hub</span>
+    </div>
+    <div class="gh-card">
+      <h2>Passcode</h2>
+      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
+      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
+      <button id="ghGo" type="button">Enter the Hub</button>
+      <div class="gh-err" id="ghErr"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
+  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+  if(!unlocked()) document.documentElement.classList.add('gh-locked');
+  function open(){ document.documentElement.classList.remove('gh-locked'); }
+  async function check(){
+    var v=document.getElementById('ghPass').value;
+    var ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        ok=(hex===HASH);
+      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
+    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
+    if(ok){ remember(); open(); }
+    else{
+      var card=document.querySelector('#ghGate .gh-card');
+      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
+      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
+      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    if(unlocked()) return;
+    document.getElementById('ghGo').addEventListener('click', check);
+    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
+  });
+})();
+</script>
+<!-- ============ /GROWTH HUB GATE ============ -->
+
+
+<div class="hero">
+  <div class="wrap">
+    <a href="../index.html" style="font-family:ui-rounded,'Arial Rounded MT Bold','Nunito',Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#718dbc;text-decoration:none;display:inline-block;margin-bottom:22px;">&larr; Growth Hub</a>
+    <svg class="logo" viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Growth Hub logo">
+      <g stroke="#c5d9fa" stroke-width="5" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="72"/><line x1="150" y1="150" x2="217.5" y2="111"/><line x1="150" y1="150" x2="217.5" y2="189"/><line x1="150" y1="150" x2="150" y2="228"/><line x1="150" y1="150" x2="82.5" y2="189"/><line x1="150" y1="150" x2="82.5" y2="111"/></g><circle cx="150" cy="72" r="14" fill="#ffffff"/><circle cx="217.5" cy="111" r="14" fill="#c5d9fa"/><circle cx="217.5" cy="189" r="14" fill="#ffffff"/><circle cx="150" cy="228" r="14" fill="#c5d9fa"/><circle cx="82.5" cy="189" r="14" fill="#ffffff"/><circle cx="82.5" cy="111" r="14" fill="#c5d9fa"/><circle cx="150" cy="150" r="26" fill="#ebb018"/>
+      <text x="300" y="163" font-family="ui-rounded,'Arial Rounded MT Bold','Nunito',Arial,sans-serif" font-weight="bold" font-size="62" letter-spacing="3" fill="#ffffff">GROWTH</text>
+      <text x="300" y="233" font-family="ui-rounded,'Arial Rounded MT Bold','Nunito',Arial,sans-serif" font-weight="bold" font-size="62" letter-spacing="22" fill="#c5d9fa">HUB</text>
+    </svg>
+    <p class="tag rounded">PROTECT <span>·</span> LAND <span>·</span> EXPAND</p>
+    <p class="sub">Brand standards — the engine, the story, the voice, and the visual system. Growth Hub is the growth engine of FSG for business, personal, and community.</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <h2>The story</h2>
+    <p class="lead">Every engagement starts with a person carrying a problem they can't solve alone — a client, a teammate, a neighbor. They are the hero. Growth Hub is the guide.</p>
+    <p>We don't chase transactions; we build an institution dedicated to timeless contribution and service. The guide shows up with a destination worth trusting, a plan that develops the whole person — business, personal, faith, community — and then does the work: measured, tracked, reported. Cash keeps the engine honest. The hero gets the win they wanted, and it goes on the board.</p>
+    <p>Then the flywheel turns: every solved problem creates the next hero who trusts the guide. Protect the relationships we've earned. Land the next one. Expand what's possible together.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>The equation</h2>
+    <div class="equation">
+      <div class="eq rounded">Contribution + Service = <b>Value</b></div>
+      <small>Value sits at the center of everything. Meaning is the echo.</small>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>The six spokes</h2>
+    <p>Six lanes, one loop, value at the core. Read clockwise from the top — People always walk in first.</p>
+
+    <div class="spoke"><span class="dot"></span><p><b>People</b> The hero with a problem walks in first. Everything comes from people — the client, the teammate, the community.</p></div>
+    <div class="spoke"><span class="dot"></span><p><b>Vision</b> We show up as the guide with a destination worth trusting. Carried by the story, the tagline, and Y+1.</p></div>
+    <div class="spoke"><span class="dot gold"></span><p><b>Development</b> The plan: business, personal, faith, community. Development is the key — it's what makes people valuable. (Client-facing shorthand: business, personal, and community impact.)</p></div>
+    <div class="spoke"><span class="dot"></span><p><b>Execution</b> The guide acts: measure, track, report. Systems, ERP, equipment, and partnerships doing the work in the open.</p></div>
+    <div class="spoke"><span class="dot"></span><p><b>Finance</b> Cash keeps the engine honest and funded — growth, stress, daily KPIs.</p></div>
+    <div class="spoke"><span class="dot res"></span><p><b>Results</b> The hero gets the win they wanted, and it goes on the board. Top-line revenue, bottom-line cost, lives measurably better.</p></div>
+
+    <div class="loopnote">The flywheel: Results feed straight back into People — every solved problem creates the next hero who trusts the guide.</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>The voice</h2>
+    <p>Growth Hub sounds like a trusted guide: confident, plain-spoken, generous. Never the hero of its own story.</p>
+    <ul class="rules">
+      <li><b>The hero leads the sentence.</b> Write "you" before "we." The reader's win is the headline; our role is the plan behind it.</li>
+      <li><b>Scoreboard honesty.</b> Numbers over adjectives. If it happened, show the result; if it didn't, say what's next.</li>
+      <li><b>Short and certain.</b> Punchy verbs, short sentences, no hype, no filler. Say it the way you'd say it across a job-site table.</li>
+      <li><b>Contribution first.</b> Every message answers one question: what did this add — to the business, the person, or the community?</li>
+      <li><b>Warm, not soft.</b> Encourage hard, hold accountable harder. The guide believes in the hero enough to tell the truth.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>The style</h2>
+    <ul class="rules">
+      <li><b>One gold rule.</b> Gold marks value and nothing else — the core, the win, the key lane. One gold element per layout; when everything glitters, nothing does.</li>
+      <li><b>Navy is the field, white is the air.</b> Deep navy carries authority; generous white space carries clarity. Steel and ice do the supporting work.</li>
+      <li><b>Rounded, human type.</b> The wordmark and headlines use rounded letterforms — approachable strength, matched to the FSG logotype. No gold underlines, ever.</li>
+      <li><b>The spoke carries the story.</b> The six-spoke hub is the primary mark — value at the gold center, always, in the lockup and standing alone. The FSG star is a reserved asset: co-branded moments and win markers only, never in the primary lockup.</li>
+      <li><b>Clear space and minimums.</b> Keep clear space equal to the star's width on all sides of the logo. Don't set the full logo below 120px wide; use the spoke mark or favicon below that.</li>
+      <li><b>Never do.</b> Don't stretch, rotate, recolor, outline, or drop-shadow the marks. Don't set the wordmark in a square-cornered font. Don't put navy type on navy.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>The logo system</h2>
+    <div class="logogrid">
+      <figure class="swatchcard">
+        <div class="pane dark">
+          <svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Full logo on dark">
+            <g stroke="#c5d9fa" stroke-width="5" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="72"/><line x1="150" y1="150" x2="217.5" y2="111"/><line x1="150" y1="150" x2="217.5" y2="189"/><line x1="150" y1="150" x2="150" y2="228"/><line x1="150" y1="150" x2="82.5" y2="189"/><line x1="150" y1="150" x2="82.5" y2="111"/></g><circle cx="150" cy="72" r="14" fill="#ffffff"/><circle cx="217.5" cy="111" r="14" fill="#c5d9fa"/><circle cx="217.5" cy="189" r="14" fill="#ffffff"/><circle cx="150" cy="228" r="14" fill="#c5d9fa"/><circle cx="82.5" cy="189" r="14" fill="#ffffff"/><circle cx="82.5" cy="111" r="14" fill="#c5d9fa"/><circle cx="150" cy="150" r="26" fill="#ebb018"/>
+            <text x="300" y="163" font-family="ui-rounded,'Arial Rounded MT Bold','Nunito',Arial,sans-serif" font-weight="bold" font-size="62" letter-spacing="3" fill="#ffffff">GROWTH</text>
+            <text x="300" y="233" font-family="ui-rounded,'Arial Rounded MT Bold','Nunito',Arial,sans-serif" font-weight="bold" font-size="62" letter-spacing="22" fill="#c5d9fa">HUB</text>
+          </svg>
+        </div>
+        <figcaption>Full logo · dark backgrounds. The primary lockup for slides, app headers, and the hub itself.</figcaption>
+      </figure>
+      <figure class="swatchcard">
+        <div class="pane light">
+          <svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Full logo on light">
+            <g stroke="#718dbc" stroke-width="5"><line x1="150" y1="150" x2="150" y2="72"/><line x1="150" y1="150" x2="217.5" y2="111"/><line x1="150" y1="150" x2="217.5" y2="189"/><line x1="150" y1="150" x2="150" y2="228"/><line x1="150" y1="150" x2="82.5" y2="189"/><line x1="150" y1="150" x2="82.5" y2="111"/></g><circle cx="150" cy="72" r="14" fill="#133865"/><circle cx="217.5" cy="111" r="14" fill="#365aa0"/><circle cx="217.5" cy="189" r="14" fill="#133865"/><circle cx="150" cy="228" r="14" fill="#365aa0"/><circle cx="82.5" cy="189" r="14" fill="#133865"/><circle cx="82.5" cy="111" r="14" fill="#365aa0"/><circle cx="150" cy="150" r="26" fill="#ebb018"/>
+            <text x="300" y="163" font-family="ui-rounded,'Arial Rounded MT Bold','Nunito',Arial,sans-serif" font-weight="bold" font-size="62" letter-spacing="3" fill="#133865">GROWTH</text>
+            <text x="300" y="233" font-family="ui-rounded,'Arial Rounded MT Bold','Nunito',Arial,sans-serif" font-weight="bold" font-size="62" letter-spacing="22" fill="#365aa0">HUB</text>
+          </svg>
+        </div>
+        <figcaption>Full logo · light backgrounds. Documents, proposals, letterhead.</figcaption>
+      </figure>
+      <figure class="swatchcard">
+        <div class="pane light">
+          <svg class="marksize" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Spoke mark on light">
+            <g stroke="#718dbc" stroke-width="3.5"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g>
+            <circle cx="150" cy="50" r="18" fill="#133865"/><circle cx="236.6" cy="100" r="18" fill="#365aa0"/><circle cx="236.6" cy="200" r="18" fill="#133865"/><circle cx="150" cy="250" r="18" fill="#365aa0"/><circle cx="63.4" cy="200" r="18" fill="#133865"/><circle cx="63.4" cy="100" r="18" fill="#365aa0"/>
+            <circle cx="150" cy="150" r="32" fill="#ebb018"/>
+          </svg>
+        </div>
+        <figcaption>Spoke mark · six lanes, gold value core. Use when the wordmark is nearby or already known.</figcaption>
+      </figure>
+      <figure class="swatchcard">
+        <div class="pane dark">
+          <svg class="marksize" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Spoke mark on dark">
+            <g stroke="#c5d9fa" stroke-width="3.5" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g>
+            <circle cx="150" cy="50" r="18" fill="#ffffff"/><circle cx="236.6" cy="100" r="18" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="18" fill="#ffffff"/><circle cx="150" cy="250" r="18" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="18" fill="#ffffff"/><circle cx="63.4" cy="100" r="18" fill="#c5d9fa"/>
+            <circle cx="150" cy="150" r="32" fill="#ebb018"/>
+          </svg>
+        </div>
+        <figcaption>Spoke mark · dark variant for navy fields and app surfaces.</figcaption>
+      </figure>
+      <figure class="swatchcard">
+        <div class="pane light">
+          <svg class="favsize" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Favicon">
+            <rect width="512" height="512" rx="115" fill="#133865"/>
+            <g stroke="#c5d9fa" stroke-width="22" stroke-linecap="round"><line x1="256" y1="256" x2="256" y2="96"/><line x1="256" y1="256" x2="394.6" y2="176"/><line x1="256" y1="256" x2="394.6" y2="336"/><line x1="256" y1="256" x2="256" y2="416"/><line x1="256" y1="256" x2="117.4" y2="336"/><line x1="256" y1="256" x2="117.4" y2="176"/></g>
+            <circle cx="256" cy="96" r="42" fill="#ffffff"/><circle cx="394.6" cy="176" r="42" fill="#c5d9fa"/><circle cx="394.6" cy="336" r="42" fill="#ffffff"/><circle cx="256" cy="416" r="42" fill="#c5d9fa"/><circle cx="117.4" cy="336" r="42" fill="#ffffff"/><circle cx="117.4" cy="176" r="42" fill="#ebb018"/>
+            <circle cx="256" cy="256" r="76" fill="#ebb018"/>
+          </svg>
+        </div>
+        <figcaption>Favicon &amp; app icon · 512, 192, 180 (Apple touch), 32. The hub reads at every size.</figcaption>
+      </figure>
+      <figure class="swatchcard">
+        <div class="pane dark">
+          <svg class="marksize" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Reserved FSG star">
+            <path d="M150 38 L171 129 L262 150 L171 171 L150 262 L129 171 L38 150 L129 129 Z" fill="#ebb018"/>
+            <path d="M232 65 L239 90 L264 97 L239 104 L232 129 L225 104 L200 97 L225 90 Z" fill="#ffffff"/>
+          </svg>
+        </div>
+        <figcaption>The FSG star · reserved. Drop in for co-branded FSG moments, milestones, and wins — never in the primary lockup.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Color</h2>
+    <div class="palette">
+      <div class="chip"><div class="c" style="background:#133865"></div><div class="m"><b>FSG Navy</b>#133865 · the field, authority</div></div>
+      <div class="chip"><div class="c" style="background:#365aa0"></div><div class="m"><b>Brand Blue</b>#365aa0 · structure, secondary type</div></div>
+      <div class="chip"><div class="c" style="background:#ebb018"></div><div class="m"><b>Value Gold</b>#ebb018 · value only, one per layout</div></div>
+      <div class="chip"><div class="c" style="background:#718dbc"></div><div class="m"><b>Steel</b>#718dbc · spokes, supporting lines</div></div>
+      <div class="chip"><div class="c" style="background:#c5d9fa"></div><div class="m"><b>Ice</b>#c5d9fa · HUB tint, accents on navy</div></div>
+      <div class="chip"><div class="c" style="background:#fdfdfb;border-bottom:1px solid #e4e7ee"></div><div class="m"><b>Paper</b>#fdfdfb · the air around everything</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Typography</h2>
+    <div class="typespec">
+      <div class="big rounded">Rounded caps carry the brand.</div>
+      <div class="mid">Body text stays quiet and clear, so the message does the work.</div>
+      <p>Wordmark &amp; headlines: rounded sans — Arial Rounded MT Bold / SF Rounded (ui-rounded) / Nunito on the web. Body: system sans (Segoe UI, SF Pro, Roboto). Pair with FSG's Oswald where Growth Hub lives inside FSG master documents.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Growth Hub · the Engage Growth Engine of FSG — for business, personal, and community. Brand standards v1 · September 2026.</div>
+</footer>
+
+</body>
+</html>
