@@ -1,0 +1,289 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Growth Hub — Story &amp; Spokes</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='115' fill='%23133865'/><g stroke='%23c5d9fa' stroke-width='22' stroke-linecap='round'><line x1='256' y1='256' x2='256' y2='96'/><line x1='256' y1='256' x2='394.6' y2='176'/><line x1='256' y1='256' x2='394.6' y2='336'/><line x1='256' y1='256' x2='256' y2='416'/><line x1='256' y1='256' x2='117.4' y2='336'/><line x1='256' y1='256' x2='117.4' y2='176'/></g><circle cx='256' cy='96' r='42' fill='%23ffffff'/><circle cx='394.6' cy='176' r='42' fill='%23c5d9fa'/><circle cx='394.6' cy='336' r='42' fill='%23ffffff'/><circle cx='256' cy='416' r='42' fill='%23c5d9fa'/><circle cx='117.4' cy='336' r='42' fill='%23ffffff'/><circle cx='117.4' cy='176' r='42' fill='%23ebb018'/><circle cx='256' cy='256' r='76' fill='%23ebb018'/></svg>">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Open+Sans:wght@400;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep-navy: #0b1421;
+    --navy: #133865;
+    --brand-blue: #365aa0;
+    --steel: #718dbc;
+    --ice: #c5d9fa;
+    --light-gray: #ededed;
+    --gold: #ebb018;
+    --paper: #fdfdfb;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Open Sans', Arial, Helvetica, sans-serif; color: var(--deep-navy); background: var(--paper); line-height: 1.55; }
+  h1, h2, h3, h4 { font-family: 'Nunito', 'Arial Rounded MT Bold', Arial, sans-serif; color: var(--navy); }
+  .page { max-width: 880px; margin: 0 auto; padding: 0 40px 48px; }
+
+  /* Cover */
+  .cover { background: var(--navy); color: #fff; padding: 56px 40px 44px; }
+  .cover .inner { max-width: 880px; margin: 0 auto; }
+  .cover .back { font-family: 'Nunito', Arial, sans-serif; font-weight: 800; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--steel); text-decoration: none; }
+  .cover .back:hover { color: var(--gold); }
+  .lockup { display: flex; align-items: center; gap: 18px; margin: 26px 0 24px; }
+  .lockup svg { width: 96px; height: 96px; flex-shrink: 0; }
+  .lockup .word { font-family: 'Nunito', Arial, sans-serif; font-weight: 900; line-height: 1.05; }
+  .lockup .word .g { display: block; font-size: 34px; letter-spacing: 2px; color: #fff; }
+  .lockup .word .h { display: block; font-size: 34px; letter-spacing: 12px; color: var(--ice); }
+  .cover h1 { color: #fff; font-size: 40px; line-height: 1.12; }
+  .cover .sub { color: var(--ice); font-size: 17px; margin-top: 14px; max-width: 640px; }
+  .cover .meta { color: var(--steel); font-size: 12px; margin-top: 26px; letter-spacing: 2px; text-transform: uppercase; font-family: 'Nunito', Arial, sans-serif; font-weight: 800; }
+
+  section { margin-top: 46px; }
+  h2 { font-size: 26px; font-weight: 900; letter-spacing: 0.3px; padding-bottom: 8px; border-bottom: 2px solid var(--gold); }
+  h2 .num { color: var(--gold); margin-right: 10px; }
+  h3 { font-size: 17px; color: var(--brand-blue); margin: 22px 0 8px; font-weight: 800; }
+  p { margin: 10px 0; font-size: 15px; }
+  ul, ol { margin: 10px 0 10px 24px; font-size: 15px; }
+  li { margin: 6px 0; }
+  strong { color: var(--navy); }
+
+  .callout { background: var(--ice); border-left: 4px solid var(--gold); padding: 14px 18px; margin: 18px 0; font-size: 14px; color: var(--navy); border-radius: 0 4px 4px 0; }
+  .principle { background: var(--navy); color: #fff; padding: 22px 26px; margin: 24px 0; border-radius: 10px; }
+  .principle h3 { color: var(--gold); margin: 0 0 6px; text-transform: uppercase; letter-spacing: 2px; font-size: 13px; }
+  .principle p { color: #fff; font-size: 18px; font-weight: 600; margin: 0; }
+
+  /* The equation */
+  .equation { margin: 22px 0; padding: 28px 30px; background: var(--navy); border-radius: 14px; color: #fff; text-align: center; }
+  .equation .eq { font-family: 'Nunito', Arial, sans-serif; font-size: clamp(1.25rem, 4vw, 1.9rem); font-weight: 900; letter-spacing: 0.5px; }
+  .equation .eq b { color: var(--gold); }
+  .equation small { display: block; margin-top: 8px; color: var(--steel); }
+
+  /* The pinwheel — the shape that carries the story */
+  .wheel-wrap { display: grid; grid-template-columns: minmax(220px, 320px) 1fr; gap: 28px; align-items: center; margin: 22px 0; }
+  .wheel-wrap svg { width: 100%; height: auto; }
+  .spoke-list { list-style: none; margin: 0; }
+  .spoke-list li { display: flex; gap: 12px; align-items: flex-start; padding: 9px 0; border-bottom: 1px solid var(--light-gray); margin: 0; }
+  .spoke-list li:last-child { border-bottom: none; }
+  .spoke-list i { flex: 0 0 12px; height: 12px; border-radius: 50%; background: var(--brand-blue); margin-top: 6px; }
+  .spoke-list li.dev i { background: var(--gold); }
+  .spoke-list li.res i { background: var(--navy); }
+  .spoke-list b { font-family: 'Nunito', Arial, sans-serif; font-weight: 800; color: var(--navy); display: block; font-size: 14px; }
+  .spoke-list span { font-size: 13.5px; color: #4a5568; }
+  .wheel-label { font-family: 'Nunito', Arial, sans-serif; font-weight: 800; font-size: 15px; fill: var(--navy); }
+  .wheel-label.lt { fill: var(--ice); }
+
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  th { background: var(--navy); color: #fff; text-align: left; padding: 10px 12px; font-weight: 700; font-family: 'Nunito', Arial, sans-serif; }
+  td { padding: 10px 12px; vertical-align: top; }
+  tr:nth-child(even) td { background: var(--ice); }
+  tr:nth-child(odd) td { background: #fff; }
+
+  footer { background: var(--deep-navy); color: var(--steel); padding: 22px 40px; margin-top: 56px; font-size: 12px; }
+  footer .inner { max-width: 880px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+  @media (max-width: 700px) { .wheel-wrap { grid-template-columns: 1fr; } .cover h1 { font-size: 30px; } .page { padding: 0 22px 40px; } }
+  @media print { .cover, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+</style>
+</head>
+<body>
+
+<!-- ============ GROWTH HUB GATE ============ -->
+<style>
+  html.gh-locked > body > :not(#ghGate){display:none !important;}
+  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
+  html:not(.gh-locked) #ghGate{display:none;}
+  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
+  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
+  #ghGate .gh-brand svg{width:30px;height:30px;}
+  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
+  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
+  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;}
+  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
+  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
+  #ghGate input:focus{border-color:#4e84de;}
+  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
+  #ghGate button:hover{filter:brightness(1.06);}
+  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
+  #ghGate .gh-shake{animation:ghshake .3s;}
+  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+<div id="ghGate">
+  <div class="gh-wrap">
+    <div class="gh-brand">
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#c5d9fa" stroke-width="14" stroke-linecap="round" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g><circle cx="150" cy="50" r="26" fill="#ffffff"/><circle cx="236.6" cy="100" r="26" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="26" fill="#ffffff"/><circle cx="150" cy="250" r="26" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="26" fill="#ffffff"/><circle cx="63.4" cy="100" r="26" fill="#c5d9fa"/><circle cx="150" cy="150" r="44" fill="#ebb018"/></svg>
+      <span>Growth Hub</span>
+    </div>
+    <div class="gh-card">
+      <h2>Passcode</h2>
+      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
+      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
+      <button id="ghGo" type="button">Enter the Hub</button>
+      <div class="gh-err" id="ghErr"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
+  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+  if(!unlocked()) document.documentElement.classList.add('gh-locked');
+  function open(){ document.documentElement.classList.remove('gh-locked'); }
+  async function check(){
+    var v=document.getElementById('ghPass').value;
+    var ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        ok=(hex===HASH);
+      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
+    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
+    if(ok){ remember(); open(); }
+    else{
+      var card=document.querySelector('#ghGate .gh-card');
+      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
+      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
+      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    if(unlocked()) return;
+    document.getElementById('ghGo').addEventListener('click', check);
+    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
+  });
+})();
+</script>
+<!-- ============ /GROWTH HUB GATE ============ -->
+
+
+<div class="cover">
+  <div class="inner">
+    <a class="back" href="../index.html">&larr; Growth Hub</a>
+    <div class="lockup">
+      <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Growth Hub spoke mark">
+        <g stroke="#c5d9fa" stroke-width="3.5" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g>
+        <circle cx="150" cy="50" r="18" fill="#ffffff"/><circle cx="236.6" cy="100" r="18" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="18" fill="#ffffff"/><circle cx="150" cy="250" r="18" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="18" fill="#ffffff"/><circle cx="63.4" cy="100" r="18" fill="#c5d9fa"/>
+        <circle cx="150" cy="150" r="32" fill="#ebb018"/>
+      </svg>
+      <div class="word"><span class="g">GROWTH</span><span class="h">HUB</span></div>
+    </div>
+    <h1>The Story &amp; The Spokes</h1>
+    <div class="sub">Why the hub exists, the shape that carries it, and how every one of us fits in the wheel. One picture, six lanes, value at the gold center.</div>
+    <div class="meta">Growth Organization &nbsp;·&nbsp; September 2026 &nbsp;·&nbsp; Protect · Land · Expand</div>
+  </div>
+</div>
+
+<div class="page">
+
+  <section>
+    <h2>Why This Page Exists</h2>
+    <p>Every deck, play, and proof card in this hub comes from one story. If you can tell the story, you can sell anything on this site — and more importantly, you'll know <strong>why</strong> we sell it the way we do.</p>
+    <div class="principle">
+      <h3>The Core Principle</h3>
+      <p>Every engagement starts with a person carrying a problem they can't solve alone — a client, a teammate, a neighbor. They are the hero. Growth Hub is the guide.</p>
+    </div>
+    <p>We don't chase transactions; we build an institution dedicated to timeless contribution and service. The guide shows up with a destination worth trusting, a plan that develops the whole person — business, personal, and community — and then does the work: measured, tracked, reported. Cash keeps the engine honest. The hero gets the win they wanted, and it goes on the board.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">01</span>The Equation</h2>
+    <p><strong>The rule:</strong> everything on the hub — every pitch, every proof, every play — has to answer one question: what did this add?</p>
+    <div class="equation">
+      <div class="eq">Contribution + Service = <b>Value</b></div>
+      <small>Value sits at the center of everything. Meaning is the echo.</small>
+    </div>
+    <div class="callout"><strong>Field test:</strong> if you can't say what a meeting, email, or deck added — to the business, the person, or the community — it isn't done yet.</div>
+  </section>
+
+  <section>
+    <h2><span class="num">02</span>The Pinwheel — Our Shape</h2>
+    <p><strong>The rule:</strong> put the idea in a shape and the brain takes a snapshot. Ours is the pinwheel: six spokes, one loop, value at the gold core. Read it clockwise from the top — People always walk in first.</p>
+
+    <div class="wheel-wrap">
+      <svg viewBox="0 0 460 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Growth Hub pinwheel — People, Vision, Development, Execution, Finance, Results around a gold value core">
+        <g stroke="#718dbc" stroke-width="4"><line x1="230" y1="220" x2="230" y2="100"/><line x1="230" y1="220" x2="334" y2="160"/><line x1="230" y1="220" x2="334" y2="280"/><line x1="230" y1="220" x2="230" y2="340"/><line x1="230" y1="220" x2="126" y2="280"/><line x1="230" y1="220" x2="126" y2="160"/></g>
+        <circle cx="230" cy="100" r="21" fill="#133865"/>
+        <circle cx="334" cy="160" r="21" fill="#365aa0"/>
+        <circle cx="334" cy="280" r="21" fill="#ebb018"/>
+        <circle cx="230" cy="340" r="21" fill="#365aa0"/>
+        <circle cx="126" cy="280" r="21" fill="#365aa0"/>
+        <circle cx="126" cy="160" r="21" fill="#133865"/>
+        <circle cx="230" cy="220" r="38" fill="#ebb018"/>
+        <text class="wheel-label" x="230" y="66" text-anchor="middle">People</text>
+        <text class="wheel-label" x="366" y="146" text-anchor="start">Vision</text>
+        <text class="wheel-label" x="366" y="296" text-anchor="start">Development</text>
+        <text class="wheel-label" x="230" y="382" text-anchor="middle">Execution</text>
+        <text class="wheel-label" x="94" y="296" text-anchor="end">Finance</text>
+        <text class="wheel-label" x="94" y="146" text-anchor="end">Results</text>
+        <text x="230" y="226" text-anchor="middle" font-family="Nunito, Arial, sans-serif" font-weight="900" font-size="13" fill="#133865">VALUE</text>
+      </svg>
+      <ul class="spoke-list">
+        <li><i></i><div><b>People</b><span>The hero with a problem walks in first. Everything comes from people — the client, the teammate, the community.</span></div></li>
+        <li><i></i><div><b>Vision</b><span>We show up as the guide with a destination worth trusting — the story, the tagline, and Y+1.</span></div></li>
+        <li class="dev"><i></i><div><b>Development</b><span>The plan: business, personal, and community. Development is the key — it's what makes people valuable.</span></div></li>
+        <li><i></i><div><b>Execution</b><span>The guide acts: measure, track, report. Systems, ERP, equipment, and partnerships doing the work in the open.</span></div></li>
+        <li><i></i><div><b>Finance</b><span>Cash keeps the engine honest and funded — growth, stress, daily KPIs.</span></div></li>
+        <li class="res"><i></i><div><b>Results</b><span>The hero gets the win they wanted, and it goes on the board. Top-line revenue, bottom-line cost, lives measurably better.</span></div></li>
+      </ul>
+    </div>
+
+    <div class="callout"><strong>The flywheel:</strong> Results feed straight back into People — every solved problem creates the next hero who trusts the guide. Protect the relationships we've earned. Land the next one. Expand what's possible together.</div>
+  </section>
+
+  <section>
+    <h2><span class="num">03</span>The Voice</h2>
+    <p><strong>The rule:</strong> Growth Hub sounds like a trusted guide — confident, plain-spoken, generous. Never the hero of its own story.</p>
+    <ul>
+      <li><strong>The hero leads the sentence.</strong> Write "you" before "we." The reader's win is the headline; our role is the plan behind it.</li>
+      <li><strong>Scoreboard honesty.</strong> Numbers over adjectives. If it happened, show the result; if it didn't, say what's next.</li>
+      <li><strong>Short and certain.</strong> Punchy verbs, short sentences, no hype, no filler. Say it the way you'd say it across a job-site table.</li>
+      <li><strong>Contribution first.</strong> Every message answers one question: what did this add — to the business, the person, or the community?</li>
+      <li><strong>Warm, not soft.</strong> Encourage hard, hold accountable harder. The guide believes in the hero enough to tell the truth.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Where Each Spoke Shows Up In Your Week</h2>
+    <table>
+      <tr><th>Spoke</th><th>In the field, it looks like…</th><th>On the hub, it lives in…</th></tr>
+      <tr><td><strong>People</strong></td><td>Discovery calls, site walks, the rep who raised their hand</td><td>Request a Deck · Proof Builder submissions</td></tr>
+      <tr><td><strong>Vision</strong></td><td>The first-meeting story, the destination you paint</td><td>Who We Are · the Master Presentation</td></tr>
+      <tr><td><strong>Development</strong></td><td>Sharpening yourself and your team — skills, habits, communication</td><td>Personal Development · Speak So They Buy</td></tr>
+      <tr><td><strong>Execution</strong></td><td>Measured, tracked, reported work — done in the open</td><td>Solutions · How We Work</td></tr>
+      <tr><td><strong>Finance</strong></td><td>Pricing honesty, guaranteed savings, daily KPIs</td><td>Products × Delivery Method</td></tr>
+      <tr><td><strong>Results</strong></td><td>The win on the board, the client who re-signs</td><td>Results · the Proof Engine</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Make It Yours — One Habit Per Spoke</h2>
+    <ol>
+      <li><strong>People:</strong> open every week by naming the hero — which client, teammate, or neighbor carries the problem you're solving this week?</li>
+      <li><strong>Vision:</strong> tell the story once a week without slides. If you need the deck to tell it, you don't own it yet.</li>
+      <li><strong>Development:</strong> one rep, one skill, one week — start with <em>Speak So They Buy</em>.</li>
+      <li><strong>Execution:</strong> measure it, track it, report it — before anyone asks.</li>
+      <li><strong>Finance:</strong> know your numbers cold; cash keeps the engine honest.</li>
+      <li><strong>Results:</strong> when the win lands, put it on the board — open the Proof Builder and get your name on the ammunition.</li>
+    </ol>
+    <div class="principle">
+      <h3>The Payoff</h3>
+      <p>Draw the pinwheel on any whiteboard and you can explain who we are, how we work, and why value sits at the center — in under two minutes. That's the shape doing the selling.</p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="inner">
+    <div>FSG Growth Hub · the Engage Growth Engine — business, personal, community</div>
+    <div>Owner: Bobby Graham · bobby.graham@fsgi.com</div>
+  </div>
+</footer>
+
+</body>
+</html>
