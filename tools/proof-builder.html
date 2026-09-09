@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FSG Proof Builder — Turn a Win Into Ammunition</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><path fill='%23ebb018' d='M28 8C31.5 22 38 28.5 52 32 38 35.5 31.5 42 28 56 24.5 42 18 35.5 4 32 18 28.5 24.5 22 28 8Z'/><path fill='%23ebb018' d='M50 6h5v7h7v5h-7v7h-5v-7h-7v-5h7z'/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='115' fill='%23133865'/><g stroke='%23c5d9fa' stroke-width='22' stroke-linecap='round'><line x1='256' y1='256' x2='256' y2='96'/><line x1='256' y1='256' x2='394.6' y2='176'/><line x1='256' y1='256' x2='394.6' y2='336'/><line x1='256' y1='256' x2='256' y2='416'/><line x1='256' y1='256' x2='117.4' y2='336'/><line x1='256' y1='256' x2='117.4' y2='176'/></g><circle cx='256' cy='96' r='42' fill='%23ffffff'/><circle cx='394.6' cy='176' r='42' fill='%23c5d9fa'/><circle cx='394.6' cy='336' r='42' fill='%23ffffff'/><circle cx='256' cy='416' r='42' fill='%23c5d9fa'/><circle cx='117.4' cy='336' r='42' fill='%23ffffff'/><circle cx='117.4' cy='176' r='42' fill='%23ebb018'/><circle cx='256' cy='256' r='76' fill='%23ebb018'/></svg>">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -45,6 +46,23 @@ body{font-family:'Open Sans',Arial,sans-serif;color:var(--deep);background:#f7f9
 .perm input{width:auto;}
 .warn{display:none;background:#fde8a8;border-radius:6px;padding:9px 12px;font-size:12px;color:#6b4500;margin-top:8px;}
 .warn.show{display:block;}
+.tsel{position:relative;}
+.typebox{border:1.5px solid var(--lgray);border-radius:6px;padding:7px 30px 7px 9px;min-height:42px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:#fff;cursor:pointer;position:relative;}
+.typebox::after{content:"\25BE";position:absolute;right:11px;top:50%;transform:translateY(-50%);color:var(--steel);font-size:12px;}
+.tsel.open .typebox{border-color:var(--blue);}
+.typebox .placeholder{font-size:12px;color:var(--steel);font-style:italic;}
+.tchip{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--navy);background:var(--lblue);border-radius:999px;padding:4px 11px;}
+.tchip button{border:none;background:none;cursor:pointer;color:var(--blue);font-size:13px;line-height:1;padding:0;min-width:20px;min-height:20px;}
+.tchip button:hover{color:#c0392b;}
+.tdrop{display:none;position:absolute;top:calc(100% + 4px);left:0;right:0;background:#fff;border:1.5px solid var(--blue);border-radius:8px;box-shadow:0 12px 30px rgba(11,20,33,.18);z-index:60;max-height:250px;overflow-y:auto;padding:5px;}
+.tsel.open .tdrop{display:block;}
+.tdrop .topt{display:flex;align-items:flex-start;gap:9px;width:100%;text-align:left;border:none;background:none;font-family:'Open Sans',sans-serif;font-size:13px;color:var(--deep);padding:8px 10px;border-radius:6px;cursor:pointer;}
+.tdrop .topt:hover{background:#e6f1fb;}
+.tdrop .topt .box{width:15px;height:15px;flex:none;margin-top:2px;border:1.5px solid var(--steel);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;}
+.tdrop .topt.sel .box{background:var(--blue);border-color:var(--blue);}
+.tdrop .tn{font-weight:600;}
+.tdrop .tn small{display:block;font-size:11px;font-weight:400;color:var(--steel);line-height:1.4;}
+.tdrop .tempty{font-size:12px;color:var(--steel);font-style:italic;padding:8px 10px;}
 /* PREVIEW */
 .preview{position:sticky;top:16px;}
 .pv{background:linear-gradient(160deg,var(--deep),#101c30);border-radius:14px;padding:26px 24px;color:#fff;min-height:420px;position:relative;overflow:hidden;}
@@ -84,6 +102,78 @@ body{font-family:'Open Sans',Arial,sans-serif;color:var(--deep);background:#f7f9
 </style>
 </head>
 <body>
+
+<!-- ============ GROWTH HUB GATE ============ -->
+<style>
+  html.gh-locked > body > :not(#ghGate){display:none !important;}
+  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
+  html:not(.gh-locked) #ghGate{display:none;}
+  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
+  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
+  #ghGate .gh-brand svg{width:30px;height:30px;}
+  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
+  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
+  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;}
+  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
+  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
+  #ghGate input:focus{border-color:#4e84de;}
+  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
+  #ghGate button:hover{filter:brightness(1.06);}
+  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
+  #ghGate .gh-shake{animation:ghshake .3s;}
+  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+<div id="ghGate">
+  <div class="gh-wrap">
+    <div class="gh-brand">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><path fill="#ebb018" d="M28 8C31.5 22 38 28.5 52 32 38 35.5 31.5 42 28 56 24.5 42 18 35.5 4 32 18 28.5 24.5 22 28 8Z"/><path fill="#ebb018" d="M50 6h5v7h7v5h-7v7h-5v-7h-7v-5h7z"/></svg>
+      <span>Growth Hub</span>
+    </div>
+    <div class="gh-card">
+      <h2>Passcode</h2>
+      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
+      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
+      <button id="ghGo" type="button">Enter the Hub</button>
+      <div class="gh-err" id="ghErr"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
+  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+  if(!unlocked()) document.documentElement.classList.add('gh-locked');
+  function open(){ document.documentElement.classList.remove('gh-locked'); }
+  async function check(){
+    var v=document.getElementById('ghPass').value;
+    var ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        ok=(hex===HASH);
+      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
+    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
+    if(ok){ remember(); open(); }
+    else{
+      var card=document.querySelector('#ghGate .gh-card');
+      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
+      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
+      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    if(unlocked()) return;
+    document.getElementById('ghGo').addEventListener('click', check);
+    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
+  });
+})();
+</script>
+<!-- ============ /GROWTH HUB GATE ============ -->
+
 
 
 <section class="hero">
@@ -131,10 +221,27 @@ body{font-family:'Open Sans',Arial,sans-serif;color:var(--deep);background:#f7f9
     </div>
     <h2 style="margin-top:20px;">The Cell — Product &times; Delivery &times; Type</h2>
     <div class="two">
-      <div class="f"><label>Product line</label><select id="fProd"><option value="">Select product line…</option></select></div>
-      <div class="f"><label>Delivery method</label><select id="fMode" disabled><option value="">Select delivery method…</option></select></div>
+      <div class="f"><label>Product line</label><select id="fProd">
+        <option value="">Select product line…</option>
+        <option>Electrical</option>
+        <option>Lighting</option>
+        <option>Signs</option>
+        <option>Technology Infrastructure</option>
+        <option>Energy Performance</option>
+      </select></div>
+      <div class="f"><label>Delivery method</label><select id="fMode">
+        <option value="">Select delivery method…</option>
+        <option>Construction</option>
+        <option>Service</option>
+        <option>Distribution</option>
+      </select></div>
     </div>
-    <div class="f"><label>Type</label><span class="hint">The job type inside that cell — type it in your own words.</span><input id="fType" placeholder="e.g., lighting retrofit, ECM rollout, technology infrastructure, data center"></div>
+    <div class="f"><label>Type</label><span class="hint">Multi-select dropdown — the list filters by Product + Delivery method, same as the Engage opportunity form.</span>
+      <div class="tsel" id="tSel">
+        <div class="typebox" id="typeChips"><span class="placeholder">Pick Product + Delivery method first</span></div>
+        <div class="tdrop" id="typeDrop"></div>
+      </div>
+    </div>
     <div class="f"><label>The problem</label><span class="hint">The villain — what was costing them money, time, or sleep? Use their words.</span>
       <textarea id="fProblem" placeholder="e.g., 8,000 locations bleeding energy across lighting, HVAC, and refrigeration — and no vendor who could scope it nationally."></textarea></div>
     <div class="f"><label>The solution</label><span class="hint">What FSG delivered — self-performed, one partner, the loop.</span>
@@ -188,6 +295,7 @@ body{font-family:'Open Sans',Arial,sans-serif;color:var(--deep);background:#f7f9
     <div class="actions">
       <button class="a-dl" id="btnDl">Download Proof Card</button>
       <button class="a-snip" id="btnSnip">Copy Deck Snippet</button>
+      <button class="a-snip" id="btnRec">Copy Proof Record</button>
       <button class="a-mail" id="btnMail">Email Growth Hub</button>
     </div>
     <div class="sendhow">
@@ -204,49 +312,144 @@ body{font-family:'Open Sans',Arial,sans-serif;color:var(--deep);background:#f7f9
 <script>
 const $ = id => document.getElementById(id);
 
-// Lines of Business matrix — keep in sync with story/products.html (LOB Playbook v1.2)
+// Product × Delivery × Type matrix — generated from the Growth Hub taxonomy sheet; keep in sync with story/products.html
 const TAXONOMY = {
- 'Electrical': {'Construction':['Mission critical','Ground-up','Tenant finish-out','Design-build'],
-                'Service':['Emergency','On-demand','Preventive maintenance','Generator programs'],
-                'Distribution':['Gear packages','Wholesale materials','Site logistics']},
+ 'Electrical': {'Construction':['Mission critical','Ground-up','Tenant finish-out','Design-build','EV charging'],
+                'Service':['Emergency','On-demand','Preventive maintenance','Generator programs','EV charging'],
+                'Distribution':['Gear packages','Wholesale materials','Site logistics','EV charging']},
  'Lighting': {'Construction':['LED retrofit','New install','Design & photometrics'],
-              'Service':['Lamp & ballast programs','National account maintenance','Emergency lighting','MRO sourcing'],
-              'Distribution':['Owner-supplied packages','Design & procurement','EBV\u00AE standard','Freight & logistics']},
+              'Service':['Lamp & ballast programs','National account maintenance','Emergency lighting','MRO sourcing','Retrofits','National rollouts'],
+              'Distribution':['Owner-supplied packages','Design & procurement','EBV\u00AE standard','Design & photometrics','Freight & logistics','Wholesale materials','Site logistics']},
  'Signs': {'Construction':['Fabrication','Install','Rebrand rollouts','Permitting'],
-           'Service':['Maintenance','Repair','Permitting & surveys'],
+           'Service':['Maintenance','Repair','Permitting & surveys','Permitting','Retrofits','National rollouts'],
            'Distribution':['Brand packages','Components','Delivered to site']},
- 'Technology Infrastructure': {'Construction':['Structured cabling','AV','Security','DAS builds'],
-                               'Service':['Moves / adds / changes','Break-fix','Monitoring'],
+ 'Technology Infrastructure': {'Construction':['Structured cabling','AV','Security','DAS'],
+                               'Service':['Moves / adds / changes','Break-fix','Monitoring','AV','Security'],
                                'Distribution':['Kitted devices','Staged materials']},
- 'Energy Performance': {'Construction':['EMS installs & retrofits','Solar','EV charging','Storage'],
-                        'Service':['EMS monitoring','Alarm response','Portfolio optimization','Utility programs'],
-                        'Distribution':['EV chargers','Solar equipment','EMS hardware']}
+ 'Energy Performance': {'Construction':['EMS installs','Solar','EV charging','Storage'],
+                        'Service':['EMS monitoring','Alarm response','Portfolio optimization','Utility programs','Retrofits','National rollouts','Solar Maintenance & Monitoring','EV charging'],
+                        'Distribution':['EV chargers','Solar equipment','EMS hardware','EV charging']}
+};
+
+// Type definitions — from the Growth Hub taxonomy sheet (shown as tooltips on the type picker)
+const TYPEDEFS = {
+ "Mission critical": "Electrical work for facilities that can't go dark — data centers, hospitals, 24/7 operations.",
+ "Ground-up": "Complete electrical systems for new construction, from service entrance to final trim.",
+ "Tenant finish-out": "Electrical scope that turns shell space into a move-in-ready tenant suite.",
+ "Design-build": "Single-source design and installation — FSG engineers the system it builds.",
+ "Emergency": "24/7 response when power or critical equipment goes down.",
+ "On-demand": "Single-visit electrical service calls, scheduled as needs come up.",
+ "Preventive maintenance": "Scheduled inspection and testing that catches electrical problems before they cause downtime.",
+ "Generator programs": "Testing, service, and load-bank support that keep backup generators ready to run.",
+ "Gear packages": "Switchgear, panels, and distribution equipment supplied as one coordinated package.",
+ "Wholesale materials": "Electrical and lighting material supplied at distribution pricing, no install.",
+ "Site logistics": "Staging, delivery, and material coordination timed to the site schedule.",
+ "LED retrofit": "Replacing existing fixtures and lamps with LED to cut energy and maintenance cost.",
+ "New install": "New lighting systems installed in new or renovated space.",
+ "Design & photometrics": "Layouts and light-level modeling that prove the design before anything is purchased.",
+ "Lamp & ballast programs": "Ongoing lamp, ballast, and driver replacement across a facility.",
+ "National account maintenance": "One lighting maintenance program covering every site in a multi-location portfolio.",
+ "Emergency lighting": "Testing and repair of exit and egress lighting to keep sites code-compliant.",
+ "MRO sourcing": "Sourcing and stocking replacement lighting parts for in-house maintenance teams.",
+ "Owner-supplied packages": "Fixture packages bought through FSG for someone else's crew to install.",
+ "Design & procurement": "Design support paired with procurement of the specified fixture package.",
+ "EBV® standard": "FSG's Equal or Better Value standard — any substitution matches or beats the specified fixture, so the design is never value-engineered away.",
+ "Freight & logistics": "Freight, warehousing, and delivery of lighting material to the job site.",
+ "Fabrication": "Custom sign manufacturing in FSG's own fabrication shops.",
+ "Install": "Setting and connecting signage on site, including permits and inspection support.",
+ "Rebrand rollouts": "Coordinated sign replacement across many locations to a new brand standard.",
+ "Permitting": "Managing sign permit applications and municipal approvals on the customer's behalf.",
+ "Maintenance": "Scheduled sign and lighting upkeep that keeps the storefront looking new.",
+ "Repair": "Fixing damaged, dark, or failing signage — including neon and channel letters.",
+ "Permitting & surveys": "Site and aerial surveys that document existing signage before pricing work.",
+ "Brand packages": "Complete brand-standard sign packages supplied for a location or rollout.",
+ "Components": "Individual sign parts — faces, letters, raceways, power supplies — supplied as needed.",
+ "Delivered to site": "Manufactured signage shipped direct to the site for another crew to install.",
+ "Structured cabling": "Network cabling, racks, and pathways installed to industry standards.",
+ "AV": "Audio-visual systems designed, installed, and supported — displays, sound, conferencing.",
+ "Security": "Access control, cameras, and alarm systems installed and maintained.",
+ "DAS": "In-building cellular coverage systems for large or hard-to-reach facilities.",
+ "Moves / adds / changes": "Day-to-day cabling and device changes as people and equipment move.",
+ "Break-fix": "On-call repair when network, AV, or security hardware fails.",
+ "Monitoring": "Ongoing remote monitoring of connected systems with alerting and reporting.",
+ "Kitted devices": "Devices configured, labeled, and kitted by site before they ship.",
+ "Staged materials": "Technology material received and staged ahead of the install window.",
+ "EMS installs": "Energy management and building control systems installed and commissioned.",
+ "Solar": "Rooftop, ground, and carport solar systems designed and installed.",
+ "Solar Maintenance & Monitoring": "Scheduled maintenance and remote monitoring that keeps installed solar arrays producing at expected output.",
+ "EV charging": "EV charging stations installed, from service upgrade through activation.",
+ "Storage": "Battery storage that shaves peak demand and backs up critical load.",
+ "EMS monitoring": "Ongoing monitoring of building systems to hold energy savings in place.",
+ "Alarm response": "Response to energy and building-system alarms as they trigger.",
+ "Portfolio optimization": "Portfolio-wide review that ranks sites by savings opportunity and payback.",
+ "Utility programs": "Capturing utility rebates and incentive dollars to offset project cost.",
+ "Retrofits": "Upgrading existing equipment to higher-efficiency systems at one site or many.",
+ "National rollouts": "Multi-site programs executed to one standard, one schedule, one point of contact.",
+ "EV chargers": "EV charging hardware supplied for another party to install.",
+ "Solar equipment": "Panels, inverters, and racking supplied as an equipment-only package.",
+ "EMS hardware": "Controls, sensors, and metering hardware supplied without installation."
 };
 function fillSelect(sel, opts, ph){
   sel.innerHTML = '<option value="">'+ph+'</option>' + opts.map(o=>'<option>'+o+'</option>').join('');
   sel.disabled = false;
 }
-document.addEventListener('DOMContentLoaded', ()=>{
-  fillSelect($('fProd'), Object.keys(TAXONOMY), 'Select product line…');
-  // Auto-tag stat row 3 with Product × Delivery so Growth Hub can organize proof — reps can overwrite it.
-  let s3vTouched = false, s3lTouched = false;
-  $('s3v').addEventListener('input', ()=>{ s3vTouched = true; });
-  $('s3l').addEventListener('input', ()=>{ s3lTouched = true; });
-  function syncCellStat(){
-    const p = $('fProd').value, m = $('fMode').value;
-    if(!p && !m) return;
-    if(!s3vTouched) $('s3v').value = [p,m].filter(Boolean).join(' × ');
-    if(!s3lTouched) $('s3l').value = 'Product × Delivery method';
+// Type multi-select — filtered by Product × Delivery method (mirrors the Engage opportunity form)
+let typeSel = [];
+function laneTypes(){
+  const p = $('fProd').value, m = $('fMode').value;
+  return (p && m && TAXONOMY[p] && TAXONOMY[p][m]) ? TAXONOMY[p][m] : null;
+}
+function renderTypes(){
+  const list = laneTypes();
+  typeSel = typeSel.filter(t => list && list.includes(t));
+  const chips = $('typeChips'), drop = $('typeDrop');
+  chips.innerHTML = '';
+  if(!typeSel.length){
+    chips.innerHTML = '<span class="placeholder">' + (list ? 'Select types\u2026' : 'Pick Product + Delivery method first') + '</span>';
+  } else {
+    typeSel.forEach(t => {
+      const c = document.createElement('span'); c.className = 'tchip';
+      if(TYPEDEFS[t]) c.title = TYPEDEFS[t];
+      c.innerHTML = esc(t) + ' <button type="button" aria-label="Remove ' + esc(t) + '">\u2715</button>';
+      c.querySelector('button').onclick = (e) => { e.stopPropagation(); typeSel = typeSel.filter(x => x !== t); renderTypes(); refresh(); };
+      chips.appendChild(c);
+    });
   }
-  $('fProd').addEventListener('change', ()=>{
-    const p = $('fProd').value;
-    if(p){ fillSelect($('fMode'), Object.keys(TAXONOMY[p]), 'Select delivery method…'); }
-    else { $('fMode').innerHTML='<option value="">Select delivery method…</option>'; $('fMode').disabled=true; }
-    syncCellStat();
-    refresh();
+  drop.innerHTML = '';
+  if(!list){
+    drop.innerHTML = '<div class="tempty">Pick Product + Delivery method first</div>';
+  } else list.forEach(t => {
+    const sel = typeSel.includes(t);
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'topt' + (sel ? ' sel' : '');
+    b.innerHTML = '<span class="box">' + (sel ? '\u2713' : '') + '</span><span class="tn">' + esc(t) + (TYPEDEFS[t] ? '<small>' + esc(TYPEDEFS[t]) + '</small>' : '') + '</span>';
+    b.onclick = (e) => {
+      e.stopPropagation();
+      if(typeSel.includes(t)) typeSel = typeSel.filter(x => x !== t); else typeSel.push(t);
+      renderTypes(); refresh();
+    };
+    drop.appendChild(b);
   });
-  $('fMode').addEventListener('change', ()=>{ syncCellStat(); refresh(); });
+}
+// open/close the dropdown like a select
+$('typeChips').addEventListener('click', e => {
+  if(e.target.closest('.tchip button')) return;
+  if(!laneTypes()) return;
+  $('tSel').classList.toggle('open');
 });
+document.addEventListener('click', e => { if(!e.target.closest('#tSel')) $('tSel').classList.remove('open'); });
+// Auto-tag stat row 3 with Product × Delivery so Growth Hub can organize proof — reps can overwrite it.
+var s3vTouched = false, s3lTouched = false;
+$('s3v').addEventListener('input', function(){ s3vTouched = true; });
+$('s3l').addEventListener('input', function(){ s3lTouched = true; });
+function syncCellStat(){
+  var p = $('fProd').value, m = $('fMode').value;
+  if(!p && !m) return;
+  if(!s3vTouched) $('s3v').value = [p,m].filter(Boolean).join(' × ');
+  if(!s3lTouched) $('s3l').value = 'Product × Delivery method';
+}
+$('fProd').addEventListener('change', function(){ $('tSel').classList.remove('open'); renderTypes(); syncCellStat(); refresh(); });
+$('fMode').addEventListener('change', function(){ $('tSel').classList.remove('open'); renderTypes(); syncCellStat(); refresh(); });
+renderTypes();
 let logoData = [], photoData = [];
 
 // ---- live preview ----
@@ -268,7 +471,7 @@ function refresh(){
   $('pvLogoWin').classList.toggle('filled', logoData.length>0);
   const allPerm = $('pName').checked && $('pLogo').checked && $('pNum').checked && $('pQuote').checked;
   $('permWarn').classList.toggle('show', !allPerm && ($('fName').value.length > 0));
-  const cellBits = [$('fProd').value, $('fMode').value].filter(Boolean).join(' \u00D7 ') + ($('fType').value ? ' \u00B7 ' + $('fType').value : '');
+  const cellBits = [$('fProd').value, $('fMode').value].filter(Boolean).join(' \u00D7 ') + (typeSel.length ? ' \u00B7 ' + typeSel.join(', ') : '');
   $('pvCell').style.display = cellBits ? 'block' : 'none';
   $('pvCell').textContent = cellBits;
   const sub = $('fSubName').value.trim();
@@ -332,6 +535,33 @@ $('btnSnip').addEventListener('click', async ()=>{
   try{ await navigator.clipboard.writeText(snippet); $('btnSnip').textContent='✓ Copied'; setTimeout(()=>$('btnSnip').textContent='Copy Deck Snippet',1600);}catch(e){ prompt('Copy this snippet:', snippet); }
 });
 
+// ---- proofs.js record (paste-ready for assets/proofs.js) ----
+function proofRecord(){
+  const j = s => (s||'').trim().replace(/\\/g,'\\\\').replace(/"/g,'\\"');
+  const q = $('fQuote').value.trim().replace(/^"|"$/g,'');
+  const allPerm = $('pName').checked && $('pLogo').checked && $('pNum').checked && $('pQuote').checked;
+  const stats = [1,2,3,4].map(i=>({n:$('s'+i+'v').value.trim(), l:$('s'+i+'l').value.trim()})).filter(s=>s.n && s.l);
+  const statLines = stats.map((s,ix)=>'{ n: "'+j(s.n)+'", l: "'+j(s.l)+'"'+(ix===0?', hi: true':'')+' }').join(', ');
+  const today = new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  return '    { id: "PRF-0XX", client: "' + j($('fName').value) + '",\n'
+    + '      vertical: "' + j($('fVert').value) + '",\n'
+    + '      line: "' + j($('fProd').value) + '", mode: "' + j($('fMode').value) + '", type: "' + j(typeSel.join(', ')) + '",\n'
+    + '      cells: [["' + j($('fProd').value) + '", "' + j($('fMode').value) + '"]],\n'
+    + '      story: "' + j(($('fSolution').value||'').split(/(?<=[.!?])\s/)[0]) + '",\n'
+    + '      problem: "' + j($('fProblem').value) + '",\n'
+    + '      solution: "' + j($('fSolution').value) + '",\n'
+    + (statLines ? '      stats: [' + statLines + '],\n' : '')
+    + (q ? '      quote: "' + j(q) + '",\n      quoteBy: "' + j($('fQuoteBy').value) + '",\n' : '')
+    + '      permissions: "' + (allPerm ? 'Name · Logo · Numbers — all approved' : 'PENDING — verify before external use') + '",\n'
+    + '      submittedBy: "' + j($('fSubName').value) + '", submittedOn: "' + today + '",\n'
+    + '      status: "' + (allPerm ? 'LIVE' : 'IN BUILD') + '" },';
+}
+
+$('btnRec').addEventListener('click', async ()=>{
+  const rec = proofRecord();
+  try{ await navigator.clipboard.writeText(rec); $('btnRec').textContent='✓ Copied'; setTimeout(()=>$('btnRec').textContent='Copy Proof Record',1600);}catch(e){ prompt('Copy this record (paste into assets/proofs.js):', rec); }
+});
+
 // ---- email ----
 // Browsers can't attach files to a mailto: link, so the button downloads the
 // proof card (logos + photos embedded) and the email body tells the rep to attach it.
@@ -343,7 +573,7 @@ $('btnMail').addEventListener('click', ()=>{
 '================================\n\n' +
 'SUBMITTED BY (for recognition):\n' + ($('fSubName').value || '—') + ($('fSubEmail').value ? ' · ' + $('fSubEmail').value : '') + '\n\n' +
 'VERTICAL / CATEGORIES:\n' + $('fVert').value + '\n\n' +
-'CELL (Product \u00D7 Delivery \u00D7 Type):\n' + ([$('fProd').value,$('fMode').value,$('fType').value].filter(Boolean).join(' \u00D7 ') || '\u2014') + '\n\n' +
+'CELL (Product \u00D7 Delivery \u00D7 Type):\n' + ([$('fProd').value,$('fMode').value,typeSel.join(', ')].filter(Boolean).join(' \u00D7 ') || '\u2014') + '\n\n' +
 'THE PROBLEM:\n' + $('fProblem').value + '\n\n' +
 'THE SOLUTION:\n' + $('fSolution').value + '\n\n' +
 'THE NUMBERS:\n' + [1,2,3,4].map(i=>'• '+$('s'+i+'v').value+' — '+$('s'+i+'l').value).join('\n') + '\n\n' +
@@ -351,6 +581,7 @@ $('btnMail').addEventListener('click', ()=>{
 'BACKUP LINK:\n' + ($('fLink').value||'—') + '\n\n' +
 'PERMISSIONS: ' + (allPerm ? 'ALL APPROVED ✓' : 'INCOMPLETE — name:'+$('pName').checked+' logo:'+$('pLogo').checked+' numbers:'+$('pNum').checked+' quote:'+$('pQuote').checked) + '\n\n' +
 'FILES: ' + logoData.length + ' logo(s) + ' + photoData.length + ' photo(s) \u2014 embedded in the attached proof card.\n\n' +
+'PASTE-READY RECORD (after approval, drop into assets/proofs.js under the ADD-NEW marker; assign the next PRF number and add logo/photo from the attached card):\n\n' + proofRecord() + '\n\n' +
 '>>> BEFORE YOU HIT SEND: attach the proof card that just downloaded \u2014 "' + fname + '" (check your Downloads folder). It carries the logos and photos; without it this email is text only. Drop a copy in Growth Hub \u203A proof drops too.\n\n' +
 'NEXT STOP: Bobby runs this through Claude and it goes live in Growth Hub Proof — with the submitter credited.\n\n— Sent from FSG Proof Builder';
   const cc = $('fSubEmail').value.trim();
