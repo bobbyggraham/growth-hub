@@ -589,6 +589,12 @@
   }
   .proof-cta:hover{background:var(--gold);color:var(--deep-navy);}
   @media (min-width: 640px){ .search-input-wrap{min-width:150px;} .tag-row{flex:0 1 auto;} .tag-chip{padding:7px 11px;} }
+  /* Chip row: wrap instead of scrolling off on desktop, so no chip is ever hidden.
+     Phone keeps the original horizontal swipe. */
+  @media (min-width: 640px){
+    .search-inner{flex-wrap:wrap;}
+    .tag-row{flex-wrap:wrap; overflow-x:visible; row-gap:8px;}
+  }
 </style>
 </head>
 <body>
@@ -729,7 +735,8 @@
       <span class="tag-chip" data-filter="story">Who We Are</span>
       <span class="tag-chip" data-filter="proof">Results</span>
       <span class="tag-chip" data-filter="how">How We Work</span>
-      <span class="tag-chip" data-filter="tools">Resources</span>
+      <span class="tag-chip" data-filter="tools">Development</span>
+      <span class="tag-chip" data-filter="wire">Wire</span>
     </div>
     <a class="proof-cta" href="tools/proof-builder.html" title="Got a win? Build the proof card — your name goes on it.">+ Proof Builder</a>
   </div>
@@ -743,6 +750,13 @@
     <h2 class="section-title">What's New</h2>
     <hr class="section-rule">
     <div class="grid">
+
+      <a href="tools/wire.html" class="card" data-section="wire" data-tags="wire industry news publications tools conductor electrified powered connected history technology market codes policy edison">
+        <div class="card-top"><span class="pill new">New</span><span class="card-date">Sep 2026</span></div>
+        <h3>The Wire — Industry News</h3>
+        <p>Get electrified, powered, and connected. Short, sourced issues on history, technology, market, and codes &amp; policy.</p>
+        <span class="card-cta">Open</span>
+      </a>
 
       <a href="plays/lighting-design-playbook.html" class="card" data-section="plays" data-tags="lighting design owner supplied playbook ebv storybrand">
         <div class="card-top"><span class="pill new">New</span><span class="card-date">Aug 2026</span></div>
@@ -823,7 +837,7 @@
 
   <!-- ============ WHO WE ARE (deck library) ============ -->
   <section class="section" id="enterprise-sale">
-    <div class="section-kicker">The Deck Library · Why FSG</div>
+    <div class="section-kicker">The Deck Library · The Vision Spoke</div>
     <h2 class="section-title">Who We Are</h2>
     <p class="section-sub">Who FSG is, the business lines and products we bring, why we exist, what we do, and how we work. Every deck lives here — start every new relationship with the story.</p>
     <hr class="section-rule">
@@ -862,7 +876,7 @@
 
   <!-- ============ RESULTS ============ -->
   <section class="section" id="enterprise-accounts">
-    <div class="section-kicker">Mid Stage · Show, Don't Tell</div>
+    <div class="section-kicker">Show, Don't Tell · The Results Spoke</div>
     <h2 class="section-title">Results</h2>
     <p class="section-sub">Executed solutions for named accounts — every one a standard proof card, straight from the Proof Builder pipeline. Real numbers, real timelines, real logos. Proof beats promises. Tap any card for the full record.</p>
     <hr class="section-rule">
@@ -871,7 +885,7 @@
 
   <!-- ============ HOW — SALES METHODOLOGY ============ -->
   <section class="section" id="methodology">
-    <div class="section-kicker">The FSG Way</div>
+    <div class="section-kicker">The FSG Way · The Execution Spoke</div>
     <h2 class="section-title">How We Work</h2>
     <hr class="section-rule">
 
@@ -923,9 +937,15 @@
 
   <!-- ============ WHAT #5 — SALES TOOLS & DEAL SUPPORT ============ -->
   <section class="section" id="tools">
-    <div class="section-kicker">In-Deal Support · Training · Resources</div>
-    <h2 class="section-title">Resources</h2>
-    <p class="section-sub">Battle cards, calculators, templates, training, and FSG App FAQs. What you need in the 30 seconds before you answer the hard question.</p>
+    <div class="section-kicker">To Be Valuable · The Development Spoke</div>
+    <h2 class="section-title">Development</h2>
+    <p class="section-sub">Battle cards, calculators, templates, training, and FSG App FAQs — plus the resources that sharpen the person. What you need in the 30 seconds before you answer the hard question.</p>
+    <hr class="section-rule">
+
+    <!-- ---- Sharpen the Pro (in-deal tools) ---- -->
+    <div class="section-kicker">In-Deal Support · Training</div>
+    <h2 class="section-title" style="font-size:21px;">Sales Tools</h2>
+    <p class="section-sub">The answer in your hand while the customer is still talking.</p>
     <hr class="section-rule">
     <div class="grid">
 
@@ -957,10 +977,10 @@
         <span class="card-cta">Open</span>
       </a>
 
-      <a href="tools/fsg-app-faq.html" class="card" data-section="tools" data-tags="fsg app faq training how to engage crm">
-        <div class="card-top"><span class="pill internal">Internal</span><span class="card-date">2026</span></div>
-        <h3>FSG App FAQs</h3>
-        <p>Engage CRM, quoting tools, and field apps — answers to the questions the team actually asks.</p>
+      <a href="tools/fsg-app-faq.html" class="card" data-section="tools" data-tags="fsg app faq training how to engage crm ask quick answers engage live seasons episodes plays solutions team activation assignment opportunity fields">
+        <div class="card-top"><span class="pill new">New</span><span class="card-date">Sep 2026</span></div>
+        <h3>FSG App FAQs — Ask Engage</h3>
+        <p>Type what you're trying to do — quick answers, the Engage Plays guides, and the Engage Live two-season training lineup.</p>
         <span class="card-cta">Open</span>
       </a>
 
@@ -974,7 +994,7 @@
     </div>
 
     <!-- ---- Personal Development (the Development spoke) ---- -->
-    <div class="section-kicker" style="margin-top:34px;">Grow the Person · The Development Spoke</div>
+    <div class="section-kicker" style="margin-top:34px;">Grow the Person · Business · Personal · Community</div>
     <h2 class="section-title" style="font-size:21px;">Personal Development</h2>
     <p class="section-sub">Development is what makes people valuable — business, personal, and community. Sharpen the person, and the pipeline follows.</p>
     <hr class="section-rule">
@@ -998,6 +1018,32 @@
         <div class="card-top"><span class="pill internal">Internal</span><span class="card-date">Sep 2026</span></div>
         <h3>Growth Hub Brand Standards</h3>
         <p>The engine, the story, the voice, and the visual system — logos, color, type, and the one gold rule.</p>
+        <span class="card-cta">Open</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ============ THE WIRE — Industry News & Publications ============ -->
+  <section class="section" id="wire">
+    <div class="section-kicker">Industry News &amp; Publications</div>
+    <h2 class="section-title">The Wire</h2>
+    <p class="section-sub">Named after the thing that carries it. A conductor for what our industry knows — short, sourced issues on history, technology, market, and codes &amp; policy. Print it, forward it, open a conversation with it.</p>
+    <hr class="section-rule">
+    <div class="grid">
+
+      <a href="tools/wire.html" class="card" data-section="wire" data-tags="wire industry news publications conductor electrified powered connected archive issues history technology market codes policy pitch a story">
+        <div class="card-top"><span class="pill new">New</span><span class="card-date">Sep 2026</span></div>
+        <h3>The Wire — All Issues</h3>
+        <p>The shelf: what the Wire is, the four lanes, the latest issue, and the full archive. Search it by topic or source.</p>
+        <span class="card-cta">Open</span>
+      </a>
+
+      <!-- ---- ADD-NEW: newest Wire issue card goes here ---- -->
+      <a href="tools/wire/edison-menlo-park.html" class="card" data-section="wire" data-tags="edison menlo park 1878 1879 light bulb filament puck gas history the light that changed everything system generators conductors meters service">
+        <div class="card-top"><span class="pill new">New</span><span class="card-date">Aug 2026</span></div>
+        <h3>The Light That Changed Everything</h3>
+        <p>Menlo Park, 1878–1879. Edison sold a system, not a bulb — and that's still the business we're in.</p>
         <span class="card-cta">Open</span>
       </a>
 
