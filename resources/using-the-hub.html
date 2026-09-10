@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How To Run The Hub — Growth Hub</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='115' fill='%23133865'/><g stroke='%23c5d9fa' stroke-width='22' stroke-linecap='round'><line x1='256' y1='256' x2='256' y2='96'/><line x1='256' y1='256' x2='394.6' y2='176'/><line x1='256' y1='256' x2='394.6' y2='336'/><line x1='256' y1='256' x2='256' y2='416'/><line x1='256' y1='256' x2='117.4' y2='336'/><line x1='256' y1='256' x2='117.4' y2='176'/></g><circle cx='256' cy='96' r='42' fill='%23ffffff'/><circle cx='394.6' cy='176' r='42' fill='%23c5d9fa'/><circle cx='394.6' cy='336' r='42' fill='%23ffffff'/><circle cx='256' cy='416' r='42' fill='%23c5d9fa'/><circle cx='117.4' cy='336' r='42' fill='%23ffffff'/><circle cx='117.4' cy='176' r='42' fill='%23ebb018'/><circle cx='256' cy='256' r='76' fill='%23ebb018'/></svg>">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Open+Sans:wght@400;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep-navy: #0b1421;
+    --navy: #133865;
+    --brand-blue: #365aa0;
+    --steel: #718dbc;
+    --ice: #c5d9fa;
+    --light-gray: #ededed;
+    --gold: #ebb018;
+    --paper: #fdfdfb;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Open Sans', Arial, Helvetica, sans-serif; color: var(--deep-navy); background: var(--paper); line-height: 1.55; }
+  h1, h2, h3, h4 { font-family: 'Nunito', 'Arial Rounded MT Bold', Arial, sans-serif; color: var(--navy); }
+  .page { max-width: 880px; margin: 0 auto; padding: 0 40px 48px; }
+
+  /* Cover */
+  .cover { background: var(--navy); color: #fff; padding: 40px 40px 44px; }
+  .cover .inner { max-width: 880px; margin: 0 auto; }
+  .crumbs { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  .crumbs a { font-family: 'Nunito', Arial, sans-serif; font-weight: 800; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--steel); text-decoration: none; }
+  .crumbs a:hover { color: var(--gold); }
+  .crumbs em { color: #2a4a7a; font-style: normal; }
+  .lockup { display: flex; align-items: center; gap: 18px; margin: 26px 0 24px; }
+  .lockup svg { width: 96px; height: 96px; flex-shrink: 0; }
+  .lockup .word { font-family: 'Nunito', Arial, sans-serif; font-weight: 900; line-height: 1.05; }
+  .lockup .word .g { display: block; font-size: 34px; letter-spacing: 2px; color: #fff; }
+  .lockup .word .h { display: block; font-size: 34px; letter-spacing: 12px; color: var(--ice); }
+  .cover h1 { color: #fff; font-size: 40px; line-height: 1.12; }
+  .cover .sub { color: var(--ice); font-size: 17px; margin-top: 14px; max-width: 660px; }
+  .cover .meta { color: var(--steel); font-size: 12px; margin-top: 26px; letter-spacing: 2px; text-transform: uppercase; font-family: 'Nunito', Arial, sans-serif; font-weight: 800; }
+
+  section { margin-top: 46px; }
+  h2 { font-size: 26px; font-weight: 900; letter-spacing: 0.3px; padding-bottom: 8px; border-bottom: 2px solid var(--gold); }
+  h2 .num { color: var(--gold); margin-right: 10px; }
+  h3 { font-size: 17px; color: var(--brand-blue); margin: 22px 0 8px; font-weight: 800; }
+  p { margin: 10px 0; font-size: 15px; }
+  ul, ol { margin: 10px 0 10px 24px; font-size: 15px; }
+  li { margin: 6px 0; }
+  strong { color: var(--navy); }
+  a { color: var(--brand-blue); }
+
+  .callout { background: var(--ice); border-left: 4px solid var(--gold); padding: 14px 18px; margin: 18px 0; font-size: 14px; color: var(--navy); border-radius: 0 4px 4px 0; }
+  .principle { background: var(--navy); color: #fff; padding: 22px 26px; margin: 24px 0; border-radius: 10px; }
+  .principle h3 { color: var(--gold); margin: 0 0 6px; text-transform: uppercase; letter-spacing: 2px; font-size: 13px; }
+  .principle p { color: #fff; font-size: 18px; font-weight: 600; margin: 0; }
+
+  .equation { margin: 22px 0; padding: 24px 30px; background: var(--navy); border-radius: 14px; color: #fff; text-align: center; }
+  .equation .eq { font-family: 'Nunito', Arial, sans-serif; font-size: clamp(1.2rem, 4vw, 1.8rem); font-weight: 900; letter-spacing: 0.5px; }
+  .equation .eq b { color: var(--gold); }
+  .equation small { display: block; margin-top: 8px; color: var(--steel); }
+
+  /* Spoke cards */
+  .spokes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 20px 0; }
+  .spoke { border: 1px solid var(--light-gray); border-top: 4px solid var(--brand-blue); border-radius: 8px; padding: 16px 18px; background: #fff; }
+  .spoke.dev { border-top-color: var(--gold); }
+  .spoke.res { border-top-color: var(--navy); }
+  .spoke h4 { font-size: 15px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2px; }
+  .spoke .role { font-size: 12px; color: var(--steel); font-family: 'Nunito', Arial, sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+  .spoke p { font-size: 13.5px; margin: 8px 0 0; color: #4a5568; }
+  .spoke .grab { display: block; margin-top: 10px; font-size: 13px; color: var(--navy); }
+  .spoke .grab b { font-family: 'Nunito', Arial, sans-serif; }
+  .spoke .chip { display: block; margin-top: 10px; font-size: 12px; font-family: 'Nunito', Arial, sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--brand-blue); }
+  .spoke .chip b { display: inline-block; background: var(--navy); color: #fff; border-radius: 4px; padding: 3px 8px; letter-spacing: 1px; margin-left: 4px; }
+
+  /* Moment blocks */
+  .moment { border: 1px solid var(--light-gray); border-radius: 8px; padding: 0; margin: 16px 0; overflow: hidden; }
+  .moment > .head { background: var(--navy); color: #fff; padding: 11px 18px; font-family: 'Nunito', Arial, sans-serif; font-weight: 800; font-size: 14px; letter-spacing: 1.5px; text-transform: uppercase; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .moment > .head span { color: var(--gold); letter-spacing: 1px; }
+  .moment > .body { padding: 14px 18px; }
+  .moment > .body p:first-child { margin-top: 0; }
+
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  th { background: var(--navy); color: #fff; text-align: left; padding: 10px 12px; font-weight: 700; font-family: 'Nunito', Arial, sans-serif; }
+  td { padding: 10px 12px; vertical-align: top; }
+  tr:nth-child(even) td { background: var(--ice); }
+  tr:nth-child(odd) td { background: #fff; }
+  .tbl-wrap { overflow-x: auto; }
+
+  /* Play band — the Proof Builder guide */
+  .play-band { background: var(--navy); color: #fff; border-radius: 12px; padding: 26px 30px; margin: 46px 0 0; }
+  .play-band .eyebrow { font-family: 'Nunito', Arial, sans-serif; font-weight: 800; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--steel); }
+  .play-band h2 { color: #fff; border: none; padding: 0; margin: 8px 0 0; font-size: 36px; }
+  .play-band h2 b { color: var(--gold); }
+  .play-band .sub { color: var(--ice); font-size: 15px; margin-top: 8px; }
+  .glance { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 4px; }
+  .glance div { flex: 1 1 150px; background: var(--navy); color: #fff; border-radius: 6px; padding: 12px 14px; font-family: 'Nunito', Arial, sans-serif; font-weight: 800; font-size: 13px; line-height: 1.3; }
+  .glance div:nth-child(even) { background: var(--brand-blue); }
+
+  .step { margin: 22px 0 0; }
+  .step > .bar { display: flex; align-items: stretch; }
+  .step > .bar .n { background: var(--navy); color: var(--gold); font-family: 'Nunito', Arial, sans-serif; font-weight: 900; font-size: 26px; width: 64px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step > .bar .t { background: var(--light-gray); flex: 1; display: flex; align-items: center; padding: 14px 20px; font-family: 'Nunito', Arial, sans-serif; font-weight: 900; font-size: 18px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--navy); }
+  .step .content { padding: 4px 4px 0 4px; }
+
+  .btn { display: inline-block; background: var(--gold); color: var(--deep-navy); font-family: 'Nunito', Arial, sans-serif; font-weight: 900; font-size: 15px; letter-spacing: 0.5px; text-decoration: none; padding: 14px 24px; border-radius: 8px; margin: 8px 8px 8px 0; }
+  .btn:hover { filter: brightness(1.06); }
+  .btn.ghost { background: transparent; border: 2px solid var(--gold); color: var(--gold); }
+  .btn-row { margin: 18px 0 0; }
+
+  .checklist { list-style: none; margin: 12px 0; }
+  .checklist li { padding-left: 30px; position: relative; font-size: 14.5px; }
+  .checklist li:before { content: ""; position: absolute; left: 0; top: 5px; width: 15px; height: 15px; border: 2px solid var(--brand-blue); border-radius: 3px; }
+
+  .twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+  .box { border: 1px solid var(--light-gray); border-radius: 8px; padding: 14px 16px; background: #fff; }
+  .box h4 { font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
+  .box.good h4 { color: #1d6b45; }
+  .box.bad h4 { color: #9a3232; }
+  .box ul { margin: 6px 0 0 18px; font-size: 13.5px; }
+
+  .tag { display: inline-block; font-family: 'Nunito', Arial, sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 9px; border-radius: 4px; background: var(--navy); color: #fff; }
+  .tag.build { background: var(--gold); color: var(--deep-navy); }
+  .tag.conf { background: var(--steel); color: var(--deep-navy); }
+
+  footer { background: var(--deep-navy); color: var(--steel); padding: 22px 40px; margin-top: 56px; font-size: 12px; }
+  footer .inner { max-width: 880px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+  @media (max-width: 700px) {
+    .spokes, .twocol { grid-template-columns: 1fr; }
+    .cover h1 { font-size: 30px; }
+    .play-band h2 { font-size: 27px; }
+    .page { padding: 0 22px 40px; }
+    .cover, .play-band { padding-left: 22px; padding-right: 22px; }
+    .step > .bar .n { width: 48px; font-size: 21px; }
+    .step > .bar .t { font-size: 15px; padding: 12px 14px; }
+  }
+  @media print { .cover, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+</style>
+</head>
+<body>
+
+<!-- ============ GROWTH HUB GATE ============ -->
+<style>
+  html.gh-locked > body > :not(#ghGate){display:none !important;}
+  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
+  html:not(.gh-locked) #ghGate{display:none;}
+  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
+  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
+  #ghGate .gh-brand svg{width:30px;height:30px;}
+  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
+  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
+  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;color:#fff;border:none;padding:0;}
+  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
+  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
+  #ghGate input:focus{border-color:#4e84de;}
+  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
+  #ghGate button:hover{filter:brightness(1.06);}
+  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
+  #ghGate .gh-shake{animation:ghshake .3s;}
+  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+<div id="ghGate">
+  <div class="gh-wrap">
+    <div class="gh-brand">
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#c5d9fa" stroke-width="14" stroke-linecap="round" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g><circle cx="150" cy="50" r="26" fill="#ffffff"/><circle cx="236.6" cy="100" r="26" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="26" fill="#ffffff"/><circle cx="150" cy="250" r="26" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="26" fill="#ffffff"/><circle cx="63.4" cy="100" r="26" fill="#c5d9fa"/><circle cx="150" cy="150" r="44" fill="#ebb018"/></svg>
+      <span>Growth Hub</span>
+    </div>
+    <div class="gh-card">
+      <h2>Passcode</h2>
+      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
+      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
+      <button id="ghGo" type="button">Enter the Hub</button>
+      <div class="gh-err" id="ghErr"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
+  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+  if(!unlocked()) document.documentElement.classList.add('gh-locked');
+  function open(){ document.documentElement.classList.remove('gh-locked'); }
+  async function check(){
+    var v=document.getElementById('ghPass').value;
+    var ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        ok=(hex===HASH);
+      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
+    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
+    if(ok){ remember(); open(); }
+    else{
+      var card=document.querySelector('#ghGate .gh-card');
+      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
+      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
+      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    if(unlocked()) return;
+    document.getElementById('ghGo').addEventListener('click', check);
+    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
+  });
+})();
+</script>
+<!-- ============ /GROWTH HUB GATE ============ -->
+
+
+<div class="cover">
+  <div class="inner">
+    <div class="crumbs">
+      <a href="../index.html">&larr; Growth Hub</a><em>|</em>
+      <a href="growth-hub-story.html">&larr; The Story &amp; The Spokes</a><em>|</em>
+      <a href="../tools/proof-builder.html">Proof Builder &rarr;</a>
+    </div>
+    <div class="lockup">
+      <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Growth Hub spoke mark">
+        <g stroke="#c5d9fa" stroke-width="3.5" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g>
+        <circle cx="150" cy="50" r="18" fill="#ffffff"/><circle cx="236.6" cy="100" r="18" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="18" fill="#ffffff"/><circle cx="150" cy="250" r="18" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="18" fill="#ffffff"/><circle cx="63.4" cy="100" r="18" fill="#c5d9fa"/>
+        <circle cx="150" cy="150" r="32" fill="#ebb018"/>
+      </svg>
+      <div class="word"><span class="g">GROWTH</span><span class="h">HUB</span></div>
+    </div>
+    <h1>How To Run The Hub</h1>
+    <div class="sub">The hub isn't a library you visit — it's the gear you carry. What's behind every chip, how to use it before, during, and after the meeting, and how to get your own proof on the board.</div>
+    <div class="meta">Field Guide &nbsp;·&nbsp; September 2026 &nbsp;·&nbsp; Protect · Land · Expand</div>
+  </div>
+</div>
+
+<div class="page">
+
+  <section>
+    <h2>Start Here</h2>
+    <p>Two minutes of setup and you'll never hunt for material again.</p>
+    <ol>
+      <li><strong>Bookmark it to your home screen.</strong> Open the hub on your phone, hit Share → Add to Home Screen. The pinwheel becomes an app icon. Passcode once per browser session, then every page in the hub opens clean.</li>
+      <li><strong>Learn the wheel.</strong> Six spokes across the hero — People, Vision, Development, Execution, Finance, Results — and a chip row underneath that filters the shelf. Section 01 is the map between them.</li>
+      <li><strong>Know the two buttons that never move.</strong> <strong>Products</strong> and <strong>+ Proof Builder</strong> sit in the search bar on every scroll. Pricing conversation and proof submission are one tap away, always.</li>
+      <li><strong>Pick your one habit.</strong> Nobody uses all of it. The reps who win use two or three pages relentlessly. Section 03 tells you which.</li>
+    </ol>
+    <div class="principle">
+      <h3>What This Site Is For</h3>
+      <p>Your customer is the hero. You are the guide. The hub is the guide's kit — story, plan, proof, and price, ready before you walk in.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">01</span>Six Spokes, One Chip Row</h2>
+    <p><strong>The rule:</strong> the spokes are the framework; the chip row is the shelf. They're converging — Development already carries its spoke's name — and until the rest catch up, the cards below are the translation. Click a chip and the hub filters to that lane; <strong>Wire</strong> is the exception, it navigates straight to the publication. Search matches titles, descriptions, and tags, so search the <em>problem</em> ("c-store", "ROI", "quote"), never the folder.</p>
+
+    <div class="spokes">
+      <div class="spoke">
+        <h4>People</h4>
+        <div class="role">The hero walks in first</div>
+        <p>Who you're serving and what they're carrying. Discovery, site walks, the rep who raised their hand.</p>
+        <span class="grab"><b>Reach for:</b> Discovery Question Bank · Why FSG</span>
+        <span class="chip">Click <b>How We Work</b> <b>Who We Are</b></span>
+      </div>
+      <div class="spoke">
+        <h4>Vision</h4>
+        <div class="role">The destination worth trusting</div>
+        <p>Who we are and where we're taking them. Use it in first meetings and anywhere credibility has to land fast.</p>
+        <span class="grab"><b>Reach for:</b> FSG Master Presentation · The Institution &amp; Culture · Why FSG</span>
+        <span class="chip">Click <b>Who We Are</b></span>
+      </div>
+      <div class="spoke dev">
+        <h4>Development</h4>
+        <div class="role">The lane that makes you valuable</div>
+        <p>Sharpening you and your team — business, personal, community. The biggest shelf on the hub, and the most under-used. Sales Tools up top, Personal Development below.</p>
+        <span class="grab"><b>Reach for:</b> Proof Builder · FSG App FAQs · GC/EC Battle Card · Templates · Training · Speak So They Buy · Brand Standards</span>
+        <span class="chip">Click <b>Development</b> <b>Wire &rarr;</b></span>
+      </div>
+      <div class="spoke">
+        <h4>Execution</h4>
+        <div class="role">Measured, tracked, reported</div>
+        <p>How the work actually gets done, by vertical. The playbooks are meeting-ready — scripts, scope language, credibility markers.</p>
+        <span class="grab"><b>Reach for:</b> C-Store · Retail · Commercial · Data Center · Lighting Design · Messaging Playbook · Protect/Land/Expand</span>
+        <span class="chip">Click <b>Solutions</b> <b>How We Work</b></span>
+      </div>
+      <div class="spoke">
+        <h4>Finance</h4>
+        <div class="role">Cash keeps it honest</div>
+        <p>What it costs, what it saves, how it's bought. Know these numbers cold before you quote anything.</p>
+        <span class="grab"><b>Reach for:</b> Products × Delivery Method · Lighting ROI Calculator</span>
+        <span class="chip">Click <b>Products</b> <b>Development</b></span>
+      </div>
+      <div class="spoke res">
+        <h4>Results</h4>
+        <div class="role">The win on the board</div>
+        <p>The proof library — real clients, real problems, real dollars. Searchable, filterable, one click to a full card you can show a prospect.</p>
+        <span class="grab"><b>Reach for:</b> the Results grid · client chips on Products × Delivery Method · Proof Builder to add yours</span>
+        <span class="chip">Click <b>Results</b> <b>+ Proof Builder</b></span>
+      </div>
+    </div>
+
+    <div class="callout"><strong>Two things that look like bugs and aren't:</strong> a card you can't see means its page isn't live yet — the hub hides cards until the page exists. And a page you opened yesterday won't ask for the passcode again today until you've closed the browser.</div>
+  </section>
+
+  <section>
+    <h2><span class="num">02</span>How To Use It — Three Moments</h2>
+    <p><strong>The rule:</strong> the hub is worth nothing on a laptop at your desk. It's worth everything ten minutes before a meeting, in the room, and the hour after you win.</p>
+
+    <div class="moment">
+      <div class="head">Before &mdash; the 10-minute prep <span>Vision · Execution · Finance · Results</span></div>
+      <div class="body">
+        <ol>
+          <li><strong>Name the hero and the problem.</strong> One sentence, in their words, before you open anything.</li>
+          <li><strong>Pull the vertical playbook.</strong> <strong>Solutions</strong> chip → their vertical. Steal the opening question and the two credibility markers.</li>
+          <li><strong>Load one proof.</strong> <strong>Results</strong> chip → filter to their vertical or their cell. Same-cell proof first — a service buyer doesn't care about your construction milestones.</li>
+          <li><strong>Know the money.</strong> The <strong>Products</strong> button in the search bar → Products × Delivery Method for how they'll buy it; ROI Calculator under <strong>Development</strong> if savings will come up.</li>
+        </ol>
+        <p>That's it. Story, plan, proof, price — ten minutes, four clicks.</p>
+      </div>
+    </div>
+
+    <div class="moment">
+      <div class="head">During &mdash; in the room <span>People · Vision · Finance</span></div>
+      <div class="body">
+        <ul>
+          <li><strong>Lead with them, not us.</strong> Their problem out loud first. The Master Presentation is backup, not the opening act.</li>
+          <li><strong>Show one proof, not five.</strong> Open the card, let the numbers and the quote do the work, close it. Five proofs reads as a brochure; one reads as evidence.</li>
+          <li><strong>Draw the pinwheel.</strong> Whiteboard, napkin, back of the scope — six spokes and value at the center explains who we are in under two minutes.</li>
+          <li><strong>Pull the hub up live.</strong> It's gated and it's ours — showing a client the matrix or a proof card on your phone lands harder than a PDF you'll email later.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="moment">
+      <div class="head">After &mdash; close the loop <span>Execution · Results</span></div>
+      <div class="body">
+        <ul>
+          <li><strong>Log it in Engage the same day.</strong> Customer Problem and Solution Description in the client's own words — those two fields are what the proof engine and every future deck are built from. Stuck on a field? <strong>Development</strong> chip → FSG App FAQs, and type the question.</li>
+          <li><strong>Report before anyone asks.</strong> Measure it, track it, report it. That habit is the whole Execution spoke.</li>
+          <li><strong>When it lands, build the proof.</strong> Don't wait for someone to ask you for a case study. Section 04.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">03</span>The Rhythm That Builds Strength</h2>
+    <p><strong>The rule:</strong> strength isn't intensity, it's return rate. One page, used every week, beats the whole site browsed once.</p>
+
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>Cadence</th><th>The move</th><th>Where it lives</th></tr>
+        <tr><td><strong>Daily</strong></td><td>Know your numbers. Pipeline, quotes out, dollars closed — cold, no lookup.</td><td>Your Growth Card · Products</td></tr>
+        <tr><td><strong>Every meeting</strong></td><td>The 10-minute prep. Never walk in without story, plan, proof, price.</td><td>Section 02 above</td></tr>
+        <tr><td><strong>Weekly</strong></td><td>Tell the FSG story once with no slides. If you need the deck to tell it, you don't own it yet.</td><td>Who We Are &rarr; Master Presentation</td></tr>
+        <tr><td><strong>Weekly</strong></td><td>One rep, one skill, one week. Pick the skill, work it, report it.</td><td>Development &rarr; Speak So They Buy</td></tr>
+        <tr><td><strong>Every win</strong></td><td>Proof Builder, same week it closes. Memory fades; the record doesn't.</td><td>+ Proof Builder button</td></tr>
+        <tr><td><strong>Monthly</strong></td><td>Read the Wire. Know something about this industry your competitor doesn't.</td><td>Wire &rarr; chip</td></tr>
+        <tr><td><strong>Quarterly</strong></td><td>Protect, Land, Expand — name one account in each column and the next move for it.</td><td>How We Work &rarr; Methodology</td></tr>
+      </table>
+    </div>
+
+    <div class="equation">
+      <div class="eq">Contribution + Service = <b>Value</b></div>
+      <small>Business, personal, community. The same test in all three.</small>
+    </div>
+
+    <p>That equation is the strength play, and it isn't only a sales frame. It works on a Tuesday morning with your team, on a job site, at your kitchen table. Show up with something to add, do the work in the open, and let the results speak. Do that long enough in business and you get a pipeline. Do it long enough in life and you get a reputation — which is the only asset that compounds without you touching it.</p>
+
+    <div class="callout"><strong>Field test:</strong> if you can't say what a meeting, an email, or a deck added — to the business, the person, or the community — it isn't done yet.</div>
+  </section>
+
+</div>
+
+<div class="page">
+  <div class="play-band">
+    <div class="eyebrow">Growth Hub Plays</div>
+    <h2><b>+</b> Proof Builder</h2>
+    <div class="sub">From closed win to live card on the hub — with your name on it. Sales Team Quick Guide · 15 minutes · Development &amp; Results</div>
+  </div>
+
+  <section style="margin-top:26px;">
+    <h2><span class="num">04</span>Get My Proof Live</h2>
+    <p><strong>Why this play matters:</strong> every rep asks "do we have a story like this customer?" The answer is always yes — it's just buried in Engage notes, invoices, and somebody's memory. Proof Builder is how your win stops being tribal knowledge and becomes ammunition the whole org can fire. Every card carries <strong>★ Proof submitted by [your name]</strong>, and the contributor board keeps score.</p>
+
+    <div class="glance">
+      <div>1. Tell the story</div>
+      <div>2. Drop the files</div>
+      <div>3. Check permissions</div>
+      <div>4. Generate &amp; send</div>
+      <div>5. QA &rarr; live on the hub</div>
+    </div>
+
+    <div class="step">
+      <div class="bar"><div class="n">1</div><div class="t">Tell The Story</div></div>
+      <div class="content">
+        <p>Development chip → <strong>Proof Builder</strong>. Fill it in order — it takes longer to find the files than to write the words.</p>
+        <ul>
+          <li><strong>Submitted by / your name / your email</strong> — this is the credit line. Don't skip it.</li>
+          <li><strong>Client name</strong> — legal-ish and consistent ("Ulta Beauty", not "Ulta").</li>
+          <li><strong>Vertical</strong> — one of thirteen, from Commercial Real Estate &amp; Office through Multifamily. Pick how the <em>customer</em> would describe themselves.</li>
+          <li><strong>The cell</strong> — <strong>Product line</strong> (Electrical · Lighting · Signs · Technology Infrastructure · Energy Performance) <strong>× Delivery method</strong> (Construction · Service · Distribution) <strong>× Type</strong> (LED retrofit, emergency, rebrand rollout, mission critical, EMS monitoring…). The cell is how the engine matches your proof to the next prospect, so get it right — a lighting retrofit tagged "Electrical" surfaces for the wrong buyer.</li>
+          <li><strong>The problem</strong> — their words, their pain, before we showed up. Two or three sentences. Don't name FSG here.</li>
+          <li><strong>The solution</strong> — what we did, scope and scale. Outcome first, then how.</li>
+          <li><strong>Client quote &amp; attribution</strong> — one real sentence from a real person with their real title. Spell the name right; we verify it.</li>
+        </ul>
+        <div class="callout"><strong>Multi-scope job?</strong> One card per cell. A rebrand rollout with sign fabrication and electrical service is two proofs with their own dollars — and two roster spots instead of one.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="bar"><div class="n">2</div><div class="t">Load The Numbers</div></div>
+      <div class="content">
+        <p>Numbers are what separate a proof card from a testimonial.</p>
+        <ul>
+          <li><strong>★ Gold stat — dollars first.</strong> The headline number, and it should be money if money is available: contract value, annual savings, cost avoided.</li>
+          <li><strong>Every stat needs a number and a label.</strong> "328 locations", "18 weeks", "42% energy reduction". A stat slot is not a place for a program name — that goes in the Program field.</li>
+          <li><strong>Only claims the record supports.</strong> Pull from the order, the invoice, or approved site copy. Nothing estimated, nothing rounded up. If it isn't in the record, leave it out.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="bar"><div class="n">3</div><div class="t">Drop The Files</div></div>
+      <div class="content">
+        <ul>
+          <li><strong>Client logos</strong> — up to 4. Transparent PNG or SVG if you have it.</li>
+          <li><strong>Job photos</strong> — up to 6. This is where most submissions lose their shine, so: shoot landscape, get the work in frame (fixture, sign, panel, gear — not an empty parking lot), and check the orientation after you upload. Phone photos routinely arrive rotated because the upload strips the EXIF data. Keep them tight and reasonably sized; the gold frame comes from the card itself.</li>
+          <li><strong>Proposal / backup link</strong> — the Drive or Engage link that proves the numbers. Nobody sees it but QA; it's what makes the card auditable.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="bar"><div class="n">4</div><div class="t">Check Permissions</div></div>
+      <div class="content">
+        <p>Four toggles, and they're the ones that keep us out of trouble: <strong>name approved · logo approved · numbers approved · quote approved</strong>.</p>
+        <ul>
+          <li>You attest to them as the submitter — so know the answer, don't guess it. Account-owner verification is where we're headed.</li>
+          <li>Anything not approved renders anonymized ("a national beauty retailer, 1,400 stores"). Still useful, still proof.</li>
+          <li><strong>Scrub as you write.</strong> No portal URLs, logins, passwords, or personal contact info in any free-text field. Engage records are full of them; proof cards never are.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="bar"><div class="n">5</div><div class="t">Generate, Send &amp; Go Live</div></div>
+      <div class="content">
+        <p>Four buttons at the bottom. Use the first and the last, every time:</p>
+        <ul>
+          <li><strong>Download Proof Card</strong> — your finished HTML card. Yours to show a client today, before it's even published.</li>
+          <li><strong>Copy Deck Snippet</strong> — drop the proof straight into a deck or one-pager.</li>
+          <li><strong>Copy Proof Record</strong> — the paste-ready record for the engine (QA uses this; grab it if you're asked).</li>
+          <li><strong>Email Growth Hub</strong> — sends the submission to Bobby, copies you, attaches the card, and puts the record in the body. This is the submit button.</li>
+        </ul>
+        <p><strong>Then what happens:</strong> QA pass on the hub side — scrub, copy into FSG voice, stat repair, photo orientation and crop, quote and cell verification — then the record goes into the Proof Engine. One entry, three places: your card appears in the <strong>Results</strong> grid (searchable and filterable, click for the full pop-out), the client's chip on <strong>Products × Delivery Method</strong> becomes clickable and pops the same card, and the proof enters the library the deck generator pulls from. Turnaround is days, not weeks. If something's missing, you'll hear which field.</p>
+        <div class="btn-row">
+          <a class="btn" href="../tools/proof-builder.html">Open Proof Builder &rarr;</a>
+          <a class="btn ghost" href="../index.html">See live proof in Results</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>What Makes A Card Land</h2>
+    <div class="twocol">
+      <div class="box good">
+        <h4>Do this</h4>
+        <ul>
+          <li>Money in the gold stat</li>
+          <li>The customer's problem in the customer's words</li>
+          <li>One named human in the quote, with a title</li>
+          <li>A photo of the actual work, right way up</li>
+          <li>The cell tagged the way the buyer buys</li>
+          <li>Submitted the week it closed</li>
+        </ul>
+      </div>
+      <div class="box bad">
+        <h4>Not this</h4>
+        <ul>
+          <li>"Significant savings" with no number</li>
+          <li>A program name sitting in a stat slot</li>
+          <li>An unattributed quote, or a paraphrase</li>
+          <li>A stock photo, or an empty storefront</li>
+          <li>Numbers nobody approved</li>
+          <li>Anything copied out of Engage without a scrub</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>The three card statuses</h3>
+    <p><span class="tag">Live</span> &nbsp;Full record — problem, solution, numbers, quote, logo, photo, permissions confirmed.</p>
+    <p><span class="tag build">In build</span> &nbsp;A placeholder holding the roster spot while logos, photos, numbers, or the quote are still pending. If you see a client you work with sitting In Build, that card is asking you for a submission — and it's the fastest name you'll ever get on the board.</p>
+    <p><span class="tag conf">Confidential</span> &nbsp;Renders without numbers, internal use only. Some clients are worth having quietly.</p>
+
+    <div class="callout"><strong>Roster spots open right now:</strong> Starbucks · Circle K · ULTA · Boeing · Walmart · HCA · ALDI · Valero · HEB · Tesla · IKEA · Sunbelt · Public Storage · Lillibridge · Bass Pro · MMC. Sixteen In Build cards waiting on the rep who was in the room. First one through the pipeline was Crash Champions — PRF-001, submitted by Tanner Clow.</div>
+  </section>
+
+  <section>
+    <h2>Your 15-Minute Version</h2>
+    <ul class="checklist">
+      <li>Gather first: the order or invoice, one quote from a real person, two job photos, the client logo.</li>
+      <li>Open Proof Builder. Name, email, client, vertical.</li>
+      <li>Tag the cell — product line × delivery method × type.</li>
+      <li>Problem in their words. Solution, outcome first.</li>
+      <li>Gold stat in dollars. Every other stat gets a number and a label.</li>
+      <li>Upload logo and photos. Check the photos aren't rotated.</li>
+      <li>Four permission toggles. Scrub the free text.</li>
+      <li>Download Proof Card for yourself → Email Growth Hub to submit.</li>
+      <li>Use your card in the next meeting. Don't wait for it to publish.</li>
+    </ul>
+
+    <div class="principle">
+      <h3>The Payoff</h3>
+      <p>Know the wheel, run the 10-minute prep, and put every win on the board. Do that and the hub stops being a website — it becomes the reason you walk in with evidence instead of promises.</p>
+    </div>
+
+    <p style="font-size:14px;color:#4a5568;">Something missing, broken, or worth adding? The hub is built from what the field asks for &mdash; email <a href="mailto:bobby.graham@fsgi.com">bobby.graham@fsgi.com</a>.</p>
+  </section>
+
+</div>
+
+<footer>
+  <div class="inner">
+    <div>FSG Growth Hub · the Engage Growth Engine — business, personal, community</div>
+    <div>Owner: Bobby Graham · bobby.graham@fsgi.com</div>
+  </div>
+</footer>
+
+</body>
+</html>
