@@ -122,6 +122,79 @@
       margin:16px 0 0; max-width:52ch; font-size:clamp(1rem,2vw,1.12rem);
       color:#c9d9ef; line-height:1.6; text-wrap:pretty;
     }
+    .hero .lede{
+      margin:20px 0 0; max-width:46ch; font-family:var(--cond); font-weight:500;
+      font-size:clamp(1.02rem,2.2vw,1.28rem); line-height:1.35; color:var(--gold);
+      letter-spacing:.02em;
+    }
+
+    /* ---------- what it is ---------- */
+    .about{background:var(--card); border-bottom:1px solid var(--rule)}
+    .about .wrap{padding-top:44px; padding-bottom:46px}
+    .define{
+      display:grid; grid-template-columns:132px 1fr; gap:30px; align-items:center;
+      background:#f9fbfe; border:1px solid var(--rule); border-left:5px solid var(--gold);
+      border-radius:0 12px 12px 0; padding:26px 30px;
+    }
+    .define .cable{width:132px; height:132px; flex:0 0 auto}
+    .define .word{
+      font-family:var(--cond); font-weight:700; font-size:clamp(1.5rem,3.4vw,2.05rem);
+      color:var(--dark-navy); text-transform:lowercase; letter-spacing:.01em;
+      display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;
+    }
+    .define .pos{
+      font-family:var(--body); font-style:italic; font-weight:400; font-size:14px;
+      color:var(--steel); text-transform:none; letter-spacing:0;
+    }
+    .define .say{
+      margin:2px 0 0; font-family:var(--cond); font-size:12.5px; letter-spacing:.18em;
+      text-transform:uppercase; color:var(--brand-blue);
+    }
+    .define .gloss{
+      margin:12px 0 0; font-size:15.4px; line-height:1.62; color:#33404f; max-width:60ch;
+    }
+    .define .gloss b{color:var(--dark-navy); font-weight:600}
+
+    .turn{
+      margin:34px 0 0; font-size:clamp(1.05rem,2.2vw,1.24rem); line-height:1.58;
+      color:var(--ink); max-width:62ch; text-wrap:pretty;
+    }
+    .turn strong{color:var(--dark-navy)}
+
+    .pillars{
+      display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:30px;
+    }
+    .pillar{
+      background:var(--card); border:1px solid var(--rule); border-top:3px solid var(--gold);
+      border-radius:0 0 10px 10px; padding:22px 22px 20px; box-shadow:var(--shadow);
+    }
+    .pillar .n{
+      font-family:var(--cond); font-weight:600; font-size:11.5px; letter-spacing:.2em;
+      text-transform:uppercase; color:var(--steel); display:block; margin-bottom:9px;
+    }
+    .pillar h3{font-size:1.22rem; text-transform:uppercase; margin-bottom:8px}
+    .pillar p{margin:0; font-size:14.3px; line-height:1.58; color:#4a5769}
+
+    .lanes{margin-top:44px}
+    .lanegrid{
+      display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:22px;
+    }
+    .lane{
+      text-align:left; cursor:pointer; background:var(--dark-navy); color:#fff;
+      border:0; border-radius:10px; padding:20px 20px 18px; font-family:var(--body);
+      transition:transform .12s ease, background .12s ease;
+      display:flex; flex-direction:column; justify-content:flex-start; align-items:stretch;
+    }
+    .lane:nth-child(2){background:#17406f}
+    .lane:nth-child(3){background:#1b4a80}
+    .lane:nth-child(4){background:#20548e}
+    .lane:hover{transform:translateY(-2px); background:var(--brand-blue)}
+    .lane .lname{
+      font-family:var(--cond); font-weight:700; font-size:1.06rem; letter-spacing:.06em;
+      text-transform:uppercase; color:#fff; display:block; margin-bottom:7px;
+    }
+    .lane .lname::after{content:" \2192"; color:var(--gold)}
+    .lane .lwhat{font-size:13.4px; line-height:1.52; color:#c3d5ee; display:block}
 
     /* ---------- filter bar ---------- */
     .filters{
@@ -228,6 +301,12 @@
       .feature{grid-template-columns:1fr}
       .feature .thumb{min-height:200px}
       .pitch{grid-template-columns:1fr}
+      .pillars{grid-template-columns:1fr}
+      .lanegrid{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:620px){
+      .define{grid-template-columns:1fr; gap:20px; text-align:left}
+      .define .cable{width:96px; height:96px}
     }
     @media (max-width:560px){
       .wrap{padding:0 18px}
@@ -272,11 +351,87 @@
 
   <div class="hero">
     <div class="wrap">
-      <p class="eyebrow">The Wire &middot; Tools</p>
-      <h1>The Industry,<br>In Context.</h1>
-      <p class="deck">Short, sourced reads on the market we sell into &mdash; history, technology, codes and the news our customers are reading. Every issue ends where the customer wins. Print it, forward it, open a conversation with it.</p>
+      <p class="eyebrow">The Wire &middot; Industry News &amp; Publications</p>
+      <h1>Get On<br>The Wire.</h1>
+      <p class="lede">Electrified. Powered. Connected.</p>
+      <p class="deck">Short, sourced reads on the industry we sell into &mdash; knowledge, history, technology, market, and codes &amp; policy. Every issue ends where the customer wins. Print it, forward it, open a conversation with it.</p>
     </div>
   </div>
+
+  <!-- ===== what the Wire is ===== -->
+  <section class="about">
+    <div class="wrap">
+      <p class="eyebrow">What this is</p>
+      <h2>Named after the thing that carries it</h2>
+      <hr class="rule">
+
+      <div class="define" style="margin-top:24px">
+        <svg class="cable" viewBox="0 0 120 120" role="img" aria-label="Cross-section of an insulated electrical conductor with copper strands">
+          <circle cx="60" cy="60" r="56" fill="#133865"/>
+          <circle cx="60" cy="60" r="44" fill="#0b1421"/>
+          <circle cx="60" cy="60" r="34" fill="#f2f5fa"/>
+          <g fill="#ebb018" stroke="#c08c0c" stroke-width="1.2">
+            <circle cx="60" cy="60" r="11"/>
+            <circle cx="60" cy="38" r="11"/>
+            <circle cx="60" cy="82" r="11"/>
+            <circle cx="79.05" cy="49" r="11"/>
+            <circle cx="79.05" cy="71" r="11"/>
+            <circle cx="40.95" cy="49" r="11"/>
+            <circle cx="40.95" cy="71" r="11"/>
+          </g>
+        </svg>
+        <div>
+          <div class="word">wire <span class="pos">noun &middot; electrical conductor</span></div>
+          <div class="say">A conductor carries the current</div>
+          <p class="gloss">A metal strand or cable covered in insulation, used to <b>carry electric current, power, or signals</b> from where it is generated to where it is needed.</p>
+        </div>
+      </div>
+
+      <p class="turn">That&rsquo;s the whole idea. <strong>The Wire is a conductor for what our industry knows</strong> &mdash; short, sourced issues that carry current from the market straight to the field, so every rep walks in already knowing what the customer is reading.</p>
+
+      <div class="pillars">
+        <div class="pillar">
+          <span class="n">01</span>
+          <h3>Electrified</h3>
+          <p>A story worth repeating. Every issue gives you something the customer hasn&rsquo;t heard yet &mdash; the kind of thing that changes the temperature of a conversation.</p>
+        </div>
+        <div class="pillar">
+          <span class="n">02</span>
+          <h3>Powered</h3>
+          <p>Sourced, not spun. Real publications, primary records, and dates you can stand behind &mdash; the citations sit right on the page.</p>
+        </div>
+        <div class="pillar">
+          <span class="n">03</span>
+          <h3>Connected</h3>
+          <p>Every issue lands where the customer wins. History, hardware and code changes tie back to the outcome FSG delivers: contribution + service = value.</p>
+        </div>
+      </div>
+
+      <div class="lanes">
+        <p class="eyebrow">Four lanes</p>
+        <h2>What the current carries</h2>
+        <hr class="rule">
+        <div class="lanegrid">
+          <button class="lane" data-jump="history">
+            <span class="lname">History</span>
+            <span class="lwhat">Where this industry came from, and why it still sells the way it does.</span>
+          </button>
+          <button class="lane" data-jump="technology">
+            <span class="lname">Technology</span>
+            <span class="lwhat">Fixtures, controls, EV, solar, smart buildings &mdash; what changed and what it means.</span>
+          </button>
+          <button class="lane" data-jump="market">
+            <span class="lname">Market</span>
+            <span class="lwhat">Demand, pricing, supply and the sectors our customers operate in.</span>
+          </button>
+          <button class="lane" data-jump="codes">
+            <span class="lname">Codes &amp; Policy</span>
+            <span class="lwhat">Energy codes, incentives and rules that move a project from someday to now.</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <div class="filters">
     <div class="wrap">
@@ -314,7 +469,7 @@
       </article>
     </section>
 
-    <section class="section">
+    <section class="section" id="archive">
       <p class="eyebrow">The archive</p>
       <h2>Every issue</h2>
       <hr class="rule">
@@ -424,15 +579,29 @@ var ISSUES = [
     empty.hidden=rows.length>0;
   }
 
+  function setTag(t){
+    tag=t;
+    [].forEach.call(chips.querySelectorAll('.chip'),function(c){
+      c.setAttribute('aria-pressed', c.dataset.tag===t ? 'true':'false');
+    });
+    render();
+  }
+
   q.addEventListener('input',render);
   chips.addEventListener('click',function(e){
     var b=e.target.closest('.chip'); if(!b) return;
-    tag=b.dataset.tag;
-    [].forEach.call(chips.querySelectorAll('.chip'),function(c){
-      c.setAttribute('aria-pressed', c===b ? 'true':'false');
-    });
-    render();
+    setTag(b.dataset.tag);
   });
+
+  /* the four lane cards filter the archive and jump to it */
+  [].forEach.call(document.querySelectorAll('.lane'),function(l){
+    l.addEventListener('click',function(){
+      q.value='';
+      setTag(l.dataset.jump);
+      document.getElementById('archive').scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
+
   render();
 })();
 
