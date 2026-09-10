@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -169,6 +170,12 @@
   .spoke-it.res i { background: #fff; }
   .story-link { display: inline-block; font-family: 'Nunito', Arial, sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); text-decoration: none; margin-bottom: 16px; }
   .story-link:hover { color: #fff; }
+  /* hero link pair: how to run it (start here) + why it exists (the story) */
+  .hero-links { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 20px; margin-bottom: 16px; }
+  .hero-links .story-link { margin-bottom: 0; }
+  .story-link.primary { border-bottom: 2px solid var(--gold); padding-bottom: 3px; }
+  .story-link.primary:hover { border-bottom-color: #fff; }
+  .story-link .sh { color: var(--light-blue); }
 
   /* ---------- SEARCH (sticky) ---------- */
   .search-bar {
@@ -720,7 +727,10 @@
       <span class="spoke-it" style="animation-delay:1.48s"><i></i>Finance</span>
       <span class="spoke-it res" style="animation-delay:1.6s"><i></i>Results</span>
     </div>
-    <a class="story-link" href="resources/growth-hub-story.html">The story behind the hub — value at the core →</a>
+    <div class="hero-links">
+      <a class="story-link primary" href="resources/using-the-hub.html"><span class="sh">Start here:</span> How to run the hub — six spokes, the 10-minute prep, your proof live →</a>
+      <a class="story-link" href="resources/growth-hub-story.html">The story behind the hub — value at the core →</a>
+    </div>
 
     <div class="hero-motto">Contribution + Service = Value · Humble, Hungry, Always Grinding</div>
   </div>
@@ -758,6 +768,14 @@
     <h2 class="section-title">What's New</h2>
     <hr class="section-rule">
     <div class="grid">
+
+      <!-- ---- ADD-NEW: newest What's New card goes here ---- -->
+      <a href="resources/using-the-hub.html" class="card" data-section="tools" data-tags="how to run the hub field guide start here getting started new rep onboarding help six spokes chips ten minute prep meeting prep proof builder guide get my proof live how do i how to use the hub instructions">
+        <div class="card-top"><span class="pill new">New</span><span class="card-date">Sep 2026</span></div>
+        <h3>How To Run The Hub</h3>
+        <p>The field guide — what's behind every chip, the 10-minute meeting prep, and the +Proof Builder play that puts your win on the board.</p>
+        <span class="card-cta">Open</span>
+      </a>
 
       <a href="tools/wire.html" class="card" data-section="wire" data-tags="wire industry news publications tools conductor electrified powered connected history technology market codes policy edison">
         <div class="card-top"><span class="pill new">New</span><span class="card-date">Sep 2026</span></div>
@@ -950,8 +968,25 @@
     <p class="section-sub">Battle cards, calculators, templates, training, and FSG App FAQs — plus the resources that sharpen the person. What you need in the 30 seconds before you answer the hard question.</p>
     <hr class="section-rule">
 
+    <!-- ---- Start Here (how to run the hub — onboarding shelf) ---- -->
+    <div class="section-kicker">New Here · Read This First</div>
+    <h2 class="section-title" style="font-size:21px;">Start Here</h2>
+    <p class="section-sub">Two minutes to learn the hub, ten minutes to prep any meeting with it.</p>
+    <hr class="section-rule">
+    <div class="grid">
+
+      <!-- ---- ADD-NEW: onboarding / how-to guides go here ---- -->
+      <a href="resources/using-the-hub.html" class="card" data-section="tools" data-tags="how to run the hub field guide start here getting started new rep onboarding help six spokes chips ten minute prep meeting prep proof builder guide get my proof live how do i how to use the hub instructions">
+        <div class="card-top"><span class="pill new">New</span><span class="card-date">Sep 2026</span></div>
+        <h3>How To Run The Hub</h3>
+        <p>What's behind every chip, the 10-minute prep before any meeting, the weekly rhythm — and the +Proof Builder play, step by step, for getting your own win on the board.</p>
+        <span class="card-cta">Open</span>
+      </a>
+
+    </div>
+
     <!-- ---- Sharpen the Pro (in-deal tools) ---- -->
-    <div class="section-kicker">In-Deal Support · Training</div>
+    <div class="section-kicker" style="margin-top:34px;">In-Deal Support · Training</div>
     <h2 class="section-title" style="font-size:21px;">Sales Tools</h2>
     <p class="section-sub">The answer in your hand while the customer is still talking.</p>
     <hr class="section-rule">
