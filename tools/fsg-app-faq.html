@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -177,6 +178,7 @@
       <input type="text" id="ask" placeholder="What are you trying to do? e.g. assign the solutions team, close lost, activate an account…" aria-label="Ask Engage">
     </div>
     <div class="quick-row" id="quickRow">
+      <span class="qchip">get my proof live</span>
       <span class="qchip">assign the solutions team</span>
       <span class="qchip">activate an account</span>
       <span class="qchip">request an account</span>
@@ -220,9 +222,12 @@
     <div class="live-banner">
       <div>
         <div class="abc">A.B.C. — ALWAYS BE CAPTURING</div>
-        <div class="when">Fridays · 2:00 PM PT · Live on Zoom · Season One premiered Aug 28</div>
+        <div class="when">Live on Zoom · 30 minutes · Two seasons, 24 episodes · Watch for the invite</div>
       </div>
-      <a class="poster" href="engage/engage-live-one-sheet.html">Open the One Sheet</a>
+      <div style="display:flex;gap:9px;flex-wrap:wrap;">
+        <a class="poster" href="engage/engage-live-seasons.html">Full Training Guide</a>
+        <a class="poster" style="background:transparent;border:1.5px solid #718dbc;color:#c5d9fa;" href="engage/engage-live-one-sheet.html">The One Sheet</a>
+      </div>
     </div>
 
     <div class="season-label" data-season="1">Season One — Master the Tool · Episodes 1–11, every core Engage feature, live</div>
@@ -279,6 +284,12 @@
    One entry per training guide. File goes in tools/engage/, entry
    goes here, done — the card and search pick it up automatically. */
 var GUIDES = [
+  { file: "../resources/using-the-hub.html",
+    title: "How To Run The Hub",
+    pill: "Start Here",
+    gold: true,
+    desc: "The Growth Hub field guide: what's behind every chip, the 10-minute meeting prep, the weekly rhythm — and the +Proof Builder play, step by step, for getting your win on the board.",
+    tags: "how to run the hub growth hub field guide start here getting started new rep onboarding help six spokes chips ten minute prep meeting prep proof builder get my proof live proof card submit a win how do i use the hub instructions rhythm" },
   { file: "engage/assigning-the-solutions-team.html",
     title: "Assigning the Solutions Team",
     pill: "Engage Play",
@@ -299,18 +310,31 @@ var GUIDES = [
     pill: "Engage Play",
     desc: "What you see = what you own. The two levels, the request flow step by step, and who updates what.",
     tags: "my accounts request assignment button ownership visibility see account assigned territory" },
+  { file: "engage/engage-live-seasons.html",
+    title: "Engage Live — Seasons 1 & 2 Training Guide",
+    pill: "Living Document",
+    gold: true,
+    desc: "The full playbook: why the series exists, the story arc, and all 24 episodes — mantra, Closer's Creed, hook, what we cover, and Your One Move.",
+    tags: "engage live seasons training guide episodes playbook closers creed one move play of the week mantra season one two master the tool machine curriculum" },
   { file: "engage/engage-live-one-sheet.html",
     title: "Engage Live — The One Sheet",
     pill: "Series Cover",
-    gold: true,
-    desc: "The poster: two seasons, 24 episodes, live on Zoom — with the full lineup and the meeting invite.",
-    tags: "engage live one sheet poster webinar series zoom schedule invite seasons episodes" }
+    desc: "The poster: two seasons, 24 episodes, live on Zoom — the series cover with the full lineup.",
+    tags: "engage live one sheet poster webinar series zoom seasons episodes lineup cover" }
 ];
 
 /* ================= QUICK ANSWERS — ADD NEW ASKS HERE =================
    q = the question as a rep would type it · a = the short answer (HTML ok)
    link = the guide that goes deeper · tags = extra words people search with */
 var ASKS = [
+  { q: "I just won a job — how do I get my proof live?",
+    a: "Open <b>Proof Builder</b> (Growth Hub → Development), fill the story, tag the cell (<b>product line × delivery method × type</b>), put dollars in the gold stat, drop the logo and job photos, check the four permission toggles, then hit <b>Email Growth Hub</b> — and attach the downloaded card before you send. It runs through QA and lands in Results with <b>★ Proof submitted by you</b> on it. About 15 minutes if your files are ready.",
+    link: "../resources/using-the-hub.html", label: "How To Run The Hub — the Proof Builder play",
+    tags: "proof builder win proof card case study submit my proof live results credit gold stat permissions photos logo cell product delivery type how do i" },
+  { q: "How do I actually use the Growth Hub?",
+    a: "Learn the wheel, then run the <b>10-minute prep</b> before any meeting: vertical playbook, one same-cell proof, and the money page. The field guide walks through what's behind every chip, what to do before/during/after the meeting, and the weekly rhythm. <b>Products</b> and <b>+ Proof Builder</b> stay in the search bar on every scroll.",
+    link: "../resources/using-the-hub.html", label: "How To Run The Hub",
+    tags: "growth hub how to use start here getting started new rep onboarding help navigate chips find deck playbook prep meeting rhythm what is the hub" },
   { q: "Who do I assign this opportunity to?",
     a: "Match the <b>Product × Delivery Method</b> on the opportunity to the owner matrix — one Product Owner per lane (e.g., Lighting × Construction → Lee Wills; Lighting × Distribution → Courtney Mitchell). <b>Don't default to David Burrough</b> — he's the escalation path.",
     link: "engage/assigning-the-solutions-team.html", label: "Assigning the Solutions Team",
@@ -367,10 +391,14 @@ var ASKS = [
     a: "Open the account and hit the <b>Request Assignment</b> button — the request routes for approval and the guide shows who updates what at each level.",
     link: "engage/my-accounts-request-assignment.html", label: "My Accounts + Request Assignment",
     tags: "request assignment button assign account to me claim territory transfer ownership" },
-  { q: "When is Engage Live and how do I join?",
-    a: "<b>Fridays · 2:00 PM PT · live on Zoom · 30 minutes</b> — open to every role in the enterprise. Two seasons, 24 episodes. The one-sheet has the lineup and the meeting invite download.",
-    link: "engage/engage-live-one-sheet.html", label: "Engage Live One Sheet",
-    tags: "engage live webinar zoom when schedule join invite friday training series episode season" },
+  { q: "What is Engage Live and how do I join?",
+    a: "<b>Live on Zoom, 30 minutes</b> — open to every role in the enterprise. Two seasons, 24 episodes: Season One masters the tool, Season Two masters the machine. <b>Watch for the invite</b> — dates go out by email and Slack.",
+    link: "engage/engage-live-seasons.html", label: "Engage Live — Seasons Training Guide",
+    tags: "engage live webinar zoom when schedule join invite training series episode season what is" },
+  { q: "What's in the next Engage Live episode?",
+    a: "Every episode in the training guide carries its mantra, the Closer's Creed line, what attendees walk away with, the opening hook, the Play of the Week, what we cover, and <b>Your One Move</b> before the next session. Search the guide by topic — pipeline, leads, handoff.",
+    link: "engage/engage-live-seasons.html", label: "Engage Live — Seasons Training Guide",
+    tags: "episode next what covered curriculum agenda one move play of the week creed mantra lineup" },
   { q: "Who do I contact for Engage help?",
     a: "<b>apphelp@fsgi.com</b> for support. Escalations &amp; strategy: David Burrough — always available, call or text.",
     link: "engage/assigning-the-solutions-team.html", label: "Engage Plays",
