@@ -588,6 +588,14 @@
     transition:all .15s ease;
   }
   .proof-cta:hover{background:var(--gold);color:var(--deep-navy);}
+  /* Wire sits in the chip row but navigates, like Proof Builder — gold outline
+     marks it as a destination, not a filter. */
+  .tag-chip.wire-link{
+    text-decoration:none; border-color:var(--gold);
+    display:inline-flex; align-items:center; white-space:nowrap;
+    font-weight:600;
+  }
+  .tag-chip.wire-link:hover{background:var(--gold);color:var(--deep-navy);border-color:var(--gold);}
   @media (min-width: 640px){ .search-input-wrap{min-width:150px;} .tag-row{flex:0 1 auto;} .tag-chip{padding:7px 11px;} }
   /* Chip row: wrap instead of scrolling off on desktop, so no chip is ever hidden.
      Phone keeps the original horizontal swipe. */
@@ -736,7 +744,7 @@
       <span class="tag-chip" data-filter="proof">Results</span>
       <span class="tag-chip" data-filter="how">How We Work</span>
       <span class="tag-chip" data-filter="tools">Development</span>
-      <span class="tag-chip" data-filter="wire">Wire</span>
+      <a class="tag-chip wire-link" href="tools/wire.html" title="The Wire — industry news &amp; publications">Wire &rarr;</a>
     </div>
     <a class="proof-cta" href="tools/proof-builder.html" title="Got a win? Build the proof card — your name goes on it.">+ Proof Builder</a>
   </div>
@@ -1124,7 +1132,7 @@
   const cards = document.querySelectorAll('.card');
   const sections = document.querySelectorAll('.section');
   const emptyState = document.getElementById('emptyState');
-  const chips = document.querySelectorAll('.tag-chip');
+  const chips = document.querySelectorAll('.tag-chip:not(.wire-link)'); // wire-link navigates, it doesn't filter
   let activeFilter = 'all';
 
   function applyFilters() {
