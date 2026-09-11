@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -240,6 +239,63 @@
     border-color: var(--dark-navy);
     color: #fff;
   }
+
+  /* ---------- RESULTS PROOF FILTERS (Products × Delivery Method × Type) ---------- */
+  .proof-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 10px 14px;
+    margin: 0 0 20px;
+  }
+  .pf-group { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .pf-group label {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-size: 10.5px; font-weight: 500;
+    letter-spacing: 1.2px; text-transform: uppercase;
+    color: var(--steel-blue);
+    padding-left: 2px;
+  }
+  .pf-group select {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.8px; text-transform: uppercase;
+    color: var(--dark-navy);
+    background-color: #fff;
+    border: 1.5px solid var(--steel-blue);
+    border-radius: 20px;
+    padding: 7px 32px 7px 14px;
+    cursor: pointer;
+    max-width: 250px;
+    appearance: none; -webkit-appearance: none; -moz-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M1 1l4 4 4-4' stroke='%23365aa0' stroke-width='1.6' fill='none' stroke-linecap='round'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 13px center;
+    transition: all 0.15s ease;
+  }
+  .pf-group select.pf-on {
+    background-color: var(--dark-navy);
+    border-color: var(--dark-navy);
+    color: #fff;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M1 1l4 4 4-4' stroke='%23ebb018' stroke-width='1.6' fill='none' stroke-linecap='round'/></svg>");
+  }
+  .pf-clear {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 1px; text-transform: uppercase;
+    color: var(--brand-blue);
+    background: none; border: none; cursor: pointer;
+    padding: 8px 2px;
+    text-decoration: underline; text-underline-offset: 3px;
+    display: none;
+  }
+  .proof-filters.has-active .pf-clear { display: inline-block; }
+  .pf-count {
+    font-size: 12px; font-style: italic;
+    color: var(--steel-blue);
+    margin-left: auto; align-self: center;
+  }
+  @media (max-width: 520px){ .pf-count { margin-left: 0; flex-basis: 100%; } }
 
   /* ---------- MAIN ---------- */
   main { max-width: 1100px; margin: 0 auto; padding: 28px 20px 60px; }
@@ -1017,6 +1073,22 @@
     <h2 class="section-title">Results</h2>
     <p class="section-sub">Executed solutions for named accounts — every one a standard proof card, straight from the Proof Builder pipeline. Real numbers, real timelines, real logos. Proof beats promises. Tap any card for the full record.</p>
     <hr class="section-rule">
+    <div class="proof-filters" id="proofFilters">
+      <div class="pf-group">
+        <label for="pfProduct">Products</label>
+        <select id="pfProduct"><option value="">All Products</option></select>
+      </div>
+      <div class="pf-group">
+        <label for="pfMethod">Delivery Method</label>
+        <select id="pfMethod"><option value="">All Methods</option></select>
+      </div>
+      <div class="pf-group">
+        <label for="pfType">Type</label>
+        <select id="pfType"><option value="">All Types</option></select>
+      </div>
+      <button type="button" class="pf-clear" id="pfClear">Clear filters</button>
+      <span class="pf-count" id="pfCount"></span>
+    </div>
     <div class="grid" id="ghProofGrid"></div>
   </section>
 
@@ -1378,21 +1450,85 @@
   const chips = document.querySelectorAll('.tag-chip:not(.wire-link)'); // wire-link navigates, it doesn't filter
   let activeFilter = 'all';
 
+  // ---------- Results proof filters (Products × Delivery Method × Type) ----------
+  // Proof cards are records rendered by assets/proofs.js into #ghProofGrid; each
+  // carries data-proof-id, which keys into window.FSGProof.list for its taxonomy
+  // (line / mode / type, plus the cells array for multi-cell proofs).
+  const proofGrid = document.getElementById('ghProofGrid');
+  const proofFiltersBar = document.getElementById('proofFilters');
+  const pfProduct = document.getElementById('pfProduct');
+  const pfMethod = document.getElementById('pfMethod');
+  const pfType = document.getElementById('pfType');
+  const pfClear = document.getElementById('pfClear');
+  const pfCount = document.getElementById('pfCount');
+
+  function proofList() { return (window.FSGProof && window.FSGProof.list) || []; }
+  function proofRecord(card) {
+    const id = card.dataset.proofId, list = proofList();
+    for (let i = 0; i < list.length; i++) if (list[i].id === id) return list[i];
+    return null;
+  }
+  function proofPairs(p) { return (p.cells && p.cells.length) ? p.cells : [[p.line, p.mode]]; }
+  function proofMatchesSel(card) {
+    const p = proofRecord(card);
+    if (!p) return true; // unknown record — never hide it by mistake
+    const pairs = proofPairs(p);
+    const prodOk = !pfProduct.value || pairs.some(c => c[0] === pfProduct.value) || p.line === pfProduct.value;
+    const methOk = !pfMethod.value || pairs.some(c => c[1] === pfMethod.value) || p.mode === pfMethod.value;
+    const typeOk = !pfType.value || p.type === pfType.value;
+    return prodOk && methOk && typeOk;
+  }
+  // NB: named pfFillSelect — the intake modal below has its own fillSelect in
+  // this same scope, and two declarations of one name would collide.
+  function pfFillSelect(sel, values) {
+    const prev = sel.value;
+    while (sel.options.length > 1) sel.remove(1);
+    values.forEach(v => { const o = document.createElement('option'); o.value = v; o.textContent = v; sel.appendChild(o); });
+    sel.value = (prev && values.indexOf(prev) >= 0) ? prev : '';
+  }
+  function refreshProofFilterOptions() {
+    // Products & methods come from the records themselves (curated + live feed),
+    // so a new proof card brings its own filter options with it. Types narrow to
+    // whatever survives the current Product / Method picks.
+    const prods = [], meths = [], types = [];
+    proofList().forEach(p => {
+      const pairs = proofPairs(p);
+      pairs.forEach(c => {
+        if (c[0] && prods.indexOf(c[0]) < 0) prods.push(c[0]);
+        if (c[1] && meths.indexOf(c[1]) < 0) meths.push(c[1]);
+      });
+      const prodOk = !pfProduct.value || pairs.some(c => c[0] === pfProduct.value) || p.line === pfProduct.value;
+      const methOk = !pfMethod.value || pairs.some(c => c[1] === pfMethod.value) || p.mode === pfMethod.value;
+      if (prodOk && methOk && p.type && types.indexOf(p.type) < 0) types.push(p.type);
+    });
+    prods.sort(); meths.sort(); types.sort();
+    pfFillSelect(pfProduct, prods);
+    pfFillSelect(pfMethod, meths);
+    pfFillSelect(pfType, types);
+  }
+
   function applyFilters() {
     const q = search.value.toLowerCase().trim();
     let anyVisible = false;
 
-    cards.forEach(card => {
+    // Query live, not the load-time NodeList — feed-merged proofs re-render the
+    // grid after load and still need to obey the chip + proof filters.
+    document.querySelectorAll('.card').forEach(card => {
       const tags = (card.dataset.tags || '').toLowerCase();
       const section = card.dataset.section || '';
       const title = (card.querySelector('h3')?.textContent || '').toLowerCase();
       const desc = (card.querySelector('p')?.textContent || '').toLowerCase();
+      const isProof = section === 'proof';
 
       const matchesSearch = !q || tags.includes(q) || title.includes(q) || desc.includes(q);
-      const matchesFilter = activeFilter === 'all' || section === activeFilter;
-      const isAvailable = card.dataset.available === 'true';
+      // Proof cards live under the Results chip only — never on All or other shelves.
+      const matchesFilter = isProof ? activeFilter === 'proof'
+                                    : (activeFilter === 'all' || section === activeFilter);
+      // Proof cards are records, not pages — no availability check to pass.
+      const isAvailable = isProof || card.dataset.available === 'true';
+      const matchesProof = !isProof || proofMatchesSel(card);
 
-      const show = isAvailable && matchesSearch && matchesFilter;
+      const show = isAvailable && matchesSearch && matchesFilter && matchesProof;
       card.style.display = show ? 'flex' : 'none';
       if (show) anyVisible = true;
     });
@@ -1402,8 +1538,26 @@
       if (secCards.length === 0) return; // methodology how-box & CTA sections stay
       let hasVisible = false;
       secCards.forEach(c => { if (c.style.display !== 'none') hasVisible = true; });
+      // Keep the Results section (and its filter bar) on screen while the Results
+      // chip is active, even when the proof filters match nothing.
+      if (activeFilter === 'proof' && proofGrid && sec.contains(proofGrid)) hasVisible = true;
       sec.style.display = hasVisible ? 'block' : 'none';
     });
+
+    // Proof filter chrome: highlight active selects, toggle Clear, count the board.
+    if (proofFiltersBar) {
+      [pfProduct, pfMethod, pfType].forEach(s => s.classList.toggle('pf-on', !!s.value));
+      proofFiltersBar.classList.toggle('has-active', !!(pfProduct.value || pfMethod.value || pfType.value));
+      if (proofGrid) {
+        const proofCards = proofGrid.querySelectorAll('.card');
+        let vis = 0;
+        proofCards.forEach(c => { if (c.style.display !== 'none') vis++; });
+        pfCount.textContent = (activeFilter === 'proof')
+          ? (vis === proofCards.length ? proofCards.length + ' proofs on the board'
+                                       : vis + ' of ' + proofCards.length + ' proofs')
+          : '';
+      }
+    }
 
     emptyState.style.display = anyVisible ? 'none' : 'block';
   }
@@ -1437,6 +1591,7 @@
     applyFilters();
   }
 
+  refreshProofFilterOptions(); // build the Products / Method / Type dropdowns from the records
   applyFilters();       // initial paint: everything hidden until checks return
   checkAvailability();  // reveal what's live
 
@@ -1450,6 +1605,20 @@
       applyFilters();
     });
   });
+
+  [pfProduct, pfMethod, pfType].forEach(sel => sel.addEventListener('change', () => {
+    refreshProofFilterOptions(); // narrow Type options to the picked Product/Method
+    applyFilters();
+  }));
+  pfClear.addEventListener('click', () => {
+    pfProduct.value = pfMethod.value = pfType.value = '';
+    refreshProofFilterOptions();
+    applyFilters();
+  });
+  // Feed-merged proofs rebuild the grid after load — refresh options and re-filter
+  // so new cards obey the chip and dropdowns the moment they land.
+  if (proofGrid) new MutationObserver(() => { refreshProofFilterOptions(); applyFilters(); })
+    .observe(proofGrid, { childList: true });
 
   // ---------- Intake modal ----------
   const overlay = document.getElementById('intakeOverlay');
