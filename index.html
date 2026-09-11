@@ -558,20 +558,77 @@
   }
   .modal-submit:disabled { opacity: .55; cursor: default; }
 
-  .modal-copy {
-    width: 100%;
-    margin-top: 8px;
+  /* ---- Mode toggle: ask for content vs. hand content in ---- */
+  .mode-toggle {
+    display: flex;
+    gap: 6px;
+    background: #f4f6fa;
+    border-radius: 8px;
+    padding: 4px;
+    margin-bottom: 18px;
+  }
+  .mode-btn {
+    flex: 1 1 0;
+    min-width: 0;
     background: transparent;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 8px;
+    min-height: 44px;
+    cursor: pointer;
+    font-family: 'Oswald', Arial, sans-serif;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase;
     color: var(--dark-navy);
+    line-height: 1.25;
+  }
+  .mode-btn[aria-pressed="true"] {
+    background: var(--dark-navy);
+    color: #fff;
+  }
+
+  /* ---- Drop zone ---- */
+  .dropzone {
+    border: 2px dashed #cbd5e0;
+    border-radius: 8px;
+    background: #fafbfd;
+    padding: 20px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color .15s, background .15s;
+  }
+  .dropzone:hover { border-color: var(--gold); }
+  .dropzone:focus-visible { border-color: var(--gold); outline: 2px solid var(--brand-blue); outline-offset: 2px; }
+  .dropzone.drag { border-color: var(--gold); background: #fffaed; }
+  .dropzone .dz-icon { font-size: 24px; line-height: 1; margin-bottom: 6px; }
+  .dropzone .dz-main {
     font-family: 'Oswald', Arial, sans-serif;
     font-weight: 600; font-size: 13px;
-    letter-spacing: 1.2px; text-transform: uppercase;
-    padding: 12px;
-    border: 1px solid #cbd5e0; border-radius: 6px;
-    cursor: pointer;
-    min-height: 44px;
+    letter-spacing: 1px; text-transform: uppercase;
+    color: var(--dark-navy);
   }
-  .modal-copy:hover { border-color: var(--gold); }
+  .dropzone .dz-sub { font-size: 12px; color: var(--steel-blue); margin-top: 4px; }
+
+  .file-list { list-style: none; margin-top: 10px; }
+  .file-row {
+    display: flex; align-items: center; gap: 10px;
+    border: 1px solid var(--light-gray); border-radius: 6px;
+    padding: 8px 10px; margin-bottom: 6px; background: #fff;
+  }
+  .file-row .fr-name {
+    flex: 1 1 auto; min-width: 0;
+    font-size: 13px; color: var(--deep-navy);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .file-row .fr-size { font-size: 12px; color: var(--steel-blue); flex-shrink: 0; }
+  .file-row .fr-x {
+    flex-shrink: 0; background: none; border: none; cursor: pointer;
+    color: var(--steel-blue); font-size: 20px; line-height: 1;
+    min-width: 32px; min-height: 32px;
+  }
+  .file-row .fr-x:hover { color: #c53030; }
+  .file-total { font-size: 12px; color: var(--steel-blue); margin-top: 6px; text-align: right; }
+  .file-total.over { color: #c53030; font-weight: 600; }
 
   .modal-status {
     display: none;
@@ -1126,8 +1183,8 @@
   <section class="section">
     <div class="close-cta">
       <h2>Let's Go! 🔥</h2>
-      <p>Every deal in this HQ starts the same way: find the problem, bring the plan, make the client the hero. Missing a deck or need a new play built?</p>
-      <button class="cta-btn" id="openIntake" type="button">Request a Deck</button>
+      <p>Every deal in this HQ starts the same way: find the problem, bring the plan, make the client the hero. Need something built — or did you build something the team should have?</p>
+      <button class="cta-btn" id="openIntake" type="button">New Content</button>
     </div>
   </section>
 
@@ -1145,8 +1202,13 @@
     <button class="modal-close" id="closeIntake" aria-label="Close">&times;</button>
 
     <div id="intakeFormWrap">
-      <h3 id="intakeTitle">Request a Deck</h3>
-      <p class="modal-sub">Tell us the story. The clearer the problem, the faster we build the play.</p>
+      <h3 id="intakeTitle">New Content</h3>
+      <p class="modal-sub" id="intakeSub">Tell us the story. The clearer the problem, the faster we build the play.</p>
+
+      <div class="mode-toggle" role="group" aria-label="What are you here to do?">
+        <button type="button" class="mode-btn" id="modeRequest" data-mode="request" aria-pressed="true">I need content built</button>
+        <button type="button" class="mode-btn" id="modeShare" data-mode="share" aria-pressed="false">I built something</button>
+      </div>
 
       <div class="field">
         <label for="reqName">Name</label>
@@ -1155,35 +1217,59 @@
 
       <div class="field">
         <label for="reqEmail">Email</label>
+        <span class="hint">We send you a copy of everything you submit.</span>
         <input type="email" id="reqEmail" autocomplete="email" placeholder="you@fsgi.com">
       </div>
 
+      <div class="field" id="fieldTitle" style="display:none">
+        <label for="reqTitle">What is it?</label>
+        <span class="hint">Name the piece — deck, one-pager, battle card, case study</span>
+        <input type="text" id="reqTitle" placeholder="e.g., Owner-Supplied Lighting battle card">
+      </div>
+
       <div class="field">
-        <label for="reqHero">Who's the hero?</label>
-        <span class="hint">The client — who are they and what facility type?</span>
+        <label for="reqHero" id="labelHero">Who's the hero?</label>
+        <span class="hint" id="hintHero">The client — who are they and what facility type?</span>
         <input type="text" id="reqHero" placeholder="e.g., Regional C-store chain, 80 sites, TX/OK">
       </div>
 
       <div class="field">
-        <label for="reqVillain">What's the villain?</label>
-        <span class="hint">The pain — what problem is blocking them or blocking the deal?</span>
+        <label for="reqVillain" id="labelVillain">What's the villain?</label>
+        <span class="hint" id="hintVillain">The pain — what problem is blocking them or blocking the deal?</span>
         <textarea id="reqVillain" placeholder="e.g., Their GC pushes back on owner-supplied lighting; no battle card to counter it"></textarea>
       </div>
 
       <div class="field">
-        <label for="reqPlan">What's our play?</label>
-        <span class="hint">The solution or product you think fits — or say "not sure, help me find it"</span>
-        <input type="text" id="reqPlan" placeholder="e.g., Lighting Design Program / EBV® / not sure">
+        <label for="reqPlan" id="labelPlan">What's our play?</label>
+        <span class="hint" id="hintPlan">The solution or product you think fits — or say "not sure, help me find it"</span>
+        <input type="text" id="reqPlan" placeholder="e.g., Lighting Design Program / EBV&reg; / not sure">
       </div>
 
-      <button class="modal-submit" id="sendIntake" type="button">Send It 🔥</button>
-      <button class="modal-copy" id="copyIntake" type="button">Copy Request Instead</button>
+      <div class="field" id="fieldLink" style="display:none">
+        <label for="reqLink">Link</label>
+        <span class="hint">Optional — if it already lives in Drive, Canva or SharePoint</span>
+        <input type="url" id="reqLink" placeholder="https://">
+      </div>
+
+      <div class="field">
+        <label for="fileInput" id="labelFiles">Files</label>
+        <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Add files">
+          <div class="dz-icon" aria-hidden="true">&#128228;</div>
+          <div class="dz-main" id="dzMain">Add reference files</div>
+          <div class="dz-sub" id="dzSub">Drag them here or click to browse — 20MB total</div>
+        </div>
+        <input type="file" id="fileInput" multiple style="display:none">
+        <ul class="file-list" id="fileList"></ul>
+        <div class="file-total" id="fileTotal" style="display:none"></div>
+      </div>
+
+      <button class="modal-submit" id="sendIntake" type="button">Send It &#128293;</button>
       <div class="modal-status" id="intakeStatus" role="status" aria-live="polite"></div>
     </div>
 
     <div class="modal-confirm" id="intakeConfirm">
       <div class="flame">🔥</div>
-      <h4>We're All Over This</h4>
+      <h4 id="intakeConfirmHead">We’re All Over This</h4>
       <p id="intakeConfirmMsg">Your request is in. We're on it.</p>
     </div>
   </div>
@@ -1275,19 +1361,94 @@
   const openBtn = document.getElementById('openIntake');
   const closeBtn = document.getElementById('closeIntake');
   const sendBtn = document.getElementById('sendIntake');
-  const copyBtn = document.getElementById('copyIntake');
   const statusEl = document.getElementById('intakeStatus');
   const formWrap = document.getElementById('intakeFormWrap');
   const confirmWrap = document.getElementById('intakeConfirm');
+  const confirmHead = document.getElementById('intakeConfirmHead');
   const confirmMsg = document.getElementById('intakeConfirmMsg');
 
-  // ---- Where deck requests go -------------------------------------------
-  // Leave DECK_ENDPOINT empty and the button hands off to the rep's mail
+  // ---- Where submissions go ---------------------------------------------
+  // Leave CONTENT_ENDPOINT empty and the button hands off to the rep's mail
   // client (mailto) with a clipboard fallback. Paste the Google Apps Script
   // Web App URL here and it POSTs instead — a real server-side send that
   // lands in the inbox without the rep having to press send in a mail app.
-  const DECK_ENDPOINT = '';
+  //
+  // NOTE: dropped files can only ride the endpoint path. A mailto: link
+  // cannot carry an attachment — that is a browser limit, not a bug — so
+  // with the endpoint empty the drop zone tells the rep to attach by hand.
+  const CONTENT_ENDPOINT = '';
   const DECK_TO = 'bobby.graham@fsgi.com';
+
+  // 20MB of raw file. Base64 inflates the POST by about a third, which keeps
+  // it inside Apps Script's limit; the backend attaches what fits on the mail
+  // and files everything in Drive either way.
+  const MAX_UPLOAD_BYTES = 20 * 1024 * 1024;
+
+  // ---- The two modes ----------------------------------------------------
+  // One set of fields, two sets of words. Asking for a deck and handing one
+  // in are the same shape of conversation — who it's for, what it fixes,
+  // where it fits — so the form doesn't change, only what it calls things.
+  const MODES = {
+    request: {
+      sub: 'Tell us the story. The clearer the problem, the faster we build the play.',
+      hero:    { label: 'Who’s the hero?', hint: 'The client — who are they and what facility type?', ph: 'e.g., Regional C-store chain, 80 sites, TX/OK' },
+      villain: { label: 'What’s the villain?', hint: 'The pain — what problem is blocking them or blocking the deal?', ph: 'e.g., Their GC pushes back on owner-supplied lighting; no battle card to counter it' },
+      plan:    { label: 'What’s our play?', hint: 'The solution or product you think fits — or say "not sure, help me find it"', ph: 'e.g., Lighting Design Program / EBV® / not sure' },
+      showTitle: false,
+      showLink: false,
+      filesLabel: 'Attachments',
+      dzMain: 'Add reference files',
+      dzSub: 'Optional — the RFP, a site photo, a competitor’s deck',
+      confirmHead: 'We’re All Over This'
+    },
+    share: {
+      sub: 'You built something that works. Hand it over and we’ll get it on the shelf for everyone.',
+      hero:    { label: 'Who’s it for?', hint: 'The audience — which reps or which customer should be using this?', ph: 'e.g., BD reps pitching GCs on owner-supplied lighting' },
+      villain: { label: 'What problem does it solve?', hint: 'Why you built it and what it wins — this becomes the card copy on the hub', ph: 'e.g., Reps had no counter when the GC says they’ll supply the fixtures' },
+      plan:    { label: 'Where does it fit?', hint: 'Product line, solution, or market sector — so it lands under the right chip', ph: 'e.g., Lighting Design Program / C-store' },
+      showTitle: true,
+      showLink: true,
+      filesLabel: 'Your files',
+      dzMain: 'Drop your files here',
+      dzSub: 'Or click to browse — decks, PDFs, images. 20MB total.',
+      confirmHead: 'Got It — Thank You'
+    }
+  };
+
+  let mode = 'request';
+  let files = [];
+
+  const el = (id) => document.getElementById(id);
+
+  function applyMode(next) {
+    mode = next;
+    const m = MODES[mode];
+
+    el('modeRequest').setAttribute('aria-pressed', String(mode === 'request'));
+    el('modeShare').setAttribute('aria-pressed', String(mode === 'share'));
+
+    el('intakeSub').textContent = m.sub;
+    ['hero', 'villain', 'plan'].forEach((k) => {
+      const key = k.charAt(0).toUpperCase() + k.slice(1);
+      el('label' + key).textContent = m[k].label;
+      el('hint' + key).textContent = m[k].hint;
+      el('req' + key).placeholder = m[k].ph;
+    });
+
+    el('fieldTitle').style.display = m.showTitle ? 'block' : 'none';
+    el('fieldLink').style.display  = m.showLink  ? 'block' : 'none';
+
+    el('labelFiles').textContent = m.filesLabel;
+    el('dzMain').textContent = m.dzMain;
+    el('dzSub').textContent = CONTENT_ENDPOINT
+      ? m.dzSub
+      : 'We\u2019ll list them in your email so you know exactly what to attach.';
+
+    hideStatus();
+  }
+
+  el('modeRequest').addEventListener('click', () => applyMode('request'));
+  el('modeShare').addEventListener('click', () => applyMode('share'));
 
   openBtn.addEventListener('click', () => {
     overlay.classList.add('open');
@@ -1313,17 +1474,156 @@
     statusEl.textContent = '';
   }
 
-  // Reads the form. Returns null (and flags the problem) if it isn't complete.
+  // ---- Drop zone --------------------------------------------------------
+  const dropzone = el('dropzone');
+  const fileInput = el('fileInput');
+  const fileListEl = el('fileList');
+  const fileTotalEl = el('fileTotal');
+
+  function fmtBytes(n) {
+    if (n < 1024) return n + ' B';
+    if (n < 1024 * 1024) return Math.round(n / 1024) + ' KB';
+    return (n / (1024 * 1024)).toFixed(1) + ' MB';
+  }
+
+  function totalBytes() {
+    return files.reduce((sum, f) => sum + f.size, 0);
+  }
+
+  function renderFiles() {
+    fileListEl.innerHTML = '';
+    files.forEach((f, i) => {
+      const li = document.createElement('li');
+      li.className = 'file-row';
+
+      const name = document.createElement('span');
+      name.className = 'fr-name';
+      name.textContent = f.name;
+
+      const size = document.createElement('span');
+      size.className = 'fr-size';
+      size.textContent = fmtBytes(f.size);
+
+      const x = document.createElement('button');
+      x.type = 'button';
+      x.className = 'fr-x';
+      x.setAttribute('aria-label', 'Remove ' + f.name);
+      x.innerHTML = '&times;';
+      x.addEventListener('click', () => {
+        files.splice(i, 1);
+        renderFiles();
+        hideStatus();
+      });
+
+      li.appendChild(name);
+      li.appendChild(size);
+      li.appendChild(x);
+      fileListEl.appendChild(li);
+    });
+
+    const total = totalBytes();
+    if (!files.length) {
+      fileTotalEl.style.display = 'none';
+    } else {
+      fileTotalEl.style.display = 'block';
+      fileTotalEl.textContent = files.length + (files.length === 1 ? ' file · ' : ' files · ') + fmtBytes(total);
+      fileTotalEl.classList.toggle('over', total > MAX_UPLOAD_BYTES);
+    }
+  }
+
+  function addFiles(list) {
+    const incoming = Array.from(list || []);
+    if (!incoming.length) return;
+    incoming.forEach((f) => {
+      // Same name and size twice is the same file — dropping it again is
+      // almost always a slip, not an intention.
+      const dupe = files.some((g) => g.name === f.name && g.size === f.size);
+      if (!dupe) files.push(f);
+    });
+    renderFiles();
+    if (totalBytes() > MAX_UPLOAD_BYTES) {
+      showStatus('That’s over the ' + fmtBytes(MAX_UPLOAD_BYTES) + ' limit. Drop the biggest one and send a link to it instead.', true);
+    } else {
+      hideStatus();
+    }
+  }
+
+  dropzone.addEventListener('click', () => fileInput.click());
+  dropzone.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileInput.click(); }
+  });
+  fileInput.addEventListener('change', () => { addFiles(fileInput.files); fileInput.value = ''; });
+
+  ['dragenter', 'dragover'].forEach((evt) => {
+    dropzone.addEventListener(evt, (e) => { e.preventDefault(); dropzone.classList.add('drag'); });
+  });
+  ['dragleave', 'drop'].forEach((evt) => {
+    dropzone.addEventListener(evt, (e) => { e.preventDefault(); dropzone.classList.remove('drag'); });
+  });
+  dropzone.addEventListener('drop', (e) => {
+    if (e.dataTransfer && e.dataTransfer.files) addFiles(e.dataTransfer.files);
+  });
+
+  // The overlay swallows a stray drop so a miss doesn't navigate the browser
+  // away to the dropped file and lose everything typed so far.
+  overlay.addEventListener('dragover', (e) => e.preventDefault());
+  overlay.addEventListener('drop', (e) => e.preventDefault());
+
+  function readAsBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const res = String(reader.result || '');
+        const comma = res.indexOf(',');
+        resolve({
+          name: file.name,
+          type: file.type || 'application/octet-stream',
+          size: file.size,
+          data: comma >= 0 ? res.slice(comma + 1) : ''
+        });
+      };
+      reader.onerror = () => reject(new Error('read failed'));
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // ---- Reading the form -------------------------------------------------
   function readForm() {
     const f = {
-      name:    document.getElementById('reqName').value.trim(),
-      email:   document.getElementById('reqEmail').value.trim(),
-      hero:    document.getElementById('reqHero').value.trim(),
-      villain: document.getElementById('reqVillain').value.trim(),
-      plan:    document.getElementById('reqPlan').value.trim()
+      mode:    mode,
+      name:    el('reqName').value.trim(),
+      email:   el('reqEmail').value.trim(),
+      title:   el('reqTitle').value.trim(),
+      hero:    el('reqHero').value.trim(),
+      villain: el('reqVillain').value.trim(),
+      plan:    el('reqPlan').value.trim(),
+      link:    el('reqLink').value.trim()
     };
-    if (!f.name || !f.email || !f.villain) {
-      showStatus('Name, email, and the villain (the problem) are required.', true);
+
+    if (!f.name || !f.email) {
+      showStatus('Name and email are required — the email is how you get your copy.', true);
+      return null;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) {
+      showStatus('That email doesn’t look right. Check it and try again.', true);
+      return null;
+    }
+    if (mode === 'request' && !f.villain) {
+      showStatus('Tell us the villain — the problem is the whole ask.', true);
+      return null;
+    }
+    if (mode === 'share') {
+      if (!f.title) {
+        showStatus('Give it a name so we know what we’re looking at.', true);
+        return null;
+      }
+      if (!files.length && !f.link) {
+        showStatus('Add a file or paste a link — otherwise there’s nothing to share.', true);
+        return null;
+      }
+    }
+    if (totalBytes() > MAX_UPLOAD_BYTES) {
+      showStatus('Still over the ' + fmtBytes(MAX_UPLOAD_BYTES) + ' limit. Remove a file or send a link instead.', true);
       return null;
     }
     return f;
@@ -1331,13 +1631,48 @@
 
   // Kept deliberately short. The old version ran past 2,000 characters once
   // encoded, which is over the mailto: ceiling in Chrome and Windows — the
-  // browser dropped the request with no error. Stakes and Win moved out of
-  // the template; they belong in the reply, not the ask.
+  // browser dropped the request with no error.
   function buildBody(f) {
+    const fileLines = files.length
+      ? files.map((x) => '  • ' + x.name + '  (' + fmtBytes(x.size) + ')')
+      : ['  (none)'];
+
+    if (f.mode === 'share') {
+      return [
+        'Bobby,',
+        '',
+        'I built something worth sharing.',
+        '',
+        'WHAT IT IS',
+        f.title,
+        '',
+        'WHO IT’S FOR',
+        f.hero || '(not given)',
+        '',
+        'WHAT IT SOLVES',
+        f.villain || '(not given)',
+        '',
+        'WHERE IT FITS',
+        f.plan || '(not given)',
+        '',
+        'LINK',
+        f.link || '(none)',
+        '',
+        'FILES',
+        fileLines.join('\n'),
+        '',
+        'Let’s go! 🔥',
+        f.name,
+        f.email,
+        '',
+        '— Sent from FSG Growth Hub'
+      ].join('\n');
+    }
+
     return [
       'Bobby,',
       '',
-      'I need a deck built.',
+      'I need content built.',
       '',
       'HERO — the client',
       f.hero || '(not given)',
@@ -1348,6 +1683,9 @@
       'PLAY — our solution',
       f.plan || '(not sure — help me find it)',
       '',
+      'FILES',
+      fileLines.join('\n'),
+      '',
       'Let’s go! 🔥',
       f.name,
       f.email,
@@ -1357,7 +1695,9 @@
   }
 
   function buildSubject(f) {
-    return 'Growth Hub Deck Request — ' + f.name;
+    return f.mode === 'share'
+      ? 'Growth Hub — New Content from ' + f.name + ': ' + f.title
+      : 'Growth Hub — Content Request from ' + f.name;
   }
 
   // Anchor click rather than window.location.href — a same-page navigation to
@@ -1375,16 +1715,14 @@
     a.remove();
   }
 
-  function plainRequest(f) {
-    return 'To: ' + DECK_TO + '\nSubject: ' + buildSubject(f) + '\n\n' + buildBody(f);
-  }
-
+  // Silent safety net on the mail-client path only: if no mail handler is
+  // registered the navigation resolves to nothing, and the clipboard is the
+  // only thing standing between the rep and retyping the whole form.
   function copyRequest(f) {
-    const text = plainRequest(f);
+    const text = 'To: ' + DECK_TO + '\nSubject: ' + buildSubject(f) + '\n\n' + buildBody(f);
     if (navigator.clipboard && window.isSecureContext) {
       return navigator.clipboard.writeText(text).then(() => true).catch(() => false);
     }
-    // Fallback for non-HTTPS contexts, where the clipboard API is unavailable.
     try {
       const ta = document.createElement('textarea');
       ta.value = text;
@@ -1401,24 +1739,12 @@
     }
   }
 
-  function showConfirm(msg) {
+  function showConfirm(f, msg) {
+    confirmHead.textContent = MODES[f.mode].confirmHead;
     confirmMsg.textContent = msg;
     formWrap.style.display = 'none';
     confirmWrap.style.display = 'block';
   }
-
-  // ---- Copy Request Instead ---------------------------------------------
-  copyBtn.addEventListener('click', () => {
-    const f = readForm();
-    if (!f) return;
-    copyRequest(f).then((ok) => {
-      if (ok) {
-        showStatus('Copied. Paste it into an email to ' + DECK_TO + '.', false);
-      } else {
-        showStatus('Couldn’t reach the clipboard — email ' + DECK_TO + ' directly.', true);
-      }
-    });
-  });
 
   // ---- Send It ----------------------------------------------------------
   sendBtn.addEventListener('click', () => {
@@ -1426,48 +1752,64 @@
     if (!f) return;
     hideStatus();
 
-    // No endpoint configured: hand off to the mail client, and put the same
-    // text on the clipboard so the request survives a missing mail handler.
-    if (!DECK_ENDPOINT) {
+    // No endpoint configured: hand off to the mail client. Files can't ride a
+    // mailto:, so the body lists them by name and the rep attaches them.
+    if (!CONTENT_ENDPOINT) {
       openMailClient(f);
       copyRequest(f);
-      showConfirm('Your email should be opening now with the request pre-filled — you’re CC’d so you have a copy. Hit send and we’re on it. If nothing opened, the request is on your clipboard — paste it into an email to ' + DECK_TO + '.');
+      showConfirm(f, 'Your email should be opening with everything filled in — you’re CC’d so you keep a copy. ' +
+        (files.length ? 'Attach the ' + files.length + (files.length === 1 ? ' file' : ' files') + ' listed in the body, then hit send. ' : 'Hit send and we’re on it. ') +
+        'If nothing opened, it’s on your clipboard — paste it into an email to ' + DECK_TO + '.');
       return;
     }
 
-    // Endpoint configured: real send.
+    // Endpoint configured: real send, attachments and all.
     sendBtn.disabled = true;
-    const original = sendBtn.textContent;
-    sendBtn.textContent = 'Sending…';
-    showStatus('Sending your request…', false);
+    const original = sendBtn.innerHTML;
+    sendBtn.textContent = files.length ? 'Uploading…' : 'Sending…';
+    showStatus(files.length ? 'Uploading your files…' : 'Sending…', false);
 
-    // text/plain keeps this a CORS-simple request. Apps Script Web Apps don't
-    // answer the OPTIONS preflight that an application/json POST would trigger,
-    // so doPost parses e.postData.contents as JSON on the other end.
-    fetch(DECK_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify({
-        name: f.name, email: f.email, hero: f.hero,
-        villain: f.villain, plan: f.plan,
-        subject: buildSubject(f), body: buildBody(f),
-        source: 'Growth Hub index'
+    Promise.all(files.map(readAsBase64))
+      .then((payloadFiles) => {
+        sendBtn.textContent = 'Sending…';
+        // text/plain keeps this a CORS-simple request. Apps Script Web Apps
+        // don't answer the OPTIONS preflight that an application/json POST
+        // triggers, so doPost parses e.postData.contents as JSON instead.
+        return fetch(CONTENT_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({
+            kind: 'content',
+            mode: f.mode,
+            name: f.name, email: f.email, title: f.title, hero: f.hero,
+            villain: f.villain, plan: f.plan, link: f.link,
+            subject: buildSubject(f), body: buildBody(f),
+            files: payloadFiles,
+            source: 'Growth Hub index'
+          })
+        });
       })
-    })
       .then((res) => res.json())
       .then((data) => {
         if (!data || data.ok !== true) throw new Error((data && data.error) || 'send failed');
-        showConfirm('Your request is in — it just landed in Bobby’s inbox and you’re CC’d so you have a copy. We’re on it.');
+        const filed = data.folderUrl ? ' Your files are filed in Drive.' : '';
+        showConfirm(f, f.mode === 'share'
+          ? 'It’s in — landed in Bobby’s inbox and you’re CC’d so you keep a copy.' + filed + ' We’ll QA it and get it on the shelf with your name on it.'
+          : 'Your request is in — it just landed in Bobby’s inbox and you’re CC’d so you have a copy.' + filed + ' We’re on it.');
       })
       .catch(() => {
         // Never strand the rep on a failed send — fall back to the mail client.
         sendBtn.disabled = false;
-        sendBtn.textContent = original;
+        sendBtn.innerHTML = original;
         openMailClient(f);
         copyRequest(f);
-        showConfirm('The direct send didn’t go through, so your email should be opening with the request pre-filled instead. Hit send and we’re on it. If nothing opened, it’s on your clipboard — paste it into an email to ' + DECK_TO + '.');
+        showConfirm(f, 'The direct send didn’t go through, so your email should be opening with everything filled in instead. ' +
+          (files.length ? 'Attach the ' + files.length + (files.length === 1 ? ' file' : ' files') + ' listed in the body, then hit send. ' : 'Hit send and we’re on it. ') +
+          'If nothing opened, it’s on your clipboard — paste it into an email to ' + DECK_TO + '.');
       });
   });
+
+  applyMode('request');
 
 </script>
 
