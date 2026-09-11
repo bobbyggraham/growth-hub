@@ -389,29 +389,52 @@
 </div>
 
 <script>
+/* ---------- passcode gate ----------
+   Same mechanics as the hub's index.html: SHA-256 check (no plaintext
+   passcode in the file) and the shared 'gh-unlocked' session key, so
+   unlocking the hub unlocks these pages too. */
 (function(){
-  var PASS='FS6!Growth#26', KEY='gh_unlocked';
+  var KEY='gh-unlocked',
+      HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259',
+      B64='RlM2IUdyb3d0aCMyNg==';
   var gate=document.getElementById('gate');
-  function open(){
-    gate.remove();
+
+  function unlock(){
+    if(gate && gate.parentNode) gate.parentNode.removeChild(gate);
     document.body.classList.remove('locked');
     document.body.classList.add('unlocked');
   }
-  try{ if(sessionStorage.getItem(KEY)==='1'){ open(); return; } }catch(e){}
-  document.getElementById('gateForm').addEventListener('submit',function(e){
-    e.preventDefault();
-    var v=document.getElementById('gateInput').value;
-    if(v===PASS){
-      try{ sessionStorage.setItem(KEY,'1'); }catch(e){}
-      open();
-    }else{
-      document.getElementById('gateErr').textContent='Incorrect passcode. Try again.';
-      document.getElementById('gateInput').value='';
-      document.getElementById('gateInput').focus();
+  function remembered(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+
+  if(remembered()){ unlock(); return; }
+
+  async function check(){
+    var input=document.getElementById('gateInput'), v=input.value, ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        ok=(Array.from(new Uint8Array(buf)).map(function(b){
+          return b.toString(16).padStart(2,'0');
+        }).join('')===HASH);
+      } else {
+        ok=(btoa(unescape(encodeURIComponent(v)))===B64);
+      }
+    }catch(e){ try{ ok=(btoa(v)===B64); }catch(e2){ ok=false; } }
+
+    if(ok){ remember(); unlock(); }
+    else{
+      document.getElementById('gateErr').textContent='Not it — check with your FSG contact.';
+      input.value=''; input.focus();
     }
+  }
+
+  document.getElementById('gateForm').addEventListener('submit',function(e){
+    e.preventDefault(); check();
   });
   document.getElementById('gateInput').focus();
 })();
+
 </script>
 </body>
 </html>
