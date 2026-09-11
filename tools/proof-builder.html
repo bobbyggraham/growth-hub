@@ -642,6 +642,24 @@ function subjectLine(){
   return ['GrowthHub', $('fName').value.trim() || 'Client', $('fProd').value || 'Product', $('fMode').value || 'Delivery Method'].join(' / ');
 }
 
+// Same record as proofRecord(), as data instead of pasteable source. The
+// endpoint turns this straight into the feed entry that renders on Results.
+function recordFields(){
+  const allPerm = $('pName').checked && $('pLogo').checked && $('pNum').checked && $('pQuote').checked;
+  return {
+    vertical: $('fVert').value,
+    line: $('fProd').value, mode: $('fMode').value, type: typeSel.join(', '),
+    story: ($('fSolution').value||'').split(/(?<=[.!?])\s/)[0],
+    problem: $('fProblem').value.trim(),
+    solution: $('fSolution').value.trim(),
+    stats: [1,2,3,4].map((i,ix)=>({n:$('s'+i+'v').value.trim(), l:$('s'+i+'l').value.trim(), hi: ix===0 || undefined}))
+                    .filter(s=>s.n && s.l),
+    quote: $('fQuote').value.trim().replace(/^"|"$/g,''),
+    quoteBy: $('fQuoteBy').value.trim(),
+    permissions: allPerm ? 'Name · Logo · Numbers — all approved' : 'PENDING — verify before external use'
+  };
+}
+
 // Short enough to survive the mailto: ceiling with room to spare.
 function shortBody(){
   const allPerm = $('pName').checked && $('pLogo').checked && $('pNum').checked && $('pQuote').checked;
@@ -740,6 +758,9 @@ $('btnMail').addEventListener('click', ()=>{
       subject: subjectLine(),
       body: fullBody(''),
       record: proofRecord(),
+      // Structured copy of the same record, so the endpoint can build the feed
+      // entry without parsing the pasteable JS source above.
+      fields: recordFields(),
       cardHtml: card,
       cardName: cardFilename(),
       logos: logoData.length,
