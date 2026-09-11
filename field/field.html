@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>The Field</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='115' fill='%23133865'/><g stroke='%23c5d9fa' stroke-width='22' stroke-linecap='round'><line x1='256' y1='256' x2='256' y2='96'/><line x1='256' y1='256' x2='394.6' y2='176'/><line x1='256' y1='256' x2='394.6' y2='336'/><line x1='256' y1='256' x2='256' y2='416'/><line x1='256' y1='256' x2='117.4' y2='336'/><line x1='256' y1='256' x2='117.4' y2='176'/></g><circle cx='256' cy='96' r='42' fill='%23ffffff'/><circle cx='394.6' cy='176' r='42' fill='%23c5d9fa'/><circle cx='394.6' cy='336' r='42' fill='%23ffffff'/><circle cx='256' cy='416' r='42' fill='%23c5d9fa'/><circle cx='117.4' cy='336' r='42' fill='%23ffffff'/><circle cx='117.4' cy='176' r='42' fill='%23ebb018'/><circle cx='256' cy='256' r='76' fill='%23ebb018'/></svg>">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fsg-deep-navy: #0b1421;
+    --fsg-dark-navy: #133865;
+    --fsg-brand-blue: #365aa0;
+    --fsg-steel-blue: #718dbc;
+    --fsg-light-blue: #c5d9fa;
+    --fsg-light-gray: #ededed;
+    --fsg-gold: #ebb018;
+    --fsg-bright-blue: #4e84de;
+    --fsg-green: #2e6b34;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    color: var(--fsg-deep-navy);
+    background: #ffffff;
+    line-height: 1.55;
+    font-size: 16px;
+  }
+  .page { max-width: 960px; margin: 0 auto; padding: 32px 24px 48px; }
+
+  /* ---------- hero ---------- */
+  .hero {
+    background:
+      repeating-linear-gradient(115deg, rgba(255,255,255,.028) 0 26px, transparent 26px 52px),
+      var(--fsg-dark-navy);
+    border-radius: 8px;
+    padding: 28px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    flex-wrap: wrap;
+    color: #fff;
+  }
+  .eyebrow {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 500; font-size: 12px; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--fsg-gold); margin-bottom: 8px;
+  }
+  .hero h1 {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 700; font-size: clamp(30px, 5vw, 40px);
+    letter-spacing: 1px; text-transform: uppercase; line-height: 1.05;
+  }
+  .subtitle { color: var(--fsg-light-blue); font-size: 15px; margin-top: 8px; max-width: 520px; }
+  .org { text-align: right; font-family: 'Oswald', Arial, sans-serif; }
+  .org .fsg { font-size: 12px; font-weight: 600; letter-spacing: 2px; color: #fff; }
+  .org .sub { font-size: 11px; letter-spacing: 1.5px; color: var(--fsg-steel-blue); margin-top: 3px; }
+  .gold-rule { border: none; height: 3px; background: var(--fsg-gold); margin: 0 0 26px; border-radius: 2px; }
+
+  /* ---------- scoreboard strip ---------- */
+  .strip {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px; margin: 24px 0 30px;
+  }
+  .strip .box {
+    background: var(--fsg-deep-navy); border: 1px solid #22406b; border-radius: 8px;
+    padding: 14px 12px 15px; text-align: center;
+  }
+  .strip .lbl {
+    font-family: 'Oswald', Arial, sans-serif; font-size: 11px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--fsg-steel-blue); margin-bottom: 5px;
+  }
+  .strip .val {
+    font-family: 'Oswald', Arial, sans-serif; font-weight: 700; font-size: 26px;
+    color: var(--fsg-gold); text-shadow: 0 0 6px rgba(235,176,24,.7); line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .strip .sub { font-size: 12px; color: var(--fsg-steel-blue); margin-top: 5px; }
+
+  /* ---------- section headers ---------- */
+  .kicker {
+    font-family: 'Oswald', Arial, sans-serif; font-size: 12px; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--fsg-brand-blue); margin-bottom: 4px;
+  }
+  h2.sec {
+    font-family: 'Oswald', Arial, sans-serif; font-weight: 700; font-size: 22px;
+    letter-spacing: .5px; text-transform: uppercase; color: var(--fsg-dark-navy);
+  }
+  .sec-sub { font-size: 14.5px; color: #4a5d75; margin-top: 5px; }
+  hr.rule { border: none; height: 2px; background: var(--fsg-light-gray); margin: 12px 0 20px; }
+
+  /* ---------- game cards ---------- */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }
+  /* the live game is the marquee — it stretches to fill the section */
+  .grid.live-grid { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+  .grid.live-grid .game { padding: 24px 26px 22px; }
+  .grid.live-grid .game h3 { font-size: 24px; }
+  .grid.live-grid .game p { font-size: 15px; max-width: 620px; }
+  .game {
+    display: block; text-decoration: none; color: inherit;
+    background: #fff; border: 1px solid var(--fsg-light-gray);
+    border-top: 4px solid var(--fsg-gold); border-radius: 10px;
+    padding: 20px 22px 18px;
+    transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+  }
+  .game:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(11,20,33,.11); }
+  .game.soon { border-top-color: var(--fsg-light-gray); background: #fafbfd; }
+  .game.soon:hover { transform: none; box-shadow: none; }
+  .game-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .pill {
+    font-family: 'Oswald', Arial, sans-serif; font-size: 10.5px; font-weight: 600;
+    letter-spacing: 1.6px; text-transform: uppercase; padding: 3px 9px; border-radius: 999px;
+  }
+  .pill.live { background: var(--fsg-gold); color: var(--fsg-deep-navy); }
+  .pill.soon { background: var(--fsg-light-gray); color: var(--fsg-steel-blue); }
+  .game-date { font-family: 'Oswald', Arial, sans-serif; font-size: 11px; letter-spacing: 1.2px; color: var(--fsg-steel-blue); text-transform: uppercase; }
+  .game h3 {
+    font-family: 'Oswald', Arial, sans-serif; font-weight: 600; font-size: 20px;
+    letter-spacing: .4px; color: var(--fsg-dark-navy); margin-bottom: 6px;
+  }
+  .game .matchup {
+    font-family: 'Oswald', Arial, sans-serif; font-size: 12px; letter-spacing: 1.6px;
+    text-transform: uppercase; color: var(--fsg-brand-blue); margin-bottom: 8px;
+  }
+  .game .matchup em { color: var(--fsg-gold); font-style: normal; }
+  .game p { font-size: 14px; color: #4a5d75; line-height: 1.5; }
+  .game .cta {
+    display: inline-block; margin-top: 14px;
+    font-family: 'Oswald', Arial, sans-serif; font-size: 12px; font-weight: 600;
+    letter-spacing: 1.8px; text-transform: uppercase; color: var(--fsg-bright-blue);
+  }
+  .game:hover .cta { color: var(--fsg-gold); }
+  .game.soon .cta { color: var(--fsg-steel-blue); }
+
+  /* ---------- house rules ---------- */
+  .rules { background: #f7f8fa; border: 1px solid var(--fsg-light-gray); border-left: 4px solid var(--fsg-dark-navy); border-radius: 8px; padding: 20px 24px; margin-top: 14px; }
+  .rules dl { display: grid; grid-template-columns: max-content 1fr; gap: 10px 22px; }
+  .rules dt { font-family: 'Oswald', Arial, sans-serif; font-size: 13px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--fsg-dark-navy); white-space: nowrap; }
+  .rules dd { font-size: 14.5px; color: #4a5d75; }
+  .rules dd b { color: var(--fsg-deep-navy); }
+  @media (max-width: 560px) { .rules dl { grid-template-columns: 1fr; } .rules dt { margin-top: 8px; } }
+
+  .callout { background: #fff8e4; border: 1px solid #f0dca5; border-left: 4px solid var(--fsg-gold); border-radius: 8px; padding: 16px 20px; font-size: 14.5px; margin-top: 30px; }
+
+  footer { margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--fsg-light-gray); font-size: 12px; color: var(--fsg-steel-blue); text-align: center; }
+
+  @media (prefers-reduced-motion: reduce) { .game { transition: none; } .game:hover { transform: none; } }
+</style>
+</head>
+<body>
+
+<!-- ============ GROWTH HUB GATE ============ -->
+<style>
+  html.gh-locked > body > :not(#ghGate){display:none !important;}
+  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
+  html:not(.gh-locked) #ghGate{display:none;}
+  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
+  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
+  #ghGate .gh-brand svg{width:30px;height:30px;}
+  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
+  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
+  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;}
+  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
+  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
+  #ghGate input:focus{border-color:#4e84de;}
+  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
+  #ghGate button:hover{filter:brightness(1.06);}
+  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
+  #ghGate .gh-shake{animation:ghshake .3s;}
+  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+<div id="ghGate">
+  <div class="gh-wrap">
+    <div class="gh-brand">
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#c5d9fa" stroke-width="14" stroke-linecap="round" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g><circle cx="150" cy="50" r="26" fill="#ffffff"/><circle cx="236.6" cy="100" r="26" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="26" fill="#ffffff"/><circle cx="150" cy="250" r="26" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="26" fill="#ffffff"/><circle cx="63.4" cy="100" r="26" fill="#c5d9fa"/><circle cx="150" cy="150" r="44" fill="#ebb018"/></svg>
+      <span>Growth Hub</span>
+    </div>
+    <div class="gh-card">
+      <h2>Passcode</h2>
+      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
+      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
+      <button id="ghGo" type="button">Enter the Hub</button>
+      <div class="gh-err" id="ghErr"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
+  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+  if(!unlocked()) document.documentElement.classList.add('gh-locked');
+  function open(){ document.documentElement.classList.remove('gh-locked'); }
+  async function check(){
+    var v=document.getElementById('ghPass').value;
+    var ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        ok=(hex===HASH);
+      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
+    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
+    if(ok){ remember(); open(); }
+    else{
+      var card=document.querySelector('#ghGate .gh-card');
+      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
+      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
+      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    if(unlocked()) return;
+    document.getElementById('ghGo').addEventListener('click', check);
+    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
+  });
+})();
+</script>
+<!-- ============ /GROWTH HUB GATE ============ -->
+
+<div style="max-width:960px;margin:0 auto;padding:18px 24px 0;"><a href="index.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">&larr; Growth Hub</a><span style="color:#c5d9fa;margin:0 8px;">|</span><a href="tools/fsg-app-faq.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">FSG App FAQs</a></div>
+
+<div class="page">
+
+  <div class="hero">
+    <div>
+      <div class="eyebrow">The Results Spoke &middot; Contests &amp; Games</div>
+      <h1>The Field</h1>
+      <div class="subtitle">Where the growth org keeps score. Every game is live, every number is somebody's, and the board updates while you're still working.</div>
+    </div>
+    <div class="org">
+      <div class="fsg">FACILITY SOLUTIONS GROUP</div>
+      <div class="sub">Growth Organization &nbsp;&middot;&nbsp; 2026</div>
+    </div>
+  </div>
+  <hr class="gold-rule">
+
+  <p><b>Proof beats promises — and a scoreboard beats a reminder.</b> The Field is the competitive layer of the hub. Each game takes one behavior we want more of, puts a number on it, and shows everybody where they stand. You don't get better at what you're told to do. You get better at what gets counted.</p>
+
+  <div class="strip">
+    <div class="box"><div class="lbl">Games Live</div><div class="val">1</div><div class="sub">3 on deck</div></div>
+    <div class="box"><div class="lbl">Season</div><div class="val">Q4</div><div class="sub">2026</div></div>
+    <div class="box"><div class="lbl">Roster</div><div class="val">&mdash;</div><div class="sub">Growth org</div></div>
+    <div class="box"><div class="lbl">Scoring</div><div class="val">Live</div><div class="sub">From Engage</div></div>
+  </div>
+
+  <div class="kicker">On the Field Now</div>
+  <h2 class="sec">Live Games</h2>
+  <p class="sec-sub">Open a board and find your line.</p>
+  <hr class="rule">
+
+  <div class="grid live-grid">
+
+    <!-- ---- ADD-NEW: a new LIVE game card goes here. Copy one block, change
+           the href, the pill, the matchup line, the title and the one-liner. ---- -->
+
+    <a class="game" href="field/closers-vs-blanks.html">
+      <div class="game-top"><span class="pill live">Live</span><span class="game-date">Sep 2026</span></div>
+      <div class="matchup"><em>Closers</em> vs Blanks</div>
+      <h3>Closers vs Blanks</h3>
+      <p>The linescore for the growth org. Who's putting runs on the board inning by inning, who's leaving zeros — plus the batting order ranked by average.</p>
+      <span class="cta">Take the field &rarr;</span>
+    </a>
+
+  </div>
+
+  <div class="kicker" style="margin-top:36px;">Warming Up</div>
+  <h2 class="sec">On Deck</h2>
+  <p class="sec-sub">Built next, in this order. If one of these should jump the line, say so.</p>
+  <hr class="rule">
+
+  <div class="grid">
+
+    <!-- ---- ADD-NEW: a new ON-DECK game card goes here ---- -->
+
+    <div class="game soon">
+      <div class="game-top"><span class="pill soon">On Deck</span><span class="game-date">Next</span></div>
+      <div class="matchup">Builders vs Bystanders</div>
+      <h3>Content Created</h3>
+      <p>Proof cards, plays, decks, Wire issues — everything a rep puts into the hub for the next rep. Counted by what shipped, not what was promised.</p>
+      <span class="cta">Building</span>
+    </div>
+
+    <div class="game soon">
+      <div class="game-top"><span class="pill soon">On Deck</span><span class="game-date">Next</span></div>
+      <div class="matchup">Wins on the Board</div>
+      <h3>Sales Floor Wins</h3>
+      <p>Closed business, called out loud and logged the day it lands. The floor's running tally — every win gets its moment before it becomes a number.</p>
+      <span class="cta">Building</span>
+    </div>
+
+    <div class="game soon">
+      <div class="game-top"><span class="pill soon">On Deck</span><span class="game-date">Next</span></div>
+      <div class="matchup">Speed Kills</div>
+      <h3>Pipeline Velocity</h3>
+      <p>Not how big the pipeline is — how fast it moves. Days from first touch to opportunity to close, ranked, with the stalls showing in red.</p>
+      <span class="cta">Building</span>
+    </div>
+
+  </div>
+
+  <div class="kicker" style="margin-top:36px;">How This Works</div>
+  <h2 class="sec">House Rules</h2>
+  <hr class="rule">
+
+  <div class="rules">
+    <dl>
+      <dt>The Season</dt>
+      <dd>A season is <b>a quarter</b>. Boards reset at the quarter, standings archive, and everybody starts even. Nobody carries a cold streak into January.</dd>
+
+      <dt>The Numbers</dt>
+      <dd>Every stat traces to <b>Engage</b>. If it isn't logged, it didn't happen — which is the point. The board is a byproduct of clean CRM hygiene, not extra work.</dd>
+
+      <dt>The Roster</dt>
+      <dd>The growth org, by name. <b>Nobody is hidden and nobody is anonymous</b> — a scoreboard with blanked-out names isn't a scoreboard.</dd>
+
+      <dt>Blanks</dt>
+      <dd>A zero is a zero. It's not a callout, it's an <b>inning that isn't over</b>. The whole design assumption is that a blank is the most fixable thing on the board.</dd>
+
+      <dt>The Passcode</dt>
+      <dd>Boards carry rep-level numbers, so they're <b>encrypted in the file</b> and sit behind their own passcode on top of the hub gate. It asks once per browser session.</dd>
+
+      <dt>New Games</dt>
+      <dd>A game needs one countable behavior, a live source, and a reason somebody would check it twice a week. <b>Bring the behavior, we'll build the board.</b></dd>
+    </dl>
+  </div>
+
+  <div class="callout"><b>Got a game?</b> If there's a behavior worth counting and it lives in Engage, it can be a board. Tell Bobby what you'd put on the scoreboard and why people would check it.</div>
+
+  <footer>FSG Growth Hub &nbsp;|&nbsp; The Field &nbsp;|&nbsp; Internal &mdash; Growth Organization</footer>
+</div>
+
+</body>
+</html>
