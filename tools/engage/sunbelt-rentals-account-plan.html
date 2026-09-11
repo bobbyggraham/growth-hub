@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Account Plan — Sunbelt Rentals</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='115' fill='%23133865'/><g stroke='%23c5d9fa' stroke-width='22' stroke-linecap='round'><line x1='256' y1='256' x2='256' y2='96'/><line x1='256' y1='256' x2='394.6' y2='176'/><line x1='256' y1='256' x2='394.6' y2='336'/><line x1='256' y1='256' x2='256' y2='416'/><line x1='256' y1='256' x2='117.4' y2='336'/><line x1='256' y1='256' x2='117.4' y2='176'/></g><circle cx='256' cy='96' r='42' fill='%23ffffff'/><circle cx='394.6' cy='176' r='42' fill='%23c5d9fa'/><circle cx='394.6' cy='336' r='42' fill='%23ffffff'/><circle cx='256' cy='416' r='42' fill='%23c5d9fa'/><circle cx='117.4' cy='336' r='42' fill='%23ffffff'/><circle cx='117.4' cy='176' r='42' fill='%23ebb018'/><circle cx='256' cy='256' r='76' fill='%23ebb018'/></svg>">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fsg-deep-navy: #0b1421;
+    --fsg-dark-navy: #133865;
+    --fsg-brand-blue: #365aa0;
+    --fsg-steel-blue: #718dbc;
+    --fsg-light-blue: #c5d9fa;
+    --fsg-light-gray: #ededed;
+    --fsg-gold: #ebb018;
+    --fsg-bright-blue: #4e84de;
+    --fsg-line: #e4e7ee;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    color: var(--fsg-deep-navy);
+    background: #ffffff;
+    line-height: 1.55;
+    font-size: 16px;
+  }
+  .page { max-width: 960px; margin: 0 auto; padding: 32px 24px 48px; }
+
+  /* ---------- hero ---------- */
+  .hero {
+    background: var(--fsg-dark-navy);
+    border-radius: 8px;
+    padding: 28px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .hero .eyebrow {
+    color: var(--fsg-light-blue);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .hero h1 {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    color: #ffffff;
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+  .hero .subtitle { color: var(--fsg-light-blue); font-size: 14px; max-width: 560px; }
+  .hero .org { text-align: right; color: #fff; }
+  .hero .org .fsg { font-family: 'Oswald', Arial, sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 1px; }
+  .hero .org .sub { color: var(--fsg-steel-blue); font-size: 12px; margin-top: 4px; }
+  .gold-rule { border: none; border-top: 3px solid var(--fsg-gold); margin: 18px 0 28px; }
+
+  .stripe {
+    display: flex; flex-wrap: wrap; gap: 10px 28px;
+    font-size: 13px; color: var(--fsg-brand-blue);
+    margin: -14px 0 0; padding: 0 2px;
+  }
+  .stripe b { font-family: 'Oswald', Arial, sans-serif; letter-spacing: .5px; color: var(--fsg-dark-navy); }
+
+  h2 {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 700;
+    color: var(--fsg-dark-navy);
+    font-size: 26px;
+    margin: 40px 0 6px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--fsg-gold);
+  }
+  h3 {
+    font-family: 'Oswald', Arial, sans-serif;
+    color: var(--fsg-brand-blue);
+    font-size: 20px;
+    margin: 26px 0 8px;
+  }
+  p { margin: 12px 0; }
+  b { color: var(--fsg-deep-navy); }
+  .muted { color: var(--fsg-brand-blue); font-size: 14px; }
+
+  .callout {
+    background: var(--fsg-light-blue);
+    border-left: 4px solid var(--fsg-gold);
+    border-radius: 0 6px 6px 0;
+    padding: 14px 20px;
+    margin: 20px 0;
+    color: var(--fsg-dark-navy);
+    font-size: 15px;
+  }
+  .wedge {
+    background: var(--fsg-dark-navy);
+    color: #fff;
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin: 20px 0;
+  }
+  .wedge h4 {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-size: 15px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--fsg-gold); margin-bottom: 10px;
+  }
+  .wedge p { color: var(--fsg-light-blue); margin: 8px 0; font-size: 15px; }
+  .wedge p b { color: #fff; }
+
+  /* ---------- tables ---------- */
+  .scroll { overflow-x: auto; margin: 16px 0; }
+  table.brand { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 560px; }
+  table.brand th {
+    background: var(--fsg-dark-navy);
+    color: #fff;
+    text-align: left;
+    padding: 10px 14px;
+    font-weight: 700;
+    font-family: 'Oswald', Arial, sans-serif;
+    letter-spacing: .5px;
+  }
+  table.brand td { padding: 10px 14px; vertical-align: top; }
+  table.brand tr:nth-child(even) td { background: var(--fsg-light-blue); }
+  table.brand td:first-child { font-weight: 700; }
+  table.brand.nowrap1 td:first-child { white-space: nowrap; }
+  table.fields { font-size: 14px; min-width: 800px; }
+  table.fields td:first-child { white-space: normal; }
+
+  /* ---------- protect / land / expand ---------- */
+  .ple { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 18px 0 8px; }
+  .lane {
+    border: 1px solid var(--fsg-line);
+    border-top: 5px solid var(--fsg-steel-blue);
+    border-radius: 8px;
+    padding: 18px 20px 20px;
+    background: #fff;
+  }
+  .lane.expand { border-top-color: var(--fsg-gold); }
+  .lane h4 {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-size: 20px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--fsg-dark-navy); margin-bottom: 2px;
+  }
+  .lane .def { font-size: 12.5px; color: var(--fsg-steel-blue); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+  .lane ul { list-style: none; }
+  .lane li { font-size: 14px; padding: 7px 0 7px 16px; position: relative; border-top: 1px solid var(--fsg-line); }
+  .lane li:first-child { border-top: none; }
+  .lane li::before { content: ""; position: absolute; left: 0; top: 15px; width: 7px; height: 7px; border-radius: 50%; background: var(--fsg-steel-blue); }
+  .lane.expand li::before { background: var(--fsg-brand-blue); }
+
+  /* ---------- tiles ---------- */
+  .tile { display: flex; align-items: stretch; background: var(--fsg-light-gray); border-radius: 6px; overflow: hidden; margin: 14px 0; }
+  .tile .badge {
+    background: var(--fsg-dark-navy); color: #fff;
+    font-family: 'Oswald', Arial, sans-serif; font-weight: 700; font-size: 28px;
+    display: flex; align-items: center; justify-content: center; min-width: 64px;
+  }
+  .tile .badge.gold { color: var(--fsg-gold); }
+  .tile .body { padding: 14px 18px; }
+  .tile .body h4 { font-family: 'Oswald', Arial, sans-serif; font-size: 18px; color: var(--fsg-dark-navy); text-transform: uppercase; margin-bottom: 4px; }
+  .tile .body p { margin: 0; font-size: 15px; }
+
+  ul.misses { margin: 14px 0 0 22px; }
+  ul.misses li { margin-bottom: 10px; }
+
+  .flag { font-family: 'Oswald', Arial, sans-serif; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; padding: 2px 8px; border-radius: 3px; white-space: nowrap; display: inline-block; }
+  .flag.stop { background: var(--fsg-dark-navy); color: var(--fsg-gold); }
+  .flag.go { background: var(--fsg-brand-blue); color: #fff; }
+  .flag.hold { background: var(--fsg-steel-blue); color: #fff; }
+
+  .vc { margin-top: 44px; padding-top: 18px; border-top: 3px solid var(--fsg-gold); }
+  .vc h3 { font-family: 'Oswald', Arial, sans-serif; color: var(--fsg-dark-navy); font-size: 18px; margin: 0 0 10px; }
+  table.vc-table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 520px; }
+  table.vc-table th { background: var(--fsg-dark-navy); color: #fff; text-align: left; padding: 8px 12px; font-weight: 700; }
+  table.vc-table td { padding: 8px 12px; border: 1px solid var(--fsg-light-gray); }
+
+  footer { text-align: center; color: var(--fsg-steel-blue); font-size: 13px; margin-top: 40px; }
+  a { color: var(--fsg-bright-blue); }
+
+  @media (max-width: 560px) {
+    .page { padding: 20px 16px 40px; }
+    .hero { padding: 22px 20px; }
+    .hero h1 { font-size: 30px; }
+    .hero .org { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ GROWTH HUB GATE ============ -->
+<style>
+  html.gh-locked > body > :not(#ghGate){display:none !important;}
+  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
+  html:not(.gh-locked) #ghGate{display:none;}
+  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
+  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
+  #ghGate .gh-brand svg{width:30px;height:30px;}
+  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
+  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;border:none;color:#fff;padding:0;}
+  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
+  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
+  #ghGate input:focus{border-color:#4e84de;}
+  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
+  #ghGate button:hover{filter:brightness(1.06);}
+  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
+  #ghGate .gh-shake{animation:ghshake .3s;}
+  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+<div id="ghGate">
+  <div class="gh-wrap">
+    <div class="gh-brand">
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#c5d9fa" stroke-width="14" stroke-linecap="round" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g><circle cx="150" cy="50" r="26" fill="#ffffff"/><circle cx="236.6" cy="100" r="26" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="26" fill="#ffffff"/><circle cx="150" cy="250" r="26" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="26" fill="#ffffff"/><circle cx="63.4" cy="100" r="26" fill="#c5d9fa"/><circle cx="150" cy="150" r="44" fill="#ebb018"/></svg>
+      <span>Growth Hub</span>
+    </div>
+    <div class="gh-card">
+      <h2>Passcode</h2>
+      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
+      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
+      <button id="ghGo" type="button">Enter the Hub</button>
+      <div class="gh-err" id="ghErr"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
+  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+  if(!unlocked()) document.documentElement.classList.add('gh-locked');
+  function open(){ document.documentElement.classList.remove('gh-locked'); }
+  async function check(){
+    var v=document.getElementById('ghPass').value;
+    var ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        ok=(hex===HASH);
+      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
+    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
+    if(ok){ remember(); open(); }
+    else{
+      var card=document.querySelector('#ghGate .gh-card');
+      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
+      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
+      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    if(unlocked()) return;
+    document.getElementById('ghGo').addEventListener('click', check);
+    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
+  });
+})();
+</script>
+<!-- ============ /GROWTH HUB GATE ============ -->
+
+<div class="crumb" style="max-width:960px;margin:0 auto;padding:18px 24px 0;"><a href="../../index.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">&larr; Growth Hub</a><span style="color:#c5d9fa;margin:0 8px;">|</span><a href="opportunity-fields-that-matter.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">&larr; Opportunity Fields That Matter</a></div>
+
+<div class="page">
+
+  <div class="hero">
+    <div>
+      <div class="eyebrow">FSG Growth · Account Plan</div>
+      <h1>Sunbelt Rentals</h1>
+      <div class="subtitle">Protect the trade we've earned. Land one DFW branch. Expand across 1,180 untouched stores and 400 new depots.</div>
+    </div>
+    <div class="org">
+      <div class="fsg">FACILITY SOLUTIONS GROUP</div>
+      <div class="sub">Growth Organization &nbsp;·&nbsp; September 10, 2026</div>
+    </div>
+  </div>
+  <hr class="gold-rule">
+
+  <div class="stripe">
+    <span><b>NYSE</b> SUNB</span>
+    <span><b>HQ</b> Fort Mill, SC</span>
+    <span><b>Revenue</b> $11.15B (FY26)</span>
+    <span><b>Stores</b> 1,611</span>
+    <span><b>Entry</b> PC 271 — DFW</span>
+    <span><b>Owner</b> Bobby Graham</span>
+  </div>
+
+  <h2>The Window Is Open Right Now</h2>
+  <p><b>Sunbelt is shopping, today.</b> ZoomInfo shows LED lighting intent at score 99 with audience strength A, refreshed September 5, 2026. Planned maintenance is also at 99, energy storage at 94, exterior signage and channel letters at 91. Four of the five things FSG sells to a national footprint are lighting up at once.</p>
+  <p><b>And there's a gap worth walking through.</b> In June 2025 Sunbelt completed a National LED Lighting Program across roughly 425 locations in 45 states, run by Chateau Energy Solutions after a competitive RFP. It delivered $1.73M in annual energy savings, $501,859 in rebates, and a 6,012 metric ton CO<sub>2</sub> reduction. Sunbelt operates 1,611 stores. Roughly 1,180 have not been touched — and Sunbelt 4.0 adds 300 to 400 greenfield depots by 2029.</p>
+  <div class="callout"><b>The business case is already written — by their own Phase 1.</b> FSG doesn't have to sell the idea. FSG has to prove execution at scale.</div>
+
+  <div class="wedge">
+    <h4>The FSG Wedge</h4>
+    <p>Chateau Energy is an <b>energy program manager</b> — audits, design, rebate capture, program administration.</p>
+    <p>FSG is the <b>self-performing national contractor</b> that installs, energizes, services, and maintains.</p>
+    <p>FSG does not have to displace the incumbent to win. FSG wins the execution layer on the next 1,180 stores, the greenfield build program, and everything electrical that a lighting-only program leaves on the table.</p>
+  </div>
+
+  <h2>Protect · Land · Expand</h2>
+  <p>Three lanes, one account. Work them in order — you cannot expand what you have not landed, and you cannot land on ground you have not protected.</p>
+
+  <div class="ple">
+    <div class="lane">
+      <h4>Protect</h4>
+      <div class="def">The relationships we've earned</div>
+      <ul>
+        <li><b>Reciprocal trade.</b> FSG rents from Sunbelt nationally. Brant Williams owns strategic customer partnerships — that spend is leverage we already paid for.</li>
+        <li><b>The existing record.</b> Engage contact 433720 (Bryan Barham) is live but blank. Fix it before anyone touches it.</li>
+        <li><b>Call discipline.</b> Bryan's numbers both carry DNC flags. One cold dial ends this before it starts.</li>
+      </ul>
+    </div>
+    <div class="lane">
+      <h4>Land</h4>
+      <div class="def">The next one</div>
+      <ul>
+        <li><b>PC 271 walkthrough.</b> No-charge lighting and power audit, one page of findings. Low risk for Bryan, reference site for FSG.</li>
+        <li><b>DFW cluster pilot.</b> Jamie Simmons turns one branch into a package. Mature cluster = several stores per mobilization.</li>
+        <li><b>First service agreement.</b> Planned maintenance is the annuity that turns a project into a program.</li>
+      </ul>
+    </div>
+    <div class="lane expand">
+      <h4>Expand</h4>
+      <div class="def">What's possible together</div>
+      <ul>
+        <li><b>Phase 2 national retrofit.</b> ~1,180 stores, owned by Karen Beadle's sustainability mandate.</li>
+        <li><b>Greenfield build program.</b> 300–400 depots through 2029, one repeatable prototype scope.</li>
+        <li><b>Signage, energy, EV and storage.</b> Live intent on all three, tied to the 2034 GHG-intensity target.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Account Snapshot</h2>
+  <div class="scroll">
+  <table class="brand nowrap1">
+    <tr><th>Field</th><th>Detail</th></tr>
+    <tr><td>Entity</td><td>Sunbelt Rentals Holdings, Inc. (NYSE: SUNB) — parent of Ashtead Group plc</td></tr>
+    <tr><td>HQ</td><td>1799 Innovation Point, Fort Mill, SC 29715</td></tr>
+    <tr><td>Revenue</td><td>$11.15B (FY ended April 30, 2026)</td></tr>
+    <tr><td>Footprint</td><td>1,611 stores across North America and the UK; 814 locations mapped in ZoomInfo</td></tr>
+    <tr><td>Employees</td><td>~24,000 (7,233 in operations)</td></tr>
+    <tr><td>Fleet</td><td>$19.23B original cost, ~53 month average age</td></tr>
+    <tr><td>Mix</td><td>58% NA General Tool · 33% NA Specialty · 9% UK</td></tr>
+    <tr><td>Strategy</td><td>Sunbelt 4.0 "Runway for Success" — five-year plan launched April 2024, targeting $14B+ revenue and 3–5 points of EBITDA margin expansion by 2029</td></tr>
+    <tr><td>Sustainability</td><td>Net Zero operational GHG by 2050; 50% GHG-intensity reduction by 2034</td></tr>
+    <tr><td>Capital posture</td><td>$1.5B share repurchase active; U.S. primary listing completed March 2, 2026</td></tr>
+  </table>
+  </div>
+
+  <h3>Expansion and capital triggers</h3>
+  <ul class="misses">
+    <li><b>300–400 greenfield depots through 2029</b> — 180–240 specialty locations and 120–160 general tool stores. New construction electrical, lighting, yard lighting, and signage on every one.</li>
+    <li><b>Cluster density strategy</b> — 21 of the top 25 U.S. markets are already clustered; the next 75 markets grow from 35 clusters to as many as 50. DFW is mature, which means more sites per FSG truck roll.</li>
+    <li><b>~1,180 stores outside the 2025 LED program</b> — the Phase 2 runway, supported by the live LED intent signal.</li>
+    <li><b>U.S. redomiciliation</b> — now a U.S.-listed, U.S.-domiciled reporting company. Vendor consolidation and domestic supplier optics both favor a national U.S. contractor.</li>
+    <li><b>LA28 Olympic and Paralympic partnership</b> — official rental equipment solutions and services partner. Temporary power, event lighting, and staging demand outside the store network.</li>
+    <li><b>DFW hiring activity</b> — open Branch Manager postings in Irving and Canutillo as of late August 2026. Local movement usually means local site work.</li>
+    <li><b>Specialty growth</b> — Power and HVAC, Climate Control, and Flooring expand fastest and carry the heaviest electrical requirements per site.</li>
+  </ul>
+
+  <h2>The Five Plays</h2>
+  <p>Each play maps to one Engage <b>Business Line</b> and one <b>Product</b>. One line, one product, per the field rules — no exceptions, no multi-select.</p>
+  <div class="scroll">
+  <table class="brand">
+    <tr><th>Play</th><th>What FSG sells</th><th>Business Line · Product</th><th>Why it lands</th></tr>
+    <tr>
+      <td>1 · Phase 2 LED Retrofit</td>
+      <td>Turnkey audit-to-install on the ~1,180 stores outside the 2025 program, including yard and canopy lighting</td>
+      <td>Construction · Retrofit</td>
+      <td>LED intent at 99. Sunbelt already holds a validated business case and rebate playbook from Phase 1</td>
+    </tr>
+    <tr>
+      <td>2 · Greenfield Build Program</td>
+      <td>Electrical rough-in, service and gear, site and yard lighting, controls, signage on 300–400 new depots</td>
+      <td>Construction · Electrical</td>
+      <td>Sunbelt 4.0 is committed to the openings. A standardized prototype means one repeatable FSG scope and price</td>
+    </tr>
+    <tr>
+      <td>3 · Signs and Image</td>
+      <td>Channel letters, monument and wayfinding signage, permitting, service</td>
+      <td>Construction · Signs</td>
+      <td>Exterior signage intent at 91. Natural bundle with the retrofit truck roll</td>
+    </tr>
+    <tr>
+      <td>4 · Service and Planned Maintenance</td>
+      <td>National reactive service, planned maintenance, yard and gate power, lift and charging circuits</td>
+      <td>Services · Electrical (SERVICES)</td>
+      <td>Planned maintenance intent at 99. This is the annuity that turns a project into a program</td>
+    </tr>
+    <tr>
+      <td>5 · Energy, EV and Storage</td>
+      <td>EV charging, solar and storage feasibility, ECMs tied to the 2034 GHG-intensity target</td>
+      <td>Construction · Energy Management</td>
+      <td>Energy storage intent at 94, plus a public Net Zero 2050 commitment that needs measurable projects</td>
+    </tr>
+  </table>
+  </div>
+  <p class="muted">Business Line and Product are FSG's recommended coding for each play. Confirm against the live cascading picklist in Engage before you save — the picklist is the source of truth.</p>
+
+  <h2>The Opportunity Set — Engage Ready</h2>
+  <p><b>Seven records, every field that matters filled.</b> Follow-up date never blank. Close date never in the past. Value never $0. Estimated Value carries the $1 placeholder where Operations has not scoped it yet — the placeholder is a bridge, not a home. Update it the day a real number lands.</p>
+  <div class="scroll">
+  <table class="brand fields">
+    <tr><th>Opportunity name</th><th>Stage</th><th>Assignee</th><th>Follow-up</th><th>Est. close</th><th>Est. value</th></tr>
+    <tr><td>Sunbelt PC 271 DFW — Lighting &amp; Power Audit</td><td>1 Qualifying</td><td>Sales (AE)</td><td>09/17/2026</td><td>12/15/2026</td><td>$1 — placeholder</td></tr>
+    <tr><td>Sunbelt National LED Phase 2 — ~1,180 Stores</td><td>1 Qualifying</td><td>Sales (AE)</td><td>09/24/2026</td><td>01/29/2027</td><td>$1 — placeholder</td></tr>
+    <tr><td>Sunbelt DFW Cluster Retrofit Pilot</td><td>1 Qualifying</td><td>Sales (AE)</td><td>10/01/2026</td><td>01/29/2027</td><td>$1 — placeholder</td></tr>
+    <tr><td>Sunbelt National Planned Maintenance Agreement</td><td>1 Qualifying</td><td>Sales (AM)</td><td>10/01/2026</td><td>01/29/2027</td><td>$1 — placeholder</td></tr>
+    <tr><td>Sunbelt National Signage &amp; Image Program</td><td>1 Qualifying</td><td>Sales (AE)</td><td>10/08/2026</td><td>01/29/2027</td><td>$1 — placeholder</td></tr>
+    <tr><td>Sunbelt Greenfield Depot Electrical Program</td><td>1 Qualifying</td><td>Sales (AE)</td><td>10/15/2026</td><td>01/29/2027</td><td>$1 — placeholder</td></tr>
+    <tr><td>Sunbelt Energy, EV &amp; Storage Feasibility</td><td>1 Qualifying</td><td>Sales (AE)</td><td>11/05/2026</td><td>01/29/2027</td><td>$1 — placeholder</td></tr>
+  </table>
+  </div>
+  <div class="callout"><b>Why every close date lands in January.</b> Budget is unconfirmed on all seven. The rule says push the close date to January of next year and use the follow-up date to work it this year. That keeps the forecast honest and keeps the deal on your dashboard.</div>
+
+  <h3>Stage discipline for this account</h3>
+  <p><b>One owner, one assignee, one follow-up date.</b> Bobby owns every Sunbelt record cradle to cash. The assignee changes by stage. The follow-up date is when the owner needs it back.</p>
+  <div class="scroll">
+  <table class="brand">
+    <tr><th>Stage</th><th>What it looks like on Sunbelt</th><th>Assignee</th><th>Exit when</th></tr>
+    <tr><td>1 Qualifying</td><td>Confirm the site was or wasn't in Phase 1, confirm budget path, set the Bid Due Date</td><td>Sales (AE / AM)</td><td>Sunbelt wants a solution proposed</td></tr>
+    <tr><td>2 Scope Development</td><td>Walkthrough, fixture count, rebate eligibility, per-site pricing template</td><td>Solutions Team</td><td>Scope and pricing complete</td></tr>
+    <tr><td>3 Proposing</td><td>Per-site scope with payback, rebate capture, and GHG-intensity contribution stated up front</td><td>Sales (AE / AM)</td><td>Proposal delivered by the Bid Due Date</td></tr>
+    <tr><td>4 Negotiating</td><td>MSA terms, insurance review, national rate card, site release process</td><td>Sales + Legal / Finance</td><td>Contract signed</td></tr>
+    <tr><td>5 Closed Won</td><td>JOB# / Work Order issued, site release schedule set with Ops</td><td>Sales, handoff to Ops</td><td>WO issued and kickoff scheduled</td></tr>
+    <tr><td>Off-ramps</td><td colspan="3"><b>Project On Hold</b> if capital freezes post-listing. <b>Closed Lost / Competitor</b> if Chateau takes Phase 2 outright. Both need a reason note — that's how we learn where this dies.</td></tr>
+  </table>
+  </div>
+
+  <h2>The Contact Map</h2>
+  <p>The branch is the wedge, the region is the multiplier, and Fort Mill holds the program. <b>Sequence operations and sustainability first, procurement last.</b> All records verified against ZoomInfo on September 10, 2026.</p>
+  <div class="scroll">
+  <table class="brand">
+    <tr><th>Tier</th><th>Name / Role</th><th>Reach</th><th>Call status</th><th>Why they matter</th></tr>
+    <tr>
+      <td>1 · Program</td>
+      <td><b>Karen Beadle</b><br>SVP, Sustainability<br><span class="muted">In seat June 2023</span></td>
+      <td>karen.beadle@sunbeltrentals.com<br>mobile (713) 907-8223</td>
+      <td><span class="flag go">Call OK</span></td>
+      <td>Named owner of the National LED Lighting Program and the Net Zero 2050 / 2034 targets. She holds the mandate that funds Phase 2. Accuracy 95 — highest-value target in the account</td>
+    </tr>
+    <tr>
+      <td>2 · DFW</td>
+      <td><b>Jamie Simmons</b><br>Regional VP<br><span class="muted">In seat Sept 2018</span></td>
+      <td>jamie.simmons@sunbeltrentals.com<br>office (817) 302-1300</td>
+      <td><span class="flag hold">Office only</span></td>
+      <td>Fort Worth based, sits above Bryan's branch. This is who turns one branch pilot into a DFW cluster package. Accuracy 93</td>
+    </tr>
+    <tr>
+      <td>2 · DFW</td>
+      <td><b>Jeff Harris</b><br>Regional General Manager<br><span class="muted">With Sunbelt since 1997</span></td>
+      <td>jeffery.harris@sunbeltrentals.com<br>office (682) 707-8018</td>
+      <td><span class="flag hold">Office only</span></td>
+      <td>28 years inside Sunbelt, carrying DFW numbers. He knows exactly how site capital gets requested and approved. Accuracy 95</td>
+    </tr>
+    <tr>
+      <td>3 · Branch</td>
+      <td><b>Bryan Barham</b><br>Branch Manager, PC 271 (DFW)<br><span class="muted">In seat June 2019</span></td>
+      <td>bryan.barham@sunbeltrentals.com<br><span class="muted">branch (972) 484-6767 · mobile (214) 876-1622</span></td>
+      <td><span class="flag stop">Do not call</span></td>
+      <td>Entry point and proof-of-execution site. Engage contact 433720. Accuracy 50, last refreshed Nov 2025 — confirm he is still in seat</td>
+    </tr>
+    <tr>
+      <td>3 · Branch</td>
+      <td><b>Kenny Noggler</b><br>General Manager<br><span class="muted">In seat March 2025</span></td>
+      <td>kenny.noggler@sunbeltrentals.com<br>mobile (806) 683-5360</td>
+      <td><span class="flag go">Call OK</span></td>
+      <td>806 mobile places him in the Texas panhandle. New in seat, and new managers reset vendor relationships. Accuracy 98 — cleanest record in the set</td>
+    </tr>
+    <tr>
+      <td>3 · Branch</td>
+      <td><b>Mike Paulson</b><br>General Manager<br><span class="muted">In seat April 2017</span></td>
+      <td>mike.paulson@sunbeltrentals.com<br><span class="muted">mobile (626) 375-8658</span></td>
+      <td><span class="flag hold">Email first</span></td>
+      <td>Surfaced on a Texas filter but the 626 mobile points to Southern California. Verify geography before assigning a rep. Accuracy 96</td>
+    </tr>
+    <tr>
+      <td>4 · Trade</td>
+      <td><b>Brant Williams</b><br>VP, Strategic Customer Partnerships<br><span class="muted">In seat Aug 2025</span></td>
+      <td>brant.williams@sunbeltrentals.com<br>mobile (904) 497-2598</td>
+      <td><span class="flag go">Call OK</span></td>
+      <td>Runs enterprise customer partnerships. Be clear: this is the reciprocal trade conversation — FSG rents from Sunbelt — not the facilities buy. Accuracy 93</td>
+    </tr>
+    <tr>
+      <td>4 · Specialty</td>
+      <td><b>Tim Maisonneuve</b><br>VP, Power and HVAC<br><span class="muted">In seat June 2023</span></td>
+      <td>tim.maisonneuve@sunbeltrentals.com<br>office (613) 744-8889</td>
+      <td><span class="flag hold">Office only</span></td>
+      <td>Ottawa based. Power and HVAC carries the heaviest electrical infrastructure per site and is a natural cross-sell partner on temporary power. Accuracy 88</td>
+    </tr>
+    <tr>
+      <td>Pending</td>
+      <td><b>Zachary Thomas</b><br>Title and employer unconfirmed</td>
+      <td>Engage record ed40b048-8261-11ee-aef2-4fe1ccafd06e</td>
+      <td><span class="flag hold">Unknown</span></td>
+      <td>The Engage record sits behind authentication and could not be read; ZoomInfo returns no Zachary Thomas at Sunbelt. Confirm title and company, then slot him</td>
+    </tr>
+  </table>
+  </div>
+
+  <div class="callout"><b>Call discipline — read this before dialing.</b> Call freely: Karen Beadle, Brant Williams, Kenny Noggler. Office line only: Jamie Simmons, Jeff Harris, Tim Maisonneuve. Never dial: Bryan Barham — both numbers carry DNC flags. Email or in person only.</div>
+
+  <h3>Still to source</h3>
+  <div class="scroll">
+  <table class="brand nowrap1">
+    <tr><th>Open role</th><th>Why we need the name, and how to get it</th></tr>
+    <tr><td>Real estate / construction lead</td><td>Owns the 300–400 greenfield depot program and the store prototype. ZoomInfo title searches return zero against the corporate record. Source manually via LinkedIn or SEC filings, or ask Jeff Harris</td></tr>
+    <tr><td>Indirect procurement lead</td><td>Owns the RFP cycle Chateau Energy won in 2025 and the next competitive round. Sequence LAST — after facilities and sustainability have a reason to want FSG</td></tr>
+    <tr><td>DFW District Manager</td><td>Sits between Bryan Barham and Jamie Simmons. Ask Bryan on the walkthrough</td></tr>
+  </table>
+  </div>
+
+  <h2>Entry Play — Bryan Barham</h2>
+  <p><b>Bryan is the right first door, and he is not the decision maker for a national program.</b> Play him as the proof-of-execution wedge.</p>
+  <ul class="misses">
+    <li><b>Lead with the yard, not the boardroom.</b> A branch manager is measured on uptime, safety, and utilization. Talk lighting levels in the yard after dark, gate and fence power, lift charging circuits, and how fast FSG shows up when something trips.</li>
+    <li><b>Speak service manager to service manager.</b> Bryan ran regional service operations at H&amp;E. He judges FSG on response time, first-time fix rate, and paperwork — not on a capabilities deck.</li>
+    <li><b>Respect the veteran and the operator.</b> Direct, no fluff, specifics over adjectives. Bring a one-page scope, not a brochure.</li>
+    <li><b>Ask him who owns the store standard.</b> The most valuable thing Bryan can give FSG is his District Manager's name and how corporate facilities capital gets requested. That's the bridge to Fort Mill.</li>
+    <li><b>Give him a reason to say yes small.</b> One walkthrough, one lighting and power audit, no charge, one page of findings. Low risk for him — and it becomes the reference site.</li>
+  </ul>
+  <div class="callout"><b>The opening angle.</b> Sunbelt just finished LED upgrades at about 425 locations. If PC 271 wasn't in that group, FSG walks the yard and shop and hands over a one-page findings sheet — what the upgrade would save, which rebates the site qualifies for — and Bryan decides from there. If the site was included, the conversation is about what a lighting-only program didn't cover: yard power, gate circuits, signage, and how fast an electrician shows up when something goes down.</div>
+
+  <h2>The 90-Day Sequence</h2>
+  <div class="scroll">
+  <table class="brand nowrap1">
+    <tr><th>When</th><th>Move</th></tr>
+    <tr><td>Week 1</td><td><b>Clean the record.</b> Fix Engage contact 433720, build the Sunbelt account structure with DFW site attribution, set the Do Not Call flags, create all seven opportunities with follow-up dates set</td></tr>
+    <tr><td>Week 1</td><td><b>Email Bryan.</b> Direct address, yard-and-uptime angle, ask for a walkthrough. No phone call</td></tr>
+    <tr><td>Week 2</td><td><b>Call Karen Beadle.</b> She's callable, she owns the LED program, and she doesn't wait behind the branch. Lead with Phase 2: 1,180 stores remaining, measurable GHG-intensity contribution against 2034, self-performing national execution</td></tr>
+    <tr><td>Weeks 2–3</td><td><b>Walk PC 271.</b> Free lighting and power audit. One-page findings sheet with savings and rebate eligibility. Ask for the District Manager introduction and the site capital request path</td></tr>
+    <tr><td>Week 3</td><td><b>Work DFW in parallel.</b> Jamie Simmons and Jeff Harris on their office lines. Position the walkthrough as a regional pilot, not a one-store favor</td></tr>
+    <tr><td>Weeks 4–6</td><td><b>Close the sourcing gaps.</b> Manual LinkedIn and SEC filing work to name real estate, construction, and indirect procurement. Confirm Zachary Thomas and slot him</td></tr>
+    <tr><td>Weeks 6–8</td><td><b>Expand the DFW cluster.</b> Convert the pilot into a multi-site package — a mature cluster means several stores per mobilization. Kenny Noggler is a clean second market for the same motion</td></tr>
+    <tr><td>Weeks 8–12</td><td><b>Position for the program.</b> Build the standardized per-site scope and pricing template for both retrofit and greenfield, and get FSG into the next procurement cycle as the execution partner of record</td></tr>
+  </table>
+  </div>
+
+  <h2>The Cadence — Base Hits Win Championships</h2>
+  <p><b>This plan is worth exactly what you put into it every day.</b> Seven opportunities go stale in a week if nobody touches them. Here's the practice on this account.</p>
+
+  <div class="tile"><div class="badge gold">D</div><div class="body">
+    <h4>Daily — Take Your Swings (5 min)</h4>
+    <p>Open the Dashboard. Any Sunbelt record at the top of the list gets its three steps: follow-up date, close date, value. One touch and move on.</p>
+  </div></div>
+
+  <div class="tile"><div class="badge gold">W</div><div class="body">
+    <h4>Weekly — Clear the Bases (Friday, 15 min)</h4>
+    <p>Every Sunbelt opportunity gets a live follow-up date before the weekend. Log the week's contact attempts against the sequence. Don't leave runners stranded.</p>
+  </div></div>
+
+  <div class="tile"><div class="badge gold">M</div><div class="body">
+    <h4>Monthly — Check Your Average (First Monday)</h4>
+    <p>Walk all seven records. Replace every $1 placeholder that Operations has since priced. Re-tier the contact map against what the field learned. That's a 1.000 batting average on the account leadership actually reads.</p>
+  </div></div>
+
+  <h2>Risks and Watch-Outs</h2>
+  <ul class="misses">
+    <li><b>Incumbent in place.</b> Chateau Energy won the 2025 program through competitive RFP and delivered well publicly. Position FSG as execution, not as a replacement, until there's a reason to compete head-on.</li>
+    <li><b>Post-listing scrutiny.</b> A newly U.S.-listed company under margin-expansion pressure will demand hard payback math. Every proposal states rebate capture, payback period, and GHG contribution up front.</li>
+    <li><b>Mixed construction market.</b> Management describes end markets as mixed, with rental revenue guidance of 0–4%. Capital discretion is tight — self-funding energy projects clear faster than discretionary spend.</li>
+    <li><b>Contact data confidence.</b> Bryan's ZoomInfo accuracy score is 50 and last refreshed November 2025. Confirm he's still in seat before anything goes into Engage as verified.</li>
+    <li><b>Do not cold call.</b> Both of Bryan's numbers carry DNC flags. A cold dial is the fastest way to lose this door.</li>
+    <li><b>The $1 that never grows.</b> Seven placeholder values on one account is a forecast that reads as empty. Every one of them is a task, not a decision.</li>
+  </ul>
+
+  <h2>Engage Entry Checklist</h2>
+  <div class="scroll">
+  <table class="brand nowrap1">
+    <tr><th>Step</th><th>Do this</th></tr>
+    <tr><td>1 · Account</td><td>Create or confirm the Sunbelt Rentals account with the Fort Mill corporate address. Attach PC 271 as the first site. Recommend Enterprise class review — revenue, multi-market footprint, and national program potential all clear the bar; confirm against the two-of-three Enterprise test</td></tr>
+    <tr><td>2 · Fix 433720</td><td>Set Title to Branch Manager, Job Function to Operations — Store Operations, attach the DFW site, make bryan.barham@sunbeltrentals.com primary and keep pcm271@sunbeltrentals.com secondary. Flag both phones Do Not Call</td></tr>
+    <tr><td>3 · Contacts</td><td>Enter the seven new contacts with Do Not Call flags exactly as listed. Three are fully callable; four have flagged mobiles</td></tr>
+    <tr><td>4 · Opportunities</td><td>Create all seven records. One Business Line, one Product, a live follow-up date, a close date in the future, and a value — never $0, never blank</td></tr>
+    <tr><td>5 · Source</td><td>Set source to ZoomInfo and log the September 10, 2026 verification date so the next rep knows how fresh the data is</td></tr>
+    <tr><td>6 · Leave gaps open</td><td>Zachary Thomas and the three unsourced roles stay open as tasks — not as records with guessed values</td></tr>
+  </table>
+  </div>
+
+  <div class="callout"><b>Protect the trade. Land the branch. Expand the program.</b> One clean account, seven honest records, five minutes a day — that's how 1,180 untouched stores become a number on the board.</div>
+
+  <div class="vc">
+    <h3>Version Control</h3>
+    <div class="scroll">
+    <table class="vc-table">
+      <tr><th>Version</th><th>Date</th><th>Owner</th><th>Change Summary</th></tr>
+      <tr><td>1.0</td><td>September 10, 2026</td><td>Bobby Graham — Growth</td><td>Initial account plan. Built from the Sunbelt Rentals Target Account Strategy and structured to Growth Hub brand standards and the Engage Plays opportunity discipline</td></tr>
+    </table>
+    </div>
+    <p class="muted" style="margin-top:14px;">Sources: Sunbelt Rentals Holdings FY2026 Form 10-K and investor releases, Sunbelt Rentals press materials, ZoomInfo company signals and contact records (September 2026), Sunbelt 4.0 strategy disclosures, industry trade coverage. Contact records verified against ZoomInfo September 10, 2026.</p>
+  </div>
+
+  <footer>FSG Engage &nbsp;|&nbsp; Growth Hub — Account Plans &nbsp;|&nbsp; Internal &amp; Confidential</footer>
+</div>
+
+<style media="print">
+  /* print / save-as-PDF for the Engage Files tab — declared after the gate block so it wins the cascade */
+  html.gh-locked > body > :not(#ghGate):not(.crumb):not(style):not(script) { display: block !important; }
+  #ghGate { display: none !important; }
+  .crumb { display: none !important; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  @page { margin: 13mm; }
+  body { font-size: 10pt; background: #fff; }
+  .page { max-width: none; padding: 0; }
+  .scroll { overflow: visible !important; }
+  table.brand, table.vc-table, table.fields { min-width: 0 !important; font-size: 8.5pt; }
+  table.brand td, table.brand th { padding: 6px 8px; }
+  .hero { display: flex !important; }
+  .ple { display: grid !important; }
+  .tile { display: flex !important; }
+  .stripe { display: flex !important; }
+  .hero h1 { font-size: 28pt; }
+  h2 { font-size: 15pt; margin-top: 20pt; break-after: avoid; page-break-after: avoid; }
+  h3 { font-size: 12pt; break-after: avoid; page-break-after: avoid; }
+  .tile, .lane, .callout, .wedge, tr, li { break-inside: avoid; page-break-inside: avoid; }
+  a { color: #133865; text-decoration: none; }
+</style>
+</body>
+</html>
