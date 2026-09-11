@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FSG Proof Builder — Turn a Win Into Ammunition</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='115' fill='%23133865'/><g stroke='%23c5d9fa' stroke-width='22' stroke-linecap='round'><line x1='256' y1='256' x2='256' y2='96'/><line x1='256' y1='256' x2='394.6' y2='176'/><line x1='256' y1='256' x2='394.6' y2='336'/><line x1='256' y1='256' x2='256' y2='416'/><line x1='256' y1='256' x2='117.4' y2='336'/><line x1='256' y1='256' x2='117.4' y2='176'/></g><circle cx='256' cy='96' r='42' fill='%23ffffff'/><circle cx='394.6' cy='176' r='42' fill='%23c5d9fa'/><circle cx='394.6' cy='336' r='42' fill='%23ffffff'/><circle cx='256' cy='416' r='42' fill='%23c5d9fa'/><circle cx='117.4' cy='336' r='42' fill='%23ffffff'/><circle cx='117.4' cy='176' r='42' fill='%23ebb018'/><circle cx='256' cy='256' r='76' fill='%23ebb018'/></svg>">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--deep:#0b1421;--navy:#133865;--blue:#365aa0;--steel:#718dbc;--lblue:#c5d9fa;--lgray:#ededed;--gold:#ebb018;--surface:#15253f;--border:#1e3558;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Open Sans',Arial,sans-serif;color:var(--deep);background:#f7f9fc;line-height:1.5;-webkit-font-smoothing:antialiased;}
+.hero{background:linear-gradient(160deg,var(--deep),var(--navy));color:#fff;padding:32px 20px 38px;border-bottom:3px solid var(--gold);}
+.hero-inner{max-width:1180px;margin:0 auto;}
+.hero .back{font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--steel);text-decoration:none;}
+.hero .back:hover{color:var(--gold);}
+.hero .back.guide{color:var(--gold);margin-left:14px;padding-bottom:2px;border-bottom:1.5px solid var(--gold);}
+.hero .back.guide:hover{color:#fff;border-bottom-color:#fff;}
+.hero img{height:30px;margin:16px 0 18px;display:block;}
+.hero h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(28px,5vw,44px);line-height:1.06;margin-bottom:8px;}
+.hero p{font-size:14px;color:var(--lblue);max-width:640px;}
+.steps{max-width:1180px;margin:18px auto 0;padding:0 20px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.stepc{background:#fff;border:1px solid var(--lgray);border-left:4px solid var(--gold);border-radius:8px;padding:12px 14px;font-size:12px;color:#4a5568;}
+.stepc b{display:block;font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--navy);margin-bottom:3px;}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 20px 120px;display:grid;grid-template-columns:1fr 1.15fr;gap:22px;align-items:start;}
+.panel{background:#fff;border:1px solid var(--lgray);border-radius:12px;padding:20px;}
+.panel h2{font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--navy);margin-bottom:14px;border-bottom:2px solid var(--gold);padding-bottom:8px;}
+.f{margin-bottom:12px;}
+.f label{display:block;font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--navy);margin-bottom:4px;}
+.f .hint{font-size:11px;color:var(--steel);font-weight:400;text-transform:none;letter-spacing:0;display:block;margin-bottom:4px;}
+.f select{width:100%;border:1.5px solid var(--lgray);border-radius:6px;padding:10px 12px;font-family:'Open Sans',sans-serif;font-size:14px;color:var(--deep);background:#fff;}
+.f select:focus{outline:none;border-color:var(--blue);}
+.f input,.f textarea{width:100%;border:1.5px solid var(--lgray);border-radius:6px;padding:10px 12px;font-family:'Open Sans',sans-serif;font-size:14px;color:var(--deep);}
+.f input:focus,.f textarea:focus{outline:none;border-color:var(--blue);}
+.f textarea{resize:vertical;min-height:64px;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.statrow{display:grid;grid-template-columns:110px 1fr;gap:8px;margin-bottom:8px;align-items:center;}
+.statrow input{padding:9px 10px;font-size:13px;}
+.statrow .gtag{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold);text-transform:uppercase;}
+.drop{border:2px dashed var(--steel);border-radius:8px;padding:14px;text-align:center;font-size:12px;color:var(--steel);cursor:pointer;transition:all .15s;}
+.drop:hover{border-color:var(--gold);color:var(--navy);}
+.drop.has{border-color:var(--gold);border-style:solid;color:var(--navy);background:#fffdf5;}
+.perm{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px;}
+.perm label{display:flex;align-items:center;gap:6px;font-size:12px;color:#4a5568;font-family:'Open Sans',sans-serif;text-transform:none;letter-spacing:0;font-weight:600;cursor:pointer;}
+.perm input{width:auto;}
+.warn{display:none;background:#fde8a8;border-radius:6px;padding:9px 12px;font-size:12px;color:#6b4500;margin-top:8px;}
+.warn.show{display:block;}
+.tsel{position:relative;}
+.typebox{border:1.5px solid var(--lgray);border-radius:6px;padding:7px 30px 7px 9px;min-height:42px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:#fff;cursor:pointer;position:relative;}
+.typebox::after{content:"\25BE";position:absolute;right:11px;top:50%;transform:translateY(-50%);color:var(--steel);font-size:12px;}
+.tsel.open .typebox{border-color:var(--blue);}
+.typebox .placeholder{font-size:12px;color:var(--steel);font-style:italic;}
+.tchip{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--navy);background:var(--lblue);border-radius:999px;padding:4px 11px;}
+.tchip button{border:none;background:none;cursor:pointer;color:var(--blue);font-size:13px;line-height:1;padding:0;min-width:20px;min-height:20px;}
+.tchip button:hover{color:#c0392b;}
+.tdrop{display:none;position:absolute;top:calc(100% + 4px);left:0;right:0;background:#fff;border:1.5px solid var(--blue);border-radius:8px;box-shadow:0 12px 30px rgba(11,20,33,.18);z-index:60;max-height:250px;overflow-y:auto;padding:5px;}
+.tsel.open .tdrop{display:block;}
+.tdrop .topt{display:flex;align-items:flex-start;gap:9px;width:100%;text-align:left;border:none;background:none;font-family:'Open Sans',sans-serif;font-size:13px;color:var(--deep);padding:8px 10px;border-radius:6px;cursor:pointer;}
+.tdrop .topt:hover{background:#e6f1fb;}
+.tdrop .topt .box{width:15px;height:15px;flex:none;margin-top:2px;border:1.5px solid var(--steel);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;}
+.tdrop .topt.sel .box{background:var(--blue);border-color:var(--blue);}
+.tdrop .tn{font-weight:600;}
+.tdrop .tn small{display:block;font-size:11px;font-weight:400;color:var(--steel);line-height:1.4;}
+.tdrop .tempty{font-size:12px;color:var(--steel);font-style:italic;padding:8px 10px;}
+/* PREVIEW */
+.preview{position:sticky;top:16px;}
+.pv{background:linear-gradient(160deg,var(--deep),#101c30);border-radius:14px;padding:26px 24px;color:#fff;min-height:420px;position:relative;overflow:hidden;}
+.pv .eyebrow{font-family:'Oswald',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.pv .pwin{border:1.5px dashed var(--steel);border-radius:10px;padding:10px 12px;margin:12px 0;}
+.pv .pwin.filled{border-style:solid;border-color:var(--border);background:var(--surface);}
+.pv .pwin-t{font-family:'Oswald',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--steel);margin-bottom:7px;}
+.pv .pwin .pempty{font-size:11px;color:var(--steel);font-style:italic;}
+.pv .clogos{display:flex;flex-wrap:wrap;gap:8px;}
+.pv .clogos img{max-height:34px;max-width:150px;background:#fff;padding:5px 9px;border-radius:6px;}
+.pv h3{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(22px,3vw,32px);line-height:1.1;margin-bottom:4px;}
+.pv .vert{font-family:'Oswald',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--steel);margin-bottom:14px;}
+.pv .story{font-size:13px;color:var(--lblue);line-height:1.6;margin-bottom:10px;}
+.pv .story em{color:#fff;font-style:normal;font-weight:700;}
+.pv .quote{font-size:12px;font-style:italic;color:var(--steel);margin:12px 0 16px;line-height:1.5;}
+.pv .stats{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.pv .stat{background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:12px;text-align:center;}
+.pv .stat.hi{border-color:var(--gold);box-shadow:inset 0 0 40px rgba(235,176,24,.12);}
+.pv .stat .n{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(18px,2.4vw,26px);color:var(--gold);line-height:1;margin-bottom:4px;}
+.pv .stat .l{font-size:10px;color:var(--steel);line-height:1.35;}
+.pv .photos{display:flex;flex-wrap:wrap;gap:8px;}
+.pv .photos img{width:31%;border-radius:8px;border:1px solid var(--border);object-fit:cover;aspect-ratio:4/3;}
+.pv .foot{margin-top:14px;border-top:1px solid var(--border);padding-top:9px;font-size:9.5px;font-style:italic;color:var(--steel);line-height:1.5;display:flex;align-items:flex-end;gap:14px;}
+.pv .foot span{flex:1;}
+.pv .foot img{height:16px;width:auto;flex-shrink:0;opacity:.85;}
+.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px;}
+.actions button{font-family:'Oswald',sans-serif;font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase;border:none;border-radius:7px;padding:12px 16px;cursor:pointer;min-height:42px;flex:1;}
+.a-dl{background:var(--gold);color:var(--deep);}
+.a-snip{background:var(--navy);color:#fff;}
+.a-mail{background:var(--blue);color:#fff;}
+.sendhow{background:#fff;border:1px solid var(--lgray);border-left:4px solid var(--gold);border-radius:8px;padding:12px 14px;margin-top:12px;font-size:12px;color:#4a5568;}
+.sendhow b{color:var(--navy);}
+.sendhow ol{margin:6px 0 0 18px;padding:0;}
+.sendhow li{margin-bottom:4px;}
+.actions button:disabled{opacity:.55;cursor:default;}
+.sendstat{display:none;margin-top:10px;border-radius:8px;padding:11px 13px;font-size:12.5px;line-height:1.5;border:1px solid var(--lgray);background:#fff;color:#4a5568;}
+.sendstat b{color:var(--navy);}
+.sendstat.ok{border-left:4px solid #2f855a;}
+.sendstat.err{border-left:4px solid #c53030;color:#c53030;}
+.sendstat.busy{border-left:4px solid var(--gold);}
+.sendhow .subj{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.5px;background:var(--lgray);border-radius:4px;padding:2px 6px;color:var(--navy);white-space:nowrap;}
+@media (max-width:880px){.wrap{grid-template-columns:1fr;}.steps{grid-template-columns:1fr 1fr;}.preview{position:static;}}
+</style>
+</head>
+<body>
+
+<!-- ============ GROWTH HUB GATE ============ -->
+<style>
+  html.gh-locked > body > :not(#ghGate){display:none !important;}
+  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
+  html:not(.gh-locked) #ghGate{display:none;}
+  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
+  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
+  #ghGate .gh-brand svg{width:30px;height:30px;}
+  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
+  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
+  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;}
+  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
+  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
+  #ghGate input:focus{border-color:#4e84de;}
+  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
+  #ghGate button:hover{filter:brightness(1.06);}
+  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
+  #ghGate .gh-shake{animation:ghshake .3s;}
+  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+<div id="ghGate">
+  <div class="gh-wrap">
+    <div class="gh-brand">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><path fill="#ebb018" d="M28 8C31.5 22 38 28.5 52 32 38 35.5 31.5 42 28 56 24.5 42 18 35.5 4 32 18 28.5 24.5 22 28 8Z"/><path fill="#ebb018" d="M50 6h5v7h7v5h-7v7h-5v-7h-7v-5h7z"/></svg>
+      <span>Growth Hub</span>
+    </div>
+    <div class="gh-card">
+      <h2>Passcode</h2>
+      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
+      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
+      <button id="ghGo" type="button">Enter the Hub</button>
+      <div class="gh-err" id="ghErr"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
+  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+  if(!unlocked()) document.documentElement.classList.add('gh-locked');
+  function open(){ document.documentElement.classList.remove('gh-locked'); }
+  async function check(){
+    var v=document.getElementById('ghPass').value;
+    var ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        ok=(hex===HASH);
+      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
+    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
+    if(ok){ remember(); open(); }
+    else{
+      var card=document.querySelector('#ghGate .gh-card');
+      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
+      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
+      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    if(unlocked()) return;
+    document.getElementById('ghGo').addEventListener('click', check);
+    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
+  });
+})();
+</script>
+<!-- ============ /GROWTH HUB GATE ============ -->
+
+
+
+<section class="hero">
+  <div class="hero-inner">
+    <a class="back" href="../index.html">&larr; Growth Hub</a><a class="back guide" href="plays/proof-builder.html">First time? Read the play &rarr;</a>
+    <img src="data:image/png;base64,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" alt="FSG">
+    <h1>Proof Builder</h1>
+    <p>Turn every win into sales ammunition. Fill the story, drop the logos and photos, and generate a client-ready proof card — plus the snippet that adds it to the Master deck.</p>
+  </div>
+</section>
+
+<div class="steps">
+  <div class="stepc"><b>1 · Tell the story</b>Problem in the client's words, solution in ours, results at the meter.</div>
+  <div class="stepc"><b>2 · Drop the files</b>Client logos + job photos — they get embedded right in the card. Proposals stay in Engage — link, don't upload.</div>
+  <div class="stepc"><b>3 · Check permissions</b>Name, logo, numbers, quote — all four approved before anything goes external.</div>
+  <div class="stepc"><b>4 · Send it</b>Hit Email Growth Hub — the card goes with it, logos &amp; photos inside. It lands on Results as <b style="display:inline;">In Build</b>, gets a QA pass, and flips to <b style="display:inline;">Live</b> with your name on it. <span id="stepAttach" style="color:#8a6200;">Until the direct send is switched on, attach the downloaded card before you send.</span></div>
+</div>
+
+<div class="wrap">
+  <!-- ============ FORM ============ -->
+  <div class="panel">
+    <h2>The Story</h2>
+    <div class="two">
+      <div class="f"><label>Submitted by</label><span class="hint">Your name — you get the credit when this goes live on Growth Hub.</span><input id="fSubName" placeholder="e.g., Kevin Heid"></div>
+      <div class="f"><label>Your email</label><span class="hint">You&#8217;re CC&#8217;d so you have a copy.</span><input id="fSubEmail" placeholder="you@fsgi.com"></div>
+    </div>
+    <div class="two">
+      <div class="f"><label>Client name</label><input id="fName" placeholder="e.g., Circle K"></div>
+      <div class="f"><label>Vertical</label><select id="fVert">
+        <option value="">Select vertical…</option>
+        <option>Commercial Real Estate &amp; Office</option>
+        <option>Retail</option>
+        <option>Convenience &amp; Fuel</option>
+        <option>Restaurant &amp; Food Service</option>
+        <option>Industrial &amp; Manufacturing</option>
+        <option>Data Center &amp; Mission Critical</option>
+        <option>Healthcare</option>
+        <option>Senior Living &amp; Post-Acute</option>
+        <option>Education</option>
+        <option>Hospitality &amp; Entertainment</option>
+        <option>Government &amp; Public Infrastructure</option>
+        <option>Faith &amp; Community</option>
+        <option>Multifamily &amp; Residential Communities</option>
+      </select></div>
+    </div>
+    <h2 style="margin-top:20px;">The Cell — Product &times; Delivery &times; Type</h2>
+    <div class="two">
+      <div class="f"><label>Product line</label><select id="fProd">
+        <option value="">Select product line…</option>
+        <option>Electrical</option>
+        <option>Lighting</option>
+        <option>Signs</option>
+        <option>Technology Infrastructure</option>
+        <option>Energy Performance</option>
+      </select></div>
+      <div class="f"><label>Delivery method</label><select id="fMode">
+        <option value="">Select delivery method…</option>
+        <option>Construction</option>
+        <option>Service</option>
+        <option>Distribution</option>
+      </select></div>
+    </div>
+    <div class="f"><label>Type</label><span class="hint">Multi-select dropdown — the list filters by Product + Delivery method, same as the Engage opportunity form.</span>
+      <div class="tsel" id="tSel">
+        <div class="typebox" id="typeChips"><span class="placeholder">Pick Product + Delivery method first</span></div>
+        <div class="tdrop" id="typeDrop"></div>
+      </div>
+    </div>
+    <div class="f"><label>The problem</label><span class="hint">The villain — what was costing them money, time, or sleep? Use their words.</span>
+      <textarea id="fProblem" placeholder="e.g., 8,000 locations bleeding energy across lighting, HVAC, and refrigeration — and no vendor who could scope it nationally."></textarea></div>
+    <div class="f"><label>The solution</label><span class="hint">What FSG delivered — self-performed, one partner, the loop.</span>
+      <textarea id="fSolution" placeholder="e.g., Deployed Clarity EMS across the network, then grew into solar, generators, and lighting — named account managers for every business unit."></textarea></div>
+    <div class="f"><label>Client quote &amp; attribution</label><span class="hint">One sentence, real person. Leave blank if not approved yet.</span>
+      <div class="two">
+        <input id="fQuote" placeholder='"FSG gave us one team, one price, and total visibility."'>
+        <input id="fQuoteBy" placeholder="Name, Title, Company">
+      </div></div>
+
+    <h2 style="margin-top:20px;">The Numbers</h2>
+    <div class="statrow"><input id="s1v" placeholder="$300M+"><div><input id="s1l" placeholder="Delivered from inception to today"><span class="gtag">★ Gold stat — dollars first</span></div></div>
+    <div class="statrow"><input id="s2v" placeholder="8,000"><input id="s2l" placeholder="Locations"></div>
+    <div class="statrow"><input id="s3v" placeholder="Lighting × Service"><input id="s3l" placeholder="Product × Delivery method (auto-fills from the cell above)"></div>
+    <div class="statrow"><input id="s4v" placeholder="$450K/yr"><input id="s4l" placeholder="Outcome — $ saved, % saved, or ROI"></div>
+
+    <h2 style="margin-top:20px;">The Files</h2>
+    <div class="two">
+      <div class="f"><label>Client logos (up to 4)</label><div class="drop" id="dropLogo">Tap to add logos<input type="file" id="fileLogo" accept="image/*" multiple hidden></div></div>
+      <div class="f"><label>Job photos (up to 6)</label><div class="drop" id="dropPhotos">Tap to add photos<input type="file" id="filePhotos" accept="image/*" multiple hidden></div></div>
+    </div>
+    <div class="f"><label>Proposal / backup link</label><span class="hint">Engage opportunity URL or SmartSheet — proof stays auditable.</span>
+      <input id="fLink" placeholder="https://engage.fsgapps.com/..."></div>
+
+    <h2 style="margin-top:20px;">Permissions — Non-Negotiable</h2>
+    <div class="perm">
+      <label><input type="checkbox" id="pName"> Name approved</label>
+      <label><input type="checkbox" id="pLogo"> Logo approved</label>
+      <label><input type="checkbox" id="pNum"> Numbers approved</label>
+      <label><input type="checkbox" id="pQuote"> Quote approved</label>
+    </div>
+    <div class="warn" id="permWarn">⚠ Not all permissions checked — this card is INTERNAL ONLY until they are. The download will be watermarked.</div>
+  </div>
+
+  <!-- ============ PREVIEW ============ -->
+  <div class="preview">
+    <div class="pv" id="pv">
+      <div class="eyebrow">Proof &middot; We've Done This Before</div>
+      <div class="pwin" id="pvLogoWin"><div class="pwin-t">Client Logos</div><div class="clogos" id="pvLogos"><div class="pempty">Logo window — logos you add land here.</div></div></div>
+      <h3 id="pvName">Client Name</h3>
+      <div class="vert" id="pvVert">Vertical · Categories</div>
+      <div class="vert" id="pvCell" style="display:none;color:#ebb018;"></div>
+      <p class="story" id="pvProblem"><em>The problem</em> appears here as you type.</p>
+      <p class="story" id="pvSolution">The solution appears here.</p>
+      <p class="quote" id="pvQuote"></p>
+      <div class="stats" id="pvStats"></div>
+      <div class="pwin" id="pvPhotoWin"><div class="pwin-t">Job Photos</div><div class="photos" id="pvPhotos"><div class="pempty">Photo window — job photos you add land here (up to 6).</div></div></div>
+      <div class="credit" id="pvCredit" style="display:none;font-family:'Oswald',Arial,sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#ebb018;margin:14px 0 4px;">&#9733; <span id="pvCreditName"></span></div>
+      <div class="foot"><span>Every claim auditable — program documentation, safety compliance, and completion records maintained and shared live with the client.</span><img src="data:image/png;base64,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" alt="FSG"></div>
+    </div>
+    <div class="actions">
+      <button class="a-dl" id="btnDl">Download Proof Card</button>
+      <button class="a-snip" id="btnSnip">Copy Deck Snippet</button>
+      <button class="a-snip" id="btnRec">Copy Proof Record</button>
+      <button class="a-mail" id="btnMail">Email Growth Hub</button>
+    </div>
+    <div class="sendstat" id="sendStat" role="status" aria-live="polite"></div>
+    <div class="sendhow" id="sendHow">
+      <b>Send it in — 3 steps:</b>
+      <ol>
+        <li><b>Download</b> the proof card (the Email button downloads it for you automatically).</li>
+        <li><b>Email</b> it to <b>bobby.graham@fsgi.com</b> — attach the downloaded card; your logos &amp; photos are inside it.</li>
+        <li><b>Subject:</b> <span class="subj">GrowthHub / Client / Product / Delivery Method</span> — the Email button pre-fills this for you.</li>
+      </ol>
+    </div>
+    <div class="sendhow" id="sendHowDirect" style="display:none;">
+      <b>Send it in — 1 step:</b>
+      <ol>
+        <li>Hit <b>Email Growth Hub</b>. The proof card goes with it as an attachment — logos and photos inside — straight to <b>bobby.graham@fsgi.com</b>. Nothing to download, nothing to attach.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+
+// Product × Delivery × Type matrix — generated from the Growth Hub taxonomy sheet; keep in sync with story/products.html
+const TAXONOMY = {
+ 'Electrical': {'Construction':['Mission critical','Ground-up','Tenant finish-out','Design-build','EV charging'],
+                'Service':['Emergency','On-demand','Preventive maintenance','Generator programs','EV charging'],
+                'Distribution':['Gear packages','Wholesale materials','Site logistics','EV charging']},
+ 'Lighting': {'Construction':['LED retrofit','New install','Design & photometrics'],
+              'Service':['Lamp & ballast programs','National account maintenance','Emergency lighting','MRO sourcing','Retrofits','National rollouts'],
+              'Distribution':['Owner-supplied packages','Design & procurement','EBV\u00AE standard','Design & photometrics','Freight & logistics','Wholesale materials','Site logistics']},
+ 'Signs': {'Construction':['Fabrication','Install','Rebrand rollouts','Permitting'],
+           'Service':['Maintenance','Repair','Permitting & surveys','Permitting','Retrofits','National rollouts'],
+           'Distribution':['Brand packages','Components','Delivered to site']},
+ 'Technology Infrastructure': {'Construction':['Structured cabling','AV','Security','DAS'],
+                               'Service':['Moves / adds / changes','Break-fix','Monitoring','AV','Security'],
+                               'Distribution':['Kitted devices','Staged materials']},
+ 'Energy Performance': {'Construction':['EMS installs','Solar','EV charging','Storage'],
+                        'Service':['EMS monitoring','Alarm response','Portfolio optimization','Utility programs','Retrofits','National rollouts','Solar Maintenance & Monitoring','EV charging'],
+                        'Distribution':['EV chargers','Solar equipment','EMS hardware','EV charging']}
+};
+
+// Type definitions — from the Growth Hub taxonomy sheet (shown as tooltips on the type picker)
+const TYPEDEFS = {
+ "Mission critical": "Electrical work for facilities that can't go dark — data centers, hospitals, 24/7 operations.",
+ "Ground-up": "Complete electrical systems for new construction, from service entrance to final trim.",
+ "Tenant finish-out": "Electrical scope that turns shell space into a move-in-ready tenant suite.",
+ "Design-build": "Single-source design and installation — FSG engineers the system it builds.",
+ "Emergency": "24/7 response when power or critical equipment goes down.",
+ "On-demand": "Single-visit electrical service calls, scheduled as needs come up.",
+ "Preventive maintenance": "Scheduled inspection and testing that catches electrical problems before they cause downtime.",
+ "Generator programs": "Testing, service, and load-bank support that keep backup generators ready to run.",
+ "Gear packages": "Switchgear, panels, and distribution equipment supplied as one coordinated package.",
+ "Wholesale materials": "Electrical and lighting material supplied at distribution pricing, no install.",
+ "Site logistics": "Staging, delivery, and material coordination timed to the site schedule.",
+ "LED retrofit": "Replacing existing fixtures and lamps with LED to cut energy and maintenance cost.",
+ "New install": "New lighting systems installed in new or renovated space.",
+ "Design & photometrics": "Layouts and light-level modeling that prove the design before anything is purchased.",
+ "Lamp & ballast programs": "Ongoing lamp, ballast, and driver replacement across a facility.",
+ "National account maintenance": "One lighting maintenance program covering every site in a multi-location portfolio.",
+ "Emergency lighting": "Testing and repair of exit and egress lighting to keep sites code-compliant.",
+ "MRO sourcing": "Sourcing and stocking replacement lighting parts for in-house maintenance teams.",
+ "Owner-supplied packages": "Fixture packages bought through FSG for someone else's crew to install.",
+ "Design & procurement": "Design support paired with procurement of the specified fixture package.",
+ "EBV® standard": "FSG's Equal or Better Value standard — any substitution matches or beats the specified fixture, so the design is never value-engineered away.",
+ "Freight & logistics": "Freight, warehousing, and delivery of lighting material to the job site.",
+ "Fabrication": "Custom sign manufacturing in FSG's own fabrication shops.",
+ "Install": "Setting and connecting signage on site, including permits and inspection support.",
+ "Rebrand rollouts": "Coordinated sign replacement across many locations to a new brand standard.",
+ "Permitting": "Managing sign permit applications and municipal approvals on the customer's behalf.",
+ "Maintenance": "Scheduled sign and lighting upkeep that keeps the storefront looking new.",
+ "Repair": "Fixing damaged, dark, or failing signage — including neon and channel letters.",
+ "Permitting & surveys": "Site and aerial surveys that document existing signage before pricing work.",
+ "Brand packages": "Complete brand-standard sign packages supplied for a location or rollout.",
+ "Components": "Individual sign parts — faces, letters, raceways, power supplies — supplied as needed.",
+ "Delivered to site": "Manufactured signage shipped direct to the site for another crew to install.",
+ "Structured cabling": "Network cabling, racks, and pathways installed to industry standards.",
+ "AV": "Audio-visual systems designed, installed, and supported — displays, sound, conferencing.",
+ "Security": "Access control, cameras, and alarm systems installed and maintained.",
+ "DAS": "In-building cellular coverage systems for large or hard-to-reach facilities.",
+ "Moves / adds / changes": "Day-to-day cabling and device changes as people and equipment move.",
+ "Break-fix": "On-call repair when network, AV, or security hardware fails.",
+ "Monitoring": "Ongoing remote monitoring of connected systems with alerting and reporting.",
+ "Kitted devices": "Devices configured, labeled, and kitted by site before they ship.",
+ "Staged materials": "Technology material received and staged ahead of the install window.",
+ "EMS installs": "Energy management and building control systems installed and commissioned.",
+ "Solar": "Rooftop, ground, and carport solar systems designed and installed.",
+ "Solar Maintenance & Monitoring": "Scheduled maintenance and remote monitoring that keeps installed solar arrays producing at expected output.",
+ "EV charging": "EV charging stations installed, from service upgrade through activation.",
+ "Storage": "Battery storage that shaves peak demand and backs up critical load.",
+ "EMS monitoring": "Ongoing monitoring of building systems to hold energy savings in place.",
+ "Alarm response": "Response to energy and building-system alarms as they trigger.",
+ "Portfolio optimization": "Portfolio-wide review that ranks sites by savings opportunity and payback.",
+ "Utility programs": "Capturing utility rebates and incentive dollars to offset project cost.",
+ "Retrofits": "Upgrading existing equipment to higher-efficiency systems at one site or many.",
+ "National rollouts": "Multi-site programs executed to one standard, one schedule, one point of contact.",
+ "EV chargers": "EV charging hardware supplied for another party to install.",
+ "Solar equipment": "Panels, inverters, and racking supplied as an equipment-only package.",
+ "EMS hardware": "Controls, sensors, and metering hardware supplied without installation."
+};
+function fillSelect(sel, opts, ph){
+  sel.innerHTML = '<option value="">'+ph+'</option>' + opts.map(o=>'<option>'+o+'</option>').join('');
+  sel.disabled = false;
+}
+// Type multi-select — filtered by Product × Delivery method (mirrors the Engage opportunity form)
+let typeSel = [];
+function laneTypes(){
+  const p = $('fProd').value, m = $('fMode').value;
+  return (p && m && TAXONOMY[p] && TAXONOMY[p][m]) ? TAXONOMY[p][m] : null;
+}
+function renderTypes(){
+  const list = laneTypes();
+  typeSel = typeSel.filter(t => list && list.includes(t));
+  const chips = $('typeChips'), drop = $('typeDrop');
+  chips.innerHTML = '';
+  if(!typeSel.length){
+    chips.innerHTML = '<span class="placeholder">' + (list ? 'Select types\u2026' : 'Pick Product + Delivery method first') + '</span>';
+  } else {
+    typeSel.forEach(t => {
+      const c = document.createElement('span'); c.className = 'tchip';
+      if(TYPEDEFS[t]) c.title = TYPEDEFS[t];
+      c.innerHTML = esc(t) + ' <button type="button" aria-label="Remove ' + esc(t) + '">\u2715</button>';
+      c.querySelector('button').onclick = (e) => { e.stopPropagation(); typeSel = typeSel.filter(x => x !== t); renderTypes(); refresh(); };
+      chips.appendChild(c);
+    });
+  }
+  drop.innerHTML = '';
+  if(!list){
+    drop.innerHTML = '<div class="tempty">Pick Product + Delivery method first</div>';
+  } else list.forEach(t => {
+    const sel = typeSel.includes(t);
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'topt' + (sel ? ' sel' : '');
+    b.innerHTML = '<span class="box">' + (sel ? '\u2713' : '') + '</span><span class="tn">' + esc(t) + (TYPEDEFS[t] ? '<small>' + esc(TYPEDEFS[t]) + '</small>' : '') + '</span>';
+    b.onclick = (e) => {
+      e.stopPropagation();
+      if(typeSel.includes(t)) typeSel = typeSel.filter(x => x !== t); else typeSel.push(t);
+      renderTypes(); refresh();
+    };
+    drop.appendChild(b);
+  });
+}
+// open/close the dropdown like a select
+$('typeChips').addEventListener('click', e => {
+  if(e.target.closest('.tchip button')) return;
+  if(!laneTypes()) return;
+  $('tSel').classList.toggle('open');
+});
+document.addEventListener('click', e => { if(!e.target.closest('#tSel')) $('tSel').classList.remove('open'); });
+// Auto-tag stat row 3 with Product × Delivery so Growth Hub can organize proof — reps can overwrite it.
+var s3vTouched = false, s3lTouched = false;
+$('s3v').addEventListener('input', function(){ s3vTouched = true; });
+$('s3l').addEventListener('input', function(){ s3lTouched = true; });
+function syncCellStat(){
+  var p = $('fProd').value, m = $('fMode').value;
+  if(!p && !m) return;
+  if(!s3vTouched) $('s3v').value = [p,m].filter(Boolean).join(' × ');
+  if(!s3lTouched) $('s3l').value = 'Product × Delivery method';
+}
+$('fProd').addEventListener('change', function(){ $('tSel').classList.remove('open'); renderTypes(); syncCellStat(); refresh(); });
+$('fMode').addEventListener('change', function(){ $('tSel').classList.remove('open'); renderTypes(); syncCellStat(); refresh(); });
+renderTypes();
+let logoData = [], photoData = [];
+
+// ---- live preview ----
+function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function refresh(){
+  $('pvName').textContent = $('fName').value || 'Client Name';
+  $('pvVert').textContent = $('fVert').value || 'Vertical · Categories';
+  $('pvProblem').innerHTML = '<em>' + esc($('fName').value || 'The client') + '</em> ' + esc($('fProblem').value || '— the problem appears here as you type.');
+  $('pvSolution').textContent = $('fSolution').value || 'The solution appears here.';
+  const q = $('fQuote').value.trim();
+  $('pvQuote').textContent = q ? '\u201C' + q.replace(/^"|"$/g,'') + '\u201D — ' + ($('fQuoteBy').value || '[attribution]') : '';
+  const stats = [1,2,3,4].map(i => ({v: $('s'+i+'v').value, l: $('s'+i+'l').value}));
+  $('pvStats').innerHTML = stats.filter(s=>s.v||s.l).map((s,i) =>
+    '<div class="stat'+(i===0?' hi':'')+'"><div class="n">'+esc(s.v||'—')+'</div><div class="l">'+esc(s.l||'')+'</div></div>').join('')
+    || '<div class="stat hi"><div class="n">$—</div><div class="l">The gold stat</div></div>';
+  $('pvPhotos').innerHTML = photoData.length ? photoData.map(p=>'<img src="'+p+'">').join('') : '<div class="pempty">Photo window — job photos you add land here (up to 6).</div>';
+  $('pvPhotoWin').classList.toggle('filled', photoData.length>0);
+  $('pvLogos').innerHTML = logoData.length ? logoData.map(l=>'<img src="'+l+'" alt="Client logo">').join('') : '<div class="pempty">Logo window — logos you add land here.</div>';
+  $('pvLogoWin').classList.toggle('filled', logoData.length>0);
+  const allPerm = $('pName').checked && $('pLogo').checked && $('pNum').checked && $('pQuote').checked;
+  $('permWarn').classList.toggle('show', !allPerm && ($('fName').value.length > 0));
+  const cellBits = [$('fProd').value, $('fMode').value].filter(Boolean).join(' \u00D7 ') + (typeSel.length ? ' \u00B7 ' + typeSel.join(', ') : '');
+  $('pvCell').style.display = cellBits ? 'block' : 'none';
+  $('pvCell').textContent = cellBits;
+  const sub = $('fSubName').value.trim();
+  $('pvCredit').style.display = sub ? 'block' : 'none';
+  $('pvCreditName').textContent = sub ? 'Proof submitted by ' + sub : '';
+}
+document.querySelectorAll('input,textarea').forEach(el=>el.addEventListener('input', refresh));
+$('fVert').addEventListener('change', refresh);
+document.querySelectorAll('.perm input').forEach(el=>el.addEventListener('change', refresh));
+
+// ---- file drops ----
+function rawRead(f){return new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(f);});}
+
+// Downscale on the way in. A phone photo is 3–8 MB; six of them embedded as
+// data URIs used to make a proof card too big to email at all. createImageBitmap
+// with imageOrientation:'from-image' also bakes in the EXIF rotation, so sideways
+// photos stop landing sideways on the card.
+async function readFile(f, maxPx){
+  maxPx = maxPx || 1400;
+  if(!/^image\//.test(f.type) || typeof createImageBitmap !== 'function') return rawRead(f);
+  try{
+    const bmp = await createImageBitmap(f, {imageOrientation:'from-image'});
+    const scale = Math.min(1, maxPx / Math.max(bmp.width, bmp.height));
+    const w = Math.round(bmp.width * scale), h = Math.round(bmp.height * scale);
+    const cv = document.createElement('canvas');
+    cv.width = w; cv.height = h;
+    const ctx = cv.getContext('2d');
+    // PNG logos keep their transparency; photos flatten to JPEG for the size win.
+    const keepAlpha = /png|svg/i.test(f.type) && maxPx <= 600;
+    if(!keepAlpha){ ctx.fillStyle = '#ffffff'; ctx.fillRect(0,0,w,h); }
+    ctx.drawImage(bmp, 0, 0, w, h);
+    bmp.close && bmp.close();
+    return keepAlpha ? cv.toDataURL('image/png') : cv.toDataURL('image/jpeg', 0.82);
+  }catch(e){
+    return rawRead(f);
+  }
+}
+
+function dataUriBytes(s){
+  const i = (s||'').indexOf(',');
+  return i < 0 ? 0 : Math.round((s.length - i - 1) * 3 / 4);
+}
+function payloadBytes(){
+  return logoData.concat(photoData).reduce((n,d)=>n+dataUriBytes(d), 0);
+}
+function fmtMB(b){ return (b/1048576).toFixed(1) + ' MB'; }
+$('dropLogo').addEventListener('click', ()=>$('fileLogo').click());
+$('fileLogo').addEventListener('change', async e=>{
+  logoData = [];
+  for(const f of [...e.target.files].slice(0,4)) logoData.push(await readFile(f, 600));
+  if(logoData.length){ $('dropLogo').classList.add('has'); $('dropLogo').firstChild.textContent='✓ '+logoData.length+' logo(s)'; }
+  refresh();
+});
+$('dropPhotos').addEventListener('click', ()=>$('filePhotos').click());
+$('filePhotos').addEventListener('change', async e=>{
+  photoData = [];
+  for(const f of [...e.target.files].slice(0,6)) photoData.push(await readFile(f, 1400));
+  if(photoData.length){ $('dropPhotos').classList.add('has'); $('dropPhotos').firstChild.textContent='✓ '+photoData.length+' photo(s)'; }
+  refresh();
+});
+
+// ---- standalone card (logos + photos embedded as data URIs) ----
+function cardFilename(){
+  const part = v => (v || '').trim().replace(/[^A-Za-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+  return [part($('fName').value) || 'Client', part($('fProd').value) || 'Product', part($('fSubName').value) || 'Rep'].join('_') + '.html';
+}
+function buildCardHtml(){
+  const allPerm = $('pName').checked && $('pLogo').checked && $('pNum').checked && $('pQuote').checked;
+  const wm = allPerm ? '' : '<div style="position:fixed;top:12px;right:14px;font-family:Oswald,sans-serif;font-size:11px;letter-spacing:2px;color:#ebb018;border:1px solid #ebb018;padding:5px 10px;border-radius:5px;text-transform:uppercase;">Internal Only — Pending Permissions</div>';
+  const card = '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc($('fName').value)+' — FSG Proof</title>'
+    + '<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">'
+    + '<style>body{margin:0;font-family:Open Sans,Arial,sans-serif;background:#0b1421;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:5vh 6vw;}'
+    + '.c{max-width:900px;}'+document.querySelector('style').textContent.split('/* PREVIEW */')[1].split('.actions')[0].replaceAll('.pv','.c')+'.c .pwin:not(.filled){display:none;}</style></head><body>'
+    + wm + '<div class="c">' + $('pv').innerHTML.replace(/id="[^"]*"/g,'') + '</div></body></html>';
+  return card;
+}
+function downloadCard(){
+  const blob = new Blob([buildCardHtml()], {type:'text/html'});
+  const a = document.createElement('a');
+  const url = URL.createObjectURL(blob);
+  a.href = url;
+  const fname = cardFilename();
+  a.download = fname;
+  a.click();
+  setTimeout(()=>URL.revokeObjectURL(url), 10000);
+  return fname;
+}
+$('btnDl').addEventListener('click', downloadCard);
+
+// ---- deck snippet ----
+$('btnSnip').addEventListener('click', async ()=>{
+  const j = s => (s||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+  const q = $('fQuote').value.trim().replace(/^"|"$/g,'');
+  const stats = [1,2,3,4].map((i,ix) => ({n: $('s'+i+'v').value||'—', l: $('s'+i+'l').value||'', hi: ix===0}));
+  const snippet = " {name:'" + j($('fName').value) + "', vert:'" + j($('fVert').value) + "',\n"
+    + "  s1:'<em>" + j($('fName').value) + "</em> " + j($('fProblem').value) + "',\n"
+    + "  s2:'" + j($('fSolution').value) + "',\n"
+    + "  q:'&ldquo;" + j(q) + "&rdquo; — " + j($('fQuoteBy').value) + "',\n"
+    + "  stats:[" + stats.map(s=>"{n:'"+j(s.n)+"',l:'"+j(s.l)+"'"+(s.hi?",hi:1":"")+"}").join(",") + "]},";
+  try{ await navigator.clipboard.writeText(snippet); $('btnSnip').textContent='✓ Copied'; setTimeout(()=>$('btnSnip').textContent='Copy Deck Snippet',1600);}catch(e){ prompt('Copy this snippet:', snippet); }
+});
+
+// ---- proofs.js record (paste-ready for assets/proofs.js) ----
+function proofRecord(){
+  const j = s => (s||'').trim().replace(/\\/g,'\\\\').replace(/"/g,'\\"');
+  const q = $('fQuote').value.trim().replace(/^"|"$/g,'');
+  const allPerm = $('pName').checked && $('pLogo').checked && $('pNum').checked && $('pQuote').checked;
+  const stats = [1,2,3,4].map(i=>({n:$('s'+i+'v').value.trim(), l:$('s'+i+'l').value.trim()})).filter(s=>s.n && s.l);
+  const statLines = stats.map((s,ix)=>'{ n: "'+j(s.n)+'", l: "'+j(s.l)+'"'+(ix===0?', hi: true':'')+' }').join(', ');
+  const today = new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  return '    { id: "PRF-0XX", client: "' + j($('fName').value) + '",\n'
+    + '      vertical: "' + j($('fVert').value) + '",\n'
+    + '      line: "' + j($('fProd').value) + '", mode: "' + j($('fMode').value) + '", type: "' + j(typeSel.join(', ')) + '",\n'
+    + '      cells: [["' + j($('fProd').value) + '", "' + j($('fMode').value) + '"]],\n'
+    + '      story: "' + j(($('fSolution').value||'').split(/(?<=[.!?])\s/)[0]) + '",\n'
+    + '      problem: "' + j($('fProblem').value) + '",\n'
+    + '      solution: "' + j($('fSolution').value) + '",\n'
+    + (statLines ? '      stats: [' + statLines + '],\n' : '')
+    + (q ? '      quote: "' + j(q) + '",\n      quoteBy: "' + j($('fQuoteBy').value) + '",\n' : '')
+    + '      permissions: "' + (allPerm ? 'Name · Logo · Numbers — all approved' : 'PENDING — verify before external use') + '",\n'
+    + '      submittedBy: "' + j($('fSubName').value) + '", submittedOn: "' + today + '",\n'
+    + '      status: "' + (allPerm ? 'LIVE' : 'IN BUILD') + '" },';
+}
+
+$('btnRec').addEventListener('click', async ()=>{
+  const rec = proofRecord();
+  try{ await navigator.clipboard.writeText(rec); $('btnRec').textContent='✓ Copied'; setTimeout(()=>$('btnRec').textContent='Copy Proof Record',1600);}catch(e){ prompt('Copy this record (paste into assets/proofs.js):', rec); }
+});
+
+// ---- email ----------------------------------------------------------------
+// Two paths. With PROOF_ENDPOINT set, the submission POSTs to a Google Apps
+// Script Web App which sends the mail server-side AND attaches the proof card
+// itself — no download, no manual attach, nothing for the rep to forget.
+// Left empty, it falls back to the old behaviour: download the card and open
+// the mail client. That fallback used to build a 4,000-character mailto: URL,
+// roughly double what Chrome and Windows accept, so it silently did nothing.
+// The long record now goes to the clipboard and the mailto body stays short.
+const PROOF_ENDPOINT = '';
+const PROOF_TO = 'bobby.graham@fsgi.com';
+const MAX_UPLOAD_BYTES = 20 * 1024 * 1024; // MailApp tops out at 25MB total
+
+if(PROOF_ENDPOINT){
+  $('sendHow').style.display='none';
+  $('sendHowDirect').style.display='block';
+  var _sa=document.getElementById('stepAttach'); if(_sa) _sa.style.display='none';
+  var _an=document.getElementById('attachNote'); if(_an) _an.style.display='none';
+}
+
+function stat(html, kind){
+  const el = $('sendStat');
+  el.innerHTML = html;
+  el.className = 'sendstat' + (kind ? ' ' + kind : '');
+  el.style.display = 'block';
+}
+function clearStat(){ $('sendStat').style.display = 'none'; }
+
+function subjectLine(){
+  return ['GrowthHub', $('fName').value.trim() || 'Client', $('fProd').value || 'Product', $('fMode').value || 'Delivery Method'].join(' / ');
+}
+
+// Same record as proofRecord(), as data instead of pasteable source. The
+// endpoint turns this straight into the feed entry that renders on Results.
+function recordFields(){
+  const allPerm = $('pName').checked && $('pLogo').checked && $('pNum').checked && $('pQuote').checked;
+  return {
+    vertical: $('fVert').value,
+    line: $('fProd').value, mode: $('fMode').value, type: typeSel.join(', '),
+    story: ($('fSolution').value||'').split(/(?<=[.!?])\s/)[0],
+    problem: $('fProblem').value.trim(),
+    solution: $('fSolution').value.trim(),
+    stats: [1,2,3,4].map((i,ix)=>({n:$('s'+i+'v').value.trim(), l:$('s'+i+'l').value.trim(), hi: ix===0 || undefined}))
+                    .filter(s=>s.n && s.l),
+    quote: $('fQuote').value.trim().replace(/^"|"$/g,''),
+    quoteBy: $('fQuoteBy').value.trim(),
+    permissions: allPerm ? 'Name · Logo · Numbers — all approved' : 'PENDING — verify before external use'
+  };
+}
+
+// Short enough to survive the mailto: ceiling with room to spare.
+function shortBody(){
+  const allPerm = $('pName').checked && $('pLogo').checked && $('pNum').checked && $('pQuote').checked;
+  const stats = [1,2,3,4].map(i=>({n:$('s'+i+'v').value.trim(), l:$('s'+i+'l').value.trim()})).filter(s=>s.n && s.l);
+  return 'NEW PROOF CARD — ' + $('fName').value + '\n\n'
+    + 'FROM: ' + ($('fSubName').value || '—') + ($('fSubEmail').value ? ' · ' + $('fSubEmail').value : '') + '\n'
+    + 'VERTICAL: ' + $('fVert').value + '\n'
+    + 'CELL: ' + ([$('fProd').value,$('fMode').value,typeSel.join(', ')].filter(Boolean).join(' × ') || '—') + '\n'
+    + 'NUMBERS: ' + (stats.map(s=>s.n+' '+s.l).join(' · ') || '—') + '\n'
+    + 'PERMISSIONS: ' + (allPerm ? 'ALL APPROVED' : 'INCOMPLETE — verify before external use') + '\n'
+    + 'FILES: ' + logoData.length + ' logo(s) + ' + photoData.length + ' photo(s), embedded in the attached card\n\n'
+    + '>>> ATTACH THE PROOF CARD that just downloaded (check Downloads). Full details and the paste-ready proofs.js record are on your clipboard — paste them below this line.\n\n'
+    + '— Sent from FSG Proof Builder';
+}
+
+// The full write-up. Too long for a mailto:, so on the fallback path it rides
+// the clipboard instead of the URL.
+function fullBody(fname){
+  const allPerm = $('pName').checked && $('pLogo').checked && $('pNum').checked && $('pQuote').checked;
+  const body =
+'NEW PROOF CARD — ' + $('fName').value + '\n' +
+'================================\n\n' +
+'SUBMITTED BY (for recognition):\n' + ($('fSubName').value || '—') + ($('fSubEmail').value ? ' · ' + $('fSubEmail').value : '') + '\n\n' +
+'VERTICAL / CATEGORIES:\n' + $('fVert').value + '\n\n' +
+'CELL (Product \u00D7 Delivery \u00D7 Type):\n' + ([$('fProd').value,$('fMode').value,typeSel.join(', ')].filter(Boolean).join(' \u00D7 ') || '\u2014') + '\n\n' +
+'THE PROBLEM:\n' + $('fProblem').value + '\n\n' +
+'THE SOLUTION:\n' + $('fSolution').value + '\n\n' +
+'THE NUMBERS:\n' + [1,2,3,4].map(i=>'• '+$('s'+i+'v').value+' — '+$('s'+i+'l').value).join('\n') + '\n\n' +
+'QUOTE:\n"' + $('fQuote').value + '" — ' + $('fQuoteBy').value + '\n\n' +
+'BACKUP LINK:\n' + ($('fLink').value||'—') + '\n\n' +
+'PERMISSIONS: ' + (allPerm ? 'ALL APPROVED ✓' : 'INCOMPLETE — name:'+$('pName').checked+' logo:'+$('pLogo').checked+' numbers:'+$('pNum').checked+' quote:'+$('pQuote').checked) + '\n\n' +
+'FILES: ' + logoData.length + ' logo(s) + ' + photoData.length + ' photo(s) \u2014 embedded in the attached proof card.\n\n' +
+'PASTE-READY RECORD (after approval, drop into assets/proofs.js under the ADD-NEW marker; assign the next PRF number and add logo/photo from the attached card):\n\n' + proofRecord() + '\n\n' +
+(fname ? '>>> BEFORE YOU HIT SEND: attach the proof card that just downloaded — "' + fname + '" (check your Downloads folder). It carries the logos and photos; without it this email is text only. Drop a copy in Growth Hub › proof drops too.\n\n' : '') +
+'NEXT STOP: Bobby runs this through Claude and it goes live in Growth Hub Proof — with the submitter credited.\n\n— Sent from FSG Proof Builder';
+  return body;
+}
+
+function copyText(text){
+  if(navigator.clipboard && window.isSecureContext){
+    return navigator.clipboard.writeText(text).then(()=>true).catch(()=>false);
+  }
+  try{
+    const ta=document.createElement('textarea');
+    ta.value=text; ta.setAttribute('readonly',''); ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    const ok=document.execCommand('copy'); ta.remove();
+    return Promise.resolve(ok);
+  }catch(e){ return Promise.resolve(false); }
+}
+
+// Fallback: download the card, open the mail client with the SHORT body, and
+// put the full write-up on the clipboard so nothing is lost either way.
+function mailClientPath(){
+  const fname = downloadCard();
+  const cc = $('fSubEmail').value.trim();
+  const url = 'mailto:' + PROOF_TO + '?' + (cc ? 'cc=' + encodeURIComponent(cc) + '&' : '')
+            + 'subject=' + encodeURIComponent(subjectLine())
+            + '&body=' + encodeURIComponent(shortBody());
+  copyText(fullBody(fname));
+  setTimeout(()=>{
+    const a = document.createElement('a');
+    a.href = url; a.style.display = 'none';
+    document.body.appendChild(a); a.click(); a.remove();
+    stat('<b>Card downloaded &mdash; "' + esc(fname) + '".</b> Your email should be opening now. <b>Attach that file before you send</b>, and paste the full write-up from your clipboard into the body. If no email opened, start one to ' + PROOF_TO + ' and paste.', 'ok');
+  }, 350);
+}
+
+$('btnMail').addEventListener('click', ()=>{
+  if(!$('fName').value.trim()){ stat('Add the client name before sending.', 'err'); return; }
+  clearStat();
+
+  if(!PROOF_ENDPOINT){ mailClientPath(); return; }
+
+  const card = buildCardHtml();
+  if(card.length > MAX_UPLOAD_BYTES){
+    stat('<b>Too big to send directly (' + fmtMB(card.length) + ').</b> Drop a couple of photos and try again &mdash; using the download-and-attach route for now.', 'err');
+    mailClientPath();
+    return;
+  }
+
+  const btn = $('btnMail'), label = btn.textContent;
+  btn.disabled = true; btn.textContent = 'Sending…';
+  stat('Sending your proof and attaching the card (' + fmtMB(card.length) + ')…', 'busy');
+
+  // text/plain keeps this a CORS-simple request — Apps Script never answers the
+  // OPTIONS preflight an application/json POST would trigger.
+  fetch(PROOF_ENDPOINT, {
+    method:'POST',
+    headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body: JSON.stringify({
+      kind:'proof',
+      client: $('fName').value.trim(),
+      submittedBy: $('fSubName').value.trim(),
+      submitterEmail: $('fSubEmail').value.trim(),
+      subject: subjectLine(),
+      body: fullBody(''),
+      record: proofRecord(),
+      // Structured copy of the same record, so the endpoint can build the feed
+      // entry without parsing the pasteable JS source above.
+      fields: recordFields(),
+      cardHtml: card,
+      cardName: cardFilename(),
+      logos: logoData.length,
+      photos: photoData.length,
+      source:'Growth Hub proof builder'
+    })
+  })
+    .then(r=>r.json())
+    .then(d=>{
+      if(!d || d.ok !== true) throw new Error((d && d.error) || 'send failed');
+      btn.textContent = '✓ Sent';
+      stat('<b>Sent.</b> Your proof went to ' + PROOF_TO + ' with the card attached'
+        + ($('fSubEmail').value.trim() ? ', and you’re CC’d so you have a copy' : '')
+        + '. Bobby QAs it and it goes live in Growth Hub Proof with you credited.', 'ok');
+      setTimeout(()=>{ btn.disabled=false; btn.textContent=label; }, 2500);
+    })
+    .catch(()=>{
+      btn.disabled=false; btn.textContent=label;
+      stat('<b>Direct send didn’t go through</b> &mdash; using the download-and-attach route instead.', 'err');
+      mailClientPath();
+    });
+});
+
+refresh();
+</script>
+</body>
+</html>
