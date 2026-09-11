@@ -415,6 +415,24 @@ mx.addEventListener('click', async e => {
   const line = LINES[+cell.dataset.line];
   const mode = MODES.find(m=>m.key===cell.dataset.mode);
   const d = line.cells[mode.key];
+
+  // "Proven with" = the curated names hard-coded in LINES, plus every proof in
+  // the shared proofs.js list whose cells match this Product × Delivery square.
+  // That second half is what makes an approved Proof Builder submission show up
+  // here on its own — nothing to hand-add to LINES when a new proof goes live.
+  function proofsForCell(lineName, modeName, curated){
+    const out = (curated || []).slice();
+    const seen = {}; out.forEach(n => seen[String(n).toLowerCase()] = true);
+    const all = (window.FSGProof && window.FSGProof.list) || [];
+    all.forEach(p => {
+      if(!p || p.status !== 'LIVE' || !p.client) return;          // IN BUILD stays off the sales surface
+      const cells = p.cells && p.cells.length ? p.cells : [[p.line, p.mode]];
+      const hit = cells.some(c => c && String(c[0]).toLowerCase() === lineName.toLowerCase()
+                                     && String(c[1]).toLowerCase() === modeName.toLowerCase());
+      if(hit && !seen[p.client.toLowerCase()]){ out.push(p.client); seen[p.client.toLowerCase()] = true; }
+    });
+    return out;
+  }
   document.getElementById('dMode').textContent = mode.name + ' \u00B7 ' + mode.sub;
   document.getElementById('dTitle').textContent = line.name;
   document.getElementById('dTagline').textContent = line.tag || '';
@@ -422,7 +440,8 @@ mx.addEventListener('click', async e => {
   CUR = {line: line.name, mode: mode.name};
   document.getElementById('dTypes').innerHTML = d.types.map(t=>'<button type="button" class="type-chip" data-type="'+t.replace(/"/g,'&quot;')+'">'+t+'</button>').join('');
   const pl = document.getElementById('dProofLabel'), pr = document.getElementById('dProofs');
-  if(d.proofs.length){ pl.style.display='block'; pr.style.display='flex'; pr.innerHTML = d.proofs.map(p=>'<span class="proof-chip">'+p+'</span>').join(''); }
+  const names = proofsForCell(line.name, mode.name, d.proofs);
+  if(names.length){ pl.style.display='block'; pr.style.display='flex'; pr.innerHTML = names.map(p=>'<span class="proof-chip">'+p+'</span>').join(''); }
   else { pl.style.display='none'; pr.style.display='none'; }
   document.getElementById('dRes').innerHTML = d.res.map(k => {
     const r = R[k], live = LIVE[k];
