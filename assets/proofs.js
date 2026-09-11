@@ -22,9 +22,26 @@
        right below this marker (newest first). Assign the next PRF-0XX id,
        then add logo/photo as data URIs from the attached proof card:
          logo:  "data:image/png;base64,...",
-         photo: "data:image/jpeg;base64,...", photoCap: "caption",
+         photo: "assets/proof-photos/PRF-0XX-client-what.jpg", photoCap: "caption",
+       Photos go in assets/proof-photos/ as real files — see the README there.
+       Keeps this file small; it loads on every page. A data: URI still works.
        Statuses: LIVE | IN BUILD | CONFIDENTIAL.
        ================================================================= */
+    { id: "PRF-020", client: "WTC Transportation Hub — The Oculus",
+      vertical: "Government & Public Infrastructure",
+      line: "Lighting", mode: "Construction", type: "New install, Design & photometrics",
+      cells: [["Lighting", "Construction"]],
+      story: "FSG engineered custom PAR38-scale RGBW optical arrays that live inside the existing enclosures — four emitters where one metal halide lamp used to sit — driven by a hardened ETC Paradigm architectural control system with touchscreen scene control.",
+      problem: "opened in 2016 lit with ceramic metal halide — at the time the only source that could throw that far and hold that quality. Then the hall changed jobs. Alongside a quarter of a million daily commuters it became one of the most requested rooms in New York for receptions and events, and every booking asked for the same thing the building could not do: color. The owner wanted color with light and the original design intent left exactly as it was — with nothing about the building allowed to change. Not the fixture locations, not the wiring, not the light on the ribs, not the dignity of the room.",
+      solution: "FSG engineered custom PAR38-scale RGBW optical arrays that live inside the existing enclosures — four emitters where one metal halide lamp used to sit — driven by a hardened ETC Paradigm architectural control system with touchscreen scene control. 166 rib columns lit, distribution and levels held, design intent held, installed around live commuters and memorial days in a working transit hall. Color became a setting instead of a construction project: any color the occasion calls for, from a touchscreen, in seconds, without a single truss or temporary rig. Named a 2021 IES Illumination Award of Merit for Interior Lighting Design.",
+      stats: [{ n: "$6M", l: "Total project cost", hi: true }, { n: "166", l: "Rib columns lit" }],
+      photo: "assets/proof-photos/PRF-020-oculus-rgbw.jpg",
+      photoCap: "The same ribs under the retrofitted RGBW system — color is now a setting, not a construction project.",
+      permissions: "PENDING — verify before external use",
+      page: "tools/wire/oculus-wtc.html",
+      submittedBy: "Bernard J. Erickson", submittedOn: "Sep 11, 2026",
+      source: "FSG Wire — The Light That Came Back",
+      status: "IN BUILD" },
     {
       id: "PRF-001", client: "Crash Champions",
       vertical: "Specialty Retail: Auto Repair",
@@ -212,6 +229,15 @@
     return '<span class="ghp-badge build">In build</span>';
   }
   function cellTag(p) { return esc(p.line) + " × " + esc(p.mode) + " · " + esc(p.type); }
+  // A photo or logo can be a data: URI (self-contained, older records) or a
+  // repo path like "assets/proof-photos/x.jpg". Paths get the site root so the
+  // same string resolves from index.html and from story/products.html one
+  // level down; data: URIs and absolute URLs are handed back untouched.
+  function asset(v) {
+    if (!v) return v;
+    return /^(data:|https?:|\/)/i.test(v) ? v : ROOT + v;
+  }
+
   function byClient(name) {
     name = String(name).toLowerCase();
     for (var i = 0; i < PROOFS.length; i++) {
@@ -248,7 +274,7 @@
     var h = '<div class="ghp-ovl" role="dialog" aria-modal="true" aria-label="' + esc(p.client) + ' proof record"><div class="ghp-sheet">'
       + '<button class="ghp-x" aria-label="Close">✕</button>'
       + '<div class="ghp-eyebrow">Proof Record ' + p.id + ' &nbsp;·&nbsp; ' + badge(p.status) + '</div>'
-      + (p.logo ? '<img class="ghp-logo" src="' + p.logo + '" alt="' + esc(p.client) + ' logo">' : '')
+      + (p.logo ? '<img class="ghp-logo" src="' + asset(p.logo) + '" alt="' + esc(p.client) + ' logo">' : '')
       + '<h2>' + esc(p.client) + '</h2>'
       + '<div class="ghp-sub">' + (p.vertical ? '<span class="ghp-vert">' + esc(p.vertical) + '</span>' : '') + '<span class="ghp-cellline">' + cellTag(p) + '</span></div>';
     if (p.problem) h += '<div class="ghp-sec"><div class="ghp-sl">Their Problem</div><p>' + esc(p.problem) + '</p></div>';
@@ -261,7 +287,7 @@
         + '</div></div>';
     }
     if (p.quote) h += '<div class="ghp-sec"><div class="ghp-sl">In Their Words</div><div class="ghp-qbox"><div class="q">“' + esc(p.quote) + '”</div><div class="a">— ' + esc(p.quoteBy) + '</div></div></div>';
-    if (p.photo) h += '<div class="ghp-sec"><div class="ghp-sl">From the Field</div><img class="ghp-photo" src="' + p.photo + '" alt="' + esc(p.photoCap || p.client) + '"></div>';
+    if (p.photo) h += '<div class="ghp-sec"><div class="ghp-sl">From the Field</div><img class="ghp-photo" src="' + asset(p.photo) + '" loading="lazy" alt="' + esc(p.photoCap || p.client) + '"></div>';
     if (p.status === "IN BUILD") h += '<div class="ghp-sec"><div class="ghp-pending">Logo, photos' + (p.stats && p.stats.length ? '' : ', numbers') + ' and customer quote in build — submit them through the Proof Builder and this card upgrades to LIVE.</div></div>';
     h += '<div class="ghp-sec"><div class="ghp-sl">Record</div><div class="ghp-meta">'
       + (p.permissions ? '<div class="ghp-kv"><span class="k">Permissions</span><span class="v ok">✓ ' + esc(p.permissions) + '</span></div>' : '')
