@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -557,6 +556,32 @@
     cursor: pointer;
     min-height: 48px;
   }
+  .modal-submit:disabled { opacity: .55; cursor: default; }
+
+  .modal-copy {
+    width: 100%;
+    margin-top: 8px;
+    background: transparent;
+    color: var(--dark-navy);
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 600; font-size: 13px;
+    letter-spacing: 1.2px; text-transform: uppercase;
+    padding: 12px;
+    border: 1px solid #cbd5e0; border-radius: 6px;
+    cursor: pointer;
+    min-height: 44px;
+  }
+  .modal-copy:hover { border-color: var(--gold); }
+
+  .modal-status {
+    display: none;
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.45;
+    text-align: center;
+    color: #4a5568;
+  }
+  .modal-status.err { color: #c53030; }
 
   .modal-confirm {
     display: none;
@@ -1152,12 +1177,14 @@
       </div>
 
       <button class="modal-submit" id="sendIntake" type="button">Send It 🔥</button>
+      <button class="modal-copy" id="copyIntake" type="button">Copy Request Instead</button>
+      <div class="modal-status" id="intakeStatus" role="status" aria-live="polite"></div>
     </div>
 
     <div class="modal-confirm" id="intakeConfirm">
       <div class="flame">🔥</div>
       <h4>We're All Over This</h4>
-      <p>Your email is opening now with the request pre-filled — you're CC'd so you have a copy. Hit send and we're on it.</p>
+      <p id="intakeConfirmMsg">Your request is in. We're on it.</p>
     </div>
   </div>
 </div>
@@ -1248,13 +1275,25 @@
   const openBtn = document.getElementById('openIntake');
   const closeBtn = document.getElementById('closeIntake');
   const sendBtn = document.getElementById('sendIntake');
+  const copyBtn = document.getElementById('copyIntake');
+  const statusEl = document.getElementById('intakeStatus');
   const formWrap = document.getElementById('intakeFormWrap');
   const confirmWrap = document.getElementById('intakeConfirm');
+  const confirmMsg = document.getElementById('intakeConfirmMsg');
+
+  // ---- Where deck requests go -------------------------------------------
+  // Leave DECK_ENDPOINT empty and the button hands off to the rep's mail
+  // client (mailto) with a clipboard fallback. Paste the Google Apps Script
+  // Web App URL here and it POSTs instead — a real server-side send that
+  // lands in the inbox without the rep having to press send in a mail app.
+  const DECK_ENDPOINT = '';
+  const DECK_TO = 'bobby.graham@fsgi.com';
 
   openBtn.addEventListener('click', () => {
     overlay.classList.add('open');
     formWrap.style.display = 'block';
     confirmWrap.style.display = 'none';
+    hideStatus();
   });
 
   closeBtn.addEventListener('click', () => overlay.classList.remove('open'));
@@ -1262,55 +1301,174 @@
     if (e.target === overlay) overlay.classList.remove('open');
   });
 
-  sendBtn.addEventListener('click', () => {
-    const name = document.getElementById('reqName').value.trim();
-    const email = document.getElementById('reqEmail').value.trim();
-    const hero = document.getElementById('reqHero').value.trim();
-    const villain = document.getElementById('reqVillain').value.trim();
-    const plan = document.getElementById('reqPlan').value.trim();
+  // ---- helpers ----------------------------------------------------------
+  function showStatus(msg, isError) {
+    statusEl.textContent = msg;
+    statusEl.classList.toggle('err', !!isError);
+    statusEl.style.display = 'block';
+  }
+  function hideStatus() {
+    statusEl.style.display = 'none';
+    statusEl.classList.remove('err');
+    statusEl.textContent = '';
+  }
 
-    if (!name || !email || !villain) {
-      alert('Name, email, and the villain (the problem) are required.');
+  // Reads the form. Returns null (and flags the problem) if it isn't complete.
+  function readForm() {
+    const f = {
+      name:    document.getElementById('reqName').value.trim(),
+      email:   document.getElementById('reqEmail').value.trim(),
+      hero:    document.getElementById('reqHero').value.trim(),
+      villain: document.getElementById('reqVillain').value.trim(),
+      plan:    document.getElementById('reqPlan').value.trim()
+    };
+    if (!f.name || !f.email || !f.villain) {
+      showStatus('Name, email, and the villain (the problem) are required.', true);
+      return null;
+    }
+    return f;
+  }
+
+  // Kept deliberately short. The old version ran past 2,000 characters once
+  // encoded, which is over the mailto: ceiling in Chrome and Windows — the
+  // browser dropped the request with no error. Stakes and Win moved out of
+  // the template; they belong in the reply, not the ask.
+  function buildBody(f) {
+    return [
+      'Bobby,',
+      '',
+      'I need a deck built.',
+      '',
+      'HERO — the client',
+      f.hero || '(not given)',
+      '',
+      'VILLAIN — the pain',
+      f.villain,
+      '',
+      'PLAY — our solution',
+      f.plan || '(not sure — help me find it)',
+      '',
+      'Let’s go! 🔥',
+      f.name,
+      f.email,
+      '',
+      '— Sent from FSG Growth Hub'
+    ].join('\n');
+  }
+
+  function buildSubject(f) {
+    return 'Growth Hub Deck Request — ' + f.name;
+  }
+
+  // Anchor click rather than window.location.href — a same-page navigation to
+  // an unhandled protocol gets dropped silently in some browsers.
+  function openMailClient(f) {
+    const url = 'mailto:' + DECK_TO +
+                '?cc=' + encodeURIComponent(f.email) +
+                '&subject=' + encodeURIComponent(buildSubject(f)) +
+                '&body=' + encodeURIComponent(buildBody(f));
+    const a = document.createElement('a');
+    a.href = url;
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }
+
+  function plainRequest(f) {
+    return 'To: ' + DECK_TO + '\nSubject: ' + buildSubject(f) + '\n\n' + buildBody(f);
+  }
+
+  function copyRequest(f) {
+    const text = plainRequest(f);
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).then(() => true).catch(() => false);
+    }
+    // Fallback for non-HTTPS contexts, where the clipboard API is unavailable.
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      const ok = document.execCommand('copy');
+      ta.remove();
+      return Promise.resolve(ok);
+    } catch (err) {
+      return Promise.resolve(false);
+    }
+  }
+
+  function showConfirm(msg) {
+    confirmMsg.textContent = msg;
+    formWrap.style.display = 'none';
+    confirmWrap.style.display = 'block';
+  }
+
+  // ---- Copy Request Instead ---------------------------------------------
+  copyBtn.addEventListener('click', () => {
+    const f = readForm();
+    if (!f) return;
+    copyRequest(f).then((ok) => {
+      if (ok) {
+        showStatus('Copied. Paste it into an email to ' + DECK_TO + '.', false);
+      } else {
+        showStatus('Couldn’t reach the clipboard — email ' + DECK_TO + ' directly.', true);
+      }
+    });
+  });
+
+  // ---- Send It ----------------------------------------------------------
+  sendBtn.addEventListener('click', () => {
+    const f = readForm();
+    if (!f) return;
+    hideStatus();
+
+    // No endpoint configured: hand off to the mail client, and put the same
+    // text on the clipboard so the request survives a missing mail handler.
+    if (!DECK_ENDPOINT) {
+      openMailClient(f);
+      copyRequest(f);
+      showConfirm('Your email should be opening now with the request pre-filled — you’re CC’d so you have a copy. Hit send and we’re on it. If nothing opened, the request is on your clipboard — paste it into an email to ' + DECK_TO + '.');
       return;
     }
 
-    const subject = encodeURIComponent('Growth Hub Deck Request — ' + name);
-    const body = encodeURIComponent(
-      'Bobby,\n\n' +
-      'I need a deck built. Here\u2019s the story:\n\n' +
-      '============================\n' +
-      'THE HERO \u2014 who\u2019s the client?\n' +
-      '============================\n' +
-      (hero || '[Client name, facility type, # of sites, region]') + '\n\n' +
-      '============================\n' +
-      'THE VILLAIN \u2014 what\u2019s the pain?\n' +
-      '============================\n' +
-      (villain || '[What problem is costing them money, time, or sleep? What\u2019s blocking the deal?]') + '\n\n' +
-      '============================\n' +
-      'THE PLAY \u2014 what\u2019s our solution?\n' +
-      '============================\n' +
-      (plan || '[Business line / product / program \u2014 or say \u201Cnot sure, help me find it\u201D]') + '\n\n' +
-      '============================\n' +
-      'THE STAKES \u2014 why now?\n' +
-      '============================\n' +
-      '[Deal size, timeline, next meeting date \u2014 when do you need this?]\n\n' +
-      '============================\n' +
-      'THE WIN \u2014 what does success look like?\n' +
-      '============================\n' +
-      '[e.g., Walk out of the Sept 3 meeting with a signed LOI / drawings in hand]\n\n' +
-      'Let\u2019s go! \uD83D\uDD25\n' +
-      name + '\n' + email + '\n\n' +
-      '\u2014 Sent from FSG Growth Hub'
-    );
+    // Endpoint configured: real send.
+    sendBtn.disabled = true;
+    const original = sendBtn.textContent;
+    sendBtn.textContent = 'Sending…';
+    showStatus('Sending your request…', false);
 
-    const mailto = 'mailto:bobby.graham@fsgi.com?cc=' + encodeURIComponent(email) +
-                   '&subject=' + subject + '&body=' + body;
-
-    window.location.href = mailto;
-
-    formWrap.style.display = 'none';
-    confirmWrap.style.display = 'block';
+    // text/plain keeps this a CORS-simple request. Apps Script Web Apps don't
+    // answer the OPTIONS preflight that an application/json POST would trigger,
+    // so doPost parses e.postData.contents as JSON on the other end.
+    fetch(DECK_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({
+        name: f.name, email: f.email, hero: f.hero,
+        villain: f.villain, plan: f.plan,
+        subject: buildSubject(f), body: buildBody(f),
+        source: 'Growth Hub index'
+      })
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (!data || data.ok !== true) throw new Error((data && data.error) || 'send failed');
+        showConfirm('Your request is in — it just landed in Bobby’s inbox and you’re CC’d so you have a copy. We’re on it.');
+      })
+      .catch(() => {
+        // Never strand the rep on a failed send — fall back to the mail client.
+        sendBtn.disabled = false;
+        sendBtn.textContent = original;
+        openMailClient(f);
+        copyRequest(f);
+        showConfirm('The direct send didn’t go through, so your email should be opening with the request pre-filled instead. Hit send and we’re on it. If nothing opened, it’s on your clipboard — paste it into an email to ' + DECK_TO + '.');
+      });
   });
+
 </script>
 
 </body>
