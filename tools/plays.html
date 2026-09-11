@@ -1,0 +1,348 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Growth Hub Plays</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='115' fill='%23133865'/><g stroke='%23c5d9fa' stroke-width='22' stroke-linecap='round'><line x1='256' y1='256' x2='256' y2='96'/><line x1='256' y1='256' x2='394.6' y2='176'/><line x1='256' y1='256' x2='394.6' y2='336'/><line x1='256' y1='256' x2='256' y2='416'/><line x1='256' y1='256' x2='117.4' y2='336'/><line x1='256' y1='256' x2='117.4' y2='176'/></g><circle cx='256' cy='96' r='42' fill='%23ffffff'/><circle cx='394.6' cy='176' r='42' fill='%23c5d9fa'/><circle cx='394.6' cy='336' r='42' fill='%23ffffff'/><circle cx='256' cy='416' r='42' fill='%23c5d9fa'/><circle cx='117.4' cy='336' r='42' fill='%23ffffff'/><circle cx='117.4' cy='176' r='42' fill='%23ebb018'/><circle cx='256' cy='256' r='76' fill='%23ebb018'/></svg>">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fsg-deep-navy: #0b1421;
+    --fsg-dark-navy: #133865;
+    --fsg-brand-blue: #365aa0;
+    --fsg-steel-blue: #718dbc;
+    --fsg-light-blue: #c5d9fa;
+    --fsg-light-gray: #ededed;
+    --fsg-gold: #ebb018;
+    --fsg-bright-blue: #4e84de;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    color: var(--fsg-deep-navy);
+    background: #ffffff;
+    line-height: 1.55;
+    font-size: 16px;
+  }
+  .page { max-width: 960px; margin: 0 auto; padding: 32px 24px 48px; }
+
+  .hero {
+    background: var(--fsg-dark-navy);
+    border-radius: 8px;
+    padding: 28px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .hero .eyebrow {
+    color: var(--fsg-light-blue);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .hero h1 {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    color: #ffffff;
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+  .hero .subtitle { color: var(--fsg-light-blue); font-size: 14px; max-width: 560px; }
+  .hero .org { text-align: right; color: #fff; }
+  .hero .org .fsg { font-family: 'Oswald', Arial, sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 1px; }
+  .hero .org .sub { color: var(--fsg-steel-blue); font-size: 12px; margin-top: 4px; }
+  .gold-rule { border: none; border-top: 3px solid var(--fsg-gold); margin: 18px 0 28px; }
+
+  h2 {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 700;
+    color: var(--fsg-dark-navy);
+    font-size: 26px;
+    margin: 38px 0 6px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--fsg-gold);
+  }
+  p { margin: 12px 0; }
+  b { color: var(--fsg-deep-navy); }
+
+  .callout {
+    background: var(--fsg-light-blue);
+    border-left: 4px solid var(--fsg-gold);
+    border-radius: 0 6px 6px 0;
+    padding: 14px 20px;
+    margin: 20px 0;
+    color: var(--fsg-dark-navy);
+    font-size: 15px;
+  }
+
+  table.brand { width: 100%; border-collapse: collapse; font-size: 15px; margin: 16px 0; }
+  table.brand th {
+    background: var(--fsg-dark-navy);
+    color: #fff;
+    text-align: left;
+    padding: 10px 14px;
+    font-weight: 700;
+  }
+  table.brand td { padding: 10px 14px; vertical-align: top; }
+  table.brand tr:nth-child(even) td { background: var(--fsg-light-blue); }
+  table.brand td:first-child { font-weight: 700; white-space: nowrap; }
+
+  .tile {
+    display: flex;
+    align-items: stretch;
+    background: var(--fsg-light-gray);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 14px 0;
+  }
+  .tile .badge {
+    background: var(--fsg-dark-navy);
+    color: #fff;
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 64px;
+  }
+  .tile .badge.gold { color: var(--fsg-gold); }
+  .tile .body { padding: 14px 18px; }
+  .tile .body h4 {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-size: 18px;
+    color: var(--fsg-dark-navy);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .tile .body p { margin: 0; font-size: 15px; }
+
+  ul.misses { margin: 14px 0 0 22px; }
+  ul.misses li { margin-bottom: 10px; }
+
+  .vc { margin-top: 40px; padding-top: 18px; border-top: 3px solid var(--fsg-gold); }
+  .vc h3 {
+    font-family: 'Oswald', Arial, sans-serif;
+    color: var(--fsg-dark-navy);
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  table.vc-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table.vc-table th { background: var(--fsg-dark-navy); color: #fff; text-align: left; padding: 8px 12px; font-weight: 700; }
+  table.vc-table td { padding: 8px 12px; border: 1px solid var(--fsg-light-gray); }
+
+  footer { text-align: center; color: var(--fsg-steel-blue); font-size: 13px; margin-top: 40px; }
+  a { color: var(--fsg-bright-blue); }
+
+  /* ---- Growth Hub Plays shelf ---- */
+  .searchwrap { margin: 22px 0 18px; }
+  .searchwrap input {
+    width:100%; box-sizing:border-box;
+    border:1.5px solid var(--fsg-light-gray); border-radius:8px;
+    padding:14px 16px; font-size:15px; font-family:'Open Sans',Arial,sans-serif;
+    color: var(--fsg-deep-navy); outline:none; min-height:48px;
+  }
+  .searchwrap input:focus { border-color: var(--fsg-bright-blue); }
+
+  .grid { display:grid; grid-template-columns:1fr; gap:12px; }
+  @media(min-width:640px){ .grid{ grid-template-columns:repeat(2,1fr); } }
+
+  .gcard {
+    background:#fff; border:1px solid var(--fsg-light-gray);
+    border-left:4px solid var(--fsg-brand-blue); border-radius:8px;
+    padding:16px; text-decoration:none; color:inherit;
+    display:flex; flex-direction:column;
+    transition: box-shadow .15s, border-color .15s;
+  }
+  .gcard:hover { border-left-color: var(--fsg-gold); box-shadow:0 4px 14px rgba(19,56,101,.12); }
+  .gcard .pill {
+    align-self:flex-start; font-family:'Oswald',Arial,sans-serif;
+    font-size:10px; font-weight:500; letter-spacing:1px; text-transform:uppercase;
+    padding:3px 8px; border-radius:3px;
+    background: var(--fsg-light-blue); color: var(--fsg-dark-navy); margin-bottom:8px;
+  }
+  .gcard .pill.gold { background: var(--fsg-gold); color: var(--fsg-deep-navy); font-weight:700; }
+  .gcard h3 {
+    font-family:'Oswald',Arial,sans-serif; font-weight:600; font-size:17px;
+    color: var(--fsg-dark-navy); line-height:1.25; margin-bottom:5px;
+  }
+  .gcard p { font-size:13px; color:#4a5568; flex-grow:1; margin:0; }
+  .gcard .cta {
+    margin-top:10px; font-size:12px; font-weight:700; letter-spacing:.5px;
+    text-transform:uppercase; color: var(--fsg-brand-blue);
+  }
+  .gcard .cta::after { content:" \2192"; }
+
+  .empty {
+    display:none; text-align:center; color: var(--fsg-steel-blue);
+    font-size:14px; padding:26px 10px;
+  }
+
+  @media (max-width: 720px) {
+    .hero h1 { font-size:30px; }
+    .hero { padding:22px 20px; }
+    .hero .org { text-align:left; }
+    .page { padding:24px 16px 40px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ GROWTH HUB GATE ============ -->
+<style>
+  html.gh-locked > body > :not(#ghGate){display:none !important;}
+  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
+  html:not(.gh-locked) #ghGate{display:none;}
+  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
+  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
+  #ghGate .gh-brand svg{width:30px;height:30px;}
+  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
+  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
+  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;}
+  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
+  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
+  #ghGate input:focus{border-color:#4e84de;}
+  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
+  #ghGate button:hover{filter:brightness(1.06);}
+  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
+  #ghGate .gh-shake{animation:ghshake .3s;}
+  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+<div id="ghGate">
+  <div class="gh-wrap">
+    <div class="gh-brand">
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#c5d9fa" stroke-width="14" stroke-linecap="round" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g><circle cx="150" cy="50" r="26" fill="#ffffff"/><circle cx="236.6" cy="100" r="26" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="26" fill="#ffffff"/><circle cx="150" cy="250" r="26" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="26" fill="#ffffff"/><circle cx="63.4" cy="100" r="26" fill="#c5d9fa"/><circle cx="150" cy="150" r="44" fill="#ebb018"/></svg>
+      <span>Growth Hub</span>
+    </div>
+    <div class="gh-card">
+      <h2>Passcode</h2>
+      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
+      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
+      <button id="ghGo" type="button">Enter the Hub</button>
+      <div class="gh-err" id="ghErr"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
+  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+  if(!unlocked()) document.documentElement.classList.add('gh-locked');
+  function open(){ document.documentElement.classList.remove('gh-locked'); }
+  async function check(){
+    var v=document.getElementById('ghPass').value;
+    var ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        ok=(hex===HASH);
+      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
+    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
+    if(ok){ remember(); open(); }
+    else{
+      var card=document.querySelector('#ghGate .gh-card');
+      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
+      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
+      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    if(unlocked()) return;
+    document.getElementById('ghGo').addEventListener('click', check);
+    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
+  });
+})();
+</script>
+<!-- ============ /GROWTH HUB GATE ============ -->
+
+<div style="max-width:960px;margin:0 auto;padding:18px 24px 0;"><a href="../index.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">&larr; Growth Hub</a><span style="color:#c5d9fa;margin:0 8px;">|</span><a href="fsg-app-faq.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">FSG App FAQs</a></div>
+<div class="page">
+
+  <div class="hero">
+    <div>
+      <div class="eyebrow">The Development Spoke</div>
+      <h1>Growth Hub Plays</h1>
+      <div class="subtitle">How to run the tools that run the hub. One play per tool — what it's for, how to work it, and what good looks like.</div>
+    </div>
+    <div class="org">
+      <div class="fsg">FACILITY SOLUTIONS GROUP</div>
+      <div class="sub">Growth Organization &nbsp;·&nbsp; 2026</div>
+    </div>
+  </div>
+  <hr class="gold-rule">
+
+  <p><b>Engage Plays teach you the CRM. Growth Hub Plays teach you the hub.</b> Same step-by-step shape, same five-minute read — but these cover the tools that live here: the builders, the generators, the things that turn your work into something the next rep can use. More land as they ship.</p>
+
+  <div class="searchwrap">
+    <input type="search" id="playSearch" placeholder="What are you trying to do? — proof, card, submit a win…" aria-label="Search Growth Hub Plays">
+  </div>
+
+  <div class="grid" id="playGrid"></div>
+  <div class="empty" id="playEmpty">Nothing matches that — try fewer words, or the word a rep would actually say.</div>
+
+  <div class="callout" style="margin-top:30px;"><b>Missing a play?</b> If a tool in the hub needs a walkthrough and doesn't have one, say so — that's how this shelf gets built.</div>
+
+  <footer>FSG Growth Hub &nbsp;|&nbsp; Internal Enablement</footer>
+</div>
+
+<script>
+/* ================= PLAYS — ADD NEW PLAYS HERE =================
+   One entry per play. Drop the file in tools/plays/, add an entry
+   below, done — the card and the search pick it up automatically. */
+var PLAYS = [
+  { file: "plays/proof-builder.html",
+    title: "Proof Builder",
+    pill: "Growth Hub Play",
+    gold: true,
+    desc: "Turn a win into ammunition the whole org can fire. The five steps, the cell that decides who sees it, the permission toggles that keep us out of trouble — and what happens after you hit send.",
+    tags: "proof builder proof card submit a win case study client win logo photos quote stats permissions cell product delivery type results grid in build live get my proof live credit roster how do i submit a proof" }
+  /* ---- ADD-NEW: next play goes here ---- */
+];
+
+(function () {
+  var grid  = document.getElementById('playGrid');
+  var empty = document.getElementById('playEmpty');
+  var box   = document.getElementById('playSearch');
+
+  function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  function card(p) {
+    return '<a class="gcard" href="' + esc(p.file) + '" data-tags="' + esc((p.tags||'') + ' ' + p.title + ' ' + p.desc).toLowerCase() + '">'
+      + '<span class="pill' + (p.gold ? ' gold' : '') + '">' + esc(p.pill || 'Play') + '</span>'
+      + '<h3>' + esc(p.title) + '</h3>'
+      + '<p>' + esc(p.desc) + '</p>'
+      + '<span class="cta">Open the play</span>'
+      + '</a>';
+  }
+
+  grid.innerHTML = PLAYS.map(card).join('');
+
+  box.addEventListener('input', function () {
+    var q = box.value.trim().toLowerCase();
+    var shown = 0;
+    var cards = grid.querySelectorAll('.gcard');
+    for (var i = 0; i < cards.length; i++) {
+      var hit = !q || cards[i].dataset.tags.indexOf(q) > -1;
+      cards[i].style.display = hit ? 'flex' : 'none';
+      if (hit) shown++;
+    }
+    empty.style.display = shown ? 'none' : 'block';
+  });
+})();
+</script>
+
+</body>
+</html>
