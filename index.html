@@ -169,12 +169,6 @@
   .spoke-it.res i { background: #fff; }
   .story-link { display: inline-block; font-family: 'Nunito', Arial, sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); text-decoration: none; margin-bottom: 16px; }
   .story-link:hover { color: #fff; }
-  /* hero link pair: how to run it (start here) + why it exists (the story) */
-  .hero-links { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 20px; margin-bottom: 16px; }
-  .hero-links .story-link { margin-bottom: 0; }
-  .story-link.primary { border-bottom: 2px solid var(--gold); padding-bottom: 3px; }
-  .story-link.primary:hover { border-bottom-color: #fff; }
-  .story-link .sh { color: var(--light-blue); }
 
   /* ---------- SEARCH (sticky) ---------- */
   .search-bar {
@@ -239,63 +233,6 @@
     border-color: var(--dark-navy);
     color: #fff;
   }
-
-  /* ---------- RESULTS PROOF FILTERS (Products × Delivery Method × Type) ---------- */
-  .proof-filters {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    gap: 10px 14px;
-    margin: 0 0 20px;
-  }
-  .pf-group { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-  .pf-group label {
-    font-family: 'Oswald', Arial, sans-serif;
-    font-size: 10.5px; font-weight: 500;
-    letter-spacing: 1.2px; text-transform: uppercase;
-    color: var(--steel-blue);
-    padding-left: 2px;
-  }
-  .pf-group select {
-    font-family: 'Oswald', Arial, sans-serif;
-    font-size: 12px; font-weight: 500;
-    letter-spacing: 0.8px; text-transform: uppercase;
-    color: var(--dark-navy);
-    background-color: #fff;
-    border: 1.5px solid var(--steel-blue);
-    border-radius: 20px;
-    padding: 7px 32px 7px 14px;
-    cursor: pointer;
-    max-width: 250px;
-    appearance: none; -webkit-appearance: none; -moz-appearance: none;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M1 1l4 4 4-4' stroke='%23365aa0' stroke-width='1.6' fill='none' stroke-linecap='round'/></svg>");
-    background-repeat: no-repeat;
-    background-position: right 13px center;
-    transition: all 0.15s ease;
-  }
-  .pf-group select.pf-on {
-    background-color: var(--dark-navy);
-    border-color: var(--dark-navy);
-    color: #fff;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M1 1l4 4 4-4' stroke='%23ebb018' stroke-width='1.6' fill='none' stroke-linecap='round'/></svg>");
-  }
-  .pf-clear {
-    font-family: 'Oswald', Arial, sans-serif;
-    font-size: 11px; font-weight: 500;
-    letter-spacing: 1px; text-transform: uppercase;
-    color: var(--brand-blue);
-    background: none; border: none; cursor: pointer;
-    padding: 8px 2px;
-    text-decoration: underline; text-underline-offset: 3px;
-    display: none;
-  }
-  .proof-filters.has-active .pf-clear { display: inline-block; }
-  .pf-count {
-    font-size: 12px; font-style: italic;
-    color: var(--steel-blue);
-    margin-left: auto; align-self: center;
-  }
-  @media (max-width: 520px){ .pf-count { margin-left: 0; flex-basis: 100%; } }
 
   /* ---------- MAIN ---------- */
   main { max-width: 1100px; margin: 0 auto; padding: 28px 20px 60px; }
@@ -613,111 +550,6 @@
     cursor: pointer;
     min-height: 48px;
   }
-  .modal-submit:disabled { opacity: .55; cursor: default; }
-
-  /* ---- Mode toggle: ask for content vs. hand content in ---- */
-  .mode-toggle {
-    display: flex;
-    gap: 6px;
-    background: #f4f6fa;
-    border-radius: 8px;
-    padding: 4px;
-    margin-bottom: 18px;
-  }
-  .mode-btn {
-    flex: 1 1 0;
-    min-width: 0;
-    background: transparent;
-    border: none;
-    border-radius: 6px;
-    padding: 10px 8px;
-    min-height: 44px;
-    cursor: pointer;
-    font-family: 'Oswald', Arial, sans-serif;
-    font-size: 12px; font-weight: 600;
-    letter-spacing: 1px; text-transform: uppercase;
-    color: var(--dark-navy);
-    line-height: 1.25;
-  }
-  .mode-btn[aria-pressed="true"] {
-    background: var(--dark-navy);
-    color: #fff;
-  }
-
-  /* ---- Selects get their own caret; the native one varies too much ---- */
-  .field select {
-    appearance: none; -webkit-appearance: none;
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='%23718dbc' d='M0 0h12L6 8z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    background-size: 11px 7px;
-    padding-right: 34px;
-  }
-  .field select:disabled { background-color: #f7f9fc; color: var(--steel-blue); }
-
-  /* ---- Field grids: taxonomy row, account row ---- */
-  .field-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 10px;
-    margin-bottom: 14px;
-  }
-  .field-grid .field { margin-bottom: 0; }
-
-  /* ---- Repeatable link rows ---- */
-  .link-row { display: flex; gap: 8px; align-items: center; margin-bottom: 6px; }
-  .link-row input { flex: 1 1 auto; min-width: 0; }
-  .link-x {
-    flex-shrink: 0; background: none; border: none; cursor: pointer;
-    color: var(--steel-blue); font-size: 22px; line-height: 1;
-    min-width: 36px; min-height: 36px;
-  }
-  .link-x:hover { color: #c53030; }
-  .link-add {
-    background: transparent;
-    color: var(--dark-navy);
-    font-family: 'Oswald', Arial, sans-serif;
-    font-weight: 600; font-size: 12px;
-    letter-spacing: 1px; text-transform: uppercase;
-    padding: 8px 14px;
-    border: 1.5px dashed #cbd5e0; border-radius: 6px;
-    cursor: pointer; min-height: 38px;
-  }
-  .link-add:hover { border-color: var(--gold); border-style: solid; }
-
-  /* ---- Checkbox row ---- */
-  .check-row {
-    display: flex; align-items: flex-start; gap: 10px;
-    margin-bottom: 14px;
-    font-size: 13px; line-height: 1.45; color: #4a5568;
-  }
-  .check-row input[type="checkbox"] {
-    flex-shrink: 0; width: 18px; height: 18px; margin-top: 1px;
-    accent-color: var(--dark-navy); cursor: pointer;
-  }
-  .check-row label { cursor: pointer; }
-
-  /* ---- Inline note (e.g. Proof Card → use the Proof Builder) ---- */
-  .note-inline {
-    display: none;
-    background: #fffaed;
-    border-left: 3px solid var(--gold);
-    border-radius: 0 6px 6px 0;
-    padding: 10px 12px;
-    margin: -4px 0 14px;
-    font-size: 12.5px; line-height: 1.5; color: #4a5568;
-  }
-  .note-inline a { color: var(--brand-blue); font-weight: 600; }
-
-  .modal-status {
-    display: none;
-    margin-top: 10px;
-    font-size: 13px;
-    line-height: 1.45;
-    text-align: center;
-    color: #4a5568;
-  }
-  .modal-status.err { color: #c53030; }
 
   .modal-confirm {
     display: none;
@@ -888,10 +720,7 @@
       <span class="spoke-it" style="animation-delay:1.48s"><i></i>Finance</span>
       <span class="spoke-it res" style="animation-delay:1.6s"><i></i>Results</span>
     </div>
-    <div class="hero-links">
-      <a class="story-link primary" href="resources/using-the-hub.html"><span class="sh">Start here:</span> How to run the hub — six spokes, the 10-minute prep, your proof live →</a>
-      <a class="story-link" href="resources/growth-hub-story.html">The story behind the hub — value at the core →</a>
-    </div>
+    <a class="story-link" href="resources/growth-hub-story.html">The story behind the hub — value at the core →</a>
 
     <div class="hero-motto">Contribution + Service = Value · Humble, Hungry, Always Grinding</div>
   </div>
@@ -930,24 +759,10 @@
     <hr class="section-rule">
     <div class="grid">
 
-      <!-- ---- ADD-NEW: newest What's New card goes here ---- -->
-      <a href="tools/plays.html" class="card" data-section="tools" data-tags="growth hub plays play shelf proof builder play account plan how do i walkthrough guide training tool guides development">
-        <div class="card-top"><span class="pill new">New</span><span class="card-date">Sep 2026</span></div>
-        <h3>Growth Hub Plays</h3>
-        <p>Engage Plays teach you the CRM. These teach you the hub — one play per tool, starting with Proof Builder.</p>
-        <span class="card-cta">Open</span>
-      </a>
-      <a href="resources/using-the-hub.html" class="card" data-section="tools" data-tags="how to run the hub field guide start here getting started new rep onboarding help six spokes chips ten minute prep meeting prep proof builder guide get my proof live how do i how to use the hub instructions">
-        <div class="card-top"><span class="pill new">New</span><span class="card-date">Sep 2026</span></div>
-        <h3>How To Run The Hub</h3>
-        <p>The field guide — what's behind every chip, the 10-minute meeting prep, and the +Proof Builder play that puts your win on the board.</p>
-        <span class="card-cta">Open</span>
-      </a>
-
-      <a href="tools/wire.html" class="card" data-section="wire" data-tags="wire industry news publications tools conductor electrified powered connected history technology market codes policy edison">
-        <div class="card-top"><span class="pill new">New</span><span class="card-date">Sep 2026</span></div>
-        <h3>The Wire — Industry News</h3>
-        <p>Get electrified, powered, and connected. Short, sourced issues on history, technology, market, and codes &amp; policy.</p>
+      <a href="tools/wire/oculus-wtc.html" class="card" data-section="wire" data-tags="oculus world trade center wtc september 11 calatrava way of light rgbw bernie erickson ies illumination award timeless contribution service">
+        <div class="card-top"><span class="pill new">Special Issue</span><span class="card-date">Sep 2026</span></div>
+        <h3>The Light That Came Back</h3>
+        <p>Bernie Erickson on transforming the World Trade Center Oculus — and what timeless contribution and service actually cost.</p>
         <span class="card-cta">Open</span>
       </a>
 
@@ -1073,22 +888,6 @@
     <h2 class="section-title">Results</h2>
     <p class="section-sub">Executed solutions for named accounts — every one a standard proof card, straight from the Proof Builder pipeline. Real numbers, real timelines, real logos. Proof beats promises. Tap any card for the full record.</p>
     <hr class="section-rule">
-    <div class="proof-filters" id="proofFilters">
-      <div class="pf-group">
-        <label for="pfProduct">Products</label>
-        <select id="pfProduct"><option value="">All Products</option></select>
-      </div>
-      <div class="pf-group">
-        <label for="pfMethod">Delivery Method</label>
-        <select id="pfMethod"><option value="">All Methods</option></select>
-      </div>
-      <div class="pf-group">
-        <label for="pfType">Type</label>
-        <select id="pfType"><option value="">All Types</option></select>
-      </div>
-      <button type="button" class="pf-clear" id="pfClear">Clear filters</button>
-      <span class="pf-count" id="pfCount"></span>
-    </div>
     <div class="grid" id="ghProofGrid"></div>
   </section>
 
@@ -1151,42 +950,13 @@
     <p class="section-sub">Battle cards, calculators, templates, training, and FSG App FAQs — plus the resources that sharpen the person. What you need in the 30 seconds before you answer the hard question.</p>
     <hr class="section-rule">
 
-    <!-- ---- Start Here (how to run the hub — onboarding shelf) ---- -->
-    <div class="section-kicker">New Here · Read This First</div>
-    <h2 class="section-title" style="font-size:21px;">Start Here</h2>
-    <p class="section-sub">Two minutes to learn the hub, ten minutes to prep any meeting with it.</p>
-    <hr class="section-rule">
-    <div class="grid">
-
-      <!-- ---- ADD-NEW: onboarding / how-to guides go here ---- -->
-      <a href="tools/plays.html" class="card" data-section="tools" data-tags="growth hub plays play shelf walkthrough guide training how do i tool guides proof builder play account plan development spoke">
-        <div class="card-top"><span class="pill new">New</span><span class="card-date">Sep 2026</span></div>
-        <h3>Growth Hub Plays</h3>
-        <p>Step-by-step plays for the tools that live in the hub. Same shape as Engage Plays — these just cover our side of the house.</p>
-        <span class="card-cta">Open</span>
-      </a>
-      <a href="resources/using-the-hub.html" class="card" data-section="tools" data-tags="how to run the hub field guide start here getting started new rep onboarding help six spokes chips ten minute prep meeting prep proof builder guide get my proof live how do i how to use the hub instructions">
-        <div class="card-top"><span class="pill new">New</span><span class="card-date">Sep 2026</span></div>
-        <h3>How To Run The Hub</h3>
-        <p>What's behind every chip, the 10-minute prep before any meeting, the weekly rhythm — and the +Proof Builder play, step by step, for getting your own win on the board.</p>
-        <span class="card-cta">Open</span>
-      </a>
-
-    </div>
-
     <!-- ---- Sharpen the Pro (in-deal tools) ---- -->
-    <div class="section-kicker" style="margin-top:34px;">In-Deal Support · Training</div>
+    <div class="section-kicker">In-Deal Support · Training</div>
     <h2 class="section-title" style="font-size:21px;">Sales Tools</h2>
     <p class="section-sub">The answer in your hand while the customer is still talking.</p>
     <hr class="section-rule">
     <div class="grid">
 
-      <a href="tools/plays/proof-builder.html" class="card" data-section="tools" data-tags="proof builder play how do i submit a proof walkthrough guide steps permissions cell in build live credit roster growth hub play">
-        <div class="card-top"><span class="pill new">Play</span><span class="card-date">Sep 2026</span></div>
-        <h3>Proof Builder — The Play</h3>
-        <p>The five steps, the cell that decides who sees your proof, the permission toggles — and what happens after you hit send.</p>
-        <span class="card-cta">Open</span>
-      </a>
       <a href="tools/proof-builder.html" class="card" data-section="tools" data-tags="proof builder case study client win generator card logo photos quote results">
         <div class="card-top"><span class="pill new">New</span><span class="card-date">Aug 2026</span></div>
         <h3>Proof Builder</h3>
@@ -1278,6 +1048,13 @@
       </a>
 
       <!-- ---- ADD-NEW: newest Wire issue card goes here ---- -->
+      <a href="tools/wire/oculus-wtc.html" class="card" data-section="wire" data-tags="oculus world trade center wtc september 11 9/11 calatrava way of light rgbw dmx etc paradigm bernie erickson mathle leyes ies illumination award retrofit transportation hub timeless contribution service">
+        <div class="card-top"><span class="pill new">Special Issue</span><span class="card-date">Sep 2026</span></div>
+        <h3>The Light That Came Back</h3>
+        <p>Bernie Erickson on transforming the World Trade Center Oculus — 166 rib columns, RGBW color, 80%+ less energy, and not one fixture moved.</p>
+        <span class="card-cta">Open</span>
+      </a>
+
       <a href="tools/wire/edison-menlo-park.html" class="card" data-section="wire" data-tags="edison menlo park 1878 1879 light bulb filament puck gas history the light that changed everything system generators conductors meters service">
         <div class="card-top"><span class="pill new">New</span><span class="card-date">Aug 2026</span></div>
         <h3>The Light That Changed Everything</h3>
@@ -1296,8 +1073,8 @@
   <section class="section">
     <div class="close-cta">
       <h2>Let's Go! 🔥</h2>
-      <p>Every deal in this HQ starts the same way: find the problem, bring the plan, make the client the hero. Need something built — or did you build something the team should have?</p>
-      <button class="cta-btn" id="openIntake" type="button">New Content</button>
+      <p>Every deal in this HQ starts the same way: find the problem, bring the plan, make the client the hero. Missing a deck or need a new play built?</p>
+      <button class="cta-btn" id="openIntake" type="button">Request a Deck</button>
     </div>
   </section>
 
@@ -1315,129 +1092,44 @@
     <button class="modal-close" id="closeIntake" aria-label="Close">&times;</button>
 
     <div id="intakeFormWrap">
-      <h3 id="intakeTitle">New Content</h3>
-      <p class="modal-sub" id="intakeSub">Tell us the story. The clearer the problem, the faster we build the play.</p>
-
-      <div class="mode-toggle" role="group" aria-label="What are you here to do?">
-        <button type="button" class="mode-btn" id="modeRequest" data-mode="request" aria-pressed="true">I need content built</button>
-        <button type="button" class="mode-btn" id="modeShare" data-mode="share" aria-pressed="false">I built content</button>
-      </div>
+      <h3 id="intakeTitle">Request a Deck</h3>
+      <p class="modal-sub">Tell us the story. The clearer the problem, the faster we build the play.</p>
 
       <div class="field">
         <label for="reqName">Name</label>
-        <input type="text" id="reqName" autocomplete="name" placeholder="Bobby Graham">
+        <input type="text" id="reqName" autocomplete="name" placeholder="Your name">
       </div>
 
       <div class="field">
         <label for="reqEmail">Email</label>
-        <span class="hint">We send you a copy of everything you submit.</span>
-        <input type="email" id="reqEmail" autocomplete="email" placeholder="bobby.graham@fsgi.com">
-      </div>
-
-      <div class="field" id="fieldTitle" style="display:none">
-        <label for="reqTitle">What is it?</label>
-        <span class="hint">Name the piece — this becomes the card title on the hub</span>
-        <input type="text" id="reqTitle" placeholder="e.g., Owner-Supplied Lighting battle card">
+        <input type="email" id="reqEmail" autocomplete="email" placeholder="you@fsgi.com">
       </div>
 
       <div class="field">
-        <label for="reqSite">Where does it fit?</label>
-        <span class="hint" id="hintSite">Which shelf on the Growth Hub it belongs on</span>
-        <select id="reqSite">
-          <option value="">Pick one…</option>
-          <option value="Proof Card">Proof Card</option>
-          <option value="Battle Card">Battle Card</option>
-          <option value="Solution">Solution</option>
-          <option value="Development">Development</option>
-          <option value="Wire">Wire</option>
-        </select>
-      </div>
-
-      <div class="note-inline" id="proofNote">
-        Proof cards have a purpose-built tool — the <a href="tools/proof-builder.html">Proof Builder</a> collects the stats, photos, quote and permissions a card needs. Use this form only if you already have the piece built somewhere else.
-      </div>
-
-      <div class="field-grid" id="taxRow">
-        <div class="field">
-          <label for="reqProduct">Product</label>
-          <select id="reqProduct">
-            <option value="">Any / not sure</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="reqMethod">Delivery</label>
-          <select id="reqMethod">
-            <option value="">Any / not sure</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="reqType">Type</label>
-          <select id="reqType">
-            <option value="">Any / not sure</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="field">
-        <label for="reqHero" id="labelHero">Who's the hero?</label>
-        <span class="hint" id="hintHero">The client — who are they and what facility type?</span>
+        <label for="reqHero">Who's the hero?</label>
+        <span class="hint">The client — who are they and what facility type?</span>
         <input type="text" id="reqHero" placeholder="e.g., Regional C-store chain, 80 sites, TX/OK">
       </div>
 
       <div class="field">
-        <label for="reqVillain" id="labelVillain">What's the villain?</label>
-        <span class="hint" id="hintVillain">The pain — what problem is blocking them or blocking the deal?</span>
+        <label for="reqVillain">What's the villain?</label>
+        <span class="hint">The pain — what problem is blocking them or blocking the deal?</span>
         <textarea id="reqVillain" placeholder="e.g., Their GC pushes back on owner-supplied lighting; no battle card to counter it"></textarea>
       </div>
 
-      <div class="field-grid">
-        <div class="field">
-          <label for="reqAccount">Account</label>
-          <input type="text" id="reqAccount" placeholder="e.g., Circle K">
-        </div>
-        <div class="field">
-          <label for="reqOpp">Engage opportunity #</label>
-          <input type="text" id="reqOpp" placeholder="e.g., P-908803">
-        </div>
-      </div>
-
-      <div class="field" id="fieldStatus" style="display:none">
-        <label for="reqStatus">Status</label>
-        <span class="hint">How it should go up on the hub</span>
-        <select id="reqStatus">
-          <option value="LIVE">LIVE — ready to publish</option>
-          <option value="IN BUILD">IN BUILD — needs work before it goes up</option>
-          <option value="CONFIDENTIAL">CONFIDENTIAL — internal only, do not publish</option>
-        </select>
-      </div>
-
-      <div class="check-row" id="permRow">
-        <input type="checkbox" id="reqPerm">
-        <label for="reqPerm" id="permLabel">The client name and logo are cleared for customer-facing use. Leave this unchecked if you haven't confirmed it — we'll scrub the names before anything goes up.</label>
-      </div>
-
       <div class="field">
-        <label for="gLink0">Google file location</label>
-        <span class="hint">Drive, Docs, Slides or Sheets link — set sharing so FSG can open it</span>
-        <div id="gLinks"></div>
-        <button type="button" class="link-add" id="gAdd">+ Add Google link</button>
+        <label for="reqPlan">What's our play?</label>
+        <span class="hint">The solution or product you think fits — or say "not sure, help me find it"</span>
+        <input type="text" id="reqPlan" placeholder="e.g., Lighting Design Program / EBV® / not sure">
       </div>
 
-      <div class="field">
-        <label for="eLink0">Engage link location</label>
-        <span class="hint">The opportunity, account or document link in Engage</span>
-        <div id="eLinks"></div>
-        <button type="button" class="link-add" id="eAdd">+ Add Engage link</button>
-      </div>
-
-      <button class="modal-submit" id="sendIntake" type="button">Send It &#128293;</button>
-      <div class="modal-status" id="intakeStatus" role="status" aria-live="polite"></div>
+      <button class="modal-submit" id="sendIntake" type="button">Send It 🔥</button>
     </div>
 
     <div class="modal-confirm" id="intakeConfirm">
       <div class="flame">🔥</div>
-      <h4 id="intakeConfirmHead">We’re All Over This</h4>
-      <p id="intakeConfirmMsg">Your request is in. We're on it.</p>
+      <h4>We're All Over This</h4>
+      <p>Your email is opening now with the request pre-filled — you're CC'd so you have a copy. Hit send and we're on it.</p>
     </div>
   </div>
 </div>
@@ -1450,85 +1142,21 @@
   const chips = document.querySelectorAll('.tag-chip:not(.wire-link)'); // wire-link navigates, it doesn't filter
   let activeFilter = 'all';
 
-  // ---------- Results proof filters (Products × Delivery Method × Type) ----------
-  // Proof cards are records rendered by assets/proofs.js into #ghProofGrid; each
-  // carries data-proof-id, which keys into window.FSGProof.list for its taxonomy
-  // (line / mode / type, plus the cells array for multi-cell proofs).
-  const proofGrid = document.getElementById('ghProofGrid');
-  const proofFiltersBar = document.getElementById('proofFilters');
-  const pfProduct = document.getElementById('pfProduct');
-  const pfMethod = document.getElementById('pfMethod');
-  const pfType = document.getElementById('pfType');
-  const pfClear = document.getElementById('pfClear');
-  const pfCount = document.getElementById('pfCount');
-
-  function proofList() { return (window.FSGProof && window.FSGProof.list) || []; }
-  function proofRecord(card) {
-    const id = card.dataset.proofId, list = proofList();
-    for (let i = 0; i < list.length; i++) if (list[i].id === id) return list[i];
-    return null;
-  }
-  function proofPairs(p) { return (p.cells && p.cells.length) ? p.cells : [[p.line, p.mode]]; }
-  function proofMatchesSel(card) {
-    const p = proofRecord(card);
-    if (!p) return true; // unknown record — never hide it by mistake
-    const pairs = proofPairs(p);
-    const prodOk = !pfProduct.value || pairs.some(c => c[0] === pfProduct.value) || p.line === pfProduct.value;
-    const methOk = !pfMethod.value || pairs.some(c => c[1] === pfMethod.value) || p.mode === pfMethod.value;
-    const typeOk = !pfType.value || p.type === pfType.value;
-    return prodOk && methOk && typeOk;
-  }
-  // NB: named pfFillSelect — the intake modal below has its own fillSelect in
-  // this same scope, and two declarations of one name would collide.
-  function pfFillSelect(sel, values) {
-    const prev = sel.value;
-    while (sel.options.length > 1) sel.remove(1);
-    values.forEach(v => { const o = document.createElement('option'); o.value = v; o.textContent = v; sel.appendChild(o); });
-    sel.value = (prev && values.indexOf(prev) >= 0) ? prev : '';
-  }
-  function refreshProofFilterOptions() {
-    // Products & methods come from the records themselves (curated + live feed),
-    // so a new proof card brings its own filter options with it. Types narrow to
-    // whatever survives the current Product / Method picks.
-    const prods = [], meths = [], types = [];
-    proofList().forEach(p => {
-      const pairs = proofPairs(p);
-      pairs.forEach(c => {
-        if (c[0] && prods.indexOf(c[0]) < 0) prods.push(c[0]);
-        if (c[1] && meths.indexOf(c[1]) < 0) meths.push(c[1]);
-      });
-      const prodOk = !pfProduct.value || pairs.some(c => c[0] === pfProduct.value) || p.line === pfProduct.value;
-      const methOk = !pfMethod.value || pairs.some(c => c[1] === pfMethod.value) || p.mode === pfMethod.value;
-      if (prodOk && methOk && p.type && types.indexOf(p.type) < 0) types.push(p.type);
-    });
-    prods.sort(); meths.sort(); types.sort();
-    pfFillSelect(pfProduct, prods);
-    pfFillSelect(pfMethod, meths);
-    pfFillSelect(pfType, types);
-  }
-
   function applyFilters() {
     const q = search.value.toLowerCase().trim();
     let anyVisible = false;
 
-    // Query live, not the load-time NodeList — feed-merged proofs re-render the
-    // grid after load and still need to obey the chip + proof filters.
-    document.querySelectorAll('.card').forEach(card => {
+    cards.forEach(card => {
       const tags = (card.dataset.tags || '').toLowerCase();
       const section = card.dataset.section || '';
       const title = (card.querySelector('h3')?.textContent || '').toLowerCase();
       const desc = (card.querySelector('p')?.textContent || '').toLowerCase();
-      const isProof = section === 'proof';
 
       const matchesSearch = !q || tags.includes(q) || title.includes(q) || desc.includes(q);
-      // Proof cards live under the Results chip only — never on All or other shelves.
-      const matchesFilter = isProof ? activeFilter === 'proof'
-                                    : (activeFilter === 'all' || section === activeFilter);
-      // Proof cards are records, not pages — no availability check to pass.
-      const isAvailable = isProof || card.dataset.available === 'true';
-      const matchesProof = !isProof || proofMatchesSel(card);
+      const matchesFilter = activeFilter === 'all' || section === activeFilter;
+      const isAvailable = card.dataset.available === 'true';
 
-      const show = isAvailable && matchesSearch && matchesFilter && matchesProof;
+      const show = isAvailable && matchesSearch && matchesFilter;
       card.style.display = show ? 'flex' : 'none';
       if (show) anyVisible = true;
     });
@@ -1538,26 +1166,8 @@
       if (secCards.length === 0) return; // methodology how-box & CTA sections stay
       let hasVisible = false;
       secCards.forEach(c => { if (c.style.display !== 'none') hasVisible = true; });
-      // Keep the Results section (and its filter bar) on screen while the Results
-      // chip is active, even when the proof filters match nothing.
-      if (activeFilter === 'proof' && proofGrid && sec.contains(proofGrid)) hasVisible = true;
       sec.style.display = hasVisible ? 'block' : 'none';
     });
-
-    // Proof filter chrome: highlight active selects, toggle Clear, count the board.
-    if (proofFiltersBar) {
-      [pfProduct, pfMethod, pfType].forEach(s => s.classList.toggle('pf-on', !!s.value));
-      proofFiltersBar.classList.toggle('has-active', !!(pfProduct.value || pfMethod.value || pfType.value));
-      if (proofGrid) {
-        const proofCards = proofGrid.querySelectorAll('.card');
-        let vis = 0;
-        proofCards.forEach(c => { if (c.style.display !== 'none') vis++; });
-        pfCount.textContent = (activeFilter === 'proof')
-          ? (vis === proofCards.length ? proofCards.length + ' proofs on the board'
-                                       : vis + ' of ' + proofCards.length + ' proofs')
-          : '';
-      }
-    }
 
     emptyState.style.display = anyVisible ? 'none' : 'block';
   }
@@ -1591,7 +1201,6 @@
     applyFilters();
   }
 
-  refreshProofFilterOptions(); // build the Products / Method / Type dropdowns from the records
   applyFilters();       // initial paint: everything hidden until checks return
   checkAvailability();  // reveal what's live
 
@@ -1606,237 +1215,18 @@
     });
   });
 
-  [pfProduct, pfMethod, pfType].forEach(sel => sel.addEventListener('change', () => {
-    refreshProofFilterOptions(); // narrow Type options to the picked Product/Method
-    applyFilters();
-  }));
-  pfClear.addEventListener('click', () => {
-    pfProduct.value = pfMethod.value = pfType.value = '';
-    refreshProofFilterOptions();
-    applyFilters();
-  });
-  // Feed-merged proofs rebuild the grid after load — refresh options and re-filter
-  // so new cards obey the chip and dropdowns the moment they land.
-  if (proofGrid) new MutationObserver(() => { refreshProofFilterOptions(); applyFilters(); })
-    .observe(proofGrid, { childList: true });
-
   // ---------- Intake modal ----------
   const overlay = document.getElementById('intakeOverlay');
   const openBtn = document.getElementById('openIntake');
   const closeBtn = document.getElementById('closeIntake');
   const sendBtn = document.getElementById('sendIntake');
-  const statusEl = document.getElementById('intakeStatus');
   const formWrap = document.getElementById('intakeFormWrap');
   const confirmWrap = document.getElementById('intakeConfirm');
-  const confirmHead = document.getElementById('intakeConfirmHead');
-  const confirmMsg = document.getElementById('intakeConfirmMsg');
-
-  const el = (id) => document.getElementById(id);
-
-  // ---- Where submissions go -------------------------------------------
-  // Leave CONTENT_ENDPOINT empty and the button hands off to the rep's mail
-  // client (mailto) with a clipboard fallback. Paste the Google Apps Script
-  // Web App URL here and it POSTs instead — a real server-side send that
-  // lands in the inbox without the rep having to press send in a mail app.
-  const CONTENT_ENDPOINT = '';
-  const DECK_TO = 'bobby.graham@fsgi.com';
-
-  // ---- Taxonomy ---------------------------------------------------------
-  // Product × Delivery Method × Type, same source as products.html and the
-  // Proof Builder. Keep the three in lockstep on a taxonomy rebuild.
-  const TAXONOMY = {
-   'Electrical': {'Construction':['Mission critical','Ground-up','Tenant finish-out','Design-build','EV charging'],
-                  'Service':['Emergency','On-demand','Preventive maintenance','Generator programs','EV charging'],
-                  'Distribution':['Gear packages','Wholesale materials','Site logistics','EV charging']},
-   'Lighting': {'Construction':['LED retrofit','New install','Design & photometrics'],
-                'Service':['Lamp & ballast programs','National account maintenance','Emergency lighting','MRO sourcing','Retrofits','National rollouts'],
-                'Distribution':['Owner-supplied packages','Design & procurement','EBV\u00AE standard','Design & photometrics','Freight & logistics','Wholesale materials','Site logistics']},
-   'Signs': {'Construction':['Fabrication','Install','Rebrand rollouts','Permitting'],
-             'Service':['Maintenance','Repair','Permitting & surveys','Permitting','Retrofits','National rollouts'],
-             'Distribution':['Brand packages','Components','Delivered to site']},
-   'Technology Infrastructure': {'Construction':['Structured cabling','AV','Security','DAS'],
-                                 'Service':['Moves / adds / changes','Break-fix','Monitoring','AV','Security'],
-                                 'Distribution':['Kitted devices','Staged materials']},
-   'Energy Performance': {'Construction':['EMS installs','Solar','EV charging','Storage'],
-                          'Service':['EMS monitoring','Alarm response','Portfolio optimization','Utility programs','Retrofits','National rollouts','Solar Maintenance & Monitoring','EV charging'],
-                          'Distribution':['EV chargers','Solar equipment','EMS hardware','EV charging']}
-  };
-
-  // Where each answer to "Where does it fit?" actually lands in the repo.
-  // `section` is the index card's data-section, which is what the chip row
-  // filters on — see the field guide for the chip/spoke translation.
-  const SITE = {
-    'Proof Card':  { section: 'proof', chip: 'Results',     path: 'assets/proofs.js',
-                     note: 'Proof cards are records, not pages — add one object under the ADD-NEW marker at the top of the PROOFS array. No new file, no index card.' },
-    'Battle Card': { section: 'plays', chip: 'Solutions',   path: 'plays/{slug}.html' },
-    'Solution':    { section: 'plays', chip: 'Solutions',   path: 'plays/{slug}.html' },
-    'Development': { section: 'tools', chip: 'Development', path: 'tools/{slug}.html' },
-    'Wire':        { section: 'wire',  chip: 'The Wire',    path: 'tools/wire/{slug}.html',
-                     note: 'Also add one object under the ADD-NEW marker in the ISSUES array in tools/wire.html so it shows on the Wire shelf.' }
-  };
-
-  // Product × Method × Type is how a Proof Card or Battle Card gets filed.
-  // For the other three it is useful but not load-bearing.
-  const TAX_REQUIRED_FOR = ['Proof Card', 'Battle Card'];
-
-  // ---- The two modes ----------------------------------------------------
-  // One set of fields, two sets of words. Asking for a deck and handing one
-  // in are the same shape of conversation — who it's for, what it fixes,
-  // where it goes — so the form doesn't change, only what it calls things.
-  const MODES = {
-    request: {
-      sub: 'Tell us the story. The clearer the problem, the faster we build the play.',
-      subjectTag: 'I need content built',
-      hero:    { label: 'Who’s the hero?', hint: 'The client — who are they and what facility type?', ph: 'e.g., Regional C-store chain, 80 sites, TX/OK' },
-      villain: { label: 'What’s the villain?', hint: 'The pain — what problem is blocking them or blocking the deal?', ph: 'e.g., Their GC pushes back on owner-supplied lighting; no battle card to counter it' },
-      siteHint: 'Which shelf on the Growth Hub it should live on when it’s built',
-      permLabel: 'The client name and logo are cleared for customer-facing use. Leave this unchecked if you haven’t confirmed it — we’ll build it generic.',
-      gHint: 'Anything that helps — the RFP, a site photo, a competitor’s deck. Set sharing so FSG can open it.',
-      showTitle: false,
-      showStatus: false,
-      confirmHead: 'We’re All Over This'
-    },
-    share: {
-      sub: 'You built something that works. Hand it over and we’ll get it on the shelf for everyone.',
-      subjectTag: 'I built content',
-      hero:    { label: 'Who’s it for?', hint: 'The audience — which reps or which customer should be using this?', ph: 'e.g., BD reps pitching GCs on owner-supplied lighting' },
-      villain: { label: 'What problem does it solve?', hint: 'Why you built it and what it wins — this becomes the card copy on the hub', ph: 'e.g., Reps had no counter when the GC says they’ll supply the fixtures' },
-      siteHint: 'Which shelf on the Growth Hub it belongs on',
-      permLabel: 'The client name and logo are cleared for customer-facing use. Leave this unchecked if you haven’t confirmed it — we’ll scrub the names before anything goes up.',
-      gHint: 'Drive, Docs, Slides or Sheets link — set sharing so FSG can open it.',
-      showTitle: true,
-      showStatus: true,
-      confirmHead: 'Got It — Thank You'
-    }
-  };
-
-  let mode = 'request';
-
-  // ---- Taxonomy dropdowns ----------------------------------------------
-  function fillSelect(sel, values, anyLabel) {
-    const keep = sel.value;
-    sel.innerHTML = '';
-    const any = document.createElement('option');
-    any.value = '';
-    any.textContent = anyLabel;
-    sel.appendChild(any);
-    values.forEach((v) => {
-      const o = document.createElement('option');
-      o.value = v; o.textContent = v;
-      sel.appendChild(o);
-    });
-    // Hold the rep's pick across a repopulate when it still qualifies.
-    sel.value = values.indexOf(keep) >= 0 ? keep : '';
-  }
-
-  function refreshMethods() {
-    const p = el('reqProduct').value;
-    fillSelect(el('reqMethod'), p ? Object.keys(TAXONOMY[p]) : [], 'Any / not sure');
-    el('reqMethod').disabled = !p;
-    refreshTypes();
-  }
-
-  function refreshTypes() {
-    const p = el('reqProduct').value;
-    const m = el('reqMethod').value;
-    let types = [];
-    if (p && m && TAXONOMY[p] && TAXONOMY[p][m]) {
-      // The source lists carry a few duplicates across lanes; dedupe here so
-      // the picker never shows the same type twice.
-      types = TAXONOMY[p][m].filter((t, i, a) => a.indexOf(t) === i);
-    }
-    fillSelect(el('reqType'), types, p && m ? 'Any / not sure' : 'Pick product and delivery first');
-    el('reqType').disabled = !(p && m);
-  }
-
-  fillSelect(el('reqProduct'), Object.keys(TAXONOMY), 'Any / not sure');
-  el('reqProduct').addEventListener('change', refreshMethods);
-  el('reqMethod').addEventListener('change', refreshTypes);
-  refreshMethods();
-
-  // ---- Repeatable link rows --------------------------------------------
-  function addLinkRow(wrapId, idPrefix, placeholder, focus) {
-    const wrap = el(wrapId);
-    const row = document.createElement('div');
-    row.className = 'link-row';
-
-    const input = document.createElement('input');
-    input.type = 'url';
-    input.placeholder = placeholder;
-    input.id = idPrefix + wrap.children.length;
-
-    const x = document.createElement('button');
-    x.type = 'button';
-    x.className = 'link-x';
-    x.setAttribute('aria-label', 'Remove this link');
-    x.innerHTML = '&times;';
-    x.addEventListener('click', () => {
-      row.remove();
-      // Always leave one empty row standing so the field never looks broken.
-      if (!wrap.children.length) addLinkRow(wrapId, idPrefix, placeholder, false);
-      hideStatus();
-    });
-
-    row.appendChild(input);
-    row.appendChild(x);
-    wrap.appendChild(row);
-    if (focus) input.focus();
-  }
-
-  const G_PLACEHOLDER = 'https://drive.google.com/…';
-  const E_PLACEHOLDER = 'https://engage.fsgapps.com/…';
-
-  addLinkRow('gLinks', 'gLink', G_PLACEHOLDER, false);
-  addLinkRow('eLinks', 'eLink', E_PLACEHOLDER, false);
-  el('gAdd').addEventListener('click', () => addLinkRow('gLinks', 'gLink', G_PLACEHOLDER, true));
-  el('eAdd').addEventListener('click', () => addLinkRow('eLinks', 'eLink', E_PLACEHOLDER, true));
-
-  function readLinks(wrapId) {
-    return Array.prototype.slice.call(el(wrapId).querySelectorAll('input'))
-      .map((i) => i.value.trim())
-      .filter((v) => v);
-  }
-
-  // ---- Mode ------------------------------------------------------------
-  function applyMode(next) {
-    mode = next;
-    const m = MODES[mode];
-
-    el('modeRequest').setAttribute('aria-pressed', String(mode === 'request'));
-    el('modeShare').setAttribute('aria-pressed', String(mode === 'share'));
-
-    el('intakeSub').textContent = m.sub;
-    ['hero', 'villain'].forEach((k) => {
-      const key = k.charAt(0).toUpperCase() + k.slice(1);
-      el('label' + key).textContent = m[k].label;
-      el('hint' + key).textContent = m[k].hint;
-      el('req' + key).placeholder = m[k].ph;
-    });
-
-    el('hintSite').textContent = m.siteHint;
-    el('permLabel').textContent = m.permLabel;
-    el('fieldTitle').style.display  = m.showTitle  ? 'block' : 'none';
-    el('fieldStatus').style.display = m.showStatus ? 'block' : 'none';
-
-    refreshSiteNote();
-    hideStatus();
-  }
-
-  function refreshSiteNote() {
-    const site = el('reqSite').value;
-    const note = el('proofNote');
-    note.style.display = (mode === 'share' && site === 'Proof Card') ? 'block' : 'none';
-  }
-
-  el('modeRequest').addEventListener('click', () => applyMode('request'));
-  el('modeShare').addEventListener('click', () => applyMode('share'));
-  el('reqSite').addEventListener('change', () => { refreshSiteNote(); hideStatus(); });
 
   openBtn.addEventListener('click', () => {
     overlay.classList.add('open');
     formWrap.style.display = 'block';
     confirmWrap.style.display = 'none';
-    hideStatus();
   });
 
   closeBtn.addEventListener('click', () => overlay.classList.remove('open'));
@@ -1844,342 +1234,55 @@
     if (e.target === overlay) overlay.classList.remove('open');
   });
 
-  // ---- Status line ------------------------------------------------------
-  function showStatus(msg, isError) {
-    statusEl.textContent = msg;
-    statusEl.classList.toggle('err', !!isError);
-    statusEl.style.display = 'block';
-  }
-  function hideStatus() {
-    statusEl.style.display = 'none';
-    statusEl.classList.remove('err');
-    statusEl.textContent = '';
-  }
-
-  // ---- Reading the form -------------------------------------------------
-  function readForm() {
-    const f = {
-      mode:    mode,
-      name:    el('reqName').value.trim(),
-      email:   el('reqEmail').value.trim(),
-      title:   el('reqTitle').value.trim(),
-      site:    el('reqSite').value,
-      product: el('reqProduct').value,
-      method:  el('reqMethod').value,
-      type:    el('reqType').value,
-      hero:    el('reqHero').value.trim(),
-      villain: el('reqVillain').value.trim(),
-      account: el('reqAccount').value.trim(),
-      opp:     el('reqOpp').value.trim(),
-      status:  mode === 'share' ? el('reqStatus').value : '',
-      perm:    el('reqPerm').checked,
-      gLinks:  readLinks('gLinks'),
-      eLinks:  readLinks('eLinks')
-    };
-
-    if (!f.name || !f.email) {
-      showStatus('Name and email are required — the email is how you get your copy.', true);
-      return null;
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) {
-      showStatus('That email doesn’t look right. Check it and try again.', true);
-      return null;
-    }
-    if (!f.site) {
-      showStatus('Pick where it fits — that’s what routes it to the right shelf.', true);
-      return null;
-    }
-    if (TAX_REQUIRED_FOR.indexOf(f.site) >= 0 && !(f.product && f.method && f.type)) {
-      showStatus('A ' + f.site.toLowerCase() + ' files under Product × Delivery × Type — pick all three.', true);
-      return null;
-    }
-    if (mode === 'request' && !f.villain) {
-      showStatus('Tell us the villain — the problem is the whole ask.', true);
-      return null;
-    }
-    if (mode === 'share') {
-      if (!f.title) {
-        showStatus('Give it a name so we know what we’re looking at.', true);
-        return null;
-      }
-      if (!f.gLinks.length && !f.eLinks.length) {
-        showStatus('Add a Google or Engage link — otherwise there’s nothing to hand over.', true);
-        return null;
-      }
-    }
-    const bad = f.gLinks.concat(f.eLinks).filter((u) => !/^https?:\/\/\S+\.\S+/i.test(u));
-    if (bad.length) {
-      showStatus('This doesn’t look like a full link: ' + bad[0] + ' — paste the whole https:// address.', true);
-      return null;
-    }
-    return f;
-  }
-
-  // ---- The paste-ready block --------------------------------------------
-  function slugify(s) {
-    return String(s).toLowerCase()
-      .replace(/[‘’']/g, '')
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-+|-+$/g, '')
-      .slice(0, 60) || 'new-content';
-  }
-
-  // Tags are what the hub's search actually matches on — not the folder, not
-  // the title alone. Seeding them from every answer the rep gave is the
-  // difference between the card being findable and being invisible.
-  const STOPWORDS = ('the a an and or of for to in on at with from our their they them ' +
-    'is are was were be been it its this that these those we us you your i my by as ' +
-    'no not so if then than but when what which who whom how why e.g eg etc').split(' ');
-
-  function buildTags(f) {
-    const words = [f.title, f.site, f.product, f.method, f.type, f.hero, f.account]
-      .filter(Boolean).join(' ')
-      .toLowerCase()
-      .replace(/[^a-z0-9®\s-]/g, ' ')
-      .split(/\s+/)
-      .filter((w) => w.length > 2 && STOPWORDS.indexOf(w) < 0);
-    const seen = {};
-    const out = [];
-    for (let i = 0; i < words.length && out.length < 22; i++) {
-      if (!seen[words[i]]) { seen[words[i]] = 1; out.push(words[i]); }
-    }
-    return out.join(' ');
-  }
-
-  function monthYear() {
-    return new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
-  }
-
-  function pathFor(f) {
-    const s = SITE[f.site];
-    return s ? s.path.replace('{slug}', slugify(f.title || f.villain || f.site)) : '';
-  }
-
-  // For a Proof Card the deliverable is a proofs.js record, not a page and
-  // not a card — proofs.js renders the card itself. Everything else gets the
-  // index card markup, ready to drop under an ADD-NEW marker.
-  function pasteBlock(f) {
-    const desc = (f.villain || '').replace(/\s+/g, ' ').trim();
-    if (f.site === 'Proof Card') {
-      const j = (s) => String(s || '').replace(/\\/g, '\\\\').replace(/"/g, '\\"');
-      return [
-        '    { id: "PRF-0XX", client: "' + j(f.account || f.hero) + '",',
-        '      line: "' + j(f.product) + '", mode: "' + j(f.method) + '", type: "' + j(f.type) + '",',
-        '      cells: [["' + j(f.product) + '", "' + j(f.method) + '"]],',
-        '      problem: "' + j(desc) + '",',
-        '      solution: "",',
-        '      permissions: "' + (f.perm ? 'Name · Logo — approved' : 'PENDING — verify before external use') + '",',
-        '      submittedBy: "' + j(f.name) + '", submittedOn: "' +
-          new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + '",',
-        '      status: "' + (f.status || (f.perm ? 'LIVE' : 'IN BUILD')) + '" },'
-      ].join('\n');
-    }
-    const s = SITE[f.site] || { section: 'tools' };
-    return [
-      '<a href="' + pathFor(f) + '" class="card" data-section="' + s.section + '"',
-      '   data-tags="' + buildTags(f) + '">',
-      '  <div class="card-top"><span class="pill new">New</span><span class="card-date">' + monthYear() + '</span></div>',
-      '  <h3>' + (f.title || '(title)') + '</h3>',
-      '  <p>' + (desc || '(one line on what it does)') + '</p>',
-      '  <span class="card-cta">Open</span>',
-      '</a>'
-    ].join('\n');
-  }
-
-  function publishSteps(f) {
-    const s = SITE[f.site] || {};
-    const lines = [];
-    if (f.site === 'Proof Card') {
-      lines.push('1. Paste the record above under the ADD-NEW marker at the top of the PROOFS array in assets/proofs.js.');
-      lines.push('2. Add logo and photo as data URIs, assign the next PRF-0XX id.');
-      lines.push('3. Push assets/proofs.js. It surfaces in Results and under every matching Products chip.');
-    } else {
-      lines.push('1. Build the page at ' + pathFor(f) + '.');
-      lines.push('2. Paste the card above under the ADD-NEW marker in the ' + (s.chip || '') + ' section of index.html.');
-      lines.push('3. Push the page AND the index edit in the SAME commit — the index hides cards whose page 404s, so shipping the index alone leaves the card invisible.');
-      if (s.note) lines.push('4. ' + s.note);
-    }
-    return lines.join('\n');
-  }
-
-  // ---- Body and subject -------------------------------------------------
-  function buildSubject(f) {
-    return 'Growth Hub | ' + MODES[f.mode].subjectTag + ' | ' + f.site;
-  }
-
-  function section(heading, value) {
-    return [heading, value || '(not given)', ''];
-  }
-
-  function buildBody(f) {
-    const lane = [f.product, f.method, f.type].filter(Boolean).join(' × ') || '(not tagged)';
-    const links = []
-      .concat(f.gLinks.map((u) => '  Google:  ' + u))
-      .concat(f.eLinks.map((u) => '  Engage:  ' + u));
-
-    let out = ['Bobby,', ''];
-    out.push(f.mode === 'share'
-      ? 'I built something worth sharing.'
-      : 'I need content built.');
-    out.push('');
-
-    if (f.mode === 'share') out = out.concat(section('WHAT IT IS', f.title));
-    out = out.concat(section('WHERE IT FITS', f.site));
-    out = out.concat(section('LANE', lane));
-    out = out.concat(section(f.mode === 'share' ? 'WHO IT’S FOR' : 'HERO — the client', f.hero));
-    out = out.concat(section(f.mode === 'share' ? 'WHAT IT SOLVES' : 'VILLAIN — the pain', f.villain));
-    out = out.concat(section('ACCOUNT / OPPORTUNITY',
-      [f.account, f.opp].filter(Boolean).join('  ·  ')));
-
-    out.push('LINKS');
-    out.push(links.length ? links.join('\n') : '  (none)');
-    out.push('');
-
-    out.push('STATUS & PERMISSION');
-    out.push('  Status:     ' + (f.status || 'n/a — this is a request'));
-    out.push('  Client use: ' + (f.perm
-      ? 'Name and logo CLEARED for customer-facing use'
-      : 'NOT confirmed — scrub client names before publishing'));
-    out.push('');
-
-    out.push(f.site === 'Proof Card' ? 'PASTE-READY PROOF RECORD' : 'PASTE-READY INDEX CARD');
-    out.push(pasteBlock(f));
-    out.push('');
-
-    out.push('TO PUBLISH');
-    out.push(publishSteps(f));
-    out.push('');
-
-    out.push('Let’s go! 🔥');
-    out.push(f.name);
-    out.push(f.email);
-    out.push('');
-    out.push('— Sent from FSG Growth Hub');
-    return out.join('\n');
-  }
-
-  // Anchor click rather than window.location.href — a same-page navigation to
-  // an unhandled protocol gets dropped silently in some browsers. The body is
-  // long now, so on the mail path we send a short version and put the full
-  // write-up on the clipboard.
-  function mailBody(f) {
-    const links = [].concat(f.gLinks, f.eLinks);
-    return [
-      'Bobby,', '',
-      f.mode === 'share' ? 'I built something worth sharing.' : 'I need content built.', '',
-      (f.mode === 'share' ? 'WHAT: ' + f.title + '\n' : '') +
-      'FITS: ' + f.site,
-      'LANE: ' + ([f.product, f.method, f.type].filter(Boolean).join(' × ') || '(not tagged)'),
-      '', 'PROBLEM', f.villain || '(not given)',
-      '', 'LINKS', links.length ? links.join('\n') : '(none)',
-      '', 'The full write-up — tags, paste-ready card and publish steps — is on my clipboard; pasting it below.',
-      '', f.name, f.email, '', '— Sent from FSG Growth Hub'
-    ].join('\n');
-  }
-
-  function openMailClient(f) {
-    const url = 'mailto:' + DECK_TO +
-                '?cc=' + encodeURIComponent(f.email) +
-                '&subject=' + encodeURIComponent(buildSubject(f)) +
-                '&body=' + encodeURIComponent(mailBody(f));
-    const a = document.createElement('a');
-    a.href = url;
-    a.style.display = 'none';
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-  }
-
-  function copyRequest(f) {
-    const text = 'To: ' + DECK_TO + '\nSubject: ' + buildSubject(f) + '\n\n' + buildBody(f);
-    if (navigator.clipboard && window.isSecureContext) {
-      return navigator.clipboard.writeText(text).then(() => true).catch(() => false);
-    }
-    try {
-      const ta = document.createElement('textarea');
-      ta.value = text;
-      ta.setAttribute('readonly', '');
-      ta.style.position = 'fixed';
-      ta.style.opacity = '0';
-      document.body.appendChild(ta);
-      ta.select();
-      const okc = document.execCommand('copy');
-      ta.remove();
-      return Promise.resolve(okc);
-    } catch (err) {
-      return Promise.resolve(false);
-    }
-  }
-
-  function showConfirm(f, msg) {
-    confirmHead.textContent = MODES[f.mode].confirmHead;
-    confirmMsg.textContent = msg;
-    formWrap.style.display = 'none';
-    confirmWrap.style.display = 'block';
-  }
-
-  // ---- Send It ----------------------------------------------------------
   sendBtn.addEventListener('click', () => {
-    const f = readForm();
-    if (!f) return;
-    hideStatus();
+    const name = document.getElementById('reqName').value.trim();
+    const email = document.getElementById('reqEmail').value.trim();
+    const hero = document.getElementById('reqHero').value.trim();
+    const villain = document.getElementById('reqVillain').value.trim();
+    const plan = document.getElementById('reqPlan').value.trim();
 
-    if (!CONTENT_ENDPOINT) {
-      openMailClient(f);
-      copyRequest(f);
-      showConfirm(f, 'Your email should be opening with the summary filled in — you’re CC’d so you keep a copy. ' +
-        'The full write-up is on your clipboard: paste it into the body before you send. ' +
-        'If nothing opened, start an email to ' + DECK_TO + ' and paste.');
+    if (!name || !email || !villain) {
+      alert('Name, email, and the villain (the problem) are required.');
       return;
     }
 
-    sendBtn.disabled = true;
-    const original = sendBtn.innerHTML;
-    sendBtn.textContent = 'Sending…';
-    showStatus('Sending…', false);
+    const subject = encodeURIComponent('Growth Hub Deck Request — ' + name);
+    const body = encodeURIComponent(
+      'Bobby,\n\n' +
+      'I need a deck built. Here\u2019s the story:\n\n' +
+      '============================\n' +
+      'THE HERO \u2014 who\u2019s the client?\n' +
+      '============================\n' +
+      (hero || '[Client name, facility type, # of sites, region]') + '\n\n' +
+      '============================\n' +
+      'THE VILLAIN \u2014 what\u2019s the pain?\n' +
+      '============================\n' +
+      (villain || '[What problem is costing them money, time, or sleep? What\u2019s blocking the deal?]') + '\n\n' +
+      '============================\n' +
+      'THE PLAY \u2014 what\u2019s our solution?\n' +
+      '============================\n' +
+      (plan || '[Business line / product / program \u2014 or say \u201Cnot sure, help me find it\u201D]') + '\n\n' +
+      '============================\n' +
+      'THE STAKES \u2014 why now?\n' +
+      '============================\n' +
+      '[Deal size, timeline, next meeting date \u2014 when do you need this?]\n\n' +
+      '============================\n' +
+      'THE WIN \u2014 what does success look like?\n' +
+      '============================\n' +
+      '[e.g., Walk out of the Sept 3 meeting with a signed LOI / drawings in hand]\n\n' +
+      'Let\u2019s go! \uD83D\uDD25\n' +
+      name + '\n' + email + '\n\n' +
+      '\u2014 Sent from FSG Growth Hub'
+    );
 
-    // text/plain keeps this a CORS-simple request. Apps Script Web Apps don't
-    // answer the OPTIONS preflight that an application/json POST triggers, so
-    // doPost parses e.postData.contents as JSON instead.
-    fetch(CONTENT_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify({
-        kind: 'content',
-        mode: f.mode,
-        name: f.name, email: f.email, title: f.title,
-        site: f.site, product: f.product, method: f.method, type: f.type,
-        hero: f.hero, villain: f.villain,
-        account: f.account, opp: f.opp,
-        status: f.status, perm: f.perm,
-        gLinks: f.gLinks, eLinks: f.eLinks,
-        tags: buildTags(f), path: pathFor(f),
-        section: (SITE[f.site] || {}).section || '',
-        paste: pasteBlock(f), publish: publishSteps(f),
-        subject: buildSubject(f), body: buildBody(f),
-        source: 'Growth Hub index'
-      })
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (!data || data.ok !== true) throw new Error((data && data.error) || 'send failed');
-        showConfirm(f, f.mode === 'share'
-          ? 'It’s in — landed in Bobby’s inbox with the card copy and publish steps already drafted, and you’re CC’d so you keep a copy. We’ll QA it and get it on the shelf with your name on it.'
-          : 'Your request is in — it just landed in Bobby’s inbox and you’re CC’d so you have a copy. We’re on it.');
-      })
-      .catch(() => {
-        sendBtn.disabled = false;
-        sendBtn.innerHTML = original;
-        openMailClient(f);
-        copyRequest(f);
-        showConfirm(f, 'The direct send didn’t go through, so your email should be opening with the summary instead. ' +
-          'The full write-up is on your clipboard: paste it into the body before you send. ' +
-          'If nothing opened, start an email to ' + DECK_TO + ' and paste.');
-      });
+    const mailto = 'mailto:bobby.graham@fsgi.com?cc=' + encodeURIComponent(email) +
+                   '&subject=' + subject + '&body=' + body;
+
+    window.location.href = mailto;
+
+    formWrap.style.display = 'none';
+    confirmWrap.style.display = 'block';
   });
-
-  applyMode('request');
-
 </script>
 
 </body>
