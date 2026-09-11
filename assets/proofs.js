@@ -304,6 +304,69 @@
   document.addEventListener("DOMContentLoaded", tagChips);
   new MutationObserver(tagChips).observe(document.documentElement, { childList: true, subtree: true });
 
+  /* ---------------- LIVE FEED ----------------
+     Proofs submitted through the Proof Builder land in a JSON feed in Drive as
+     status "IN BUILD" and flip to "LIVE" when Bobby taps Approve in the email.
+     This pulls them in and merges them with the curated records above.
+
+     Paste the Apps Script /exec URL here — the same one in DECK_ENDPOINT
+     (index.html) and PROOF_ENDPOINT (tools/proof-builder.html). Left empty,
+     the feed is simply off and the site runs on the static records alone.   */
+  var FEED_URL = "";
+
+  // Everything below is progressive enhancement. The static records render
+  // first and stay rendered; the feed only ever adds to them. If it is slow,
+  // blocked, or down, the page is exactly what it is today.
+  function mergeFeed(rows) {
+    if (!rows || !rows.length) return;
+    var have = {}, added = 0;
+    for (var i = 0; i < PROOFS.length; i++) have[PROOFS[i].id] = true;
+    for (var j = 0; j < rows.length; j++) {
+      var r = rows[j];
+      if (!r || !r.id || !r.client || have[r.id]) continue;
+      if (r.status === "REJECTED") continue;
+      PROOFS.push(r);          // mutate in place — window.FSGProof.list stays valid
+      have[r.id] = true;
+      added++;
+    }
+    if (!added) return;
+    // Newest first, and never let an unapproved card outrank a live one.
+    PROOFS.sort(function (a, b) {
+      var rank = function (p) { return p.status === "LIVE" ? 0 : (p.status === "IN BUILD" ? 1 : 2); };
+      return rank(a) - rank(b);
+    });
+    var g = document.getElementById("ghProofGrid");
+    if (g) renderGrid(g);
+    if (typeof tagChips === "function") tagChips();
+  }
+
+  function loadFeed() {
+    if (!FEED_URL) return;
+    var url = FEED_URL + (FEED_URL.indexOf("?") < 0 ? "?" : "&") + "feed=1";
+    // Try a normal fetch first; fall back to JSONP, which a static site can
+    // always read from Apps Script because a <script> tag never hits CORS.
+    if (window.fetch) {
+      fetch(url, { cache: "no-store" })
+        .then(function (r) { return r.json(); })
+        .then(mergeFeed)
+        .catch(jsonp);
+    } else { jsonp(); }
+  }
+
+  function jsonp() {
+    var cb = "__ghProofFeed";
+    if (window[cb]) return;
+    window[cb] = function (rows) { try { mergeFeed(rows); } finally { delete window[cb]; } };
+    var s = document.createElement("script");
+    s.src = FEED_URL + (FEED_URL.indexOf("?") < 0 ? "?" : "&") + "feed=1&callback=" + cb;
+    s.onerror = function () { delete window[cb]; };
+    (document.head || document.documentElement).appendChild(s);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", loadFeed);
+  } else { loadFeed(); }
+
   // Public API
-  window.FSGProof = { list: PROOFS, open: openCard, find: byClient };
+  window.FSGProof = { list: PROOFS, open: openCard, find: byClient, refresh: loadFeed };
 })();
