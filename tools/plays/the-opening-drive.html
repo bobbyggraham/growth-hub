@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Opening Drive — How to Grow Using the Growth Hub</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='115' fill='%23133865'/><g stroke='%23c5d9fa' stroke-width='22' stroke-linecap='round'><line x1='256' y1='256' x2='256' y2='96'/><line x1='256' y1='256' x2='394.6' y2='176'/><line x1='256' y1='256' x2='394.6' y2='336'/><line x1='256' y1='256' x2='256' y2='416'/><line x1='256' y1='256' x2='117.4' y2='336'/><line x1='256' y1='256' x2='117.4' y2='176'/></g><circle cx='256' cy='96' r='42' fill='%23ffffff'/><circle cx='394.6' cy='176' r='42' fill='%23c5d9fa'/><circle cx='394.6' cy='336' r='42' fill='%23ffffff'/><circle cx='256' cy='416' r='42' fill='%23c5d9fa'/><circle cx='117.4' cy='336' r='42' fill='%23ffffff'/><circle cx='117.4' cy='176' r='42' fill='%23ebb018'/><circle cx='256' cy='256' r='76' fill='%23ebb018'/></svg>">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fsg-deep-navy: #0b1421;
+    --fsg-dark-navy: #133865;
+    --fsg-brand-blue: #365aa0;
+    --fsg-steel-blue: #718dbc;
+    --fsg-light-blue: #c5d9fa;
+    --fsg-light-gray: #ededed;
+    --fsg-gold: #ebb018;
+    --fsg-bright-blue: #4e84de;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Open Sans', Arial, Helvetica, sans-serif; color: var(--fsg-deep-navy); background: #fff; line-height: 1.55; }
+  h1, h2, h3 { font-family: 'Oswald', 'Arial Narrow', Arial, sans-serif; color: var(--fsg-dark-navy); }
+  .page { max-width: 880px; margin: 0 auto; padding: 0 40px 48px; }
+  a { color: var(--fsg-brand-blue); }
+
+  /* ---------- Cover ---------- */
+  .cover { background: var(--fsg-dark-navy); color: #fff; padding: 40px 40px 44px; overflow: hidden; }
+  .cover .inner { max-width: 880px; margin: 0 auto; }
+  .crumbs { font-family: 'Oswald', Arial, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 20px; }
+  .crumbs a { color: var(--fsg-steel-blue); text-decoration: none; }
+  .crumbs a:hover { color: var(--fsg-gold); }
+  .crumbs span { color: #2a4a7a; margin: 0 8px; }
+  .wordmark { font-family: 'Oswald', Arial, sans-serif; letter-spacing: 3px; font-size: 15px; color: #fff; text-transform: uppercase; }
+  .wordmark span { color: var(--fsg-gold); }
+  .cover .rule { border-top: 2px solid var(--fsg-gold); margin: 22px 0 26px; width: 120px; }
+  .cover h1 { color: #fff; font-size: 46px; line-height: 1.08; text-transform: uppercase; letter-spacing: 0.5px; }
+  .cover .sub { color: var(--fsg-light-blue); font-size: 17px; margin-top: 14px; max-width: 640px; }
+  .cover .meta { color: var(--fsg-steel-blue); font-size: 12px; margin-top: 26px; letter-spacing: 1px; text-transform: uppercase; }
+
+  /* ---------- The drive: animated field line in the cover ----------
+     Built in CSS rather than SVG on purpose: a stretched-to-fit SVG turns the
+     station dots into ovals on a phone. Border-radius stays round at any width. */
+  .drive { position: relative; margin-top: 34px; }
+  .drive .track { position: absolute; top: 21px; left: 12.5%; right: 12.5%; height: 3px; background: #2a4a7a; border-radius: 2px; z-index: 0; }
+  .drive .gain { height: 100%; width: 0; background: var(--fsg-gold); border-radius: 2px; box-shadow: 0 0 10px rgba(235,176,24,.5); transition: width .5s cubic-bezier(.4,0,.2,1); }
+  /* A light runs the length of the field once on load — the drive previewing itself.
+     The gold bar underneath stays scroll-driven, so nothing fills and then retracts. */
+  .drive .spark { position: absolute; top: -1px; height: 5px; width: 17%; border-radius: 3px; background: linear-gradient(90deg, rgba(235,176,24,0), var(--fsg-gold), rgba(235,176,24,0)); left: -17%; opacity: 0; animation: spark 2.3s .45s cubic-bezier(.45,0,.25,1) forwards; pointer-events: none; }
+  @keyframes spark { 0% { left: -17%; opacity: 0; } 14% { opacity: 1; } 86% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
+  .drive ol { list-style: none; display: flex; margin: 0; padding: 8px 0 0; position: relative; z-index: 1; }
+  .drive .stn { flex: 1; text-align: center; cursor: pointer; }
+  .drive .stn .dot { display: block; width: 22px; height: 22px; margin: 0 auto; border-radius: 50%; background: var(--fsg-dark-navy); border: 3px solid #2a4a7a; box-sizing: border-box; transition: background .35s, border-color .35s, transform .35s; }
+  .drive .stn .lbl { display: block; margin-top: 10px; font-family: 'Oswald', Arial, sans-serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--fsg-steel-blue); transition: color .35s; }
+  .drive .stn.lit .dot { background: var(--fsg-gold); border-color: var(--fsg-gold); transform: scale(1.14); }
+  .drive .stn.lit .lbl { color: #fff; }
+  .drive .stn:hover .lbl { color: var(--fsg-light-blue); }
+
+  /* ---------- Sticky stage rail ---------- */
+  .rail { position: sticky; top: 0; z-index: 40; background: rgba(255,255,255,.96); backdrop-filter: blur(6px); border-bottom: 1px solid var(--fsg-light-gray); }
+  .rail .inner { max-width: 880px; margin: 0 auto; padding: 0 40px; display: flex; gap: 6px; align-items: stretch; }
+  .rail a { flex: 1; text-align: center; padding: 13px 4px 11px; font-family: 'Oswald', Arial, sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--fsg-steel-blue); text-decoration: none; border-bottom: 3px solid transparent; transition: color .25s, border-color .25s; }
+  .rail a b { display: block; font-size: 10px; letter-spacing: 1px; font-weight: 400; color: #a8b8cf; margin-top: 2px; }
+  .rail a:hover { color: var(--fsg-dark-navy); }
+  .rail a.here { color: var(--fsg-dark-navy); border-bottom-color: var(--fsg-gold); }
+
+  /* ---------- Sections ---------- */
+  section { margin-top: 52px; scroll-margin-top: 78px; }
+  h2 { font-size: 26px; text-transform: uppercase; letter-spacing: 0.5px; padding-bottom: 8px; border-bottom: 2px solid var(--fsg-gold); }
+  h2 .num { color: var(--fsg-gold); margin-right: 10px; }
+  h3 { font-size: 17px; color: var(--fsg-brand-blue); margin: 22px 0 8px; }
+  p { margin: 10px 0; font-size: 15px; }
+  ul, ol { margin: 10px 0 10px 24px; font-size: 15px; }
+  li { margin: 7px 0; }
+  strong { color: var(--fsg-dark-navy); }
+
+  .callout { background: var(--fsg-light-blue); border-left: 4px solid var(--fsg-gold); padding: 14px 18px; margin: 18px 0; font-size: 14px; color: var(--fsg-dark-navy); border-radius: 0 4px 4px 0; }
+  .principle { background: var(--fsg-deep-navy); color: #fff; padding: 22px 26px; margin: 26px 0; border-radius: 6px; }
+  .principle h3 { color: var(--fsg-gold); margin: 0 0 6px; font-family: 'Oswald', Arial, sans-serif; text-transform: uppercase; letter-spacing: 1px; font-size: 14px; }
+  .principle p { color: #fff; font-size: 18px; font-weight: 600; margin: 0; }
+
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  th { background: var(--fsg-dark-navy); color: #fff; text-align: left; padding: 10px 12px; font-weight: 700; }
+  td { padding: 10px 12px; vertical-align: top; }
+  tr:nth-child(even) td { background: var(--fsg-light-blue); }
+  tr:nth-child(odd) td { background: #fff; }
+
+  /* ---------- Stage head: shape that draws itself in ---------- */
+  .stage { display: flex; gap: 22px; align-items: center; margin: 22px 0 6px; }
+  .stage .art { flex: 0 0 104px; }
+  .stage .art svg { width: 104px; height: 104px; display: block; }
+  .stage .art [data-draw] { stroke-dasharray: var(--len, 400); stroke-dashoffset: var(--len, 400); }
+  .stage.in .art [data-draw] { animation: draw 1.05s cubic-bezier(.45,.05,.3,1) forwards; }
+  .stage.in .art [data-draw].d2 { animation-delay: .16s; }
+  .stage.in .art [data-draw].d3 { animation-delay: .32s; }
+  .stage.in .art [data-draw].d4 { animation-delay: .48s; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  .stage .art .pop { opacity: 0; transform: scale(.4); transform-origin: center; }
+  .stage.in .art .pop { animation: pop .5s .8s cubic-bezier(.2,1.4,.4,1) forwards; }
+  @keyframes pop { to { opacity: 1; transform: scale(1); } }
+  .stage .lead { flex: 1; }
+  .stage .kicker { font-family: 'Oswald', Arial, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--fsg-gold); }
+  .stage .ask { font-family: 'Oswald', Arial, sans-serif; font-size: 22px; color: var(--fsg-dark-navy); line-height: 1.25; margin-top: 4px; }
+
+  /* ---------- Move cards ---------- */
+  .moves { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 20px 0; }
+  .move { display: block; background: #fff; border: 1px solid var(--fsg-light-gray); border-left: 4px solid var(--fsg-brand-blue); border-radius: 0 6px 6px 0; padding: 15px 17px; text-decoration: none; color: inherit; transition: transform .18s, box-shadow .18s, border-left-color .18s; }
+  .move:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(19,56,101,.14); border-left-color: var(--fsg-gold); }
+  .move .tag { font-family: 'Oswald', Arial, sans-serif; font-size: 10px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--fsg-steel-blue); }
+  .move h4 { font-family: 'Oswald', Arial, sans-serif; font-size: 16px; text-transform: uppercase; color: var(--fsg-dark-navy); margin: 3px 0 5px; letter-spacing: .5px; }
+  .move p { font-size: 13px; margin: 0; color: #40506a; }
+  .move .go { font-family: 'Oswald', Arial, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--fsg-brand-blue); margin-top: 9px; display: inline-block; }
+  .move:hover .go { color: var(--fsg-gold); }
+
+  /* ---------- The quad: four stages, tap to open ---------- */
+  .quad { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0; }
+  .qcell { background: var(--fsg-light-gray); border-top: 4px solid var(--fsg-gold); border-radius: 0 0 6px 6px; padding: 15px 14px; cursor: pointer; transition: background .25s, transform .25s; }
+  .qcell:hover, .qcell.open { background: var(--fsg-dark-navy); transform: translateY(-4px); }
+  .qcell h4 { font-family: 'Oswald', Arial, sans-serif; font-size: 19px; text-transform: uppercase; color: var(--fsg-dark-navy); transition: color .25s; }
+  .qcell .q { font-size: 12.5px; font-style: italic; color: var(--fsg-brand-blue); margin-top: 3px; transition: color .25s; }
+  .qcell .a { font-size: 12.5px; margin-top: 0; color: #40506a; max-height: 0; opacity: 0; overflow: hidden; transition: max-height .35s ease, opacity .3s, margin-top .35s, color .25s; }
+  .qcell:hover h4, .qcell.open h4 { color: var(--fsg-gold); }
+  .qcell:hover .q, .qcell.open .q { color: var(--fsg-light-blue); }
+  .qcell:hover .a, .qcell.open .a { max-height: 220px; opacity: 1; margin-top: 8px; color: #fff; }
+
+  /* ---------- Chip links out to the hub ---------- */
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 4px; }
+  .chip { display: inline-flex; align-items: center; gap: 7px; border: 1.5px solid var(--fsg-light-blue); background: #fff; border-radius: 999px; padding: 7px 15px; font-family: 'Oswald', Arial, sans-serif; font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--fsg-dark-navy); text-decoration: none; transition: background .2s, border-color .2s, color .2s, transform .2s; }
+  .chip:hover { background: var(--fsg-dark-navy); border-color: var(--fsg-dark-navy); color: #fff; transform: translateY(-2px); }
+  .chip i { width: 7px; height: 7px; border-radius: 50%; background: var(--fsg-gold); font-style: normal; flex: 0 0 auto; }
+  .chip-note { font-size: 12.5px; color: var(--fsg-steel-blue); margin-top: 8px; }
+
+  /* ---------- Pinwheel that lights as you go ---------- */
+  .wheel { text-align: center; margin: 30px 0 6px; }
+  .wheel svg { width: 190px; height: 190px; }
+  .wheel .sp { stroke: var(--fsg-light-blue); stroke-width: 13; stroke-linecap: round; opacity: .45; transition: stroke .5s, opacity .5s; }
+  .wheel .nd { fill: var(--fsg-light-blue); opacity: .5; transition: fill .5s, opacity .5s, r .5s; }
+  .wheel.on .sp { stroke: var(--fsg-brand-blue); opacity: 1; }
+  .wheel.on .nd { fill: var(--fsg-dark-navy); opacity: 1; }
+  .wheel.on .sp, .wheel.on .nd { animation: light .6s ease forwards; }
+  .wheel.on .s1 { animation-delay: 0s; }   .wheel.on .s2 { animation-delay: .12s; }
+  .wheel.on .s3 { animation-delay: .24s; } .wheel.on .s4 { animation-delay: .36s; }
+  .wheel.on .s5 { animation-delay: .48s; } .wheel.on .s6 { animation-delay: .60s; }
+  @keyframes light { from { opacity: .35; } to { opacity: 1; } }
+  .wheel .hub { fill: var(--fsg-gold); transform-origin: 150px 150px; }
+  .wheel.on .hub { animation: beat 2.6s .7s ease-in-out infinite; }
+  @keyframes beat { 0%,100% { transform: scale(1); } 50% { transform: scale(1.09); } }
+  .wheel figcaption { font-family: 'Oswald', Arial, sans-serif; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--fsg-steel-blue); margin-top: 10px; }
+
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin: 26px 0 8px; }
+  .btn-gold { display: inline-block; background: var(--fsg-gold); color: var(--fsg-deep-navy); font-family: 'Oswald', Arial, sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; padding: 14px 26px; border-radius: 6px; }
+  .btn-line { display: inline-block; border: 1.5px solid var(--fsg-dark-navy); color: var(--fsg-dark-navy); font-family: 'Oswald', Arial, sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; padding: 13px 24px; border-radius: 6px; }
+  .btn-gold:hover { filter: brightness(1.06); }
+  .btn-line:hover { background: var(--fsg-dark-navy); color: #fff; }
+
+  footer { background: var(--fsg-deep-navy); color: var(--fsg-steel-blue); padding: 22px 40px; margin-top: 56px; font-size: 12px; }
+  footer .inner { max-width: 880px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+  @media (max-width: 760px) {
+    .page { padding: 0 22px 40px; }
+    .cover { padding: 30px 22px 36px; }
+    .cover h1 { font-size: 31px; }
+    .rail .inner { padding: 0 10px; gap: 0; }
+    .rail a { font-size: 11px; letter-spacing: 1px; padding: 11px 2px 9px; }
+    .rail a b { display: none; }
+    .moves, .quad { grid-template-columns: 1fr; }
+    .stage { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .qcell .a { max-height: 220px; opacity: 1; margin-top: 8px; }
+    .drive .stn .lbl { font-size: 10px; letter-spacing: 1px; }
+    .drive .stn .dot { width: 18px; height: 18px; }
+    .drive .track { top: 19px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+    .drive .spark { display: none; }
+    .stage .art [data-draw] { stroke-dashoffset: 0; }
+    .stage .art .pop { opacity: 1; transform: none; }
+  }
+  @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } .rail { display: none; } .qcell .a { max-height: none; opacity: 1; } }
+</style>
+</head>
+<body>
+
+<!-- ============ GROWTH HUB GATE ============ -->
+<style>
+  html.gh-locked > body > :not(#ghGate){display:none !important;}
+  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
+  html:not(.gh-locked) #ghGate{display:none;}
+  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
+  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
+  #ghGate .gh-brand svg{width:30px;height:30px;}
+  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
+  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
+  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;}
+  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
+  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
+  #ghGate input:focus{border-color:#4e84de;}
+  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
+  #ghGate button:hover{filter:brightness(1.06);}
+  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
+  #ghGate .gh-shake{animation:ghshake .3s;}
+  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+<div id="ghGate">
+  <div class="gh-wrap">
+    <div class="gh-brand">
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#c5d9fa" stroke-width="14" stroke-linecap="round" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g><circle cx="150" cy="50" r="26" fill="#ffffff"/><circle cx="236.6" cy="100" r="26" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="26" fill="#ffffff"/><circle cx="150" cy="250" r="26" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="26" fill="#ffffff"/><circle cx="63.4" cy="100" r="26" fill="#c5d9fa"/><circle cx="150" cy="150" r="44" fill="#ebb018"/></svg>
+      <span>Growth Hub</span>
+    </div>
+    <div class="gh-card">
+      <h2>Passcode</h2>
+      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
+      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
+      <button id="ghGo" type="button">Enter the Hub</button>
+      <div class="gh-err" id="ghErr"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
+  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+  if(!unlocked()) document.documentElement.classList.add('gh-locked');
+  function open(){ document.documentElement.classList.remove('gh-locked'); }
+  async function check(){
+    var v=document.getElementById('ghPass').value;
+    var ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        ok=(hex===HASH);
+      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
+    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
+    if(ok){ remember(); open(); }
+    else{
+      var card=document.querySelector('#ghGate .gh-card');
+      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
+      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
+      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    if(unlocked()) return;
+    document.getElementById('ghGo').addEventListener('click', check);
+    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
+  });
+})();
+</script>
+<!-- ============ /GROWTH HUB GATE ============ -->
+
+<div class="cover">
+  <div class="inner">
+    <div class="crumbs">
+      <a href="../../index.html">&larr; Growth Hub</a><span>|</span><a href="../plays.html">&larr; Growth Hub Plays</a>
+    </div>
+    <div class="wordmark">Facility Solutions Group <span>|</span> Growth Organization</div>
+    <div class="rule"></div>
+    <h1>The Opening Drive</h1>
+    <div class="sub">How to grow using the Growth Hub — play by play. Where to start, what to do, what to do while you're in it, and what happens next.</div>
+
+    <!-- The drive: four stations, gold line advances on load then tracks your scroll -->
+    <div class="drive">
+      <div class="track" aria-hidden="true"><div class="gain" id="gain"></div><div class="spark"></div></div>
+      <ol>
+        <li class="stn" data-stn="0"><span class="dot" aria-hidden="true"></span><span class="lbl">Start</span></li>
+        <li class="stn" data-stn="1"><span class="dot" aria-hidden="true"></span><span class="lbl">Do</span></li>
+        <li class="stn" data-stn="2"><span class="dot" aria-hidden="true"></span><span class="lbl">Doing</span></li>
+        <li class="stn" data-stn="3"><span class="dot" aria-hidden="true"></span><span class="lbl">Next</span></li>
+      </ol>
+    </div>
+
+    <div class="meta">Growth Hub Play &nbsp;·&nbsp; September 2026 &nbsp;·&nbsp; Internal Enablement</div>
+  </div>
+</div>
+
+<nav class="rail" aria-label="Stages of the drive">
+  <div class="inner">
+    <a href="#start" data-rail="start">Start<b>Get oriented</b></a>
+    <a href="#do" data-rail="do">Do<b>First move</b></a>
+    <a href="#doing" data-rail="doing">Doing<b>In the deal</b></a>
+    <a href="#next" data-rail="next">Next<b>After the win</b></a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <section id="why">
+    <h2>Why This Play Exists</h2>
+    <p>The Growth Hub is not a document library. It's a drive — a sequence of moves that takes you from "I have an account" to "we won it, and the whole org can use the proof." Most people open the hub, see thirty cards, and close it again. That's not a content problem. That's a <strong>play-calling</strong> problem.</p>
+    <p>This is the play. Four stages, in order. Each one tells you the single question you're answering, the moves that answer it, and exactly which part of the hub to open. Run it once end to end and the hub stops being a shelf and starts being a system.</p>
+
+    <div class="quad" id="quad">
+      <div class="qcell" tabindex="0" role="button" aria-expanded="false">
+        <h4>Start</h4>
+        <p class="q">"What is this thing?"</p>
+        <p class="a">Get in, get on the list, and learn the story in under thirty minutes. One time only — you never do this stage twice.</p>
+      </div>
+      <div class="qcell" tabindex="0" role="button" aria-expanded="false">
+        <h4>Do</h4>
+        <p class="q">"Where do I point it?"</p>
+        <p class="a">Pick one real account and build the plan. This is the stage people skip, and it's the one that decides whether the rest works.</p>
+      </div>
+      <div class="qcell" tabindex="0" role="button" aria-expanded="false">
+        <h4>Doing</h4>
+        <p class="q">"I'm in it — now what?"</p>
+        <p class="a">Live in the deal. Say it so it sticks, log it so it counts, and answer "have you done this before" with something real.</p>
+      </div>
+      <div class="qcell" tabindex="0" role="button" aria-expanded="false">
+        <h4>Next</h4>
+        <p class="q">"How does this compound?"</p>
+        <p class="a">Turn the win into ammunition for everyone else, then put your name on the board. The drive ends where the next one starts.</p>
+      </div>
+    </div>
+    <p class="chip-note">Tap any stage above, or use the rail at the top of the page to jump straight to it.</p>
+
+    <div class="principle">
+      <h3>The Core Principle</h3>
+      <p>The hub gives you back the two hours before the meeting and the twenty minutes after the win. What you do with those two hours and twenty minutes is the whole job.</p>
+    </div>
+  </section>
+
+  <!-- ================= START ================= -->
+  <section id="start">
+    <h2><span class="num">01</span>Start — Get Oriented</h2>
+
+    <div class="stage" data-stage>
+      <div class="art">
+        <svg viewBox="0 0 120 120" role="presentation" aria-hidden="true">
+          <circle data-draw style="--len:302" cx="60" cy="60" r="48" fill="none" stroke="#133865" stroke-width="4" transform="rotate(-90 60 60)"/>
+          <circle class="pop" cx="60" cy="60" r="15" fill="#ebb018"/>
+        </svg>
+      </div>
+      <div class="lead">
+        <div class="kicker">The question you're answering</div>
+        <div class="ask">"What is this thing, and why should I open it again tomorrow?"</div>
+      </div>
+    </div>
+
+    <p>You do this stage once. Thirty minutes, start to finish, and you never repeat it. The goal isn't to read everything — it's to build a map in your head so that later, mid-deal, you know where to reach.</p>
+
+    <h3>The moves</h3>
+    <div class="moves">
+      <a class="move" href="../../resources/using-the-hub.html">
+        <span class="tag">Move 01 · 5 min</span>
+        <h4>Using the Hub</h4>
+        <p>The orientation. What's in it, how it's organized, and what each section is actually for.</p>
+        <span class="go">Open &rarr;</span>
+      </a>
+      <a class="move" href="../../join.html">
+        <span class="tag">Move 02 · 60 sec</span>
+        <h4>Join the Hub</h4>
+        <p>Six questions. You get the note when something new drops, and you tell us where you're striking out.</p>
+        <span class="go">Open &rarr;</span>
+      </a>
+      <a class="move" href="../../resources/growth-hub-story.html">
+        <span class="tag">Move 03 · 10 min</span>
+        <h4>The Story &amp; Spokes</h4>
+        <p>Why the hub exists — the hero, the guide, six spokes, and value at the gold center.</p>
+        <span class="go">Open &rarr;</span>
+      </a>
+      <a class="move" href="../../story/institution-culture.html">
+        <span class="tag">Move 04 · 10 min</span>
+        <h4>The Institution &amp; Culture</h4>
+        <p>Who FSG is when nobody's watching. Mission, pillars, and the sales standard in ten slides.</p>
+        <span class="go">Open &rarr;</span>
+      </a>
+    </div>
+
+    <div class="callout"><strong>Done when:</strong> you can name the six spokes and say, without looking, which section of the hub you'd open two hours before a first meeting with a facility director.</div>
+  </section>
+
+  <!-- ================= DO ================= -->
+  <section id="do">
+    <h2><span class="num">02</span>Do — Your First Move</h2>
+
+    <div class="stage" data-stage>
+      <div class="art">
+        <svg viewBox="0 0 120 120" role="presentation" aria-hidden="true">
+          <polygon data-draw style="--len:290" points="60,14 104,98 16,98" fill="none" stroke="#133865" stroke-width="4" stroke-linejoin="round"/>
+          <circle class="pop" cx="60" cy="70" r="13" fill="#ebb018"/>
+        </svg>
+      </div>
+      <div class="lead">
+        <div class="kicker">The question you're answering</div>
+        <div class="ask">"Where do I point this — and what do I bring when I get there?"</div>
+      </div>
+    </div>
+
+    <p>Pick <strong>one</strong> real account. Not a list, not a territory — one name. Everything below is done against that name, and the whole stage takes about ninety minutes. This is the stage people skip because it feels like prep instead of selling. It is the stage that decides whether the meeting is a conversation or a pitch.</p>
+
+    <h3>The moves</h3>
+    <div class="moves">
+      <a class="move" href="build-an-account-plan.html">
+        <span class="tag">Move 01 · 45 min</span>
+        <h4>Build an Account Plan</h4>
+        <p>From a blank record to a plan you'd defend in a pipeline review — the intake, the fields, and the order to fill them.</p>
+        <span class="go">Run the play &rarr;</span>
+      </a>
+      <a class="move" href="../../story/products.html">
+        <span class="tag">Move 02 · 15 min</span>
+        <h4>Products &times; Delivery Method</h4>
+        <p>Find the cell your account lives in. That cell is your pitch — the matrix builds it for you.</p>
+        <span class="go">Open &rarr;</span>
+      </a>
+      <a class="move" href="../../story/master-2026.html">
+        <span class="tag">Move 03 · 20 min</span>
+        <h4>FSG Master Presentation</h4>
+        <p>The flagship deck with a 17-client proof selector. Pull the three slides that match your account and leave the rest.</p>
+        <span class="go">Open &rarr;</span>
+      </a>
+      <a class="move" href="../../how/messaging-playbook.html">
+        <span class="tag">Move 04 · 10 min</span>
+        <h4>Messaging Playbook</h4>
+        <p>The language that lands — how we talk about the problem before we talk about ourselves.</p>
+        <span class="go">Open &rarr;</span>
+      </a>
+    </div>
+
+    <div class="chips">
+      <a class="chip" href="../../index.html?chip=story"><i></i>Who We Are</a>
+      <a class="chip" href="../../index.html?chip=how"><i></i>How We Work</a>
+      <a class="chip" href="../../index.html?chip=solutions"><i></i>Solutions</a>
+    </div>
+    <p class="chip-note">Those open the hub already filtered. The Solutions chip appears once the vertical playbooks are built — until then it stays out of your way.</p>
+
+    <div class="callout"><strong>Done when:</strong> you have one account, one plan, one cell on the matrix, and three slides. If you have five accounts and no plan, you haven't started this stage.</div>
+  </section>
+
+  <!-- ================= DOING ================= -->
+  <section id="doing">
+    <h2><span class="num">03</span>Doing — Live in the Deal</h2>
+
+    <div class="stage" data-stage>
+      <div class="art">
+        <svg viewBox="0 0 120 120" role="presentation" aria-hidden="true">
+          <rect data-draw style="--len:172" x="14" y="14" width="43" height="43" fill="none" stroke="#133865" stroke-width="4"/>
+          <rect data-draw class="d2" style="--len:172" x="63" y="14" width="43" height="43" fill="none" stroke="#365aa0" stroke-width="4"/>
+          <rect data-draw class="d3" style="--len:172" x="14" y="63" width="43" height="43" fill="none" stroke="#365aa0" stroke-width="4"/>
+          <rect data-draw class="d4" style="--len:172" x="63" y="63" width="43" height="43" fill="none" stroke="#ebb018" stroke-width="4"/>
+          <circle class="pop" cx="84" cy="84" r="11" fill="#ebb018"/>
+        </svg>
+      </div>
+      <div class="lead">
+        <div class="kicker">The question you're answering</div>
+        <div class="ask">"They're across the table. How do I make this stick — and count?"</div>
+      </div>
+    </div>
+
+    <p>This stage repeats. Every call, every walk, every follow-up. Four things run in parallel: <strong>say it so it sticks</strong>, <strong>bring a reason to call</strong>, <strong>log it so it counts</strong>, and <strong>prove we've done it before</strong>.</p>
+
+    <h3>The moves</h3>
+    <div class="moves">
+      <a class="move" href="../../resources/speak-clearly.html">
+        <span class="tag">Move 01 · Every conversation</span>
+        <h4>Speak So They Buy</h4>
+        <p>Rule of Three, shapes, and the 4-Mat. You're arming the person who has to sell us to their boss next week.</p>
+        <span class="go">Open &rarr;</span>
+      </a>
+      <a class="move" href="../wire.html">
+        <span class="tag">Move 02 · Before you call</span>
+        <h4>The Wire</h4>
+        <p>Industry issues worth forwarding. A reason to reach out that isn't "just checking in."</p>
+        <span class="go">Open &rarr;</span>
+      </a>
+      <a class="move" href="../fsg-app-faq.html">
+        <span class="tag">Move 03 · After every touch</span>
+        <h4>Ask Engage — FSG App FAQs</h4>
+        <p>Type what you're trying to do. Quick answers plus the Engage Plays that show you how to log it right.</p>
+        <span class="go">Open &rarr;</span>
+      </a>
+      <a class="move" href="../engage/film-room-sunbelt-game-film.html">
+        <span class="tag">Move 04 · Worth 20 minutes</span>
+        <h4>The Film Room — Sunbelt Game Film</h4>
+        <p>A real account broken down frame by frame: what got logged, what got missed, what good looks like.</p>
+        <span class="go">Open &rarr;</span>
+      </a>
+    </div>
+
+    <h3>When they ask "have you done this before?"</h3>
+    <p>Don't describe it. Show it. The Results wall is every executed solution for a named account, with real numbers and real logos — U.S. Bank at 214 locations, Crash Champions across 38 states, the Oculus at the World Trade Center. Find the one closest to their problem and put it on the screen.</p>
+
+    <div class="chips">
+      <a class="chip" href="../../index.html?chip=proof"><i></i>Results</a>
+      <a class="chip" href="../../index.html?chip=tools"><i></i>Development</a>
+      <a class="chip" href="../../index.html?chip=plays"><i></i>Plays</a>
+    </div>
+
+    <div class="callout"><strong>Done when:</strong> the customer can repeat your three points back, the opportunity is logged with the fields that matter, and you've shown them one proof card that looks like their building.</div>
+  </section>
+
+  <!-- ================= NEXT ================= -->
+  <section id="next">
+    <h2><span class="num">04</span>Next — Make It Compound</h2>
+
+    <div class="stage" data-stage>
+      <div class="art">
+        <svg viewBox="0 0 120 120" role="presentation" aria-hidden="true">
+          <polyline data-draw style="--len:120" points="22,30 52,60 22,90" fill="none" stroke="#133865" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline data-draw class="d2" style="--len:120" points="54,30 84,60 54,90" fill="none" stroke="#365aa0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline data-draw class="d3" style="--len:120" points="86,30 116,60 86,90" fill="none" stroke="#ebb018" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="lead">
+        <div class="kicker">The question you're answering</div>
+        <div class="ask">"It closed. How does this win make the next thirty easier?"</div>
+      </div>
+    </div>
+
+    <p>A win that lives in your inbox helped one deal. A win on the Results wall helps every rep in the org for the next three years. This stage takes twenty minutes and it is the single highest-leverage thing you will do all month.</p>
+
+    <h3>The moves</h3>
+    <div class="moves">
+      <a class="move" href="get-my-proof-live.html">
+        <span class="tag">Move 01 · 20 min</span>
+        <h4>Get My Proof Live</h4>
+        <p>The five steps, the cell that decides who sees it, the permission toggles — and what happens after you hit send.</p>
+        <span class="go">Run the play &rarr;</span>
+      </a>
+      <a class="move" href="../proof-builder.html">
+        <span class="tag">Move 02 · The tool</span>
+        <h4>Proof Builder</h4>
+        <p>Fill the story, drop the logo and photos, generate a client-ready proof card plus the Master deck snippet.</p>
+        <span class="go">Open &rarr;</span>
+      </a>
+      <a class="move" href="../../field.html">
+        <span class="tag">Move 03 · Keep score</span>
+        <h4>The Field</h4>
+        <p>The competitive layer. Each game takes one behavior we want more of, puts a number on it, and shows everybody where they stand.</p>
+        <span class="go">Open &rarr;</span>
+      </a>
+      <a class="move" href="../plays.html">
+        <span class="tag">Move 04 · Feed the hub</span>
+        <h4>Growth Hub Plays</h4>
+        <p>Missing a walkthrough? Say so. The shelf gets built from what people say they can't find.</p>
+        <span class="go">Open &rarr;</span>
+      </a>
+    </div>
+
+    <div class="chips">
+      <a class="chip" href="../../index.html?chip=proof"><i></i>Results</a>
+      <a class="chip" href="../../index.html?chip=field"><i></i>The Field</a>
+    </div>
+
+    <div class="callout"><strong>Done when:</strong> your proof card is live on the Results wall with your name on it, and you've started the next drive against a new account.</div>
+
+    <figure class="wheel" id="wheel">
+      <svg viewBox="0 0 300 300" role="presentation" aria-hidden="true">
+        <g fill="none">
+          <line class="sp s1" x1="150" y1="150" x2="150" y2="56"/>
+          <line class="sp s2" x1="150" y1="150" x2="231.4" y2="103"/>
+          <line class="sp s3" x1="150" y1="150" x2="231.4" y2="197"/>
+          <line class="sp s4" x1="150" y1="150" x2="150" y2="244"/>
+          <line class="sp s5" x1="150" y1="150" x2="68.6" y2="197"/>
+          <line class="sp s6" x1="150" y1="150" x2="68.6" y2="103"/>
+        </g>
+        <circle class="nd s1" cx="150" cy="56" r="24"/>
+        <circle class="nd s2" cx="231.4" cy="103" r="24"/>
+        <circle class="nd s3" cx="231.4" cy="197" r="24"/>
+        <circle class="nd s4" cx="150" cy="244" r="24"/>
+        <circle class="nd s5" cx="68.6" cy="197" r="24"/>
+        <circle class="nd s6" cx="68.6" cy="103" r="24"/>
+        <circle class="hub" cx="150" cy="150" r="42"/>
+      </svg>
+      <figcaption>People · Vision · Development · Execution · Finance · Results</figcaption>
+    </figure>
+    <p style="text-align:center;font-size:14px;color:var(--fsg-steel-blue);margin-top:0;">Six spokes. Value at the gold center. One drive at a time is how it turns.</p>
+  </section>
+
+  <!-- ================= REFERENCE ================= -->
+  <section id="cheatsheet">
+    <h2>The Drive on One Page</h2>
+    <table>
+      <tr><th>Stage</th><th>The question</th><th>Open this</th><th>Done when</th></tr>
+      <tr><td><strong>Start</strong></td><td>What is this thing?</td><td>Using the Hub · Join the Hub · Story &amp; Spokes</td><td>You can name the six spokes</td></tr>
+      <tr><td><strong>Do</strong></td><td>Where do I point it?</td><td>Build an Account Plan · Products × Delivery · Master Presentation</td><td>One account, one plan, three slides</td></tr>
+      <tr><td><strong>Doing</strong></td><td>Now what?</td><td>Speak So They Buy · The Wire · Ask Engage · Results</td><td>Logged, and one proof card shown</td></tr>
+      <tr><td><strong>Next</strong></td><td>How does it compound?</td><td>Get My Proof Live · Proof Builder · The Field</td><td>Your proof is live with your name on it</td></tr>
+    </table>
+  </section>
+
+  <section id="dodont">
+    <h2>Do / Don't</h2>
+    <table>
+      <tr><th>Do</th><th>Don't</th></tr>
+      <tr><td>Run the whole drive against one named account</td><td>Browse the hub with no account in mind</td></tr>
+      <tr><td>Pull the three slides that match your cell</td><td>Send the full Master deck and hope</td></tr>
+      <tr><td>Show a proof card that looks like their building</td><td>Describe our experience in adjectives</td></tr>
+      <tr><td>Spend the twenty minutes after the win</td><td>Let the win die in your sent folder</td></tr>
+      <tr><td>Say what you couldn't find</td><td>Assume somebody else already asked</td></tr>
+    </table>
+    <div class="principle">
+      <h3>The Payoff</h3>
+      <p>Run this once and you have a system. Run it five times and you have a territory. The hub doesn't make you better — it makes the hour before the meeting and the twenty minutes after the win worth ten times what they were.</p>
+    </div>
+    <div class="cta-row">
+      <a class="btn-gold" href="../../index.html?chip=plays">Open the Hub &rarr;</a>
+      <a class="btn-line" href="../plays.html">All Growth Hub Plays</a>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="inner">
+    <div>Facility Solutions Group · Growth Organization · Internal Use</div>
+    <div>Questions: Bobby Graham · bobby.graham@fsgi.com</div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- The quad: tap or keyboard to open a stage (hover already does it on desktop) ---- */
+  var cells = document.querySelectorAll('#quad .qcell');
+  Array.prototype.forEach.call(cells, function (c) {
+    function toggle() {
+      var open = c.classList.toggle('open');
+      c.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    c.addEventListener('click', toggle);
+    c.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+    });
+  });
+
+  /* ---- Stage shapes draw themselves in when they scroll into view ---- */
+  var stages = document.querySelectorAll('[data-stage]');
+  if (!('IntersectionObserver' in window) || reduce) {
+    Array.prototype.forEach.call(stages, function (s) { s.classList.add('in'); });
+  } else {
+    var drawObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); drawObs.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -18% 0px', threshold: 0.25 });
+    Array.prototype.forEach.call(stages, function (s) { drawObs.observe(s); });
+  }
+
+  /* ---- Pinwheel lights up when it comes into view ---- */
+  var wheel = document.getElementById('wheel');
+  if (wheel) {
+    if (!('IntersectionObserver' in window) || reduce) { wheel.classList.add('on'); }
+    else {
+      var wObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) { wheel.classList.add('on'); wObs.unobserve(en.target); } });
+      }, { threshold: 0.4 });
+      wObs.observe(wheel);
+    }
+  }
+
+  /* ---- The rail and the drive line both track which stage you're in ---- */
+  var ids = ['start', 'do', 'doing', 'next'];
+  var railLinks = {}, stns = {};
+  ids.forEach(function (id, i) {
+    railLinks[id] = document.querySelector('.rail a[data-rail="' + id + '"]');
+    stns[id] = document.querySelector('.drive .stn[data-stn="' + i + '"]');
+  });
+  var gain = document.getElementById('gain');
+  var current = null;
+
+  // The gold bar is purely scroll-driven: how far down the field you've gotten.
+  function paintGain() {
+    if (!gain) return;
+    var i = ids.indexOf(current);
+    gain.style.width = (i < 0 ? 0 : (i / (ids.length - 1)) * 100) + '%';
+  }
+
+  function markStage(id) {
+    if (id === current) return;
+    current = id;
+    ids.forEach(function (k) {
+      if (railLinks[k]) railLinks[k].classList.toggle('here', k === id);
+      if (stns[k]) stns[k].classList.toggle('lit', ids.indexOf(k) <= ids.indexOf(id));
+    });
+    paintGain();
+  }
+
+  var secs = ids.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  function onScroll() {
+    var line = window.innerHeight * 0.34, best = null;
+    secs.forEach(function (s) {
+      var r = s.getBoundingClientRect();
+      // While the passcode gate is up the page is display:none and every rect is
+      // zeroed, which would otherwise read as "you're at the last stage".
+      if (r.height === 0) return;
+      if (r.top <= line) best = s.id;
+    });
+    if (best) markStage(best);
+    else if (current !== null) {
+      current = null;
+      ids.forEach(function (k) {
+        if (railLinks[k]) railLinks[k].classList.remove('here');
+        if (stns[k]) stns[k].classList.remove('lit');
+      });
+      paintGain();
+    }
+  }
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(function () { onScroll(); ticking = false; });
+  }, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  onScroll();
+
+  // The page has no layout until the gate opens, so re-read positions the moment it does.
+  if (window.MutationObserver && document.documentElement.classList.contains('gh-locked')) {
+    var gateObs = new MutationObserver(function () {
+      if (!document.documentElement.classList.contains('gh-locked')) {
+        gateObs.disconnect();
+        requestAnimationFrame(onScroll);
+      }
+    });
+    gateObs.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+  }
+
+  /* ---- Clicking a station on the drive line jumps to that stage ---- */
+  ids.forEach(function (id, i) {
+    if (!stns[id]) return;
+    stns[id].style.cursor = 'pointer';
+    stns[id].addEventListener('click', function () {
+      var t = document.getElementById(id);
+      if (t) t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    });
+  });
+
+  /* ---- Smooth-scroll the rail without leaving a hash in the URL ---- */
+  document.querySelectorAll('.rail a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var t = document.getElementById(a.getAttribute('href').slice(1));
+      if (!t) return;
+      e.preventDefault();
+      t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
