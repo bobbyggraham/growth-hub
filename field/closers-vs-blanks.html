@@ -186,7 +186,7 @@ td.dim{color:#4d688f}
       <dt>LOB</dt><dd>Left on base &mdash; the close date has already gone by. The runner is still standing there.</dd>
       <dt>E</dt><dd>Error &mdash; an open opportunity carrying <b>$0 or a blank value</b>. The dollars never made it onto the field.</dd>
       <dt>On base</dt><dd>Dollars sitting in a <b>real quarter</b> &mdash; a close date in this quarter or ahead of it.</dd>
-      <dt>W &middot; L &middot; W%</dt><dd>Closed won, closed lost, and win rate. All time, not this season.</dd>
+      <dt>W &middot; L &middot; W%</dt><dd>Closed won, closed lost, and win rate across the window this week's export covers.</dd>
       <dt>Corked</dt><dd>A win closed <b>within 14 days</b> of being created. It counts &mdash; it just never really took an at-bat.</dd>
       <dt>Qualified</dt><dd><b>30 or more open opportunities.</b> The batting-title minimum: you have to carry a real book to win one.</dd>
       <dt>The season</dt><dd>Twelve innings. Then everybody starts even.</dd>
@@ -228,70 +228,104 @@ td.dim{color:#4d688f}
              blanks = ab - h, avg = h / ab. null means "not in that export".
    players[] one entry per owner. avg and W% are derived, never stored.
 
-   NOTE on player `ob` (on-base dollars): the seeded values come from the
-   9/4 board, which displayed anything over $1M rounded (e.g. "$2M"). Those
-   entries are rounded to the dollar shown. The team ON BASE tile is exact —
-   it comes from the week record, not the roster. The Week 9/11 Excel will
-   replace these with exact figures.
+   SCOPE NOTE — read before comparing innings. Weeks 10/28 and 9/4 came from
+   the org-wide Pipeline Report (437 owners). Week 9/11 onward comes from the
+   Closers-scoped All Opportunities export (80 owners). The at-bat counts are
+   therefore not measuring the same population across those innings, and the
+   W/L columns are the export's date-filtered window, not all time. Kept off
+   the page by decision; documented here so nobody re-derives it later.
+
    =========================================================================== */
 const DATA = {
   season: "2026",
-  rosterAsOf: "9/4",
-  rosterTotal: 437,          // owners in the 9/4 export; 49 of them qualified
+  rosterAsOf: "9/11",
+  rosterTotal: 80,           // owners in the 9/11 Closers export; 36 of them qualified
   weeks: [
     {week:"10/28", ab:5151, h:223,  k:null, lob:null, e:null, ob:null,       w:null, corked:null},
-    {week:"9/4",   ab:4105, h:293,  k:3082, lob:606,  e:1188, ob:432865550,  w:5975, corked:null}
+    {week:"9/4",   ab:4105, h:293,  k:3082, lob:606,  e:1188, ob:432865550,  w:5975, corked:null},
+    {week:"9/11",  ab:2618, h:516,  k:1618, lob:467,  e:498,  ob:517291864,  w:992,  corked:296}
   ],
   players: [
-    {n:"Jason Arnoldi",       ab:32,  h:31, k:0,   lob:0,  e:1,  ob:2000000,   w:50,  l:60},
-    {n:"Robert Ronan",        ab:66,  h:63, k:1,   lob:2,  e:1,  ob:290000000, w:37,  l:69},
-    {n:"John Kenney",         ab:56,  h:28, k:9,   lob:18, e:3,  ob:220819,    w:116, l:16},
-    {n:"Randy West",          ab:31,  h:12, k:10,  lob:5,  e:2,  ob:876037,    w:64,  l:65},
-    {n:"Brett Anderson",      ab:36,  h:7,  k:22,  lob:7,  e:1,  ob:523501,    w:49,  l:76},
-    {n:"Sean Fitzgerald",     ab:41,  h:6,  k:5,   lob:29, e:1,  ob:3000000,   w:12,  l:67},
-    {n:"Adrian Vera",         ab:78,  h:10, k:28,  lob:35, e:19, ob:14000000,  w:117, l:114},
-    {n:"Tanner Clow",         ab:48,  h:6,  k:41,  lob:1,  e:14, ob:3000000,   w:127, l:111},
-    {n:"Brenda Puckett",      ab:37,  h:4,  k:15,  lob:18, e:1,  ob:306474,    w:36,  l:76},
-    {n:"Kelly Cole",          ab:35,  h:3,  k:32,  lob:0,  e:7,  ob:5000000,   w:77,  l:77},
-    {n:"Dale Vick",           ab:30,  h:2,  k:24,  lob:4,  e:4,  ob:22500,     w:34,  l:93},
-    {n:"Craig Cegielski",     ab:107, h:6,  k:1,   lob:92, e:22, ob:29116,     w:50,  l:48},
-    {n:"Shane Mcguinness",    ab:68,  h:3,  k:22,  lob:43, e:4,  ob:181000,    w:45,  l:70},
-    {n:"Jeffrey Wolff",       ab:46,  h:2,  k:40,  lob:4,  e:0,  ob:2000000,   w:103, l:92},
-    {n:"Bob Strobeck",        ab:47,  h:2,  k:27,  lob:18, e:4,  ob:150000,    w:49,  l:29},
-    {n:"Michelle Strong",     ab:135, h:5,  k:116, lob:14, e:46, ob:430791,    w:103, l:128},
-    {n:"Stephanie Cone",      ab:31,  h:1,  k:30,  lob:0,  e:2,  ob:3000,      w:69,  l:293},
-    {n:"Graham Case",         ab:64,  h:2,  k:60,  lob:2,  e:24, ob:176432,    w:67,  l:117},
-    {n:"Kayte Bachyrycz",     ab:32,  h:1,  k:31,  lob:0,  e:19, ob:15000000,  w:30,  l:20},
-    {n:"Thomas Lindquist",    ab:34,  h:1,  k:17,  lob:0,  e:18, ob:3000000,   w:7,   l:39},
-    {n:"Michael Cataline",    ab:35,  h:1,  k:26,  lob:8,  e:11, ob:50000,     w:28,  l:103},
-    {n:"Ray Medina",          ab:36,  h:1,  k:34,  lob:1,  e:4,  ob:15000,     w:40,  l:51},
-    {n:"Craig Applegate",     ab:73,  h:1,  k:72,  lob:0,  e:19, ob:50000,     w:74,  l:59},
-    {n:"Evan Stilwell",       ab:76,  h:1,  k:53,  lob:22, e:21, ob:140000,    w:92,  l:98},
-    {n:"Lindsey Brandsma",    ab:84,  h:1,  k:81,  lob:2,  e:49, ob:9000000,   w:186, l:107},
-    {n:"Roberto Valle",       ab:99,  h:1,  k:77,  lob:21, e:23, ob:125000,    w:90,  l:123},
-    {n:"Kenneth Wirtz",       ab:140, h:0,  k:90,  lob:49, e:9,  ob:25000,     w:45,  l:99},
-    {n:"Scarlett Quintero",   ab:81,  h:0,  k:81,  lob:0,  e:77, ob:0,         w:116, l:68},
-    {n:"Gary Bell",           ab:72,  h:0,  k:9,   lob:47, e:4,  ob:1000000,   w:30,  l:59},
-    {n:"Carter Thurmond",     ab:64,  h:0,  k:64,  lob:0,  e:35, ob:0,         w:130, l:25},
-    {n:"Buddy Mays",          ab:58,  h:0,  k:32,  lob:26, e:18, ob:0,         w:45,  l:109},
-    {n:"Tammy Colson",        ab:55,  h:0,  k:42,  lob:1,  e:31, ob:2000000,   w:21,  l:4},
-    {n:"Lee Wills",           ab:54,  h:0,  k:48,  lob:5,  e:23, ob:5000000,   w:13,  l:58},
-    {n:"Phillip Sandhu",      ab:52,  h:0,  k:52,  lob:0,  e:36, ob:0,         w:1,   l:11},
-    {n:"Stephen Brown",       ab:52,  h:0,  k:37,  lob:15, e:17, ob:0,         w:60,  l:109},
-    {n:"Chris Baker",         ab:51,  h:0,  k:51,  lob:0,  e:49, ob:0,         w:41,  l:33},
-    {n:"Zach Voigt",          ab:49,  h:0,  k:49,  lob:0,  e:10, ob:0,         w:5,   l:21},
-    {n:"Anthony Nash",        ab:46,  h:0,  k:46,  lob:0,  e:45, ob:0,         w:156, l:20},
-    {n:"Carter Moots",        ab:46,  h:0,  k:45,  lob:0,  e:20, ob:0,         w:0,   l:0},
-    {n:"Derek Wright",        ab:46,  h:0,  k:46,  lob:0,  e:1,  ob:0,         w:20,  l:63},
-    {n:"Felipe Siebrecht",    ab:46,  h:0,  k:42,  lob:4,  e:6,  ob:0,         w:61,  l:131},
-    {n:"Larry Wasserman",     ab:46,  h:0,  k:46,  lob:0,  e:19, ob:0,         w:43,  l:19},
-    {n:"Maria Coley",         ab:46,  h:0,  k:46,  lob:0,  e:38, ob:0,         w:18,  l:32},
-    {n:"Dennis Luster",       ab:44,  h:0,  k:32,  lob:12, e:1,  ob:0,         w:36,  l:3},
-    {n:"Paul Lee",            ab:40,  h:0,  k:39,  lob:1,  e:0,  ob:0,         w:57,  l:18},
-    {n:"Scott Haykin",        ab:39,  h:0,  k:39,  lob:0,  e:35, ob:0,         w:0,   l:1},
-    {n:"Kalikimaka Mendoza",  ab:38,  h:0,  k:37,  lob:1,  e:10, ob:0,         w:137, l:92},
-    {n:"Alexander Velazquez", ab:32,  h:0,  k:28,  lob:2,  e:0,  ob:4000000,   w:10,  l:75},
-    {n:"Elaine Walters",      ab:30,  h:0,  k:30,  lob:0,  e:30, ob:0,         w:7,   l:63}
+    {n:"Jason Arnoldi",        ab:33,   h:33,   k:0,    lob:0,    e:0,    ob:1933206,     w:14,   l:34},
+    {n:"Michael Demasco",      ab:10,   h:10,   k:0,    lob:0,    e:0,    ob:7848000,     w:0,    l:0},
+    {n:"Tim Kirby",            ab:9,    h:9,    k:0,    lob:0,    e:0,    ob:940179,      w:6,    l:17},
+    {n:"Robert Ronan",         ab:66,   h:63,   k:1,    lob:2,    e:1,    ob:289942982,   w:9,    l:22},
+    {n:"Scott Burnbaum",       ab:21,   h:20,   k:1,    lob:0,    e:1,    ob:23400000,    w:24,   l:10},
+    {n:"Kenneth Corrales",     ab:11,   h:10,   k:1,    lob:0,    e:0,    ob:3548473,     w:6,    l:15},
+    {n:"Robert Cherella",      ab:29,   h:26,   k:1,    lob:2,    e:1,    ob:13600000,    w:0,    l:8},
+    {n:"Kristin Brooks",       ab:7,    h:6,    k:1,    lob:0,    e:0,    ob:190896,      w:5,    l:3},
+    {n:"Lori Carlin",          ab:30,   h:25,   k:5,    lob:0,    e:0,    ob:6182086,     w:4,    l:41},
+    {n:"Sean Fitzgerald",      ab:39,   h:28,   k:0,    lob:11,   e:0,    ob:50922707,    w:4,    l:32},
+    {n:"Robert Winkler",       ab:10,   h:7,    k:2,    lob:0,    e:1,    ob:1727400,     w:1,    l:4},
+    {n:"Debra Meyer",          ab:6,    h:4,    k:2,    lob:0,    e:1,    ob:665000,      w:2,    l:11},
+    {n:"Thomas Lindquist",     ab:35,   h:21,   k:13,   lob:0,    e:6,    ob:7067402,     w:1,    l:6},
+    {n:"Bruce Moore",          ab:31,   h:18,   k:12,   lob:1,    e:10,   ob:5655700,     w:12,   l:8},
+    {n:"John Kenney",          ab:54,   h:29,   k:9,    lob:16,   e:3,    ob:220819,      w:85,   l:10},
+    {n:"Michelle Strong",      ab:118,  h:55,   k:55,   lob:8,    e:23,   ob:16058055,    w:48,   l:72},
+    {n:"Sheryl Rosenthal",     ab:20,   h:9,    k:9,    lob:2,    e:1,    ob:14770688,    w:1,    l:12},
+    {n:"Larry Wasserman",      ab:42,   h:17,   k:21,   lob:0,    e:18,   ob:2099144,     w:0,    l:0},
+    {n:"Phillip Jones",        ab:14,   h:5,    k:8,    lob:1,    e:2,    ob:7822283,     w:4,    l:7},
+    {n:"Nicholas Mele",        ab:15,   h:5,    k:9,    lob:1,    e:2,    ob:268298,      w:2,    l:0},
+    {n:"Jeffrey Voight",       ab:14,   h:4,    k:9,    lob:0,    e:7,    ob:527394,      w:25,   l:27},
+    {n:"Brett Anderson",       ab:37,   h:10,   k:20,   lob:7,    e:1,    ob:1045391,     w:28,   l:53},
+    {n:"Raul Acuna",           ab:20,   h:5,    k:4,    lob:11,   e:1,    ob:271534,      w:19,   l:31},
+    {n:"Peter Cardona",        ab:4,    h:1,    k:3,    lob:0,    e:0,    ob:10500,       w:2,    l:1},
+    {n:"Gary Bell",            ab:70,   h:17,   k:9,    lob:44,   e:4,    ob:2110000,     w:8,    l:6},
+    {n:"Alfred Gray",          ab:9,    h:2,    k:1,    lob:6,    e:0,    ob:20858,       w:6,    l:22},
+    {n:"Tina Coleman",         ab:9,    h:2,    k:2,    lob:5,    e:2,    ob:1000000,     w:3,    l:2},
+    {n:"Adrian Vera",          ab:57,   h:12,   k:27,   lob:15,   e:12,   ob:13810500,    w:91,   l:80},
+    {n:"Dale Vick",            ab:32,   h:5,    k:24,   lob:3,    e:4,    ob:719492,      w:12,   l:20},
+    {n:"Kayte Bachyrycz",      ab:34,   h:5,    k:29,   lob:0,    e:19,   ob:15301233,    w:6,    l:9},
+    {n:"Tanner Clow",          ab:49,   h:7,    k:40,   lob:1,    e:13,   ob:2979550,     w:11,   l:20},
+    {n:"Kelly Cole",           ab:28,   h:4,    k:24,   lob:0,    e:5,    ob:5742000,     w:13,   l:17},
+    {n:"Craig Cegielski",      ab:104,  h:13,   k:2,    lob:84,   e:17,   ob:258768,      w:24,   l:29},
+    {n:"Kevin Heid",           ab:9,    h:1,    k:8,    lob:0,    e:0,    ob:970000,      w:6,    l:13},
+    {n:"Brenda Puckett",       ab:39,   h:4,    k:17,   lob:18,   e:0,    ob:306474,      w:11,   l:26},
+    {n:"Patrice Wright",       ab:14,   h:1,    k:10,   lob:3,    e:0,    ob:1000,        w:0,    l:4},
+    {n:"Craig Applegate",      ab:73,   h:5,    k:68,   lob:0,    e:19,   ob:288689,      w:11,   l:19},
+    {n:"Shane Mcguinness",     ab:70,   h:4,    k:22,   lob:44,   e:4,    ob:626000,      w:19,   l:39},
+    {n:"Jackie Rodriguez",     ab:22,   h:1,    k:19,   lob:2,    e:0,    ob:63970,       w:7,    l:29},
+    {n:"Jeffrey Wolff",        ab:45,   h:2,    k:39,   lob:4,    e:0,    ob:1707969,     w:46,   l:32},
+    {n:"Graham Case",          ab:68,   h:2,    k:64,   lob:2,    e:22,   ob:176432,      w:26,   l:58},
+    {n:"Michael Cataline",     ab:34,   h:1,    k:26,   lob:7,    e:11,   ob:50000,       w:15,   l:47},
+    {n:"Ray Medina",           ab:36,   h:1,    k:35,   lob:0,    e:4,    ob:15000,       w:16,   l:23},
+    {n:"Felipe Siebrecht",     ab:46,   h:1,    k:41,   lob:4,    e:6,    ob:5000000,     w:10,   l:65},
+    {n:"Kenneth Wirtz",        ab:140,  h:3,    k:88,   lob:49,   e:9,    ob:160793,      w:11,   l:63},
+    {n:"Evan Stilwell",        ab:82,   h:1,    k:59,   lob:22,   e:22,   ob:140000,      w:44,   l:52},
+    {n:"Lindsey Brandsma",     ab:92,   h:1,    k:89,   lob:2,    e:0,    ob:9000000,     w:40,   l:37},
+    {n:"Roberto Valle",        ab:101,  h:1,    k:81,   lob:19,   e:27,   ob:125000,      w:40,   l:42},
+    {n:"Carter Thurmond",      ab:64,   h:0,    k:64,   lob:0,    e:35,   ob:0,           w:7,    l:0},
+    {n:"Buddy Mays",           ab:56,   h:0,    k:31,   lob:25,   e:17,   ob:0,           w:25,   l:77},
+    {n:"Stephen Brown",        ab:54,   h:0,    k:39,   lob:15,   e:16,   ob:0,           w:19,   l:55},
+    {n:"Paul Lee",             ab:52,   h:0,    k:51,   lob:1,    e:0,    ob:0,           w:23,   l:9},
+    {n:"Phillip Sandhu",       ab:52,   h:0,    k:52,   lob:0,    e:36,   ob:0,           w:0,    l:0},
+    {n:"Carter Moots",         ab:45,   h:0,    k:44,   lob:0,    e:17,   ob:0,           w:0,    l:0},
+    {n:"Dennis Luster",        ab:45,   h:0,    k:33,   lob:12,   e:1,    ob:0,           w:18,   l:1},
+    {n:"Kalikimaka Mendoza",   ab:38,   h:0,    k:37,   lob:1,    e:10,   ob:0,           w:16,   l:37},
+    {n:"Maggie Gillmar",       ab:28,   h:0,    k:27,   lob:1,    e:27,   ob:0,           w:14,   l:11},
+    {n:"Sofia Aguirre",        ab:26,   h:0,    k:26,   lob:0,    e:5,    ob:0,           w:3,    l:11},
+    {n:"Colin Penny",          ab:23,   h:0,    k:23,   lob:0,    e:3,    ob:0,           w:12,   l:32},
+    {n:"Ronald Tolman",        ab:20,   h:0,    k:12,   lob:8,    e:0,    ob:0,           w:6,    l:12},
+    {n:"John Sapanaro",        ab:19,   h:0,    k:19,   lob:0,    e:0,    ob:0,           w:1,    l:5},
+    {n:"Edward Alderete",      ab:17,   h:0,    k:14,   lob:3,    e:4,    ob:0,           w:27,   l:40},
+    {n:"Scott Pape",           ab:17,   h:0,    k:17,   lob:0,    e:0,    ob:0,           w:20,   l:50},
+    {n:"Lonnie Harper",        ab:16,   h:0,    k:16,   lob:0,    e:13,   ob:0,           w:5,    l:4},
+    {n:"Matthew Geyer",        ab:16,   h:0,    k:15,   lob:1,    e:14,   ob:0,           w:0,    l:3},
+    {n:"Thomas Colaiacovo",    ab:13,   h:0,    k:13,   lob:0,    e:2,    ob:0,           w:0,    l:0},
+    {n:"Peter Pirrello",       ab:12,   h:0,    k:12,   lob:0,    e:10,   ob:0,           w:0,    l:0},
+    {n:"David Meeker",         ab:11,   h:0,    k:10,   lob:1,    e:0,    ob:0,           w:5,    l:5},
+    {n:"Nathaniel Smith",      ab:11,   h:0,    k:11,   lob:0,    e:0,    ob:0,           w:1,    l:4},
+    {n:"Frank Klune",          ab:9,    h:0,    k:9,    lob:0,    e:0,    ob:0,           w:3,    l:9},
+    {n:"Sarah Hubbard Garcia", ab:9,    h:0,    k:9,    lob:0,    e:0,    ob:0,           w:2,    l:14},
+    {n:"Charles Boyle",        ab:7,    h:0,    k:7,    lob:0,    e:1,    ob:0,           w:3,    l:1},
+    {n:"David Attardi",        ab:6,    h:0,    k:6,    lob:0,    e:6,    ob:0,           w:0,    l:0},
+    {n:"Rafael Hernandez",     ab:6,    h:0,    k:6,    lob:0,    e:1,    ob:0,           w:0,    l:4},
+    {n:"Antonio Limgenco",     ab:4,    h:0,    k:1,    lob:3,    e:0,    ob:0,           w:0,    l:7},
+    {n:"Christine Enderle",    ab:2,    h:0,    k:2,    lob:0,    e:0,    ob:0,           w:0,    l:1},
+    {n:"Garland Barmore",      ab:1,    h:0,    k:1,    lob:0,    e:1,    ob:0,           w:2,    l:2},
+    {n:"Samuel Villarreal",    ab:1,    h:0,    k:1,    lob:0,    e:0,    ob:0,           w:1,    l:4},
+    {n:"Frank Klune",          ab:0,    h:0,    k:0,    lob:0,    e:0,    ob:0,           w:1,    l:2},
+    {n:"Rafael Hernandez",     ab:0,    h:0,    k:0,    lob:0,    e:0,    ob:0,           w:0,    l:1}
   ]
 };
 
@@ -369,7 +403,7 @@ function render(){
     ["LOB",      cur ? num(cur.lob): "&mdash;", "past-due close date", ""],
     ["E",        cur ? num(cur.e)  : "&mdash;", "$0 / blank value", ""],
     ["ON BASE",  cur ? money(cur.ob) : "&mdash;", "$ in a real quarter", ""],
-    ["WINS",     cur ? num(cur.w)  : "&mdash;", "closed won, all time", ""],
+    ["WINS",     cur ? num(cur.w)  : "&mdash;", "closed won, this export", ""],
     ["CORKED",   cur && cur.corked != null ? num(cur.corked) : "&mdash;",
                  cur && cur.corked != null ? "won &le;14 days from create" : "not in this export", ""]
   ];
