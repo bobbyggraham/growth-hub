@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Growth Hub Plays — Proof Builder</title>
+<title>Build an Account Plan</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='115' fill='%23133865'/><g stroke='%23c5d9fa' stroke-width='22' stroke-linecap='round'><line x1='256' y1='256' x2='256' y2='96'/><line x1='256' y1='256' x2='394.6' y2='176'/><line x1='256' y1='256' x2='394.6' y2='336'/><line x1='256' y1='256' x2='256' y2='416'/><line x1='256' y1='256' x2='117.4' y2='336'/><line x1='256' y1='256' x2='117.4' y2='176'/></g><circle cx='256' cy='96' r='42' fill='%23ffffff'/><circle cx='394.6' cy='176' r='42' fill='%23c5d9fa'/><circle cx='394.6' cy='336' r='42' fill='%23ffffff'/><circle cx='256' cy='416' r='42' fill='%23c5d9fa'/><circle cx='117.4' cy='336' r='42' fill='%23ffffff'/><circle cx='117.4' cy='176' r='42' fill='%23ebb018'/><circle cx='256' cy='256' r='76' fill='%23ebb018'/></svg>">
 <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
     --fsg-deep-navy: #0b1421;
@@ -18,6 +18,7 @@
     --fsg-light-gray: #ededed;
     --fsg-gold: #ebb018;
     --fsg-bright-blue: #4e84de;
+    --fsg-line: #e4e7ee;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -39,22 +40,8 @@
     gap: 24px;
     flex-wrap: wrap;
   }
-  .hero .eyebrow {
-    color: var(--fsg-light-blue);
-    font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-  .hero h1 {
-    font-family: 'Oswald', Arial, sans-serif;
-    font-weight: 700;
-    font-size: 40px;
-    color: #ffffff;
-    line-height: 1.15;
-    margin-bottom: 10px;
-  }
+  .hero .eyebrow { color: var(--fsg-light-blue); font-weight: 700; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+  .hero h1 { font-family: 'Oswald', Arial, sans-serif; font-weight: 700; font-size: 40px; color: #ffffff; line-height: 1.15; margin-bottom: 10px; }
   .hero .subtitle { color: var(--fsg-light-blue); font-size: 14px; max-width: 560px; }
   .hero .org { text-align: right; color: #fff; }
   .hero .org .fsg { font-family: 'Oswald', Arial, sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 1px; }
@@ -62,140 +49,128 @@
   .gold-rule { border: none; border-top: 3px solid var(--fsg-gold); margin: 18px 0 28px; }
 
   h2 {
-    font-family: 'Oswald', Arial, sans-serif;
-    font-weight: 700;
-    color: var(--fsg-dark-navy);
-    font-size: 26px;
-    margin: 38px 0 6px;
-    padding-bottom: 6px;
-    border-bottom: 2px solid var(--fsg-gold);
+    font-family: 'Oswald', Arial, sans-serif; font-weight: 700; color: var(--fsg-dark-navy);
+    font-size: 26px; margin: 40px 0 6px; padding-bottom: 6px; border-bottom: 2px solid var(--fsg-gold);
   }
+  h3 { font-family: 'Oswald', Arial, sans-serif; color: var(--fsg-brand-blue); font-size: 20px; margin: 26px 0 8px; }
   p { margin: 12px 0; }
   b { color: var(--fsg-deep-navy); }
+  .muted { color: var(--fsg-brand-blue); font-size: 14px; }
 
   .callout {
-    background: var(--fsg-light-blue);
-    border-left: 4px solid var(--fsg-gold);
-    border-radius: 0 6px 6px 0;
-    padding: 14px 20px;
-    margin: 20px 0;
-    color: var(--fsg-dark-navy);
-    font-size: 15px;
+    background: var(--fsg-light-blue); border-left: 4px solid var(--fsg-gold);
+    border-radius: 0 6px 6px 0; padding: 14px 20px; margin: 20px 0;
+    color: var(--fsg-dark-navy); font-size: 15px;
   }
 
-  table.brand { width: 100%; border-collapse: collapse; font-size: 15px; margin: 16px 0; }
+  .scroll { overflow-x: auto; margin: 16px 0; }
+  table.brand { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 560px; }
   table.brand th {
-    background: var(--fsg-dark-navy);
-    color: #fff;
-    text-align: left;
-    padding: 10px 14px;
-    font-weight: 700;
+    background: var(--fsg-dark-navy); color: #fff; text-align: left; padding: 10px 14px;
+    font-weight: 700; font-family: 'Oswald', Arial, sans-serif; letter-spacing: .5px;
   }
   table.brand td { padding: 10px 14px; vertical-align: top; }
   table.brand tr:nth-child(even) td { background: var(--fsg-light-blue); }
-  table.brand td:first-child { font-weight: 700; white-space: nowrap; }
+  table.brand td:first-child { font-weight: 700; }
+  table.brand.nowrap1 td:first-child { white-space: nowrap; }
 
-  .tile {
-    display: flex;
-    align-items: stretch;
-    background: var(--fsg-light-gray);
-    border-radius: 6px;
-    overflow: hidden;
-    margin: 14px 0;
-  }
+  /* ---------- flow tiles ---------- */
+  .tile { display: flex; align-items: stretch; background: var(--fsg-light-gray); border-radius: 6px; overflow: hidden; margin: 14px 0; }
   .tile .badge {
-    background: var(--fsg-dark-navy);
-    color: #fff;
-    font-family: 'Oswald', Arial, sans-serif;
-    font-weight: 700;
-    font-size: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 64px;
+    background: var(--fsg-dark-navy); color: #fff; font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 700; font-size: 28px; display: flex; align-items: center; justify-content: center; min-width: 64px;
   }
   .tile .badge.gold { color: var(--fsg-gold); }
   .tile .body { padding: 14px 18px; }
-  .tile .body h4 {
-    font-family: 'Oswald', Arial, sans-serif;
-    font-size: 18px;
-    color: var(--fsg-dark-navy);
-    text-transform: uppercase;
-    margin-bottom: 4px;
-  }
+  .tile .body h4 { font-family: 'Oswald', Arial, sans-serif; font-size: 18px; color: var(--fsg-dark-navy); text-transform: uppercase; margin-bottom: 4px; }
   .tile .body p { margin: 0; font-size: 15px; }
 
   ul.misses { margin: 14px 0 0 22px; }
   ul.misses li { margin-bottom: 10px; }
 
-  .vc { margin-top: 40px; padding-top: 18px; border-top: 3px solid var(--fsg-gold); }
-  .vc h3 {
-    font-family: 'Oswald', Arial, sans-serif;
-    color: var(--fsg-dark-navy);
-    font-size: 18px;
-    margin-bottom: 10px;
+  /* ---------- form ---------- */
+  .formwrap { border: 1px solid var(--fsg-line); border-radius: 10px; padding: 4px 26px 28px; margin-top: 16px; background: #fff; }
+  fieldset { border: none; padding: 18px 0 4px; border-top: 1px solid var(--fsg-line); }
+  fieldset:first-of-type { border-top: none; }
+  legend {
+    font-family: 'Oswald', Arial, sans-serif; font-size: 15px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--fsg-dark-navy); padding: 0; margin-bottom: 2px;
   }
-  table.vc-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .legendnote { font-size: 13.5px; color: var(--fsg-steel-blue); margin: 0 0 14px; }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 18px; }
+  .grid .full { grid-column: 1 / -1; }
+  @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }
+
+  .field { display: flex; flex-direction: column; }
+  .field label {
+    font-size: 13px; font-weight: 700; color: var(--fsg-dark-navy);
+    letter-spacing: .4px; margin-bottom: 5px;
+  }
+  .field label .req { color: var(--fsg-brand-blue); font-weight: 700; }
+  .field .hint { font-size: 12.5px; color: var(--fsg-steel-blue); margin-top: 5px; line-height: 1.45; }
+  input[type=text], input[type=email], input[type=url], input[type=number], select, textarea {
+    font-family: 'Open Sans', Arial, sans-serif; font-size: 15px; color: var(--fsg-deep-navy);
+    border: 1.5px solid var(--fsg-line); border-radius: 6px; padding: 11px 13px;
+    background: #fff; width: 100%; outline: none; min-height: 46px;
+  }
+  textarea { min-height: 92px; resize: vertical; line-height: 1.5; }
+  input:focus, select:focus, textarea:focus { border-color: var(--fsg-bright-blue); }
+  input.bad, select.bad, textarea.bad { border-color: var(--fsg-gold); background: #fffdf5; }
+  .err { font-size: 12.5px; color: var(--fsg-brand-blue); font-weight: 700; margin-top: 5px; display: none; }
+  .err.show { display: block; }
+
+  .checks { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 8px 16px; }
+  .checks label {
+    display: flex; align-items: center; gap: 9px; font-size: 14.5px; font-weight: 400;
+    color: var(--fsg-deep-navy); letter-spacing: 0; margin: 0; cursor: pointer;
+    border: 1px solid var(--fsg-line); border-radius: 6px; padding: 9px 12px; min-height: 44px;
+  }
+  .checks input { width: 17px; height: 17px; flex: 0 0 17px; accent-color: var(--fsg-brand-blue); }
+
+  /* stack meter */
+  .meter { margin-top: 14px; border-radius: 8px; padding: 14px 18px; background: var(--fsg-light-gray); border-left: 5px solid var(--fsg-steel-blue); }
+  .meter.top { background: var(--fsg-light-blue); border-left-color: var(--fsg-gold); }
+  .meter .rank { font-family: 'Oswald', Arial, sans-serif; font-size: 17px; letter-spacing: 2px; text-transform: uppercase; color: var(--fsg-dark-navy); }
+  .meter .why { font-size: 13.5px; color: var(--fsg-brand-blue); margin-top: 3px; }
+
+  .actions { margin-top: 26px; padding-top: 22px; border-top: 3px solid var(--fsg-gold); }
+  .btnrow { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  button {
+    font-family: 'Oswald', Arial, sans-serif; font-weight: 700; font-size: 17px; letter-spacing: 1px;
+    border: none; border-radius: 8px; padding: 15px 26px; cursor: pointer; min-height: 48px;
+  }
+  button.primary { background: var(--fsg-gold); color: var(--fsg-deep-navy); }
+  button.secondary { background: var(--fsg-dark-navy); color: #fff; }
+  button.ghost { background: #fff; color: var(--fsg-brand-blue); border: 1.5px solid var(--fsg-line); font-size: 14px; padding: 12px 18px; }
+  button:hover { filter: brightness(1.06); }
+  button:disabled { opacity: .55; cursor: not-allowed; }
+  .status { font-size: 14px; color: var(--fsg-brand-blue); margin-top: 14px; min-height: 20px; font-weight: 700; }
+
+  .preview { margin-top: 18px; display: none; }
+  .preview.show { display: block; }
+  .preview textarea {
+    font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px; line-height: 1.5;
+    min-height: 260px; background: #fbfcfe;
+  }
+
+  .vc { margin-top: 44px; padding-top: 18px; border-top: 3px solid var(--fsg-gold); }
+  .vc h3 { font-family: 'Oswald', Arial, sans-serif; color: var(--fsg-dark-navy); font-size: 18px; margin: 0 0 10px; }
+  table.vc-table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 520px; }
   table.vc-table th { background: var(--fsg-dark-navy); color: #fff; text-align: left; padding: 8px 12px; font-weight: 700; }
   table.vc-table td { padding: 8px 12px; border: 1px solid var(--fsg-light-gray); }
 
   footer { text-align: center; color: var(--fsg-steel-blue); font-size: 13px; margin-top: 40px; }
   a { color: var(--fsg-bright-blue); }
+  code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13px; background: var(--fsg-light-gray); padding: 2px 6px; border-radius: 4px; word-break: break-all; }
 
-  /* ---- Growth Hub Plays additions ---- */
-  .steps { display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 4px; }
-  .step-chip {
-    display:inline-flex; align-items:center; gap:8px;
-    background: var(--fsg-light-blue); color: var(--fsg-dark-navy);
-    font-family:'Oswald',Arial,sans-serif; font-weight:600; font-size:12px;
-    letter-spacing:.06em; text-transform:uppercase;
-    padding:7px 14px 7px 7px; border-radius:16px;
-  }
-  .step-chip i {
-    font-style:normal; background: var(--fsg-dark-navy); color:#fff;
-    width:20px; height:20px; border-radius:50%;
-    display:inline-flex; align-items:center; justify-content:center; font-size:11px;
-  }
-
-  .st {
-    display:inline-block; font-family:'Oswald',Arial,sans-serif; font-weight:600;
-    font-size:11px; letter-spacing:.1em; text-transform:uppercase;
-    padding:3px 10px; border-radius:11px; white-space:nowrap;
-  }
-  .st.live  { background:#e6f4ea; color:#1e6f3f; border:1px solid #9ccdaf; }
-  .st.build { background:#fdf3d8; color:#8a6100; border:1px solid var(--fsg-gold); }
-  .st.conf  { background: var(--fsg-light-gray); color:#4a5568; border:1px solid #c9c9c9; }
-
-  .dd { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:18px 0; }
-  .dd > div { border-radius:6px; padding:16px 18px; }
-  .dd .do   { background:#f1f7f3; border-left:4px solid #2f855a; }
-  .dd .dont { background:#fdf1f1; border-left:4px solid #c53030; }
-  .dd h4 {
-    font-family:'Oswald',Arial,sans-serif; font-size:15px; letter-spacing:.1em;
-    text-transform:uppercase; margin-bottom:8px;
-  }
-  .dd .do h4   { color:#2f855a; }
-  .dd .dont h4 { color:#c53030; }
-  .dd ul { margin-left:18px; }
-  .dd li { margin-bottom:7px; font-size:14.5px; }
-
-  .tile .body p + p { margin-top:8px; }
-
-  @media (max-width: 720px) {
-    .hero h1 { font-size:30px; }
-    .hero { padding:22px 20px; }
-    .hero .org { text-align:left; }
-    .dd { grid-template-columns:1fr; }
-    .page { padding:24px 16px 40px; }
-    table.brand { font-size:14px; }
-    table.brand td, table.brand th { padding:8px 10px; }
-  }
-
-  @media print {
-    #ghGate { display:none !important; }
-    html.gh-locked > body > :not(#ghGate) { display:block !important; }
-    .hero { background:#133865 !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
-    a[href]:after { content:""; }
+  @media (max-width: 560px) {
+    .page { padding: 20px 16px 40px; }
+    .hero { padding: 22px 20px; }
+    .hero h1 { font-size: 30px; }
+    .hero .org { text-align: left; }
+    .formwrap { padding: 4px 16px 24px; }
+    button.primary, button.secondary { width: 100%; }
   }
 </style>
 </head>
@@ -210,9 +185,8 @@
   #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
   #ghGate .gh-brand svg{width:30px;height:30px;}
   #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
-  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
   #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
-  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;border:none;color:#fff;padding:0;}
   #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
   #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
   #ghGate input:focus{border-color:#4e84de;}
@@ -272,14 +246,15 @@
 </script>
 <!-- ============ /GROWTH HUB GATE ============ -->
 
-<div style="max-width:960px;margin:0 auto;padding:18px 24px 0;"><a href="../../index.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">&larr; Growth Hub</a><span style="color:#c5d9fa;margin:0 8px;">|</span><a href="../plays.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">&larr; Growth Hub Plays</a></div>
+<div class="crumb" style="max-width:960px;margin:0 auto;padding:18px 24px 0;"><a href="../../index.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">&larr; Growth Hub</a></div>
+
 <div class="page">
 
   <div class="hero">
     <div>
       <div class="eyebrow">Growth Hub Plays</div>
-      <h1>Proof Builder</h1>
-      <div class="subtitle">Turn your win into ammunition the whole org can fire — and get your name on it.</div>
+      <h1>Build an Account Plan</h1>
+      <div class="subtitle">You bring what only you know. Lumen builds the plan, loads Engage, and hands it back ready to work.</div>
     </div>
     <div class="org">
       <div class="fsg">FACILITY SOLUTIONS GROUP</div>
@@ -288,156 +263,536 @@
   </div>
   <hr class="gold-rule">
 
-  <div class="steps">
-    <span class="step-chip"><i>1</i>Tell the story</span>
-    <span class="step-chip"><i>2</i>Load the numbers</span>
-    <span class="step-chip"><i>3</i>Drop the files</span>
-    <span class="step-chip"><i>4</i>Check permissions</span>
-    <span class="step-chip"><i>5</i>Send it</span>
-  </div>
+  <h2>Why This Play</h2>
+  <p><b>You already carry the account in your head.</b> Who picks up the phone, who blocked us last time, what they're about to spend money on. None of that is in a database — and all of it is what makes a plan worth reading.</p>
+  <p>So this form doesn't ask you to research anything. Lumen does the research. Public filings, footprint, buying signals, contact sourcing, competitor position — that's machine work. You fill in the ten minutes of truth only the person who works the account can give, hit send, and get back a full account plan built to Growth Hub standard with the Engage records already staged.</p>
+  <div class="callout"><b>Ten minutes of your time buys a finished plan.</b> Everything below is either an ID Lumen needs to find the account, or something Lumen cannot learn without you.</div>
 
-  <h2>Why This Play Matters</h2>
-  <p><b>Every rep asks the same question: "do we have a story like this customer?"</b> The answer is always yes. It's just buried in Engage notes, invoices, and somebody's memory. Proof Builder is how your win stops being tribal knowledge and becomes ammunition the whole org can fire.</p>
-  <p>And it keeps score. Every card carries <b>&#9733; Proof submitted by [your name]</b>, on the card, in the pop-out, in the deck the next rep builds off it. Fifteen minutes of your time buys a permanent credit line.</p>
-  <div class="callout"><b>One card, three places.</b> Your proof lands in the Results grid, makes the client's chip clickable on Products &times; Delivery, and enters the library the deck generator pulls from. You fill one form.</div>
-
-  <h2>The Five Steps</h2>
-  <p><b>Development chip &rarr; Proof Builder.</b> Fill it in order. It takes longer to find the files than to write the words.</p>
+  <h2>What Happens After You Hit Send</h2>
 
   <div class="tile"><div class="badge">1</div><div class="body">
-    <h4>Tell The Story</h4>
-    <p><b>Submitted by / your name / your email.</b> This is the credit line. Don't skip it.</p>
-    <p><b>Client name</b> — legal-ish and consistent. "Ulta Beauty", not "Ulta".</p>
-    <p><b>Vertical</b> — one of thirteen, Commercial Real Estate &amp; Office through Multifamily. Pick how the customer would describe themselves, not how we file them.</p>
-    <p><b>The cell</b> — Product line (Electrical · Lighting · Signs · Technology Infrastructure · Energy Performance) &times; Delivery method (Construction · Service · Distribution) &times; Type. This is how the engine matches your proof to the next prospect, so get it right: a lighting retrofit tagged "Electrical" surfaces for the wrong buyer.</p>
-    <p><b>The problem</b> — their words, their pain, before we showed up. Two or three sentences. Don't name FSG here.</p>
-    <p><b>The solution</b> — what we did, scope and scale. Outcome first, then how.</p>
-    <p><b>Client quote &amp; attribution</b> — one real sentence from a real person with their real title. Spell the name right; we verify it.</p>
+    <h4>You submit</h4>
+    <p>Fill the form, click <b>Build my account plan</b>. Your email client opens addressed to Bobby with you on copy. Paste, send. You keep the receipt.</p>
   </div></div>
 
-  <div class="callout"><b>Multi-scope job? One card per cell.</b> A rebrand rollout with sign fabrication and electrical service is two proofs with their own dollars — and two roster spots instead of one.</div>
-
   <div class="tile"><div class="badge">2</div><div class="body">
-    <h4>Load The Numbers</h4>
-    <p>Numbers are what separate a proof card from a testimonial.</p>
-    <p><b>&#9733; Gold stat — dollars first.</b> The headline number, and it should be money if money is available: contract value, annual savings, cost avoided.</p>
-    <p><b>Every stat needs a number and a label.</b> "328 locations", "18 weeks", "42% energy reduction". A stat slot is not a place for a program name — that goes in the Program field.</p>
-    <p><b>Only claims the record supports.</b> Pull from the order, the invoice, or approved site copy. Nothing estimated, nothing rounded up. If it isn't in the record, leave it out.</p>
+    <h4>Lumen goes to work</h4>
+    <p>Account research, footprint and spend signals, contact sourcing with call flags, competitor read, and the play set — mapped to FSG business lines and products.</p>
   </div></div>
 
   <div class="tile"><div class="badge">3</div><div class="body">
-    <h4>Drop The Files</h4>
-    <p><b>Client logos</b> — up to 4. Transparent PNG or SVG if you have it.</p>
-    <p><b>Job photos</b> — up to 6. Shoot landscape and get the work in frame: fixture, sign, panel, gear. Not an empty parking lot. Keep them tight; the gold frame comes from the card itself.</p>
-    <p><b>Proposal / backup link</b> — the Engage opportunity or SmartSheet URL that proves the numbers.</p>
-    <p><b>Google Drive link</b> — the folder or file behind the job: the proposal, the full photo set, the source. <b>Check it's shared</b> before you paste it — a link QA can't open is the same as no link.</p>
-    <p>Nobody sees either but QA; they're what make the card auditable.</p>
+    <h4>The plan gets built</h4>
+    <p>Protect · Land · Expand, the play set mapped to FSG business lines and products, the opportunity set with every field that matters filled, a contact map with call discipline, and a 90-day sequence.</p>
   </div></div>
 
-  <div class="tile"><div class="badge">4</div><div class="body">
-    <h4>Check Permissions</h4>
-    <p>Four toggles, and they're the ones that keep us out of trouble: <b>name approved · logo approved · numbers approved · quote approved</b>.</p>
-    <p>You attest to them as the submitter — so know the answer, don't guess it.</p>
-    <p><b>Anything not approved renders anonymized</b> — "a national beauty retailer, 1,400 stores". Still useful, still proof.</p>
-    <p><b>Scrub as you write.</b> No portal URLs, logins, passwords, or personal contact info in any free-text field. Engage records are full of them; proof cards never are.</p>
+  <div class="tile"><div class="badge gold">4</div><div class="body">
+    <h4>It lands in Engage</h4>
+    <p>The finished plan is attached as a <b>PDF in the account's Files tab</b> in Engage — so it lives with the account, not in somebody's inbox. The account, contacts, and opportunities get staged against your name: follow-up dates set, close dates real, values entered. Open your dashboard and the work is already there.</p>
   </div></div>
 
-  <div class="tile"><div class="badge">5</div><div class="body">
-    <h4>Send It</h4>
-    <p>Four buttons at the bottom. <b>The last one submits</b> — the other three are for you.</p>
-    <p><b>Email Growth Hub</b> — opens an email to Bobby with <b>you CC'd</b>, so you always have your own copy of what you sent. Attach the proof card that downloads alongside it, then send.</p>
-    <p><b>Download Proof Card</b> — your finished HTML card. Yours to show a client today, before it's even published.</p>
-    <p><b>Copy Deck Snippet</b> — drop the proof straight into a deck or one-pager.</p>
-    <p><b>Copy Proof Record</b> — the paste-ready record for the engine. Grab it if QA asks.</p>
-  </div></div>
+  <div class="callout"><b>How long does it take?</b> It depends on demand and on the size of the opportunity — and this is going to be in high demand. Be patient. The tools are grinding for you.</div>
 
-  <div class="callout" id="attachNote"><b>While the direct send is being switched on:</b> the Email button downloads the card and opens your email instead. <b>Attach the downloaded card before you hit send</b> — check your Downloads folder. The full write-up is on your clipboard; paste it into the body. Once the direct send is live this step disappears and the card attaches itself.</div>
-
-  <h2>What Happens After You Hit Send</h2>
-  <p>You'll see it on the hub almost immediately — and you'll see exactly what state it's in.</p>
-
-  <table class="brand">
-    <tr><th>Status</th><th>What it means</th><th>Where it shows</th></tr>
-    <tr><td><span class="st build">In Build</span></td><td>Submitted, not yet approved. Numbers and images still pending.</td><td>Results grid only. Never on Products.</td></tr>
-    <tr><td><span class="st live">Live</span></td><td>Approved. The full card, with your credit line on it.</td><td>Results, the client's Products chip, and the deck library.</td></tr>
-    <tr><td><span class="st conf">Confidential</span></td><td>Real proof, restricted client. Anonymized on the card.</td><td>Results, anonymized.</td></tr>
+  <h2>Three Things You Must Provide</h2>
+  <p>Without these, the request goes back to you instead of into the build stack. They're how Lumen knows it's working the right account and not creating a duplicate.</p>
+  <div class="scroll">
+  <table class="brand nowrap1">
+    <tr><th>Required</th><th>Why it's required</th></tr>
+    <tr><td>Account name</td><td>Spelled exactly as it reads in Engage. "Ulta" and "Ulta Beauty" are two accounts and one of them is wrong</td></tr>
+    <tr><td>ERP ID</td><td>The join key between Engage and the ERP. It's what lets Lumen pull what FSG has actually transacted with this account</td></tr>
+    <tr><td>Engage account link</td><td>Removes all doubt about which record we're building on. Copy it straight from your browser bar</td></tr>
   </table>
-
-  <div class="tile"><div class="badge gold">&#8594;</div><div class="body">
-    <h4>The QA Pass</h4>
-    <p>Scrub, copy into FSG voice, stat repair, photo crop, quote and cell verification. Then it's approved and flips to LIVE. <b>Turnaround is days, not weeks.</b> If something's missing, you'll hear which field — one email, one fix, done.</p>
-  </div></div>
-
-  <div class="tile"><div class="badge gold">&#9733;</div><div class="body">
-    <h4>You Get Told</h4>
-    <p>When your proof goes live, you get an email saying so. You don't have to go looking for it, and you don't have to wonder whether it landed.</p>
-  </div></div>
-
-  <h2>What Makes A Card Land</h2>
-  <div class="dd">
-    <div class="do">
-      <h4>Do</h4>
-      <ul>
-        <li>Lead the gold stat with <b>money</b> — contract value, annual savings, cost avoided.</li>
-        <li>Write the problem in <b>their</b> words, before FSG shows up.</li>
-        <li>Tag the cell the way the <b>next buyer</b> would search for it.</li>
-        <li>Shoot photos landscape with the work in frame.</li>
-        <li>Split a multi-scope job into one card per cell.</li>
-      </ul>
-    </div>
-    <div class="dont">
-      <h4>Don't</h4>
-      <ul>
-        <li>Round a number up, or estimate one the record doesn't support.</li>
-        <li>Put a program name in a stat slot.</li>
-        <li>Paste a portal URL, login, or personal contact into a free-text field.</li>
-        <li>Guess on a permission toggle. Know it.</li>
-        <li>Leave the submitted-by fields blank — that's your name off the board.</li>
-      </ul>
-    </div>
   </div>
+  <p class="muted">The Engage link looks like this:<br><code>https://engage.fsgapps.com/accounts/aceacb5a-8243-11ee-aebb-bfb69a48e5f0/general/basic-information</code></p>
+
+  <h2>How Requests Get Stacked</h2>
+  <p><b>Lumen builds biggest opportunity first.</b> The number that ranks your request is the realistic FSG opportunity across the account over the next 24 months — what FSG could actually win if the plan works, not what we bill today.</p>
+  <div class="scroll">
+  <table class="brand nowrap1">
+    <tr><th>Opportunity</th><th>Where it lands</th></tr>
+    <tr><td>$5M or more</td><td><b>Top of the build stack.</b> Full plan, contact sourcing, Engage load</td></tr>
+    <tr><td>Under $5M</td><td><b>Bottom of the build stack.</b> Still gets built — behind every account that clears the bar</td></tr>
+  </table>
+  </div>
+  <div class="callout"><b>Be honest, not optimistic.</b> A number you can defend in one sentence beats a big number you can't. An inflated request jumps the line once and costs you credibility on every one after.</div>
+  <p class="muted">The $5M line sets the order. Demand sets the speed. Nothing in the stack gets dropped.</p>
+
+  <h2>The Intake</h2>
+  <p class="muted">Fields marked <span class="req">*</span> are required. Your answers save in this browser as you type, so a closed tab doesn't cost you the work.</p>
+
+  <form class="formwrap" id="apForm" novalidate>
+
+    <fieldset>
+      <legend>1 · Who's asking</legend>
+      <p class="legendnote">This is who the plan gets built for and who gets copied on the request.</p>
+      <div class="grid">
+        <div class="field">
+          <label for="repName">Your name <span class="req">*</span></label>
+          <input type="text" id="repName" autocomplete="name">
+          <div class="err" id="e_repName">Required.</div>
+        </div>
+        <div class="field">
+          <label for="repEmail">Your FSG email <span class="req">*</span></label>
+          <input type="email" id="repEmail" autocomplete="email" placeholder="first.last@fsgi.com">
+          <div class="err" id="e_repEmail">Enter a valid email — this is your copy of the request.</div>
+        </div>
+        <div class="field">
+          <label for="repRole">Your role</label>
+          <input type="text" id="repRole" placeholder="AE, AM, BD, Sales Manager">
+        </div>
+        <div class="field">
+          <label for="repMarket">Your market / division</label>
+          <input type="text" id="repMarket" placeholder="DFW, NorCal, National Accounts">
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>2 · The record</legend>
+      <p class="legendnote">All three are required. Copy the Engage link straight out of your browser bar.</p>
+      <div class="grid">
+        <div class="field">
+          <label for="acctName">Account name, exactly as it reads in Engage <span class="req">*</span></label>
+          <input type="text" id="acctName">
+          <div class="err" id="e_acctName">Required.</div>
+        </div>
+        <div class="field">
+          <label for="erpId">ERP ID <span class="req">*</span></label>
+          <input type="text" id="erpId" placeholder="712585">
+          <div class="err" id="e_erpId">Required — it's the join key to the ERP.</div>
+        </div>
+        <div class="field full">
+          <label for="engageUrl">Engage account link <span class="req">*</span></label>
+          <input type="url" id="engageUrl" placeholder="https://engage.fsgapps.com/accounts/.../general/basic-information">
+          <div class="hint">Must be an engage.fsgapps.com/accounts/ URL.</div>
+          <div class="err" id="e_engageUrl">Paste the full Engage account URL, starting with https://engage.fsgapps.com/accounts/</div>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>3 · The stack rank</legend>
+      <p class="legendnote">Realistic FSG opportunity across this account over the next 24 months. $5M or more goes to the top of the build stack.</p>
+      <div class="grid">
+        <div class="field">
+          <label for="oppValue">Realistic FSG opportunity, next 24 months <span class="req">*</span></label>
+          <input type="number" id="oppValue" min="0" step="1000" placeholder="5000000">
+          <div class="hint">Dollars, no commas or symbols.</div>
+          <div class="err" id="e_oppValue">Enter a number — even a rough one you can defend.</div>
+        </div>
+        <div class="field">
+          <label for="fsgTrailing">FSG sales with this account, last 12 months</label>
+          <input type="text" id="fsgTrailing" placeholder="Approximate, or 'none yet'">
+        </div>
+        <div class="field full">
+          <label for="oppBasis">What that number is built on <span class="req">*</span></label>
+          <textarea id="oppBasis" placeholder="Site count x typical scope, a program they've told you is coming, spend they've quoted you, a footprint you've walked."></textarea>
+          <div class="hint">One or two sentences. If you can't defend it in a sentence, the number is wrong.</div>
+          <div class="err" id="e_oppBasis">Required — the number needs a basis.</div>
+        </div>
+      </div>
+      <div class="meter" id="meter">
+        <div class="rank" id="meterRank">Enter an opportunity value</div>
+        <div class="why" id="meterWhy">The $5M line decides where this request sits in Lumen's build stack.</div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>4 · The relationship — what Lumen can't find</legend>
+      <p class="legendnote">This is the part no database has. Be blunt; nobody outside the growth org reads this.</p>
+      <div class="grid">
+        <div class="field full">
+          <label for="standing">Where FSG stands with them today <span class="req">*</span></label>
+          <select id="standing">
+            <option value="">Choose one…</option>
+            <option>No relationship — cold target</option>
+            <option>Bidding, no wins yet</option>
+            <option>Won work in one market</option>
+            <option>Active in multiple markets</option>
+            <option>National program in place</option>
+            <option>Former customer — we lost it</option>
+          </select>
+          <div class="err" id="e_standing">Required.</div>
+        </div>
+        <div class="field full">
+          <label for="knowWho">Who we already know inside <span class="req">*</span></label>
+          <textarea id="knowWho" placeholder="Names, titles, how warm, who owns the relationship at FSG. 'Nobody yet' is a real answer."></textarea>
+          <div class="err" id="e_knowWho">Required — write "nobody yet" if that's the truth.</div>
+        </div>
+        <div class="field full">
+          <label for="decides">Who actually decides, if you know</label>
+          <textarea id="decides" placeholder="Who signs, who blocks, who influences. Corporate vs. site-level. How capital gets requested."></textarea>
+        </div>
+        <div class="field">
+          <label for="incumbent">Incumbent(s) and what they do well</label>
+          <textarea id="incumbent" placeholder="Who has the work now and why the customer keeps them."></textarea>
+        </div>
+        <div class="field">
+          <label for="landmines">Anything that could kill this</label>
+          <textarea id="landmines" placeholder="Do Not Call flags, bad history, a burned bridge, credit hold, legal, a rep who owns it elsewhere."></textarea>
+          <div class="hint">Say it now. Lumen builds around it.</div>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>5 · The opening</legend>
+      <p class="legendnote">Why this account, why now, and what you want the plan to do for you.</p>
+      <div class="grid">
+        <div class="field full">
+          <label for="whyNow">Why now — the trigger <span class="req">*</span></label>
+          <textarea id="whyNow" placeholder="A remodel program, a new facilities director, an RFP coming, a failed vendor, a store opening schedule, a sustainability mandate, a call you just got."></textarea>
+          <div class="err" id="e_whyNow">Required — a plan without a trigger is a wish.</div>
+        </div>
+        <div class="field full">
+          <label>Scopes in play <span class="req">*</span></label>
+          <div class="checks" id="scopeBox">
+            <label><input type="checkbox" name="scope" value="Lighting / LED retrofit"> Lighting / LED retrofit</label>
+            <label><input type="checkbox" name="scope" value="Electrical construction"> Electrical construction</label>
+            <label><input type="checkbox" name="scope" value="Signs and image"> Signs and image</label>
+            <label><input type="checkbox" name="scope" value="Service and planned maintenance"> Service &amp; planned maintenance</label>
+            <label><input type="checkbox" name="scope" value="Energy, EV, solar, storage"> Energy, EV, solar, storage</label>
+            <label><input type="checkbox" name="scope" value="Technology / smart buildings / BAS"> Technology / BAS</label>
+            <label><input type="checkbox" name="scope" value="Facilities services"> Facilities services</label>
+            <label><input type="checkbox" name="scope" value="Not sure yet"> Not sure yet</label>
+          </div>
+          <div class="err" id="e_scope">Pick at least one.</div>
+        </div>
+        <div class="field">
+          <label for="footprint">Their footprint</label>
+          <input type="text" id="footprint" placeholder="# of locations, states, or 'one campus'">
+        </div>
+        <div class="field">
+          <label for="primarySite">Primary site or market to start in</label>
+          <input type="text" id="primarySite" placeholder="The site you can actually walk">
+        </div>
+        <div class="field full">
+          <label for="dates">Dates that matter</label>
+          <textarea id="dates" placeholder="RFP release, bid due, fiscal year end, budget cycle, store opening schedule, contract expiration."></textarea>
+        </div>
+        <div class="field full">
+          <label for="theAsk">Your ask of Lumen <span class="req">*</span></label>
+          <textarea id="theAsk" placeholder="What do you want this plan to do? Get you in the door, break an incumbent, build the national case, arm you for one meeting on a date you already have."></textarea>
+          <div class="err" id="e_theAsk">Required — tell Lumen what winning looks like.</div>
+        </div>
+        <div class="field full">
+          <label for="anythingElse">Anything else Lumen should know</label>
+          <textarea id="anythingElse" placeholder="Optional. The thing you'd say out loud that never makes it into a CRM note."></textarea>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="actions">
+      <div class="btnrow">
+        <button type="button" class="primary" id="btnBuild">Build my account plan</button>
+        <button type="button" class="secondary" id="btnCopy">Copy the request</button>
+        <button type="button" class="ghost" id="btnClear">Clear the form</button>
+      </div>
+      <div class="status" id="status"></div>
+      <div class="preview" id="preview">
+        <label for="payload" style="font-size:13px;font-weight:700;color:#133865;letter-spacing:.4px;">Your request — this is what gets emailed</label>
+        <textarea id="payload" readonly aria-label="Generated request"></textarea>
+        <p class="muted" style="margin-top:8px;">Copied to your clipboard and your draft is open. Paste it into the email body and send. If nothing opened, copy this box into a new email to bobby.graham@fsgi.com and copy yourself.</p>
+      </div>
+    </div>
+  </form>
+
+  <h2>What You Owe After</h2>
+  <p><b>The plan is the start of the work, not the end of it.</b> Once the records are in Engage they're yours — and they go stale in a week if nobody touches them.</p>
+
+  <div class="tile"><div class="badge gold">D</div><div class="body">
+    <h4>Daily — Take Your Swings (5 min)</h4>
+    <p>Open the Dashboard, work the top of your list. Follow-up date, close date, value. One touch and move on.</p>
+  </div></div>
+
+  <div class="tile"><div class="badge gold">W</div><div class="body">
+    <h4>Weekly — Clear the Bases (Friday, 15 min)</h4>
+    <p>No blank follow-up dates, no close dates in the past, before you leave for the weekend.</p>
+  </div></div>
+
+  <div class="tile"><div class="badge gold">M</div><div class="body">
+    <h4>Monthly — Check Your Average (First Monday)</h4>
+    <p>Walk the whole account. Replace every $1 placeholder Operations has since priced. Tell Lumen what changed and the plan gets rebuilt.</p>
+  </div></div>
 
   <h2>Common Misses</h2>
   <ul class="misses">
-    <li><b>Blank submitted-by</b> — the card goes up uncredited. The whole recognition loop runs off that one field.</li>
-    <li><b>Wrong cell</b> — the proof surfaces for the wrong buyer, or never surfaces at all. It's the single field most worth double-checking.</li>
-    <li><b>A stat with no label</b> — "328" on its own means nothing on a card a stranger is reading in a meeting.</li>
-    <li><b>Permissions guessed, not known</b> — the fastest way to turn a good proof into a legal conversation.</li>
-    <li><b>One card for a three-scope job</b> — the dollars get muddled and you take one roster spot instead of three.</li>
+    <li><b>Account name that doesn't match Engage</b> — Lumen builds a duplicate, and now there are two records and one honest forecast split across both.</li>
+    <li><b>No ERP ID</b> — nothing joins to transacted revenue, so the plan can't show what FSG has already delivered for them.</li>
+    <li><b>An inflated opportunity number</b> — it jumps the stack once. After that nobody trusts your requests, including the ones that were real.</li>
+    <li><b>"Nobody yet" left blank instead of written</b> — a blank reads as an unanswered question and the request comes back to you. Write the truth and it moves.</li>
+    <li><b>Landmines left off</b> — a DNC flag or a burned bridge that surfaces after the plan is built costs a rebuild and sometimes the account.</li>
   </ul>
 
-  <h2>The Goal</h2>
-  <p><b>Sixteen open roster spots.</b> Every one of them is a win somebody on this team already delivered and nobody else can use yet. The gap between a job you closed and a proof the org can fire is about fifteen minutes of your time.</p>
-  <div class="callout"><b>Fifteen minutes. One form. Your name on it permanently.</b> Contribution + Service = Value.</div>
-
-  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:26px;">
-    <a href="../proof-builder.html" style="display:inline-block;background:var(--fsg-gold);color:var(--fsg-deep-navy);font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;padding:14px 26px;border-radius:6px;">Open Proof Builder &rarr;</a>
-    <a href="../../index.html#ghProofGrid" style="display:inline-block;border:1.5px solid var(--fsg-dark-navy);color:var(--fsg-dark-navy);font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:14px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;padding:13px 24px;border-radius:6px;">See live proof in Results</a>
-  </div>
+  <div class="callout"><b>You know the account. Lumen knows the research. Engage keeps the score.</b> Ten minutes here is the cheapest pipeline you'll build all month.</div>
 
   <div class="vc">
     <h3>Version Control</h3>
+    <div class="scroll">
     <table class="vc-table">
       <tr><th>Version</th><th>Date</th><th>Owner</th><th>Change Summary</th></tr>
-      <tr><td>1.0</td><td>September 2026</td><td>Bobby Graham — Growth</td><td>First Growth Hub Play. Proof Builder walkthrough pulled out of the field guide and rewritten for the submit &rarr; In Build &rarr; approve &rarr; Live pipeline.</td></tr>
+      <tr><td>1.0</td><td>September 11, 2026</td><td>Bobby Graham — Growth</td><td>Initial publication. Account plan intake play — required account identifiers, $5M realistic-opportunity stack rank, rep-only intake fields, and email submission to Growth with the rep copied</td></tr>
     </table>
+    </div>
   </div>
 
-  <footer>FSG Growth Hub &nbsp;|&nbsp; Internal Enablement</footer>
+  <footer>Growth Hub &nbsp;|&nbsp; Growth Hub Plays &nbsp;|&nbsp; Internal Enablement</footer>
 </div>
 
-
 <script>
-/* The manual-attach caveat is only true until the direct send is switched on.
-   Point this at the same Apps Script /exec URL used in PROOF_ENDPOINT and the
-   note removes itself — one constant, no re-editing the copy. */
 (function(){
-  var PROOF_ENDPOINT = "";
-  if(PROOF_ENDPOINT){
-    var n = document.getElementById('attachNote');
-    if(n) n.style.display = 'none';
+  var TO = 'bobby.graham@fsgi.com';
+  var THRESHOLD = 5000000;
+  var DRAFT = 'gh-acctplan-draft';
+
+  var TEXT_IDS = ['repName','repEmail','repRole','repMarket','acctName','erpId','engageUrl',
+    'oppValue','fsgTrailing','oppBasis','standing','knowWho','decides','incumbent','landmines',
+    'whyNow','footprint','primarySite','dates','theAsk','anythingElse'];
+
+  function el(id){ return document.getElementById(id); }
+  function val(id){ var e = el(id); return e ? e.value.trim() : ''; }
+  function scopes(){
+    return Array.prototype.slice.call(document.querySelectorAll('input[name=scope]:checked')).map(function(c){ return c.value; });
   }
+  function money(n){
+    if(!n && n !== 0) return '';
+    return '$' + Number(n).toLocaleString('en-US');
+  }
+
+  /* ---------- draft persistence (best effort) ---------- */
+  function saveDraft(){
+    try{
+      var d = {};
+      TEXT_IDS.forEach(function(id){ d[id] = val(id); });
+      d.scope = scopes();
+      localStorage.setItem(DRAFT, JSON.stringify(d));
+    }catch(e){}
+  }
+  function loadDraft(){
+    try{
+      var raw = localStorage.getItem(DRAFT);
+      if(!raw) return;
+      var d = JSON.parse(raw);
+      TEXT_IDS.forEach(function(id){ if(d[id] && el(id)) el(id).value = d[id]; });
+      if(d.scope && d.scope.length){
+        document.querySelectorAll('input[name=scope]').forEach(function(c){
+          if(d.scope.indexOf(c.value) > -1) c.checked = true;
+        });
+      }
+    }catch(e){}
+  }
+  function clearDraft(){ try{ localStorage.removeItem(DRAFT); }catch(e){} }
+
+  /* ---------- stack meter ---------- */
+  function updateMeter(){
+    var raw = val('oppValue');
+    var n = parseFloat(raw);
+    var m = el('meter'), r = el('meterRank'), w = el('meterWhy');
+    if(raw === '' || isNaN(n)){
+      m.className = 'meter';
+      r.textContent = 'Enter an opportunity value';
+      w.textContent = 'The $5M line decides where this request sits in Lumen’s build stack.';
+      return;
+    }
+    if(n >= THRESHOLD){
+      m.className = 'meter top';
+      r.textContent = 'Top of the build stack';
+      w.textContent = money(n) + ' clears the $5M line. Full plan, contact sourcing, and Engage load.';
+    } else {
+      m.className = 'meter';
+      r.textContent = 'Bottom of the build stack';
+      w.textContent = money(n) + ' is under the $5M line. It still gets built — behind every account that clears the bar.';
+    }
+  }
+
+  /* ---------- validation ---------- */
+  var REQUIRED = ['repName','repEmail','acctName','erpId','engageUrl','oppValue','oppBasis','standing','knowWho','whyNow','theAsk'];
+
+  function setErr(id, on){
+    var f = el(id), e = el('e_' + id);
+    if(f) f.classList.toggle('bad', !!on);
+    if(e) e.classList.toggle('show', !!on);
+  }
+  function validate(){
+    var bad = [];
+    REQUIRED.forEach(function(id){
+      var v = val(id), ok = v.length > 0;
+      if(id === 'repEmail') ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+      if(id === 'engageUrl') ok = /^https?:\/\/engage\.fsgapps\.com\/accounts\/.+/i.test(v);
+      if(id === 'oppValue') ok = v !== '' && !isNaN(parseFloat(v)) && parseFloat(v) >= 0;
+      setErr(id, !ok);
+      if(!ok) bad.push(id);
+    });
+    var hasScope = scopes().length > 0;
+    el('e_scope').classList.toggle('show', !hasScope);
+    el('scopeBox').style.outline = hasScope ? 'none' : '';
+    if(!hasScope) bad.push('scope');
+    return bad;
+  }
+
+  /* ---------- payload ---------- */
+  function line(label, value){
+    return value ? (label + ': ' + value + '\n') : (label + ': —\n');
+  }
+  function block(label, value){
+    return label + ':\n' + (value ? value : '—') + '\n\n';
+  }
+  function rank(){
+    var n = parseFloat(val('oppValue'));
+    return (!isNaN(n) && n >= THRESHOLD) ? 'TOP OF STACK' : 'BOTTOM OF STACK';
+  }
+  function buildPayload(){
+    var n = parseFloat(val('oppValue'));
+    var out = '';
+    out += 'GROWTH HUB — ACCOUNT PLAN REQUEST\n';
+    out += 'Submitted ' + new Date().toLocaleString('en-US') + '\n';
+    out += '========================================\n\n';
+    out += 'PRIORITY: ' + rank() + '  (' + (isNaN(n) ? '—' : money(n)) + ' realistic FSG opportunity, next 24 months)\n\n';
+    out += '--- REQUESTER ---\n';
+    out += line('Name', val('repName'));
+    out += line('Email', val('repEmail'));
+    out += line('Role', val('repRole'));
+    out += line('Market / division', val('repMarket'));
+    out += '\n--- THE RECORD ---\n';
+    out += line('Account name (as in Engage)', val('acctName'));
+    out += line('ERP ID', val('erpId'));
+    out += line('Engage link', val('engageUrl'));
+    out += '\n--- STACK RANK ---\n';
+    out += line('Realistic FSG opportunity (24 mo)', isNaN(n) ? '' : money(n));
+    out += line('FSG sales, trailing 12 months', val('fsgTrailing'));
+    out += '\n' + block('Basis for the number', val('oppBasis'));
+    out += '--- THE RELATIONSHIP ---\n';
+    out += line('Where FSG stands today', val('standing')) + '\n';
+    out += block('Who we know inside', val('knowWho'));
+    out += block('Who actually decides', val('decides'));
+    out += block('Incumbents and what they do well', val('incumbent'));
+    out += block('What could kill this', val('landmines'));
+    out += '--- THE OPENING ---\n';
+    out += block('Why now — the trigger', val('whyNow'));
+    out += line('Scopes in play', scopes().join(', '));
+    out += line('Footprint', val('footprint'));
+    out += line('Primary site / market', val('primarySite'));
+    out += '\n' + block('Dates that matter', val('dates'));
+    out += block('Ask of Lumen', val('theAsk'));
+    out += block('Anything else', val('anythingElse'));
+    out += '========================================\n';
+    out += 'Growth Hub · Engage Plays · Build an Account Plan v1.0\n';
+    return out;
+  }
+
+  function copyText(t){
+    return new Promise(function(resolve){
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(t).then(function(){ resolve(true); }, function(){ resolve(fallbackCopy(t)); });
+      } else { resolve(fallbackCopy(t)); }
+    });
+  }
+  function fallbackCopy(t){
+    try{
+      var ta = document.createElement('textarea');
+      ta.value = t; ta.setAttribute('readonly','');
+      ta.style.position = 'fixed'; ta.style.top = '-1000px';
+      document.body.appendChild(ta); ta.select();
+      var ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      return ok;
+    }catch(e){ return false; }
+  }
+
+  function showPayload(t){
+    el('payload').value = t;
+    el('preview').classList.add('show');
+  }
+  function firstBad(bad){
+    var f = el(bad[0] === 'scope' ? 'scopeBox' : bad[0]);
+    if(f && f.scrollIntoView) f.scrollIntoView({behavior:'smooth', block:'center'});
+    if(f && f.focus && bad[0] !== 'scope') setTimeout(function(){ f.focus(); }, 400);
+  }
+
+  function onBuild(){
+    var bad = validate();
+    if(bad.length){
+      el('status').textContent = bad.length + ' field' + (bad.length>1?'s':'') + ' still needed — they’re marked below.';
+      firstBad(bad);
+      return;
+    }
+    var body = buildPayload();
+    showPayload(body);
+    copyText(body).then(function(ok){
+      var subject = 'Account Plan Request — ' + val('acctName') + ' — ' + rank();
+      var short = 'Account plan request for ' + val('acctName') + ' (ERP ' + val('erpId') + ').\n'
+        + 'Priority: ' + rank() + '\n'
+        + 'Engage: ' + val('engageUrl') + '\n\n'
+        + '--- PASTE THE FULL REQUEST BELOW THIS LINE (it is on your clipboard) ---\n\n';
+      var href = 'mailto:' + encodeURIComponent(TO)
+        + '?cc=' + encodeURIComponent(val('repEmail'))
+        + '&subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(short);
+      window.location.href = href;
+      el('status').textContent = ok
+        ? 'Request copied and your draft is open. Paste below the line and send.'
+        : 'Draft opened. Copy the box below into the email body, then send.';
+    });
+  }
+
+  function onCopy(){
+    var body = buildPayload();
+    showPayload(body);
+    copyText(body).then(function(ok){
+      el('status').textContent = ok ? 'Copied. Paste it wherever you need it.' : 'Copy failed — select the text below and copy it manually.';
+    });
+  }
+
+  function onClear(){
+    if(!window.confirm('Clear every field on this form?')) return;
+    TEXT_IDS.forEach(function(id){ if(el(id)) el(id).value = ''; });
+    document.querySelectorAll('input[name=scope]').forEach(function(c){ c.checked = false; });
+    REQUIRED.forEach(function(id){ setErr(id, false); });
+    el('e_scope').classList.remove('show');
+    el('preview').classList.remove('show');
+    el('status').textContent = 'Form cleared.';
+    clearDraft();
+    updateMeter();
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    loadDraft();
+    updateMeter();
+    el('oppValue').addEventListener('input', updateMeter);
+    document.getElementById('apForm').addEventListener('input', saveDraft);
+    document.getElementById('apForm').addEventListener('change', saveDraft);
+    REQUIRED.forEach(function(id){
+      var f = el(id);
+      if(f) f.addEventListener('input', function(){ if(f.classList.contains('bad')) validate(); });
+    });
+    document.querySelectorAll('input[name=scope]').forEach(function(c){
+      c.addEventListener('change', function(){ if(scopes().length) el('e_scope').classList.remove('show'); });
+    });
+    el('btnBuild').addEventListener('click', onBuild);
+    el('btnCopy').addEventListener('click', onCopy);
+    el('btnClear').addEventListener('click', onClear);
+  });
 })();
 </script>
+
+<style media="print">
+  html.gh-locked > body > :not(#ghGate):not(.crumb):not(style):not(script) { display: block !important; }
+  #ghGate { display: none !important; }
+  .crumb, .actions, .preview { display: none !important; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  @page { margin: 13mm; }
+  body { font-size: 10pt; background: #fff; }
+  .page { max-width: none; padding: 0; }
+  .scroll { overflow: visible !important; }
+  table.brand, table.vc-table { min-width: 0 !important; font-size: 9pt; }
+  .hero { display: flex !important; }
+  .tile { display: flex !important; }
+  .grid { display: grid !important; }
+  .checks { display: grid !important; }
+  .hero h1 { font-size: 28pt; }
+  h2 { font-size: 15pt; break-after: avoid; page-break-after: avoid; }
+  .tile, .callout, fieldset, tr, li { break-inside: avoid; page-break-inside: avoid; }
+  a { color: #133865; text-decoration: none; }
+  input, select, textarea { border: 1px solid #718dbc !important; }
+</style>
 </body>
 </html>
