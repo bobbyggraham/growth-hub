@@ -1181,7 +1181,11 @@
       const desc = (card.querySelector('p')?.textContent || '').toLowerCase();
 
       const matchesSearch = !q || tags.includes(q) || title.includes(q) || desc.includes(q);
-      const matchesFilter = activeFilter === 'all' || section === activeFilter;
+      // Proof cards live under the Results chip only — they stay out of "All"
+      // so the home view isn't buried in them. A search still reaches them.
+      const matchesFilter = activeFilter === 'all'
+        ? (section !== 'proof' || !!q)
+        : section === activeFilter;
       const isAvailable = card.dataset.available === 'true';
 
       const show = isAvailable && matchesSearch && matchesFilter;
