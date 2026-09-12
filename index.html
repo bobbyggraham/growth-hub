@@ -1037,7 +1037,7 @@
   <section class="section" id="field">
     <div class="section-kicker">Keep Score &middot; The Results Spoke</div>
     <h2 class="section-title">The Field</h2>
-    <p class="section-sub">The competitive layer of the hub. Each game takes one behavior we want more of, puts a number on it, and shows everybody where they stand. You don't get better at what you're told to do — you get better at what gets counted.</p>
+    <p class="section-sub">The competitive layer of the hub. Each game takes one behavior we want more of, puts a number on it, and shows everybody where they stand. Open to the whole growth org &mdash; no passcode, because a scoreboard nobody can see isn't a scoreboard.</p>
     <hr class="section-rule">
     <div class="grid">
 
@@ -1046,14 +1046,14 @@
       <a href="field/closers-vs-blanks.html" class="card" data-section="field" data-tags="closers blanks scoreboard contest game standings leaderboard linescore batting average innings runs zeros competition rankings my number where do i stand">
         <div class="card-top"><span class="pill new">Live</span><span class="card-date">Sep 2026</span></div>
         <h3>Closers vs Blanks</h3>
-        <p>The linescore for the growth org — who's putting runs on the board inning by inning, who's leaving zeros, and the batting order ranked by average. Find your line.</p>
+        <p>The linescore for the growth org &mdash; who's putting runs on the board inning by inning, who's leaving zeros, and the batting order ranked by average. Find your line.</p>
         <span class="card-cta">Open</span>
       </a>
 
       <a href="field.html" class="card" data-section="field" data-tags="the field contests games scoreboard house rules season standings content created sales floor wins pipeline velocity leaderboard competition">
         <div class="card-top"><span class="pill new">New</span><span class="card-date">Sep 2026</span></div>
         <h3>The Field &mdash; All Games</h3>
-        <p>Every board in one place: what's live, what's on deck, and the house rules — seasons, scoring, the roster, and how a new game gets built.</p>
+        <p>Every board in one place: what's live, what's on deck, and the house rules &mdash; seasons, scoring, the roster, and how a new game gets built.</p>
         <span class="card-cta">Open</span>
       </a>
 
@@ -1181,11 +1181,7 @@
       const desc = (card.querySelector('p')?.textContent || '').toLowerCase();
 
       const matchesSearch = !q || tags.includes(q) || title.includes(q) || desc.includes(q);
-      // Proof cards live under the Results chip only — they stay out of "All"
-      // so the home view isn't buried in them. A search still reaches them.
-      const matchesFilter = activeFilter === 'all'
-        ? (section !== 'proof' || !!q)
-        : section === activeFilter;
+      const matchesFilter = activeFilter === 'all' || section === activeFilter;
       const isAvailable = card.dataset.available === 'true';
 
       const show = isAvailable && matchesSearch && matchesFilter;
