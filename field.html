@@ -153,76 +153,7 @@
 </head>
 <body>
 
-<!-- ============ GROWTH HUB GATE ============ -->
-<style>
-  html.gh-locked > body > :not(#ghGate){display:none !important;}
-  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
-  html:not(.gh-locked) #ghGate{display:none;}
-  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
-  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
-  #ghGate .gh-brand svg{width:30px;height:30px;}
-  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
-  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
-  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
-  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;}
-  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
-  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
-  #ghGate input:focus{border-color:#4e84de;}
-  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
-  #ghGate button:hover{filter:brightness(1.06);}
-  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
-  #ghGate .gh-shake{animation:ghshake .3s;}
-  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
-</style>
-<div id="ghGate">
-  <div class="gh-wrap">
-    <div class="gh-brand">
-      <svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#c5d9fa" stroke-width="14" stroke-linecap="round" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g><circle cx="150" cy="50" r="26" fill="#ffffff"/><circle cx="236.6" cy="100" r="26" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="26" fill="#ffffff"/><circle cx="150" cy="250" r="26" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="26" fill="#ffffff"/><circle cx="63.4" cy="100" r="26" fill="#c5d9fa"/><circle cx="150" cy="150" r="44" fill="#ebb018"/></svg>
-      <span>Growth Hub</span>
-    </div>
-    <div class="gh-card">
-      <h2>Passcode</h2>
-      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
-      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
-      <button id="ghGo" type="button">Enter the Hub</button>
-      <div class="gh-err" id="ghErr"></div>
-    </div>
-  </div>
-</div>
-<script>
-(function(){
-  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
-  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
-  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
-  if(!unlocked()) document.documentElement.classList.add('gh-locked');
-  function open(){ document.documentElement.classList.remove('gh-locked'); }
-  async function check(){
-    var v=document.getElementById('ghPass').value;
-    var ok=false;
-    try{
-      if(window.crypto && crypto.subtle){
-        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
-        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
-        ok=(hex===HASH);
-      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
-    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
-    if(ok){ remember(); open(); }
-    else{
-      var card=document.querySelector('#ghGate .gh-card');
-      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
-      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
-      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
-    }
-  }
-  document.addEventListener('DOMContentLoaded', function(){
-    if(unlocked()) return;
-    document.getElementById('ghGo').addEventListener('click', check);
-    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
-    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
-  });
-})();
-</script>
-<!-- ============ /GROWTH HUB GATE ============ -->
+
 
 <div style="max-width:960px;margin:0 auto;padding:18px 24px 0;"><a href="index.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">&larr; Growth Hub</a><span style="color:#c5d9fa;margin:0 8px;">|</span><a href="tools/fsg-app-faq.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">FSG App FAQs</a></div>
 
@@ -323,8 +254,8 @@
       <dt>Blanks</dt>
       <dd>A zero is a zero. It's not a callout, it's an <b>inning that isn't over</b>. The whole design assumption is that a blank is the most fixable thing on the board.</dd>
 
-      <dt>The Passcode</dt>
-      <dd>Boards carry rep-level numbers, so they're <b>encrypted in the file</b> and sit behind their own passcode on top of the hub gate. It asks once per browser session.</dd>
+      <dt>Open Door</dt>
+      <dd>Open to the growth org, no passcode. The point of a scoreboard is that people look at it — a lock on the door defeats it.</dd>
 
       <dt>New Games</dt>
       <dd>A game needs one countable behavior, a live source, and a reason somebody would check it twice a week. <b>Bring the behavior, we'll build the board.</b></dd>
