@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,9 +28,9 @@ body{
   color:#fff; letter-spacing:.35em; font-size:clamp(15px,2.6vw,22px); font-weight:700;
   text-align:center; margin-bottom:6px;
 }
-.marquee small{display:block;color:var(--steel);letter-spacing:.22em;font-size:.55em;font-weight:500;margin-top:4px}
+.marquee small{display:block;color:var(--steel);letter-spacing:.22em;font-size:.55em;font-weight:500;margin-top:6px}
 .board{
-  width:min(980px,100%);
+  width:min(1040px,100%);
   background:linear-gradient(180deg,#0e1b30 0%, var(--deep) 55%, #081020 100%);
   border:3px solid #223a5e; border-radius:14px;
   box-shadow:0 0 0 6px #0a1524, 0 18px 60px rgba(0,0,0,.7), inset 0 1px 0 rgba(197,217,250,.15);
@@ -45,63 +44,66 @@ body{
 .board::before{left:8px}.board::after{right:8px}
 .matchup{
   display:flex; justify-content:center; align-items:baseline; gap:14px;
-  font-family:'Oswald',sans-serif; margin-bottom:14px; flex-wrap:wrap;
+  font-family:'Oswald',sans-serif; margin-bottom:12px; flex-wrap:wrap;
 }
-.matchup .team{color:#fff;font-size:clamp(20px,4vw,34px);font-weight:700;letter-spacing:.06em}
+.matchup .team{color:#fff;font-size:clamp(22px,4.4vw,40px);font-weight:700;letter-spacing:.04em}
 .matchup .vs{color:var(--gold);font-size:clamp(13px,2vw,18px);letter-spacing:.2em}
 .matchup .team.blanks{color:var(--steel)}
-.gamestat{text-align:center;color:var(--steel);font-size:15px;letter-spacing:.08em;margin-bottom:16px;min-height:18px}
+.gamestat{text-align:center;color:var(--steel);font-size:15px;letter-spacing:.06em;margin-bottom:18px;min-height:18px}
 .gamestat b{color:var(--ltblue)}
 
 .linescore{overflow-x:auto;border:1px solid #22406b;border-radius:8px;background:#091426}
-table{border-collapse:collapse;width:100%;min-width:640px}
+table{border-collapse:collapse;width:100%;min-width:680px}
 th,td{padding:8px 6px;text-align:center;border-right:1px solid #16294a;font-variant-numeric:tabular-nums}
 th{color:var(--steel);font-weight:600;font-size:13px;letter-spacing:.14em;border-bottom:1px solid #22406b}
 td{font-family:'Oswald',monospace;font-size:20px}
 tr th:first-child, tr td:first-child{
-  text-align:left;padding-left:14px;min-width:110px;
+  text-align:left;padding-left:14px;min-width:120px;
   font-family:'Oswald',sans-serif;font-size:15px;letter-spacing:.12em;color:#fff;
 }
 tr.blanks td:first-child{color:var(--steel)}
 td.lit{color:var(--gold);text-shadow:var(--bulb-glow)}
 td.unlit{color:var(--gold-dim)}
 td.now{background:rgba(235,176,24,.07)}
+th.now{background:rgba(235,176,24,.07);color:var(--ltblue)}
 
-.bigstats{
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr));
-  gap:10px; margin-top:16px;
-}
+.bigstats{display:grid; grid-template-columns:repeat(7,1fr); gap:10px; margin-top:16px;}
+@media (max-width:900px){.bigstats{grid-template-columns:repeat(4,1fr)}}
+@media (max-width:560px){.bigstats{grid-template-columns:repeat(2,1fr)}}
 .stat{
   background:#091426;border:1px solid #22406b;border-radius:8px;
   padding:10px 8px 12px;text-align:center;
 }
-.stat .lbl{color:var(--steel);font-size:12px;letter-spacing:.18em;margin-bottom:4px}
+.stat .lbl{color:var(--steel);font-size:12px;letter-spacing:.18em;margin-bottom:6px}
 .stat .val{
   font-family:'Oswald',monospace;color:var(--gold);text-shadow:var(--bulb-glow);
-  font-size:clamp(18px,2.8vw,28px);font-weight:700;font-variant-numeric:tabular-nums;line-height:1;
+  font-size:clamp(18px,2.6vw,28px);font-weight:700;font-variant-numeric:tabular-nums;line-height:1;
 }
-.stat.avg .val{font-size:clamp(30px,4.6vw,44px)}
-.stat .sub{color:var(--steel);font-size:12px;margin-top:5px;min-height:14px}
+.stat.avg .val{font-size:clamp(30px,4.4vw,44px)}
+.stat .sub{color:var(--steel);font-size:12px;margin-top:6px;min-height:14px;line-height:1.2}
 .trend-up{color:#7fd18a}.trend-down{color:#e58b8b}
 
 .panel{
-  width:min(980px,100%); margin-top:22px;
-  background:#0c1728;border:1px solid #22406b;border-radius:12px;padding:18px;
+  width:min(1040px,100%); margin-top:18px;
+  background:#0c1728;border:1px solid #22406b;border-radius:12px;padding:20px;
 }
-.panel h2{font-family:'Oswald',sans-serif;color:#fff;font-size:17px;letter-spacing:.12em;margin-bottom:4px}
-.panel p.note{color:var(--steel);font-size:14px;margin-bottom:14px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
-label{display:block;font-size:13px;color:var(--ltblue);letter-spacing:.06em;margin-bottom:4px}
+.panel h2{font-family:'Oswald',sans-serif;color:#fff;font-size:22px;letter-spacing:.04em;margin-bottom:6px}
+.panel p.note{color:var(--steel);font-size:15px;margin-bottom:16px;line-height:1.4;max-width:80ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:14px}
+label{display:block;font-size:14px;color:var(--ltblue);letter-spacing:.04em;margin-bottom:5px}
 input{
   width:100%;background:#091120;border:1px solid #2a4570;border-radius:6px;
-  color:var(--gold);font-family:'Oswald',monospace;font-size:17px;padding:8px 10px;
+  color:var(--gold);font-family:'Oswald',monospace;font-size:19px;padding:9px 12px;
   font-variant-numeric:tabular-nums;
 }
 input:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
-.actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;align-items:center}
+.wkrow{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.wkrow label{margin:0;white-space:nowrap;color:var(--steel);font-size:14px;letter-spacing:.1em}
+.wkrow input{width:110px;text-align:center;font-size:17px;padding:7px 8px}
+.actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;align-items:center}
 button{
-  font-family:'Oswald',sans-serif;letter-spacing:.1em;font-size:14px;font-weight:600;
-  border-radius:6px;padding:10px 18px;cursor:pointer;border:1px solid transparent;
+  font-family:'Oswald',sans-serif;letter-spacing:.06em;font-size:15px;font-weight:600;
+  border-radius:6px;padding:11px 20px;cursor:pointer;border:1px solid transparent;
 }
 button.primary{background:var(--gold);color:var(--deep)}
 button.primary:hover{background:#f7c236}
@@ -112,80 +114,64 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .msg.ok{color:#7fd18a}
 .msg.err{color:#e58b8b}
 
-details.rules{width:min(980px,100%);margin-top:16px}
+details.rules{width:min(1040px,100%);margin-top:16px}
 details.rules summary{
-  cursor:pointer;font-family:'Oswald',sans-serif;color:var(--gold);letter-spacing:.14em;
-  font-size:15px;padding:10px 4px;list-style:none;
+  cursor:pointer;font-family:'Oswald',sans-serif;color:var(--gold);letter-spacing:.1em;
+  font-size:16px;padding:10px 4px;list-style:none;
 }
+details.rules summary::-webkit-details-marker{display:none}
 details.rules summary::before{content:"\25B8  ";}
 details.rules[open] summary::before{content:"\25BE  ";}
 details.rules summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:4px}
 .rulebook{
-  background:#0c1728;border:1px solid #22406b;border-radius:12px;padding:6px 18px 8px;
+  background:#0c1728;border:1px solid #22406b;border-radius:12px;padding:6px 20px 10px;
 }
-.rulebook dl{display:grid;grid-template-columns:max-content 1fr;gap:8px 18px;padding:12px 0}
-.rulebook dt{font-family:'Oswald',sans-serif;color:#fff;letter-spacing:.1em;font-size:14px;white-space:nowrap}
-.rulebook dd{color:var(--steel);font-size:15px;line-height:1.35}
+.rulebook dl{display:grid;grid-template-columns:max-content 1fr;gap:9px 22px;padding:14px 0}
+.rulebook dt{font-family:'Oswald',sans-serif;color:#fff;letter-spacing:.08em;font-size:14px;white-space:nowrap}
+.rulebook dd{color:var(--steel);font-size:15px;line-height:1.4}
 .rulebook dd b{color:var(--ltblue);font-weight:600}
 @media (max-width:560px){.rulebook dl{grid-template-columns:1fr}.rulebook dt{margin-top:8px}}
-@media (prefers-reduced-motion:no-preference){
-  .flicker{animation:flick .9s ease-out 1}
-  @keyframes flick{0%{opacity:0}30%{opacity:.9}42%{opacity:.3}55%{opacity:1}70%{opacity:.7}100%{opacity:1}}
-}
 footer{color:#3a5170;font-size:12px;letter-spacing:.1em;margin-top:26px;text-align:center}
 
 /* ---- batting order ---- */
-.order{width:min(980px,100%);margin-top:22px}
-.order-head{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap;margin-bottom:10px}
-.order-head h2{font-family:'Oswald',sans-serif;color:#fff;font-size:17px;letter-spacing:.12em}
-.order-head .sub{color:var(--steel);font-size:14px;margin-top:2px}
+.order{width:min(1040px,100%);margin-top:24px}
+.order-head{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap;margin-bottom:12px}
+.order-head h2{font-family:'Oswald',sans-serif;color:#fff;font-size:22px;letter-spacing:.03em}
+.order-head .sub{color:var(--steel);font-size:15px;margin-top:3px}
 .toggle{display:flex;border:1px solid #2a4570;border-radius:6px;overflow:hidden}
-.toggle button{border-radius:0;border:0;padding:7px 14px;background:transparent;color:var(--steel);font-size:13px}
+.toggle button{border-radius:0;border:0;padding:9px 16px;background:transparent;color:var(--steel);font-size:14px}
 .toggle button[aria-pressed="true"]{background:var(--gold);color:var(--deep)}
 .order-wrap{overflow-x:auto;border:1px solid #22406b;border-radius:10px;background:#091426}
-table.order-tbl{border-collapse:collapse;width:100%;min-width:880px}
+table.order-tbl{border-collapse:collapse;width:100%;min-width:940px}
 table.order-tbl th{
   position:sticky;top:0;background:#0c1728;z-index:1;cursor:pointer;user-select:none;
-  padding:9px 8px;font-size:12px;letter-spacing:.14em;color:var(--steel);
-  border-bottom:1px solid #22406b;white-space:nowrap;
+  padding:10px 8px;font-size:12px;letter-spacing:.14em;color:var(--steel);
+  border-bottom:1px solid #22406b;border-right:0;white-space:nowrap;
 }
 table.order-tbl th:hover{color:var(--ltblue)}
 table.order-tbl th[aria-sort]:not([aria-sort="none"]){color:var(--gold)}
 table.order-tbl th .arw{opacity:.55;font-size:10px}
 table.order-tbl td{
-  padding:7px 8px;font-family:'Oswald',monospace;font-size:16px;color:var(--ltblue);
+  padding:8px;font-family:'Oswald',monospace;font-size:16px;color:var(--ltblue);
   border-bottom:1px solid #12233d;border-right:0;text-align:right;font-variant-numeric:tabular-nums;
 }
 table.order-tbl th:not(:nth-child(2)){text-align:right}
-table.order-tbl th:nth-child(2){text-align:left}
+table.order-tbl th:nth-child(2){text-align:left;padding-left:18px}
 table.order-tbl tr:last-child td{border-bottom:0}
 table.order-tbl tbody tr:hover td{background:rgba(235,176,24,.05)}
-td.rank{text-align:right;color:var(--steel);font-size:14px;width:42px;padding-right:10px}
+td.rank{text-align:right;color:var(--steel);font-size:15px;width:56px;padding-right:12px}
 table.order-tbl td.who{
-  text-align:left;font-family:'Barlow Condensed',sans-serif;font-size:17px;
-  color:#fff;letter-spacing:.03em;white-space:nowrap;
+  text-align:left;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:600;
+  color:#fff;letter-spacing:.02em;white-space:nowrap;padding-left:18px;
 }
 td.ba{color:var(--gold);text-shadow:var(--bulb-glow);font-size:18px}
-tr.leader td.rank{color:var(--gold);text-shadow:var(--bulb-glow)}
-tr.cold td.ba{color:var(--gold-dim);text-shadow:none}
+td.ba.zero{color:var(--gold-dim);text-shadow:none}
+tr.top3 td.rank{color:var(--gold);text-shadow:var(--bulb-glow);font-weight:700}
 td.dim{color:#4d688f}
-td.wp{color:#7fd18a}
-td.wp.dim{color:#4d688f}
-.order-foot{color:#3a5170;font-size:13px;letter-spacing:.04em;margin-top:9px;text-align:right}
-</style>
-<style>
-.gate{width:min(420px,100%);margin-top:34px;background:#0c1728;border:1px solid #22406b;
-  border-radius:12px;padding:22px;text-align:center}
-.gate h1{font-family:'Oswald',sans-serif;color:#fff;font-size:16px;letter-spacing:.18em;margin-bottom:6px}
-.gate p{color:var(--steel);font-size:14px;margin-bottom:16px}
-.gate form{display:flex;flex-direction:column;gap:10px}
-.gate p.err{color:#e58b8b}
-.gate input{text-align:center;letter-spacing:.06em;font-size:16px}
-.gate .err{color:#e58b8b;font-size:14px;min-height:19px}
-.gate .busy{color:var(--gold);font-size:14px;min-height:19px}
+.order-foot{color:#3a5170;font-size:13px;letter-spacing:.04em;margin-top:10px;text-align:right}
 
 /* ---- hub breadcrumb ---- */
-.hubnav{width:min(980px,100%);margin-bottom:14px;font-family:'Oswald',Arial,sans-serif;
+.hubnav{width:min(1040px,100%);margin-bottom:14px;font-family:'Oswald',Arial,sans-serif;
   font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase}
 .hubnav a{color:var(--steel);text-decoration:none}
 .hubnav a:hover{color:var(--gold)}
@@ -195,13 +181,13 @@ td.wp.dim{color:#4d688f}
 <body>
 <div class="hubnav"><a href="../index.html">&larr; Growth Hub</a><span>|</span><a href="../field.html">The Field</a></div>
 
-<div class="marquee">CLOSERS <small>vs BLANKS &nbsp;&middot;&nbsp; FSG GROWTH ORGANIZATION</small></div>
+<div class="marquee">ENGAGE FIELD <small>FSG GROWTH ORGANIZATION &nbsp;&mdash;&nbsp; HOME OF THE CLOSERS</small></div>
 
 <div class="board">
   <div class="matchup">
-    <span class="team">CLOSERS</span>
+    <span class="team">FSG CLOSERS</span>
     <span class="vs">VS</span>
-    <span class="team blanks">BLANKS</span>
+    <span class="team blanks">THE BLANKS</span>
   </div>
   <div class="gamestat" id="gamestat">&nbsp;</div>
 
@@ -212,15 +198,65 @@ td.wp.dim{color:#4d688f}
   <div class="bigstats" id="bigstats"></div>
 </div>
 
+<details class="rules">
+  <summary>OFFICIAL RULEBOOK &mdash; HOW THE GAME IS SCORED</summary>
+  <div class="rulebook">
+    <dl>
+      <dt>An inning</dt><dd>One week. Friday's Pipeline Report is the post &mdash; whatever the export says is what went on the board.</dd>
+      <dt>An at-bat</dt><dd>One open opportunity in Engage. Every open opp is a trip to the plate.</dd>
+      <dt>A hit</dt><dd>An open opportunity with <b>every field current</b> &mdash; value, close date, stage, next step. A clean record is a base hit.</dd>
+      <dt>A blank</dt><dd>An open opportunity that isn't clean. Not a callout &mdash; it's an <b>at-bat that isn't finished</b>.</dd>
+      <dt>Average</dt><dd>Hits divided by at-bats. Keep a third of your book current and you're batting <b>.333</b>.</dd>
+      <dt>K</dt><dd>Strikeout &mdash; an open opportunity with <b>no close date</b>. No date, no plan, no swing.</dd>
+      <dt>LOB</dt><dd>Left on base &mdash; the close date has already gone by. The runner is still standing there.</dd>
+      <dt>E</dt><dd>Error &mdash; an open opportunity carrying <b>$0 or a blank value</b>. The dollars never made it onto the field.</dd>
+      <dt>On base</dt><dd>Dollars sitting in a <b>real quarter</b> &mdash; a close date in this quarter or ahead of it.</dd>
+      <dt>W &middot; L &middot; W%</dt><dd>Closed won, closed lost, and win rate. All time, not this season.</dd>
+      <dt>Corked</dt><dd>A win closed <b>within 14 days</b> of being created. It counts &mdash; it just never really took an at-bat.</dd>
+      <dt>Qualified</dt><dd><b>30 or more open opportunities.</b> The batting-title minimum: you have to carry a real book to win one.</dd>
+      <dt>The season</dt><dd>Twelve innings. Then everybody starts even.</dd>
+    </dl>
+  </div>
+</details>
+
+<div class="panel">
+  <h2>Press box &mdash; post this week's numbers</h2>
+  <p class="note">Pull the totals from the Scoreboard tab of the Pipeline Report, punch them in, and post it. One entry per week; posting twice in the same week updates that inning. Numbers save in this browser, so post from the same machine each Friday &mdash; then hit <b>Copy the data block</b> and send it over to put them on the board for everyone.</p>
+
+  <div class="wkrow">
+    <label for="pbWeek">WEEK</label>
+    <input id="pbWeek" inputmode="numeric" autocomplete="off" placeholder="9/11">
+  </div>
+
+  <div class="grid">
+    <div><label for="pbAb">At-bats (open opps)</label><input id="pbAb" inputmode="numeric" autocomplete="off"></div>
+    <div><label for="pbH">Hits (clean opps)</label><input id="pbH" inputmode="numeric" autocomplete="off"></div>
+    <div><label for="pbK">K &mdash; no close date</label><input id="pbK" inputmode="numeric" autocomplete="off"></div>
+    <div><label for="pbLob">LOB &mdash; past due</label><input id="pbLob" inputmode="numeric" autocomplete="off"></div>
+    <div><label for="pbE">E &mdash; $0 value</label><input id="pbE" inputmode="numeric" autocomplete="off"></div>
+    <div><label for="pbOb">On-base dollars</label><input id="pbOb" inputmode="numeric" autocomplete="off"></div>
+    <div><label for="pbW">Wins (closed won)</label><input id="pbW" inputmode="numeric" autocomplete="off"></div>
+    <div><label for="pbC">Corked wins (&le;14 days)</label><input id="pbC" inputmode="numeric" autocomplete="off"></div>
+  </div>
+
+  <div class="actions">
+    <button class="primary" id="post" type="button">Post this week</button>
+    <button class="ghost" id="remove" type="button">Remove last week</button>
+    <button class="ghost" id="reset" type="button">Reset season</button>
+    <button class="ghost" id="copyData" type="button">Copy the data block</button>
+    <span class="msg" id="msg"></span>
+  </div>
+</div>
+
 <div class="order">
   <div class="order-head">
     <div>
-      <h2>BATTING ORDER</h2>
-      <div class="sub">Click any column to sort. Gold rank is the leader; dim average means a cold streak.</div>
+      <h2>THE BATTING ORDER</h2>
+      <div class="sub">FSG owners carrying a real book &mdash; 30 or more open opportunities. Batting title qualifiers.</div>
     </div>
-    <div class="toggle" role="group" aria-label="Range">
-      <button id="tSeason" aria-pressed="true">Season</button>
-      <button id="tRecent" aria-pressed="false">Last 4</button>
+    <div class="toggle" role="group" aria-label="Roster range">
+      <button id="tQual" aria-pressed="true">Qualified (30+ AB)</button>
+      <button id="tAll" aria-pressed="false">All</button>
     </div>
   </div>
   <div class="order-wrap">
@@ -232,211 +268,299 @@ td.wp.dim{color:#4d688f}
   <div class="order-foot" id="ordFoot"></div>
 </div>
 
-<div class="panel">
-  <h2>RUN THE BOARD</h2>
-  <p class="note">Add your roster once, then log each inning as it closes. Everything saves in this browser &mdash; when you want it on the board for everyone, hit <b>Copy the data</b> and send it over.</p>
-
-  <div class="grid" style="grid-template-columns:1fr auto;align-items:end;max-width:520px">
-    <div><label for="newPlayer">Add a player</label><input id="newPlayer" placeholder="Name" autocomplete="off"></div>
-    <button class="ghost" id="addPlayer" type="button">Add</button>
-  </div>
-
-  <div id="inningWrap" hidden>
-    <label style="margin-top:22px;display:block" id="inningLabel">Log an inning &mdash; runs each rep put up</label>
-    <div class="grid" id="inningGrid"></div>
-    <div class="actions">
-      <button class="primary" id="logInning" type="button">Log the inning</button>
-      <button class="ghost" id="undo" type="button">Undo last</button>
-      <button class="ghost" id="copyData" type="button">Copy the data</button>
-      <span class="msg" id="msg"></span>
-    </div>
-  </div>
-</div>
-
-<details class="rules">
-  <summary>HOUSE RULES</summary>
-  <div class="rulebook">
-    <dl>
-      <dt>An inning</dt><dd>One week. It closes Friday and the numbers go up.</dd>
-      <dt>A run</dt><dd>One closed win. Two wins in a week is a <b>two-run inning</b>.</dd>
-      <dt>A blank</dt><dd>A week with nothing on the board. It's not a callout &mdash; it's an <b>inning that isn't over</b>.</dd>
-      <dt>Average</dt><dd>Innings you scored in, divided by innings you played. <b>Hit in half your weeks and you're batting .500.</b></dd>
-      <dt>The leader</dt><dd>Top average, ties broken by total runs. Gold rank, top of the order.</dd>
-      <dt>Cold</dt><dd>Blanked the last two innings. The average dims &mdash; it comes right back.</dd>
-      <dt>The season</dt><dd>A quarter. Then everybody starts even.</dd>
-    </dl>
-  </div>
-</details>
-
 <footer>THE FIELD &nbsp;&middot;&nbsp; FSG GROWTH HUB &nbsp;&middot;&nbsp; INTERNAL</footer>
 
 <script>
 /* ===========================================================================
-   CLOSERS vs BLANKS
-   Every number on this board comes from DATA below. Edit it here and the
-   whole page follows — or run the board in the browser and use "Copy the
-   data" to get an updated block to paste back in.
+   CLOSERS vs BLANKS — Engage Field
+   Every number on this board comes from DATA below. Edit it here and the whole
+   page follows — or post a week in the press box and use "Copy the data block"
+   to get an updated DATA to paste back in.
+
+   weeks[]   one entry per inning. ab = open opps, h = clean opps.
+             blanks = ab - h, avg = h / ab. null means "not in that export".
+   players[] one entry per owner. avg and W% are derived, never stored.
+
+   NOTE on player `ob` (on-base dollars): the seeded values come from the
+   9/4 board, which displayed anything over $1M rounded (e.g. "$2M"). Those
+   entries are rounded to the dollar shown. The team ON BASE tile is exact —
+   it comes from the week record, not the roster. The Week 9/11 Excel will
+   replace these with exact figures.
    =========================================================================== */
 const DATA = {
-  season: "Q4 2026",
-  players: []          // {name:"Kevin Heid", runs:[1,0,2,...]}  one entry per inning
+  season: "2026",
+  rosterAsOf: "9/4",
+  rosterTotal: 437,          // owners in the 9/4 export; 49 of them qualified
+  weeks: [
+    {week:"10/28", ab:5151, h:223,  k:null, lob:null, e:null, ob:null,       w:null, corked:null},
+    {week:"9/4",   ab:4105, h:293,  k:3082, lob:606,  e:1188, ob:432865550,  w:5975, corked:null}
+  ],
+  players: [
+    {n:"Jason Arnoldi",       ab:32,  h:31, k:0,   lob:0,  e:1,  ob:2000000,   w:50,  l:60},
+    {n:"Robert Ronan",        ab:66,  h:63, k:1,   lob:2,  e:1,  ob:290000000, w:37,  l:69},
+    {n:"John Kenney",         ab:56,  h:28, k:9,   lob:18, e:3,  ob:220819,    w:116, l:16},
+    {n:"Randy West",          ab:31,  h:12, k:10,  lob:5,  e:2,  ob:876037,    w:64,  l:65},
+    {n:"Brett Anderson",      ab:36,  h:7,  k:22,  lob:7,  e:1,  ob:523501,    w:49,  l:76},
+    {n:"Sean Fitzgerald",     ab:41,  h:6,  k:5,   lob:29, e:1,  ob:3000000,   w:12,  l:67},
+    {n:"Adrian Vera",         ab:78,  h:10, k:28,  lob:35, e:19, ob:14000000,  w:117, l:114},
+    {n:"Tanner Clow",         ab:48,  h:6,  k:41,  lob:1,  e:14, ob:3000000,   w:127, l:111},
+    {n:"Brenda Puckett",      ab:37,  h:4,  k:15,  lob:18, e:1,  ob:306474,    w:36,  l:76},
+    {n:"Kelly Cole",          ab:35,  h:3,  k:32,  lob:0,  e:7,  ob:5000000,   w:77,  l:77},
+    {n:"Dale Vick",           ab:30,  h:2,  k:24,  lob:4,  e:4,  ob:22500,     w:34,  l:93},
+    {n:"Craig Cegielski",     ab:107, h:6,  k:1,   lob:92, e:22, ob:29116,     w:50,  l:48},
+    {n:"Shane Mcguinness",    ab:68,  h:3,  k:22,  lob:43, e:4,  ob:181000,    w:45,  l:70},
+    {n:"Jeffrey Wolff",       ab:46,  h:2,  k:40,  lob:4,  e:0,  ob:2000000,   w:103, l:92},
+    {n:"Bob Strobeck",        ab:47,  h:2,  k:27,  lob:18, e:4,  ob:150000,    w:49,  l:29},
+    {n:"Michelle Strong",     ab:135, h:5,  k:116, lob:14, e:46, ob:430791,    w:103, l:128},
+    {n:"Stephanie Cone",      ab:31,  h:1,  k:30,  lob:0,  e:2,  ob:3000,      w:69,  l:293},
+    {n:"Graham Case",         ab:64,  h:2,  k:60,  lob:2,  e:24, ob:176432,    w:67,  l:117},
+    {n:"Kayte Bachyrycz",     ab:32,  h:1,  k:31,  lob:0,  e:19, ob:15000000,  w:30,  l:20},
+    {n:"Thomas Lindquist",    ab:34,  h:1,  k:17,  lob:0,  e:18, ob:3000000,   w:7,   l:39},
+    {n:"Michael Cataline",    ab:35,  h:1,  k:26,  lob:8,  e:11, ob:50000,     w:28,  l:103},
+    {n:"Ray Medina",          ab:36,  h:1,  k:34,  lob:1,  e:4,  ob:15000,     w:40,  l:51},
+    {n:"Craig Applegate",     ab:73,  h:1,  k:72,  lob:0,  e:19, ob:50000,     w:74,  l:59},
+    {n:"Evan Stilwell",       ab:76,  h:1,  k:53,  lob:22, e:21, ob:140000,    w:92,  l:98},
+    {n:"Lindsey Brandsma",    ab:84,  h:1,  k:81,  lob:2,  e:49, ob:9000000,   w:186, l:107},
+    {n:"Roberto Valle",       ab:99,  h:1,  k:77,  lob:21, e:23, ob:125000,    w:90,  l:123},
+    {n:"Kenneth Wirtz",       ab:140, h:0,  k:90,  lob:49, e:9,  ob:25000,     w:45,  l:99},
+    {n:"Scarlett Quintero",   ab:81,  h:0,  k:81,  lob:0,  e:77, ob:0,         w:116, l:68},
+    {n:"Gary Bell",           ab:72,  h:0,  k:9,   lob:47, e:4,  ob:1000000,   w:30,  l:59},
+    {n:"Carter Thurmond",     ab:64,  h:0,  k:64,  lob:0,  e:35, ob:0,         w:130, l:25},
+    {n:"Buddy Mays",          ab:58,  h:0,  k:32,  lob:26, e:18, ob:0,         w:45,  l:109},
+    {n:"Tammy Colson",        ab:55,  h:0,  k:42,  lob:1,  e:31, ob:2000000,   w:21,  l:4},
+    {n:"Lee Wills",           ab:54,  h:0,  k:48,  lob:5,  e:23, ob:5000000,   w:13,  l:58},
+    {n:"Phillip Sandhu",      ab:52,  h:0,  k:52,  lob:0,  e:36, ob:0,         w:1,   l:11},
+    {n:"Stephen Brown",       ab:52,  h:0,  k:37,  lob:15, e:17, ob:0,         w:60,  l:109},
+    {n:"Chris Baker",         ab:51,  h:0,  k:51,  lob:0,  e:49, ob:0,         w:41,  l:33},
+    {n:"Zach Voigt",          ab:49,  h:0,  k:49,  lob:0,  e:10, ob:0,         w:5,   l:21},
+    {n:"Anthony Nash",        ab:46,  h:0,  k:46,  lob:0,  e:45, ob:0,         w:156, l:20},
+    {n:"Carter Moots",        ab:46,  h:0,  k:45,  lob:0,  e:20, ob:0,         w:0,   l:0},
+    {n:"Derek Wright",        ab:46,  h:0,  k:46,  lob:0,  e:1,  ob:0,         w:20,  l:63},
+    {n:"Felipe Siebrecht",    ab:46,  h:0,  k:42,  lob:4,  e:6,  ob:0,         w:61,  l:131},
+    {n:"Larry Wasserman",     ab:46,  h:0,  k:46,  lob:0,  e:19, ob:0,         w:43,  l:19},
+    {n:"Maria Coley",         ab:46,  h:0,  k:46,  lob:0,  e:38, ob:0,         w:18,  l:32},
+    {n:"Dennis Luster",       ab:44,  h:0,  k:32,  lob:12, e:1,  ob:0,         w:36,  l:3},
+    {n:"Paul Lee",            ab:40,  h:0,  k:39,  lob:1,  e:0,  ob:0,         w:57,  l:18},
+    {n:"Scott Haykin",        ab:39,  h:0,  k:39,  lob:0,  e:35, ob:0,         w:0,   l:1},
+    {n:"Kalikimaka Mendoza",  ab:38,  h:0,  k:37,  lob:1,  e:10, ob:0,         w:137, l:92},
+    {n:"Alexander Velazquez", ab:32,  h:0,  k:28,  lob:2,  e:0,  ob:4000000,   w:10,  l:75},
+    {n:"Elaine Walters",      ab:30,  h:0,  k:30,  lob:0,  e:30, ob:0,         w:7,   l:63}
+  ]
 };
 
-const KEY = "cvb-board";
+const KEY = "cvb-field";
+const SEASON_INNINGS = 12;
+const QUAL_AB = 30;
 const $ = id => document.getElementById(id);
+
 let state = load();
-let sortBy = "avg", sortDir = -1, range = "season";
+let sortBy = "avg", sortDir = -1, range = "qual";
 
 function load(){
-  try{ const s = JSON.parse(localStorage.getItem(KEY) || "null"); if(s && s.players) return s; }catch(e){}
+  try{
+    const s = JSON.parse(localStorage.getItem(KEY) || "null");
+    if(s && Array.isArray(s.weeks) && Array.isArray(s.players)) return s;
+  }catch(e){}
   return JSON.parse(JSON.stringify(DATA));
 }
 function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
 
-const innings = () => state.players.length ? Math.max(...state.players.map(p => p.runs.length)) : 0;
-const runsAt  = (p,i) => p.runs[i] == null ? null : p.runs[i];
+/* ---------- formatting ---------- */
+const num   = v => v == null ? "&middot;" : Number(v).toLocaleString();
+const fmtAvg= v => v.toFixed(3).replace(/^0/,"");
+const money = v => v == null ? "&mdash;"
+              : v >= 1e6 ? "$" + Math.round(v/1e6).toLocaleString() + "M"
+              : "$" + Math.round(v).toLocaleString();
+const pct   = (w,l) => (w+l) === 0 ? "&mdash;" : Math.round(w/(w+l)*100) + "%";
 
 /* ---------- derived ---------- */
-function line(){
-  const n = innings(), closers = [], blanks = [];
-  for(let i=0;i<n;i++){
-    let r=0, b=0;
-    state.players.forEach(p => { const v = runsAt(p,i); if(v==null) return; r += v; if(v===0) b++; });
-    closers.push(r); blanks.push(b);
-  }
-  return {closers, blanks, n};
-}
-function statsFor(p, from){
-  const rs = p.runs.slice(from);
-  const ab = rs.filter(v => v != null).length;
-  const h  = rs.filter(v => v > 0).length;
-  const r  = rs.reduce((a,v) => a + (v||0), 0);
-  const tail = p.runs.slice(-2).filter(v => v != null);
-  return { name:p.name, ab, h, r, avg: ab ? h/ab : 0,
-           cold: tail.length===2 && tail.every(v => v===0),
-           streak: streakOf(p.runs) };
-}
-function streakOf(rs){
-  let s=0; for(let i=rs.length-1;i>=0;i--){ if(rs[i]>0) s++; else break; } return s;
-}
-const fmtAvg = v => v.toFixed(3).replace(/^0/,"");
+const blanksOf = wk => (wk.ab == null || wk.h == null) ? null : wk.ab - wk.h;
+const avgOf    = wk => (wk.ab ? wk.h / wk.ab : 0);
+const latest   = () => state.weeks.length ? state.weeks[state.weeks.length - 1] : null;
+const prior    = () => state.weeks.length > 1 ? state.weeks[state.weeks.length - 2] : null;
 
 /* ---------- render ---------- */
 function render(){
-  const {closers, blanks, n} = line();
-  const empty = state.players.length === 0;
+  const wks = state.weeks, n = wks.length, cur = latest(), prev = prior();
 
-  $("gamestat").innerHTML = empty
-    ? "No players on the board yet &mdash; add your roster below."
-    : `Season <b>${state.season}</b> &nbsp;&middot;&nbsp; through <b>${n} inning${n===1?"":"s"}</b> &nbsp;&middot;&nbsp; <b>${state.players.length}</b> in the order`;
+  /* headline */
+  if(cur){
+    const b = blanksOf(cur), c = cur.h;
+    $("gamestat").innerHTML = b > c
+      ? `Blanks lead <b>${num(b)}&ndash;${num(c)}</b> &mdash; plenty of ball left. Base hits win championships.`
+      : `Closers lead <b>${num(c)}&ndash;${num(b)}</b> &mdash; keep the book clean. Base hits win championships.`;
+  } else {
+    $("gamestat").innerHTML = "No innings on the board yet &mdash; post the first week in the press box.";
+  }
 
   /* linescore */
-  const cols = Math.max(n, 9);
-  $("lsHead").innerHTML = "<th>TEAM</th>" +
-    Array.from({length:cols}, (_,i) => `<th>${i+1}</th>`).join("") + "<th>R</th>";
-  const row = (label, arr, cls) =>
-    `<tr class="${cls}"><td>${label}</td>` +
-    Array.from({length:cols}, (_,i) => {
+  const cols = Math.max(n, SEASON_INNINGS);
+  let head = "<th>WEEK</th>";
+  for(let i=0;i<cols;i++){
+    const lit = i < n;
+    head += `<th class="${i===n-1?"now":""}">${lit ? wks[i].week : (i+1)}</th>`;
+  }
+  $("lsHead").innerHTML = head;
+
+  const row = (label, pick, cls) => {
+    let r = `<td>${label}</td>`;
+    for(let i=0;i<cols;i++){
       const has = i < n;
-      const v = has ? arr[i] : "";
-      return `<td class="${has ? (v>0 ? "lit" : "unlit") : "unlit"}${i===n-1?" now":""}">${has ? v : "·"}</td>`;
-    }).join("") +
-    `<td class="lit">${arr.reduce((a,b)=>a+b,0)}</td></tr>`;
-  $("lsBody").innerHTML = row("CLOSERS", closers, "") + row("BLANKS", blanks, "blanks");
+      const v = has ? pick(wks[i]) : null;
+      r += `<td class="${v==null?"unlit":"lit"} ${i===n-1?"now":""}">${v==null?"&middot;":num(v)}</td>`;
+    }
+    return `<tr class="${cls}">${r}</tr>`;
+  };
+  $("lsBody").innerHTML =
+    row("CLOSERS", wk => wk.h, "closers") +
+    row("BLANKS",  wk => blanksOf(wk), "blanks");
 
-  /* big stats */
-  const all = state.players.map(p => statsFor(p, 0));
-  const ab = all.reduce((a,s)=>a+s.ab,0), h = all.reduce((a,s)=>a+s.h,0);
-  const teamAvg = ab ? h/ab : 0;
-  const leader = [...all].sort((a,b)=> b.avg-a.avg || b.r-a.r)[0];
-  const last = n ? closers[n-1] : 0, prev = n>1 ? closers[n-2] : null;
-  const trend = prev==null ? "" : last>prev ? `<span class="trend-up">&#9650; up ${last-prev}</span>`
-              : last<prev ? `<span class="trend-down">&#9660; down ${prev-last}</span>` : "even";
-  $("bigstats").innerHTML = `
-    <div class="stat avg"><div class="lbl">TEAM AVG</div><div class="val">${fmtAvg(teamAvg)}</div><div class="sub">${h} for ${ab}</div></div>
-    <div class="stat"><div class="lbl">RUNS</div><div class="val">${closers.reduce((a,b)=>a+b,0)}</div><div class="sub">${trend}</div></div>
-    <div class="stat"><div class="lbl">BLANKS</div><div class="val">${blanks.reduce((a,b)=>a+b,0)}</div><div class="sub">${ab-h} scoreless</div></div>
-    <div class="stat"><div class="lbl">LEADER</div><div class="val" style="font-size:19px">${leader ? leader.name.split(" ")[0].toUpperCase() : "&mdash;"}</div><div class="sub">${leader ? fmtAvg(leader.avg) : ""}</div></div>
-    <div class="stat"><div class="lbl">LAST INNING</div><div class="val">${last}</div><div class="sub">${n ? "inning "+n : "not started"}</div></div>`;
+  /* stat tiles */
+  const avg = cur ? avgOf(cur) : 0;
+  let trend = "&nbsp;";
+  if(cur && prev && prev.ab){
+    const pts = Math.round((avg - avgOf(prev)) * 1000);
+    trend = pts === 0 ? "even with last week"
+          : pts > 0 ? `<span class="trend-up">&#9650; +${pts} pts vs last week</span>`
+                    : `<span class="trend-down">&#9660; ${pts} pts vs last week</span>`;
+  }
+  const tiles = [
+    ["BATTING AVG", cur ? fmtAvg(avg) : ".000", trend, "avg"],
+    ["AT-BATS",  cur ? num(cur.ab) : "&mdash;", "open opps", ""],
+    ["HITS",     cur ? num(cur.h)  : "&mdash;", "all fields current", ""],
+    ["K",        cur ? num(cur.k)  : "&mdash;", "no close date", ""],
+    ["LOB",      cur ? num(cur.lob): "&mdash;", "past-due close date", ""],
+    ["E",        cur ? num(cur.e)  : "&mdash;", "$0 / blank value", ""],
+    ["ON BASE",  cur ? money(cur.ob) : "&mdash;", "$ in a real quarter", ""],
+    ["WINS",     cur ? num(cur.w)  : "&mdash;", "closed won, all time", ""],
+    ["CORKED",   cur && cur.corked != null ? num(cur.corked) : "&mdash;",
+                 cur && cur.corked != null ? "won &le;14 days from create" : "not in this export", ""]
+  ];
+  $("bigstats").innerHTML = tiles.map(([lbl,val,sub,cls]) =>
+    `<div class="stat ${cls}"><div class="lbl">${lbl}</div><div class="val">${val}</div><div class="sub">${sub}</div></div>`
+  ).join("");
 
-  /* batting order */
-  const from = range==="recent" ? Math.max(0, n-4) : 0;
-  const rows = state.players.map(p => statsFor(p, from))
-    .sort((a,b) => (a[sortBy] > b[sortBy] ? 1 : a[sortBy] < b[sortBy] ? -1 : 0) * sortDir || b.r - a.r);
-  const cols2 = [["rank","#"],["name","PLAYER"],["ab","AB"],["h","H"],["r","R"],["avg","AVG"],["streak","STREAK"]];
-  $("ordHead").innerHTML = cols2.map(([k,l]) =>
-    `<th data-k="${k}" aria-sort="${sortBy===k ? (sortDir===1?"ascending":"descending") : "none"}">${l}${sortBy===k?` <span class="arw">${sortDir===1?"▲":"▼"}</span>`:""}</th>`).join("");
-  $("ordBody").innerHTML = rows.length ? rows.map((s,i) => `
-    <tr class="${i===0&&sortBy==="avg"&&sortDir===-1?"leader":""}${s.cold?" cold":""}">
-      <td class="rank">${i+1}</td>
-      <td class="who">${s.name}</td>
-      <td class="${s.ab?"":"dim"}">${s.ab}</td>
-      <td class="${s.h?"":"dim"}">${s.h}</td>
-      <td class="${s.r?"":"dim"}">${s.r}</td>
-      <td class="ba">${fmtAvg(s.avg)}</td>
-      <td class="wp${s.streak?"":" dim"}">${s.streak ? s.streak+" ↑" : "—"}</td>
-    </tr>`).join("")
-    : `<tr><td colspan="7" style="text-align:center;color:#4d688f;padding:22px">Add your roster below and the order fills itself.</td></tr>`;
-  $("ordFoot").textContent = rows.length
-    ? `${rows.length} in the order · ${range==="recent" ? "last 4 innings" : "full season"}` : "";
+  renderOrder();
+}
 
-  /* inning entry */
-  $("inningWrap").hidden = empty;
-  $("inningLabel").innerHTML = `Log inning <b>${n+1}</b> &mdash; runs each rep put up`;
-  $("inningGrid").innerHTML = state.players.map((p,i) =>
-    `<div><label for="in${i}">${p.name}</label><input id="in${i}" type="number" min="0" step="1" value="0" inputmode="numeric"></div>`).join("");
+const COLS = [
+  ["rank","#"], ["n","BATTER"], ["ab","AB"], ["h","H"], ["avg","AVG"],
+  ["k","K"], ["lob","LOB"], ["e","E"], ["ob","ON BASE"], ["w","W"], ["l","L"], ["wp","W%"]
+];
 
-  document.querySelectorAll("#ordHead th").forEach(th => th.addEventListener("click", () => {
-    const k = th.dataset.k; if(k==="rank") return;
-    if(sortBy===k) sortDir = -sortDir; else { sortBy = k; sortDir = (k==="name") ? 1 : -1; }
-    render();
+function renderOrder(){
+  const all = state.players.map(p => Object.assign({}, p, {
+    avg: p.ab ? p.h / p.ab : 0,
+    wp:  (p.w + p.l) === 0 ? -1 : p.w / (p.w + p.l)
   }));
+  const rows = (range === "qual" ? all.filter(p => p.ab >= QUAL_AB) : all)
+    .sort((a,b) => {
+      const av = a[sortBy], bv = b[sortBy];
+      const c = typeof av === "string" ? av.localeCompare(bv) * -1 : av - bv;
+      return (c * sortDir) || (b.ab - a.ab);
+    });
+
+  $("ordHead").innerHTML = COLS.map(([k,lbl]) => {
+    if(k === "rank") return `<th data-k="rank">${lbl}</th>`;
+    const on = sortBy === k;
+    return `<th data-k="${k}" aria-sort="${on ? (sortDir<0?"descending":"ascending") : "none"}">` +
+           `${lbl}${on ? ` <span class="arw">${sortDir<0?"&#9660;":"&#9650;"}</span>` : ""}</th>`;
+  }).join("");
+
+  $("ordBody").innerHTML = rows.map((p,i) => `
+    <tr class="${i<3?"top3":""}">
+      <td class="rank">${i+1}</td>
+      <td class="who">${p.n}</td>
+      <td>${p.ab}</td>
+      <td class="${p.h?"":"dim"}">${p.h}</td>
+      <td class="ba ${p.h?"":"zero"}">${fmtAvg(p.avg)}</td>
+      <td class="${p.k?"":"dim"}">${p.k}</td>
+      <td class="${p.lob?"":"dim"}">${p.lob}</td>
+      <td class="${p.e?"":"dim"}">${p.e}</td>
+      <td class="${p.ob?"":"dim"}">${money(p.ob)}</td>
+      <td>${p.w}</td>
+      <td>${p.l}</td>
+      <td class="${p.wp<0?"dim":""}">${pct(p.w,p.l)}</td>
+    </tr>`).join("");
+
+  $("tAll").textContent = "All " + all.length;
+  $("tQual").setAttribute("aria-pressed", range === "qual");
+  $("tAll").setAttribute("aria-pressed", range === "all");
+
+  const qual = all.filter(p => p.ab >= QUAL_AB).length;
+  $("ordFoot").innerHTML = state.players.length
+    ? `${rows.length} shown &nbsp;&middot;&nbsp; ${qual} qualified of ${state.rosterTotal || all.length} owners in the ${state.rosterAsOf || ""} export`
+    : "No roster loaded yet.";
 }
 
+$("ordHead").addEventListener("click", e => {
+  const th = e.target.closest("th"); if(!th) return;
+  const k = th.dataset.k; if(!k || k === "rank") return;
+  if(sortBy === k) sortDir = -sortDir; else { sortBy = k; sortDir = -1; }
+  renderOrder();
+});
+$("tQual").onclick = () => { range = "qual"; renderOrder(); };
+$("tAll").onclick  = () => { range = "all";  renderOrder(); };
+
+/* ---------- press box ---------- */
 function flash(text, ok){
-  const m = $("msg"); m.textContent = text; m.className = "msg" + (ok ? " ok" : " err");
-  setTimeout(()=>{ m.textContent=""; m.className="msg"; }, 3200);
+  const m = $("msg"); m.innerHTML = text; m.className = "msg" + (ok ? " ok" : " err");
+  clearTimeout(flash.t); flash.t = setTimeout(() => { m.textContent = ""; m.className = "msg"; }, 6000);
 }
+const readNum = id => {
+  const raw = $(id).value.replace(/[$,\s]/g, "").trim();
+  if(raw === "") return null;
+  const v = Number(raw);
+  return Number.isFinite(v) ? v : NaN;
+};
 
-/* ---------- actions ---------- */
-$("addPlayer").addEventListener("click", () => {
-  const v = $("newPlayer").value.trim();
-  if(!v) return;
-  if(state.players.some(p => p.name.toLowerCase() === v.toLowerCase())) return flash("Already in the order.", false);
-  const n = innings();
-  state.players.push({ name: v, runs: Array(n).fill(0) });   // joins mid-season with blanks behind
-  $("newPlayer").value = ""; save(); render();
-  document.querySelector(".board").classList.add("flicker");
-});
-$("newPlayer").addEventListener("keydown", e => { if(e.key==="Enter") $("addPlayer").click(); });
+function today(){ const d = new Date(); return (d.getMonth()+1) + "/" + d.getDate(); }
+$("pbWeek").value = today();
 
-$("logInning").addEventListener("click", () => {
-  state.players.forEach((p,i) => p.runs.push(Math.max(0, parseInt($("in"+i).value,10) || 0)));
+$("post").onclick = () => {
+  const week = $("pbWeek").value.trim() || today();
+  const f = {ab:readNum("pbAb"), h:readNum("pbH"), k:readNum("pbK"), lob:readNum("pbLob"),
+             e:readNum("pbE"), ob:readNum("pbOb"), w:readNum("pbW"), corked:readNum("pbC")};
+  if(Object.values(f).some(Number.isNaN)) return flash("Numbers only &mdash; check the boxes.", false);
+  if(f.ab == null || f.h == null)        return flash("At-bats and hits are the two you can't skip.", false);
+  if(f.h > f.ab)                          return flash("More hits than at-bats &mdash; check those two.", false);
+
+  const rec = Object.assign({week}, f);
+  const i = state.weeks.findIndex(w => w.week === week);
+  if(i > -1){ state.weeks[i] = rec; flash(`Week ${week} updated.`, true); }
+  else { state.weeks.push(rec); flash(`Week ${week} posted &mdash; ${fmtAvg(avgOf(rec))}.`, true); }
   save(); render();
-  document.querySelector(".board").classList.add("flicker");
-  setTimeout(()=>document.querySelector(".board").classList.remove("flicker"), 1000);
-  flash("Inning logged.", true);
+};
+
+let armed = null;
+function arm(btn, label, go){
+  if(armed === btn){ armed = null; btn.textContent = label; go(); return; }
+  if(armed){ armed.textContent = armed.dataset.label; }
+  armed = btn; btn.dataset.label = label; btn.textContent = "Sure? Click again";
+  setTimeout(() => { if(armed === btn){ armed = null; btn.textContent = label; } }, 5000);
+}
+$("remove").onclick = e => arm(e.target, "Remove last week", () => {
+  if(!state.weeks.length) return flash("Nothing on the board to remove.", false);
+  const gone = state.weeks.pop();
+  save(); render(); flash(`Week ${gone.week} pulled off the board.`, true);
+});
+$("reset").onclick = e => arm(e.target, "Reset season", () => {
+  state = JSON.parse(JSON.stringify(DATA));
+  save(); render(); flash("Season reset to the posted data block.", true);
 });
 
-$("undo").addEventListener("click", () => {
-  if(!innings()) return flash("Nothing to undo.", false);
-  state.players.forEach(p => p.runs.pop());
-  save(); render(); flash("Last inning removed.", true);
-});
-
-$("copyData").addEventListener("click", async () => {
+$("copyData").onclick = async () => {
   const block = "const DATA = " + JSON.stringify(state, null, 2) + ";";
-  try{ await navigator.clipboard.writeText(block); flash("Copied — paste it into DATA in this file.", true); }
-  catch(e){
+  try{
+    await navigator.clipboard.writeText(block);
+    flash("Copied &mdash; paste it over DATA in this file.", true);
+  }catch(e){
     const ta = document.createElement("textarea");
     ta.value = block; document.body.appendChild(ta); ta.select();
     document.execCommand("copy"); ta.remove();
-    flash("Copied — paste it into DATA in this file.", true);
+    flash("Copied &mdash; paste it over DATA in this file.", true);
   }
-});
-
-$("tSeason").addEventListener("click", () => { range="season"; $("tSeason").setAttribute("aria-pressed","true");  $("tRecent").setAttribute("aria-pressed","false"); render(); });
-$("tRecent").addEventListener("click", () => { range="recent"; $("tRecent").setAttribute("aria-pressed","true");  $("tSeason").setAttribute("aria-pressed","false"); render(); });
+};
 
 render();
 </script>
