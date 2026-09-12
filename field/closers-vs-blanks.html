@@ -83,36 +83,11 @@ th.now{background:rgba(235,176,24,.07);color:var(--ltblue)}
 .stat .sub{color:var(--steel);font-size:12px;margin-top:6px;min-height:14px;line-height:1.2}
 .trend-up{color:#7fd18a}.trend-down{color:#e58b8b}
 
-.panel{
-  width:min(1040px,100%); margin-top:18px;
-  background:#0c1728;border:1px solid #22406b;border-radius:12px;padding:20px;
-}
-.panel h2{font-family:'Oswald',sans-serif;color:#fff;font-size:22px;letter-spacing:.04em;margin-bottom:6px}
-.panel p.note{color:var(--steel);font-size:15px;margin-bottom:16px;line-height:1.4;max-width:80ch}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:14px}
-label{display:block;font-size:14px;color:var(--ltblue);letter-spacing:.04em;margin-bottom:5px}
-input{
-  width:100%;background:#091120;border:1px solid #2a4570;border-radius:6px;
-  color:var(--gold);font-family:'Oswald',monospace;font-size:19px;padding:9px 12px;
-  font-variant-numeric:tabular-nums;
-}
-input:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
-.wkrow{display:flex;align-items:center;gap:10px;margin-bottom:16px}
-.wkrow label{margin:0;white-space:nowrap;color:var(--steel);font-size:14px;letter-spacing:.1em}
-.wkrow input{width:110px;text-align:center;font-size:17px;padding:7px 8px}
-.actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;align-items:center}
 button{
   font-family:'Oswald',sans-serif;letter-spacing:.06em;font-size:15px;font-weight:600;
-  border-radius:6px;padding:11px 20px;cursor:pointer;border:1px solid transparent;
+  cursor:pointer;border:1px solid transparent;
 }
-button.primary{background:var(--gold);color:var(--deep)}
-button.primary:hover{background:#f7c236}
-button.ghost{background:transparent;color:var(--steel);border-color:#2a4570}
-button.ghost:hover{color:var(--ltblue);border-color:var(--steel)}
 button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-.msg{font-size:14px;color:var(--steel)}
-.msg.ok{color:#7fd18a}
-.msg.err{color:#e58b8b}
 
 details.rules{width:min(1040px,100%);margin-top:16px}
 details.rules summary{
@@ -219,35 +194,6 @@ td.dim{color:#4d688f}
   </div>
 </details>
 
-<div class="panel">
-  <h2>Press box &mdash; post this week's numbers</h2>
-  <p class="note">Pull the totals from the Scoreboard tab of the Pipeline Report, punch them in, and post it. One entry per week; posting twice in the same week updates that inning. Numbers save in this browser, so post from the same machine each Friday &mdash; then hit <b>Copy the data block</b> and send it over to put them on the board for everyone.</p>
-
-  <div class="wkrow">
-    <label for="pbWeek">WEEK</label>
-    <input id="pbWeek" inputmode="numeric" autocomplete="off" placeholder="9/11">
-  </div>
-
-  <div class="grid">
-    <div><label for="pbAb">At-bats (open opps)</label><input id="pbAb" inputmode="numeric" autocomplete="off"></div>
-    <div><label for="pbH">Hits (clean opps)</label><input id="pbH" inputmode="numeric" autocomplete="off"></div>
-    <div><label for="pbK">K &mdash; no close date</label><input id="pbK" inputmode="numeric" autocomplete="off"></div>
-    <div><label for="pbLob">LOB &mdash; past due</label><input id="pbLob" inputmode="numeric" autocomplete="off"></div>
-    <div><label for="pbE">E &mdash; $0 value</label><input id="pbE" inputmode="numeric" autocomplete="off"></div>
-    <div><label for="pbOb">On-base dollars</label><input id="pbOb" inputmode="numeric" autocomplete="off"></div>
-    <div><label for="pbW">Wins (closed won)</label><input id="pbW" inputmode="numeric" autocomplete="off"></div>
-    <div><label for="pbC">Corked wins (&le;14 days)</label><input id="pbC" inputmode="numeric" autocomplete="off"></div>
-  </div>
-
-  <div class="actions">
-    <button class="primary" id="post" type="button">Post this week</button>
-    <button class="ghost" id="remove" type="button">Remove last week</button>
-    <button class="ghost" id="reset" type="button">Reset season</button>
-    <button class="ghost" id="copyData" type="button">Copy the data block</button>
-    <span class="msg" id="msg"></span>
-  </div>
-</div>
-
 <div class="order">
   <div class="order-head">
     <div>
@@ -273,9 +219,10 @@ td.dim{color:#4d688f}
 <script>
 /* ===========================================================================
    CLOSERS vs BLANKS — Engage Field
-   Every number on this board comes from DATA below. Edit it here and the whole
-   page follows — or post a week in the press box and use "Copy the data block"
-   to get an updated DATA to paste back in.
+   Every number on this board comes from DATA below, and nowhere else. To post
+   a week, add one entry to weeks[] and replace players[]; the whole page
+   follows. Nothing is stored in the browser — what is in this file is what
+   everyone sees.
 
    weeks[]   one entry per inning. ab = open opps, h = clean opps.
              blanks = ab - h, avg = h / ab. null means "not in that export".
@@ -348,22 +295,12 @@ const DATA = {
   ]
 };
 
-const KEY = "cvb-field";
 const SEASON_INNINGS = 12;
 const QUAL_AB = 30;
 const $ = id => document.getElementById(id);
 
-let state = load();
+const state = DATA;
 let sortBy = "avg", sortDir = -1, range = "qual";
-
-function load(){
-  try{
-    const s = JSON.parse(localStorage.getItem(KEY) || "null");
-    if(s && Array.isArray(s.weeks) && Array.isArray(s.players)) return s;
-  }catch(e){}
-  return JSON.parse(JSON.stringify(DATA));
-}
-function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
 
 /* ---------- formatting ---------- */
 const num   = v => v == null ? "&middot;" : Number(v).toLocaleString();
@@ -390,7 +327,7 @@ function render(){
       ? `Blanks lead <b>${num(b)}&ndash;${num(c)}</b> &mdash; plenty of ball left. Base hits win championships.`
       : `Closers lead <b>${num(c)}&ndash;${num(b)}</b> &mdash; keep the book clean. Base hits win championships.`;
   } else {
-    $("gamestat").innerHTML = "No innings on the board yet &mdash; post the first week in the press box.";
+    $("gamestat").innerHTML = "No innings on the board yet.";
   }
 
   /* linescore */
@@ -501,66 +438,6 @@ $("ordHead").addEventListener("click", e => {
 });
 $("tQual").onclick = () => { range = "qual"; renderOrder(); };
 $("tAll").onclick  = () => { range = "all";  renderOrder(); };
-
-/* ---------- press box ---------- */
-function flash(text, ok){
-  const m = $("msg"); m.innerHTML = text; m.className = "msg" + (ok ? " ok" : " err");
-  clearTimeout(flash.t); flash.t = setTimeout(() => { m.textContent = ""; m.className = "msg"; }, 6000);
-}
-const readNum = id => {
-  const raw = $(id).value.replace(/[$,\s]/g, "").trim();
-  if(raw === "") return null;
-  const v = Number(raw);
-  return Number.isFinite(v) ? v : NaN;
-};
-
-function today(){ const d = new Date(); return (d.getMonth()+1) + "/" + d.getDate(); }
-$("pbWeek").value = today();
-
-$("post").onclick = () => {
-  const week = $("pbWeek").value.trim() || today();
-  const f = {ab:readNum("pbAb"), h:readNum("pbH"), k:readNum("pbK"), lob:readNum("pbLob"),
-             e:readNum("pbE"), ob:readNum("pbOb"), w:readNum("pbW"), corked:readNum("pbC")};
-  if(Object.values(f).some(Number.isNaN)) return flash("Numbers only &mdash; check the boxes.", false);
-  if(f.ab == null || f.h == null)        return flash("At-bats and hits are the two you can't skip.", false);
-  if(f.h > f.ab)                          return flash("More hits than at-bats &mdash; check those two.", false);
-
-  const rec = Object.assign({week}, f);
-  const i = state.weeks.findIndex(w => w.week === week);
-  if(i > -1){ state.weeks[i] = rec; flash(`Week ${week} updated.`, true); }
-  else { state.weeks.push(rec); flash(`Week ${week} posted &mdash; ${fmtAvg(avgOf(rec))}.`, true); }
-  save(); render();
-};
-
-let armed = null;
-function arm(btn, label, go){
-  if(armed === btn){ armed = null; btn.textContent = label; go(); return; }
-  if(armed){ armed.textContent = armed.dataset.label; }
-  armed = btn; btn.dataset.label = label; btn.textContent = "Sure? Click again";
-  setTimeout(() => { if(armed === btn){ armed = null; btn.textContent = label; } }, 5000);
-}
-$("remove").onclick = e => arm(e.target, "Remove last week", () => {
-  if(!state.weeks.length) return flash("Nothing on the board to remove.", false);
-  const gone = state.weeks.pop();
-  save(); render(); flash(`Week ${gone.week} pulled off the board.`, true);
-});
-$("reset").onclick = e => arm(e.target, "Reset season", () => {
-  state = JSON.parse(JSON.stringify(DATA));
-  save(); render(); flash("Season reset to the posted data block.", true);
-});
-
-$("copyData").onclick = async () => {
-  const block = "const DATA = " + JSON.stringify(state, null, 2) + ";";
-  try{
-    await navigator.clipboard.writeText(block);
-    flash("Copied &mdash; paste it over DATA in this file.", true);
-  }catch(e){
-    const ta = document.createElement("textarea");
-    ta.value = block; document.body.appendChild(ta); ta.select();
-    document.execCommand("copy"); ta.remove();
-    flash("Copied &mdash; paste it over DATA in this file.", true);
-  }
-};
 
 render();
 </script>
