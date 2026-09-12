@@ -962,6 +962,13 @@
     <hr class="section-rule">
     <div class="grid">
 
+      <a href="tools/plays/the-opening-drive.html" class="card" data-section="plays" data-tags="opening drive start here how to use the growth hub getting started orientation onboarding new rep first week play by play start do doing next roadmap system drive where do i begin">
+        <div class="card-top"><span class="pill new">Start Here</span><span class="card-date">Sep 2026</span></div>
+        <h3>The Opening Drive</h3>
+        <p>How to grow using the hub, play by play — Start, Do, Doing, Next, and the exact move to make at each one.</p>
+        <span class="card-cta">Open</span>
+      </a>
+
       <a href="tools/plays.html" class="card" data-section="plays" data-tags="growth hub plays shelf index all plays walkthroughs guides library training">
         <div class="card-top"><span class="pill new">Shelf</span><span class="card-date">Sep 2026</span></div>
         <h3>Growth Hub Plays</h3>
@@ -1293,7 +1300,29 @@
     });
     await Promise.all(checks);
     syncChips();
+    applyChipFromUrl();
     applyFilters();
+  }
+
+  // Deep link: index.html?chip=plays opens the hub already filtered to that chip,
+  // so a play or an email can point at a view instead of the whole home page.
+  // Runs after syncChips so a chip with nothing behind it is still ignored.
+  let chipLinkUsed = false;
+  function applyChipFromUrl() {
+    if (chipLinkUsed) return;
+    let want = '';
+    try { want = (new URLSearchParams(location.search).get('chip') || '').toLowerCase(); } catch (e) { return; }
+    if (!want) return;
+    const target = Array.from(chips).find(c => c.dataset.filter === want && c.style.display !== 'none');
+    if (!target) return;
+    chipLinkUsed = true;
+    chips.forEach(c => c.classList.remove('active'));
+    target.classList.add('active');
+    activeFilter = want;
+    requestAnimationFrame(() => {
+      const main = document.querySelector('main');
+      if (main) main.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
   }
 
   // A chip with nothing behind it is a dead end — Solutions did this for weeks while
