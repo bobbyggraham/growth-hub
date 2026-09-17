@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Growth Hub Plays</title>
+<title>The Playbook — Plays &amp; Training Guides</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='115' fill='%23133865'/><g stroke='%23c5d9fa' stroke-width='22' stroke-linecap='round'><line x1='256' y1='256' x2='256' y2='96'/><line x1='256' y1='256' x2='394.6' y2='176'/><line x1='256' y1='256' x2='394.6' y2='336'/><line x1='256' y1='256' x2='256' y2='416'/><line x1='256' y1='256' x2='117.4' y2='336'/><line x1='256' y1='256' x2='117.4' y2='176'/></g><circle cx='256' cy='96' r='42' fill='%23ffffff'/><circle cx='394.6' cy='176' r='42' fill='%23c5d9fa'/><circle cx='394.6' cy='336' r='42' fill='%23ffffff'/><circle cx='256' cy='416' r='42' fill='%23c5d9fa'/><circle cx='117.4' cy='336' r='42' fill='%23ffffff'/><circle cx='117.4' cy='176' r='42' fill='%23ebb018'/><circle cx='256' cy='256' r='76' fill='%23ebb018'/></svg>">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -181,6 +181,26 @@
   }
   .gcard .cta::after { content:" \2192"; }
 
+  .gcard .top { display:flex; justify-content:space-between; align-items:flex-start; gap:8px; }
+  .gcard .top .pill { margin-bottom:8px; }
+  .gcard .date {
+    font-family:'Oswald',Arial,sans-serif; font-size:10px; font-weight:500;
+    letter-spacing:1px; text-transform:uppercase; color: var(--fsg-steel-blue);
+    white-space:nowrap; padding-top:3px;
+  }
+
+  /* series filter chips */
+  .chips { display:flex; flex-wrap:wrap; gap:8px; margin: 0 0 18px; }
+  .chip {
+    font-family:'Oswald',Arial,sans-serif; font-size:12px; font-weight:600;
+    letter-spacing:1px; text-transform:uppercase; cursor:pointer; user-select:none;
+    padding:7px 13px; border-radius:20px; border:1.5px solid var(--fsg-light-gray);
+    color: var(--fsg-dark-navy); background:#fff;
+    transition: border-color .15s, background .15s;
+  }
+  .chip:hover { border-color: var(--fsg-brand-blue); }
+  .chip.active { background: var(--fsg-dark-navy); color:#fff; border-color: var(--fsg-dark-navy); }
+
   .empty {
     display:none; text-align:center; color: var(--fsg-steel-blue);
     font-size:14px; padding:26px 10px;
@@ -272,9 +292,9 @@
 
   <div class="hero">
     <div>
-      <div class="eyebrow">The Development Spoke</div>
-      <h1>Growth Hub Plays</h1>
-      <div class="subtitle">How to run the tools that run the hub. One play per tool — what it's for, how to work it, and what good looks like.</div>
+      <div class="eyebrow">Plays &amp; Training Guides</div>
+      <h1>The Playbook</h1>
+      <div class="subtitle">Every play and training guide in one place — newest drops first. Filter by series or just type what you're trying to do.</div>
     </div>
     <div class="org">
       <div class="fsg">FACILITY SOLUTIONS GROUP</div>
@@ -283,10 +303,18 @@
   </div>
   <hr class="gold-rule">
 
-  <p><b>Engage Plays teach you the CRM. Growth Hub Plays teach you the hub.</b> Same step-by-step shape, same five-minute read — but these cover the tools that live here: the builders, the generators, the things that turn your work into something the next rep can use. Personal Development pieces sit on the shelf too, marked as such. More land as they ship.</p>
+  <p><b>One shelf, four series.</b> <b>Engage Live</b> is the webinar series — every episode's guide lands here the week it airs. <b>Engage Plays</b> teach the CRM. <b>Growth Hub Plays</b> teach the hub's own tools. <b>Guides</b> are the field guides and personal development pieces. Newest drop sits on top, always.</p>
 
   <div class="searchwrap">
-    <input type="search" id="playSearch" placeholder="What are you trying to do? — proof, card, submit a win…" aria-label="Search Growth Hub Plays">
+    <input type="search" id="playSearch" placeholder="What are you trying to do? — proof, account setup, submit a win…" aria-label="Search the Playbook">
+  </div>
+
+  <div class="chips" id="playChips">
+    <span class="chip active" data-cat="all">All</span>
+    <span class="chip" data-cat="live">Engage Live</span>
+    <span class="chip" data-cat="engage">Engage Plays</span>
+    <span class="chip" data-cat="hub">Growth Hub Plays</span>
+    <span class="chip" data-cat="guide">Guides</span>
   </div>
 
   <div class="grid" id="playGrid"></div>
@@ -298,73 +326,156 @@
 </div>
 
 <script>
-/* ================= PLAYS — ADD NEW PLAYS HERE =================
-   One entry per play. Drop the file in tools/plays/, add an entry
-   below, done — the card and the search pick it up automatically. */
-var PLAYS = [
-  { file: "plays/the-opening-drive.html",
-    title: "The Opening Drive",
-    pill: "Start Here",
-    gold: true,
-    desc: "How to grow using the Growth Hub, play by play. Four stages — Start, Do, Doing, Next — with the exact moves in each one and the part of the hub to open for every single one.",
-    tags: "opening drive start here how to use the growth hub getting started orientation onboarding new rep first week play by play start do doing next what do i do where do i begin roadmap system drive" },
-  { file: "plays/get-my-proof-live.html",
-    title: "Proof Builder",
-    pill: "Growth Hub Play",
-    gold: true,
-    desc: "Turn a win into ammunition the whole org can fire. The five steps, the cell that decides who sees it, the permission toggles that keep us out of trouble — and what happens after you hit send.",
-    tags: "proof builder proof card submit a win case study client win logo photos quote stats permissions cell product delivery type results grid in build live get my proof live credit roster how do i submit a proof" },
-  { file: "plays/build-an-account-plan.html",
-    title: "Build an Account Plan",
-    pill: "Growth Hub Play",
-    desc: "Turn a target account into a plan you can actually run — the intake, the research, and the one-page output that goes into the deal.",
-    tags: "account plan build an account plan target account intake research planning pursuit strategy one pager prep" },
+/* ================= THE PLAYBOOK — ADD NEW DROPS AT THE TOP =================
+   One entry per play or training guide. Drop the file in tools/plays/ or
+   tools/engage/, add an entry at the TOP of this array (newest first — the
+   shelf renders in array order), done. cat = which chips show it:
+   "live" (Engage Live series) · "engage" (Engage Plays) · "hub" (Growth Hub
+   Plays) · "guide" (Guides). Space-separate for more than one. */
+var LIBRARY = [
+  /* ---- ADD-NEW: next drop goes here, on top ---- */
 
   { file: "engage/built-right-the-first-time.html",
-    title: "Built Right the First Time",
-    pill: "Engage Play · Episode 4",
+    title: "Built Right the First Time — Account Setup",
+    pill: "Engage Live · Ep 4", cat: "live engage", date: "Sep 17",
     gold: true,
     desc: "This week's run-scoring double: account setup. Search first, then Lead → Enrich → Convert — naming to standard, the fields that matter, hierarchy, and the duplicate screen that keeps you from getting picked off. Run live on a real C&W RFP.",
     tags: "built right the first time account setup episode 4 naming convention c&w cbre jll lead convert enrich duplicate account class ba ea ma hierarchy required fields new account how do i create an account" },
 
+  { file: "plays/the-opening-drive.html",
+    title: "The Opening Drive",
+    pill: "Start Here", cat: "hub", date: "Sep 12",
+    gold: true,
+    desc: "How to grow using the Growth Hub, play by play. Four stages — Start, Do, Doing, Next — with the exact moves in each one and the part of the hub to open for every single one.",
+    tags: "opening drive start here how to use the growth hub getting started orientation onboarding new rep first week play by play start do doing next what do i do where do i begin roadmap system drive" },
+
+  { file: "plays/get-my-proof-live.html",
+    title: "Proof Builder — Get My Proof Live",
+    pill: "Growth Hub Play", cat: "hub", date: "Sep 11",
+    desc: "Turn a win into ammunition the whole org can fire. The five steps, the cell that decides who sees it, the permission toggles that keep us out of trouble — and what happens after you hit send.",
+    tags: "proof builder proof card submit a win case study client win logo photos quote stats permissions cell product delivery type results grid in build live get my proof live credit roster how do i submit a proof" },
+
+  { file: "plays/build-an-account-plan.html",
+    title: "Build an Account Plan",
+    pill: "Growth Hub Play", cat: "hub", date: "Sep 11",
+    desc: "Turn a target account into a plan you can actually run — the intake, the research, and the one-page output that goes into the deal.",
+    tags: "account plan build an account plan target account intake research planning pursuit strategy one pager prep" },
+
+  { file: "engage/film-room-sunbelt-game-film.html",
+    title: "The Film Room — Sunbelt Game Film",
+    pill: "Engage Live · Ep 3", cat: "live engage", date: "Sep 11",
+    desc: "Episode 3's tape: a full account review on Sunbelt Rentals, frame by frame — opportunities, contacts, A/R, master rep & site assignments, then business-card capture, Enrich, AI Brief, and a clean lead-to-account conversion.",
+    tags: "film room game film sunbelt account review episode 3 opportunities contacts ar status master rep site assignments click to assign lead convert business card scan enrich zoominfo ai brief duplicate" },
+
+  { file: "../resources/using-the-hub.html",
+    title: "How To Run The Hub",
+    pill: "Start Here", cat: "guide", date: "Sep 10",
+    gold: true,
+    desc: "The Growth Hub field guide: what's behind every chip, the 10-minute meeting prep, the weekly rhythm — and the +Proof Builder play, step by step, for getting your win on the board.",
+    tags: "how to run the hub growth hub field guide start here getting started new rep onboarding help six spokes chips ten minute prep meeting prep proof builder how do i use the hub instructions rhythm" },
+
+  { file: "engage/engage-live-seasons.html",
+    title: "Engage Live — Seasons 1 & 2 Training Guide",
+    pill: "Engage Live · Living Doc", cat: "live guide", date: "Sep 9",
+    gold: true,
+    desc: "The full playbook: why the series exists, the story arc, and all 24 episodes — mantra, Closer's Creed, hook, what we cover, and Your One Move.",
+    tags: "engage live seasons training guide episodes playbook closers creed one move play of the week mantra season one two master the tool machine curriculum" },
+
+  { file: "engage/engage-live-one-sheet.html",
+    title: "Engage Live — The One Sheet",
+    pill: "Engage Live · Series Cover", cat: "live", date: "Sep 9",
+    desc: "The poster: two seasons, 24 episodes, live on Zoom — the series cover with the full lineup.",
+    tags: "engage live one sheet poster webinar series zoom seasons episodes lineup cover" },
+
+  { file: "engage/assigning-the-solutions-team.html",
+    title: "Assigning the Solutions Team",
+    pill: "Engage Play", cat: "engage", date: "Sep 9",
+    desc: "Get the right expert on the deal — the owner matrix, required fields, docs to upload, and the 48-hour confirm.",
+    tags: "assign solutions team product owner delivery method quote proposal estimate turnaround rush lighting signs energy electrical" },
+
+  { file: "engage/opportunity-fields-that-matter.html",
+    title: "Opportunity Fields That Matter",
+    pill: "Engage Play", cat: "engage", date: "Sep 9",
+    desc: "The fields that drive the pipeline, the stages that move, and three 5-minute steps to keep it real.",
+    tags: "opportunity fields follow-up date estimated close value stage pipeline closed lost reason dashboard" },
+
+  { file: "engage/account-activation-request.html",
+    title: "Account Activation Request",
+    pill: "Engage Play", cat: "engage", date: "Sep 9",
+    desc: "From new record to approved-to-sell: contact, FEIN from the W-9, AP contact, Bill To & surcharges, request approval.",
+    tags: "account activation activate approval to sell fein w-9 w9 ap contact bill to surcharges new customer" },
+
+  { file: "engage/my-accounts-request-assignment.html",
+    title: "My Accounts + Request Assignment",
+    pill: "Engage Play", cat: "engage", date: "Sep 9",
+    desc: "What you see = what you own. The two levels, the request flow step by step, and who updates what.",
+    tags: "my accounts request assignment button ownership visibility see account assigned territory" },
+
   /* Lives in resources/ — listed here, not copied here. One file, two doors. */
   { file: "../resources/speak-clearly.html",
     title: "Speak So They Buy",
-    pill: "Personal Development",
+    pill: "Personal Development", cat: "guide", date: "Sep 9",
     desc: "The FSG sales communication playbook — how to say it so the room leans in, and so the person across the table hears value instead of vendor.",
     tags: "speak clearly speak so they buy communication playbook presenting pitch delivery voice storytelling personal development how do i present talk to a client" }
-  /* ---- ADD-NEW: next play goes here ---- */
 ];
 
 (function () {
   var grid  = document.getElementById('playGrid');
   var empty = document.getElementById('playEmpty');
   var box   = document.getElementById('playSearch');
+  var chips = document.querySelectorAll('#playChips .chip');
+  var activeCat = 'all';
 
   function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
   function card(p) {
-    return '<a class="gcard" href="' + esc(p.file) + '" data-tags="' + esc((p.tags||'') + ' ' + p.title + ' ' + p.desc).toLowerCase() + '">'
-      + '<span class="pill' + (p.gold ? ' gold' : '') + '">' + esc(p.pill || 'Play') + '</span>'
+    return '<a class="gcard" href="' + esc(p.file) + '"'
+      + ' data-cat="' + esc(p.cat || '') + '"'
+      + ' data-tags="' + esc((p.tags||'') + ' ' + p.title + ' ' + p.desc).toLowerCase() + '">'
+      + '<span class="top"><span class="pill' + (p.gold ? ' gold' : '') + '">' + esc(p.pill || 'Play') + '</span>'
+      + '<span class="date">' + esc(p.date || '2026') + '</span></span>'
       + '<h3>' + esc(p.title) + '</h3>'
       + '<p>' + esc(p.desc) + '</p>'
-      + '<span class="cta">Open the play</span>'
+      + '<span class="cta">Open</span>'
       + '</a>';
   }
 
-  grid.innerHTML = PLAYS.map(card).join('');
+  grid.innerHTML = LIBRARY.map(card).join('');
 
-  box.addEventListener('input', function () {
+  function apply() {
     var q = box.value.trim().toLowerCase();
     var shown = 0;
     var cards = grid.querySelectorAll('.gcard');
     for (var i = 0; i < cards.length; i++) {
-      var hit = !q || cards[i].dataset.tags.indexOf(q) > -1;
+      var catHit = activeCat === 'all' || (cards[i].dataset.cat || '').split(' ').indexOf(activeCat) > -1;
+      var qHit = !q || cards[i].dataset.tags.indexOf(q) > -1;
+      var hit = catHit && qHit;
       cards[i].style.display = hit ? 'flex' : 'none';
       if (hit) shown++;
     }
     empty.style.display = shown ? 'none' : 'block';
-  });
+  }
+
+  for (var c = 0; c < chips.length; c++) {
+    chips[c].addEventListener('click', function () {
+      for (var j = 0; j < chips.length; j++) chips[j].classList.remove('active');
+      this.classList.add('active');
+      activeCat = this.dataset.cat;
+      apply();
+    });
+  }
+
+  box.addEventListener('input', apply);
+
+  /* Deep link: plays.html?series=live opens the shelf pre-filtered. */
+  try {
+    var want = new URLSearchParams(location.search).get('series');
+    if (want) {
+      for (var k = 0; k < chips.length; k++) {
+        if (chips[k].dataset.cat === want) { chips[k].click(); break; }
+      }
+    }
+  } catch (e) {}
 })();
 </script>
 
