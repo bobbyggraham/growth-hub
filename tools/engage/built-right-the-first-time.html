@@ -1,0 +1,501 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engage Plays — Built Right the First Time</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='115' fill='%23133865'/><g stroke='%23c5d9fa' stroke-width='22' stroke-linecap='round'><line x1='256' y1='256' x2='256' y2='96'/><line x1='256' y1='256' x2='394.6' y2='176'/><line x1='256' y1='256' x2='394.6' y2='336'/><line x1='256' y1='256' x2='256' y2='416'/><line x1='256' y1='256' x2='117.4' y2='336'/><line x1='256' y1='256' x2='117.4' y2='176'/></g><circle cx='256' cy='96' r='42' fill='%23ffffff'/><circle cx='394.6' cy='176' r='42' fill='%23c5d9fa'/><circle cx='394.6' cy='336' r='42' fill='%23ffffff'/><circle cx='256' cy='416' r='42' fill='%23c5d9fa'/><circle cx='117.4' cy='336' r='42' fill='%23ffffff'/><circle cx='117.4' cy='176' r='42' fill='%23ebb018'/><circle cx='256' cy='256' r='76' fill='%23ebb018'/></svg>">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fsg-deep-navy: #0b1421;
+    --fsg-dark-navy: #133865;
+    --fsg-brand-blue: #365aa0;
+    --fsg-steel-blue: #718dbc;
+    --fsg-light-blue: #c5d9fa;
+    --fsg-light-gray: #ededed;
+    --fsg-gold: #ebb018;
+    --fsg-bright-blue: #4e84de;
+    --fsg-red: #c0392b;
+    --fsg-green: #1e8a4c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    color: var(--fsg-deep-navy);
+    background: #ffffff;
+    line-height: 1.55;
+    font-size: 16px;
+  }
+  .page { max-width: 960px; margin: 0 auto; padding: 32px 24px 48px; }
+
+  .hero {
+    background: var(--fsg-dark-navy);
+    border-radius: 8px;
+    padding: 28px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .hero .eyebrow {
+    color: var(--fsg-light-blue);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .hero h1 {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    color: #ffffff;
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+  .hero .subtitle { color: var(--fsg-light-blue); font-size: 14px; max-width: 560px; }
+  .hero .org { text-align: right; color: #fff; }
+  .hero .org .fsg { font-family: 'Oswald', Arial, sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 1px; }
+  .hero .org .sub { color: var(--fsg-steel-blue); font-size: 12px; margin-top: 4px; }
+  .gold-rule { border: none; border-top: 3px solid var(--fsg-gold); margin: 18px 0 28px; }
+
+  .creed {
+    background: var(--fsg-dark-navy);
+    border-radius: 8px;
+    text-align: center;
+    padding: 22px 24px;
+    margin: 6px 0 8px;
+  }
+  .creed .k { color: var(--fsg-gold); font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:13px; letter-spacing:3px; text-transform:uppercase; margin-bottom:6px; }
+  .creed .q { color:#fff; font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:26px; }
+  .mantra { text-align:center; color: var(--fsg-steel-blue); font-style: italic; margin: 14px 0 4px; }
+
+  h2 {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 700;
+    color: var(--fsg-dark-navy);
+    font-size: 26px;
+    margin: 38px 0 6px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--fsg-gold);
+  }
+  p { margin: 12px 0; }
+  b { color: var(--fsg-deep-navy); }
+
+  .callout {
+    background: var(--fsg-light-blue);
+    border-left: 4px solid var(--fsg-gold);
+    border-radius: 0 6px 6px 0;
+    padding: 14px 20px;
+    margin: 20px 0;
+    color: var(--fsg-dark-navy);
+    font-size: 15px;
+  }
+  .whistle {
+    background:#fdf0ee;
+    border-left:4px solid var(--fsg-red);
+    border-radius:0 6px 6px 0;
+    padding:14px 20px;
+    margin:20px 0;
+    font-size:15px;
+  }
+  .whistle b:first-child { color: var(--fsg-red); text-transform: uppercase; font-family:'Oswald',Arial,sans-serif; letter-spacing:1px; }
+
+  table.brand { width: 100%; border-collapse: collapse; font-size: 15px; margin: 16px 0; }
+  table.brand th { background: var(--fsg-dark-navy); color: #fff; text-align: left; padding: 10px 14px; font-weight: 700; }
+  table.brand td { padding: 10px 14px; vertical-align: top; }
+  table.brand tr:nth-child(even) td { background: var(--fsg-light-blue); }
+  table.brand td:first-child { font-weight: 700; white-space: nowrap; }
+
+  .tile { display:flex; align-items:stretch; background:var(--fsg-light-gray); border-radius:6px; overflow:hidden; margin:14px 0; }
+  .tile .badge { background:var(--fsg-dark-navy); color:#fff; font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:28px; display:flex; align-items:center; justify-content:center; min-width:64px; }
+  .tile .badge.gold { color: var(--fsg-gold); }
+  .tile .body { padding:14px 18px; }
+  .tile .body h4 { font-family:'Oswald',Arial,sans-serif; font-size:18px; color:var(--fsg-dark-navy); text-transform:uppercase; margin-bottom:4px; }
+  .tile .body p { margin:0; font-size:15px; }
+
+  /* ---- chips ---- */
+  .chip { display:inline-block; font-family:'Oswald',Arial,sans-serif; font-weight:600; font-size:12px; letter-spacing:1px; text-transform:uppercase; border-radius:999px; padding:3px 12px; margin:2px 4px 2px 0; }
+  .chip.ok { background:#e2f3e9; color:var(--fsg-green); border:1px solid #b5dfc6; }
+  .chip.bad { background:#fdeaea; color:var(--fsg-red); border:1px solid #f2c4bf; }
+  .chip.info { background:var(--fsg-light-blue); color:var(--fsg-dark-navy); border:1px solid #a9c6ef; }
+  .chip.ghost { background:#f4f4f4; color:var(--fsg-steel-blue); border:1px dashed #b9c6da; }
+
+  /* ---- graveyard cards ---- */
+  .gy-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px; margin:18px 0; }
+  .gy-card { border:1.5px solid var(--fsg-light-gray); border-radius:8px; padding:16px 16px 14px; cursor:pointer; background:#fff; transition:box-shadow .15s, border-color .15s; }
+  .gy-card:hover { border-color: var(--fsg-bright-blue); box-shadow:0 3px 10px rgba(19,56,101,.12); }
+  .gy-card h4 { font-family:'Oswald',Arial,sans-serif; font-size:17px; color:var(--fsg-dark-navy); margin-bottom:2px; line-height:1.25; }
+  .gy-card .erp { color:var(--fsg-steel-blue); font-size:12px; margin-bottom:8px; }
+  .gy-card .verdict { display:none; margin-top:10px; font-size:13.5px; border-top:2px solid var(--fsg-gold); padding-top:8px; }
+  .gy-card.open .verdict { display:block; }
+  .gy-card .tap { font-family:'Oswald',Arial,sans-serif; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--fsg-bright-blue); margin-top:10px; }
+  .gy-card.open .tap { display:none; }
+  .gy-card.build { border-style:dashed; border-color:var(--fsg-gold); background:#fffdf4; }
+
+  /* ---- path toggle ---- */
+  .seg { display:inline-flex; border:1.5px solid var(--fsg-dark-navy); border-radius:999px; overflow:hidden; margin:14px 0 4px; }
+  .seg button { font-family:'Oswald',Arial,sans-serif; font-weight:600; font-size:14px; letter-spacing:1px; text-transform:uppercase; border:none; background:#fff; color:var(--fsg-dark-navy); padding:10px 22px; cursor:pointer; min-height:44px; }
+  .seg button.on { background:var(--fsg-dark-navy); color:#fff; }
+  .path-note { font-size:15px; background:var(--fsg-light-gray); border-radius:6px; padding:12px 16px; margin:10px 0 4px; }
+  .converge { text-align:center; font-family:'Oswald',Arial,sans-serif; font-weight:700; color:var(--fsg-dark-navy); font-size:18px; letter-spacing:1px; text-transform:uppercase; margin:16px 0 4px; }
+  .converge .arrow { color:var(--fsg-gold); font-size:22px; display:block; }
+
+  /* ---- naming widget ---- */
+  .namer { background:var(--fsg-light-gray); border-radius:8px; padding:18px 20px; margin:16px 0; }
+  .namer label { font-family:'Oswald',Arial,sans-serif; font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:var(--fsg-steel-blue); display:block; margin:10px 0 4px; }
+  .namer .papers { display:flex; flex-wrap:wrap; gap:8px; }
+  .namer .papers button { font-family:'Oswald',Arial,sans-serif; font-weight:600; font-size:13px; letter-spacing:1px; border:1.5px solid var(--fsg-dark-navy); background:#fff; color:var(--fsg-dark-navy); border-radius:999px; padding:8px 16px; cursor:pointer; min-height:40px; }
+  .namer .papers button.on { background:var(--fsg-gold); border-color:var(--fsg-gold); color:var(--fsg-deep-navy); }
+  .namer input[type=text] { width:100%; border:1.5px solid #c8d4e6; border-radius:6px; padding:10px 12px; font-size:16px; font-family:'Open Sans',Arial,sans-serif; outline:none; }
+  .namer input[type=text]:focus { border-color:var(--fsg-bright-blue); }
+  .namer .out { margin-top:14px; background:var(--fsg-dark-navy); color:#fff; border-radius:6px; padding:12px 16px; font-size:18px; font-family:'Oswald',Arial,sans-serif; letter-spacing:.5px; }
+  .namer .out small { display:block; font-family:'Open Sans',Arial,sans-serif; font-size:12px; color:var(--fsg-light-blue); letter-spacing:0; margin-bottom:2px; }
+
+  /* ---- checklist ---- */
+  .check { border:1.5px solid var(--fsg-light-gray); border-radius:8px; overflow:hidden; margin:16px 0; }
+  .check .bar { background:var(--fsg-light-gray); height:10px; }
+  .check .bar i { display:block; height:100%; width:0; background:var(--fsg-gold); transition:width .25s; }
+  .check .items { padding:6px 0; }
+  .check label { display:flex; gap:12px; align-items:flex-start; padding:12px 18px; cursor:pointer; font-size:15px; border-bottom:1px solid #f2f2f2; }
+  .check label:last-child { border-bottom:none; }
+  .check input { margin-top:4px; width:18px; height:18px; accent-color:var(--fsg-gold); flex:none; }
+  .check label.done { color:var(--fsg-steel-blue); }
+  .check label.done b { color:var(--fsg-steel-blue); text-decoration:line-through; }
+  .check .score { padding:10px 18px 14px; font-family:'Oswald',Arial,sans-serif; font-weight:600; color:var(--fsg-dark-navy); font-size:14px; letter-spacing:1px; text-transform:uppercase; }
+
+  /* ---- do / don't ---- */
+  .dd { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:16px 0; }
+  .dd .col { border-radius:8px; padding:16px 18px; font-size:15px; }
+  .dd .do { background:#eef7f1; border-top:4px solid var(--fsg-green); }
+  .dd .dont { background:#fdf0ee; border-top:4px solid var(--fsg-red); }
+  .dd h4 { font-family:'Oswald',Arial,sans-serif; text-transform:uppercase; letter-spacing:1px; font-size:16px; margin-bottom:8px; }
+  .dd .do h4 { color:var(--fsg-green); } .dd .dont h4 { color:var(--fsg-red); }
+  .dd ul { margin-left:18px; } .dd li { margin-bottom:8px; }
+  @media (max-width:640px){ .dd { grid-template-columns:1fr; } .hero h1 { font-size:32px; } table.brand { display:block; overflow-x:auto; } table.brand td:first-child { white-space:normal; } }
+
+  .vc { margin-top: 40px; padding-top: 18px; border-top: 3px solid var(--fsg-gold); }
+  .vc h3 { font-family:'Oswald',Arial,sans-serif; color:var(--fsg-dark-navy); font-size:18px; margin-bottom:10px; }
+  table.vc-table { width:100%; border-collapse:collapse; font-size:14px; }
+  table.vc-table th { background:var(--fsg-dark-navy); color:#fff; text-align:left; padding:8px 12px; font-weight:700; }
+  table.vc-table td { padding:8px 12px; border:1px solid var(--fsg-light-gray); }
+
+  footer { text-align:center; color:var(--fsg-steel-blue); font-size:13px; margin-top:40px; }
+  a { color: var(--fsg-bright-blue); }
+</style>
+</head>
+<body>
+
+<!-- ============ GROWTH HUB GATE ============ -->
+<style>
+  html.gh-locked > body > :not(#ghGate){display:none !important;}
+  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
+  html:not(.gh-locked) #ghGate{display:none;}
+  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
+  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
+  #ghGate .gh-brand svg{width:30px;height:30px;}
+  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
+  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
+  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;}
+  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
+  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
+  #ghGate input:focus{border-color:#4e84de;}
+  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
+  #ghGate button:hover{filter:brightness(1.06);}
+  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
+  #ghGate .gh-shake{animation:ghshake .3s;}
+  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+<div id="ghGate">
+  <div class="gh-wrap">
+    <div class="gh-brand">
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#c5d9fa" stroke-width="14" stroke-linecap="round" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g><circle cx="150" cy="50" r="26" fill="#ffffff"/><circle cx="236.6" cy="100" r="26" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="26" fill="#ffffff"/><circle cx="150" cy="250" r="26" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="26" fill="#ffffff"/><circle cx="63.4" cy="100" r="26" fill="#c5d9fa"/><circle cx="150" cy="150" r="44" fill="#ebb018"/></svg>
+      <span>Growth Hub</span>
+    </div>
+    <div class="gh-card">
+      <h2>Passcode</h2>
+      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
+      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
+      <button id="ghGo" type="button">Enter the Hub</button>
+      <div class="gh-err" id="ghErr"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
+  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+  if(!unlocked()) document.documentElement.classList.add('gh-locked');
+  function open(){ document.documentElement.classList.remove('gh-locked'); }
+  async function check(){
+    var v=document.getElementById('ghPass').value;
+    var ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        ok=(hex===HASH);
+      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
+    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
+    if(ok){ remember(); open(); }
+    else{
+      var card=document.querySelector('#ghGate .gh-card');
+      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
+      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
+      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    if(unlocked()) return;
+    document.getElementById('ghGo').addEventListener('click', check);
+    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
+  });
+})();
+</script>
+<!-- ============ /GROWTH HUB GATE ============ -->
+
+<div style="max-width:960px;margin:0 auto;padding:18px 24px 0;"><a href="../../index.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">&larr; Growth Hub</a><span style="color:#c5d9fa;margin:0 8px;">|</span><a href="../fsg-app-faq.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">&larr; FSG App FAQs</a></div>
+<div class="page">
+
+  <div class="hero">
+    <div>
+      <div class="eyebrow">Engage Plays &nbsp;·&nbsp; Season One &nbsp;·&nbsp; Episode 4 of 24</div>
+      <h1>Built Right the First Time</h1>
+      <div class="subtitle">This week's run-scoring double: Account Setup. Naming conventions, required fields, hierarchy placement, contact linkage — we run fast for home on understanding accounts, live on a real deal from this week's inbox.</div>
+    </div>
+    <div class="org">
+      <div class="fsg">FACILITY SOLUTIONS GROUP</div>
+      <div class="sub">Growth Organization &nbsp;·&nbsp; 2026</div>
+    </div>
+  </div>
+  <hr class="gold-rule">
+
+  <p class="mantra">"Five minutes of setup saves five hours of cleanup."</p>
+  <div class="creed">
+    <div class="k">The Closer's Creed — No. 4</div>
+    <div class="q">&ldquo;Build it right once, or rebuild it forever.&rdquo;</div>
+  </div>
+
+  <h2>This Week's At-Bat — a Real RFP, a Half-Built Scorecard</h2>
+  <p><b>Tuesday:</b> Cushman &amp; Wakefield procurement invites FSG into an <b>Electrical T&amp;M RFP</b> covering Bank of New York facilities — service work across a national location list, union labor in some markets, a lighting angle on top. A real pitch to hit, live in the inbox.</p>
+  <p><b>By Wednesday:</b> five people are cc'd asking &ldquo;who's running with this?&rdquo; Meanwhile, in Engage: the customer contact exists — <b>with no title, standing on the wrong base</b>. The account we'd sell under doesn't exist. And three near-duplicate Bank of New York accounts are already on the field, none of them right.</p>
+  <div class="callout"><b>One badly-built account is an error on the scorecard three ways:</b> broken rollup reporting, missed commissions, duplicate records. This episode is the 5-minute setup that turns the at-bat into a run — played live on this exact deal.</div>
+
+  <h2>Step Into the Box — Read the Field Before You Swing</h2>
+  <p><b>Search before you create. Always.</b> A good at-bat starts with reading the defense: global search, Top Matches — not just the tab you happen to be on. Here's what searching &ldquo;Bank of New York&rdquo; returns today. <b>Tap each card</b> and read the chips the way a closer reads the scouting report — in five seconds:</p>
+
+  <div class="gy-grid" id="graveyard">
+    <div class="gy-card" data-c="1">
+      <h4>The Bank of New York</h4>
+      <div class="erp">ERP 733503 · West Patterson, NJ</div>
+      <span class="chip bad">Inactive</span><span class="chip ok">Sell</span><span class="chip info">Class: BA</span>
+      <div class="verdict"><b>Not it.</b> Inactive, no billing group, no industry, placeholder Tax ID. This is the account graveyard — approved to sell once, built by nobody, owned by nobody.</div>
+      <div class="tap">Tap to read it</div>
+    </div>
+    <div class="gy-card" data-c="2">
+      <h4>Bank of New York/CBRE</h4>
+      <div class="erp">ERP 108651 · Dallas, TX</div>
+      <span class="chip ok">Active</span><span class="chip info">CBRE paper</span>
+      <div class="verdict"><b>Not it either.</b> Real account, wrong paper — that's BNY work sold through <b>CBRE</b>, with its own open lighting opportunity. Our deal runs on C&amp;W paper. Different paper = different account.</div>
+      <div class="tap">Tap to read it</div>
+    </div>
+    <div class="gy-card" data-c="3">
+      <h4>Bank of New York-Mellon</h4>
+      <div class="erp">ERP 735076 · College Station, TX</div>
+      <span class="chip info">Different entity</span>
+      <div class="verdict"><b>Close, but no.</b> BNY Mellon is a different legal entity than the facilities in this RFP. Attaching this deal here poisons the rollup for both.</div>
+      <div class="tap">Tap to read it</div>
+    </div>
+    <div class="gy-card build" data-c="4">
+      <h4>C&amp;W - Bank of New York</h4>
+      <div class="erp">Does not exist — yet</div>
+      <span class="chip ghost">Not found</span>
+      <div class="verdict"><b>This is the pitch we hit.</b> C&amp;W paper covering BNY facilities, named to FSG standard. We create it live — through a Lead, not from scratch.</div>
+      <div class="tap">Tap to read it</div>
+    </div>
+  </div>
+
+  <p>When a search hit <b>does</b> look right, read the record in five seconds before you touch it — four questions, four spots on the screen:</p>
+  <table class="brand">
+    <tr><th>Question</th><th>Where you read it</th><th>What it decides</th></tr>
+    <tr><td>Is it active?</td><td>Status chip, top right</td><td>Inactive = it exists on paper, not in reality. Don't hang a live deal on it without reactivating it right.</td></tr>
+    <tr><td>Approved to sell?</td><td>Sell chip, next to Status</td><td>No approval = no work order. Fix activation before you promise dates.</td></tr>
+    <tr><td>Is it yours?</td><td>Owner / assignment</td><td>Assigned to someone else? Use Request Assignment — don't build a twin.</td></tr>
+    <tr><td>Account Class right?</td><td>Sales Settings → Account Class</td><td>The <b>BA / EA / MA</b> review — Business, Enterprise, or Master. Class drives rollup, hierarchy, and who reads your numbers.</td></tr>
+  </table>
+
+  <h2>Round the Bases — Lead &rarr; Enrich &rarr; Convert</h2>
+  <p>This is the double: contact into the gap, and we're standing on second before the defense reacts. Found an account or didn't — the runner still enters through <b>Leads</b>. Pick your situation:</p>
+  <div class="seg" id="pathSeg">
+    <button type="button" class="on" data-p="no">Account doesn't exist</button>
+    <button type="button" data-p="yes">Account exists</button>
+  </div>
+  <div class="path-note" id="pathNote"><b>Our live case.</b> No C&amp;W - Bank of New York in the system. Add the contact in <b>Leads</b>, Enrich, then <b>Convert opens the new account</b> — named to standard, with your Rep ID auto-assigned on convert.</div>
+  <div class="converge"><span class="arrow">&darr;</span> Leads &rarr; Enrich &rarr; Convert</div>
+
+  <div class="tile"><div class="badge">1B</div><div class="body">
+    <h4>First Base — Add the Contact in Leads</h4>
+    <p>Create the Lead for the real human on the deal — our live example: <b>Dalip Singh, Procurement Specialist, C&amp;W Global Occupier Services, Toronto</b>. Everything you need is in his email signature: title, direct line, address. A contact with a name and nothing else is a business card face-down in a drawer.</p>
+  </div></div>
+
+  <div class="tile"><div class="badge">2B</div><div class="body">
+    <h4>Second Base — Enrich</h4>
+    <p>Run enrichment and read the panel: full-match badge, <b>New</b> and <b>Differs</b> tags, per-field copy. Nothing changes until you copy it in — you stay in control of every field.</p>
+  </div></div>
+
+  <div class="tile"><div class="badge">3B</div><div class="body">
+    <h4>Third Base — Convert, and Read the Duplicate Screen</h4>
+    <p>Convert to open the new account. Engage shows you possible matches before it saves — <b>this screen is the whole episode in one moment.</b> Exact match? Select it and attach. Nothing real? Save as New Account. Engage <b>auto-assigns your Rep ID</b> on convert — that's how it becomes your account.</p>
+  </div></div>
+
+  <div class="whistle"><b>Picked off.</b>&nbsp; Blowing past the duplicate screen is getting caught leaning off the bag — the error we watched in Episode 3's game film. A national account split in two, pipeline divided, site assignments orphaned. Read the screen. Every time.</div>
+
+  <h2>Read the Signs — Name It to Standard</h2>
+  <p>The third-base coach only has one sign here: the paper the deal runs on comes first, the customer second. Try it — this is the exact name we create live:</p>
+  <div class="namer">
+    <label>Whose paper is the deal on?</label>
+    <div class="papers" id="paperBtns">
+      <button type="button" data-pre="JLL - ">JLL</button>
+      <button type="button" data-pre="CBRE - ">CBRE</button>
+      <button type="button" class="on" data-pre="C&amp;W - ">Cushman &amp; Wakefield</button>
+      <button type="button" data-pre="">Direct</button>
+    </div>
+    <label>Customer / end client</label>
+    <input type="text" id="custName" value="Bank of New York" autocomplete="off">
+    <div class="out"><small>Account name to standard</small><span id="nameOut">C&amp;W - Bank of New York</span></div>
+  </div>
+  <p style="font-size:14px;color:var(--fsg-steel-blue);">Why it matters: the prefix keeps every JLL / CBRE / C&amp;W deal grouped under its paper, search finds it the way reps actually look for it, and rollup reporting stays clean at the master.</p>
+
+  <h2>Run Fast for Home — The 5-Minute Setup</h2>
+  <p>The double put you in scoring position; this is the sprint home. The whole build, start to finish — run it live, check it off as you round each bag:</p>
+  <div class="check" id="setupCheck">
+    <div class="bar"><i id="checkBar"></i></div>
+    <div class="items">
+      <label><input type="checkbox"><span><b>Searched first.</b> Top Matches, Accounts, Leads, Contacts — no duplicate waiting to happen.</span></label>
+      <label><input type="checkbox"><span><b>Lead created with the full signature.</b> Name, title, direct line, email, company — not just a name.</span></label>
+      <label><input type="checkbox"><span><b>Enriched.</b> Full-match badge checked, New/Differs fields copied in deliberately.</span></label>
+      <label><input type="checkbox"><span><b>Converted — duplicate screen read.</b> Attached to the exact match or saved as new on purpose. Rep ID auto-assigned.</span></label>
+      <label><input type="checkbox"><span><b>Named to standard.</b> Paper first, customer second — <i>C&amp;W - Bank of New York</i>.</span></label>
+      <label><input type="checkbox"><span><b>Required fields filled.</b> Billing group, industry, address — what feeds reporting and commissions.</span></label>
+      <label><input type="checkbox"><span><b>Placed in hierarchy.</b> Standalone vs. parent/child decided — where it sits under the C&amp;W master. Class checked: BA / EA / MA.</span></label>
+      <label><input type="checkbox"><span><b>Files dropped, work assigned.</b> RFP location list and rate request in Files; assign and notate what you need help with.</span></label>
+    </div>
+    <div class="score" id="checkScore">0 of 8 — still in the dugout</div>
+  </div>
+
+  <h2>Do / Don't</h2>
+  <div class="dd">
+    <div class="col do">
+      <h4>Do</h4>
+      <ul>
+        <li>Search Top Matches before creating anything — leads, contacts, accounts.</li>
+        <li>Enter every new relationship through <b>Leads</b>, even when you're in a hurry. Especially then.</li>
+        <li>Pull the title and details from the email signature while it's in front of you.</li>
+        <li>Read the four chips — Status, Sell, Owner, Class — before working any existing account.</li>
+        <li>Drop the deal's files in Files and notate what you need help with.</li>
+      </ul>
+    </div>
+    <div class="col dont">
+      <h4>Don't</h4>
+      <ul>
+        <li>Add a bare contact straight to a generic master account and call it logged.</li>
+        <li>Save as New Account past an exact match — that's the turnover.</li>
+        <li>Hang a live deal on an inactive account without fixing activation first.</li>
+        <li>Name the account whatever the email subject said. Paper first, customer second.</li>
+        <li>Leave title, billing group, or hierarchy &ldquo;for later.&rdquo; Later is never.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Play of the Week</h2>
+  <div class="callout"><b>The highlight reel:</b> a rep shows a national account they set up right — and how clean rollup reporting made the QBR prep effortless. Base hits win championships; clean setups win QBRs.</div>
+
+  <h2>Your One Move</h2>
+  <div class="creed" style="margin:14px 0;">
+    <div class="k">Before the Next Episode</div>
+    <div class="q">Audit the last account you created. Fix naming, fields, and hierarchy to standard.</div>
+  </div>
+
+  <p style="margin-top:26px;"><b>Go deeper:</b> <a href="film-room-sunbelt-game-film.html">The Film Room — Sunbelt Game Film</a> (the full account review, frame by frame) &nbsp;·&nbsp; <a href="opportunity-fields-that-matter.html">Opportunity Fields That Matter</a> &nbsp;·&nbsp; <a href="account-activation-request.html">Account Activation Request</a> &nbsp;·&nbsp; <a href="my-accounts-request-assignment.html">My Accounts + Request Assignment</a></p>
+
+  <div class="vc">
+    <h3>Version Control</h3>
+    <table class="vc-table">
+      <tr><th>Version</th><th>Date</th><th>Owner</th><th>Change Summary</th></tr>
+      <tr><td>1.0</td><td>September 2026</td><td>Bobby Graham — Growth</td><td>Initial publication — Engage Live Season 1, Episode 4</td></tr>
+    </table>
+  </div>
+
+  <footer>FSG Engage &nbsp;|&nbsp; Internal Enablement</footer>
+</div>
+
+<script>
+(function(){
+  /* graveyard cards */
+  document.querySelectorAll('#graveyard .gy-card').forEach(function(c){
+    c.addEventListener('click', function(){ c.classList.toggle('open'); });
+  });
+
+  /* path toggle */
+  var notes = {
+    no:  '<b>Our live case.</b> No C&amp;W - Bank of New York in the system. Add the contact in <b>Leads</b>, Enrich, then <b>Convert opens the new account</b> — named to standard, with your Rep ID auto-assigned on convert.',
+    yes: '<b>Account already exists?</b> Same batter&#39;s box. Add the contact in <b>Leads</b>, Enrich, and Convert — then <b>attach to the existing account on the duplicate screen</b> instead of saving a new one. The contact lands linked, titled, and enriched, and the account stays whole.'
+  };
+  var seg = document.getElementById('pathSeg'), note = document.getElementById('pathNote');
+  seg.querySelectorAll('button').forEach(function(b){
+    b.addEventListener('click', function(){
+      seg.querySelectorAll('button').forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+      note.innerHTML = notes[b.getAttribute('data-p')];
+    });
+  });
+
+  /* naming widget */
+  var pre = 'C&W - ';
+  var inp = document.getElementById('custName'), out = document.getElementById('nameOut');
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function render(){
+    var v = inp.value.replace(/^\s+|\s+$/g,'') || 'Customer Name';
+    out.innerHTML = esc(pre) + esc(v);
+  }
+  document.querySelectorAll('#paperBtns button').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('#paperBtns button').forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+      var raw = b.getAttribute('data-pre') || '';
+      var t = document.createElement('textarea'); t.innerHTML = raw; pre = t.value;
+      render();
+    });
+  });
+  inp.addEventListener('input', render);
+  render();
+
+  /* checklist */
+  var boxEls = document.querySelectorAll('#setupCheck input');
+  var bar = document.getElementById('checkBar'), score = document.getElementById('checkScore');
+  var msgs = {
+    0: 'still in the dugout', 3: 'on first', 5: 'standing on second',
+    7: 'rounding third', 8: 'RUN SCORED — BUILT RIGHT THE FIRST TIME ✓'
+  };
+  function tally(){
+    var n = 0;
+    boxEls.forEach(function(cb){ cb.closest('label').classList.toggle('done', cb.checked); if(cb.checked) n++; });
+    bar.style.width = (n / boxEls.length * 100) + '%';
+    var m = msgs[n] || (n < 5 ? 'runner moving' : 'in scoring position');
+    score.textContent = n + ' of ' + boxEls.length + ' — ' + m;
+    score.style.color = (n === boxEls.length) ? 'var(--fsg-green)' : 'var(--fsg-dark-navy)';
+  }
+  boxEls.forEach(function(cb){ cb.addEventListener('change', tally); });
+})();
+</script>
+</body>
+</html>
