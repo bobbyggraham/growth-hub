@@ -305,7 +305,11 @@
       + (p.source ? '<div class="ghp-kv"><span class="k">Source</span><span class="v">' + esc(p.source) + '</span></div>' : '')
       + (p.submittedBy ? '<div class="ghp-kv"><span class="k">Built with</span><span class="v">FSG Proof Builder</span></div>' : '')
       + '</div></div>';
-    if (p.page) h += '<a class="ghp-open" href="' + ROOT + p.page + '" target="_blank" rel="noopener">Open Full Case Study →</a>';
+    // Same tab, deliberately. target="_blank" gives the new tab a FRESH
+    // sessionStorage, so the passcode gate on the case-study page fires again
+    // even though the hub is already unlocked. Staying in-tab keeps the
+    // unlocked session; Back returns to the hub still unlocked.
+    if (p.page) h += '<a class="ghp-open" href="' + ROOT + p.page + '">Open Full Case Study →</a>';
     h += '<div class="ghp-foot2">Every claim auditable — program documentation, safety compliance, and completion records maintained and shared live with the client.</div>'
       + '</div></div>';
     ovlRoot.innerHTML = h;
