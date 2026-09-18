@@ -76,7 +76,6 @@
       photoCap: "Crash Champions repair center — program site",
       permissions: "Name · Logo · Numbers — all approved",
       submittedBy: "Tanner Clow", submittedOn: "Sep 7, 2026",
-      page: "proof/crash-champions.html",
       status: "LIVE"
     },
     { id: "PRF-002", client: "U.S. Bank",
@@ -84,7 +83,6 @@
       cells: [["Lighting", "Construction"]],
       story: "LED retrofit across 214 locations in CA, CO, OR — the banking proof point that opens financial doors.",
       stats: [{ n: "214", l: "Locations", hi: true }, { n: "3", l: "States — CA · CO · OR" }],
-      page: "proof/us-bank.html",
       source: "FSG Master Presentation", status: "LIVE" },
     { id: "PRF-003", client: "Starbucks",
       line: "Lighting", mode: "Service", type: "National account maintenance",
@@ -169,14 +167,12 @@
       cells: [["Signs", "Construction"]],
       story: "National image rebrand execution across the convenience footprint.",
       permissions: "Confidential — internal use only",
-      page: "proof/sunoco.html",
       source: "Results library", status: "CONFIDENTIAL" },
     { id: "PRF-019", client: "MMC",
       line: "Lighting", mode: "Distribution", type: "Owner-supplied · EBV®",
       cells: [["Lighting", "Distribution"]],
       story: "$14→$9/sqft across 1.8M sqft — every timeline met. The flagship owner-supplied case study.",
       stats: [{ n: "$9M", l: "Saved", hi: true }, { n: "1.8M", l: "Sq ft" }],
-      page: "proof/mmc-case-study.html",
       source: "Results library", status: "IN BUILD" }
   ];
 
