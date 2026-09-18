@@ -447,7 +447,7 @@ mx.addEventListener('click', async e => {
     const r = R[k], live = LIVE[k];
     return '<div class="res '+(live?'live':'soon')+'">'
       + '<div class="r-name">'+r.name+'<small>'+r.kind+'</small></div>'
-      + (live ? '<a class="r-open" href="'+r.href+'" target="_blank" rel="noopener">Open</a>' : '<span class="r-soon">In build</span>')
+      + (live ? '<a class="r-open" href="'+r.href+'">Open</a>' : '<span class="r-soon">In build</span>')
       + '<button class="r-add'+(PITCH.has(k)?' added':'')+'" data-k="'+k+'">'+(PITCH.has(k)?'\u2713 Added':'+ Add')+'</button>'
       + '</div>';
   }).join('');
