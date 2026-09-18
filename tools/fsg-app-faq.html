@@ -331,13 +331,35 @@ var GUIDES = [
     pill: "Engage Play",
     gold: true,
     desc: "Episode 4's run-scoring double: search first, read the four chips (Status, Sell, Owner, Class), then Lead &rarr; Enrich &rarr; Convert with naming to standard — run live on the C&amp;W - Bank of New York build.",
-    tags: "built right the first time account setup episode 4 new account naming convention paper c&w cbre jll lead enrich convert duplicate screen account class ba ea ma hierarchy parent child required fields rep id auto assign" }
+    tags: "built right the first time account setup episode 4 new account naming convention paper c&w cbre jll lead enrich convert duplicate screen account class ba ea ma hierarchy parent child required fields rep id auto assign" },
+  { file: "engage/understanding-the-sales-commission-statement.html",
+    title: "Understanding the Sales Commission Statement",
+    pill: "Guide",
+    gold: true,
+    desc: "Your statement is your scoreboard \u2014 and your paycheck. Read the summary and every line, know WIP vs. Earned, and work your days 15\u201319 review window before the statement auto-approves.",
+    tags: "commission statement commissions comm earned wip paid due contested salary approval contest ngp cx rate basis account class ba ea ma invoice sale period payroll paycheck when do i get paid review window deadline auto approve" }
 ];
 
 /* ================= QUICK ANSWERS — ADD NEW ASKS HERE =================
    q = the question as a rep would type it · a = the short answer (HTML ok)
    link = the guide that goes deeper · tags = extra words people search with */
 var ASKS = [
+  { q: "Where do I find my commission statement?",
+    a: "In Engage \u2014 <b>engage.fsgapps.com \u2192 Commission Statements</b>. The summary up top is your YTD and month-by-month totals; every line below is one invoice. Each <b>Invoice #</b> is a live link \u2014 click it to open the Job, WO, or OE behind the line.",
+    link: "engage/understanding-the-sales-commission-statement.html", label: "Understanding the Sales Commission Statement",
+    tags: "commission statement where find my commissions pay engage statements paycheck" },
+  { q: "What's the difference between WIP and Earned commission?",
+    a: "<b>WIP</b> = the job/WO/OE isn't closed or posted yet \u2014 you still earn at typical rates, but the number can adjust (negative correction lines are normal). <b>Earned</b> = the transaction is complete and your commission is essentially locked in. Multiple invoices per job are normal \u2014 typically one per open period.",
+    link: "engage/understanding-the-sales-commission-statement.html", label: "Understanding the Sales Commission Statement",
+    tags: "wip earned status commission negative line correction locked multiple invoices work in progress" },
+  { q: "Something on my commission statement looks wrong \u2014 what do I do?",
+    a: "Tag the record <b>\u201cContest\u201d</b> and add notes describing the problem \u2014 check Account Class (BA/EA/MA), Account Rep / Site Rep credit, and CX Rate &amp; Basis. It returns to your manager to resolve, rebuilds automatically, and comes back to you for approval. <b>Contested records will not pay until resolved and approved.</b>",
+    link: "engage/understanding-the-sales-commission-statement.html", label: "Understanding the Sales Commission Statement",
+    tags: "contest wrong commission dispute error missing credit account class cx rate basis notes fix" },
+  { q: "When do I review my commission statement?",
+    a: "<b>Days 15\u201319 of the month</b>, after your manager\u2019s review (days 10\u201314). Review every line, contest anything wrong, and submit \u2014 <b>statements not approved by the deadline auto-approve and close</b>, and you lose the window to contest. Both approvals send it to payroll on day 20+.",
+    link: "engage/understanding-the-sales-commission-statement.html", label: "Understanding the Sales Commission Statement",
+    tags: "review window days 15 19 deadline auto approve approval cycle when payroll hr paid" },
   { q: "I just won a job — how do I get my proof live?",
     a: "Open <b>Proof Builder</b> (Growth Hub → Development), fill the story, tag the cell (<b>product line × delivery method × type</b>), put dollars in the gold stat, drop the logo and job photos, check the four permission toggles, then hit <b>Email Growth Hub</b> — and attach the downloaded card before you send. It runs through QA and lands in Results with <b>★ Proof submitted by you</b> on it. About 15 minutes if your files are ready.",
     link: "../resources/using-the-hub.html", label: "How To Run The Hub — the Proof Builder play",
