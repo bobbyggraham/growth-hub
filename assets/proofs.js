@@ -27,6 +27,19 @@
        Keeps this file small; it loads on every page. A data: URI still works.
        Statuses: LIVE | IN BUILD | CONFIDENTIAL.
        ================================================================= */
+     { id: "PRF-021", client: "Town of Huntington, NY",
+      vertical: "Government & Public Infrastructure",
+      line: "Lighting", mode: "Service", type: "Retrofits",
+      cells: [["Lighting", "Service"]],
+      photo: "assets/proof-photos/PRF-021-huntington-townhall-dusk.jpg",
+      photoCap: "Huntington Town Hall at dusk — exterior LED and controls",
+      story: "FSG audited all nineteen sites room by room — 627 pages of fixture-level survey — and engineered the lighting ECM as the specialist partner inside the performance contract.",
+      problem: "runs nineteen municipal buildings on Long Island — town hall, a senior center, two parking garages, an ice rink, two golf courses, a pool, an animal shelter, a wastewater plant, a bus complex and three highway yards. The lighting across that portfolio drew 315 kW and burned 1.56 million kWh a year, much of it on fixtures old enough that parts were getting hard to find. The town brought in an ESCO to audit everything and find energy conservation measures that would pay for themselves out of the savings.",
+      solution: "FSG audited all nineteen sites room by room — 627 pages of fixture-level survey — and engineered the lighting ECM as the specialist partner inside the performance contract: LED and controls, interior and exterior, priced building by building. The audited scope came in at $927,560 with a 5.8-year simple payback, and the contracted lighting value settled at $899,178 after two rounds of value engineering. Salt barn fixtures were engineered to Class II Div 1 ratings.",
+      stats: [{ n: "$160,704", l: "Projected annual savings", hi: true }, { n: "5.8 yr", l: "Simple payback" }, { n: "776,831", l: "kWh cut per year — half the load" }, { n: "19", l: "Municipal buildings" }],
+      permissions: "Name · Logo · Numbers — all approved",
+      submittedBy: "Sean Fitzgerald", submittedOn: "Sep 17, 2026",
+      status: "LIVE" },
     { id: "PRF-020", client: "WTC Transportation Hub — The Oculus",
       vertical: "Government & Public Infrastructure",
       line: "Lighting", mode: "Construction", type: "New install, Design & photometrics",
@@ -41,7 +54,7 @@
       page: "tools/wire/oculus-wtc.html",
       submittedBy: "Bernard J. Erickson", submittedOn: "Sep 11, 2026",
       source: "FSG Wire — The Light That Came Back",
-      status: "IN BUILD" },
+      status: "LIVE" },
     {
       id: "PRF-001", client: "Crash Champions",
       vertical: "Specialty Retail: Auto Repair",
