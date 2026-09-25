@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engage Plays — Mission Control</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='115' fill='%23133865'/><g stroke='%23c5d9fa' stroke-width='22' stroke-linecap='round'><line x1='256' y1='256' x2='256' y2='96'/><line x1='256' y1='256' x2='394.6' y2='176'/><line x1='256' y1='256' x2='394.6' y2='336'/><line x1='256' y1='256' x2='256' y2='416'/><line x1='256' y1='256' x2='117.4' y2='336'/><line x1='256' y1='256' x2='117.4' y2='176'/></g><circle cx='256' cy='96' r='42' fill='%23ffffff'/><circle cx='394.6' cy='176' r='42' fill='%23c5d9fa'/><circle cx='394.6' cy='336' r='42' fill='%23ffffff'/><circle cx='256' cy='416' r='42' fill='%23c5d9fa'/><circle cx='117.4' cy='336' r='42' fill='%23ffffff'/><circle cx='117.4' cy='176' r='42' fill='%23ebb018'/><circle cx='256' cy='256' r='76' fill='%23ebb018'/></svg>">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fsg-deep-navy: #0b1421;
+    --fsg-dark-navy: #133865;
+    --fsg-brand-blue: #365aa0;
+    --fsg-steel-blue: #718dbc;
+    --fsg-light-blue: #c5d9fa;
+    --fsg-light-gray: #ededed;
+    --fsg-gold: #ebb018;
+    --fsg-bright-blue: #4e84de;
+    --fsg-red: #c0392b;
+    --fsg-green: #1e8a4c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    color: var(--fsg-deep-navy);
+    background: #ffffff;
+    line-height: 1.55;
+    font-size: 16px;
+  }
+  .page { max-width: 960px; margin: 0 auto; padding: 32px 24px 48px; }
+
+  .hero {
+    background: var(--fsg-dark-navy);
+    border-radius: 8px;
+    padding: 28px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .hero .eyebrow { color: var(--fsg-light-blue); font-weight: 700; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+  .hero h1 { font-family: 'Oswald', Arial, sans-serif; font-weight: 700; font-size: 40px; color: #ffffff; line-height: 1.15; margin-bottom: 10px; }
+  .hero .subtitle { color: var(--fsg-light-blue); font-size: 14px; max-width: 560px; }
+  .hero .org { text-align: right; color: #fff; }
+  .hero .org .fsg { font-family: 'Oswald', Arial, sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 1px; }
+  .hero .org .sub { color: var(--fsg-steel-blue); font-size: 12px; margin-top: 4px; }
+  .gold-rule { border: none; border-top: 3px solid var(--fsg-gold); margin: 18px 0 28px; }
+
+  .creed { background: var(--fsg-dark-navy); border-radius: 8px; text-align: center; padding: 22px 24px; margin: 6px 0 8px; }
+  .creed .k { color: var(--fsg-gold); font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:13px; letter-spacing:3px; text-transform:uppercase; margin-bottom:6px; }
+  .creed .q { color:#fff; font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:26px; }
+  .mantra { text-align:center; color: var(--fsg-steel-blue); font-style: italic; margin: 14px 0 4px; }
+
+  h2 { font-family: 'Oswald', Arial, sans-serif; font-weight: 700; color: var(--fsg-dark-navy); font-size: 26px; margin: 38px 0 6px; padding-bottom: 6px; border-bottom: 2px solid var(--fsg-gold); }
+  p { margin: 12px 0; }
+  b { color: var(--fsg-deep-navy); }
+
+  .callout { background: var(--fsg-light-blue); border-left: 4px solid var(--fsg-gold); border-radius: 0 6px 6px 0; padding: 14px 20px; margin: 20px 0; color: var(--fsg-dark-navy); font-size: 15px; }
+  .whistle { background:#fdf0ee; border-left:4px solid var(--fsg-red); border-radius:0 6px 6px 0; padding:14px 20px; margin:20px 0; font-size:15px; }
+  .whistle b:first-child { color: var(--fsg-red); text-transform: uppercase; font-family:'Oswald',Arial,sans-serif; letter-spacing:1px; }
+
+  table.brand { width: 100%; border-collapse: collapse; font-size: 15px; margin: 16px 0; }
+  table.brand th { background: var(--fsg-dark-navy); color: #fff; text-align: left; padding: 10px 14px; font-weight: 700; }
+  table.brand td { padding: 10px 14px; vertical-align: top; }
+  table.brand tr:nth-child(even) td { background: var(--fsg-light-blue); }
+  table.brand td:first-child { font-weight: 700; white-space: nowrap; }
+
+  .tile { display:flex; align-items:stretch; background:var(--fsg-light-gray); border-radius:6px; overflow:hidden; margin:14px 0; }
+  .tile .badge { background:var(--fsg-dark-navy); color:#fff; font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:24px; display:flex; align-items:center; justify-content:center; min-width:64px; }
+  .tile .badge.gold { color: var(--fsg-gold); }
+  .tile .body { padding:14px 18px; }
+  .tile .body h4 { font-family:'Oswald',Arial,sans-serif; font-size:18px; color:var(--fsg-dark-navy); text-transform:uppercase; margin-bottom:4px; }
+  .tile .body p { margin:0; font-size:15px; }
+
+  .chip { display:inline-block; font-family:'Oswald',Arial,sans-serif; font-weight:600; font-size:12px; letter-spacing:1px; text-transform:uppercase; border-radius:999px; padding:3px 12px; margin:2px 4px 2px 0; }
+  .chip.info { background:var(--fsg-light-blue); color:var(--fsg-dark-navy); border:1px solid #a9c6ef; }
+
+  .check { border:1.5px solid var(--fsg-light-gray); border-radius:8px; overflow:hidden; margin:16px 0; }
+  .check .bar { background:var(--fsg-light-gray); height:10px; }
+  .check .bar i { display:block; height:100%; width:0; background:var(--fsg-gold); transition:width .25s; }
+  .check .items { padding:6px 0; }
+  .check label { display:flex; gap:12px; align-items:flex-start; padding:12px 18px; cursor:pointer; font-size:15px; border-bottom:1px solid #f2f2f2; }
+  .check label:last-child { border-bottom:none; }
+  .check input { margin-top:4px; width:18px; height:18px; accent-color:var(--fsg-gold); flex:none; }
+  .check label.done { color:var(--fsg-steel-blue); }
+  .check label.done b { color:var(--fsg-steel-blue); text-decoration:line-through; }
+  .check .score { padding:10px 18px 14px; font-family:'Oswald',Arial,sans-serif; font-weight:600; color:var(--fsg-dark-navy); font-size:14px; letter-spacing:1px; text-transform:uppercase; }
+
+  .dd { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:16px 0; }
+  .dd .col { border-radius:8px; padding:16px 18px; font-size:15px; }
+  .dd .do { background:#eef7f1; border-top:4px solid var(--fsg-green); }
+  .dd .dont { background:#fdf0ee; border-top:4px solid var(--fsg-red); }
+  .dd h4 { font-family:'Oswald',Arial,sans-serif; text-transform:uppercase; letter-spacing:1px; font-size:16px; margin-bottom:8px; }
+  .dd .do h4 { color:var(--fsg-green); } .dd .dont h4 { color:var(--fsg-red); }
+  .dd ul { margin-left:18px; } .dd li { margin-bottom:8px; }
+  @media (max-width:640px){ .dd { grid-template-columns:1fr; } .hero h1 { font-size:32px; } table.brand { display:block; overflow-x:auto; } table.brand td:first-child { white-space:normal; } }
+
+  .vc { margin-top: 40px; padding-top: 18px; border-top: 3px solid var(--fsg-gold); }
+  .vc h3 { font-family:'Oswald',Arial,sans-serif; color:var(--fsg-dark-navy); font-size:18px; margin-bottom:10px; }
+  table.vc-table { width:100%; border-collapse:collapse; font-size:14px; }
+  table.vc-table th { background:var(--fsg-dark-navy); color:#fff; text-align:left; padding:8px 12px; font-weight:700; }
+  table.vc-table td { padding:8px 12px; border:1px solid var(--fsg-light-gray); }
+
+  footer { text-align:center; color:var(--fsg-steel-blue); font-size:13px; margin-top:40px; }
+  a { color: var(--fsg-bright-blue); }
+</style>
+</head>
+<body>
+
+<!-- ============ GROWTH HUB GATE ============ -->
+<style>
+  html.gh-locked > body > :not(#ghGate){display:none !important;}
+  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
+  html:not(.gh-locked) #ghGate{display:none;}
+  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
+  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
+  #ghGate .gh-brand svg{width:30px;height:30px;}
+  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
+  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
+  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;}
+  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
+  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
+  #ghGate input:focus{border-color:#4e84de;}
+  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
+  #ghGate button:hover{filter:brightness(1.06);}
+  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
+  #ghGate .gh-shake{animation:ghshake .3s;}
+  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+<div id="ghGate">
+  <div class="gh-wrap">
+    <div class="gh-brand">
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#c5d9fa" stroke-width="14" stroke-linecap="round" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g><circle cx="150" cy="50" r="26" fill="#ffffff"/><circle cx="236.6" cy="100" r="26" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="26" fill="#ffffff"/><circle cx="150" cy="250" r="26" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="26" fill="#ffffff"/><circle cx="63.4" cy="100" r="26" fill="#c5d9fa"/><circle cx="150" cy="150" r="44" fill="#ebb018"/></svg>
+      <span>Growth Hub</span>
+    </div>
+    <div class="gh-card">
+      <h2>Passcode</h2>
+      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
+      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
+      <button id="ghGo" type="button">Enter the Hub</button>
+      <div class="gh-err" id="ghErr"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
+  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+  if(!unlocked()) document.documentElement.classList.add('gh-locked');
+  function open(){ document.documentElement.classList.remove('gh-locked'); }
+  async function check(){
+    var v=document.getElementById('ghPass').value;
+    var ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        ok=(hex===HASH);
+      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
+    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
+    if(ok){ remember(); open(); }
+    else{
+      var card=document.querySelector('#ghGate .gh-card');
+      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
+      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
+      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    if(unlocked()) return;
+    document.getElementById('ghGo').addEventListener('click', check);
+    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
+  });
+})();
+</script>
+<!-- ============ /GROWTH HUB GATE ============ -->
+
+<div style="max-width:960px;margin:0 auto;padding:18px 24px 0;"><a href="../../index.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">&larr; Growth Hub</a><span style="color:#c5d9fa;margin:0 8px;">|</span><a href="../plays.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">&larr; The Playbook</a><span style="color:#c5d9fa;margin:0 8px;">|</span><a href="../fsg-app-faq.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">&larr; FSG App FAQs</a></div>
+<div class="page">
+
+  <div class="hero">
+    <div>
+      <div class="eyebrow">Engage Plays &nbsp;·&nbsp; Season One &nbsp;·&nbsp; Episode 1 of 24</div>
+      <h1>Mission Control</h1>
+      <div class="subtitle">Where the series starts: the dashboard, the navigation, and Find. Every closer's first skill is the same — get anywhere in Engage in three clicks or less, and find any record in under ten seconds.</div>
+    </div>
+    <div class="org">
+      <div class="fsg">FACILITY SOLUTIONS GROUP</div>
+      <div class="sub">Growth Organization &nbsp;·&nbsp; 2026</div>
+    </div>
+  </div>
+  <hr class="gold-rule">
+
+  <p class="mantra">"Get anywhere in Engage in three clicks or less."</p>
+  <div class="creed">
+    <div class="k">The Closer's Creed — No. 1</div>
+    <div class="q">&ldquo;You can't close what you can't find.&rdquo;</div>
+  </div>
+
+  <div class="callout">&#127909; <b>Missed it live? Watch the session:</b> <a href="https://drive.google.com/open?id=1p386OppfbOUfenkBaRlxmIqRciAWN7z6" target="_blank" rel="noopener">Engage Live — Episode 1, Mission Control (full recording)</a> — opens on Google Drive, stream it or download it.</div>
+
+  <h2>The 30-Second Race</h2>
+  <p>The session opened with a race: find a random <b>account</b>, a random <b>contact</b>, and an open <b>opportunity</b> — live, on the clock — in under 30 seconds. The challenge stands for every rep who watches the tape: <b>by the end of this page, you'll beat that time.</b> Not because you're faster at clicking — because you'll know where everything lives.</p>
+
+  <h2>The Dashboard Tour — Every Panel Feeds Your Number</h2>
+  <p>The dashboard isn't a splash screen — it's mission control. Every panel answers one question a closer asks daily:</p>
+  <div class="tile"><div class="badge">1</div><div class="body">
+    <h4>My Accounts — Your Book at a Glance</h4>
+    <p>What you see is what you own. Your book of business in one view — and if an account you work isn't in it, that's a <a href="my-accounts-request-assignment.html">Request Assignment</a> play, not a shrug.</p>
+  </div></div>
+  <div class="tile"><div class="badge">2</div><div class="body">
+    <h4>Tasks &amp; Follow-Ups — Today's At-Bats</h4>
+    <p>The heartbeat panel. Every open lead and opportunity carries a follow-up date, and this is where they line up each morning. An empty task panel doesn't mean you're done — it means nothing's dated.</p>
+  </div></div>
+  <div class="tile"><div class="badge">3</div><div class="body">
+    <h4>Pipeline &amp; Opportunities — The Scoreboard</h4>
+    <p>Open opportunities by stage, value, and close date — the number your forecast, your manager, and your commission all read from. Keep the fields real and this panel tells the truth.</p>
+  </div></div>
+  <div class="tile"><div class="badge gold">&#9733;</div><div class="body">
+    <h4>Customize It — Pin What You Touch Daily</h4>
+    <p>Your home view is yours. <b>Pin My Accounts and your open Tasks panel</b>; hide what you don't touch. Mission control only works when the instruments you need are in front of you.</p>
+  </div></div>
+
+  <h2>Find Anything — Global Search in Under 10 Seconds</h2>
+  <p>The search bar at the top of every screen reads across <b>people, leads, accounts, and opportunities</b> at once. The skill is knowing which swing to take:</p>
+  <table class="brand">
+    <tr><th>You're hunting</th><th>The move</th><th>Why it works</th></tr>
+    <tr><td>A record you can name</td><td>Type the exact name in global search</td><td>Exact match surfaces straight to the top — one click, you're in. Check <b>Top Matches</b>, not just the tab you're on.</td></tr>
+    <tr><td>A name you half-remember</td><td>Partial search, then the module's <b>Contains</b> filter</td><td>Partial match casts the wide net. In Accounts, filter the name column <b>both ways</b> — the paper prefix and the end-user name — so a misnamed record can't hide.</td></tr>
+    <tr><td>A person, not a company</td><td>Search the human, read every match type</td><td>People surface as leads <i>and</i> contacts. Finding which one they already are is the difference between a clean convert and a duplicate.</td></tr>
+    <tr><td>What's gone quiet</td><td>Sort a module by <b>Last Activity</b>, oldest first</td><td>Dormant accounts and aging leads are money sitting in plain sight — search is also how you re-open conversations.</td></tr>
+  </table>
+  <div class="whistle"><b>The rule.</b>&nbsp; Search before you create — always. Every duplicate account, twin contact, and split pipeline in the system started with somebody skipping a ten-second search.</div>
+
+  <h2>The Map — Where Everything Lives</h2>
+  <p>The left rail is the whole territory. Learn it once and the three-click promise holds everywhere:</p>
+  <p>
+    <span class="chip info">Dashboard — mission control</span>
+    <span class="chip info">Growth Hub — plays &amp; proof</span>
+    <span class="chip info">Task Manager — the day's list</span>
+    <span class="chip info">Leads — where deals enter</span>
+    <span class="chip info">Opportunities — money in motion</span>
+    <span class="chip info">Contacts — the people</span>
+    <span class="chip info">Accounts — the book</span>
+    <span class="chip info">Campaigns — the air game</span>
+    <span class="chip info">Commission — your scoreboard</span>
+    <span class="chip info">Reports — the film</span>
+  </p>
+  <div class="callout"><b>Three clicks or less:</b> rail &rarr; module &rarr; record. If you're ever four clicks deep and lost, stop — go back to search. The bar at the top is always one click away.</div>
+
+  <h2>Beat the Clock — The Mission Control Checklist</h2>
+  <p>Run it right now, in Engage, on the clock:</p>
+  <div class="check" id="mcCheck">
+    <div class="bar"><i id="checkBar"></i></div>
+    <div class="items">
+      <label><input type="checkbox"><span><b>Found an account in under 10 seconds</b> — global search, exact name.</span></label>
+      <label><input type="checkbox"><span><b>Found a contact in under 10 seconds</b> — and read whether they're also a lead.</span></label>
+      <label><input type="checkbox"><span><b>Found an open opportunity in under 10 seconds</b> — straight from Top Matches.</span></label>
+      <label><input type="checkbox"><span><b>Home view customized</b> — My Accounts and open Tasks pinned; clutter hidden.</span></label>
+      <label><input type="checkbox"><span><b>My Accounts reviewed</b> — the book scanned; anything missing flagged with Request Assignment.</span></label>
+      <label><input type="checkbox"><span><b>One dormant record surfaced</b> — sorted by Last Activity, oldest first, and one conversation re-opened.</span></label>
+    </div>
+    <div class="score" id="checkScore">0 of 6 — still on the launchpad</div>
+  </div>
+
+  <h2>Do / Don't</h2>
+  <div class="dd">
+    <div class="col do">
+      <h4>Do</h4>
+      <ul>
+        <li>Search Top Matches first — every record type, one query.</li>
+        <li>Pin My Accounts and Tasks to your home view and start every day there.</li>
+        <li>Run the Contains filter both ways when a name might be entered differently.</li>
+        <li>Use search to hunt dormant records — quiet accounts are found money.</li>
+        <li>Time yourself. Under ten seconds to any record is the standard.</li>
+      </ul>
+    </div>
+    <div class="col dont">
+      <h4>Don't</h4>
+      <ul>
+        <li>Create anything before you've searched for it. Ten seconds beats a duplicate forever.</li>
+        <li>Scroll a 78,000-row module looking for a record you could search in one line.</li>
+        <li>Live in one tab — a person can be a lead, a contact, or both.</li>
+        <li>Leave the default dashboard untouched. Stock instruments fly nobody's mission.</li>
+        <li>Bookmark your way around the app. The rail and the search bar are faster.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Play of the Week</h2>
+  <div class="callout"><b>The highlight reel:</b> a rep shows how they found a dormant account through search — and re-opened a conversation that turned into a live quote. Found money, ten seconds of typing.</div>
+
+  <h2>Your One Move</h2>
+  <div class="creed" style="margin:14px 0;">
+    <div class="k">Before the Next Episode</div>
+    <div class="q">Customize your dashboard home view — pin My Accounts and your open Tasks panel.</div>
+  </div>
+
+  <p style="margin-top:26px;"><b>Go deeper:</b> <a href="my-accounts-request-assignment.html">My Accounts + Request Assignment</a> (own your book) &nbsp;·&nbsp; <a href="opportunity-fields-that-matter.html">Opportunity Fields That Matter</a> (what the pipeline panel reads from) &nbsp;·&nbsp; <a href="the-hunt.html">The Hunt — Leads &amp; the 5-Star Test</a> (Episode 5 — where found leads go next)</p>
+
+  <div class="vc">
+    <h3>Version Control</h3>
+    <table class="vc-table">
+      <tr><th>Version</th><th>Date</th><th>Owner</th><th>Change Summary</th></tr>
+      <tr><td>1.0</td><td>September 25, 2026</td><td>Bobby Graham — Growth</td><td>Companion page to Engage Live Season 1, Episode 1 — built from the session; full recording linked above.</td></tr>
+    </table>
+  </div>
+
+  <footer>FSG Engage &nbsp;|&nbsp; Internal Enablement</footer>
+</div>
+
+<script>
+(function(){
+  var boxEls = document.querySelectorAll('#mcCheck input');
+  var bar = document.getElementById('checkBar'), score = document.getElementById('checkScore');
+  var msgs = { 0:'still on the launchpad', 2:'systems coming online', 4:'instruments pinned', 5:'one door left', 6:'MISSION CONTROL — YOU BEAT THE CLOCK ✓' };
+  function tally(){
+    var n = 0;
+    boxEls.forEach(function(cb){ cb.closest('label').classList.toggle('done', cb.checked); if(cb.checked) n++; });
+    bar.style.width = (n / boxEls.length * 100) + '%';
+    var m = msgs[n] || (n < 4 ? 'systems coming online' : 'instruments pinned');
+    score.textContent = n + ' of ' + boxEls.length + ' — ' + m;
+    score.style.color = (n === boxEls.length) ? 'var(--fsg-green)' : 'var(--fsg-dark-navy)';
+  }
+  boxEls.forEach(function(cb){ cb.addEventListener('change', tally); });
+})();
+</script>
+</body>
+</html>
