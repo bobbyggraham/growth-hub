@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5-Star Leads — Sales Training Deck</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='115' fill='%23133865'/><g stroke='%23c5d9fa' stroke-width='22' stroke-linecap='round'><line x1='256' y1='256' x2='256' y2='96'/><line x1='256' y1='256' x2='394.6' y2='176'/><line x1='256' y1='256' x2='394.6' y2='336'/><line x1='256' y1='256' x2='256' y2='416'/><line x1='256' y1='256' x2='117.4' y2='336'/><line x1='256' y1='256' x2='117.4' y2='176'/></g><circle cx='256' cy='96' r='42' fill='%23ffffff'/><circle cx='394.6' cy='176' r='42' fill='%23c5d9fa'/><circle cx='394.6' cy='336' r='42' fill='%23ffffff'/><circle cx='256' cy='416' r='42' fill='%23c5d9fa'/><circle cx='117.4' cy='336' r='42' fill='%23ffffff'/><circle cx='117.4' cy='176' r='42' fill='%23ebb018'/><circle cx='256' cy='256' r='76' fill='%23ebb018'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg:#0b1421; --surface:#15253f; --surface2:#1c3050; --border:#1e3558;
+  --accent:#ebb018; --accent-glow:rgba(235,176,24,0.12);
+  --text:#F2EEE9; --text-muted:#718dbc; --text-subtle:#3a4d6e;
+  --font-head:'Oswald','Arial Black',sans-serif;
+  --font-body:'Open Sans',Arial,Helvetica,sans-serif;
+}
+html,body{width:100%;height:100%;background:var(--bg);font-family:var(--font-body);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;}
+#deck{width:100vw;height:100vh;position:relative;overflow:hidden;}
+.slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:6vh 8vw;opacity:0;transform:translateY(20px);transition:opacity .38s cubic-bezier(.4,0,.2,1),transform .38s cubic-bezier(.4,0,.2,1);pointer-events:none;z-index:1;}
+.slide.active{opacity:1;transform:translateY(0);pointer-events:all;z-index:2;}
+.slide.out{opacity:0;transform:translateY(-20px);}
+#counter{position:fixed;top:28px;right:72px;font-size:12px;font-weight:500;letter-spacing:.06em;color:var(--text-subtle);z-index:100;}
+#counter b{color:var(--text-muted);font-weight:600;}
+#nav-dots{position:fixed;right:26px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:7px;z-index:100;}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--text-subtle);cursor:pointer;transition:background .2s,transform .2s;}
+.dot:hover{background:var(--text-muted);}
+.dot.on{background:var(--accent);transform:scale(1.35);}
+#hint{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:11px;color:var(--text-subtle);letter-spacing:.07em;z-index:100;user-select:none;}
+.glow{position:fixed;border-radius:50%;filter:blur(130px);pointer-events:none;z-index:0;}
+.glow-a{width:700px;height:700px;background:rgba(235,176,24,.035);top:-250px;right:-200px;}
+.glow-b{width:500px;height:500px;background:rgba(54,90,160,.08);bottom:-200px;left:-150px;}
+.eyebrow{font-family:var(--font-head);font-size:clamp(9px,1vw,12px);font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;}
+.hl{color:var(--accent);font-style:normal;}
+.l-statement{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:860px;}
+.l-statement .big{font-family:var(--font-head);font-size:clamp(52px,8.5vw,108px);font-weight:700;line-height:1.0;letter-spacing:-2px;margin-bottom:28px;}
+.l-statement .sub{font-size:clamp(15px,1.7vw,22px);font-style:italic;color:var(--text-muted);line-height:1.6;margin-bottom:32px;max-width:640px;}
+.rule{width:44px;height:2px;background:var(--accent);margin:0 auto 28px;}
+.byline{font-size:clamp(10px,1vw,12px);font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--text-subtle);}
+.l-section{display:flex;flex-direction:column;align-items:flex-start;width:100%;max-width:1060px;}
+.l-section .big{font-family:var(--font-head);font-size:clamp(36px,5.8vw,72px);font-weight:700;line-height:1.06;letter-spacing:-1.5px;margin-bottom:36px;}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px 26px;}
+.card.hi{border-color:var(--accent);box-shadow:inset 0 0 50px var(--accent-glow);}
+.c-label{font-family:var(--font-head);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+.c-title{font-size:clamp(14px,1.6vw,18px);font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.25;}
+.c-body{font-size:clamp(11px,1.2vw,14px);color:var(--text-muted);line-height:1.55;}
+.l-split{display:grid;grid-template-columns:1fr 1fr;gap:64px;max-width:1060px;width:100%;align-items:center;}
+.l-split .big{font-family:var(--font-head);font-size:clamp(34px,5vw,62px);font-weight:700;line-height:1.06;letter-spacing:-1px;margin-bottom:18px;}
+.l-split .desc{font-size:clamp(13px,1.45vw,17px);color:var(--text-muted);line-height:1.65;}
+.feat-list{display:flex;flex-direction:column;gap:10px;}
+.feat{display:flex;align-items:flex-start;gap:14px;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:10px;}
+.fdot{width:7px;height:7px;border-radius:50%;background:var(--accent);margin-top:5px;flex-shrink:0;}
+.fstar{color:var(--accent);font-size:clamp(13px,1.4vw,16px);line-height:1.25;flex-shrink:0;margin-top:1px;white-space:nowrap;width:92px;letter-spacing:1px;}
+.stars{color:var(--accent);font-size:clamp(22px,2.6vw,34px);letter-spacing:.18em;margin:6px 0 22px;}
+.ft{font-size:clamp(13px,1.4vw,16px);font-weight:600;color:var(--text);line-height:1.35;}
+.fs{font-size:clamp(10px,1.1vw,13px);color:var(--text-muted);margin-top:3px;line-height:1.4;}
+</style>
+</head>
+<body>
+
+<!-- ============ GROWTH HUB GATE ============ -->
+<style>
+  html.gh-locked > body > :not(#ghGate){display:none !important;}
+  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
+  html:not(.gh-locked) #ghGate{display:none;}
+  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
+  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
+  #ghGate .gh-brand svg{width:30px;height:30px;}
+  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
+  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
+  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;}
+  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
+  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
+  #ghGate input:focus{border-color:#4e84de;}
+  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
+  #ghGate button:hover{filter:brightness(1.06);}
+  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
+  #ghGate .gh-shake{animation:ghshake .3s;}
+  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+<div id="ghGate">
+  <div class="gh-wrap">
+    <div class="gh-brand">
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#c5d9fa" stroke-width="14" stroke-linecap="round" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g><circle cx="150" cy="50" r="26" fill="#ffffff"/><circle cx="236.6" cy="100" r="26" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="26" fill="#ffffff"/><circle cx="150" cy="250" r="26" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="26" fill="#ffffff"/><circle cx="63.4" cy="100" r="26" fill="#c5d9fa"/><circle cx="150" cy="150" r="44" fill="#ebb018"/></svg>
+      <span>Growth Hub</span>
+    </div>
+    <div class="gh-card">
+      <h2>Passcode</h2>
+      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
+      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
+      <button id="ghGo" type="button">Enter the Hub</button>
+      <div class="gh-err" id="ghErr"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
+  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+  if(!unlocked()) document.documentElement.classList.add('gh-locked');
+  function open(){ document.documentElement.classList.remove('gh-locked'); }
+  async function check(){
+    var v=document.getElementById('ghPass').value;
+    var ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        ok=(hex===HASH);
+      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
+    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
+    if(ok){ remember(); open(); }
+    else{
+      var card=document.querySelector('#ghGate .gh-card');
+      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
+      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
+      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    if(unlocked()) return;
+    document.getElementById('ghGo').addEventListener('click', check);
+    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
+  });
+})();
+</script>
+<!-- ============ /GROWTH HUB GATE ============ -->
+
+<div id="deck">
+  <div class="glow glow-a"></div>
+  <div class="glow glow-b"></div>
+  <div id="counter"><b>01</b> / 1</div>
+  <div id="nav-dots"></div>
+  <div id="hint">left/right arrows to navigate, F for fullscreen</div>
+
+  <!-- 1. TITLE -->
+  <div class="slide active">
+    <div class="l-statement">
+      <div class="eyebrow">Sales Playbook</div>
+      <h1 class="big">5-Star <em class="hl">Leads</em></h1>
+      <p class="sub">&ldquo;Every lead is a door. Learn to open them fast.&rdquo; &mdash; and remember: base hits win championships.</p>
+      <div class="rule"></div>
+      <div class="byline">Bobby Graham &nbsp;&middot;&nbsp; CGO, FSG</div>
+    </div>
+  </div>
+
+  <!-- 2. WHY -->
+  <div class="slide">
+    <div class="l-split">
+      <div>
+        <div class="eyebrow">Part 1 &middot; Why</div>
+        <h2 class="big">Leads Are <em class="hl">SH*T</em></h2>
+        <p class="desc">There — somebody had to say it. Time is the one thing you can't add to the pipeline. The wrong leads quietly drain it. The right ones become relationships that transform the business.</p>
+      </div>
+      <div class="feat-list">
+        <div class="feat"><div class="fdot"></div><div><div class="ft">Most leads stall</div><div class="fs">Endless follow-up, no real intent to move.</div></div></div>
+        <div class="feat"><div class="fdot"></div><div><div class="ft">A few transform the business</div><div class="fs">Clear demand, clear timing, ready to partner.</div></div></div>
+        <div class="feat"><div class="fdot"></div><div><div class="ft">Know the difference fast</div><div class="fs">The skill isn't working every lead harder — it's telling them apart in sixty seconds.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. WHY — it's not about volume -->
+  <div class="slide">
+    <div class="l-split">
+      <div>
+        <div class="eyebrow">Part 1 &middot; Why</div>
+        <h2 class="big">It's Not About<br><em class="hl">1,000 Leads</em></h2>
+        <p class="desc">It's about the person on the other end of one. A lead is a contact — a relationship being nurtured — whether it's a brand-new engagement or an account we've served for years, new business or repeat. Relationships are built one way:</p>
+      </div>
+      <div class="feat-list">
+        <div class="feat"><div class="fdot"></div><div><div class="ft">The Collaboration</div><div class="fs">Every note, every reply, every promise kept — a working partnership, on the record.</div></div></div>
+        <div class="feat"><div class="fdot"></div><div><div class="ft">The Nurture</div><div class="fs">Follow-up is the heartbeat — consistency and intuition, not skill. You do it for <b>them</b>.</div></div></div>
+        <div class="feat"><div class="fdot"></div><div><div class="ft">The Enrichment</div><div class="fs">AI + ZoomInfo fill the record so your energy goes to the human, not the data entry.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. WHY — StoryBrand: they're the hero -->
+  <div class="slide">
+    <div class="l-section">
+      <div class="eyebrow">Part 1 &middot; Why &nbsp;&mdash;&nbsp; The Story We're In</div>
+      <h2 class="big">They're the Hero.<br>We're the <em class="hl">Guide</em>.</h2>
+      <div class="grid">
+        <div class="card hi">
+          <div class="c-label">The Hero</div>
+          <div class="c-title">The Customer</div>
+          <div class="c-body">A facility leader with a job on the line and a building that has to perform. The story is theirs — not ours.</div>
+        </div>
+        <div class="card">
+          <div class="c-label">The Villain</div>
+          <div class="c-title">The Pain</div>
+          <div class="c-body">Failing gear, dark lots, blown budgets, deadlines that don't move. Feel it with them — empathy is the first at-bat.</div>
+        </div>
+        <div class="card">
+          <div class="c-label">The Guide</div>
+          <div class="c-title">FSG</div>
+          <div class="c-body">We've walked this field before. Solutions, proof, and a plan — authority without the ego.</div>
+        </div>
+        <div class="card">
+          <div class="c-label">The Path to Success</div>
+          <div class="c-title">Their Championship</div>
+          <div class="c-body">We bring the solutions and guide them, base hit by base hit, to their championship game — their win, their trophy.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. WHAT -->
+  <div class="slide">
+    <div class="l-statement">
+      <div class="eyebrow">Part 2 &middot; What</div>
+      <h1 class="big">The 5-Star <em class="hl">Test</em></h1>
+      <p class="sub">Five signals that separate a lead worth everything from a lead worth a polite follow-up. Check all five and you're not selling anymore — you're partnering.</p>
+      <div class="rule"></div>
+    </div>
+  </div>
+
+  <!-- 6. WHAT — the five signals -->
+  <div class="slide">
+    <div class="l-split">
+      <div>
+        <div class="eyebrow">Part 2 &middot; What</div>
+        <h2 class="big">The Five<br><em class="hl">Signals</em></h2>
+        <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+        <p class="desc">Score every lead against the list — sixty seconds. The stars measure the relationship and the moment, not where it started.</p>
+      </div>
+      <div class="feat-list">
+        <div class="feat"><div class="fstar">&#9733;</div><div><div class="ft">Willing to engage</div><div class="fs">They lean in. The conversation moves both ways.</div></div></div>
+        <div class="feat"><div class="fstar">&#9733;&#9733;</div><div><div class="ft">Friendly and collaborative</div><div class="fs">A working partner, not a gatekeeper.</div></div></div>
+        <div class="feat"><div class="fstar">&#9733;&#9733;&#9733;</div><div><div class="ft">Knows what they want</div><div class="fs">Clear scope. You're solving, not guessing.</div></div></div>
+        <div class="feat"><div class="fstar">&#9733;&#9733;&#9733;&#9733;</div><div><div class="ft">Knows when they want it</div><div class="fs">Real timeline, real urgency, real budget.</div></div></div>
+        <div class="feat"><div class="fstar">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div><div class="ft">Knows they want it from YOU</div><div class="fs">FSG is the choice — not one of five bids.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. HOW — run it in Engage -->
+  <div class="slide">
+    <div class="l-split">
+      <div>
+        <div class="eyebrow">Part 3 &middot; How</div>
+        <h2 class="big">Run It in Engage<br><em class="hl">Today</em></h2>
+        <p class="desc">No new fields. No admin ticket. Every star already lives on the lead record — and the Follow-Up date isn't a star, it's your <b>heartbeat</b>: the cadence that measures you, not the lead.</p>
+      </div>
+      <div class="feat-list">
+        <div class="feat"><div class="fstar">&#9733;</div><div><div class="ft">The whole card</div><div class="fs">Name, email, phone, company, role — captured, not typed.</div></div></div>
+        <div class="feat"><div class="fstar">&#9733;&#9733;</div><div><div class="ft">Notes + AI Enrichment</div><div class="fs">The thread on the record; ZoomInfo fills the gaps; the AI Brief writes your next steps.</div></div></div>
+        <div class="feat"><div class="fstar">&#9733;&#9733;&#9733;</div><div><div class="ft">Primary Interest</div><div class="fs">Keyed to business line + product — in the customer's own words.</div></div></div>
+        <div class="feat"><div class="fstar">&#9733;&#9733;&#9733;&#9733;</div><div><div class="ft">Purchase Time Frame</div><div class="fs">A short window sends the lead to the top of your list.</div></div></div>
+        <div class="feat"><div class="fstar">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div><div class="ft">Clear call to action &rarr; Convert</div><div class="fs">Same day. Existing relationship? Merge and enrich — never duplicate.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. HOW — base hits -->
+  <div class="slide">
+    <div class="l-split">
+      <div>
+        <div class="eyebrow">Part 3 &middot; How</div>
+        <h2 class="big">Base Hits Win<br><em class="hl">Championships</em></h2>
+        <p class="desc">You don't clear a queue swinging for home runs. You string singles — every day, every lead, no exceptions. That's the whole hunt.</p>
+      </div>
+      <div class="feat-list">
+        <div class="feat"><div class="fdot"></div><div><div class="ft">Touch every new lead inside 24 hours</div><div class="fs">Speed-to-lead: the first voice they hear usually wins.</div></div></div>
+        <div class="feat"><div class="fdot"></div><div><div class="ft">Score it in sixty seconds</div><div class="fs">The five stars decide who gets your afternoon.</div></div></div>
+        <div class="feat"><div class="fdot"></div><div><div class="ft">One move per lead</div><div class="fs">Aimed at one missing star — logged as the next action.</div></div></div>
+        <div class="feat"><div class="fdot"></div><div><div class="ft">Three exits, no fourth door</div><div class="fs">Every lead leaves the queue converted, disqualified with a reason, or dated. Nothing rots.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. WHAT IF -->
+  <div class="slide">
+    <div class="l-split">
+      <div>
+        <div class="eyebrow">Part 4 &middot; What If</div>
+        <h2 class="big">Not Five Stars?<br><em class="hl">You Know the Work</em></h2>
+        <p class="desc">The score never tells you whether to care — it tells you what to do next. Each missing star has a move. Run one per touch, and guide the hero forward.</p>
+      </div>
+      <div class="feat-list">
+        <div class="feat"><div class="fstar">&#9733;</div><div><div class="ft">Earn the reply</div><div class="fs">Lead with value. First hour, not first week.</div></div></div>
+        <div class="feat"><div class="fstar">&#9733;&#9733;</div><div><div class="ft">Build the champion</div><div class="fs">Give before you ask. Bring proof from their world.</div></div></div>
+        <div class="feat"><div class="fstar">&#9733;&#9733;&#9733;</div><div><div class="ft">Walk the site</div><div class="fs">Put scope and product language on their pain.</div></div></div>
+        <div class="feat"><div class="fstar">&#9733;&#9733;&#9733;&#9733;</div><div><div class="ft">Create the timeline</div><div class="fs">Budget cycle, trigger event, the cost of waiting.</div></div></div>
+        <div class="feat"><div class="fstar">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div><div class="ft">Be the only safe choice</div><div class="fs">Same-cell proof, references, the FSG story.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. NOW / NEXT -->
+  <div class="slide">
+    <div class="l-statement">
+      <div class="eyebrow">Your One Move</div>
+      <h1 class="big">Clear Your<br><em class="hl">Queue</em></h1>
+      <p class="sub">This week: every lead converted, disqualified, or a next action logged. A lead only goes cold if you let it.</p>
+      <div class="rule"></div>
+      <div class="byline">Bobby Graham &nbsp;&middot;&nbsp; CGO, FSG</div>
+    </div>
+  </div>
+
+</div>
+<script>
+(function(){
+  const slides=Array.from(document.querySelectorAll('.slide'));
+  const total=slides.length;
+  let cur=0;
+  const dotsEl=document.getElementById('nav-dots');
+  slides.forEach((_,i)=>{const d=document.createElement('div');d.className='dot'+(i===0?' on':'');d.addEventListener('click',()=>go(i));dotsEl.appendChild(d);});
+  function updateUI(){const n=String(cur+1).padStart(2,'0');document.getElementById('counter').innerHTML='<b>'+n+'</b> / '+total;dotsEl.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('on',i===cur));}
+  function go(n){if(n===cur)return;slides[cur].classList.add('out');slides[cur].classList.remove('active');setTimeout(()=>slides[n].classList.remove('out'),380);cur=Math.max(0,Math.min(total-1,n));slides[cur].classList.add('active');updateUI();}
+  function next(){if(cur<total-1)go(cur+1);}
+  function prev(){if(cur>0)go(cur-1);}
+  document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')next();if(e.key==='ArrowLeft'||e.key==='ArrowUp')prev();if(e.key==='f'||e.key==='F')document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();});
+  let tx=0;document.addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});document.addEventListener('touchend',e=>{const dx=tx-e.changedTouches[0].clientX;if(Math.abs(dx)>40)dx>0?next():prev();},{passive:true});
+  updateUI();
+})();
+</script>
+</body>
+</html>
