@@ -335,6 +335,21 @@
 var LIBRARY = [
   /* ---- ADD-NEW: next drop goes here, on top ---- */
 
+  { file: "engage/five-star-leads-deck.html",
+    title: "5-Star Leads — Sales Training Deck",
+    pill: "Sales Training · Deck", cat: "engage guide", date: "Sep 25",
+    gold: true,
+    desc: "The standalone 5-Star Leads training deck, full-screen: Leads are SH*T, it's not about 1,000 leads — it's the collaboration, nurture, and enrichment you do for THEM. They're the hero, we're the guide; the 5-Star test, the Engage fields, and base hits win championships. Arrow keys to present.",
+    tags: "5-star leads deck slides presentation sales training five star test hero guide storybrand base hits championships collaboration nurture enrichment leads are shit willing to engage present fullscreen standalone" },
+
+  { file: "engage/the-hunt.html",
+    ep: 5,
+    title: "The Hunt — Leads & the 5-Star Test",
+    pill: "Engage Live · Ep 5", cat: "live engage", date: "Sep 24",
+    gold: true,
+    desc: "Now we're talking about selling. Why most leads waste your time, the AI-powered capture that makes logging free, and the 5-Star Lead test — engage, collaborate, what, when, and from YOU — with an interactive lead rater, the star-by-star map to today's Engage fields, and the 10-minute daily queue hygiene.",
+    tags: "the hunt leads episode 5 five star 5-star lead qualify qualification disqualify convert speed to lead lead aging report queue hygiene willing to engage friendly collaborative knows what they want knows when from you rate the lead nurture next action follow-up primary interest lead rating hot warm cold views organize queue five star board workbench going gray coach 4mat why what how what if how do i qualify a lead" },
+
   { file: "../resources/start-again-today.html",
     title: "Start Again Today",
     pill: "Personal Development", cat: "hub", date: "Sep 23",
@@ -357,6 +372,7 @@ var LIBRARY = [
     tags: "commission statement commissions comm earned wip paid due contested salary approval contest ngp cx rate basis account class ba ea ma invoice sale period payroll paycheck when do i get paid review window deadline auto approve how do i read my commission statement" },
 
   { file: "engage/built-right-the-first-time.html",
+    ep: 4,
     title: "Built Right the First Time — Account Setup",
     pill: "Engage Live · Ep 4", cat: "live engage", date: "Sep 17",
     gold: true,
@@ -383,10 +399,25 @@ var LIBRARY = [
     tags: "account plan build an account plan target account intake research planning pursuit strategy one pager prep" },
 
   { file: "engage/film-room-sunbelt-game-film.html",
+    ep: 3,
     title: "The Film Room — Sunbelt Game Film",
     pill: "Engage Live · Ep 3", cat: "live engage", date: "Sep 11",
-    desc: "Episode 3's tape: a full account review on Sunbelt Rentals, frame by frame — opportunities, contacts, A/R, master rep & site assignments, then business-card capture, Enrich, AI Brief, and a clean lead-to-account conversion.",
-    tags: "film room game film sunbelt account review episode 3 opportunities contacts ar status master rep site assignments click to assign lead convert business card scan enrich zoominfo ai brief duplicate" },
+    desc: "Episode 3's tape: a full account review on Sunbelt Rentals, frame by frame — opportunities, contacts, A/R, master rep & site assignments, then business-card capture, Enrich, AI Brief, and a clean lead-to-account conversion. Session video linked inside.",
+    tags: "film room game film sunbelt account review episode 3 opportunities contacts ar status master rep site assignments click to assign lead convert business card scan enrich zoominfo ai brief duplicate video recording watch" },
+
+  { file: "https://drive.google.com/open?id=1EeT0QY7zz3SYZwhqeztbBuhSMN2yFmMs",
+    ep: 2,
+    title: "Know Your Territory — Session Video",
+    pill: "Engage Live · Ep 2", cat: "live", date: "🎥 Video",
+    desc: "The Episode 2 recording: Accounts — reading your territory in Engage before you work it. Opens on Google Drive — watch it there or download it.",
+    tags: "know your territory episode 2 accounts session video recording watch download drive engage live" },
+
+  { file: "https://drive.google.com/open?id=1p386OppfbOUfenkBaRlxmIqRciAWN7z6",
+    ep: 1,
+    title: "Mission Control — Session Video",
+    pill: "Engage Live · Ep 1", cat: "live", date: "🎥 Video",
+    desc: "Where the series starts — the Episode 1 recording: Dashboard, Navigation & Find. Opens on Google Drive — watch it there or download it.",
+    tags: "mission control episode 1 dashboard navigation find session video recording watch download drive engage live" },
 
   { file: "../resources/using-the-hub.html",
     title: "How To Run The Hub",
@@ -451,6 +482,7 @@ var LIBRARY = [
 
   function card(p) {
     return '<a class="gcard" href="' + esc(p.file) + '"'
+      + (p.ep ? ' data-ep="' + p.ep + '"' : '')
       + ' data-cat="' + esc(p.cat || '') + '"'
       + ' data-tags="' + esc((p.tags||'') + ' ' + p.title + ' ' + p.desc).toLowerCase() + '">'
       + '<span class="top"><span class="pill' + (p.gold ? ' gold' : '') + '">' + esc(p.pill || 'Play') + '</span>'
@@ -472,6 +504,8 @@ var LIBRARY = [
       var qHit = !q || cards[i].dataset.tags.indexOf(q) > -1;
       var hit = catHit && qHit;
       cards[i].style.display = hit ? 'flex' : 'none';
+      /* Engage Live chip: episodes land in order 1 -> 5; everything else keeps newest-first */
+      cards[i].style.order = (activeCat === 'live') ? (cards[i].dataset.ep || 99) : '';
       if (hit) shown++;
     }
     empty.style.display = shown ? 'none' : 'block';
