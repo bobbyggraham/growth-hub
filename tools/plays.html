@@ -175,6 +175,7 @@
     color: var(--fsg-dark-navy); line-height:1.25; margin-bottom:5px;
   }
   .gcard p { font-size:13px; color:#4a5568; flex-grow:1; margin:0; }
+  .gcard .vid { display:block; margin-top:10px; font-size:12px; font-weight:700; color: var(--fsg-deep-navy); background: rgba(235,176,24,.18); border-left: 3px solid var(--fsg-gold); border-radius: 0 4px 4px 0; padding: 6px 10px; }
   .gcard .cta {
     margin-top:10px; font-size:12px; font-weight:700; letter-spacing:.5px;
     text-transform:uppercase; color: var(--fsg-brand-blue);
@@ -346,6 +347,7 @@ var LIBRARY = [
     ep: 5,
     title: "The Hunt — Leads & the 5-Star Test",
     pill: "Engage Live · Ep 5", cat: "live engage", date: "Sep 24",
+    video: true,
     gold: true,
     desc: "Now we're talking about selling. Why most leads waste your time, the AI-powered capture that makes logging free, and the 5-Star Lead test — engage, collaborate, what, when, and from YOU — with an interactive lead rater, the star-by-star map to today's Engage fields, and the 10-minute daily queue hygiene.",
     tags: "the hunt leads episode 5 five star 5-star lead qualify qualification disqualify convert speed to lead lead aging report queue hygiene willing to engage friendly collaborative knows what they want knows when from you rate the lead nurture next action follow-up primary interest lead rating hot warm cold views organize queue five star board workbench going gray coach 4mat why what how what if how do i qualify a lead" },
@@ -375,6 +377,7 @@ var LIBRARY = [
     ep: 4,
     title: "Built Right the First Time — Account Setup",
     pill: "Engage Live · Ep 4", cat: "live engage", date: "Sep 17",
+    video: true,
     gold: true,
     desc: "This week's run-scoring double: account setup. Search first, then Lead → Enrich → Convert — naming to standard, the fields that matter, hierarchy, and the duplicate screen that keeps you from getting picked off. Run live on a real C&W RFP.",
     tags: "built right the first time account setup episode 4 naming convention c&w cbre jll lead convert enrich duplicate account class ba ea ma hierarchy required fields new account how do i create an account" },
@@ -402,6 +405,7 @@ var LIBRARY = [
     ep: 3,
     title: "The Film Room — Sunbelt Game Film",
     pill: "Engage Live · Ep 3", cat: "live engage", date: "Sep 11",
+    video: true,
     desc: "Episode 3's tape: a full account review on Sunbelt Rentals, frame by frame — opportunities, contacts, A/R, master rep & site assignments, then business-card capture, Enrich, AI Brief, and a clean lead-to-account conversion. Session video linked inside.",
     tags: "film room game film sunbelt account review episode 3 opportunities contacts ar status master rep site assignments click to assign lead convert business card scan enrich zoominfo ai brief duplicate video recording watch" },
 
@@ -416,6 +420,7 @@ var LIBRARY = [
     ep: 1,
     title: "Mission Control — Dashboard, Navigation & Find",
     pill: "Engage Live · Ep 1", cat: "live engage", date: "Sep 25",
+    video: true,
     desc: "Where the series starts: the dashboard tour, global search in under 10 seconds, the navigation map, and pinning your home view — get anywhere in Engage in three clicks or less. Session video linked inside.",
     tags: "mission control episode 1 dashboard navigation find global search top matches my accounts pin home view three clicks dormant account session video recording watch how do i find" },
 
@@ -489,6 +494,7 @@ var LIBRARY = [
       + '<span class="date">' + esc(p.date || '2026') + '</span></span>'
       + '<h3>' + esc(p.title) + '</h3>'
       + '<p>' + esc(p.desc) + '</p>'
+      + (p.video ? '<span class="vid">&#127909; Session video inside &mdash; hit the Watch button at the top of the page</span>' : '')
       + '<span class="cta">Open</span>'
       + '</a>';
   }
