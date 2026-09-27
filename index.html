@@ -1071,6 +1071,12 @@
     <p class="section-sub">Battle cards, calculators, templates, training, and FSG App FAQs — plus the resources that sharpen the person. What you need in the 30 seconds before you answer the hard question.</p>
     <hr class="section-rule">
 
+    <!-- ---- Growth in Motion (assets/motion.js) ----
+         Gold "This Week" spotlight shows always; the full card set lives behind
+         the Development chip only, the same way proof cards live behind Results. -->
+    <div id="ghMotionFeature"></div>
+    <div class="grid" id="ghMotionGrid" style="margin-bottom:30px;"></div>
+
     <!-- ---- Sharpen the Pro (in-deal tools) ---- -->
     <div class="section-kicker">In-Deal Support · Training</div>
     <h2 class="section-title" style="font-size:21px;">Sales Tools</h2>
@@ -1248,6 +1254,7 @@
 </footer>
 
 <script src="assets/proofs.js"></script>
+<script src="assets/motion.js"></script>
 
 <!-- ============ INTAKE MODAL ============ -->
 <div class="modal-overlay" id="intakeOverlay">
@@ -1384,8 +1391,9 @@
       // Results live behind their own chip. There are a lot of proof cards and they'd
       // bury everything else under All — so All hides them, the Results chip shows them,
       // and a search still surfaces them because typing a client name is explicit intent.
+      // Growth in Motion cards (data-chip-only) follow the same rule behind the Development chip.
       const matchesFilter = activeFilter === 'all'
-        ? (section !== 'proof' || !!q)
+        ? ((section !== 'proof' && card.dataset.chipOnly !== 'true') || !!q)
         : section === activeFilter;
       const isAvailable = card.dataset.available === 'true';
 

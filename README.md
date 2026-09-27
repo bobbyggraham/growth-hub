@@ -22,7 +22,7 @@ tools/
   engage/             Engage Plays — walkthroughs for the CRM
   wire.html  wire/    The Wire — industry issues
   fsg-app-faq.html    Ask Engage
-assets/               proofs.js (Results data) and proof photos
+assets/               proofs.js (Results data), motion.js (Growth in Motion weekly cards), proof photos
 ```
 
 Two folders are named `plays` and they are different things. `/plays/` holds customer-facing vertical decks. `/tools/plays/` holds internal Growth Hub Plays. Do not merge them.
@@ -40,3 +40,7 @@ Three rules, each of which has broken the site before:
 Cards are self-revealing: drop a file at the path a card already points to and the card appears on its own. Chips hide themselves when nothing behind them is live.
 
 After any upload, mirror the same files into `Google Drive › Growth Hub › site/`. When the two drift, the next person to work from Drive ships the wrong version.
+
+## Growth in Motion
+
+Weekly motivation cards, built Sunday from Bobby's Wire label, reviewed Monday, posted here. All data lives in `assets/motion.js` — paste the approved week block under the `ADD NEW APPROVED WEEKS HERE` marker, newest first, and commit that one file. A week goes live on its Monday date on its own: the gold "This Week" spotlight at the top of Development rotates it, and every card sits behind the Development chip (hidden under All, like Results). People-first standard: cards sign "— Bobby" only, and downloaded wallpapers carry no name, title, or stamp.
