@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engage Plays — Know Your Territory</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='115' fill='%23133865'/><g stroke='%23c5d9fa' stroke-width='22' stroke-linecap='round'><line x1='256' y1='256' x2='256' y2='96'/><line x1='256' y1='256' x2='394.6' y2='176'/><line x1='256' y1='256' x2='394.6' y2='336'/><line x1='256' y1='256' x2='256' y2='416'/><line x1='256' y1='256' x2='117.4' y2='336'/><line x1='256' y1='256' x2='117.4' y2='176'/></g><circle cx='256' cy='96' r='42' fill='%23ffffff'/><circle cx='394.6' cy='176' r='42' fill='%23c5d9fa'/><circle cx='394.6' cy='336' r='42' fill='%23ffffff'/><circle cx='256' cy='416' r='42' fill='%23c5d9fa'/><circle cx='117.4' cy='336' r='42' fill='%23ffffff'/><circle cx='117.4' cy='176' r='42' fill='%23ebb018'/><circle cx='256' cy='256' r='76' fill='%23ebb018'/></svg>">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fsg-deep-navy: #0b1421;
+    --fsg-dark-navy: #133865;
+    --fsg-brand-blue: #365aa0;
+    --fsg-steel-blue: #718dbc;
+    --fsg-light-blue: #c5d9fa;
+    --fsg-light-gray: #ededed;
+    --fsg-gold: #ebb018;
+    --fsg-bright-blue: #4e84de;
+    --fsg-red: #c0392b;
+    --fsg-green: #1e8a4c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    color: var(--fsg-deep-navy);
+    background: #ffffff;
+    line-height: 1.55;
+    font-size: 16px;
+  }
+  .page { max-width: 960px; margin: 0 auto; padding: 32px 24px 48px; }
+
+  .hero {
+    background: var(--fsg-dark-navy);
+    border-radius: 8px;
+    padding: 28px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .hero .eyebrow { color: var(--fsg-light-blue); font-weight: 700; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+  .hero h1 { font-family: 'Oswald', Arial, sans-serif; font-weight: 700; font-size: 40px; color: #ffffff; line-height: 1.15; margin-bottom: 10px; }
+  .hero .subtitle { color: var(--fsg-light-blue); font-size: 14px; max-width: 560px; }
+  .hero .org { text-align: right; color: #fff; }
+  .hero .org .fsg { font-family: 'Oswald', Arial, sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 1px; }
+  .hero .org .sub { color: var(--fsg-steel-blue); font-size: 12px; margin-top: 4px; }
+  .gold-rule { border: none; border-top: 3px solid var(--fsg-gold); margin: 18px 0 28px; }
+
+  .creed { background: var(--fsg-dark-navy); border-radius: 8px; text-align: center; padding: 22px 24px; margin: 6px 0 8px; }
+  .creed .k { color: var(--fsg-gold); font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:13px; letter-spacing:3px; text-transform:uppercase; margin-bottom:6px; }
+  .creed .q { color:#fff; font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:26px; }
+  .mantra { text-align:center; color: var(--fsg-steel-blue); font-style: italic; margin: 14px 0 4px; }
+
+  h2 { font-family: 'Oswald', Arial, sans-serif; font-weight: 700; color: var(--fsg-dark-navy); font-size: 26px; margin: 38px 0 6px; padding-bottom: 6px; border-bottom: 2px solid var(--fsg-gold); }
+  p { margin: 12px 0; }
+  b { color: var(--fsg-deep-navy); }
+
+  .callout { background: var(--fsg-light-blue); border-left: 4px solid var(--fsg-gold); border-radius: 0 6px 6px 0; padding: 14px 20px; margin: 20px 0; color: var(--fsg-dark-navy); font-size: 15px; }
+  .whistle { background:#fdf0ee; border-left:4px solid var(--fsg-red); border-radius:0 6px 6px 0; padding:14px 20px; margin:20px 0; font-size:15px; }
+  .whistle b:first-child { color: var(--fsg-red); text-transform: uppercase; font-family:'Oswald',Arial,sans-serif; letter-spacing:1px; }
+
+  table.brand { width: 100%; border-collapse: collapse; font-size: 15px; margin: 16px 0; }
+  table.brand th { background: var(--fsg-dark-navy); color: #fff; text-align: left; padding: 10px 14px; font-weight: 700; }
+  table.brand td { padding: 10px 14px; vertical-align: top; }
+  table.brand tr:nth-child(even) td { background: var(--fsg-light-blue); }
+  table.brand td:first-child { font-weight: 700; white-space: nowrap; }
+
+  .tile { display:flex; align-items:stretch; background:var(--fsg-light-gray); border-radius:6px; overflow:hidden; margin:14px 0; }
+  .tile .badge { background:var(--fsg-dark-navy); color:#fff; font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:24px; display:flex; align-items:center; justify-content:center; min-width:64px; }
+  .tile .badge.gold { color: var(--fsg-gold); }
+  .tile .body { padding:14px 18px; }
+  .tile .body h4 { font-family:'Oswald',Arial,sans-serif; font-size:18px; color:var(--fsg-dark-navy); text-transform:uppercase; margin-bottom:4px; }
+  .tile .body p { margin:0; font-size:15px; }
+
+  .chip { display:inline-block; font-family:'Oswald',Arial,sans-serif; font-weight:600; font-size:12px; letter-spacing:1px; text-transform:uppercase; border-radius:999px; padding:3px 12px; margin:2px 4px 2px 0; }
+  .chip.info { background:var(--fsg-light-blue); color:var(--fsg-dark-navy); border:1px solid #a9c6ef; }
+
+  .check { border:1.5px solid var(--fsg-light-gray); border-radius:8px; overflow:hidden; margin:16px 0; }
+  .check .bar { background:var(--fsg-light-gray); height:10px; }
+  .check .bar i { display:block; height:100%; width:0; background:var(--fsg-gold); transition:width .25s; }
+  .check .items { padding:6px 0; }
+  .check label { display:flex; gap:12px; align-items:flex-start; padding:12px 18px; cursor:pointer; font-size:15px; border-bottom:1px solid #f2f2f2; }
+  .check label:last-child { border-bottom:none; }
+  .check input { margin-top:4px; width:18px; height:18px; accent-color:var(--fsg-gold); flex:none; }
+  .check label.done { color:var(--fsg-steel-blue); }
+  .check label.done b { color:var(--fsg-steel-blue); text-decoration:line-through; }
+  .check .score { padding:10px 18px 14px; font-family:'Oswald',Arial,sans-serif; font-weight:600; color:var(--fsg-dark-navy); font-size:14px; letter-spacing:1px; text-transform:uppercase; }
+
+  .dd { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:16px 0; }
+  .dd .col { border-radius:8px; padding:16px 18px; font-size:15px; }
+  .dd .do { background:#eef7f1; border-top:4px solid var(--fsg-green); }
+  .dd .dont { background:#fdf0ee; border-top:4px solid var(--fsg-red); }
+  .dd h4 { font-family:'Oswald',Arial,sans-serif; text-transform:uppercase; letter-spacing:1px; font-size:16px; margin-bottom:8px; }
+  .dd .do h4 { color:var(--fsg-green); } .dd .dont h4 { color:var(--fsg-red); }
+  .dd ul { margin-left:18px; } .dd li { margin-bottom:8px; }
+  @media (max-width:640px){ .dd { grid-template-columns:1fr; } .hero h1 { font-size:32px; } table.brand { display:block; overflow-x:auto; } table.brand td:first-child { white-space:normal; } }
+
+  .vc { margin-top: 40px; padding-top: 18px; border-top: 3px solid var(--fsg-gold); }
+  .vc h3 { font-family:'Oswald',Arial,sans-serif; color:var(--fsg-dark-navy); font-size:18px; margin-bottom:10px; }
+  table.vc-table { width:100%; border-collapse:collapse; font-size:14px; }
+  table.vc-table th { background:var(--fsg-dark-navy); color:#fff; text-align:left; padding:8px 12px; font-weight:700; }
+  table.vc-table td { padding:8px 12px; border:1px solid var(--fsg-light-gray); }
+
+  footer { text-align:center; color:var(--fsg-steel-blue); font-size:13px; margin-top:40px; }
+  a { color: var(--fsg-bright-blue); }
+</style>
+</head>
+<body>
+
+<!-- ============ GROWTH HUB GATE ============ -->
+<style>
+  html.gh-locked > body > :not(#ghGate){display:none !important;}
+  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
+  html:not(.gh-locked) #ghGate{display:none;}
+  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
+  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
+  #ghGate .gh-brand svg{width:30px;height:30px;}
+  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
+  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
+  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;}
+  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
+  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
+  #ghGate input:focus{border-color:#4e84de;}
+  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
+  #ghGate button:hover{filter:brightness(1.06);}
+  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
+  #ghGate .gh-shake{animation:ghshake .3s;}
+  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+<div id="ghGate">
+  <div class="gh-wrap">
+    <div class="gh-brand">
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#c5d9fa" stroke-width="14" stroke-linecap="round" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g><circle cx="150" cy="50" r="26" fill="#ffffff"/><circle cx="236.6" cy="100" r="26" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="26" fill="#ffffff"/><circle cx="150" cy="250" r="26" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="26" fill="#ffffff"/><circle cx="63.4" cy="100" r="26" fill="#c5d9fa"/><circle cx="150" cy="150" r="44" fill="#ebb018"/></svg>
+      <span>Growth Hub</span>
+    </div>
+    <div class="gh-card">
+      <h2>Passcode</h2>
+      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
+      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
+      <button id="ghGo" type="button">Enter the Hub</button>
+      <div class="gh-err" id="ghErr"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
+  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+  if(!unlocked()) document.documentElement.classList.add('gh-locked');
+  function open(){ document.documentElement.classList.remove('gh-locked'); }
+  async function check(){
+    var v=document.getElementById('ghPass').value;
+    var ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        ok=(hex===HASH);
+      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
+    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
+    if(ok){ remember(); open(); }
+    else{
+      var card=document.querySelector('#ghGate .gh-card');
+      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
+      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
+      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    if(unlocked()) return;
+    document.getElementById('ghGo').addEventListener('click', check);
+    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
+  });
+})();
+</script>
+<!-- ============ /GROWTH HUB GATE ============ -->
+
+<div style="max-width:960px;margin:0 auto;padding:18px 24px 0;"><a href="../../index.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">&larr; Growth Hub</a><span style="color:#c5d9fa;margin:0 8px;">|</span><a href="../plays.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">&larr; The Playbook</a><span style="color:#c5d9fa;margin:0 8px;">|</span><a href="../fsg-app-faq.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">&larr; FSG App FAQs</a></div>
+<div class="page">
+
+  <div class="hero">
+    <div>
+      <div class="eyebrow">Engage Plays &nbsp;·&nbsp; Season One &nbsp;·&nbsp; Episode 2 of 24</div>
+      <h1>Know Your Territory</h1>
+      <div class="subtitle">Accounts, end to end: the fields that matter, who owns what, how the hierarchy rolls up, and how to slice your territory into lists you can actually work. Account data drives everything downstream.</div>
+    </div>
+    <div class="org">
+      <div class="fsg">FACILITY SOLUTIONS GROUP</div>
+      <div class="sub">Growth Organization &nbsp;·&nbsp; 2026</div>
+    </div>
+  </div>
+  <hr class="gold-rule">
+
+  <p class="mantra">"Your book of business is your kingdom. Learn every corner of it."</p>
+  <div class="creed">
+    <div class="k">The Closer's Creed — No. 2</div>
+    <div class="q">&ldquo;The leads aren't weak. Weak account data is weak.&rdquo;</div>
+  </div>
+
+  <div class="callout">&#127909; <b>Missed it live?</b> The full session recording is saved in the Growth Hub Drive folder &mdash; anyone with the link can watch.<br><a href="https://drive.google.com/file/d/1DLv4t0hhFJbsBYy16-5hZ6mbBCV9vf_F/view" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;background:var(--fsg-dark-navy);color:#fff;font-family:'Oswald',Arial,sans-serif;font-weight:700;letter-spacing:1px;text-transform:uppercase;font-size:14px;padding:10px 20px;border-radius:6px;text-decoration:none;border-bottom:3px solid var(--fsg-gold);">&#9654;&nbsp; Watch Episode 2 &mdash; Know Your Territory</a><br><span style="display:inline-block;margin-top:8px;font-size:13px;opacity:.8;">Click the button &mdash; the video opens in Google Drive. Hit <b>play</b> to stream it, or use the download icon (top right) to save it.</span></div>
+
+  <h2>The Tale of Two Records</h2>
+  <p>The session opened with two account records side by side. Same company size, same sector, same market. One record: <b>every core field filled</b> — named to standard, owner assigned, hierarchy set, contacts linked, activity logged. The other: a name and a blank stare. Then the question that ran the whole episode: <b>which rep gets the callback? Which one wins the renewal?</b></p>
+  <p>You already know the answer. The record with the data is the record with the relationship — and the relationship is where the revenue is. <b>Data quality = revenue.</b> That's not a slogan; it's the mechanism this whole page walks through.</p>
+
+  <h2>Anatomy of an Account Record — The Fields That Feed Your Number</h2>
+  <p>Not every field is equal. These are the ones that drive reporting, rollups, and your commission:</p>
+  <div class="tile"><div class="badge">1</div><div class="body">
+    <h4>The Name — To Standard, Every Time</h4>
+    <p>A record nobody can find is a record nobody works. Name it to the FSG standard so search, reporting, and the duplicate screen all do their jobs — the full naming play runs in <a href="built-right-the-first-time.html">Built Right the First Time</a>.</p>
+  </div></div>
+  <div class="tile"><div class="badge">2</div><div class="body">
+    <h4>The Core Fields — What Reporting Reads</h4>
+    <p>Sector, address, phone, website, class. Every blank field is a report that can't see the account, a rollup that undercounts it, and a commission run that can't route it. Five minutes here saves five hours downstream.</p>
+  </div></div>
+  <div class="tile"><div class="badge">3</div><div class="body">
+    <h4>The Owner — Whose Kingdom Is It</h4>
+    <p>Ownership decides whose pipeline the account feeds and who reporting credits. If an account you work isn't in <b>My Accounts</b>, don't shrug — run the <a href="my-accounts-request-assignment.html">Request Assignment</a> play and make it official.</p>
+  </div></div>
+  <div class="tile"><div class="badge gold">&#9733;</div><div class="body">
+    <h4>The Class — BA / MA / EA</h4>
+    <p>Business, Market, or Enterprise — the class tells everyone how the account is covered and reviewed. Know where your accounts sit and what moves them: <a href="account-class-defined.html">Account Class Defined</a> is the two-minute read.</p>
+  </div></div>
+
+  <h2>The Hierarchy — Parents, Children &amp; Rollups</h2>
+  <p>National accounts aren't one record — they're a family. Get the family tree right and the reporting tells the truth at every level:</p>
+  <table class="brand">
+    <tr><th>Level</th><th>What it is</th><th>Why it matters</th></tr>
+    <tr><td>Parent</td><td>The national or corporate entity — think <b>JLL</b> or <b>CBRE</b> at the top</td><td>Where the relationship, the MSA, and the national numbers live. Leadership reads the account at this level.</td></tr>
+    <tr><td>Child</td><td>The location, region, or property under the parent</td><td>Where the work actually happens — the site your crew rolls to and your opportunity attaches to.</td></tr>
+    <tr><td>The rollup</td><td>Child activity summing to the parent</td><td>An opportunity parked on the wrong level, or a location floating outside the family, silently understates the whole relationship.</td></tr>
+  </table>
+  <div class="whistle"><b>The rule.</b>&nbsp; Attach the work where the work happens — the child — and let the rollup carry it to the parent. An orphan location is revenue the national story never gets credit for.</div>
+
+  <h2>Slice the Kingdom — Lists &amp; Filters</h2>
+  <p>A 78,000-row module is not a territory. A territory is a set of lists you actually work:</p>
+  <table class="brand">
+    <tr><th>The slice</th><th>The move</th><th>What it hands you</th></tr>
+    <tr><td>By sector</td><td>Filter your accounts on market sector</td><td>A call-block list that talks the same language all afternoon.</td></tr>
+    <tr><td>By size</td><td>Sort on revenue or location count</td><td>Where the whale accounts are — and which ones deserve an account plan.</td></tr>
+    <tr><td>By activity</td><td>Sort by <b>Last Activity</b>, oldest first</td><td>The quiet corners of the kingdom — dormant accounts are found money.</td></tr>
+    <tr><td>Your book</td><td>Pin <b>My Accounts</b> to the home view</td><td>The whole territory at a glance, every morning, zero clicks.</td></tr>
+  </table>
+
+  <h2>Link the People — Build the Org Map Inside the Record</h2>
+  <p>An account with no contacts is a building with no doors. Every contact linked to the account is a way in: the facilities manager who calls in the work, the procurement lead who signs it, the regional director who renews it. <b>Link every contact you meet to the account</b> — the org map you build inside the record is the map the next opportunity walks in on. And when a new name shows up in your inbox, remember Episode 1: search the person first — they may already be a lead <i>or</i> a contact.</p>
+
+  <h2>Walk Your Kingdom — The Territory Checklist</h2>
+  <p>Run it right now, in Engage, on your own book:</p>
+  <div class="check" id="kytCheck">
+    <div class="bar"><i id="checkBar"></i></div>
+    <div class="items">
+      <label><input type="checkbox"><span><b>My Accounts opened</b> — your book scanned end to end, no surprises.</span></label>
+      <label><input type="checkbox"><span><b>One record read like a scout</b> — every core field checked: name, sector, class, owner.</span></label>
+      <label><input type="checkbox"><span><b>Ownership confirmed</b> — anything you work but don't own flagged with Request Assignment.</span></label>
+      <label><input type="checkbox"><span><b>One hierarchy walked</b> — a parent opened, its children read, the rollup understood.</span></label>
+      <label><input type="checkbox"><span><b>One list built</b> — your territory sliced by sector, size, or last activity.</span></label>
+      <label><input type="checkbox"><span><b>One contact linked</b> — a person from your inbox tied to the account they belong to.</span></label>
+    </div>
+    <div class="score" id="checkScore">0 of 6 — the map is still blank</div>
+  </div>
+
+  <h2>Do / Don't</h2>
+  <div class="dd">
+    <div class="col do">
+      <h4>Do</h4>
+      <ul>
+        <li>Fill every core field the day you touch the account — five minutes, once.</li>
+        <li>Check the class (BA / MA / EA) and know what it means for coverage.</li>
+        <li>Attach opportunities at the child, and let the rollup tell the national story.</li>
+        <li>Work from lists — sector blocks, size sorts, last-activity sweeps.</li>
+        <li>Link every contact you meet. The org map is the account's real value.</li>
+      </ul>
+    </div>
+    <div class="col dont">
+      <h4>Don't</h4>
+      <ul>
+        <li>Work an account that isn't assigned to you — request it and make it count.</li>
+        <li>Leave a location floating outside its parent. Orphans break the rollup.</li>
+        <li>Trust a bare record. Blank fields hide accounts from every report that matters.</li>
+        <li>Treat the module as your territory. Unfiltered rows are noise, not a book.</li>
+        <li>Let a quiet account stay quiet — dormant is a list, and lists get worked.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Play of the Week</h2>
+  <div class="callout"><b>The highlight reel:</b> a rep walks through a fully-built account record — every field current, contacts linked, hierarchy set — and shows the moment the data spotted a <b>cross-sell into a second service line</b>. The record did the prospecting; the rep just read it.</div>
+
+  <h2>Your One Move</h2>
+  <div class="creed" style="margin:14px 0;">
+    <div class="k">Before the Next Episode</div>
+    <div class="q">Pick your top 5 accounts and complete every core field on each record this week.</div>
+  </div>
+
+  <p style="margin-top:26px;"><b>Go deeper:</b> <a href="built-right-the-first-time.html">Built Right the First Time</a> (Episode 4 — building the record from scratch) &nbsp;·&nbsp; <a href="account-class-defined.html">Account Class Defined</a> (BA / MA / EA, in plain English) &nbsp;·&nbsp; <a href="my-accounts-request-assignment.html">My Accounts + Request Assignment</a> (own your book, officially)</p>
+
+  <div class="vc">
+    <h3>Version Control</h3>
+    <table class="vc-table">
+      <tr><th>Version</th><th>Date</th><th>Owner</th><th>Change Summary</th></tr>
+      <tr><td>1.0</td><td>September 27, 2026</td><td>Bobby Graham — Growth</td><td>Companion page to Engage Live Season 1, Episode 2 — built from the session; full recording linked above.</td></tr>
+    </table>
+  </div>
+
+  <footer>FSG Engage &nbsp;|&nbsp; Internal Enablement</footer>
+</div>
+
+<script>
+(function(){
+  var boxEls = document.querySelectorAll('#kytCheck input');
+  var bar = document.getElementById('checkBar'), score = document.getElementById('checkScore');
+  var msgs = { 0:'the map is still blank', 2:'borders drawn', 4:'roads named', 5:'one corner left', 6:'TERRITORY KNOWN — THE KINGDOM IS MAPPED ✓' };
+  function tally(){
+    var n = 0;
+    boxEls.forEach(function(cb){ cb.closest('label').classList.toggle('done', cb.checked); if(cb.checked) n++; });
+    bar.style.width = (n / boxEls.length * 100) + '%';
+    var m = msgs[n] || (n < 4 ? 'borders drawn' : 'roads named');
+    score.textContent = n + ' of ' + boxEls.length + ' — ' + m;
+    score.style.color = (n === boxEls.length) ? 'var(--fsg-green)' : 'var(--fsg-dark-navy)';
+  }
+  boxEls.forEach(function(cb){ cb.addEventListener('change', tally); });
+})();
+</script>
+</body>
+</html>
