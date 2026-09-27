@@ -679,13 +679,27 @@
         ok=(hex===HASH);
       } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
     }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
-    if(ok){ remember(); open(); }
+    if(ok){ remember(); open(); playIntro(); }
     else{
       var card=document.querySelector('#ghGate .gh-card');
       document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
       card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
       document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
     }
+  }
+  // ---- One Shot intro: plays once, on the unlock click (a user gesture, so audio is allowed) ----
+  function playIntro(){
+    try{
+      var a = new Audio('one-shot-intro.m4a');
+      a.volume = 0.85;
+      var pill = document.createElement('div');
+      pill.innerHTML = '&#9654;&#xFE0E; ONE SHOT &mdash; THE INTRO &nbsp;&nbsp;&times;';
+      pill.style.cssText = 'position:fixed;bottom:22px;right:22px;z-index:9999;background:#133865;color:#ebb018;border:1px solid #ebb018;border-radius:999px;padding:10px 18px;font-family:Oswald,Arial,sans-serif;font-size:12px;letter-spacing:.18em;cursor:pointer;box-shadow:0 6px 24px rgba(0,0,0,.45);';
+      function kill(){ a.pause(); if(pill.parentNode) pill.parentNode.removeChild(pill); }
+      pill.addEventListener('click', kill);
+      a.addEventListener('ended', kill);
+      a.play().then(function(){ document.body.appendChild(pill); }).catch(function(){});
+    }catch(e){}
   }
   document.addEventListener('DOMContentLoaded', function(){
     if(unlocked()) return;
@@ -788,6 +802,14 @@
     <h2 class="section-title">What's New</h2>
     <hr class="section-rule">
     <div class="grid">
+
+      <a href="one-shot.html" class="card" data-section="field" data-tags="one shot closer anthem rap song track music locker room performance beat karaoke closers take the shot protect land expand contribution service value guide hero walk-up song">
+        <div class="card-top"><span class="pill new">New</span><span class="card-date">Sep 2026</span></div>
+        <h3>One Shot &mdash; The Closer Anthem</h3>
+        <p>The growth org has a walk-up song. The anthem, the creed, the story behind it &mdash; and a performance mode if you think you can out-rap the boss.</p>
+        <span class="card-cta">Open</span>
+        <span class="card-cta play-oneshot" style="margin-left: 16px;">&#9654; Play</span>
+      </a>
 
       <a href="resources/start-again-today.html" class="card" data-section="tools" data-tags="start again today personal development execution discipline promise restart resolution people on stage always someone is watching how you make people feel motivation get after it">
         <div class="card-top"><span class="pill new">New</span><span class="card-date">Sep 2026</span></div>
@@ -1147,6 +1169,14 @@
     <div class="grid">
 
       <!-- ---- ADD-NEW: newest game card goes here ---- -->
+
+      <a href="one-shot.html" class="card" data-section="field" data-tags="one shot closer anthem rap song track music locker room walk-up song hype pregame closers take the shot everyone else step aside">
+        <div class="card-top"><span class="pill new">Anthem</span><span class="card-date">Sep 2026</span></div>
+        <h3>One Shot &mdash; Locker Room</h3>
+        <p>Every field needs a walk-up song. Play the anthem before you check the board &mdash; then go put a run on it.</p>
+        <span class="card-cta">Open</span>
+        <span class="card-cta play-oneshot" style="margin-left: 16px;">&#9654; Play</span>
+      </a>
 
       <a href="field/closers-vs-blanks.html" class="card" data-section="field" data-tags="closers blanks scoreboard contest game standings leaderboard linescore batting average innings runs zeros competition rankings my number where do i stand">
         <div class="card-top"><span class="pill new">Live</span><span class="card-date">Sep 2026</span></div>
@@ -1544,6 +1574,29 @@
     formWrap.style.display = 'none';
     confirmWrap.style.display = 'block';
   });
+</script>
+
+<!-- ============ ONE SHOT — anthem player ============ -->
+<audio id="oneShotAudio" src="one-shot.m4a" preload="none"></audio>
+<script>
+  (function () {
+    const audio = document.getElementById('oneShotAudio');
+    function setLabels(playing) {
+      document.querySelectorAll('.play-oneshot').forEach(function (b) {
+        b.innerHTML = playing ? '&#10074;&#10074; Pause' : '&#9654; Play';
+      });
+    }
+    document.querySelectorAll('.play-oneshot').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (audio.paused) { audio.play(); } else { audio.pause(); }
+      });
+    });
+    audio.addEventListener('play',  function () { setLabels(true);  });
+    audio.addEventListener('pause', function () { setLabels(false); });
+    audio.addEventListener('ended', function () { setLabels(false); });
+  })();
 </script>
 
 </body>
