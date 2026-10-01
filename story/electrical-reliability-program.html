@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FSG — Electrical Reliability Program</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='115' fill='%23133865'/><g stroke='%23c5d9fa' stroke-width='22' stroke-linecap='round'><line x1='256' y1='256' x2='256' y2='96'/><line x1='256' y1='256' x2='394.6' y2='176'/><line x1='256' y1='256' x2='394.6' y2='336'/><line x1='256' y1='256' x2='256' y2='416'/><line x1='256' y1='256' x2='117.4' y2='336'/><line x1='256' y1='256' x2='117.4' y2='176'/></g><circle cx='256' cy='96' r='42' fill='%23ffffff'/><circle cx='394.6' cy='176' r='42' fill='%23c5d9fa'/><circle cx='394.6' cy='336' r='42' fill='%23ffffff'/><circle cx='256' cy='416' r='42' fill='%23c5d9fa'/><circle cx='117.4' cy='336' r='42' fill='%23ffffff'/><circle cx='117.4' cy='176' r='42' fill='%23ebb018'/><circle cx='256' cy='256' r='76' fill='%23ebb018'/></svg>">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Barlow:wght@400;600;800&family=Open+Sans:wght@400;600;700&display=swap">
+<style>
+:root{
+  --deep-navy:#0b1421;
+  --dark-navy:#133865;
+  --brand-blue:#365aa0;
+  --steel:#718dbc;
+  --light-blue:#c5d9fa;
+  --light-gray:#ededed;
+  --gold:#ebb018;
+  --bright:#4e84de;
+  --ink:#0b1421;
+  --paper:#ffffff;
+  --display:'Oswald', Arial, sans-serif;
+  --label:'Barlow', Arial, sans-serif;
+  --body:'Open Sans', Arial, sans-serif;
+}
+html,body{height:100%}
+body{margin:0;background:var(--deep-navy);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+*{box-sizing:border-box}
+.deck{height:100%;overflow-y:auto;scroll-snap-type:y proximity;scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){.deck{scroll-behavior:auto}}
+section.slide{min-height:100vh;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:center;padding:56px 24px;position:relative}
+.wrap{width:100%;max-width:1080px;margin:0 auto;min-width:0}
+.dark{background:var(--deep-navy);color:#fff}
+.navy{background:var(--dark-navy);color:#fff}
+.light{background:var(--paper);color:var(--ink)}
+.gray{background:var(--light-gray);color:var(--ink)}
+
+.eyebrow{font-family:var(--label);font-weight:800;text-transform:uppercase;letter-spacing:.14em;font-size:.8rem;color:var(--gold);margin:0 0 14px}
+.light .eyebrow,.gray .eyebrow{color:var(--brand-blue)}
+h1,h2{font-family:var(--display);text-wrap:balance;margin:0 0 18px;line-height:1.08;text-transform:uppercase}
+h1{font-size:clamp(2.2rem,6vw,4.2rem);font-weight:700}
+h2{font-size:clamp(1.7rem,4.2vw,2.9rem);font-weight:600}
+h3{font-family:var(--label);font-weight:800;font-size:1.05rem;margin:0 0 8px;text-transform:uppercase;letter-spacing:.04em}
+.gold-rule{width:88px;height:3px;background:var(--gold);border:0;margin:0 0 26px}
+p.lede{font-size:clamp(1.05rem,2vw,1.3rem);max-width:62ch;margin:0 0 12px}
+.dark p.lede,.navy p.lede{color:var(--light-blue)}
+p{max-width:65ch}
+.muted{color:var(--steel)}
+
+.logo{height:56px;width:auto}
+.slide-logo{position:absolute;top:24px;right:24px;height:34px;width:auto;opacity:.9}
+
+.grid{display:grid;gap:20px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:860px){.g3,.g4{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.g3,.g2,.g4{grid-template-columns:1fr}}
+
+.card{background:#fff;border-top:4px solid var(--gold);box-shadow:0 8px 24px rgba(11,20,33,.10);padding:24px;min-width:0}
+.card h3{color:var(--dark-navy)}
+.card ul{margin:10px 0 0;padding-left:18px}
+.card li{margin:6px 0;font-size:.95rem}
+.card .svc{font-family:var(--display);font-weight:600;font-size:1.35rem;color:var(--dark-navy);text-transform:uppercase;margin:0 0 6px}
+.card .tag{font-family:var(--label);font-weight:600;color:var(--brand-blue);font-size:.9rem;margin:0 0 10px}
+
+.stat{background:var(--light-blue);padding:20px 16px;text-align:center;min-width:0}
+.stat .n{font-family:var(--display);font-weight:700;font-size:2rem;color:var(--brand-blue);font-variant-numeric:tabular-nums}
+.stat .l{font-family:var(--label);font-weight:600;font-size:.85rem;color:var(--dark-navy);text-transform:uppercase;letter-spacing:.03em}
+
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0}
+.chip{font-family:var(--label);font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:.85rem;background:rgba(197,217,250,.12);border:1px solid var(--steel);color:var(--light-blue);padding:9px 16px;border-radius:999px}
+
+.steps{counter-reset:step;display:grid;gap:20px;grid-template-columns:repeat(3,1fr)}
+@media(max-width:860px){.steps{grid-template-columns:1fr}}
+.step{background:#fff;padding:26px 24px;box-shadow:0 8px 24px rgba(11,20,33,.10);border-top:4px solid var(--dark-navy);min-width:0}
+.step:nth-child(2){border-top-color:var(--brand-blue)}
+.step:nth-child(3){border-top-color:var(--gold)}
+.step .num{font-family:var(--display);font-weight:700;font-size:2.4rem;color:var(--gold);line-height:1}
+.step h3{color:var(--dark-navy);margin-top:8px}
+.step p{font-size:.95rem;margin:6px 0 0}
+
+figure{margin:0;min-width:0}
+figure img{display:block;width:100%;max-width:100%;height:auto;border:1px solid rgba(113,141,188,.35);box-shadow:0 12px 32px rgba(11,20,33,.35)}
+figcaption{font-family:var(--label);font-weight:600;font-size:.85rem;color:var(--light-blue);margin-top:10px;text-transform:uppercase;letter-spacing:.05em}
+figcaption b{color:var(--gold)}
+.shots{display:grid;gap:26px;grid-template-columns:1fr 1fr}
+@media(max-width:860px){.shots{grid-template-columns:1fr}}
+.shot-wide{grid-column:1/-1}
+
+.callout{background:var(--light-blue);border-left:5px solid var(--gold);padding:18px 22px;color:var(--dark-navy);max-width:70ch}
+.callout b{font-family:var(--label)}
+
+.recip{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.recip span{font-family:var(--label);font-weight:600;font-size:.88rem;background:#fff;color:var(--dark-navy);border:1px solid var(--light-blue);padding:8px 14px;border-radius:999px}
+
+.vs{display:grid;gap:20px;grid-template-columns:1fr 1fr;margin:26px 0}
+@media(max-width:720px){.vs{grid-template-columns:1fr}}
+.vs .col{padding:24px;min-width:0}
+.vs .bad{background:rgba(120,32,32,.25);border:1px solid rgba(220,120,120,.4)}
+.vs .good{background:rgba(54,90,160,.30);border:1px solid var(--steel)}
+.vs h3{color:#fff}
+.vs ul{margin:8px 0 0;padding-left:18px}
+.vs li{margin:6px 0;color:var(--light-blue);font-size:.95rem}
+
+.cta{display:inline-block;font-family:var(--label);font-weight:800;text-transform:uppercase;letter-spacing:.08em;background:var(--gold);color:var(--deep-navy);padding:16px 30px;text-decoration:none;font-size:1rem}
+.contact{font-family:var(--label);font-weight:600;font-size:1.1rem;color:#fff;margin-top:22px}
+.contact b{color:var(--gold)}
+
+nav.dots{position:fixed;right:12px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:9}
+nav.dots a{width:10px;height:10px;border-radius:50%;background:var(--steel);opacity:.55;display:block}
+nav.dots a.on{background:var(--gold);opacity:1}
+@media(max-width:720px){nav.dots{display:none}}
+.hint{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);font-family:var(--label);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--steel);z-index:9;pointer-events:none}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+/* ===== Hub utility bar ===== */
+.hubbar{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;gap:14px;padding:10px 16px;background:rgba(11,20,33,.88);backdrop-filter:blur(6px);border-bottom:1px solid rgba(113,141,188,.3)}
+.hubbar a{font-family:var(--label);font-weight:800;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none}
+.hubbar .hb-back{color:var(--steel)}
+.hubbar .hb-back:hover{color:var(--gold)}
+.hubbar .hb-pdf{margin-left:auto;background:var(--gold);color:var(--deep-navy);padding:8px 16px;border-radius:999px}
+.hubbar .hb-pdf:hover{filter:brightness(1.06)}
+</style>
+</head>
+<body>
+<!-- ============ GROWTH HUB GATE ============ -->
+<style>
+  html.gh-locked > body > :not(#ghGate){display:none !important;}
+  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
+  html:not(.gh-locked) #ghGate{display:none;}
+  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
+  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
+  #ghGate .gh-brand svg{width:30px;height:30px;}
+  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
+  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
+  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;}
+  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
+  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
+  #ghGate input:focus{border-color:#4e84de;}
+  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
+  #ghGate button:hover{filter:brightness(1.06);}
+  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
+  #ghGate .gh-shake{animation:ghshake .3s;}
+  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+<div id="ghGate">
+  <div class="gh-wrap">
+    <div class="gh-brand">
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#c5d9fa" stroke-width="14" stroke-linecap="round" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g><circle cx="150" cy="50" r="26" fill="#ffffff"/><circle cx="236.6" cy="100" r="26" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="26" fill="#ffffff"/><circle cx="150" cy="250" r="26" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="26" fill="#ffffff"/><circle cx="63.4" cy="100" r="26" fill="#c5d9fa"/><circle cx="150" cy="150" r="44" fill="#ebb018"/></svg>
+      <span>Growth Hub</span>
+    </div>
+    <div class="gh-card">
+      <h2>Passcode</h2>
+      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
+      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
+      <button id="ghGo" type="button">Enter the Hub</button>
+      <div class="gh-err" id="ghErr"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
+  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+  if(!unlocked()) document.documentElement.classList.add('gh-locked');
+  function open(){ document.documentElement.classList.remove('gh-locked'); }
+  async function check(){
+    var v=document.getElementById('ghPass').value;
+    var ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        ok=(hex===HASH);
+      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
+    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
+    if(ok){ remember(); open(); }
+    else{
+      var card=document.querySelector('#ghGate .gh-card');
+      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
+      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
+      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    if(unlocked()) return;
+    document.getElementById('ghGo').addEventListener('click', check);
+    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
+  });
+})();
+</script>
+<!-- ============ /GROWTH HUB GATE ============ -->
+
+<div class="hubbar">
+  <a class="hb-back" href="products.html">&larr; Products</a>
+  <a class="hb-pdf" href="../assets/reliability/FSG_Electrical_Reliability_Program.pdf" download="FSG_Electrical_Reliability_Program.pdf">&#8595; Download PDF</a>
+</div>
+
+<div class="deck" id="deck">
+
+<!-- 1 · TITLE -->
+<section class="slide dark" id="s1">
+  <div class="wrap">
+    <img class="logo" src="../assets/reliability/fsg-white.png" alt="FSG — Facility Solutions Group">
+    <div style="height:34px"></div>
+    <p class="eyebrow">Electrical Reliability Program</p>
+    <h1>Power Safety.<br>One Dashboard. For Life.</h1>
+    <hr class="gold-rule">
+    <p class="lede">Arc Flash Analysis &middot; Infrared Thermography &middot; Switchgear Maintenance — for one location or 1,000. You send the facility list. We handle everything else.</p>
+    <div class="chips">
+      <span class="chip">NFPA 70B</span><span class="chip">NFPA 70E</span><span class="chip">OSHA</span><span class="chip">IEEE 1584</span><span class="chip">AHJ · State · City</span>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · WHY -->
+<section class="slide navy" id="s2">
+  <img class="slide-logo" src="../assets/reliability/fsg-white.png" alt="">
+  <div class="wrap">
+    <p class="eyebrow">Why · The Problem</p>
+    <h2>Compliance shouldn't be your full-time job</h2>
+    <hr class="gold-rule">
+    <p class="lede">NFPA 70B is now a standard — electrical maintenance is no longer optional. And it never comes alone:</p>
+<div class="chips" style="margin:14px 0 18px"><span class="chip">NEC · NFPA 70</span><span class="chip">NFPA 70B</span><span class="chip">NFPA 70E</span><span class="chip">NFPA 99</span><span class="chip">NFPA 101</span><span class="chip">NFPA 110</span><span class="chip">OSHA 29 CFR 1910</span><span class="chip">IEEE 1584</span><span class="chip">ANSI/NETA MTS</span><span class="chip">IFC</span><span class="chip">Joint Commission · CMS</span><span class="chip">Insurance Carrier Reqs</span><span class="chip">AHJ · State · City</span></div>
+<p class="lede">Each with its own cycle, its own documentation, and its own inspector. Complicated and overwhelming is the honest description.</p>
+    <p class="lede">Electrical systems change constantly. Studies go stale. Labels expire. Records scatter across binders, inboxes, and vendors. And the failures that hurt most — a loose connection, an overheating breaker, a deteriorating switchgear bus — start long before anything looks wrong.</p>
+    <div class="callout" style="background:rgba(197,217,250,.12);color:#fff;border-left-color:var(--gold)">
+      <b>Don't sweat it.</b> Send FSG your facility list and square footage. One location or 1,000 — we take care of all the details: budget, schedule, planned maintenance, routine maintenance, and every report, finding, and price in one place. For life.
+    </div>
+  </div>
+</section>
+
+<!-- 3 · GUIDE -->
+<section class="slide light" id="s3">
+  <div class="wrap">
+    <p class="eyebrow">Your Guide</p>
+    <h2 style="color:var(--dark-navy)">A partner who's done this for four decades</h2>
+    <hr class="gold-rule">
+    <p class="lede" style="color:var(--ink)">You know your operation. We know electrical reliability. FSG's engineering and service teams keep your people safe, your equipment running, and your records audit-ready — so your team stays focused on the business.</p>
+    <div class="grid g4" style="margin-top:26px">
+      <div class="stat"><div class="n">45+</div><div class="l">Years in the electrical field</div></div>
+      <div class="stat"><div class="n">43+</div><div class="l">Locations nationwide</div></div>
+      <div class="stat"><div class="n">Top 2%</div><div class="l">Nationally ranked electrical contractor</div></div>
+      <div class="stat"><div class="n">NFPA</div><div class="l">Certified engineers across all regions</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · WHAT -->
+<section class="slide gray" id="s4">
+  <div class="wrap">
+    <p class="eyebrow">What · Three Services, One Program</p>
+    <h2 style="color:var(--dark-navy)">Find it early. Fix it planned. Prove it forever.</h2>
+    <hr class="gold-rule">
+    <div class="grid g3">
+      <div class="card">
+        <p class="svc">Arc Flash Analysis</p>
+        <p class="tag">Know the risk. Protect your people.</p>
+        <ul>
+          <li>Incident energy analysis per IEEE 1584-2018</li>
+          <li>Short-circuit &amp; protective device coordination studies</li>
+          <li>NFPA 70E-compliant arc flash labels</li>
+          <li>Facility-wide PPE selection matrix</li>
+          <li>Updated as your system changes — 70E requires it</li>
+        </ul>
+      </div>
+      <div class="card">
+        <p class="svc">IR Thermography</p>
+        <p class="tag">See failures weeks before they happen.</p>
+        <ul>
+          <li>Scanned energized, under normal load — no shutdown</li>
+          <li>Finds loose connections, overloaded circuits, failing breakers</li>
+          <li>Thermal images with severity classifications</li>
+          <li>Recommended corrective actions, prioritized</li>
+          <li>Fewer emergency calls, smarter maintenance planning</li>
+        </ul>
+      </div>
+      <div class="card">
+        <p class="svc">Switchgear Maintenance</p>
+        <p class="tag">Reliability for the gear that runs everything.</p>
+        <ul>
+          <li>Preventive programs aligned with recognized testing standards</li>
+          <li>Counters heat, dust, vibration, moisture, and wear</li>
+          <li>Reduces breaker failure and arc flash risk</li>
+          <li>Extends equipment life, cuts unplanned downtime</li>
+          <li>Documentation that supports capital planning</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · HOW -->
+<section class="slide light" id="s5">
+  <div class="wrap">
+    <p class="eyebrow">How · The Plan</p>
+    <h2 style="color:var(--dark-navy)">Three steps. Then it runs for life.</h2>
+    <hr class="gold-rule">
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <h3>Send your facility list</h3>
+        <p>Locations and square footage. That's it. One building or a 1,000-site portfolio — the program scales either way.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h3>We handle the details</h3>
+        <p>Budget, schedule, planned and routine maintenance, code requirements by jurisdiction. Our people and our technology do the work.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h3>Everything in one place</h3>
+        <p>Every report, finding, quote, and price lands on your live dashboard — organized by site, severity, and status. For life.</p>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:26px">
+      <b>The dashboard is the value we bring — at no additional cost.</b> We charge only for the labor. The visibility comes with it.
+    </div>
+  </div>
+</section>
+
+<!-- 6 · DEMO -->
+<section class="slide dark" id="s6">
+  <img class="slide-logo" src="../assets/reliability/fsg-white.png" alt="">
+  <div class="wrap">
+    <p class="eyebrow">Show · The Live Dashboard</p>
+    <h2>Live action as it happens. All in one place.</h2>
+    <hr class="gold-rule">
+    <p class="lede">A complete real-time dashboard of your whole portfolio. Drill down from the national map to a single breaker finding — then View Quote and View Report without leaving the page.</p>
+    <div class="shots" style="margin-top:26px">
+      <figure class="shot-wide">
+        <img src="../assets/reliability/map-view.jpg" alt="Map view of 1,333 sites across the U.S. with work order status clusters" loading="lazy">
+        <figcaption><b>Map view.</b> Every site, nationwide — active, completed, and no-work-order status at a glance.</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/reliability/ir-summary.jpg" alt="IR Thermographic Program Summary with completion and severity counts" loading="lazy">
+        <figcaption><b>Program summary.</b> Scan progress and problem severity across the whole program year.</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/reliability/severity.jpg" alt="Severity distribution chart of findings" loading="lazy">
+        <figcaption><b>Severity distribution.</b> Critical to compliance — know what needs attention first.</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/reliability/items-by-location.jpg" alt="Problem items stacked by location" loading="lazy">
+        <figcaption><b>Drill down by location.</b> Hover any site for its full severity breakdown.</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/reliability/issues-quotes.jpg" alt="Buildings with issues showing repair quoted status, view quote and view report links" loading="lazy">
+        <figcaption><b>Finding &rarr; fix.</b> Scan complete, repair quoted — <b>View Quote</b> and <b>View Report</b> in one click.</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/reliability/deliverable-proposal.jpg" alt="FSG repair proposal PDF opened inside the dashboard" loading="lazy">
+        <figcaption><b>The quote, right there.</b> Repair proposals open inside the dashboard, tied to the work order.</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/reliability/deliverable-report.jpg" alt="Full infrared inspection report opened inside the dashboard" loading="lazy">
+        <figcaption><b>The full report.</b> 119 pages of thermographic findings — stored with the site, forever.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · SHARE -->
+<section class="slide gray" id="s7">
+  <div class="wrap">
+    <p class="eyebrow">Reported to You — and Anyone Who Asks</p>
+    <h2 style="color:var(--dark-navy)">On your phone. On your laptop. Export to anyone.</h2>
+    <hr class="gold-rule">
+    <p class="lede" style="color:var(--ink)">When someone needs proof, you're one export away. No digging through binders, no calling three vendors for last year's report.</p>
+    <div class="recip">
+      <span>Your team</span><span>Your boss</span><span>Your board</span><span>The safety office</span><span>The fire marshal</span><span>The city official</span><span>The real-estate buyer who needs it for the bank</span>
+    </div>
+    <div class="callout" style="margin-top:26px">
+      <b>Reports, details, pricing, and findings — all in one place, for life.</b> Sell a building in five years? The full maintenance history goes with it.
+    </div>
+  </div>
+</section>
+
+<!-- 8 · WHAT IF + CTA -->
+<section class="slide navy" id="s8">
+  <div class="wrap">
+    <p class="eyebrow">What If</p>
+    <h2>Two ways this year can go</h2>
+    <hr class="gold-rule">
+    <div class="vs">
+      <div class="col bad">
+        <h3>Without a program</h3>
+        <ul>
+          <li>Stale arc flash studies and expired labels</li>
+          <li>Failures found by outage, not inspection</li>
+          <li>Emergency service calls at emergency prices</li>
+          <li>Scrambling when the auditor or marshal shows up</li>
+        </ul>
+      </div>
+      <div class="col good">
+        <h3>With FSG</h3>
+        <ul>
+          <li>Current studies, labels, and PPE matrix at every site</li>
+          <li>Issues caught while equipment still runs normally</li>
+          <li>Planned repairs on your budget and schedule</li>
+          <li>Every record one click away — for anyone who asks</li>
+        </ul>
+      </div>
+    </div>
+    <h2 style="font-size:clamp(1.4rem,3vw,2.1rem)">Send us your facility list. We'll take it from there.</h2>
+    <p class="contact">Call <b>(866) 865-7553</b> &nbsp;&middot;&nbsp; <b>fsg.com</b></p>
+    <a class="cta" href="../assets/reliability/FSG_Electrical_Reliability_Program.pdf" download="FSG_Electrical_Reliability_Program.pdf" style="margin-top:22px">&#8595; Download the PDF</a>
+    <p class="muted" style="font-family:var(--label);font-size:.85rem;margin-top:20px">FSG Engineering Services — Protecting People. Powering Performance.</p>
+  </div>
+</section>
+
+</div>
+
+<nav class="dots" id="dots" aria-label="Slides"></nav>
+<div class="hint">Scroll or use &uarr; &darr; keys</div>
+
+<script>
+const deck=document.getElementById('deck');
+const slides=[...deck.querySelectorAll('section.slide')];
+const dots=document.getElementById('dots');
+slides.forEach((s,i)=>{const a=document.createElement('a');a.href='#'+s.id;a.setAttribute('aria-label','Slide '+(i+1));dots.appendChild(a);});
+const dotEls=[...dots.children];
+function mark(){
+  let best=0,bd=1e9;
+  slides.forEach((s,i)=>{const d=Math.abs(s.getBoundingClientRect().top);if(d<bd){bd=d;best=i;}});
+  dotEls.forEach((d,i)=>d.classList.toggle('on',i===best));
+  return best;
+}
+deck.addEventListener('scroll',()=>requestAnimationFrame(mark),{passive:true});
+mark();
+document.addEventListener('keydown',e=>{
+  if(e.key!=='ArrowDown'&&e.key!=='ArrowUp'&&e.key!=='PageDown'&&e.key!=='PageUp')return;
+  const cur=mark();
+  const next=(e.key==='ArrowDown'||e.key==='PageDown')?Math.min(cur+1,slides.length-1):Math.max(cur-1,0);
+  slides[next].scrollIntoView({behavior:'smooth'});
+  e.preventDefault();
+});
+</script>
+</body>
+</html>
