@@ -123,6 +123,13 @@ nav.dots a.on{background:var(--gold);opacity:1}
 .hubbar .hb-back:hover{color:var(--gold)}
 .hubbar .hb-pdf{margin-left:auto;background:var(--gold);color:var(--deep-navy);padding:8px 16px;border-radius:999px}
 .hubbar .hb-pdf:hover{filter:brightness(1.06)}
+
+/* ===== Sales notes (press N) ===== */
+#notes{display:none;position:fixed;left:24px;bottom:52px;max-width:500px;max-height:62vh;overflow-y:auto;background:rgba(11,20,33,.94);border:1px solid var(--gold);border-left:4px solid var(--gold);border-radius:10px;padding:14px 18px;z-index:110;font-size:13px;line-height:1.55;color:var(--light-blue);box-shadow:0 8px 30px rgba(0,0,0,.5)}
+#notes.show{display:block}
+#notes .n-label{font-family:var(--label);font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+#notes b{color:#fff}
+#notes .q{color:var(--gold);font-style:italic}
 </style>
 </head>
 <body>
@@ -418,7 +425,8 @@ nav.dots a.on{background:var(--gold);opacity:1}
 </div>
 
 <nav class="dots" id="dots" aria-label="Slides"></nav>
-<div class="hint">Scroll or use &uarr; &darr; keys</div>
+<div class="hint">Scroll or &uarr; &darr; keys &middot; N sales notes</div>
+<div id="notes"><div class="n-label">Sales Notes</div><div id="notesText"></div></div>
 
 <script>
 const deck=document.getElementById('deck');
@@ -432,9 +440,24 @@ function mark(){
   dotEls.forEach((d,i)=>d.classList.toggle('on',i===best));
   return best;
 }
-deck.addEventListener('scroll',()=>requestAnimationFrame(mark),{passive:true});
+// ===== Sales notes — press N. Ask / Listen / Move / Know, per slide. =====
+const NOTES=[
+ "<b>Ask:</b> <span class=\"q\">“Who owns electrical safety compliance for your buildings today — and how sure are they that it's current?”</span><br><b>Listen:</b> a name with hesitation, or ‘our electrician handles it’ — either way, nobody owns it portfolio-wide. That's the opening.<br><b>Move:</b> one line, not the slide: “we take electrical safety off your plate — one dashboard, for life.”<br><b>Know:</b> NFPA 70B became a STANDARD in 2023 (was a recommended practice) — electrical maintenance programs are now required, not optional. That single fact is why this meeting exists.",
+ "<b>THE CODE WALL. Don't read it — let it loom.</b><br><b>Ask:</b> <span class=\"q\">“How many of these can your team name the current status on, right now?”</span> then be quiet.<br><b>Listen:</b> nervous laughter = the sale. An audit, an insurance letter, or a fire marshal visit in their answer = urgency you don't have to manufacture.<br><b>Move:</b> empathy, not fear: “complicated and overwhelming is the honest description — and it's not your job to master it. It's ours.”<br><b>Know:</b> NFPA 70E = worker safety around energized equipment (arc flash PPE) · NFPA 99 = healthcare facilities · NFPA 110 = emergency/standby power · ANSI/NETA MTS = maintenance testing specs · AHJ = Authority Having Jurisdiction, the local official who can fail you.",
+ "<b>Credibility in 20 seconds, then back to them.</b><br><b>Ask:</b> <span class=\"q\">“Who did your last arc flash study — and did they ever come back to update it?”</span><br><b>Listen:</b> a one-and-done engineering firm is your wedge: studies go stale the day the system changes, and nobody owns the update.<br><b>Move:</b> the differentiator isn't the study — it's the PARTNER who keeps it current for life. 45+ years, 43+ locations, NFPA certified engineers: say it once, don't linger.",
+ "<b>THE THREE-SERVICE SLIDE — find their entry point.</b><br><b>Ask:</b> <span class=\"q\">“Which of these three keeps you up at night — people safety, surprise failures, or the gear itself?”</span><br><b>Listen:</b> people → Arc Flash · surprise outages → IR · aging equipment → Switchgear. They just picked their own pilot scope.<br><b>Move:</b> sell the bundle as one program, not three line items — the dashboard is what makes it one thing.<br><b>Know:</b> Arc flash = the explosion when electricity jumps phases; incident energy (cal/cm²) decides the PPE · IEEE 1584 = THE calculation method for incident energy · IR thermography = infrared scan of energized gear — heat shows failure weeks early, no shutdown needed · Switchgear = the heavy equipment that distributes power to everything downstream.",
+ "<b>THE EASY BUTTON. This slide closes more than the CTA does.</b><br><b>Ask:</b> <span class=\"q\">“If getting started was literally a facility list and square footage — what's stopping you from sending it today?”</span><br><b>Listen:</b> their objection here is the REAL objection. Budget cycle? Incumbent? Internal politics? Write it down verbatim.<br><b>Move:</b> hammer the model: <b>the dashboard is free — you pay only for labor.</b> There is no software line item for procurement to kill.",
+ "<b>DEMO SLIDE — slow down, this is the wow.</b><br><b>Ask:</b> <span class=\"q\">“When your boss asks ‘are we compliant?’ — how long does that answer take you today?”</span><br><b>Listen:</b> days and spreadsheets = the pain the map view erases.<br><b>Move:</b> walk ONE finding end to end: map → site → severity → View Quote → View Report. Finding to funded fix, no email chain. That loop is the product.",
+ "<b>Ask:</b> <span class=\"q\">“Who asked you for compliance proof last — and how long did it take to produce?”</span><br><b>Listen:</b> insurance renewal, fire marshal, a property sale — their story sells the export button for you.<br><b>Move:</b> the sleeper line for owners: <b>records follow the building for life</b> — sell a site in five years and the maintenance history goes with it. Facility directors lean in here.",
+ "<b>THE CLOSE — two futures, one ask.</b><br><b>Ask:</b> <span class=\"q\">“Which column is your portfolio in today, honestly?”</span> then <span class=\"q\">“What's the smallest facility list we could start with — five sites? One region?”</span><br><b>Move:</b> assumptive and small: the ask is a LIST, not a contract. Offer to start with their toughest site. Then silence — first one to speak loses the calendar.<br><b>Know:</b> (866) 865-7553 · fsg.com — and the Download PDF button up top is the leave-behind."
+];
+const notesEl=document.getElementById('notes');
+function updateNotes(i){document.getElementById('notesText').innerHTML=NOTES[i]||'';}
+deck.addEventListener('scroll',()=>requestAnimationFrame(()=>{const i=mark();if(notesEl.classList.contains('show'))updateNotes(i);}),{passive:true});
 mark();
 document.addEventListener('keydown',e=>{
+  if(e.key==='n'||e.key==='N'){ notesEl.classList.toggle('show'); updateNotes(mark()); return; }
+  if(e.key==='f'||e.key==='F'){ document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen(); return; }
   if(e.key!=='ArrowDown'&&e.key!=='ArrowUp'&&e.key!=='PageDown'&&e.key!=='PageUp')return;
   const cur=mark();
   const next=(e.key==='ArrowDown'||e.key==='PageDown')?Math.min(cur+1,slides.length-1):Math.max(cur-1,0);
