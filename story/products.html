@@ -222,7 +222,9 @@ footer .grind{font-family:'Oswald',sans-serif;font-size:12px;font-weight:500;let
     <div class="d-mode" id="tyMode"></div>
     <h3 id="tyTitle"></h3>
     <p class="d-desc" id="tyDef" style="margin-top:10px;"></p>
-    <div class="coming"><span class="c-dot"></span>Content coming soon &mdash; decks, proof &amp; plays for this type are in build.</div>
+    <div class="d-label" id="tyResLabel" style="display:none;">Decks, plays &amp; tools</div>
+    <div id="tyRes"></div>
+    <div class="coming" id="tyComing"><span class="c-dot"></span>Content coming soon &mdash; decks, proof &amp; plays for this type are in build.</div>
     <button class="t-back" id="tyBack">&larr; Back</button>
   </div>
 </div>
@@ -252,6 +254,8 @@ const MODES = [
 ];
 // Resource library — hrefs relative to /story/ where this page lives
 const R = {
+  reliability: {name:'Electrical Reliability Program', kind:'Deck + PDF', href:'electrical-reliability-program.html'},
+  reliabilitypdf:{name:'Electrical Reliability Program — PDF', kind:'PDF · Email / RFP Attachment', href:'../assets/reliability/FSG_Electrical_Reliability_Program.pdf'},
   master:      {name:'FSG Master Presentation', kind:'Deck', href:'master-2026.html'},
   culture:     {name:'The Institution & Culture', kind:'Deck', href:'institution-culture.html'},
   lightplay:   {name:'FSG Lighting Design Playbook', kind:'Sales Play', href:'../plays/lighting-design-playbook.html'},
@@ -273,7 +277,7 @@ const LINES = [
    construction:{desc:'We build and wire your facilities — blueprint to power-on. Mission-critical builds, ground-up, and tenant finish-out, self-performed by FSG crews so the schedule holds.',
      types:['Mission critical','Ground-up','Tenant finish-out','Design-build','EV charging'], proofs:['Boeing'], res:['master','datacenter','commercial','templates']},
    service:{desc:'We keep your power on, 24/7. Emergency response, on-demand repair, and preventive maintenance nationwide — so downtime never picks the date.',
-     types:['Emergency','On-demand','Preventive maintenance','Generator programs','EV charging'], proofs:['Walmart'], res:['master','templates']},
+     types:['Emergency','On-demand','Preventive maintenance','Arc flash analysis','Infrared thermography','Switchgear maintenance','Generator programs','EV charging'], proofs:['Walmart'], res:['reliability','master','templates']},
    distribution:{desc:'We deliver the gear before the crew needs it — wholesale electrical materials and gear packages, specified, kitted, and delivered to site.',
      types:['Gear packages','Wholesale materials','Site logistics','EV charging'], proofs:[], res:['master']}
   }},
@@ -325,6 +329,9 @@ const TYPEDEFS = {
  "On-demand": "Single-visit electrical service calls, scheduled as needs come up.",
  "Preventive maintenance": "Scheduled inspection and testing that catches electrical problems before they cause downtime.",
  "Generator programs": "Testing, service, and load-bank support that keep backup generators ready to run.",
+ "Arc flash analysis": "Incident energy studies per IEEE 1584, NFPA 70E arc flash labels, and a facility-wide PPE matrix — updated as the system changes.",
+ "Infrared thermography": "Energized IR scans, no shutdown required, that find loose connections and failing gear weeks before they cause an outage.",
+ "Switchgear maintenance": "Preventive testing and service for the gear that runs everything — fewer failures, longer equipment life, audit-ready records.",
  "Gear packages": "Switchgear, panels, and distribution equipment supplied as one coordinated package.",
  "Wholesale materials": "Electrical and lighting material supplied at distribution pricing, no install.",
  "Site logistics": "Staging, delivery, and material coordination timed to the site schedule.",
@@ -372,6 +379,15 @@ const TYPEDEFS = {
  "EV chargers": "EV charging hardware supplied for another party to install.",
  "Solar equipment": "Panels, inverters, and racking supplied as an equipment-only package.",
  "EMS hardware": "Controls, sensors, and metering hardware supplied without installation."
+};
+
+// ================= TYPE-LEVEL CONTENT =================
+// Type name -> resource keys from R. When a type has entries here, its modal
+// shows those decks/tools (openable + add-to-pitch) instead of "coming soon".
+const TYPERES = {
+ "Arc flash analysis":      ['reliability','reliabilitypdf'],
+ "Infrared thermography":   ['reliability','reliabilitypdf'],
+ "Switchgear maintenance":  ['reliability','reliabilitypdf']
 };
 
 // ================= MATRIX RENDER =================
@@ -443,16 +459,23 @@ mx.addEventListener('click', async e => {
   const names = proofsForCell(line.name, mode.name, d.proofs);
   if(names.length){ pl.style.display='block'; pr.style.display='flex'; pr.innerHTML = names.map(p=>'<span class="proof-chip">'+p+'</span>').join(''); }
   else { pl.style.display='none'; pr.style.display='none'; }
-  document.getElementById('dRes').innerHTML = d.res.map(k => {
-    const r = R[k], live = LIVE[k];
-    return '<div class="res '+(live?'live':'soon')+'">'
-      + '<div class="r-name">'+r.name+'<small>'+r.kind+'</small></div>'
-      + (live ? '<a class="r-open" href="'+r.href+'">Open</a>' : '<span class="r-soon">In build</span>')
-      + '<button class="r-add'+(PITCH.has(k)?' added':'')+'" data-k="'+k+'">'+(PITCH.has(k)?'\u2713 Added':'+ Add')+'</button>'
-      + '</div>';
-  }).join('');
+  document.getElementById('dRes').innerHTML = d.res.map(resRow).join('');
   overlay.classList.add('open');
 });
+
+// Shared resource-row renderer (lane modal + type modal)
+function resRow(k){
+  const r = R[k], live = LIVE[k];
+  const isFile = /\.pdf$/i.test(r.href);
+  const openBtn = isFile
+    ? '<a class="r-open" href="'+r.href+'" download>Download</a>'
+    : '<a class="r-open" href="'+r.href+'">Open</a>';
+  return '<div class="res '+(live?'live':'soon')+'">'
+    + '<div class="r-name">'+r.name+'<small>'+r.kind+'</small></div>'
+    + (live ? openBtn : '<span class="r-soon">In build</span>')
+    + '<button class="r-add'+(PITCH.has(k)?' added':'')+'" data-k="'+k+'">'+(PITCH.has(k)?'\u2713 Added':'+ Add')+'</button>'
+    + '</div>';
+}
 
 // ================= TYPE MODAL =================
 let CUR = {line:'', mode:''};
@@ -461,6 +484,16 @@ function openType(t){
   document.getElementById('tyMode').textContent = CUR.line + ' \u00B7 ' + CUR.mode + ' \u00B7 Type of Work';
   document.getElementById('tyTitle').textContent = t;
   document.getElementById('tyDef').textContent = TYPEDEFS[t] || '';
+  const keys = TYPERES[t] || [];
+  const lbl = document.getElementById('tyResLabel'), box = document.getElementById('tyRes'), coming = document.getElementById('tyComing');
+  if(keys.length){
+    lbl.style.display='block';
+    box.innerHTML = keys.map(resRow).join('');
+    coming.style.display='none';
+  } else {
+    lbl.style.display='none'; box.innerHTML='';
+    coming.style.display='';
+  }
   tOverlay.classList.add('open');
 }
 function closeType(){ tOverlay.classList.remove('open'); }
