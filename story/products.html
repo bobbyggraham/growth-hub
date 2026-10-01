@@ -639,7 +639,7 @@ async function buildPitchPdf(){
     y-=8;
   }
   if(PITCH.proofs.size){
-    s.drawText('PROVEN WITH', {x:64,y:y,size:10,font:bold,color:STEEL}); y-=20;
+    s.drawText('PROVEN WITH \u2014 PROOF RECORDS ATTACHED', {x:64,y:y,size:10,font:bold,color:STEEL}); y-=20;
     wrapText([...PITCH.proofs].join('   \u00B7   '), bold, 13, W-128).forEach(l=>{ s.drawText(l,{x:64,y:y,size:13,font:bold,color:DNAVY}); y-=18; });
     y-=14;
   }
@@ -658,6 +658,86 @@ async function buildPitchPdf(){
   }
   s.drawRectangle({x:64,y:52,width:W-128,height:1,color:GOLD});
   s.drawText('FSG \u00B7 Empowering People to Do Good Work \u00B7 (866) 865-7553 \u00B7 fsg.com', {x:64,y:36,size:9.5,font:reg,color:STEEL});
+
+  // --- One branded proof-record page per selected proof (live from proofs.js) ---
+  async function embedImage(url){
+    try{
+      const buf = new Uint8Array(await fetch(url).then(r=>{ if(!r.ok) throw 0; return r.arrayBuffer(); }));
+      if(buf[0]===0x89 && buf[1]===0x50) return await doc.embedPng(buf);
+      if(buf[0]===0xFF && buf[1]===0xD8) return await doc.embedJpg(buf);
+    }catch(e){}
+    return null;
+  }
+  const ital = await doc.embedFont(StandardFonts.HelveticaOblique);
+  const allProofs = (window.FSGProof && window.FSGProof.list) || [];
+  for(const name of PITCH.proofs){
+    const pr = allProofs.find(x=>x && x.client && x.client.toLowerCase()===String(name).toLowerCase());
+    const g = doc.addPage([W,H]);
+    g.drawRectangle({x:0,y:0,width:W,height:H,color:NAVY});
+    g.drawRectangle({x:0,y:H-8,width:W,height:8,color:GOLD});
+    let gy = H-56;
+    const eyebrow = pr ? ('PROOF RECORD ' + (pr.id||'') + (pr.status?('  ·  '+pr.status):'')) : 'PROOF RECORD';
+    g.drawText(eyebrow, {x:64,y:gy,size:10,font:bold,color:GOLD}); gy-=16;
+    if(pr && pr.logo){
+      const im = await embedImage(pr.logo);
+      if(im){
+        const lh = 44, lw = Math.min(im.width*(lh/im.height), 190);
+        g.drawRectangle({x:64,y:gy-lh-10,width:lw+20,height:lh+12,color:WHITE});
+        g.drawImage(im, {x:74,y:gy-lh-4,width:lw,height:lh});
+        gy -= (lh+26);
+      }
+    }
+    g.drawText(name, {x:64,y:gy-26,size:30,font:bold,color:WHITE}); gy-=52;
+    if(pr){
+      const sub = [pr.vertical, [pr.line, pr.mode].filter(Boolean).join(' × ') + (pr.type?(' · '+pr.type):'')].filter(Boolean).join('    ');
+      if(sub){ g.drawText(sub.toUpperCase(), {x:64,y:gy,size:9,font:bold,color:STEEL}); gy-=24; }
+      // right column: field photo
+      let colW = W-128;
+      if(pr.photo){
+        const purl = /^(data:|https?:)/.test(pr.photo) ? pr.photo : ('../'+pr.photo);
+        const ph = await embedImage(purl);
+        if(ph){
+          const pw = 250, phh = Math.min(ph.height*(pw/ph.width), 210);
+          g.drawImage(ph, {x:W-64-pw, y:gy-phh, width:pw, height:phh});
+          if(pr.photoCap) wrapText(pr.photoCap, reg, 7.5, pw).slice(0,2).forEach((l,i)=>g.drawText(l,{x:W-64-pw,y:gy-phh-12-(i*10),size:7.5,font:reg,color:STEEL}));
+          colW = W-128-pw-28;
+        }
+      }
+      if(pr.problem){
+        g.drawText('THEIR PROBLEM', {x:64,y:gy,size:9,font:bold,color:GOLD}); gy-=15;
+        wrapText(pr.problem, reg, 9.5, colW).slice(0,8).forEach(l=>{ g.drawText(l,{x:64,y:gy,size:9.5,font:reg,color:LBLUE}); gy-=13; });
+        gy-=12;
+      }
+      if(pr.solution){
+        g.drawText('WHAT FSG DELIVERED', {x:64,y:gy,size:9,font:bold,color:GOLD}); gy-=15;
+        wrapText(pr.solution, reg, 9.5, colW).slice(0,8).forEach(l=>{ g.drawText(l,{x:64,y:gy,size:9.5,font:reg,color:LBLUE}); gy-=13; });
+        gy-=14;
+      }
+      if(pr.stats && pr.stats.length){
+        g.drawText('REAL DOLLARS · REAL VALUE', {x:64,y:Math.min(gy,208),size:9,font:bold,color:GOLD});
+        const sy = Math.min(gy,208)-14;
+        const tiles = pr.stats.slice(0,4), tw = (W-128-((tiles.length-1)*14))/tiles.length;
+        tiles.forEach((st,i)=>{
+          const tx = 64+i*(tw+14);
+          g.drawRectangle({x:tx,y:sy-62,width:tw,height:62,borderColor:st.hi?GOLD:STEEL,borderWidth:1});
+          const nSize = String(st.n).length>14 ? 11 : 20;
+          g.drawText(String(st.n), {x:tx+12,y:sy-30,size:nSize,font:bold,color:GOLD});
+          wrapText(String(st.l||''), bold, 7, tw-24).slice(0,2).forEach((l,j)=>g.drawText(l,{x:tx+12,y:sy-44-(j*9),size:7,font:bold,color:LBLUE}));
+        });
+        gy = sy-80;
+      }
+      if(pr.quote){
+        const qy0 = Math.min(gy, 118);
+        g.drawRectangle({x:64,y:qy0-54,width:3,height:56,color:GOLD});
+        let qy = qy0-12;
+        wrapText('“'+pr.quote+'”', ital, 10.5, W-170).slice(0,3).forEach(l=>{ g.drawText(l,{x:78,y:qy,size:10.5,font:ital,color:WHITE}); qy-=14; });
+        if(pr.quoteBy) g.drawText('— '+String(pr.quoteBy).toUpperCase(), {x:78,y:qy-2,size:8,font:bold,color:STEEL});
+      }
+    } else {
+      g.drawText('Proven FSG client — full proof record available from your FSG contact.', {x:64,y:gy-10,size:11,font:reg,color:LBLUE});
+    }
+    g.drawText('FSG · (866) 865-7553 · fsg.com', {x:64,y:30,size:8.5,font:reg,color:STEEL});
+  }
 
   // --- Append each selected asset's PDF ---
   const pdfPaths = [...new Set(withPdf.map(k=>R[k].pdf || R[k].href))];
