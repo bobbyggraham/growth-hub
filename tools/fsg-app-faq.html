@@ -283,6 +283,12 @@
    One entry per training guide. File goes in tools/engage/, entry
    goes here, done — the card and search pick it up automatically. */
 var GUIDES = [
+  { file: "engage/money-in-motion.html",
+    title: "Money in Motion — Opportunities",
+    pill: "Engage Play",
+    gold: true,
+    desc: "Episode 6: Pipeline, WIP, and Earned — the three states of money — the shared Money in Motion view in Opportunities and Accounts (filter FSG Owner to you), the four cleanup views with double-click editing, and YTD sales by account and territory on an interactive five-screen walkthrough.",
+    tags: "money in motion opportunities pipeline wip earned ytd sales account territory shared view kill the blanks follow-up missed due date missed close date double click edit forecast episode 6" },
   { file: "engage/mission-control.html",
     title: "Mission Control — Dashboard, Navigation & Find",
     pill: "Engage Play",
@@ -366,6 +372,10 @@ var GUIDES = [
    q = the question as a rep would type it · a = the short answer (HTML ok)
    link = the guide that goes deeper · tags = extra words people search with */
 var ASKS = [
+  { q: "How do I see my YTD sales and my pipeline?",
+    a: "Select the shared <b>&#128176; Money in Motion</b> view — it's in the view picker in both <b>Opportunities</b> and <b>Accounts</b> — and filter <b>FSG Owner</b> to you. Opportunities shows every open deal with follow-up, due date, close date, value, and probability; Accounts shows each account's open opps, <b>Opportunity $</b>, <b>2026 Sales YTD</b>, and <b>2025 Sales</b>. Sort YTD high to low for your top accounts, filter State for the territory cut. If it looks messy, run the cleanup views first — Kill the Blanks, Follow-Up Date, Missed Due Date, Missed Close Date — and <b>double-click any cell</b> to fix it right in the table.",
+    link: "engage/money-in-motion.html", label: "Money in Motion — Opportunities",
+    tags: "ytd sales pipeline money in motion view by account by territory 2026 sales opportunity dollars wip earned fsg owner filter where is my money how much have i sold" },
   { q: "How do I find an account, contact, or opportunity fast?",
     a: "The <b>global search bar</b> at the top reads across people, leads, accounts, and opportunities at once — exact name for a straight hit (check <b>Top Matches</b>, not just your tab), partial name + the module's <b>Contains</b> filter for the wide net. The standard: any record in <b>under 10 seconds</b>. And always search before you create — that's how duplicates die.",
     link: "engage/mission-control.html", label: "Mission Control — Dashboard, Navigation & Find",
