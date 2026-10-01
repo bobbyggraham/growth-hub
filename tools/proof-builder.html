@@ -338,7 +338,7 @@ const $ = id => document.getElementById(id);
 // Product × Delivery × Type matrix — generated from the Growth Hub taxonomy sheet; keep in sync with story/products.html
 const TAXONOMY = {
  'Electrical': {'Construction':['Mission critical','Ground-up','Tenant finish-out','Design-build','EV charging'],
-                'Service':['Emergency','On-demand','Preventive maintenance','Generator programs','EV charging'],
+                'Service':['Emergency','On-demand','Preventive maintenance','Arc flash analysis','Infrared thermography','Switchgear maintenance','Generator programs','EV charging'],
                 'Distribution':['Gear packages','Wholesale materials','Site logistics','EV charging']},
  'Lighting': {'Construction':['LED retrofit','New install','Design & photometrics'],
               'Service':['Lamp & ballast programs','National account maintenance','Emergency lighting','MRO sourcing','Retrofits','National rollouts'],
@@ -364,6 +364,9 @@ const TYPEDEFS = {
  "On-demand": "Single-visit electrical service calls, scheduled as needs come up.",
  "Preventive maintenance": "Scheduled inspection and testing that catches electrical problems before they cause downtime.",
  "Generator programs": "Testing, service, and load-bank support that keep backup generators ready to run.",
+ "Arc flash analysis": "Incident energy studies per IEEE 1584, NFPA 70E arc flash labels, and a facility-wide PPE matrix — updated as the system changes.",
+ "Infrared thermography": "Energized IR scans, no shutdown required, that find loose connections and failing gear weeks before they cause an outage.",
+ "Switchgear maintenance": "Preventive testing and service for the gear that runs everything — fewer failures, longer equipment life, audit-ready records.",
  "Gear packages": "Switchgear, panels, and distribution equipment supplied as one coordinated package.",
  "Wholesale materials": "Electrical and lighting material supplied at distribution pricing, no install.",
  "Site logistics": "Staging, delivery, and material coordination timed to the site schedule.",
