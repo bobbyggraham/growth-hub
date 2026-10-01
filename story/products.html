@@ -71,7 +71,12 @@ body{font-family:'Open Sans',Arial,sans-serif;color:var(--deep-navy);background:
 .t-back{margin-top:18px;font-family:'Oswald',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border:1.5px solid var(--gold);background:#fff;color:var(--dark-navy);border-radius:6px;padding:8px 16px;cursor:pointer;min-height:36px;}
 .t-back:hover{background:var(--gold);}
 .proofs{display:flex;flex-wrap:wrap;gap:7px;}
-.proof-chip{font-size:12px;font-weight:600;padding:5px 12px;border-radius:14px;border:1.5px solid var(--gold);color:var(--dark-navy);background:rgba(235,176,24,.08);}
+.proof-chip{font-size:12px;font-weight:600;padding:5px 12px;border-radius:14px;border:1.5px solid var(--gold);color:var(--dark-navy);background:rgba(235,176,24,.08);font-family:'Open Sans',Arial,sans-serif;}
+.proof-wrap{display:inline-flex;align-items:center;gap:4px;}
+.proof-add{font-family:'Oswald',sans-serif;font-size:13px;font-weight:700;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--gold);background:#fff;color:var(--dark-navy);cursor:pointer;line-height:1;padding:0;}
+.proof-add:hover{background:rgba(235,176,24,.25);}
+.proof-add.added{background:var(--gold);}
+.t-back.added{background:var(--gold);}
 .res{display:flex;align-items:center;gap:10px;padding:11px 14px;background:#fafbfd;border:1px solid var(--light-gray);border-radius:8px;margin-bottom:7px;}
 .res.live{border-left:4px solid var(--brand-blue);}
 .res.soon{opacity:.55;border-left:4px solid var(--steel-blue);}
@@ -225,6 +230,7 @@ footer .grind{font-family:'Oswald',sans-serif;font-size:12px;font-weight:500;let
     <div class="d-label" id="tyResLabel" style="display:none;">Decks, plays &amp; tools</div>
     <div id="tyRes"></div>
     <div class="coming" id="tyComing"><span class="c-dot"></span>Content coming soon &mdash; decks, proof &amp; plays for this type are in build.</div>
+    <button class="t-back" id="tyAdd" style="margin-right:10px;">+ Add to Pitch</button>
     <button class="t-back" id="tyBack">&larr; Back</button>
   </div>
 </div>
@@ -234,8 +240,7 @@ footer .grind{font-family:'Oswald',sans-serif;font-size:12px;font-weight:500;let
   <div class="tray-inner">
     <span class="t-count" id="tCount">0 items</span>
     <span class="t-items" id="tItems"></span>
-    <button class="t-copy" id="tCopy">Copy Pitch Package</button>
-    <button class="t-mail" id="tMail">Email It</button>
+    <button class="t-copy" id="tBuild">&#8595; Download Pitch PDF</button>
     <button class="t-clear" id="tClear">Clear</button>
   </div>
 </div>
@@ -254,8 +259,8 @@ const MODES = [
 ];
 // Resource library — hrefs relative to /story/ where this page lives
 const R = {
-  reliability: {name:'Electrical Reliability Program', kind:'Deck + PDF', href:'electrical-reliability-program.html'},
-  reliabilitypdf:{name:'Electrical Reliability Program — PDF', kind:'PDF · Email / RFP Attachment', href:'../assets/reliability/FSG_Electrical_Reliability_Program.pdf'},
+  reliability: {name:'Electrical Reliability Program', kind:'Deck + PDF', href:'electrical-reliability-program.html', pdf:'../assets/reliability/FSG_Electrical_Reliability_Program.pdf'},
+  reliabilitypdf:{name:'Electrical Reliability Program — PDF', kind:'PDF · Email / RFP Attachment', href:'../assets/reliability/FSG_Electrical_Reliability_Program.pdf', pdf:'../assets/reliability/FSG_Electrical_Reliability_Program.pdf'},
   master:      {name:'FSG Master Presentation', kind:'Deck', href:'master-2026.html'},
   culture:     {name:'The Institution & Culture', kind:'Deck', href:'institution-culture.html'},
   lightplay:   {name:'FSG Lighting Design Playbook', kind:'Sales Play', href:'../plays/lighting-design-playbook.html'},
@@ -457,7 +462,10 @@ mx.addEventListener('click', async e => {
   document.getElementById('dTypes').innerHTML = d.types.map(t=>'<button type="button" class="type-chip" data-type="'+t.replace(/"/g,'&quot;')+'">'+t+'</button>').join('');
   const pl = document.getElementById('dProofLabel'), pr = document.getElementById('dProofs');
   const names = proofsForCell(line.name, mode.name, d.proofs);
-  if(names.length){ pl.style.display='block'; pr.style.display='flex'; pr.innerHTML = names.map(p=>'<span class="proof-chip">'+p+'</span>').join(''); }
+  if(names.length){ pl.style.display='block'; pr.style.display='flex'; pr.innerHTML = names.map(p=>{
+    const esc = String(p).replace(/"/g,'&quot;');
+    return '<span class="proof-wrap"><span class="proof-chip">'+p+'</span><button type="button" class="proof-add'+(PITCH.proofs.has(p)?' added':'')+'" data-padd="'+esc+'" title="Add to pitch">'+(PITCH.proofs.has(p)?'✓':'+')+'</button></span>';
+  }).join(''); }
   else { pl.style.display='none'; pr.style.display='none'; }
   document.getElementById('dRes').innerHTML = d.res.map(resRow).join('');
   overlay.classList.add('open');
@@ -473,7 +481,7 @@ function resRow(k){
   return '<div class="res '+(live?'live':'soon')+'">'
     + '<div class="r-name">'+r.name+'<small>'+r.kind+'</small></div>'
     + (live ? openBtn : '<span class="r-soon">In build</span>')
-    + '<button class="r-add'+(PITCH.has(k)?' added':'')+'" data-k="'+k+'">'+(PITCH.has(k)?'\u2713 Added':'+ Add')+'</button>'
+    + '<button class="r-add'+(PITCH.res.has(k)?' added':'')+'" data-k="'+k+'">'+(PITCH.res.has(k)?'\u2713 Added':'+ Add')+'</button>'
     + '</div>';
 }
 
@@ -494,6 +502,10 @@ function openType(t){
     lbl.style.display='none'; box.innerHTML='';
     coming.style.display='';
   }
+  const addBtn = document.getElementById('tyAdd');
+  addBtn.dataset.type = t;
+  addBtn.classList.toggle('added', PITCH.types.has(t));
+  addBtn.textContent = PITCH.types.has(t) ? '✓ In Pitch' : '+ Add to Pitch';
   tOverlay.classList.add('open');
 }
 function closeType(){ tOverlay.classList.remove('open'); }
@@ -510,41 +522,171 @@ document.addEventListener('keydown', e => {
   else overlay.classList.remove('open');
 });
 
-// ================= PITCH BUILDER =================
-const PITCH = new Set();
+// ================= PITCH BUILDER (one combined PDF) =================
+// Hub links are passcode-gated, so nothing leaves as a URL. Selections \u2014
+// types of work, proofs, and decks/tools \u2014 are assembled client-side into
+// ONE branded PDF (cover + selections page + every selected asset that has
+// a PDF version), ready to email or print. pdf-lib loads on first build.
+const PITCH = { types:new Set(), proofs:new Set(), res:new Set() };
 const tray = document.getElementById('tray');
+function pitchCount(){ return PITCH.types.size + PITCH.proofs.size + PITCH.res.size; }
 function trayUpdate(){
-  const n = PITCH.size;
+  const n = pitchCount();
   document.getElementById('tCount').textContent = n + (n===1?' item':' items');
-  document.getElementById('tItems').textContent = [...PITCH].map(k=>R[k].name).join(' \u00B7 ');
+  const parts = [...PITCH.types, ...PITCH.proofs, ...[...PITCH.res].map(k=>R[k].name)];
+  document.getElementById('tItems').textContent = parts.join(' \u00B7 ');
   tray.classList.toggle('show', n>0);
 }
 document.addEventListener('click', e => {
-  const btn = e.target.closest('.r-add');
-  if(!btn) return;
-  const k = btn.dataset.k;
-  if(PITCH.has(k)){ PITCH.delete(k); btn.classList.remove('added'); btn.textContent='+ Add'; }
-  else { PITCH.add(k); btn.classList.add('added'); btn.textContent='\u2713 Added'; }
+  const add = e.target.closest('.r-add');
+  if(add){
+    const k = add.dataset.k;
+    if(PITCH.res.has(k)){ PITCH.res.delete(k); add.classList.remove('added'); add.textContent='+ Add'; }
+    else { PITCH.res.add(k); add.classList.add('added'); add.textContent='\u2713 Added'; }
+    trayUpdate(); return;
+  }
+  const pc = e.target.closest('.proof-add');
+  if(pc){
+    const p = pc.dataset.padd;
+    if(PITCH.proofs.has(p)){ PITCH.proofs.delete(p); pc.classList.remove('added'); pc.textContent='+'; }
+    else { PITCH.proofs.add(p); pc.classList.add('added'); pc.textContent='✓'; }
+    trayUpdate(); return;
+  }
+});
+document.getElementById('tyAdd').addEventListener('click', e => {
+  const t = e.target.dataset.type;
+  if(!t) return;
+  if(PITCH.types.has(t)){ PITCH.types.delete(t); e.target.classList.remove('added'); e.target.textContent='+ Add to Pitch'; }
+  else { PITCH.types.add(t); e.target.classList.add('added'); e.target.textContent='\u2713 In Pitch'; }
   trayUpdate();
 });
-function pitchText(){
-  const base = location.href.replace(/story\/[^/]*$/, '');
-  let t = 'FSG \u2014 Custom Pitch Package\nFive Lines. Three Ways to Buy. One Partner.\n\n';
-  [...PITCH].forEach(k => {
-    const r = R[k];
-    const url = new URL(r.href, location.href).href;
-    t += '\u2022 ' + r.name + ' (' + r.kind + ')\n  ' + url + '\n\n';
+document.getElementById('tClear').addEventListener('click', () => {
+  PITCH.types.clear(); PITCH.proofs.clear(); PITCH.res.clear();
+  trayUpdate();
+  document.querySelectorAll('.r-add.added').forEach(b=>{b.classList.remove('added');b.textContent='+ Add';});
+  document.querySelectorAll('.proof-add.added').forEach(b=>{b.classList.remove('added');b.textContent='+';});
+  const ty=document.getElementById('tyAdd'); ty.classList.remove('added'); if(ty.dataset.type) ty.textContent='+ Add to Pitch';
+});
+
+// ---- PDF assembly ----
+let pdfLibReady = null;
+function loadScript(src){
+  return new Promise((res,rej)=>{
+    const s=document.createElement('script');
+    s.src=src; s.onload=res; s.onerror=()=>rej(new Error('failed: '+src));
+    document.head.appendChild(s);
   });
-  t += '\u2014 FSG \u00B7 Empowering People to Do Good Work \u00B7 fsg.com';
-  return t;
 }
-document.getElementById('tCopy').addEventListener('click', async () => {
-  try{ await navigator.clipboard.writeText(pitchText()); document.getElementById('tCopy').textContent='\u2713 Copied'; setTimeout(()=>document.getElementById('tCopy').textContent='Copy Pitch Package',1600);}catch(e){ alert(pitchText()); }
+function loadPdfLib(){
+  if(window.PDFLib) return Promise.resolve();
+  if(!pdfLibReady){
+    // vendored copy first (works offline / behind firewalls), CDN as fallback
+    pdfLibReady = loadScript('../assets/vendor/pdf-lib.min.js')
+      .catch(()=>loadScript('https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js'));
+  }
+  return pdfLibReady;
+}
+function wrapText(text, font, size, maxW){
+  const words = String(text).split(/\s+/), lines=[]; let cur='';
+  words.forEach(w=>{
+    const t = cur ? cur+' '+w : w;
+    if(font.widthOfTextAtSize(t, size) > maxW && cur){ lines.push(cur); cur=w; }
+    else cur=t;
+  });
+  if(cur) lines.push(cur);
+  return lines;
+}
+async function buildPitchPdf(){
+  await loadPdfLib();
+  const { PDFDocument, StandardFonts, rgb } = PDFLib;
+  const NAVY=rgb(11/255,20/255,33/255), DNAVY=rgb(19/255,56/255,101/255),
+        GOLD=rgb(235/255,176/255,24/255), STEEL=rgb(113/255,141/255,188/255),
+        WHITE=rgb(1,1,1), LBLUE=rgb(197/255,217/255,250/255), INK=rgb(.17,.2,.25);
+  const W=792, H=612; // landscape letter, matches program PDFs
+  const doc = await PDFDocument.create();
+  const bold = await doc.embedFont(StandardFonts.HelveticaBold);
+  const reg  = await doc.embedFont(StandardFonts.Helvetica);
+  const today = new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+
+  // --- Cover ---
+  const c = doc.addPage([W,H]);
+  c.drawRectangle({x:0,y:0,width:W,height:H,color:NAVY});
+  c.drawRectangle({x:0,y:H-8,width:W,height:8,color:GOLD});
+  c.drawText('FSG', {x:64,y:H-110,size:40,font:bold,color:WHITE});
+  c.drawText('FACILITY SOLUTIONS GROUP', {x:64,y:H-130,size:11,font:bold,color:STEEL});
+  c.drawText('CUSTOM PITCH PACKAGE', {x:64,y:H-230,size:16,font:bold,color:GOLD});
+  c.drawText('Solutions for', {x:64,y:H-290,size:44,font:bold,color:WHITE});
+  c.drawText('Your Facilities.', {x:64,y:H-340,size:44,font:bold,color:WHITE});
+  c.drawRectangle({x:64,y:H-370,width:88,height:3,color:GOLD});
+  c.drawText('Five Lines. Three Ways to Buy. One Partner.', {x:64,y:H-402,size:16,font:reg,color:LBLUE});
+  c.drawText('Prepared ' + today, {x:64,y:84,size:11,font:reg,color:STEEL});
+  c.drawText('(866) 865-7553  \u00B7  fsg.com', {x:64,y:64,size:12,font:bold,color:GOLD});
+
+  // --- Selections page ---
+  const s = doc.addPage([W,H]);
+  s.drawRectangle({x:0,y:0,width:W,height:H,color:WHITE});
+  s.drawRectangle({x:0,y:H-8,width:W,height:8,color:GOLD});
+  let y = H-70;
+  s.drawText('WHAT THIS PACKAGE COVERS', {x:64,y:y,size:12,font:bold,color:DNAVY}); y-=34;
+  if(PITCH.types.size){
+    s.drawText('TYPES OF WORK', {x:64,y:y,size:10,font:bold,color:STEEL}); y-=22;
+    [...PITCH.types].forEach(t=>{
+      s.drawText(t, {x:64,y:y,size:13,font:bold,color:DNAVY}); y-=16;
+      wrapText(TYPEDEFS[t]||'', reg, 10.5, W-170).forEach(l=>{ s.drawText(l,{x:64,y:y,size:10.5,font:reg,color:INK}); y-=14; });
+      y-=8;
+      if(y<140){ y=140; } // stay above footer; long lists truncate gracefully
+    });
+    y-=8;
+  }
+  if(PITCH.proofs.size){
+    s.drawText('PROVEN WITH', {x:64,y:y,size:10,font:bold,color:STEEL}); y-=20;
+    wrapText([...PITCH.proofs].join('   \u00B7   '), bold, 13, W-128).forEach(l=>{ s.drawText(l,{x:64,y:y,size:13,font:bold,color:DNAVY}); y-=18; });
+    y-=14;
+  }
+  const withPdf = [...PITCH.res].filter(k=>R[k].pdf || /\.pdf$/i.test(R[k].href));
+  const noPdf   = [...PITCH.res].filter(k=>!(R[k].pdf || /\.pdf$/i.test(R[k].href)));
+  if(withPdf.length){
+    s.drawText('INCLUDED IN THIS PACKAGE', {x:64,y:y,size:10,font:bold,color:STEEL}); y-=20;
+    const seen={};
+    withPdf.forEach(k=>{ const nm=R[k].name.replace(/ \u2014 PDF$/,''); if(seen[nm])return; seen[nm]=1;
+      s.drawText('\u2022  '+nm, {x:64,y:y,size:12,font:reg,color:INK}); y-=17; });
+    y-=12;
+  }
+  if(noPdf.length){
+    s.drawText('ALSO AVAILABLE \u2014 ASK YOUR FSG CONTACT', {x:64,y:y,size:10,font:bold,color:STEEL}); y-=20;
+    noPdf.forEach(k=>{ s.drawText('\u2022  '+R[k].name+'  ('+R[k].kind+')', {x:64,y:y,size:12,font:reg,color:INK}); y-=17; });
+  }
+  s.drawRectangle({x:64,y:52,width:W-128,height:1,color:GOLD});
+  s.drawText('FSG \u00B7 Empowering People to Do Good Work \u00B7 (866) 865-7553 \u00B7 fsg.com', {x:64,y:36,size:9.5,font:reg,color:STEEL});
+
+  // --- Append each selected asset's PDF ---
+  const pdfPaths = [...new Set(withPdf.map(k=>R[k].pdf || R[k].href))];
+  for(const p of pdfPaths){
+    try{
+      const buf = await fetch(p).then(r=>{ if(!r.ok) throw 0; return r.arrayBuffer(); });
+      const src = await PDFDocument.load(buf);
+      const pages = await doc.copyPages(src, src.getPageIndices());
+      pages.forEach(pg=>doc.addPage(pg));
+    }catch(e){ /* asset unavailable \u2014 cover page still lists it */ }
+  }
+
+  const bytes = await doc.save();
+  const blob = new Blob([bytes], {type:'application/pdf'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'FSG_Pitch_Package.pdf';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href), 4000);
+}
+document.getElementById('tBuild').addEventListener('click', async () => {
+  const b = document.getElementById('tBuild');
+  if(!pitchCount()){ b.textContent='Add items first'; setTimeout(()=>b.innerHTML='\u2193 Download Pitch PDF',1400); return; }
+  b.textContent='Building\u2026'; b.disabled=true;
+  try{ await buildPitchPdf(); b.innerHTML='\u2713 Downloaded'; }
+  catch(e){ b.textContent='Build failed \u2014 try again'; }
+  b.disabled=false;
+  setTimeout(()=>b.innerHTML='\u2193 Download Pitch PDF', 2000);
 });
-document.getElementById('tMail').addEventListener('click', () => {
-  location.href = 'mailto:?subject=' + encodeURIComponent('FSG \u2014 Solutions for Your Facilities') + '&body=' + encodeURIComponent(pitchText());
-});
-document.getElementById('tClear').addEventListener('click', () => { PITCH.clear(); trayUpdate(); document.querySelectorAll('.r-add.added').forEach(b=>{b.classList.remove('added');b.textContent='+ Add';}); });
 </script>
 <script src="../assets/proofs.js"></script>
 </body>
