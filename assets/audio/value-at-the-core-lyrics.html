@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Value at the Core — The Anthem, Decoded</title>
+<style>
+  :root{
+    --deep:#0b1421; --navy:#133865; --blue:#365aa0; --steel:#718dbc;
+    --lblue:#c5d9fa; --gray:#ededed; --gold:#ebb018; --bright:#4e84de;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  body{ font-family:'Open Sans',Arial,sans-serif; background:var(--deep); color:#fff; line-height:1.6; }
+  a{ color:var(--bright); text-decoration:none; }
+
+  .hero{ background:linear-gradient(160deg,#0b1421 0%,#133865 100%);
+    padding:64px 24px 48px; text-align:center; }
+  .hero .kicker{ color:var(--gold); font-size:13px; letter-spacing:.22em;
+    text-transform:uppercase; font-weight:700; margin-bottom:14px; }
+  .hero h1{ font-family:Oswald,'Arial Black',Arial,sans-serif; font-size:clamp(34px,6vw,58px);
+    letter-spacing:.04em; text-transform:uppercase; }
+  .hero h1 span{ color:var(--gold); }
+  .hero .sub{ color:var(--lblue); max-width:640px; margin:16px auto 0; font-size:17px; }
+  .hero .rule{ width:120px; height:3px; background:var(--gold); margin:26px auto 0; }
+
+  .play-pill{ display:inline-flex; align-items:center; gap:10px; margin-top:28px;
+    padding:10px 22px 10px 12px; border-radius:999px; background:var(--navy);
+    border:1px solid var(--gold); cursor:pointer; user-select:none;
+    box-shadow:0 4px 18px rgba(0,0,0,.45); transition:transform .15s; }
+  .play-pill:hover{ transform:translateY(-1px); }
+  .play-pill .dot{ width:32px; height:32px; border-radius:50%; background:var(--gold);
+    display:grid; place-items:center; }
+  .play-pill .dot svg{ width:13px; height:13px; fill:var(--deep); }
+  .play-pill span.t{ font-size:13px; letter-spacing:.14em; text-transform:uppercase;
+    font-weight:700; color:var(--gold); }
+
+  .wrap{ max-width:860px; margin:0 auto; padding:56px 24px; }
+  .section-title{ font-family:Oswald,Arial,sans-serif; text-transform:uppercase;
+    letter-spacing:.08em; font-size:26px; color:#fff; margin-bottom:8px; }
+  .section-title.gold{ color:var(--gold); }
+  .section-sub{ color:var(--steel); margin-bottom:34px; }
+
+  .verse{ background:rgba(19,56,101,.35); border:1px solid rgba(113,141,188,.25);
+    border-radius:14px; padding:28px 30px; margin-bottom:26px; }
+  .chip{ display:inline-block; background:var(--gold); color:var(--deep);
+    font-size:11px; font-weight:800; letter-spacing:.16em; text-transform:uppercase;
+    padding:4px 14px; border-radius:999px; margin-bottom:14px; }
+  .verse .lyrics{ font-family:Oswald,Arial,sans-serif; font-size:21px; line-height:1.55;
+    letter-spacing:.015em; color:#fff; white-space:pre-line; }
+  .verse .lyrics em{ color:var(--gold); font-style:normal; }
+  .verse .why{ margin-top:18px; padding-top:16px; border-top:1px solid rgba(235,176,24,.35);
+    color:var(--lblue); font-size:15px; }
+  .verse .why b{ color:var(--gold); }
+
+  .sb{ background:#fff; color:var(--deep); }
+  .sb .wrap{ padding-top:64px; padding-bottom:64px; }
+  .sb .section-title{ color:var(--navy); }
+  .sb .section-sub{ color:var(--blue); }
+  .sb7{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; margin-top:8px; }
+  .sb7 .card{ background:var(--gray); border-left:4px solid var(--gold); border-radius:10px; padding:18px 20px; }
+  .sb7 .card h3{ font-family:Oswald,Arial,sans-serif; font-size:15px; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--navy); margin-bottom:6px; }
+  .sb7 .card h3 small{ color:var(--gold); margin-right:6px; }
+  .sb7 .card p{ font-size:14px; color:#243; color:#2a3442; }
+  .sb7 .card p i{ color:var(--blue); font-style:normal; font-weight:700; }
+
+  .why-works{ background:var(--navy); }
+  .why-works .wrap{ padding-top:64px; padding-bottom:64px; }
+  .why-works p{ color:var(--lblue); margin-bottom:18px; font-size:16px; max-width:760px; }
+  .why-works p b{ color:var(--gold); }
+  .pull{ border-left:4px solid var(--gold); padding:14px 22px; margin:28px 0;
+    font-family:Oswald,Arial,sans-serif; font-size:22px; color:#fff; letter-spacing:.02em; }
+
+  .footer{ text-align:center; padding:48px 24px 64px; color:var(--steel); font-size:13px;
+    letter-spacing:.12em; text-transform:uppercase; }
+  .footer .eq{ color:var(--gold); font-weight:700; letter-spacing:.18em; margin-bottom:8px; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="kicker">The Story Behind the Hub</div>
+  <h1>Value at the <span>Core</span></h1>
+  <p class="sub">Our anthem. Our story. Our elevator pitch. One piece of StoryBrand messaging you can
+  say, sing, or sell — every line is doing a job.</p>
+  <div class="rule"></div>
+  <div class="play-pill" id="lyrPlay" role="button" tabindex="0" aria-label="Play Value at the Core">
+    <span class="dot">
+      <svg class="p" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      <svg class="q" viewBox="0 0 24 24" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+    </span>
+    <span class="t">Play the Anthem</span>
+  </div>
+</header>
+
+<main class="wrap">
+  <h2 class="section-title gold">The Lyrics — Decoded</h2>
+  <p class="section-sub">Each section is tagged with the StoryBrand role it plays. This is why the anthem works as a pitch: it's a complete story in 90 seconds.</p>
+
+  <div class="verse">
+    <span class="chip">The Character — The Hero</span>
+    <div class="lyrics">It starts with a person carrying a problem they can't solve alone.
+<em>They are the hero; we are their Guide.</em>
+Growth is the way.</div>
+    <div class="why"><b>Why this works:</b> every story starts with a character who wants something. Notice who the hero is — not FSG. The customer. The first word of our story belongs to them, and FSG takes the Guide's seat on line two. That single choice is the whole StoryBrand playbook in miniature.</div>
+  </div>
+
+  <div class="verse">
+    <span class="chip">The Problem — The Villain</span>
+    <div class="lyrics">Facility leaders are stuck — juggling too many vendors,
+blown schedules, dark sites, and bleeding budgets.
+<em>Nobody is accountable.</em>
+They need the light we bring.</div>
+    <div class="why"><b>Why this works:</b> companies sell solutions to external problems; customers buy solutions to internal ones. "Blown schedules and dark sites" are the external problem. "Stuck" and "nobody is accountable" are the internal frustration — the feeling that actually drives the buying decision. Name the villain (fragmentation, zero accountability) and the hero leans in.</div>
+  </div>
+
+  <div class="verse">
+    <span class="chip">The Guide — Empathy + Authority</span>
+    <div class="lyrics"><em>FSG is the one partner that self-performs nationally,</em>
+built to solve facility problems.
+Local Strength, Nationwide Excellence —
+with People doing Good Work.</div>
+    <div class="why"><b>Why this works:</b> a Guide earns trust two ways — empathy (we understand your problem) and authority (we're competent to solve it). "Built to solve facility problems" is empathy; "self-performs nationally" is authority no aggregator can claim. The Guide doesn't say "we're the best" — the Guide proves capability and hands the hero the win.</div>
+  </div>
+
+  <div class="verse">
+    <span class="chip">The Plan + Success</span>
+    <div class="lyrics">We discover the problem, bring the plan,
+do the work in the open,
+<em>and success goes on and on and on.</em>
+People, Vision, Development, Execution, Finance, Results.
+We focus on facilities across the globe.</div>
+    <div class="why"><b>Why this works:</b> heroes don't follow guides without a path. "Discover → plan → work in the open" is a three-step plan a customer can repeat back after hearing it once — that's the test of a good one. Then the lyric paints success that compounds ("on and on and on") and names the engine behind it: the six spokes of the Growth Hub. Vision of success is what the hero is really buying.</div>
+  </div>
+
+  <div class="verse">
+    <span class="chip">The Transformation — The Mission</span>
+    <div class="lyrics">This is our Story:
+<em>Contribution Plus Service Equals Value.</em>
+Empower People to Do Good Work.
+Every day.</div>
+    <div class="why"><b>Why this works:</b> the close zooms out from one deal to identity — who we are when we do this work. StoryBrand calls it transformation: the customer ends somewhere better, and so do we. "Every day" turns the story into a standard. It's not a campaign; it's a cadence.</div>
+  </div>
+</main>
+
+<section class="sb">
+  <div class="wrap">
+    <h2 class="section-title">The StoryBrand Framework — SB7 Defined</h2>
+    <p class="section-sub">Donald Miller's framework from <i>Building a StoryBrand</i>: seven story elements every clear message contains. Here's each one, and where it lives in the anthem.</p>
+    <div class="sb7">
+      <div class="card"><h3><small>1</small>A Character</h3><p>The customer is the hero — never the brand. They want something specific. <i>In the anthem:</i> "a person carrying a problem they can't solve alone."</p></div>
+      <div class="card"><h3><small>2</small>Has a Problem</h3><p>External (the situation), internal (the frustration), philosophical (why it's just wrong). <i>In the anthem:</i> too many vendors, feeling stuck, nobody accountable.</p></div>
+      <div class="card"><h3><small>3</small>Meets a Guide</h3><p>The brand enters as the experienced guide — empathy plus authority. <i>In the anthem:</i> "They are the hero; we are their Guide."</p></div>
+      <div class="card"><h3><small>4</small>Who Gives Them a Plan</h3><p>A simple path that removes the risk of doing business. <i>In the anthem:</i> discover the problem → bring the plan → do the work in the open.</p></div>
+      <div class="card"><h3><small>5</small>And Calls Them to Action</h3><p>Heroes act when challenged. Direct ("start today") or transitional ("see the proof"). <i>In the room:</i> this is where you ask for the walk, the audit, the meeting.</p></div>
+      <div class="card"><h3><small>6</small>That Helps Them Avoid Failure</h3><p>What's at stake if nothing changes. <i>In the anthem:</i> blown schedules, dark sites, bleeding budgets — the cost of staying stuck.</p></div>
+      <div class="card"><h3><small>7</small>And Ends in Success</h3><p>Paint the win — specific, repeatable, lasting. <i>In the anthem:</i> "success goes on and on and on" — results that feed back into people.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="why-works">
+  <div class="wrap">
+    <h2 class="section-title gold">Why It Works</h2>
+    <p><b>The brain conserves calories.</b> People don't buy the best products — they buy the ones they can understand fastest. Story is the oldest compression format humans have: it organizes information so the brain doesn't have to work. When we pitch in story, the customer stops burning energy decoding us and starts seeing themselves in the win.</p>
+    <p><b>The customer is the hero, so the pitch is about them.</b> Most companies position themselves as the hero — "look at our footprint, our awards, our fleet." Heroes don't hire heroes. Heroes hire guides. When FSG takes the Guide's seat, every capability we mention stops being a brag and becomes evidence the hero will make it.</p>
+    <p><b>Clarity beats cleverness.</b> If a facility leader can repeat our story to their boss after hearing it once — hero, villain, guide, plan, win — the message travels without us in the room. That's what an elevator pitch is actually for: not to close, but to be repeatable.</p>
+    <p><b>One story, every surface.</b> The same 90 seconds works as an anthem at kickoff, an elevator pitch in a lobby, the opening of a proposal, and the hub's homepage. One story, told everywhere, is a brand. Ten stories, told occasionally, is noise.</p>
+    <div class="pull">If you confuse, you lose. If you clarify, you close.</div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="eq">Contribution + Service = Value</div>
+  <div>Protect &middot; Land &middot; Expand &nbsp;&mdash;&nbsp; FSG Growth Hub</div>
+</footer>
+
+<script>
+(function(){
+  var pill = document.getElementById('lyrPlay');
+  var audio = new Audio('assets/audio/Value at the Core (remix).mp3');
+  audio.loop = true; audio.preload = 'none';
+  var p = pill.querySelector('.p'), q = pill.querySelector('.q');
+  function toggle(){
+    if (audio.paused){ audio.play().then(function(){ p.style.display='none'; q.style.display=''; }).catch(function(){}); }
+    else { audio.pause(); p.style.display=''; q.style.display='none'; }
+  }
+  pill.addEventListener('click', toggle);
+  pill.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); }});
+})();
+</script>
+
+</body>
+</html>
