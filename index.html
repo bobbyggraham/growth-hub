@@ -687,19 +687,9 @@
       document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
     }
   }
-  // ---- One Shot intro: plays once, on the unlock click (a user gesture, so audio is allowed) ----
+  // ---- One Shot intro: plays once on the unlock click, through the audio dock ----
   function playIntro(){
-    try{
-      var a = new Audio('one-shot-intro.m4a');
-      a.volume = 0.85;
-      var pill = document.createElement('div');
-      pill.innerHTML = '&#9654;&#xFE0E; ONE SHOT &mdash; THE INTRO &nbsp;&nbsp;&times;';
-      pill.style.cssText = 'position:fixed;bottom:22px;right:22px;z-index:9999;background:#133865;color:#ebb018;border:1px solid #ebb018;border-radius:999px;padding:10px 18px;font-family:Oswald,Arial,sans-serif;font-size:12px;letter-spacing:.18em;cursor:pointer;box-shadow:0 6px 24px rgba(0,0,0,.45);';
-      function kill(){ a.pause(); if(pill.parentNode) pill.parentNode.removeChild(pill); }
-      pill.addEventListener('click', kill);
-      a.addEventListener('ended', kill);
-      a.play().then(function(){ document.body.appendChild(pill); }).catch(function(){});
-    }catch(e){}
+    try{ if(window.ghDockIntro) window.ghDockIntro(); }catch(e){}
   }
   document.addEventListener('DOMContentLoaded', function(){
     if(unlocked()) return;
@@ -1584,27 +1574,155 @@
   });
 </script>
 
-<!-- ============ ONE SHOT — anthem player ============ -->
-<audio id="oneShotAudio" src="one-shot.m4a" preload="none"></audio>
+<!-- ============ AUDIO DOCK — One Shot + The Anthem ============ -->
+<style>
+  .gh-dock{ position:fixed; right:22px; bottom:22px; z-index:9999;
+    display:flex; flex-direction:column; gap:10px; align-items:flex-end;
+    font-family:'Barlow','Open Sans',Arial,sans-serif; }
+  .gh-dock-pill{ display:inline-flex; align-items:center; gap:11px;
+    padding:9px 18px 9px 11px; border-radius:999px; cursor:pointer;
+    background:#133865; border:1px solid rgba(235,176,24,.5);
+    color:#fff; box-shadow:0 4px 18px rgba(0,0,0,.45); user-select:none;
+    transition:transform .15s, box-shadow .15s, border-color .15s; }
+  .gh-dock-pill:hover{ transform:translateY(-1px);
+    box-shadow:0 6px 24px rgba(235,176,24,.25); border-color:#ebb018; }
+  .gh-dock-pill .dot{ width:30px; height:30px; border-radius:50%;
+    background:#ebb018; display:grid; place-items:center; flex:none; }
+  .gh-dock-pill .dot svg{ width:12px; height:12px; fill:#0b1421; }
+  .gh-dock-pill .lbl b{ display:block; font-size:11px; font-weight:700;
+    letter-spacing:.14em; text-transform:uppercase; color:#ebb018; }
+  .gh-dock-pill .lbl span{ font-size:12px; color:#c5d9fa; letter-spacing:.05em; }
+  .gh-dock-pill .bars{ display:none; gap:3px; align-items:flex-end;
+    height:14px; margin-left:2px; }
+  .gh-dock-pill.playing .bars{ display:flex; }
+  .gh-dock-pill .bars i{ width:3px; background:#ebb018; border-radius:2px;
+    animation:ghEq .9s ease-in-out infinite; }
+  .gh-dock-pill .bars i:nth-child(2){ animation-delay:.2s }
+  .gh-dock-pill .bars i:nth-child(3){ animation-delay:.4s }
+  @keyframes ghEq{ 0%,100%{height:4px} 50%{height:14px} }
+  .gh-dock-toggle{ align-self:flex-end; width:22px; height:22px;
+    border-radius:50%; background:#0b1421; border:1px solid #718dbc;
+    color:#718dbc; font-size:12px; line-height:20px; text-align:center;
+    cursor:pointer; }
+  .gh-dock.collapsed .gh-dock-pill{ display:none; }
+  .gh-dock.collapsed .gh-dock-toggle{ width:40px; height:40px;
+    background:#ebb018; color:#0b1421; border-color:#ebb018;
+    font-size:16px; line-height:38px; font-weight:bold; }
+</style>
+
+<div class="gh-dock" id="ghDock">
+  <button class="gh-dock-toggle" id="ghDockToggle" aria-label="Hide players">&times;</button>
+
+  <div class="gh-dock-pill" id="ghPillOneShot" data-src="one-shot.m4a" tabindex="0" role="button"
+       aria-label="Play One Shot, the closer anthem">
+    <span class="dot">
+      <svg class="ic-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      <svg class="ic-pause" viewBox="0 0 24 24" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+    </span>
+    <span class="lbl"><b>One Shot</b><span>The Closer Anthem</span></span>
+    <span class="bars"><i></i><i></i><i></i></span>
+  </div>
+
+  <div class="gh-dock-pill" id="ghPillAnthem" data-src="value-at-the-core-remix.mp3" tabindex="0" role="button"
+       aria-label="Play Value at the Core, the anthem">
+    <span class="dot">
+      <svg class="ic-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      <svg class="ic-pause" viewBox="0 0 24 24" style="display:none"><path d="M6 5h4v14h-4z M14 5h4v14h-4z"/></svg>
+    </span>
+    <span class="lbl"><b>The Anthem</b><span>Value at the Core</span></span>
+    <span class="bars"><i></i><i></i><i></i></span>
+  </div>
+</div>
+
 <script>
-  (function () {
-    const audio = document.getElementById('oneShotAudio');
-    function setLabels(playing) {
-      document.querySelectorAll('.play-oneshot').forEach(function (b) {
-        b.innerHTML = playing ? '&#10074;&#10074; Pause' : '&#9654; Play';
-      });
-    }
-    document.querySelectorAll('.play-oneshot').forEach(function (btn) {
-      btn.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        if (audio.paused) { audio.play(); } else { audio.pause(); }
-      });
+(function () {
+  var current = null; // {pill, audio}
+  var tracks = {};
+
+  function setUI(pill, on){
+    pill.classList.toggle('playing', on);
+    pill.querySelector('.ic-play').style.display  = on ? 'none' : '';
+    pill.querySelector('.ic-pause').style.display = on ? '' : 'none';
+    if (pill.id === 'ghPillOneShot') setCardLabels(on);
+  }
+
+  // keep the One Shot card Play/Pause buttons in sync with the dock
+  function setCardLabels(playing){
+    document.querySelectorAll('.play-oneshot').forEach(function (b) {
+      b.innerHTML = playing ? '&#10074;&#10074; Pause' : '&#9654; Play';
     });
-    audio.addEventListener('play',  function () { setLabels(true);  });
-    audio.addEventListener('pause', function () { setLabels(false); });
-    audio.addEventListener('ended', function () { setLabels(false); });
-  })();
+  }
+
+  function stopCurrent(){
+    if (current){ current.audio.pause(); setUI(current.pill, false); current = null; }
+    stopIntro();
+  }
+
+  function toggle(pill){
+    var audio = tracks[pill.id];
+    if (current && current.pill === pill){           // playing -> pause
+      stopCurrent();
+    } else {                                         // start this, stop the other
+      stopCurrent();
+      audio.currentTime = audio.currentTime || 0;
+      audio.play().then(function(){
+        current = {pill: pill, audio: audio};
+        setUI(pill, true);
+      }).catch(function(){});
+    }
+  }
+
+  document.querySelectorAll('.gh-dock-pill').forEach(function(pill){
+    var audio = new Audio(pill.getAttribute('data-src'));
+    audio.loop = true;            // repeat until paused
+    audio.preload = 'none';
+    tracks[pill.id] = audio;
+    pill.addEventListener('click', function(){ toggle(pill); });
+    pill.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(pill); }
+    });
+  });
+
+  // One Shot card buttons drive the dock's One Shot pill
+  document.querySelectorAll('.play-oneshot').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      toggle(document.getElementById('ghPillOneShot'));
+    });
+  });
+
+  // ---- Unlock intro: plays one-shot-intro.m4a once, lights up the One Shot pill ----
+  var intro = new Audio('one-shot-intro.m4a');
+  intro.volume = 0.85;
+  var introPlaying = false;
+  function stopIntro(){
+    if (introPlaying){ intro.pause(); intro.currentTime = 0; introPlaying = false;
+      setUI(document.getElementById('ghPillOneShot'), false); }
+  }
+  intro.addEventListener('ended', function(){
+    introPlaying = false;
+    setUI(document.getElementById('ghPillOneShot'), false);
+  });
+  window.ghDockIntro = function(){
+    stopCurrent();
+    intro.play().then(function(){
+      introPlaying = true;
+      setUI(document.getElementById('ghPillOneShot'), true);
+    }).catch(function(){});
+  };
+  // clicking the One Shot pill while the intro plays stops the intro and starts the full track
+  // (handled automatically: toggle() -> stopCurrent() -> stopIntro())
+
+  var dock = document.getElementById('ghDock');
+  var tog  = document.getElementById('ghDockToggle');
+  tog.addEventListener('click', function(){
+    var collapsed = dock.classList.toggle('collapsed');
+    tog.innerHTML = collapsed ? '&#9834;' : '&times;';
+    tog.setAttribute('aria-label', collapsed ? 'Show players' : 'Hide players');
+    if (collapsed) stopCurrent();
+  });
+})();
 </script>
 
 </body>
