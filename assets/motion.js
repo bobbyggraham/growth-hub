@@ -25,7 +25,11 @@
       { lane: "VALUE",       tone: "navy", standard: "Do the right thing. When you screw up, own it and fix it.", move: "Call the customer before they call you. Name the miss, bring the fix, set the date." },
       { lane: "PEOPLE",      tone: "deep", standard: "Surround yourself with people who expect you to be better.", move: "Pick one person who pushes you. Put 30 minutes on the calendar this week and bring a real problem." },
       { lane: "EXECUTION",   tone: "navy", standard: "Stop negotiating with yourself on the non-negotiables.", move: "The hardest promise to keep is the one you made to yourself. Write it down. Do it first." },
-      { lane: "DEVELOPMENT", tone: "deep", standard: "Know your non-negotiables. Mine start the night before.", move: "Early to bed, early to rise. Win the morning before the inbox wakes up." }
+      { lane: "DEVELOPMENT", tone: "deep", standard: "Know your non-negotiables. Mine start the night before.", move: "Early to bed, early to rise. Win the morning before the inbox wakes up." },
+      { lane: "EXECUTION",   tone: "navy",  standard: "Stop thinking about the problem. Attack it.", move: "Identify it. Own it. Eliminate it. Pick the deal you've been circling and make the call today." },
+      { lane: "VISION",      tone: "light", standard: "The way forward isn't around it. It's through it.", move: "Write down the story you tell about why that account won't move. Then go prove it wrong." },
+      { lane: "RESULTS",     tone: "deep",  standard: "Show up when you don't feel like it. That's when it counts.", move: "Make the same miss twice and it's a choice. Name one lesson from last week and run it this week." },
+      { lane: "PEOPLE",      tone: "light", standard: "Say less. Mean more.", move: "Slow down. Pause after the number. Let the customer fill the silence." }
     ]},
     { week: "2026-09-28", cards: [
       { lane: "RESULTS",     tone: "navy",  standard: "Luck doesn't fill a pipeline. Monday morning does.", move: "Block the first hour. Make the calls before the inbox makes them for you." },
