@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How To Run The Hub — Growth Hub</title>
+<title>How To Run The Hub — Growth Hub Training</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='115' fill='%23133865'/><g stroke='%23c5d9fa' stroke-width='22' stroke-linecap='round'><line x1='256' y1='256' x2='256' y2='96'/><line x1='256' y1='256' x2='394.6' y2='176'/><line x1='256' y1='256' x2='394.6' y2='336'/><line x1='256' y1='256' x2='256' y2='416'/><line x1='256' y1='256' x2='117.4' y2='336'/><line x1='256' y1='256' x2='117.4' y2='176'/></g><circle cx='256' cy='96' r='42' fill='%23ffffff'/><circle cx='394.6' cy='176' r='42' fill='%23c5d9fa'/><circle cx='394.6' cy='336' r='42' fill='%23ffffff'/><circle cx='256' cy='416' r='42' fill='%23c5d9fa'/><circle cx='117.4' cy='336' r='42' fill='%23ffffff'/><circle cx='117.4' cy='176' r='42' fill='%23ebb018'/><circle cx='256' cy='256' r='76' fill='%23ebb018'/></svg>">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -138,6 +138,147 @@
     .step > .bar .t { font-size: 15px; padding: 12px 14px; }
   }
   @media print { .cover, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+
+  /* ===== Training layer ===== */
+  section, .play-band { scroll-margin-top: 70px; }
+  .modnav { position: sticky; top: 0; z-index: 50; background: #fff; border-bottom: 1px solid var(--light-gray); box-shadow: 0 2px 10px rgba(11,20,33,.06); }
+  .modnav .inner { max-width: 880px; margin: 0 auto; padding: 10px 40px; display: flex; align-items: center; gap: 14px; }
+  .modnav .links { display: flex; gap: 6px; overflow-x: auto; flex: 1; scrollbar-width: none; }
+  .modnav .links::-webkit-scrollbar { display: none; }
+  .modnav a { flex-shrink: 0; font-family: 'Nunito', Arial, sans-serif; font-weight: 800; font-size: 11.5px; letter-spacing: 1px; text-transform: uppercase; color: var(--navy); text-decoration: none; border: 1.5px solid var(--light-gray); border-radius: 999px; padding: 6px 11px; white-space: nowrap; }
+  .modnav a:hover { border-color: var(--brand-blue); }
+  .modnav a.done { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .modnav a.done::before { content: "\2713  "; color: var(--gold); }
+  .modnav .prog { flex-shrink: 0; font-family: 'Nunito', Arial, sans-serif; font-weight: 900; font-size: 12px; color: var(--steel); letter-spacing: 1px; }
+  .modnav .prog b { color: var(--navy); }
+  .bar-track { height: 3px; background: var(--light-gray); }
+  .bar-fill { height: 3px; background: var(--gold); width: 0; transition: width .3s; }
+
+  .mark { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; font-family: 'Nunito', Arial, sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: var(--navy); background: #fff; border: 2px solid var(--navy); border-radius: 8px; padding: 9px 14px; cursor: pointer; }
+  .mark:hover { border-color: var(--gold); }
+  .mark.on { background: var(--navy); color: #fff; }
+  .mark.on::before { content: "\2713"; color: var(--gold); }
+
+  .agenda { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 18px 0; }
+  .agenda a { display: block; text-decoration: none; background: #fff; border: 1px solid var(--light-gray); border-left: 4px solid var(--brand-blue); border-radius: 8px; padding: 12px 14px; color: var(--navy); }
+  .agenda a:hover { border-left-color: var(--gold); }
+  .agenda a b { display: block; font-family: 'Nunito', Arial, sans-serif; font-size: 14px; }
+  .agenda a span { font-size: 12.5px; color: #4a5568; }
+  .agenda a i { font-style: normal; color: var(--gold); font-family: 'Nunito', Arial, sans-serif; font-weight: 900; margin-right: 6px; }
+
+  /* Tour stepper */
+  .tour { border: 1px solid var(--light-gray); border-radius: 12px; overflow: hidden; margin: 20px 0; background: #fff; }
+  .tour .dots { display: flex; gap: 6px; padding: 14px 18px 0; }
+  .tour .dots span { flex: 1; height: 5px; border-radius: 3px; background: var(--light-gray); }
+  .tour .dots span.on { background: var(--gold); }
+  .tour .slide { display: none; padding: 18px 22px 8px; }
+  .tour .slide.on { display: block; }
+  .tour .k { font-family: 'Nunito', Arial, sans-serif; font-weight: 800; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--steel); }
+  .tour h3 { margin: 6px 0 6px; font-size: 21px; color: var(--navy); }
+  .tour .try { background: var(--ice); border-radius: 8px; padding: 12px 14px; margin: 14px 0 6px; font-size: 14px; color: var(--navy); }
+  .tour .try b { font-family: 'Nunito', Arial, sans-serif; letter-spacing: 1px; text-transform: uppercase; font-size: 12px; color: var(--brand-blue); margin-right: 6px; }
+  .tour .ctl { display: flex; justify-content: space-between; align-items: center; padding: 12px 22px 18px; gap: 10px; }
+  .tour .ctl button { font-family: 'Nunito', Arial, sans-serif; font-weight: 900; font-size: 14px; border-radius: 8px; padding: 11px 18px; cursor: pointer; border: 2px solid var(--navy); background: #fff; color: var(--navy); min-height: 44px; }
+  .tour .ctl button.go { background: var(--gold); border-color: var(--gold); color: var(--deep-navy); }
+  .tour .ctl button:disabled { opacity: .35; cursor: default; }
+  .tour .ctl .count { font-family: 'Nunito', Arial, sans-serif; font-weight: 800; font-size: 12px; color: var(--steel); letter-spacing: 1px; }
+
+  /* Chip row replica */
+  .chiprow { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+  .chiprow span { font-family: 'Nunito', Arial, sans-serif; font-weight: 800; font-size: 11.5px; letter-spacing: 1px; text-transform: uppercase; border: 1.5px solid var(--steel); color: var(--navy); border-radius: 999px; padding: 6px 11px; background: #fff; }
+  .chiprow span.all { background: var(--navy); border-color: var(--navy); color: #fff; }
+  .chiprow span.nav { border-color: var(--gold); }
+
+  /* Chip lessons */
+  details.lesson { border: 1px solid var(--light-gray); border-left: 4px solid var(--brand-blue); border-radius: 8px; background: #fff; margin: 10px 0; }
+  details.lesson.nav { border-left-color: var(--gold); }
+  details.lesson summary { list-style: none; cursor: pointer; padding: 14px 18px; display: flex; align-items: center; gap: 12px; }
+  details.lesson summary::-webkit-details-marker { display: none; }
+  details.lesson summary .nm { font-family: 'Nunito', Arial, sans-serif; font-weight: 900; font-size: 16px; color: var(--navy); letter-spacing: .5px; min-width: 120px; }
+  details.lesson summary .ln { font-size: 13.5px; color: #4a5568; flex: 1; }
+  details.lesson summary .pl { font-family: 'Nunito', Arial, sans-serif; font-weight: 900; color: var(--steel); font-size: 18px; transition: transform .2s; }
+  details.lesson[open] summary .pl { transform: rotate(45deg); color: var(--gold); }
+  details.lesson .bd { padding: 0 18px 16px; }
+  details.lesson .bd .kv { display: grid; grid-template-columns: 120px 1fr; gap: 6px 14px; font-size: 14px; margin: 4px 0 10px; }
+  details.lesson .bd .kv dt { font-family: 'Nunito', Arial, sans-serif; font-weight: 800; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--brand-blue); padding-top: 2px; }
+  details.lesson .bd .kv dd { margin: 0; }
+  .open-link { display: inline-block; font-family: 'Nunito', Arial, sans-serif; font-weight: 900; font-size: 13px; text-decoration: none; background: var(--navy); color: #fff; border-radius: 6px; padding: 8px 14px; margin-top: 4px; }
+  .open-link:hover { background: var(--brand-blue); }
+
+  /* Drills */
+  .drill { border: 1px solid var(--light-gray); border-radius: 10px; margin: 18px 0; overflow: hidden; background: #fff; }
+  .drill .hd { background: var(--navy); color: #fff; padding: 12px 18px; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; font-family: 'Nunito', Arial, sans-serif; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; font-size: 14px; }
+  .drill .hd span { color: var(--gold); }
+  .drill .bd { padding: 6px 18px 16px; }
+  .drill ol.tick { list-style: none; margin: 10px 0; }
+  .drill ol.tick li { position: relative; padding: 6px 0 6px 34px; font-size: 14.5px; cursor: pointer; }
+  .drill ol.tick li::before { content: ""; position: absolute; left: 0; top: 8px; width: 20px; height: 20px; border: 2px solid var(--brand-blue); border-radius: 5px; background: #fff; }
+  .drill ol.tick li.on::before { background: var(--gold); border-color: var(--gold); }
+  .drill ol.tick li.on::after { content: "\2713"; position: absolute; left: 5px; top: 7px; font-weight: 900; color: var(--deep-navy); font-size: 14px; }
+  .drill ol.tick li.on { color: #6b7686; }
+  .drill .done-when { font-size: 13.5px; background: var(--ice); border-radius: 6px; padding: 10px 12px; color: var(--navy); }
+
+  /* Quiz */
+  .quiz { border: 1px solid var(--light-gray); border-radius: 12px; background: #fff; padding: 20px 22px; margin: 18px 0; }
+  .quiz .qn { font-family: 'Nunito', Arial, sans-serif; font-weight: 800; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--steel); }
+  .quiz .qt { font-family: 'Nunito', Arial, sans-serif; font-weight: 900; font-size: 19px; color: var(--navy); margin: 6px 0 14px; }
+  .quiz .opt { display: block; width: 100%; text-align: left; background: #fff; border: 2px solid var(--light-gray); border-radius: 8px; padding: 12px 14px; margin: 8px 0; font: inherit; font-size: 15px; color: var(--deep-navy); cursor: pointer; min-height: 44px; }
+  .quiz .opt:hover:not(:disabled) { border-color: var(--brand-blue); }
+  .quiz .opt.right { border-color: #1d6b45; background: #e8f5ee; }
+  .quiz .opt.wrong { border-color: #9a3232; background: #fbeaea; }
+  .quiz .opt:disabled { cursor: default; }
+  .quiz .why { display: none; font-size: 14px; background: var(--ice); border-radius: 6px; padding: 10px 12px; margin-top: 10px; color: var(--navy); }
+  .quiz .why.on { display: block; }
+  .quiz .qctl { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; gap: 10px; }
+  .quiz .qctl .score { font-family: 'Nunito', Arial, sans-serif; font-weight: 800; font-size: 13px; color: var(--steel); }
+  .quiz button.next { font-family: 'Nunito', Arial, sans-serif; font-weight: 900; font-size: 14px; background: var(--gold); border: none; border-radius: 8px; padding: 11px 18px; cursor: pointer; color: var(--deep-navy); min-height: 44px; }
+  .quiz button.next:disabled { opacity: .35; cursor: default; }
+  .cert { display: none; text-align: center; background: var(--navy); color: #fff; border-radius: 14px; padding: 30px 24px; margin: 18px 0; }
+  .cert.on { display: block; }
+  .cert .k { font-family: 'Nunito', Arial, sans-serif; font-weight: 800; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--steel); }
+  .cert h3 { color: #fff; font-size: 30px; margin: 8px 0 4px; }
+  .cert h3 b { color: var(--gold); }
+  .cert .nm { font-family: 'Nunito', Arial, sans-serif; font-weight: 900; font-size: 22px; color: var(--gold); margin: 10px 0 2px; min-height: 28px; }
+  .cert .dt { color: var(--ice); font-size: 13px; }
+  .cert input { margin: 16px auto 0; display: block; width: 100%; max-width: 320px; background: #0b1421; border: 1.5px solid #2a4a7a; border-radius: 8px; color: #fff; font-size: 16px; padding: 12px; text-align: center; }
+  .cert .sig { margin-top: 16px; color: var(--ice); font-style: italic; }
+  .cert .retry, .cert .print { margin-top: 16px; }
+
+  /* Teach It */
+  .script td:first-child { white-space: nowrap; font-family: 'Nunito', Arial, sans-serif; font-weight: 900; color: var(--navy); }
+  .cheat { border: 2px solid var(--navy); border-radius: 12px; padding: 20px 22px; margin: 18px 0; background: #fff; }
+  .cheat .top { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; border-bottom: 2px solid var(--gold); padding-bottom: 8px; margin-bottom: 10px; }
+  .cheat .top b { font-family: 'Nunito', Arial, sans-serif; font-weight: 900; font-size: 20px; color: var(--navy); letter-spacing: 1px; }
+  .cheat .top span { font-size: 12px; color: var(--steel); }
+  .cheat table { margin: 8px 0; font-size: 13px; }
+  .cheat td, .cheat th { padding: 7px 10px; }
+  .cheat .foot { font-size: 12.5px; color: #4a5568; margin-top: 8px; }
+
+  @media (max-width: 700px) {
+    .modnav .inner { padding: 8px 16px; }
+    .modnav .prog { display: none; }
+    .agenda { grid-template-columns: 1fr 1fr; }
+    details.lesson summary { flex-wrap: wrap; }
+    details.lesson summary .ln { flex-basis: 100%; order: 3; }
+    details.lesson .bd .kv { grid-template-columns: 1fr; }
+    .tour .slide { padding: 16px 16px 6px; }
+    .tour .ctl { padding: 10px 16px 16px; }
+  }
+  @media print {
+    body.print-cheat > *:not(.page) { display: none !important; }
+    body.print-cheat .page > *:not(#teach) { display: none !important; }
+    body.print-cheat #teach > *:not(.cheat) { display: none !important; }
+    body.print-cheat .cheat { border-color: #133865; }
+    .modnav, .mark, .no-print, .cert input { display: none !important; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
+  @media print {
+    body.print-cert > *:not(.page) { display: none !important; }
+    body.print-cert .page > *:not(#check) { display: none !important; }
+    body.print-cert #check > *:not(#cert) { display: none !important; }
+  }
+
 </style>
 </head>
 <body>
@@ -213,13 +354,12 @@
 </script>
 <!-- ============ /GROWTH HUB GATE ============ -->
 
-
 <div class="cover">
   <div class="inner">
     <div class="crumbs">
       <a href="../index.html">&larr; Growth Hub</a><em>|</em>
-      <a href="growth-hub-story.html">&larr; The Story &amp; The Spokes</a><em>|</em>
-      <a href="../tools/proof-builder.html">Proof Builder &rarr;</a>
+      <a href="../tools/plays.html">The Playbook &rarr;</a><em>|</em>
+      <a href="../tools/proof-builder.html">+ Proof Builder &rarr;</a>
     </div>
     <div class="lockup">
       <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Growth Hub spoke mark">
@@ -230,82 +370,222 @@
       <div class="word"><span class="g">GROWTH</span><span class="h">HUB</span></div>
     </div>
     <h1>How To Run The Hub</h1>
-    <div class="sub">The hub isn't a library you visit — it's the gear you carry. What's behind every chip, how to use it before, during, and after the meeting, and how to get your own proof on the board.</div>
-    <div class="meta">Field Guide &nbsp;·&nbsp; September 2026 &nbsp;·&nbsp; Protect · Land · Expand</div>
+    <div class="sub">The training. Learn the hub in one sitting, run it before every meeting, and teach it to your team. Take the tour, learn every chip, run three drills, get your proof live, pass the check.</div>
+    <div class="meta">Growth Hub Training &nbsp;·&nbsp; October 2026 &nbsp;·&nbsp; About 30 minutes &nbsp;·&nbsp; Protect · Land · Expand</div>
   </div>
 </div>
 
+<nav class="modnav" aria-label="Training modules">
+  <div class="inner">
+    <div class="links" id="modLinks">
+      <a href="#start" data-mod="start">Start</a>
+      <a href="#tour" data-mod="tour">1 Tour</a>
+      <a href="#chips" data-mod="chips">2 Chips</a>
+      <a href="#moments" data-mod="moments">3 Moments</a>
+      <a href="#drills" data-mod="drills">4 Drills</a>
+      <a href="#proof" data-mod="proof">5 Proof</a>
+      <a href="#rhythm" data-mod="rhythm">6 Rhythm</a>
+      <a href="#check" data-mod="check">7 Check</a>
+      <a href="#teach" data-mod="teach">8 Teach It</a>
+    </div>
+    <div class="prog"><b id="progN">0</b> / 9 done</div>
+  </div>
+  <div class="bar-track"><div class="bar-fill" id="progBar"></div></div>
+</nav>
+
 <div class="page">
 
-  <section>
+  <section id="start">
     <h2>Start Here</h2>
-    <p>Two minutes of setup and you'll never hunt for material again.</p>
+    <p>Two minutes of setup and you'll never hunt for material again. Work the modules in order the first time. After that, jump to whatever you need. Mark each one done and the bar up top keeps your place on this device.</p>
     <ol>
-      <li><strong>Bookmark it to your home screen.</strong> Open the hub on your phone, hit Share → Add to Home Screen. The pinwheel becomes an app icon. Passcode once per browser session, then every page in the hub opens clean.</li>
-      <li><strong>Learn the wheel.</strong> Six spokes across the hero — People, Vision, Development, Execution, Finance, Results — and one chip row underneath: <strong>Products → · Results · Who We Are · Plays → · Growth · The Field · Wire →</strong>. Section 01 is the map between them.</li>
-      <li><strong>Know the three chips that go somewhere.</strong> Chips with an arrow open a page — <strong>Products →</strong> (how they buy it), <strong>Plays →</strong> (the Playbook, where <strong>+ Proof Builder</strong> lives), and <strong>Wire →</strong>. The rest filter the hub in place.</li>
-      <li><strong>Pick your one habit.</strong> Nobody uses all of it. The reps who win use two or three pages relentlessly. Section 03 tells you which.</li>
+      <li><strong>Bookmark it to your home screen.</strong> Open the hub on your phone, tap Share → Add to Home Screen. The pinwheel becomes an app icon.</li>
+      <li><strong>Passcode once per browser session.</strong> After that, every page in the hub opens clean until you close the browser.</li>
+      <li><strong>Keep the hub open in a second tab.</strong> Every module has a "Try it" link. Do the move for real, then come back.</li>
     </ol>
+    <div class="agenda">
+      <a href="#tour"><b><i>1</i>The 5-Minute Tour</b><span>Seven stops, click by click</span></a>
+      <a href="#chips"><b><i>2</i>The Chip Row</b><span>What's behind all seven</span></a>
+      <a href="#moments"><b><i>3</i>Three Moments</b><span>Before, during, after</span></a>
+      <a href="#drills"><b><i>4</i>Three Drills</b><span>Run them on a real account</span></a>
+      <a href="#proof"><b><i>5</i>+ Proof Builder</b><span>Get your win on the board</span></a>
+      <a href="#rhythm"><b><i>6</i>The Rhythm</b><span>Daily to quarterly</span></a>
+      <a href="#check"><b><i>7</i>Check Yourself</b><span>8 questions, get certified</span></a>
+      <a href="#teach"><b><i>8</i>Teach It</b><span>15-minute huddle + cheat sheet</span></a>
+    </div>
     <div class="principle">
       <h3>What This Site Is For</h3>
-      <p>Your customer is the hero. You are the guide. The hub is the guide's kit — story, plan, proof, and price, ready before you walk in.</p>
+      <p>Your customer is the hero. You are the guide. The hub is the guide's kit: story, plan, proof, and price, ready before you walk in.</p>
     </div>
+    <button class="mark" data-mod="start" type="button">Mark Start Here done</button>
   </section>
 
-  <section>
-    <h2><span class="num">01</span>Six Spokes, One Chip Row</h2>
-    <p><strong>The rule:</strong> the spokes are the framework; the chip row is the shelf. The cards below are the translation. Plain chips filter the hub in place; arrow chips — <strong>Products →</strong>, <strong>Plays →</strong>, <strong>Wire →</strong> — open their page. Search matches titles, descriptions, and tags, so search the <em>problem</em> ("c-store", "ROI", "quote"), never the folder.</p>
+  <section id="tour">
+    <h2><span class="num">01</span>The 5-Minute Tour</h2>
+    <p>Seven stops. Open the hub in another tab and follow along.</p>
+    <div class="tour" id="tourBox">
+      <div class="dots" id="tourDots"></div>
 
-    <div class="spokes">
-      <div class="spoke">
-        <h4>People</h4>
-        <div class="role">The hero walks in first</div>
-        <p>Who you're serving and what they're carrying. Discovery, site walks, the rep who raised their hand.</p>
-        <span class="grab"><b>Reach for:</b> Discovery Question Bank · Why FSG</span>
-        <span class="chip">Click <b>Who We Are</b> <b>Plays &rarr;</b></span>
+      <div class="slide">
+        <div class="k">Stop 1 of 7 · The front door</div>
+        <h3>Get in and make it an app</h3>
+        <p>Enter the passcode once. It holds for the whole browser session. On your phone, Add to Home Screen puts the pinwheel on your phone like any other app.</p>
+        <div class="try"><b>Try it</b> <a href="../index.html" target="_blank" rel="noopener">Open the hub</a> and add it to your home screen.</div>
       </div>
-      <div class="spoke">
-        <h4>Vision</h4>
-        <div class="role">The destination worth trusting</div>
-        <p>Who we are and where we're taking them. Use it in first meetings and anywhere credibility has to land fast.</p>
-        <span class="grab"><b>Reach for:</b> FSG Master Presentation · The Institution &amp; Culture · Messaging Playbook · Why FSG</span>
-        <span class="chip">Click <b>Who We Are</b></span>
+
+      <div class="slide">
+        <div class="k">Stop 2 of 7 · The hero</div>
+        <h3>Read the top of the page once</h3>
+        <p>The client is the hero. Growth Hub is the guide. Six spokes run across it: People, Vision, Development, Execution, Finance, Results. Value sits at the gold core. That's the framework. The chip row underneath is the shelf.</p>
+        <div class="try"><b>Try it</b> Click "The story behind the hub" under the spokes, then come back.</div>
       </div>
-      <div class="spoke dev">
-        <h4>Development</h4>
-        <div class="role">The lane that makes you valuable</div>
-        <p>Sharpening you and your team — business, personal, community. The <strong>Growth</strong> chip: how to run the hub, Growth in Motion every Monday, Sales Tools, and Personal Development.</p>
-        <span class="grab"><b>Reach for:</b> How To Run The Hub · Growth in Motion · FSG App FAQs · Start Again Today · Speak So They Buy · Brand Standards</span>
-        <span class="chip">Click <b>Growth</b> <b>Wire &rarr;</b></span>
+
+      <div class="slide">
+        <div class="k">Stop 3 of 7 · Search</div>
+        <h3>Search the problem, not the folder</h3>
+        <p>The search bar matches card titles and tags, and every word on every page. Type what the customer said, like "c-store", "NSA", "arc flash", or a client name. Card matches show first, then "Across the Hub" page matches.</p>
+        <div class="try"><b>Try it</b> <a href="../index.html" target="_blank" rel="noopener">On the hub</a>, type <em>national services</em> and open the first match.</div>
       </div>
-      <div class="spoke">
-        <h4>Execution</h4>
-        <div class="role">Measured, tracked, reported</div>
-        <p>How the work actually gets done — every Engage Live episode, Engage Play, and field guide on one shelf. Short, screenshot-led, written to be run.</p>
-        <span class="grab"><b>Reach for:</b> The Playbook · Engage Live episodes · Engage Plays · The Opening Drive · Build an Account Plan</span>
-        <span class="chip">Click <b>Plays &rarr;</b></span>
+
+      <div class="slide">
+        <div class="k">Stop 4 of 7 · The chip row</div>
+        <h3>Plain chips filter in place</h3>
+        <div class="chiprow"><span class="all">All</span><span class="nav">Products &rarr;</span><span>Results</span><span>Who We Are</span><span class="nav">Plays &rarr;</span><span>Growth</span><span>The Field</span><span class="nav">Wire &rarr;</span></div>
+        <p><strong>Results, Who We Are, Growth, The Field</strong> filter the home page without leaving it. <strong>All</strong> shows the everyday shelf. Results and Growth in Motion cards only show behind their own chips, so they don't bury everything else.</p>
+        <div class="try"><b>Try it</b> <a href="../index.html?chip=proof" target="_blank" rel="noopener">Click Results</a> and count the proof cards.</div>
       </div>
-      <div class="spoke">
-        <h4>Finance</h4>
-        <div class="role">Cash keeps it honest</div>
-        <p>What it costs, what it saves, how it's bought. Know these numbers cold before you quote anything.</p>
-        <span class="grab"><b>Reach for:</b> Products × Delivery Method · Lighting ROI Calculator</span>
-        <span class="chip">Click <b>Products &rarr;</b></span>
+
+      <div class="slide">
+        <div class="k">Stop 5 of 7 · The arrows</div>
+        <h3>Arrow chips open a page</h3>
+        <p><strong>Products &rarr;</strong> opens Products × Delivery Method, where you build pitch PDFs. <strong>Plays &rarr;</strong> opens The Playbook. <strong>Wire &rarr;</strong> opens the industry publication. Gold outline plus an arrow means it goes somewhere.</p>
+        <div class="try"><b>Try it</b> <a href="../story/products.html" target="_blank" rel="noopener">Open Products</a> and tap any cell in the grid.</div>
       </div>
-      <div class="spoke res">
-        <h4>Results</h4>
-        <div class="role">The win on the board</div>
-        <p>The proof library — real clients, real problems, real dollars. Searchable, filterable, one click to a full card you can show a prospect.</p>
-        <span class="grab"><b>Reach for:</b> the Results grid · client chips on Products × Delivery Method · Proof Builder to add yours</span>
-        <span class="chip">Click <b>Results</b> <b>Plays &rarr; + Proof Builder</b></span>
+
+      <div class="slide">
+        <div class="k">Stop 6 of 7 · The Playbook</div>
+        <h3>Every play on one shelf</h3>
+        <p>The Playbook has three series: <strong>Engage Live</strong> (the webinar episodes, in order), <strong>Engage Plays</strong> (how to run the CRM), and <strong>Guides</strong> (field guides, hub plays, personal development). Newest drop sits on top. <strong>+ Proof Builder</strong> sits in the top bar.</p>
+        <div class="try"><b>Try it</b> <a href="../tools/plays.html" target="_blank" rel="noopener">Open the Playbook</a>, type <em>account setup</em> in its search box.</div>
+      </div>
+
+      <div class="slide">
+        <div class="k">Stop 7 of 7 · Things that look like bugs</div>
+        <h3>Two things that aren't broken</h3>
+        <p><strong>A card you can't see</strong> means its page isn't live yet. The hub hides cards until the page exists, and chips hide when nothing behind them is live. <strong>The two gold pills bottom-right</strong> are the anthems, One Shot and Value at the Core. Tap to play, tap again to stop, or close the dock with the ×.</p>
+        <div class="try"><b>Try it</b> Scroll to the top of the hub: What's New is always the freshest drops.</div>
+      </div>
+
+      <div class="ctl">
+        <button type="button" id="tourPrev">&larr; Back</button>
+        <span class="count" id="tourCount"></span>
+        <button type="button" class="go" id="tourNext">Next stop &rarr;</button>
       </div>
     </div>
-
-    <div class="callout"><strong>Two things that look like bugs and aren't:</strong> a card you can't see means its page isn't live yet — the hub hides cards until the page exists. And a page you opened yesterday won't ask for the passcode again today until you've closed the browser.</div>
+    <button class="mark" data-mod="tour" type="button">Mark the tour done</button>
   </section>
 
-  <section>
-    <h2><span class="num">02</span>How To Use It — Three Moments</h2>
+  <section id="chips">
+    <h2><span class="num">02</span>The Chip Row, One Lesson Each</h2>
+    <p><strong>The rule:</strong> plain chips filter the hub in place. Arrow chips open their page. Tap any chip below for what's behind it, when to reach for it, and the one move to master.</p>
+    <div class="chiprow"><span class="all">All</span><span class="nav">Products &rarr;</span><span>Results</span><span>Who We Are</span><span class="nav">Plays &rarr;</span><span>Growth</span><span>The Field</span><span class="nav">Wire &rarr;</span></div>
+
+    <details class="lesson nav">
+      <summary><span class="nm">Products &rarr;</span><span class="ln">How they'll buy it, and the pitch PDF you send</span><span class="pl">+</span></summary>
+      <div class="bd">
+        <dl class="kv">
+          <dt>What it is</dt><dd>Products × Delivery Method: five business lines, three ways to buy. Tap a cell to go deeper. The pitch tray combines decks, proofs, and types into one downloadable PDF.</dd>
+          <dt>Spoke</dt><dd>Finance: what it costs, what it saves, how it's bought.</dd>
+          <dt>Reach for it</dt><dd>Before you quote, and any time a customer asks you to "send something over."</dd>
+          <dt>Master this</dt><dd>Build a custom pitch PDF in under two minutes. <strong>Never send a hub link outside FSG</strong>, because it's passcode-gated. Send the PDF.</dd>
+        </dl>
+        <a class="open-link" href="../story/products.html" target="_blank" rel="noopener">Open Products &rarr;</a>
+      </div>
+    </details>
+
+    <details class="lesson">
+      <summary><span class="nm">Results</span><span class="ln">The proof wall: real clients, real numbers</span><span class="pl">+</span></summary>
+      <div class="bd">
+        <dl class="kv">
+          <dt>What it is</dt><dd>Every executed solution for a named account as a standard proof card: problem, solution, stats, quote, photos. Filter by vertical, cell, or delivery type.</dd>
+          <dt>Spoke</dt><dd>Results: the win on the board.</dd>
+          <dt>Reach for it</dt><dd>The moment they ask "have you done this before?"</dd>
+          <dt>Master this</dt><dd>Find the same-cell proof, meaning the same service and the same kind of building. Show one card, not five. Typing a client name in search finds the card even under All.</dd>
+        </dl>
+        <a class="open-link" href="../index.html?chip=proof" target="_blank" rel="noopener">Open Results &rarr;</a>
+      </div>
+    </details>
+
+    <details class="lesson">
+      <summary><span class="nm">Who We Are</span><span class="ln">The story, the decks, and the words that land</span><span class="pl">+</span></summary>
+      <div class="bd">
+        <dl class="kv">
+          <dt>What it is</dt><dd>FSG Master Presentation, The Institution &amp; Culture, the National Services Agreement walkthrough, Value at the Core (our anthem decoded), and the <strong>Messaging Playbook</strong>: blunt lines, taglines, and tap-to-copy hooks for CFOs, operators, and leads.</dd>
+          <dt>Spoke</dt><dd>Vision and People: the destination worth trusting.</dd>
+          <dt>Reach for it</dt><dd>First meetings, executive meetings, and any time credibility has to land fast.</dd>
+          <dt>Master this</dt><dd>Tell the FSG story in two minutes with no slides. Then pick the one Messaging Playbook hook for the person across the table.</dd>
+        </dl>
+        <a class="open-link" href="../index.html?chip=story" target="_blank" rel="noopener">Open Who We Are &rarr;</a>
+      </div>
+    </details>
+
+    <details class="lesson nav">
+      <summary><span class="nm">Plays &rarr;</span><span class="ln">The Playbook: every walkthrough, plus Proof Builder</span><span class="pl">+</span></summary>
+      <div class="bd">
+        <dl class="kv">
+          <dt>What it is</dt><dd>One shelf, three series. <strong>Engage Live</strong> episodes in order, <strong>Engage Plays</strong> for the CRM, and <strong>Guides</strong> (The Opening Drive, Build an Account Plan, Get My Proof Live, Account Class, Commission Statement, personal development). <strong>+ Proof Builder</strong> lives in the top bar.</dd>
+          <dt>Spoke</dt><dd>Execution: measured, tracked, reported.</dd>
+          <dt>Reach for it</dt><dd>"How do I…" in Engage, a missed Engage Live episode, or a win to submit.</dd>
+          <dt>Master this</dt><dd>Use the Playbook search box like a help desk. Type what you're trying to do.</dd>
+        </dl>
+        <a class="open-link" href="../tools/plays.html" target="_blank" rel="noopener">Open the Playbook &rarr;</a>
+      </div>
+    </details>
+
+    <details class="lesson">
+      <summary><span class="nm">Growth</span><span class="ln">Run the hub, Growth in Motion, tools that sharpen you</span><span class="pl">+</span></summary>
+      <div class="bd">
+        <dl class="kv">
+          <dt>What it is</dt><dd><strong>Run the Hub</strong>: this training, the Story &amp; Spokes, Brand Standards, Join the Hub. <strong>Growth in Motion</strong>: a new card set every Monday with The Standard and The Move, plus downloadable wallpapers. <strong>Sales Tools</strong>: FSG App FAQs (Ask Engage). <strong>Personal Development</strong>: Start Again Today, Speak So They Buy.</dd>
+          <dt>Spoke</dt><dd>Development: the lane that makes you valuable.</dd>
+          <dt>Reach for it</dt><dd>Monday morning, a stuck Engage question, or a rep who needs a reset.</dd>
+          <dt>Master this</dt><dd>Read the "This Week" card every Monday and run The Move once before Friday.</dd>
+        </dl>
+        <a class="open-link" href="../index.html?chip=tools" target="_blank" rel="noopener">Open Growth &rarr;</a>
+      </div>
+    </details>
+
+    <details class="lesson">
+      <summary><span class="nm">The Field</span><span class="ln">Contests and the weekly scoreboard</span><span class="pl">+</span></summary>
+      <div class="bd">
+        <dl class="kv">
+          <dt>What it is</dt><dd>Closers vs Blanks: the pipeline as a baseball box score, posted Fridays. At-bat = open opportunity, hit = every field current, K = no close date, LOB = past-due close date, E = $0 value. One Shot, the closer anthem, lives here too.</dd>
+          <dt>Spoke</dt><dd>Results, made a game.</dd>
+          <dt>Reach for it</dt><dd>Friday. Check your line, then fix your Ks and Es before the next inning posts.</dd>
+          <dt>Master this</dt><dd>Kill the blanks. Every open opportunity gets a close date and a real dollar value.</dd>
+        </dl>
+        <a class="open-link" href="../index.html?chip=field" target="_blank" rel="noopener">Open The Field &rarr;</a>
+      </div>
+    </details>
+
+    <details class="lesson nav">
+      <summary><span class="nm">Wire &rarr;</span><span class="ln">Industry history, technology, market, codes</span><span class="pl">+</span></summary>
+      <div class="bd">
+        <dl class="kv">
+          <dt>What it is</dt><dd>The Growth Hub's publication, where you get electrified, powered, and connected. Issues so far: The Light That Changed Everything (Edison, Menlo Park) and The Light That Came Back (the Oculus at the World Trade Center, an FSG retrofit and IES award winner).</dd>
+          <dt>Spoke</dt><dd>Development: know something your competitor doesn't.</dd>
+          <dt>Reach for it</dt><dd>Once a month, and before any meeting where you need a story that isn't about us.</dd>
+          <dt>Master this</dt><dd>Retell one Wire story in 60 seconds to a customer.</dd>
+        </dl>
+        <a class="open-link" href="../tools/wire.html" target="_blank" rel="noopener">Open the Wire &rarr;</a>
+      </div>
+    </details>
+
+    <button class="mark" data-mod="chips" type="button">Mark the chips done</button>
+  </section>
+
+  <section id="moments">
+    <h2><span class="num">03</span>How To Use It — Three Moments</h2>
     <p><strong>The rule:</strong> the hub is worth nothing on a laptop at your desk. It's worth everything ten minutes before a meeting, in the room, and the hour after you win.</p>
 
     <div class="moment">
@@ -339,50 +619,71 @@
         <ul>
           <li><strong>Log it in Engage the same day.</strong> Customer Problem and Solution Description in the client's own words — those two fields are what the proof engine and every future deck are built from. Stuck on a field? <strong>Growth</strong> chip → FSG App FAQs, and type the question.</li>
           <li><strong>Report before anyone asks.</strong> Measure it, track it, report it. That habit is the whole Execution spoke.</li>
-          <li><strong>When it lands, build the proof.</strong> Don't wait for someone to ask you for a case study. Section 04.</li>
+          <li><strong>When it lands, build the proof.</strong> Don't wait for someone to ask you for a case study. Module 5.</li>
         </ul>
       </div>
     </div>
+      <button class="mark" data-mod="moments" type="button">Mark the moments done</button>
   </section>
 
-  <section>
-    <h2><span class="num">03</span>The Rhythm That Builds Strength</h2>
-    <p><strong>The rule:</strong> strength isn't intensity, it's return rate. One page, used every week, beats the whole site browsed once.</p>
+  <section id="drills">
+    <h2><span class="num">04</span>Three Drills: Run Them For Real</h2>
+    <p><strong>The rule:</strong> pick a real account from your book and run each drill on it with the hub open. Tap each step as you finish it. Reading about the hub doesn't count.</p>
 
-    <div class="tbl-wrap">
-      <table>
-        <tr><th>Cadence</th><th>The move</th><th>Where it lives</th></tr>
-        <tr><td><strong>Daily</strong></td><td>Know your numbers. Pipeline, quotes out, dollars closed — cold, no lookup.</td><td>Your Growth Card · Products</td></tr>
-        <tr><td><strong>Every meeting</strong></td><td>The 10-minute prep. Never walk in without story, plan, proof, price.</td><td>Section 02 above</td></tr>
-        <tr><td><strong>Weekly</strong></td><td>Tell the FSG story once with no slides. If you need the deck to tell it, you don't own it yet.</td><td>Who We Are &rarr; Master Presentation</td></tr>
-        <tr><td><strong>Weekly</strong></td><td>One rep, one skill, one week. Pick the skill, work it, report it.</td><td>Growth &rarr; Speak So They Buy</td></tr>
-        <tr><td><strong>Every win</strong></td><td>Proof Builder, same week it closes. Memory fades; the record doesn't.</td><td>Plays &rarr; + Proof Builder</td></tr>
-        <tr><td><strong>Monthly</strong></td><td>Read the Wire. Know something about this industry your competitor doesn't.</td><td>Wire &rarr; chip</td></tr>
-        <tr><td><strong>Quarterly</strong></td><td>Protect, Land, Expand — name one account in each column and the next move for it.</td><td>Who We Are &rarr; Protect / Land / Expand</td></tr>
-      </table>
+    <div class="drill">
+      <div class="hd">Drill A · The 10-Minute Meeting Prep <span>10 min</span></div>
+      <div class="bd">
+        <ol class="tick">
+          <li>Write one sentence: who the hero is and the problem they're carrying, in their words.</li>
+          <li><strong>Who We Are</strong> → open the Messaging Playbook and copy the one hook that fits this buyer (CFO, operator, or lead).</li>
+          <li><strong>Results</strong> → find one proof in the same cell: the same service and the same kind of building.</li>
+          <li><strong>Products &rarr;</strong> → tap the cell for how they'll buy it. Add the proof and the deck to the pitch tray.</li>
+          <li>Download the pitch PDF. That's what you send after the meeting, never a hub link.</li>
+        </ol>
+        <div class="done-when"><strong>Done when:</strong> you have story, plan, proof, and price for one real account, and a PDF you could send today.</div>
+      </div>
     </div>
 
-    <div class="equation">
-      <div class="eq">Contribution + Service = <b>Value</b></div>
-      <small>Business, personal, community. The same test in all three.</small>
+    <div class="drill">
+      <div class="hd">Drill B · "Have You Done This Before?" <span>3 min</span></div>
+      <div class="bd">
+        <ol class="tick">
+          <li>On the hub home page, type a client name or vertical in search (try <em>Oculus</em> or <em>U.S. Bank</em>).</li>
+          <li>Open the proof card. Read the gold stat out loud: that's your opening line.</li>
+          <li>Find the quote and the name behind it. Know who said it and their title.</li>
+          <li>Close the card. One proof, then back to their problem.</li>
+        </ol>
+        <div class="done-when"><strong>Done when:</strong> you can answer "have you done this before?" with a named client, a number, and a quote in under 30 seconds.</div>
+      </div>
     </div>
 
-    <p>That equation is the strength play, and it isn't only a sales frame. It works on a Tuesday morning with your team, on a job site, at your kitchen table. Show up with something to add, do the work in the open, and let the results speak. Do that long enough in business and you get a pipeline. Do it long enough in life and you get a reputation — which is the only asset that compounds without you touching it.</p>
+    <div class="drill">
+      <div class="hd">Drill C · Answer Your Own Engage Question <span>3 min</span></div>
+      <div class="bd">
+        <ol class="tick">
+          <li><strong>Plays &rarr;</strong> → in the Playbook search box, type a real question you've had (try <em>account setup</em> or <em>close date</em>).</li>
+          <li>Open the play and skim the steps for the one you need.</li>
+          <li>Still stuck? <strong>Growth</strong> → FSG App FAQs (Ask Engage) and type it there.</li>
+          <li>Fix the record in Engage while the page is still open.</li>
+        </ol>
+        <div class="done-when"><strong>Done when:</strong> you solved an Engage question yourself, without sending an email.</div>
+      </div>
+    </div>
 
-    <div class="callout"><strong>Field test:</strong> if you can't say what a meeting, an email, or a deck added — to the business, the person, or the community — it isn't done yet.</div>
+    <button class="mark" data-mod="drills" type="button">Mark the drills done</button>
   </section>
 
 </div>
 
 <div class="page">
-  <div class="play-band">
+  <div class="play-band" id="proof">
     <div class="eyebrow">Growth Hub Plays</div>
     <h2><b>+</b> Proof Builder</h2>
     <div class="sub">From closed win to live card on the hub — with your name on it. Sales Team Quick Guide · 15 minutes · Plays &amp; Results</div>
   </div>
 
   <section style="margin-top:26px;">
-    <h2><span class="num">04</span>Get My Proof Live</h2>
+    <h2><span class="num">05</span>Get My Proof Live</h2>
     <p><strong>Why this play matters:</strong> every rep asks "do we have a story like this customer?" The answer is always yes — it's just buried in Engage notes, invoices, and somebody's memory. Proof Builder is how your win stops being tribal knowledge and becomes ammunition the whole org can fire. Every card carries <strong>★ Proof submitted by [your name]</strong>, and the contributor board keeps score.</p>
 
     <div class="glance">
@@ -512,13 +813,113 @@
       <li>Email Growth Hub → attach the card it just downloaded → send.</li>
       <li>Use your card in the next meeting. Don't wait for it to publish.</li>
     </ul>
+    <button class="mark" data-mod="proof" type="button">Mark Proof Builder done</button>
+  </section>
+
+  <section id="rhythm">
+    <h2><span class="num">06</span>The Rhythm That Builds Strength</h2>
+    <p><strong>The rule:</strong> strength isn't intensity, it's return rate. One page, used every week, beats the whole site browsed once.</p>
+
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>Cadence</th><th>The move</th><th>Where it lives</th></tr>
+        <tr><td><strong>Daily</strong></td><td>Know your numbers. Pipeline, quotes out, dollars closed — cold, no lookup.</td><td>Your Growth Card · Products</td></tr>
+        <tr><td><strong>Every meeting</strong></td><td>The 10-minute prep. Never walk in without story, plan, proof, price.</td><td>Section 02 above</td></tr>
+        <tr><td><strong>Weekly</strong></td><td>Tell the FSG story once with no slides. If you need the deck to tell it, you don't own it yet.</td><td>Who We Are &rarr; Master Presentation</td></tr>
+        <tr><td><strong>Weekly</strong></td><td>One rep, one skill, one week. Pick the skill, work it, report it.</td><td>Growth &rarr; Speak So They Buy</td></tr>
+        <tr><td><strong>Every win</strong></td><td>Proof Builder, same week it closes. Memory fades; the record doesn't.</td><td>Plays &rarr; + Proof Builder</td></tr>
+        <tr><td><strong>Monthly</strong></td><td>Read the Wire. Know something about this industry your competitor doesn't.</td><td>Wire &rarr; chip</td></tr>
+        <tr><td><strong>Quarterly</strong></td><td>Protect, Land, Expand — name one account in each column and the next move for it.</td><td>Who We Are &rarr; Protect / Land / Expand</td></tr>
+      </table>
+    </div>
+
+    <div class="equation">
+      <div class="eq">Contribution + Service = <b>Value</b></div>
+      <small>Business, personal, community. The same test in all three.</small>
+    </div>
+
+    <p>That equation is the strength play, and it isn't only a sales frame. It works on a Tuesday morning with your team, on a job site, at your kitchen table. Show up with something to add, do the work in the open, and let the results speak. Do that long enough in business and you get a pipeline. Do it long enough in life and you get a reputation — which is the only asset that compounds without you touching it.</p>
+
+    <div class="callout"><strong>Field test:</strong> if you can't say what a meeting, an email, or a deck added — to the business, the person, or the community — it isn't done yet.</div>
+      <button class="mark" data-mod="rhythm" type="button">Mark the rhythm done</button>
+  </section>
+
+  <section id="check">
+    <h2><span class="num">07</span>Check Yourself</h2>
+    <p>Eight questions. Get 7 right and you're Growth Hub Certified. Miss one and the answer tells you why.</p>
+    <div class="quiz" id="quiz">
+      <div class="qn" id="qNum"></div>
+      <div class="qt" id="qText"></div>
+      <div id="qOpts"></div>
+      <div class="why" id="qWhy"></div>
+      <div class="qctl">
+        <span class="score" id="qScore"></span>
+        <button type="button" class="next" id="qNext" disabled>Next &rarr;</button>
+      </div>
+    </div>
+    <div class="cert" id="cert">
+      <div class="k">FSG Growth Hub</div>
+      <h3>Growth Hub <b>Certified</b></h3>
+      <div class="nm" id="certName"></div>
+      <div class="dt" id="certMeta"></div>
+      <input type="text" id="certInput" placeholder="Type your name" aria-label="Your name" maxlength="60">
+      <div class="sig">Now go use it. &mdash; Bobby</div>
+      <button type="button" class="btn print no-print" id="certPrint">Print / Save as PDF</button>
+      <button type="button" class="btn ghost retry no-print" id="certRetry">Take it again</button>
+    </div>
+    <div class="callout" id="quizFail" style="display:none;"><strong>Not yet.</strong> <span id="failMsg"></span> Re-read the lessons for the ones you missed, then <a href="#check" id="failRetry">take it again</a>.</div>
+    <button class="mark" data-mod="check" type="button">Mark the check done</button>
+  </section>
+
+  <section id="teach">
+    <h2><span class="num">08</span>Teach It: The 15-Minute Huddle</h2>
+    <p><strong>The rule:</strong> you don't own the hub until you can teach it. Run this with your team on a screen share or around a table. Everyone brings a phone with the hub open.</p>
+
+    <div class="tbl-wrap">
+      <table class="script">
+        <tr><th>Time</th><th>What you do</th><th>What you say</th></tr>
+        <tr><td>0–2</td><td>Open the hub home page on screen.</td><td>"The customer is the hero. We're the guide. This is the guide's kit: story, plan, proof, price. Contribution + Service = Value."</td></tr>
+        <tr><td>2–6</td><td>Walk the chip row left to right. Click one plain chip, then one arrow chip.</td><td>"Plain chips filter. Arrow chips open a page. Products is how they buy it. Plays is every walkthrough, and Proof Builder lives there."</td></tr>
+        <tr><td>6–11</td><td>Run Drill A live on a real account someone in the room is working.</td><td>"Ten minutes, four clicks. Who We Are for the hook, Results for the proof, Products for the price and the PDF."</td></tr>
+        <tr><td>11–14</td><td>Everyone takes the Check on their phone.</td><td>"Seven of eight and you're certified. Screenshot it and drop it in the team channel."</td></tr>
+        <tr><td>14–15</td><td>Go around the room.</td><td>"Pick one habit from the Rhythm and do it this week. Next huddle, we report it."</td></tr>
+      </table>
+    </div>
+
+    <h3>Questions you'll get and the answers</h3>
+    <ul>
+      <li><strong>"I can't find a card I saw yesterday."</strong> It's behind a chip (Results and Growth in Motion hide under All). Or search for it: search sees every page.</li>
+      <li><strong>"Can I send the link to my customer?"</strong> No. The hub is gated. Build the pitch PDF on Products and send that.</li>
+      <li><strong>"Where's Proof Builder?"</strong> Plays &rarr;, top bar of the Playbook.</li>
+      <li><strong>"Something's missing or wrong."</strong> Email Bobby. The hub is built from what the field asks for.</li>
+    </ul>
+
+    <div class="btn-row no-print">
+      <button type="button" class="btn" id="printCheat">Print the cheat sheet</button>
+    </div>
+
+    <div class="cheat" id="cheat">
+      <div class="top"><b>GROWTH HUB · CHEAT SHEET</b><span>bobbyggraham.github.io/growth-hub &nbsp;·&nbsp; passcode once per session</span></div>
+      <table>
+        <tr><th>Chip</th><th>Does</th><th>Reach for it when</th></tr>
+        <tr><td><strong>Products &rarr;</strong></td><td>Opens Products × Delivery · pitch PDF</td><td>Before you quote · "send something over"</td></tr>
+        <tr><td><strong>Results</strong></td><td>Filters to proof cards</td><td>"Have you done this before?"</td></tr>
+        <tr><td><strong>Who We Are</strong></td><td>Filters to decks + Messaging Playbook</td><td>First meetings · the story</td></tr>
+        <tr><td><strong>Plays &rarr;</strong></td><td>Opens the Playbook · + Proof Builder</td><td>"How do I…" · a win to submit</td></tr>
+        <tr><td><strong>Growth</strong></td><td>Filters to Run the Hub, Growth in Motion, tools</td><td>Monday · Engage questions · reset</td></tr>
+        <tr><td><strong>The Field</strong></td><td>Filters to contests · Closers vs Blanks</td><td>Friday · check your line</td></tr>
+        <tr><td><strong>Wire &rarr;</strong></td><td>Opens the industry publication</td><td>Monthly · a story that isn't about us</td></tr>
+      </table>
+      <div class="foot"><strong>10-minute prep:</strong> hero + problem → Who We Are hook → Results proof → Products price + PDF. &nbsp;<strong>Every win:</strong> Plays → + Proof Builder, same week. &nbsp;<strong>Search the problem, never the folder.</strong></div>
+    </div>
+
+    <button class="mark" data-mod="teach" type="button">Mark Teach It done</button>
 
     <div class="principle">
       <h3>The Payoff</h3>
-      <p>Know the wheel, run the 10-minute prep, and put every win on the board. Do that and the hub stops being a website — it becomes the reason you walk in with evidence instead of promises.</p>
+      <p>Know the chips, run the 10-minute prep, put every win on the board, and teach it to one more person. That's how the hub stops being a website and becomes the reason you walk in with evidence instead of promises.</p>
     </div>
-
-    <p style="font-size:14px;color:#4a5568;">Something missing, broken, or worth adding? The hub is built from what the field asks for &mdash; email <a href="mailto:bobby.graham@fsgi.com">bobby.graham@fsgi.com</a>.</p>
+    <p style="font-size:14px;color:#4a5568;">Something missing, broken, or worth adding? The hub is built from what the field asks for. Email <a href="mailto:bobby.graham@fsgi.com">bobby.graham@fsgi.com</a>.</p>
   </section>
 
 </div>
@@ -529,6 +930,130 @@
     <div>Owner: Bobby Graham · bobby.graham@fsgi.com</div>
   </div>
 </footer>
+
+
+<script>
+(function () {
+  /* ---------- progress (per-device convenience only) ---------- */
+  var MODS = ['start','tour','chips','moments','drills','proof','rhythm','check','teach'];
+  var KEY = 'gh-training-v1';
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { state = {}; }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  function paint() {
+    var n = 0;
+    MODS.forEach(function (m) {
+      var on = !!state[m]; if (on) n++;
+      var a = document.querySelector('#modLinks a[data-mod="' + m + '"]'); if (a) a.classList.toggle('done', on);
+      var b = document.querySelector('.mark[data-mod="' + m + '"]');
+      if (b) { b.classList.toggle('on', on); if (!b.dataset.label) b.dataset.label = b.textContent; b.textContent = on ? ' Done' : b.dataset.label; }
+    });
+    document.getElementById('progN').textContent = n;
+    document.getElementById('progBar').style.width = (n / MODS.length * 100) + '%';
+  }
+  document.querySelectorAll('.mark').forEach(function (b) {
+    b.addEventListener('click', function () { var m = b.dataset.mod; state[m] = !state[m]; save(); paint(); });
+  });
+  paint();
+
+  /* ---------- tour stepper ---------- */
+  var slides = document.querySelectorAll('#tourBox .slide');
+  var dots = document.getElementById('tourDots');
+  var i = 0;
+  for (var d = 0; d < slides.length; d++) dots.appendChild(document.createElement('span'));
+  var prev = document.getElementById('tourPrev'), next = document.getElementById('tourNext');
+  function show(k) {
+    i = Math.max(0, Math.min(slides.length - 1, k));
+    slides.forEach(function (s, j) { s.classList.toggle('on', j === i); });
+    dots.querySelectorAll('span').forEach(function (s, j) { s.classList.toggle('on', j <= i); });
+    document.getElementById('tourCount').textContent = (i + 1) + ' / ' + slides.length;
+    prev.disabled = i === 0;
+    next.textContent = i === slides.length - 1 ? 'Finish the tour ✓' : 'Next stop →';
+  }
+  prev.addEventListener('click', function () { show(i - 1); });
+  next.addEventListener('click', function () {
+    if (i === slides.length - 1) { state.tour = true; save(); paint(); document.getElementById('chips').scrollIntoView({ behavior: 'smooth' }); }
+    else show(i + 1);
+  });
+  show(0);
+
+  /* ---------- drill checklists ---------- */
+  document.querySelectorAll('.drill ol.tick li').forEach(function (li) {
+    li.addEventListener('click', function (e) { if (e.target.tagName === 'A') return; li.classList.toggle('on'); });
+  });
+
+  /* ---------- check yourself ---------- */
+  var Q = [
+    { q: 'Where does Proof Builder live?', o: ['Behind the Growth chip', 'In the Playbook: Plays →, top bar', 'On the Results wall', 'On the Products page'], a: 1,
+      w: 'Proof Builder lives in Plays. Open the Playbook and it’s in the top bar, next to the Get My Proof Live guide.' },
+    { q: 'A chip with an arrow (Products →, Plays →, Wire →) does what?', o: ['Filters the home page', 'Opens its own page', 'Downloads a PDF', 'Shows hidden cards'], a: 1,
+      w: 'Arrow chips go somewhere. Plain chips (Results, Who We Are, Growth, The Field) filter the home page in place.' },
+    { q: 'Proof cards don’t show under All. How do you get to them?', o: ['Ask Bobby for the file', 'Click Results, or search the client name', 'They’re only on the Products page', 'Wait for What’s New'], a: 1,
+      w: 'Results hide under All so they don’t bury everything else. The Results chip shows them all, and searching a client name surfaces the card from anywhere.' },
+    { q: 'Where is the Messaging Playbook?', o: ['Who We Are', 'Plays', 'Growth', 'Wire'], a: 0,
+      w: 'Who We Are: the story, the decks, and the words that land.' },
+    { q: 'A customer asks you to send something to their CFO. You…', o: ['Send them the hub link', 'Forward the Master Presentation web page', 'Build a pitch PDF on Products → and send that', 'Screenshot a proof card'], a: 2,
+      w: 'The hub is passcode-gated and ours. Sales collateral leaves as a PDF. Build it in the Products pitch tray.' },
+    { q: 'Growth in Motion, the weekly cards, lives behind which chip?', o: ['The Field', 'Results', 'Growth', 'Who We Are'], a: 2,
+      w: 'Growth. A new card set lands every Monday in the gold "This Week" spotlight.' },
+    { q: 'A card you expected isn’t on the hub. Most likely?', o: ['The site is broken', 'Its page isn’t live yet, so the hub hides it', 'You need a new passcode', 'It was deleted'], a: 1,
+      w: 'The hub checks every card’s link and hides any page that isn’t live yet. It appears on its own the moment the page ships.' },
+    { q: 'The Playbook’s three series are…', o: ['Engage Live, Engage Plays, Guides', 'Products, Results, Proof', 'Tools, Training, Templates', 'Start, Do, Next'], a: 0,
+      w: 'Engage Live (the episodes), Engage Plays (the CRM), and Guides (field guides, hub plays, personal development).' }
+  ];
+  var qi = 0, score = 0, answered = false;
+  var elN = document.getElementById('qNum'), elT = document.getElementById('qText'), elO = document.getElementById('qOpts'),
+      elW = document.getElementById('qWhy'), elS = document.getElementById('qScore'), elNext = document.getElementById('qNext');
+  var quiz = document.getElementById('quiz'), cert = document.getElementById('cert'), fail = document.getElementById('quizFail');
+  function render() {
+    var it = Q[qi]; answered = false;
+    elN.textContent = 'Question ' + (qi + 1) + ' of ' + Q.length;
+    elT.textContent = it.q; elO.innerHTML = ''; elW.className = 'why'; elW.textContent = '';
+    elS.textContent = score + ' right so far';
+    elNext.disabled = true; elNext.textContent = qi === Q.length - 1 ? 'See my result →' : 'Next →';
+    it.o.forEach(function (txt, k) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'opt'; b.textContent = txt;
+      b.addEventListener('click', function () {
+        if (answered) return; answered = true;
+        var ok = k === it.a; if (ok) score++;
+        elO.querySelectorAll('.opt').forEach(function (x, j) { x.disabled = true; if (j === it.a) x.classList.add('right'); });
+        if (!ok) b.classList.add('wrong');
+        elW.textContent = (ok ? 'Right. ' : 'Not quite. ') + it.w; elW.className = 'why on';
+        elS.textContent = score + ' right so far'; elNext.disabled = false;
+      });
+      elO.appendChild(b);
+    });
+  }
+  elNext.addEventListener('click', function () {
+    if (qi < Q.length - 1) { qi++; render(); return; }
+    quiz.style.display = 'none';
+    if (score >= 7) {
+      cert.classList.add('on'); fail.style.display = 'none';
+      var dt = new Date();
+      document.getElementById('certMeta').textContent = score + ' of ' + Q.length + ' · ' + dt.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+      state.check = true; save(); paint();
+    } else {
+      fail.style.display = 'block';
+      document.getElementById('failMsg').textContent = score + ' of ' + Q.length + '. You need 7.';
+    }
+  });
+  function restart() { qi = 0; score = 0; quiz.style.display = ''; cert.classList.remove('on'); fail.style.display = 'none'; render(); }
+  document.getElementById('certRetry').addEventListener('click', restart);
+  document.getElementById('failRetry').addEventListener('click', function () { restart(); });
+  document.getElementById('certInput').addEventListener('input', function (e) { document.getElementById('certName').textContent = e.target.value; });
+  document.getElementById('certPrint').addEventListener('click', function () {
+    document.body.classList.add('print-cert'); window.print();
+    setTimeout(function () { document.body.classList.remove('print-cert'); }, 500);
+  });
+  render();
+
+  /* ---------- print the cheat sheet only ---------- */
+  document.getElementById('printCheat').addEventListener('click', function () {
+    document.body.classList.add('print-cheat'); window.print();
+    setTimeout(function () { document.body.classList.remove('print-cheat'); }, 500);
+  });
+})();
+</script>
 
 </body>
 </html>
