@@ -169,6 +169,16 @@
   .spoke-it.res i { background: #fff; }
   .story-link { display: inline-block; font-family: 'Nunito', Arial, sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); text-decoration: none; margin-bottom: 16px; }
   .story-link:hover { color: #fff; }
+  /* Start Here — the training button, with a slow-spinning pinwheel */
+  .start-here { display: inline-flex; align-items: center; gap: 12px; margin: 4px 0 20px; padding: 10px 20px 10px 10px; background: var(--gold); color: #0b1421; border-radius: 999px; text-decoration: none; font-family: 'Nunito', Arial, sans-serif; font-weight: 900; font-size: 15px; letter-spacing: .5px; box-shadow: 0 0 0 0 rgba(235,176,24,.55); animation: shPulse 2.6s ease-out 2.2s infinite; transition: transform .15s; opacity: 0; animation-name: ghFade, shPulse; animation-duration: .8s, 2.6s; animation-delay: 1s, 2.2s; animation-iteration-count: 1, infinite; animation-fill-mode: forwards, none; }
+  .start-here:hover { transform: translateY(-2px); }
+  .start-here .sh-mark { width: 38px; height: 38px; border-radius: 50%; background: #133865; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .start-here .sh-mark svg { width: 30px; height: 30px; animation: shSpin 9s linear infinite; }
+  .start-here:hover .sh-mark svg { animation-duration: 1.6s; }
+  .start-here small { display: block; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; opacity: .75; }
+  @keyframes shSpin { to { transform: rotate(360deg); } }
+  @keyframes shPulse { 0% { box-shadow: 0 0 0 0 rgba(235,176,24,.55); } 70% { box-shadow: 0 0 0 14px rgba(235,176,24,0); } 100% { box-shadow: 0 0 0 0 rgba(235,176,24,0); } }
+  @media (prefers-reduced-motion: reduce) { .start-here, .start-here .sh-mark svg { animation: none; opacity: 1; } }
 
   /* ---------- SEARCH (sticky) ---------- */
   .search-bar {
@@ -743,6 +753,11 @@
       <span class="spoke-it" style="animation-delay:1.48s"><i></i>Finance</span>
       <span class="spoke-it res" style="animation-delay:1.6s"><i></i>Results</span>
     </div>
+    <a class="start-here" href="resources/using-the-hub.html#tour" title="New here? The 5-minute tour, every chip, and how to get certified.">
+      <span class="sh-mark" aria-hidden="true"><svg viewBox="0 0 300 300"><g stroke="#c5d9fa" stroke-width="14" stroke-linecap="round" stroke-opacity=".75"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g><circle cx="150" cy="50" r="26" fill="#fff"/><circle cx="236.6" cy="100" r="26" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="26" fill="#fff"/><circle cx="150" cy="250" r="26" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="26" fill="#fff"/><circle cx="63.4" cy="100" r="26" fill="#c5d9fa"/><circle cx="150" cy="150" r="44" fill="#ebb018"/></svg></span>
+      <span><small>New here? Start here</small>How To Run The Hub &rarr;</span>
+    </a>
+    <br>
     <a class="story-link" href="resources/growth-hub-story.html">The story behind the hub — value at the core →</a>
 
     <div class="hero-motto">Contribution + Service = Value · Humble, Hungry, Always Grinding</div>
