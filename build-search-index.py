@@ -23,12 +23,14 @@ MAX_CHARS = 20000  # per-page text cap
 
 SECTION_LABELS = [
     ("tools/engage/", "Engage Play"),
-    ("tools/plays/", "Growth Hub Play"),
-    ("tools/wire/", "The Wire"),
-    ("tools/", "Development"),
-    ("resources/", "Resource"),
+    ("tools/plays/", "Play"),
+    ("tools/plays.html", "Plays"),
+    ("tools/proof-builder", "Plays"),
+    ("tools/wire", "The Wire"),
+    ("tools/", "Growth"),
+    ("resources/", "Growth"),
     ("story/", "Who We Are"),
-    ("how/", "How We Work"),
+    ("how/", "Who We Are"),
     ("field", "The Field"),
     ("plays/", "Solutions"),
 ]

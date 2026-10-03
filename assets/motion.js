@@ -4,7 +4,7 @@
    reviewed Monday, posted here. Newest week on top.
    Renders:
      #ghMotionFeature  gold "This Week" spotlight (rotates the week's cards)
-     #ghMotionGrid     every card, behind the Development chip only
+     #ghMotionGrid     every card, behind the Growth chip only
    Standard look = the Growth in Motion card. Navy. Gold. Done.
    People first: cards sign "— Bobby" only, no title. Wallpapers carry no
    name, title, or stamp. It's theirs once they save it.
@@ -96,7 +96,7 @@
     + ".gim-bar b{display:block;height:100%;width:0;background:#ebb018;}"
     + ".gim-bar b.run{transition:width " + ROTATE_MS + "ms linear;width:100%;}"
     + ".gim-sign{font:400 11px/1.4 'Open Sans',Arial,sans-serif;color:#718dbc;margin-top:10px;}"
-    /* mini cards (Development chip) */
+    /* mini cards (Growth chip) */
     + ".card.gim-mini{background:#133865;color:#fff;border:1px solid #133865;}"
     + ".card.gim-mini.t-deep{background:#0b1421;border-color:#0b1421;}"
     + ".card.gim-mini.t-light{background:#ededed;color:#133865;border-color:#d8d8d8;}"
@@ -297,7 +297,7 @@
     }
   });
 
-  /* ---------------- grid: every card, Development chip only ---------------- */
+  /* ---------------- grid: every card, Growth chip only ---------------- */
   var grid = document.getElementById("ghMotionGrid");
   if (grid) {
     var html = "";

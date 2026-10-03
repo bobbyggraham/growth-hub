@@ -12,20 +12,35 @@ join.html             Join the Hub signup (ungated front door, QR target)
 field.html            The Field — contests and games
 field/                individual games
 plays/                vertical activation decks (not yet built)
-story/                the deck library — who we are
-how/                  methodology and messaging
-resources/            orientation, brand standards, personal development
+story/                Who We Are — the deck library + Products × Delivery Method
+how/                  Messaging Playbook (carded under Who We Are)
+resources/            How To Run The Hub, brand standards, personal development (Growth chip)
 tools/
-  proof-builder.html  the Proof Builder app
-  plays.html          the Growth Hub Plays shelf
-  plays/              Growth Hub Plays — walkthroughs for hub tools
-  engage/             Engage Plays — walkthroughs for the CRM
+  plays.html          The Playbook — Engage Live · Engage Plays · Guides (Plays chip lands here)
+  plays/              hub plays (Opening Drive, Account Plan, Get My Proof Live) — filed under Guides
+  engage/             Engage Live episodes + Engage Plays — walkthroughs for the CRM
+  proof-builder.html  the Proof Builder app (linked from the Playbook top bar)
   wire.html  wire/    The Wire — industry issues
   fsg-app-faq.html    Ask Engage
-assets/               proofs.js (Results data), motion.js (Growth in Motion weekly cards), proof photos
+assets/               proofs.js (Results), motion.js (Growth in Motion), search-index.js,
+                      vendor/pdf-lib.min.js, audio/, master/, nsa/, reliability/, proof photos
+value-at-the-core-lyrics.html, one-shot*.html   anthem pages (repo root)
+build-search-index.py regenerates assets/search-index.js — run after adding or editing pages
 ```
 
-Two folders are named `plays` and they are different things. `/plays/` holds customer-facing vertical decks. `/tools/plays/` holds internal Growth Hub Plays. Do not merge them.
+## The chip row
+
+`All · Products → · Results · Who We Are · Plays → · Growth · The Field · Wire →`
+
+Arrow chips open a page (Products → `story/products.html`, Plays → `tools/plays.html`, Wire → `tools/wire.html`). The rest filter the home page in place. `data-filter` keys: `proof` = Results, `story` = Who We Are, `tools` = Growth, `field` = The Field. Old deep links still work: `?chip=how` → Who We Are, `?chip=plays` → the Playbook, `?chip=solutions` → Products. Results and Growth in Motion cards are chip-only (hidden under All); What's New copies show under All only.
+
+## Adding a page — one commit, three places
+
+1. The page itself, at its final path.
+2. Its card in `index.html` with the right `data-section` (and, for a play or guide, its entry at the top of `LIBRARY` in `tools/plays.html` — `cat`: `live`, `engage`, or `guide`).
+3. A regenerated `assets/search-index.js` (`python3 build-search-index.py`).
+
+Two folders are named `plays` and they are different things. `/plays/` holds customer-facing vertical decks. `/tools/plays/` holds internal hub plays. Do not merge them.
 
 ## Updating the site
 
@@ -43,4 +58,4 @@ After any upload, mirror the same files into `Google Drive › Growth Hub › si
 
 ## Growth in Motion
 
-Weekly motivation cards, built Sunday from Bobby's Wire label, reviewed Monday, posted here. All data lives in `assets/motion.js` — paste the approved week block under the `ADD NEW APPROVED WEEKS HERE` marker, newest first, and commit that one file. A week goes live on its Monday date on its own: the gold "This Week" spotlight at the top of Development rotates it, and every card sits behind the Development chip (hidden under All, like Results). People-first standard: cards sign "— Bobby" only, and downloaded wallpapers carry no name, title, or stamp.
+Weekly motivation cards, built Sunday from Bobby's Wire label, reviewed Monday, posted here. All data lives in `assets/motion.js` — paste the approved week block under the `ADD NEW APPROVED WEEKS HERE` marker, newest first, and commit that one file. A week goes live on its Monday date on its own: the gold "This Week" spotlight in the Growth section rotates it, and every card sits behind the Growth chip (hidden under All, like Results). People-first standard: cards sign "— Bobby" only, and downloaded wallpapers carry no name, title, or stamp.

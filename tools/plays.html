@@ -288,7 +288,7 @@
 </script>
 <!-- ============ /GROWTH HUB GATE ============ -->
 
-<div style="max-width:960px;margin:0 auto;padding:18px 24px 0;"><a href="../index.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">&larr; Growth Hub</a><span style="color:#c5d9fa;margin:0 8px;">|</span><a href="fsg-app-faq.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">FSG App FAQs</a></div>
+<div style="max-width:960px;margin:0 auto;padding:18px 24px 0;"><a href="../index.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">&larr; Growth Hub</a><span style="color:#c5d9fa;margin:0 8px;">|</span><a href="fsg-app-faq.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">FSG App FAQs</a><span style="color:#c5d9fa;margin:0 8px;">|</span><a href="proof-builder.html" title="Got a win? Build the proof card — your name goes on it." style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#b8860b;text-decoration:none;">+ Proof Builder</a></div>
 <div class="page">
 
   <div class="hero">
@@ -304,7 +304,7 @@
   </div>
   <hr class="gold-rule">
 
-  <p><b>One shelf, four series.</b> <b>Engage Live</b> is the webinar series — every episode's guide lands here the week it airs. <b>Engage Plays</b> teach the CRM. <b>Growth Hub Plays</b> teach the hub's own tools. <b>Guides</b> are the field guides and personal development pieces. Newest drop sits on top, always.</p>
+  <p><b>One shelf, three series.</b> <b>Engage Live</b> is the webinar series — every episode's guide lands here the week it airs. <b>Engage Plays</b> teach the CRM. <b>Guides</b> are the field guides, hub plays (Proof Builder lives here), and personal development pieces. Newest drop sits on top, always.</p>
 
   <div class="searchwrap">
     <input type="search" id="playSearch" placeholder="What are you trying to do? — proof, account setup, submit a win…" aria-label="Search the Playbook">
@@ -314,7 +314,6 @@
     <span class="chip active" data-cat="all">All</span>
     <span class="chip" data-cat="live">Engage Live</span>
     <span class="chip" data-cat="engage">Engage Plays</span>
-    <span class="chip" data-cat="hub">Growth Hub Plays</span>
     <span class="chip" data-cat="guide">Guides</span>
   </div>
 
@@ -331,8 +330,9 @@
    One entry per play or training guide. Drop the file in tools/plays/ or
    tools/engage/, add an entry at the TOP of this array (newest first — the
    shelf renders in array order), done. cat = which chips show it:
-   "live" (Engage Live series) · "engage" (Engage Plays) · "hub" (Growth Hub
-   Plays) · "guide" (Guides). Space-separate for more than one. */
+   "live" (Engage Live series) · "engage" (Engage Plays) · "guide" (Guides —
+   field guides, hub plays, personal development). Space-separate for more
+   than one. ("hub" retired Oct 2026 — hub plays file under "guide".) */
 var LIBRARY = [
   /* ---- ADD-NEW: next drop goes here, on top ---- */
 
@@ -362,7 +362,7 @@ var LIBRARY = [
 
   { file: "../resources/start-again-today.html",
     title: "Start Again Today",
-    pill: "Personal Development", cat: "hub", date: "Sep 23",
+    pill: "Personal Development", cat: "guide", date: "Sep 23",
     gold: true,
     desc: "You don't need another resolution \u2014 you need execution. The standard: people never forget how you made them feel. You're on stage always, someone is watching \u2014 practice everywhere, restart today, and lock in your one move.",
     tags: "start again today personal development execution discipline promise restart resolution new year january people on stage always someone is watching how you make people feel networking gym field motivation get after it your one move" },
@@ -392,20 +392,20 @@ var LIBRARY = [
 
   { file: "plays/the-opening-drive.html",
     title: "The Opening Drive",
-    pill: "Start Here", cat: "hub", date: "Sep 12",
+    pill: "Start Here", cat: "guide", date: "Sep 12",
     gold: true,
     desc: "How to grow using the Growth Hub, play by play. Four stages — Start, Do, Doing, Next — with the exact moves in each one and the part of the hub to open for every single one.",
     tags: "opening drive start here how to use the growth hub getting started orientation onboarding new rep first week play by play start do doing next what do i do where do i begin roadmap system drive" },
 
   { file: "plays/get-my-proof-live.html",
     title: "Proof Builder — Get My Proof Live",
-    pill: "Growth Hub Play", cat: "hub", date: "Sep 11",
+    pill: "Growth Hub Play", cat: "guide", date: "Sep 11",
     desc: "Turn a win into ammunition the whole org can fire. The five steps, the cell that decides who sees it, the permission toggles that keep us out of trouble — and what happens after you hit send.",
     tags: "proof builder proof card submit a win case study client win logo photos quote stats permissions cell product delivery type results grid in build live get my proof live credit roster how do i submit a proof" },
 
   { file: "plays/build-an-account-plan.html",
     title: "Build an Account Plan",
-    pill: "Growth Hub Play", cat: "hub", date: "Sep 11",
+    pill: "Growth Hub Play", cat: "guide", date: "Sep 11",
     desc: "Turn a target account into a plan you can actually run — the intake, the research, and the one-page output that goes into the deal.",
     tags: "account plan build an account plan target account intake research planning pursuit strategy one pager prep" },
 
@@ -540,6 +540,7 @@ var LIBRARY = [
   /* Deep link: plays.html?series=live opens the shelf pre-filtered. */
   try {
     var want = new URLSearchParams(location.search).get('series');
+    if (want === 'hub') want = 'guide'; /* Growth Hub Plays folded into Guides, Oct 2026 */
     if (want) {
       for (var k = 0; k < chips.length; k++) {
         if (chips[k].dataset.cat === want) { chips[k].click(); break; }
