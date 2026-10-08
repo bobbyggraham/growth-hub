@@ -283,6 +283,12 @@
    One entry per training guide. File goes in tools/engage/, entry
    goes here, done — the card and search pick it up automatically. */
 var GUIDES = [
+  { file: "engage/face-time-wins.html",
+    title: "Face Time Wins — Meetings",
+    pill: "Engage Play",
+    gold: true,
+    desc: "Episode 7: the Engage Meeting record — schedule it from the account or opportunity, the five-line note that lasts, Notes → Tasks with owners and dates, attachments and the summary — run live on the Reformation internal account-planning session. Plus the three roles (Guide, BD, AM) on Protect · Land · Expand.",
+    tags: "face time wins meetings meeting record schedule log notes tasks attachments summary internal meeting account planning reformation guide business development account manager episode 7" },
   { file: "engage/money-in-motion.html",
     title: "Money in Motion — Opportunities",
     pill: "Engage Play",
@@ -372,6 +378,10 @@ var GUIDES = [
    q = the question as a rep would type it · a = the short answer (HTML ok)
    link = the guide that goes deeper · tags = extra words people search with */
 var ASKS = [
+  { q: "How do I log a customer meeting in Engage?",
+    a: "Open the account or the opportunity and create a <b>Meeting</b> — title, date, join link, attendees. In <b>Notes</b>, write the five-line note: who, what they said, what we owe, what they owe, next action + date. Then put the next action in the <b>Tasks</b> tab with an owner and a due date. Do it within 24 hours. Attach it to the opportunity when the meeting moved a deal.",
+    link: "engage/face-time-wins.html", label: "Face Time Wins — Meetings",
+    tags: "log meeting record a meeting meeting notes schedule meeting attendees join link tasks after meeting follow-up task how do i log a meeting" },
   { q: "How do I see my YTD sales and my pipeline?",
     a: "Select the shared <b>&#128176; Money in Motion</b> view — it's in the view picker in both <b>Opportunities</b> and <b>Accounts</b> — and filter <b>FSG Owner</b> to you. Opportunities shows every open deal with follow-up, due date, close date, value, and probability; Accounts shows each account's open opps, <b>Opportunity $</b>, <b>2026 Sales YTD</b>, and <b>2025 Sales</b>. Sort YTD high to low for your top accounts, filter State for the territory cut. If it looks messy, run the cleanup views first — Kill the Blanks, Follow-Up Date, Missed Due Date, Missed Close Date — and <b>double-click any cell</b> to fix it right in the table.",
     link: "engage/money-in-motion.html", label: "Money in Motion — Opportunities",
