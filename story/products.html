@@ -262,6 +262,8 @@ const R = {
   nsa:         {name:'National Services Agreement', kind:'Agreement + Sales Walkthrough', href:'nsa-walkthrough.html', pdf:'../assets/nsa/FSG_National_Services_Agreement.pdf'},
   reliability: {name:'Electrical Reliability Program', kind:'Deck + PDF', href:'electrical-reliability-program.html', pdf:'../assets/reliability/FSG_Electrical_Reliability_Program.pdf'},
   reliabilitypdf:{name:'Electrical Reliability Program — PDF', kind:'PDF · Email / RFP Attachment', href:'../assets/reliability/FSG_Electrical_Reliability_Program.pdf', pdf:'../assets/reliability/FSG_Electrical_Reliability_Program.pdf'},
+  uwp:         {name:'Universal Waste Policy', kind:'Compliance Policy + Walkthrough', href:'universal-waste-policy.html', pdf:'../assets/compliance/FSG_Universal_Waste_Policy.pdf'},
+  uwppdf:      {name:'Universal Waste Policy — PDF', kind:'PDF · Proposal / RFP Attachment', href:'../assets/compliance/FSG_Universal_Waste_Policy.pdf', pdf:'../assets/compliance/FSG_Universal_Waste_Policy.pdf'},
   master:      {name:'FSG Master Presentation', kind:'Deck + PDF', href:'master-2026.html', pdf:'../assets/master/FSG_Master_Presentation.pdf'},
   culture:     {name:'The Institution & Culture', kind:'Deck', href:'institution-culture.html'},
   lightplay:   {name:'FSG Lighting Design Playbook', kind:'Sales Play', href:'../plays/lighting-design-playbook.html'},
@@ -283,16 +285,16 @@ const LINES = [
    construction:{desc:'We build and wire your facilities — blueprint to power-on. Mission-critical builds, ground-up, and tenant finish-out, self-performed by FSG crews so the schedule holds.',
      types:['Mission critical','Ground-up','Tenant finish-out','Design-build','EV charging'], proofs:['Boeing'], res:['master','datacenter','commercial','templates']},
    service:{desc:'We keep your power on, 24/7. Emergency response, on-demand repair, and preventive maintenance nationwide — so downtime never picks the date.',
-     types:['Emergency','On-demand','Preventive maintenance','Arc flash analysis','Infrared thermography','Switchgear maintenance','Generator programs','EV charging'], proofs:['Walmart'], res:['reliability','nsa','master','templates']},
+     types:['Emergency','On-demand','Preventive maintenance','Arc flash analysis','Infrared thermography','Switchgear maintenance','Generator programs','EV charging'], proofs:['Walmart'], res:['reliability','nsa','uwp','master','templates']},
    distribution:{desc:'We deliver the gear before the crew needs it — wholesale electrical materials and gear packages, specified, kitted, and delivered to site.',
      types:['Gear packages','Wholesale materials','Site logistics','EV charging'], proofs:[], res:['master']}
   }},
  {name:'Lighting', tag:'"We find what others can’t."',
   cells:{
    construction:{desc:'We light new builds and retrofits — designed, engineered, and self-performed at single sites or across national fleets.',
-     types:['LED retrofit','New install','Design & photometrics'], proofs:['U.S. Bank','HCA'], res:['master','usbank','roi','retailplay']},
+     types:['LED retrofit','New install','Design & photometrics'], proofs:['U.S. Bank','HCA'], res:['master','usbank','uwp','roi','retailplay']},
    service:{desc:'We keep every site lit — and find the parts nobody else can. Lamp & ballast programs, national account maintenance, code-critical emergency lighting, and MRO sourcing for the fixtures everyone else gave up on.',
-     types:['Lamp & ballast programs','National account maintenance','Emergency lighting','MRO sourcing','Retrofits','National rollouts'], proofs:['Starbucks','ULTA','Crash Champions'], res:['nsa','master','crash','retailplay']},
+     types:['Lamp & ballast programs','National account maintenance','Emergency lighting','MRO sourcing','Retrofits','National rollouts'], proofs:['Starbucks','ULTA','Crash Champions'], res:['nsa','uwp','master','crash','retailplay']},
    distribution:{desc:'We spec it, buy it at wholesale, and deliver it — you keep the design, the savings, and the schedule. The EBV® standard: Equal or Better Value, never value-engineered away.',
      types:['Owner-supplied packages','Design & procurement','EBV® standard','Design & photometrics','Freight & logistics','Wholesale materials','Site logistics'], proofs:['ALDI'], res:['lightplay','gcec','roi','mmc']}
   }},
@@ -319,7 +321,7 @@ const LINES = [
    construction:{desc:'We install what cuts the bill — EMS installs, solar (“Own your power”), EV charging (“Ready to charge”), and storage. Solar returns exceeding 10% IRR over 20 years.',
      types:['EMS installs','Solar','EV charging','Storage'], proofs:['Tesla','IKEA','Sunbelt','Public Storage','Boeing','Lillibridge'], res:['master','roi']},
    service:{desc:'We watch the meters and fix what they find — EMS monitoring, alarm response, portfolio optimization, utility programs, retrofits, and national rollouts. We cut your energy costs and guarantee the savings — proven at the meter.',
-     types:['EMS monitoring','Alarm response','Portfolio optimization','Utility programs','Retrofits','National rollouts','Solar Maintenance & Monitoring','EV charging'], proofs:['Circle K','ULTA','Bass Pro'], res:['nsa','master','cstore']},
+     types:['EMS monitoring','Alarm response','Portfolio optimization','Utility programs','Retrofits','National rollouts','Solar Maintenance & Monitoring','EV charging'], proofs:['Circle K','ULTA','Bass Pro'], res:['nsa','uwp','master','cstore']},
    distribution:{desc:'We supply the hardware — EV chargers, solar equipment, and EMS hardware, specified and delivered for deployment anywhere you operate.',
      types:['EV chargers','Solar equipment','EMS hardware','EV charging'], proofs:[], res:['master']}
   }}
@@ -393,7 +395,12 @@ const TYPEDEFS = {
 const TYPERES = {
  "Arc flash analysis":      ['reliability','reliabilitypdf'],
  "Infrared thermography":   ['reliability','reliabilitypdf'],
- "Switchgear maintenance":  ['reliability','reliabilitypdf']
+ "Switchgear maintenance":  ['reliability','reliabilitypdf'],
+ "LED retrofit":            ['uwp','uwppdf'],
+ "Retrofits":               ['uwp','uwppdf'],
+ "National rollouts":       ['uwp','uwppdf'],
+ "Lamp & ballast programs": ['uwp','uwppdf'],
+ "Emergency lighting":      ['uwp','uwppdf']
 };
 
 // ================= MATRIX RENDER =================

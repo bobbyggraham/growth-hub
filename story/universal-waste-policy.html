@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FSG — Universal Waste Handling &amp; Disposal Policy</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='115' fill='%23133865'/><g stroke='%23c5d9fa' stroke-width='22' stroke-linecap='round'><line x1='256' y1='256' x2='256' y2='96'/><line x1='256' y1='256' x2='394.6' y2='176'/><line x1='256' y1='256' x2='394.6' y2='336'/><line x1='256' y1='256' x2='256' y2='416'/><line x1='256' y1='256' x2='117.4' y2='336'/><line x1='256' y1='256' x2='117.4' y2='176'/></g><circle cx='256' cy='96' r='42' fill='%23ffffff'/><circle cx='394.6' cy='176' r='42' fill='%23c5d9fa'/><circle cx='394.6' cy='336' r='42' fill='%23ffffff'/><circle cx='256' cy='416' r='42' fill='%23c5d9fa'/><circle cx='117.4' cy='336' r='42' fill='%23ffffff'/><circle cx='117.4' cy='176' r='42' fill='%23ebb018'/><circle cx='256' cy='256' r='76' fill='%23ebb018'/></svg>">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--deep-navy:#0b1421;--dark-navy:#133865;--brand-blue:#365aa0;--steel:#718dbc;--light-blue:#c5d9fa;--light-gray:#ededed;--gold:#ebb018;--surface:#15253f;--border:#1e3558;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Open Sans',Arial,sans-serif;color:var(--deep-navy);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased;}
+
+.hero{background:linear-gradient(160deg,var(--deep-navy) 0%,var(--dark-navy) 90%);color:#fff;padding:40px 20px 52px;border-bottom:3px solid var(--gold);}
+.hero-inner{max-width:960px;margin:0 auto;}
+.hero .back{font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--steel);text-decoration:none;display:inline-block;margin-bottom:22px;}
+.hero .back:hover{color:var(--gold);}
+.hero .kicker{font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.hero h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(30px,5.5vw,50px);line-height:1.08;text-transform:uppercase;margin-bottom:14px;}
+.hero p{font-size:16px;color:var(--light-blue);max-width:640px;}
+.hero .actions{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;}
+.hero .btn{font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;padding:13px 22px;border-radius:8px;}
+.hero .btn.gold{background:var(--gold);color:var(--deep-navy);}
+.hero .btn.line{border:1.5px solid var(--steel);color:var(--light-blue);}
+.hero .btn:hover{filter:brightness(1.08);}
+
+.wrap{max-width:960px;margin:0 auto;padding:0 20px;}
+section.block{padding:44px 0 10px;}
+.kick{font-family:'Oswald',sans-serif;font-size:12px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+h2{font-family:'Oswald',sans-serif;font-weight:600;font-size:clamp(22px,3.4vw,30px);color:var(--dark-navy);text-transform:uppercase;margin-bottom:14px;}
+p.lede{font-size:16px;color:#374151;max-width:72ch;margin-bottom:12px;}
+
+.say{background:var(--deep-navy);border-left:5px solid var(--gold);border-radius:10px;padding:18px 22px;color:#fff;margin:16px 0;}
+.say .s-label{font-family:'Oswald',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.say p{font-size:15.5px;color:var(--light-blue);font-style:italic;}
+
+.steps{counter-reset:step;margin:20px 0;}
+.step{display:flex;gap:16px;background:#fafbfd;border:1px solid var(--light-gray);border-radius:10px;padding:18px 20px;margin:10px 0;}
+.step .n{flex:none;width:34px;height:34px;border-radius:50%;background:var(--dark-navy);color:#fff;font-family:'Oswald',sans-serif;font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center;margin-top:2px;}
+.step h3{font-family:'Oswald',sans-serif;font-weight:600;font-size:16px;text-transform:uppercase;color:var(--dark-navy);margin-bottom:4px;}
+.step p{font-size:14.5px;color:#4a5568;}
+.step p b{color:var(--dark-navy);}
+
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px;}
+th{font-family:'Oswald',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#fff;background:var(--dark-navy);padding:10px 12px;text-align:left;}
+td{padding:10px 12px;border-bottom:1px solid var(--light-gray);color:#374151;}
+tr:nth-child(even) td{background:#fafbfd;}
+td b{color:var(--dark-navy);}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:20px 0;}
+.card{background:#fafbfd;border:1px solid var(--light-gray);border-top:4px solid var(--gold);border-radius:10px;padding:20px;}
+.card h3{font-family:'Oswald',sans-serif;font-weight:600;font-size:16px;text-transform:uppercase;color:var(--dark-navy);margin-bottom:8px;}
+.card p, .card li{font-size:14px;color:#4a5568;}
+.card ul{padding-left:18px;margin-top:6px;}
+.card li{margin:4px 0;}
+
+.note{background:#eef4fd;border-left:5px solid var(--brand-blue);border-radius:10px;padding:16px 20px;margin:16px 0;}
+.note h3{font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dark-navy);margin-bottom:6px;}
+.note p{font-size:14.5px;color:#374151;}
+
+.applies{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px;}
+.applies span{font-family:'Oswald',sans-serif;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;background:var(--deep-navy);color:var(--light-blue);border-radius:999px;padding:7px 14px;}
+.applies span.gold{background:var(--gold);color:var(--deep-navy);}
+
+footer{background:var(--deep-navy);color:var(--steel);text-align:center;padding:34px 20px;margin-top:50px;font-size:12px;}
+footer .grind{font-family:'Oswald',sans-serif;font-weight:700;font-size:16px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+@media(max-width:560px){.hero .actions{flex-direction:column;}}
+</style>
+</head>
+<body>
+<!-- ============ GROWTH HUB GATE ============ -->
+<style>
+  html.gh-locked > body > :not(#ghGate){display:none !important;}
+  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
+  html:not(.gh-locked) #ghGate{display:none;}
+  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
+  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
+  #ghGate .gh-brand svg{width:30px;height:30px;}
+  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
+  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
+  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;}
+  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
+  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
+  #ghGate input:focus{border-color:#4e84de;}
+  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
+  #ghGate button:hover{filter:brightness(1.06);}
+  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
+  #ghGate .gh-shake{animation:ghshake .3s;}
+  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+<div id="ghGate">
+  <div class="gh-wrap">
+    <div class="gh-brand">
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#c5d9fa" stroke-width="14" stroke-linecap="round" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g><circle cx="150" cy="50" r="26" fill="#ffffff"/><circle cx="236.6" cy="100" r="26" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="26" fill="#ffffff"/><circle cx="150" cy="250" r="26" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="26" fill="#ffffff"/><circle cx="63.4" cy="100" r="26" fill="#c5d9fa"/><circle cx="150" cy="150" r="44" fill="#ebb018"/></svg>
+      <span>Growth Hub</span>
+    </div>
+    <div class="gh-card">
+      <h2>Passcode</h2>
+      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
+      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
+      <button id="ghGo" type="button">Enter the Hub</button>
+      <div class="gh-err" id="ghErr"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
+  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+  if(!unlocked()) document.documentElement.classList.add('gh-locked');
+  function open(){ document.documentElement.classList.remove('gh-locked'); }
+  async function check(){
+    var v=document.getElementById('ghPass').value;
+    var ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        ok=(hex===HASH);
+      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
+    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
+    if(ok){ remember(); open(); }
+    else{
+      var card=document.querySelector('#ghGate .gh-card');
+      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
+      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
+      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    if(unlocked()) return;
+    document.getElementById('ghGo').addEventListener('click', check);
+    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
+  });
+})();
+</script>
+<!-- ============ /GROWTH HUB GATE ============ -->
+
+<section class="hero">
+  <div class="hero-inner">
+    <a class="back" href="products.html">&larr; Products</a>
+    <div class="kicker">Environmental Compliance Policy</div>
+    <h1>Universal Waste<br>Handling &amp; Disposal</h1>
+    <p>Lamps, ballasts, batteries, and mercury devices. On every retrofit, repair, removal, and installation, FSG manages the waste we generate under the EPA Universal Waste Rule (40 CFR Part 273) and the applicable state program — from removal through recycling — so your client's team never touches it.</p>
+    <div class="applies">
+      <span class="gold">Applies to</span><span>Service</span><span>Project</span><span>Rollout</span><span>Retrofit</span><span>Any removal of existing lighting equipment</span>
+    </div>
+    <div class="actions">
+      <a class="btn gold" href="../assets/compliance/FSG_Universal_Waste_Policy.pdf" download="FSG_Universal_Waste_Policy.pdf">&#8595; Download the Policy (PDF)</a>
+      <a class="btn line" href="#broke">If a Lamp Breaks</a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+
+<section class="block">
+  <div class="kick">Why It's in the Pitch</div>
+  <h2>Compliance is part of what they're buying</h2>
+  <p class="lede"><b>Your facilities stay compliant. Your records stay complete.</b> Every retrofit generates waste the EPA regulates — fluorescent lamps, ballasts, batteries, mercury devices. Handled wrong, that's the client's liability. Handled by FSG, it's already in the scope: removed, containerized, recycled through permitted facilities, documented.</p>
+  <div class="say">
+    <div class="s-label">Say it like this</div>
+    <p>"Every lamp and ballast that comes off your ceiling is regulated waste the moment we remove it. Our crews handle it under the EPA Universal Waste Rule — nothing goes in a dumpster, nothing gets left on your dock, and the recycling is documented. That's built into the program, not an add-on."</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="kick">The Process</div>
+  <h2>How we handle it, every site</h2>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><div><h3>Identify</h3><p>Fluorescent, CFL, HID and UV lamps, PCB and non-PCB ballasts, batteries, and mercury devices are classified as universal waste <b>before removal begins</b>.</p></div></div>
+    <div class="step"><div class="n">2</div><div><h3>Remove intact</h3><p>Lamps are removed whole. Crushing, breaking, or drum-top crushing on client property is <b>not permitted</b>.</p></div></div>
+    <div class="step"><div class="n">3</div><div><h3>Containerize</h3><p>Waste goes into closed, structurally sound containers labeled <b>"Universal Waste &ndash; Lamps"</b> (or the matching stream) with the accumulation start date.</p></div></div>
+    <div class="step"><div class="n">4</div><div><h3>Remove from your facility</h3><p>FSG crews take the materials off site at the close of work unless the client directs us to use their own on-site recycling containers. <b>Nothing is left behind</b> in a mechanical room or dock.</p></div></div>
+    <div class="step"><div class="n">5</div><div><h3>Bulk-recycle at FSG facilities</h3><p>Materials are consolidated at FSG locations and recycled in bulk through permitted universal-waste recyclers. Bulk volume earns the lowest recycling cost, and <b>that saving is passed to you</b>. Nothing goes in dumpsters or general trash.</p></div></div>
+    <div class="step"><div class="n">6</div><div><h3>Consolidate across the program</h3><p>On national rollouts and service work, small retrofits and repairs are combined into program-level batches. That eliminates the labor and time of recycling site by site and <b>keeps your cost down</b>.</p></div></div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="kick">The Streams</div>
+  <h2>What's covered</h2>
+  <table>
+    <tr><th>Stream</th><th>Examples</th></tr>
+    <tr><td><b>Lamps</b></td><td>Fluorescent tubes, CFL, HID (metal halide, HPS, MV), UV and neon</td></tr>
+    <tr><td><b>Ballasts</b></td><td>Magnetic (PCB / non-PCB) and electronic ballasts, LED drivers</td></tr>
+    <tr><td><b>Batteries</b></td><td>Emergency-lighting, exit-sign, UPS and controls batteries</td></tr>
+    <tr><td><b>Mercury devices</b></td><td>Thermostats, switches, relays and sensors</td></tr>
+  </table>
+</section>
+
+<section class="block" id="broke">
+  <div class="kick">The Exception Plan</div>
+  <h2>If a lamp breaks</h2>
+  <div class="cards">
+    <div class="card"><h3>Contain</h3><p>Clear and ventilate the area; keep people out for 15 minutes.</p></div>
+    <div class="card"><h3>Collect</h3><p>No vacuuming or sweeping of fragments. Debris is collected with stiff card and tape into a sealed, labeled container and managed as universal waste.</p></div>
+    <div class="card"><h3>Report</h3><p>The incident is noted in the project record and reported to the client's site contact.</p></div>
+  </div>
+  <div class="note">
+    <h3>State rules can be stricter</h3>
+    <p>Where a state program (for example California, Minnesota or Vermont) exceeds federal requirements, FSG follows the state rule. Our crews are trained on this policy before mobilizing.</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="kick">Use It</div>
+  <h2>When to send this</h2>
+  <p class="lede">Attach the PDF to any proposal, RFP response, or pitch package where FSG removes existing equipment — LED retrofits, lamp &amp; ballast programs, national rollouts, service and repair work. It answers the facilities and sustainability questions before they're asked, and it's one more reason the FSG rate is the safe buy.</p>
+  <div class="say">
+    <div class="s-label">The one-liner</div>
+    <p>"From removal through recycling, your team never touches it — and your records stay audit-ready."</p>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="grind">Protect. Land. Expand.</div>
+  <p>FSG &middot; Universal Waste Handling &amp; Disposal Policy &middot; part of Growth Hub &middot; (866) 865-7553 &middot; fsg.com</p>
+</footer>
+</body>
+</html>
