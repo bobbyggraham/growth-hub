@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Never Out of Office — Sales Training Deck</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='115' fill='%23133865'/><g stroke='%23c5d9fa' stroke-width='22' stroke-linecap='round'><line x1='256' y1='256' x2='256' y2='96'/><line x1='256' y1='256' x2='394.6' y2='176'/><line x1='256' y1='256' x2='394.6' y2='336'/><line x1='256' y1='256' x2='256' y2='416'/><line x1='256' y1='256' x2='117.4' y2='336'/><line x1='256' y1='256' x2='117.4' y2='176'/></g><circle cx='256' cy='96' r='42' fill='%23ffffff'/><circle cx='394.6' cy='176' r='42' fill='%23c5d9fa'/><circle cx='394.6' cy='336' r='42' fill='%23ffffff'/><circle cx='256' cy='416' r='42' fill='%23c5d9fa'/><circle cx='117.4' cy='336' r='42' fill='%23ffffff'/><circle cx='117.4' cy='176' r='42' fill='%23ebb018'/><circle cx='256' cy='256' r='76' fill='%23ebb018'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg:#0b1421; --surface:#15253f; --surface2:#1c3050; --border:#1e3558;
+  --accent:#ebb018; --accent-glow:rgba(235,176,24,0.12);
+  --text:#F2EEE9; --text-muted:#718dbc; --text-subtle:#3a4d6e;
+  --font-head:'Oswald','Arial Black',sans-serif;
+  --font-body:'Open Sans',Arial,Helvetica,sans-serif;
+}
+html,body{width:100%;height:100%;background:var(--bg);font-family:var(--font-body);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;}
+#deck{width:100vw;height:100vh;position:relative;overflow:hidden;}
+.slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:6vh 8vw;opacity:0;transform:translateY(20px);transition:opacity .38s cubic-bezier(.4,0,.2,1),transform .38s cubic-bezier(.4,0,.2,1);pointer-events:none;z-index:1;}
+.slide.active{opacity:1;transform:translateY(0);pointer-events:all;z-index:2;}
+.slide.out{opacity:0;transform:translateY(-20px);}
+#counter{position:fixed;top:28px;right:72px;font-size:12px;font-weight:500;letter-spacing:.06em;color:var(--text-subtle);z-index:100;}
+#counter b{color:var(--text-muted);font-weight:600;}
+#nav-dots{position:fixed;right:26px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:7px;z-index:100;}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--text-subtle);cursor:pointer;transition:background .2s,transform .2s;}
+.dot:hover{background:var(--text-muted);}
+.dot.on{background:var(--accent);transform:scale(1.35);}
+#hint{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:11px;color:var(--text-subtle);letter-spacing:.07em;z-index:100;user-select:none;}
+.glow{position:fixed;border-radius:50%;filter:blur(130px);pointer-events:none;z-index:0;}
+.glow-a{width:700px;height:700px;background:rgba(235,176,24,.035);top:-250px;right:-200px;}
+.glow-b{width:500px;height:500px;background:rgba(54,90,160,.08);bottom:-200px;left:-150px;}
+.eyebrow{font-family:var(--font-head);font-size:clamp(9px,1vw,12px);font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;}
+.hl{color:var(--accent);font-style:normal;}
+.l-statement{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:860px;}
+.l-statement .big{font-family:var(--font-head);font-size:clamp(52px,8.5vw,108px);font-weight:700;line-height:1.0;letter-spacing:-2px;margin-bottom:28px;}
+.l-statement .sub{font-size:clamp(15px,1.7vw,22px);font-style:italic;color:var(--text-muted);line-height:1.6;margin-bottom:32px;max-width:640px;}
+.rule{width:44px;height:2px;background:var(--accent);margin:0 auto 28px;}
+.byline{font-size:clamp(10px,1vw,12px);font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--text-subtle);}
+.l-section{display:flex;flex-direction:column;align-items:flex-start;width:100%;max-width:1060px;}
+.l-section .big{font-family:var(--font-head);font-size:clamp(36px,5.8vw,72px);font-weight:700;line-height:1.06;letter-spacing:-1.5px;margin-bottom:36px;}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px 26px;}
+.card.hi{border-color:var(--accent);box-shadow:inset 0 0 50px var(--accent-glow);}
+.c-label{font-family:var(--font-head);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+.c-title{font-size:clamp(14px,1.6vw,18px);font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.25;}
+.c-body{font-size:clamp(11px,1.2vw,14px);color:var(--text-muted);line-height:1.55;}
+.l-split{display:grid;grid-template-columns:1fr 1fr;gap:64px;max-width:1060px;width:100%;align-items:center;}
+.l-split .big{font-family:var(--font-head);font-size:clamp(34px,5vw,62px);font-weight:700;line-height:1.06;letter-spacing:-1px;margin-bottom:18px;}
+.l-split .desc{font-size:clamp(13px,1.45vw,17px);color:var(--text-muted);line-height:1.65;}
+.feat-list{display:flex;flex-direction:column;gap:10px;}
+.feat{display:flex;align-items:flex-start;gap:14px;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:10px;}
+.fdot{width:7px;height:7px;border-radius:50%;background:var(--accent);margin-top:5px;flex-shrink:0;}
+.fstar{color:var(--accent);font-size:clamp(13px,1.4vw,16px);line-height:1.25;flex-shrink:0;margin-top:1px;white-space:nowrap;width:92px;letter-spacing:1px;}
+.stars{color:var(--accent);font-size:clamp(22px,2.6vw,34px);letter-spacing:.18em;margin:6px 0 22px;}
+.ft{font-size:clamp(13px,1.4vw,16px);font-weight:600;color:var(--text);line-height:1.35;}
+.fs{font-size:clamp(10px,1.1vw,13px);color:var(--text-muted);margin-top:3px;line-height:1.4;}
+</style>
+</head>
+<body>
+
+<!-- ============ GROWTH HUB GATE ============ -->
+<style>
+  html.gh-locked > body > :not(#ghGate){display:none !important;}
+  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
+  html:not(.gh-locked) #ghGate{display:none;}
+  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
+  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
+  #ghGate .gh-brand svg{width:30px;height:30px;}
+  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
+  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
+  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;}
+  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
+  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
+  #ghGate input:focus{border-color:#4e84de;}
+  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
+  #ghGate button:hover{filter:brightness(1.06);}
+  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
+  #ghGate .gh-shake{animation:ghshake .3s;}
+  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+<div id="ghGate">
+  <div class="gh-wrap">
+    <div class="gh-brand">
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#c5d9fa" stroke-width="14" stroke-linecap="round" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g><circle cx="150" cy="50" r="26" fill="#ffffff"/><circle cx="236.6" cy="100" r="26" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="26" fill="#ffffff"/><circle cx="150" cy="250" r="26" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="26" fill="#ffffff"/><circle cx="63.4" cy="100" r="26" fill="#c5d9fa"/><circle cx="150" cy="150" r="44" fill="#ebb018"/></svg>
+      <span>Growth Hub</span>
+    </div>
+    <div class="gh-card">
+      <h2>Passcode</h2>
+      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
+      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
+      <button id="ghGo" type="button">Enter the Hub</button>
+      <div class="gh-err" id="ghErr"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
+  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+  if(!unlocked()) document.documentElement.classList.add('gh-locked');
+  function open(){ document.documentElement.classList.remove('gh-locked'); }
+  async function check(){
+    var v=document.getElementById('ghPass').value;
+    var ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        ok=(hex===HASH);
+      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
+    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
+    if(ok){ remember(); open(); }
+    else{
+      var card=document.querySelector('#ghGate .gh-card');
+      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
+      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
+      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    if(unlocked()) return;
+    document.getElementById('ghGo').addEventListener('click', check);
+    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
+  });
+})();
+</script>
+<!-- ============ /GROWTH HUB GATE ============ -->
+
+<div id="deck">
+  <div class="glow glow-a"></div>
+  <div class="glow glow-b"></div>
+  <div id="counter"><b>01</b> / 1</div>
+  <div id="nav-dots"></div>
+  <div id="hint">left/right arrows to navigate, F for fullscreen</div>
+
+  <!-- 1. TITLE -->
+  <div class="slide active">
+    <div class="l-statement">
+      <div class="eyebrow">Sales Training &middot; The Standard</div>
+      <h1 class="big">Never Out<br>of <em class="hl">Office</em></h1>
+      <p class="sub">Why salespeople should kill the auto-reply &mdash; and what we do instead. Take the vacation. Don't broadcast it.</p>
+      <div class="rule"></div>
+      <div class="byline">&mdash; Bobby</div>
+    </div>
+  </div>
+
+  <!-- 2. THE MOMENT OF TRUTH -->
+  <div class="slide">
+    <div class="l-split">
+      <div>
+        <div class="eyebrow">Part 1 &middot; The Problem</div>
+        <h2 class="big">The Moment<br>of <em class="hl">Truth</em></h2>
+        <p class="desc">The most important email of the quarter arrives while you're gone. Customers don't schedule their urgency around your calendar &mdash; and they don't wait for Monday.</p>
+      </div>
+      <div class="feat-list">
+        <div class="feat"><div class="fdot"></div><div><div class="ft">A facility goes dark</div><div class="fs">Outages, failed inspections, safety findings &mdash; urgent by nature, and exactly our business.</div></div></div>
+        <div class="feat"><div class="fdot"></div><div><div class="ft">A budget gets approved</div><div class="fs">Capital frees up on a random Tuesday. The money moves whether you're in or not.</div></div></div>
+        <div class="feat"><div class="fdot"></div><div><div class="ft">A competitor stumbles</div><div class="fs">Their miss is your opening &mdash; but only if you're the one who answers.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. WHAT YOUR AUTO-REPLY ACTUALLY SAYS -->
+  <div class="slide">
+    <div class="l-section">
+      <div class="eyebrow">Part 1 &middot; The Problem</div>
+      <h2 class="big">What Your Auto-Reply <em class="hl">Actually Says</em></h2>
+      <div class="grid">
+        <div class="card">
+          <div class="c-label">You wrote</div>
+          <div class="c-title">&ldquo;I'm out of the office until Monday.&rdquo;</div>
+          <div class="c-body">They hear: &ldquo;Your problem can wait. Call someone who's in.&rdquo;</div>
+        </div>
+        <div class="card">
+          <div class="c-label">You wrote</div>
+          <div class="c-title">&ldquo;I'll have limited access to email.&rdquo;</div>
+          <div class="c-body">They hear: &ldquo;I might see this. I might not. Good luck.&rdquo;</div>
+        </div>
+        <div class="card">
+          <div class="c-label">You wrote</div>
+          <div class="c-title">&ldquo;For urgent matters, contact&hellip;&rdquo;</div>
+          <div class="c-body">They hear: &ldquo;Start over with a stranger who doesn't know your account.&rdquo;</div>
+        </div>
+        <div class="card hi">
+          <div class="c-label">The truth</div>
+          <div class="c-title">It's the only message we send that says we're unavailable</div>
+          <div class="c-body">No other part of the FSG brand tells a customer &ldquo;not now.&rdquo; Why would your inbox?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. SPEED IS THE TIEBREAKER -->
+  <div class="slide">
+    <div class="l-split">
+      <div>
+        <div class="eyebrow">Part 2 &middot; Why It Matters</div>
+        <h2 class="big">Speed Is the<br><em class="hl">Tiebreaker</em></h2>
+        <p class="desc">In facilities services, the trigger events are urgent by nature. Whoever responds first usually writes the scope everyone else has to bid against.</p>
+      </div>
+      <div class="feat-list">
+        <div class="feat"><div class="fdot"></div><div><div class="ft">First in frames the problem</div><div class="fs">The first rep in the conversation shapes the scope, the spec, and the budget.</div></div></div>
+        <div class="feat"><div class="fdot"></div><div><div class="ft">Silence creates shoppers</div><div class="fs">Every hour without a reply is an hour the customer spends finding your competitor.</div></div></div>
+        <div class="feat"><div class="fdot"></div><div><div class="ft">Responsiveness is the brand</div><div class="fs">Customers forgive a lot. They remember who picked up when it mattered.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. THE OBJECTION -->
+  <div class="slide">
+    <div class="l-statement">
+      <div class="eyebrow">Part 3 &middot; The Objection</div>
+      <h1 class="big">&ldquo;So I Never<br>Get to <em class="hl">Unplug?</em>&rdquo;</h1>
+      <p class="sub">Wrong takeaway. Take the vacation. Take the whole week. This isn't about being always on &mdash; it's about your <b>pipeline</b> never being off. The auto-reply broadcasts your absence. Coverage makes it invisible.</p>
+      <div class="rule"></div>
+      <div class="byline">Coverage, not silence</div>
+    </div>
+  </div>
+
+  <!-- 6. THE COVERAGE PLAYBOOK -->
+  <div class="slide">
+    <div class="l-section">
+      <div class="eyebrow">Part 3 &middot; The Fix</div>
+      <h2 class="big">The Coverage <em class="hl">Playbook</em></h2>
+      <div class="grid">
+        <div class="card">
+          <div class="c-label">Step 1</div>
+          <div class="c-title">Warn your hot deals personally</div>
+          <div class="c-body">Before you leave, a short personal note to active opportunities: who's covering, and their direct line.</div>
+        </div>
+        <div class="card">
+          <div class="c-label">Step 2</div>
+          <div class="c-title">Name a wingman</div>
+          <div class="c-body">Brief a teammate on your open deals in Engage. They answer as a colleague who knows the account &mdash; not a stranger.</div>
+        </div>
+        <div class="card">
+          <div class="c-label">Step 3</div>
+          <div class="c-title">Route, don't announce</div>
+          <div class="c-body">Forward or delegate the inbox and phone. The customer gets an answer &mdash; never a notice that you're gone.</div>
+        </div>
+        <div class="card">
+          <div class="c-label">Step 4</div>
+          <div class="c-title">One 10-minute sweep</div>
+          <div class="c-body">If you choose to check in, one short daily scan for deal-critical items only. Everything else waits &mdash; covered.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. OOO vs ALWAYS IN BUSINESS -->
+  <div class="slide">
+    <div class="l-split">
+      <div>
+        <div class="eyebrow">Part 4 &middot; The Standard</div>
+        <h2 class="big">Out of Office vs.<br><em class="hl">Always in Business</em></h2>
+        <p class="desc">The irony: the rep with the auto-reply gets interrupted <b>more</b> &mdash; nothing is covered, so everything escalates to their cell phone. The covered rep is the one who's actually off.</p>
+      </div>
+      <div class="feat-list">
+        <div class="feat"><div class="fdot"></div><div><div class="ft">Urgent customer email</div><div class="fs">Auto-reply rep: a robot says &ldquo;back Monday.&rdquo; Covered rep: a human answers within hours.</div></div></div>
+        <div class="feat"><div class="fdot"></div><div><div class="ft">Competitor circling the account</div><div class="fs">Auto-reply rep: open door, nobody home. Covered rep: the wingman holds the line.</div></div></div>
+        <div class="feat"><div class="fdot"></div><div><div class="ft">Deal momentum mid-cycle</div><div class="fs">Auto-reply rep: stalls a week, restarts cold. Covered rep: keeps moving, handoff logged in Engage.</div></div></div>
+        <div class="feat"><div class="fdot"></div><div><div class="ft">Your actual vacation</div><div class="fs">Auto-reply rep: interrupted by the &ldquo;urgent&rdquo; calls anyway. Covered rep: truly off &mdash; coverage has it.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. CLOSE -->
+  <div class="slide">
+    <div class="l-statement">
+      <div class="eyebrow">Your One Move</div>
+      <h1 class="big">Closers Don't<br><em class="hl">Go Dark</em></h1>
+      <p class="sub">Delete the auto-reply today. Name your wingman before your next day off, and log the handoff in Engage. Your customers should never learn you were gone &mdash; only that FSG always answered.</p>
+      <div class="rule"></div>
+      <div class="byline">&mdash; Bobby</div>
+    </div>
+  </div>
+
+</div>
+<script>
+(function(){
+  const slides=Array.from(document.querySelectorAll('.slide'));
+  const total=slides.length;
+  let cur=0;
+  const dotsEl=document.getElementById('nav-dots');
+  slides.forEach((_,i)=>{const d=document.createElement('div');d.className='dot'+(i===0?' on':'');d.addEventListener('click',()=>go(i));dotsEl.appendChild(d);});
+  function updateUI(){const n=String(cur+1).padStart(2,'0');document.getElementById('counter').innerHTML='<b>'+n+'</b> / '+total;dotsEl.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('on',i===cur));}
+  function go(n){if(n===cur)return;slides[cur].classList.add('out');slides[cur].classList.remove('active');setTimeout(()=>slides[n].classList.remove('out'),380);cur=Math.max(0,Math.min(total-1,n));slides[cur].classList.add('active');updateUI();}
+  function next(){if(cur<total-1)go(cur+1);}
+  function prev(){if(cur>0)go(cur-1);}
+  document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')next();if(e.key==='ArrowLeft'||e.key==='ArrowUp')prev();if(e.key==='f'||e.key==='F')document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();});
+  let tx=0;document.addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});document.addEventListener('touchend',e=>{const dx=tx-e.changedTouches[0].clientX;if(Math.abs(dx)>40)dx>0?next():prev();},{passive:true});
+  updateUI();
+})();
+</script>
+</body>
+</html>
