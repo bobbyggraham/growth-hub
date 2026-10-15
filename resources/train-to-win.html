@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="gh-locked">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +16,6 @@
   --lite:#c5d9fa; --gray:#ededed; --gold:#ebb018; --link:#4e84de;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html.gh-locked > body > :not(#ghGate){display:none!important}
 body{font-family:'Open Sans',Arial,sans-serif;color:var(--deep);background:#fff;line-height:1.65}
 a{color:var(--link)}
 .crumb{background:var(--deep);padding:10px 22px;font-size:13px}
@@ -125,29 +124,9 @@ p{margin:16px 0;font-size:17px}
 .cta .go:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(235,176,24,.35)}
 .cta .stamp{margin-top:18px;font-family:'Oswald',sans-serif;letter-spacing:.14em;text-transform:uppercase;font-size:15px;color:var(--gold);min-height:22px}
 .cta .micro{font-size:13px;color:var(--steel);margin-top:10px}
-
-/* GATE */
-#ghGate{position:fixed;inset:0;background:linear-gradient(160deg,#0b1421,#133865);display:flex;align-items:center;justify-content:center;z-index:9999;font-family:'Open Sans',Arial,sans-serif}
-#ghGate .box{background:#fff;border-radius:14px;padding:38px 34px;width:min(92vw,380px);text-align:center;border-top:6px solid #ebb018}
-#ghGate h3{font-family:'Oswald',sans-serif;color:#133865;font-size:22px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
-#ghGate p{color:#718dbc;font-size:14px;margin-bottom:18px}
-#ghGate input{width:100%;padding:12px 14px;border:2px solid #c5d9fa;border-radius:8px;font-size:16px;text-align:center;letter-spacing:.08em}
-#ghGate input:focus{outline:none;border-color:#ebb018}
-#ghGate button{margin-top:14px;width:100%;padding:12px;border:0;border-radius:8px;background:#133865;color:#fff;font-family:'Oswald',sans-serif;font-size:16px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
-#ghGate button:hover{background:#365aa0}
-#ghGate .err{color:#c0392b;font-size:13px;min-height:18px;margin-top:10px}
-html:not(.gh-locked) #ghGate{display:none}
 </style>
 </head>
 <body>
-
-<div id="ghGate"><div class="box">
-  <h3>Growth Hub</h3>
-  <p>Enter the team passcode</p>
-  <input type="password" id="ghPass" placeholder="Passcode" autocomplete="off">
-  <button id="ghGo">Enter</button>
-  <div class="err" id="ghErr"></div>
-</div></div>
 
 <div class="crumb"><a href="../index.html">&larr; Growth Hub</a><a href="../tools/plays.html">The Playbook</a></div>
 
@@ -256,43 +235,17 @@ html:not(.gh-locked) #ghGate{display:none}
   <div class="v">That's how you build discipline. That's how you learn to trust yourself.</div>
 </div>
 
-<div class="vc">Growth Hub &middot; Personal Development &middot; Train Your Body &amp; Mind to Win &middot; v1.0 &mdash; Oct 15, 2026 &middot; Bobby Graham</div>
+<div class="vc">Growth Hub &middot; Personal Development &middot; Train Your Body &amp; Mind to Win &middot; v1.1 (open link &mdash; no passcode) &mdash; Oct 15, 2026 &middot; Bobby Graham</div>
 
 </main>
 
 <script>
 (function(){
-  var HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
-  var KEY='gh-unlocked';
-  function unlock(){document.documentElement.classList.remove('gh-locked');try{sessionStorage.setItem(KEY,'1')}catch(e){}}
-  try{if(sessionStorage.getItem(KEY)==='1'){unlock();return}}catch(e){}
-  var inp=document.getElementById('ghPass'),btn=document.getElementById('ghGo'),err=document.getElementById('ghErr');
-  async function check(){
-    var v=inp.value||'';
-    var ok=false;
-    if(window.crypto&&crypto.subtle){
-      var buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(v));
-      var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0')}).join('');
-      ok=(hex===HASH);
-    }
-    if(ok){unlock()}else{err.textContent='That\'s not it — check with Bobby.';inp.select()}
-  }
-  btn.addEventListener('click',check);
-  inp.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();check()}});
-})();
-</script>
-
-<script>
-(function(){
-  // Scroll reveals — re-run when the gate clears (gated pages report zero rects)
+  // Scroll reveals — this page is ungated (shareable), so arm immediately
   var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function(es){
     es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target);} });
   },{threshold:0.15}) : null;
-  function arm(){ document.querySelectorAll('.rv').forEach(function(el){ io ? io.observe(el) : el.classList.add('on'); }); }
-  if(document.documentElement.classList.contains('gh-locked')){
-    new MutationObserver(function(m,obs){ if(!document.documentElement.classList.contains('gh-locked')){ arm(); obs.disconnect(); } })
-      .observe(document.documentElement,{attributes:true,attributeFilter:['class']});
-  } else { arm(); }
+  document.querySelectorAll('.rv').forEach(function(el){ io ? io.observe(el) : el.classList.add('on'); });
 
   // Training block lock-in
   var box=document.getElementById('block'), btn=document.getElementById('lockBtn'), stamp=document.getElementById('stamp');
@@ -312,8 +265,7 @@ html:not(.gh-locked) #ghGate{display:none}
 </script>
 
 <style media="print">
-html.gh-locked > body > :not(#ghGate):not(.crumb):not(style):not(script){display:block!important}
-#ghGate,.crumb{display:none!important}
+.crumb{display:none!important}
 body{print-color-adjust:exact;-webkit-print-color-adjust:exact}
 .hero{display:block!important}
 .people,.todd{display:grid!important}
