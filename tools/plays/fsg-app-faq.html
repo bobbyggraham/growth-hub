@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FSG App FAQs — Ask Engage</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='115' fill='%23133865'/><g stroke='%23c5d9fa' stroke-width='22' stroke-linecap='round'><line x1='256' y1='256' x2='256' y2='96'/><line x1='256' y1='256' x2='394.6' y2='176'/><line x1='256' y1='256' x2='394.6' y2='336'/><line x1='256' y1='256' x2='256' y2='416'/><line x1='256' y1='256' x2='117.4' y2='336'/><line x1='256' y1='256' x2='117.4' y2='176'/></g><circle cx='256' cy='96' r='42' fill='%23ffffff'/><circle cx='394.6' cy='176' r='42' fill='%23c5d9fa'/><circle cx='394.6' cy='336' r='42' fill='%23ffffff'/><circle cx='256' cy='416' r='42' fill='%23c5d9fa'/><circle cx='117.4' cy='336' r='42' fill='%23ffffff'/><circle cx='117.4' cy='176' r='42' fill='%23ebb018'/><circle cx='256' cy='256' r='76' fill='%23ebb018'/></svg>">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--deep:#0b1421;--navy:#133865;--blue:#365aa0;--steel:#718dbc;--ice:#c5d9fa;--lgray:#ededed;--gold:#ebb018;--bright:#4e84de;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Open Sans',Arial,sans-serif;color:var(--deep);background:#f7f9fc;line-height:1.55;font-size:16px;-webkit-font-smoothing:antialiased;}
+
+  .hero{background:linear-gradient(160deg,var(--deep) 0%,var(--navy) 88%);color:#fff;padding:30px 20px 34px;border-bottom:3px solid var(--gold);}
+  .hero-inner{max-width:980px;margin:0 auto;}
+  .hero .back{font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--steel);text-decoration:none;}
+  .hero .back:hover{color:var(--gold);}
+  .hero .eyebrow{color:var(--ice);font-family:'Oswald',sans-serif;font-weight:600;font-size:12px;letter-spacing:2.5px;text-transform:uppercase;margin:16px 0 4px;}
+  .hero h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(30px,6vw,46px);line-height:1.08;}
+  .hero p.sub{color:var(--ice);font-size:14.5px;max-width:640px;margin-top:8px;}
+
+  /* the ask bar */
+  .askbar{position:sticky;top:0;z-index:50;background:#fff;box-shadow:0 2px 12px rgba(11,20,33,.10);padding:14px 20px;}
+  .ask-inner{max-width:980px;margin:0 auto;}
+  .ask-wrap{display:flex;align-items:center;gap:12px;background:var(--lgray);border:2px solid transparent;border-radius:10px;padding:14px 16px;transition:border-color .15s;}
+  .ask-wrap:focus-within{border-color:var(--gold);background:#fff;}
+  .ask-wrap svg{flex-shrink:0;color:var(--steel);}
+  #ask{flex:1;border:none;outline:none;background:transparent;font-family:'Open Sans',Arial,sans-serif;font-size:17px;color:var(--deep);}
+  #ask::placeholder{color:var(--steel);}
+  .quick-row{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin-top:10px;padding-bottom:2px;}
+  .quick-row::-webkit-scrollbar{display:none;}
+  .qchip{flex-shrink:0;font-family:'Oswald',sans-serif;font-size:11.5px;font-weight:500;letter-spacing:.5px;padding:7px 13px;border-radius:16px;border:1.5px solid var(--steel);color:var(--navy);background:#fff;cursor:pointer;user-select:none;white-space:nowrap;}
+  .qchip:hover{border-color:var(--gold);}
+
+  main{max-width:980px;margin:0 auto;padding:26px 20px 70px;}
+  .count-line{font-size:13px;color:var(--steel);margin-bottom:14px;font-style:italic;}
+
+  .kicker{font-family:'Oswald',sans-serif;font-size:12px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin:36px 0 2px;}
+  h2.sec{font-family:'Oswald',sans-serif;font-weight:600;font-size:24px;color:var(--navy);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+  .sec-sub{font-size:13.5px;color:#4a5568;margin-bottom:14px;max-width:640px;}
+  .gold-rule{border:none;border-top:2px solid var(--gold);width:56px;margin:0 0 16px;}
+
+  /* ask cards */
+  .ask-card{background:#fff;border:1px solid var(--lgray);border-left:4px solid var(--blue);border-radius:8px;padding:16px 18px;margin-bottom:10px;}
+  .ask-card .q{font-family:'Oswald',sans-serif;font-weight:600;font-size:17px;color:var(--navy);}
+  .ask-card .a{font-size:14px;color:#374151;margin-top:6px;}
+  .ask-card .a b{color:var(--deep);}
+  .ask-card a.go{display:inline-block;margin-top:8px;font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--blue);text-decoration:none;}
+  .ask-card a.go:hover{color:var(--gold);}
+  .ask-card a.go::after{content:" →";}
+  .ask-card .gtag{display:inline-block;font-family:'Oswald',sans-serif;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;background:var(--ice);color:var(--navy);border-radius:3px;padding:2px 8px;margin-left:8px;vertical-align:middle;}
+
+  /* guide cards */
+  .grid{display:grid;grid-template-columns:1fr;gap:12px;}
+  @media(min-width:640px){.grid{grid-template-columns:repeat(2,1fr);}}
+  .gcard{background:#fff;border:1px solid var(--lgray);border-left:4px solid var(--blue);border-radius:8px;padding:16px;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:box-shadow .15s,border-color .15s;}
+  .gcard:hover{border-left-color:var(--gold);box-shadow:0 4px 14px rgba(19,56,101,.12);}
+  .gcard .pill{align-self:flex-start;font-family:'Oswald',sans-serif;font-size:10px;font-weight:500;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:3px;background:var(--ice);color:var(--navy);margin-bottom:8px;}
+  .gcard .pill.gold{background:var(--gold);color:var(--deep);font-weight:700;}
+  .gcard h3{font-family:'Oswald',sans-serif;font-weight:600;font-size:17px;color:var(--navy);line-height:1.25;margin-bottom:5px;}
+  .gcard p{font-size:13px;color:#4a5568;flex-grow:1;}
+  .gcard .cta{margin-top:10px;font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--blue);}
+  .gcard .cta::after{content:" →";}
+
+  /* seasons */
+  .season-label{font-family:'Oswald',sans-serif;font-weight:700;font-size:14px;letter-spacing:2px;text-transform:uppercase;color:var(--navy);background:var(--ice);border-left:4px solid var(--gold);border-radius:0 4px 4px 0;padding:8px 14px;margin:22px 0 10px;}
+  table.lineup{width:100%;border-collapse:collapse;font-size:14px;background:#fff;border:1px solid var(--lgray);border-radius:8px;overflow:hidden;}
+  table.lineup th{background:var(--navy);color:#fff;text-align:left;padding:9px 12px;font-family:'Oswald',sans-serif;font-weight:600;font-size:12.5px;letter-spacing:.5px;text-transform:uppercase;}
+  table.lineup td{padding:9px 12px;vertical-align:top;border-top:1px solid var(--lgray);}
+  table.lineup td.n{font-family:'Oswald',sans-serif;font-weight:700;color:var(--gold);width:44px;}
+  table.lineup td.t{font-weight:700;color:var(--navy);}
+  table.lineup tr.hid{display:none;}
+
+  .live-banner{background:linear-gradient(160deg,var(--deep),#101c30);border:1px solid rgba(113,141,188,.25);border-left:4px solid var(--gold);border-radius:10px;padding:18px 20px;color:#fff;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;margin-bottom:14px;}
+  .live-banner .abc{font-family:'Oswald',sans-serif;font-weight:700;font-size:18px;letter-spacing:1px;color:var(--gold);}
+  .live-banner .when{font-size:13.5px;color:var(--ice);}
+  .live-banner a.poster{font-family:'Oswald',sans-serif;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;background:var(--gold);color:var(--deep);border-radius:6px;padding:10px 16px;white-space:nowrap;}
+
+  .empty{display:none;text-align:center;padding:34px 20px;color:var(--steel);font-size:15px;}
+  .empty a{color:var(--blue);font-weight:700;}
+
+  .support{background:var(--ice);border-left:4px solid var(--gold);border-radius:0 6px 6px 0;padding:16px 20px;margin-top:40px;font-size:14px;color:var(--navy);}
+  footer{background:var(--deep);color:var(--steel);padding:22px;text-align:center;font-size:12px;}
+  footer .grind{font-family:'Oswald',sans-serif;font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+</style>
+</head>
+<body>
+
+<!-- ============ GROWTH HUB GATE ============ -->
+<style>
+  html.gh-locked > body > :not(#ghGate){display:none !important;}
+  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
+  html:not(.gh-locked) #ghGate{display:none;}
+  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
+  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
+  #ghGate .gh-brand svg{width:30px;height:30px;}
+  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
+  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
+  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;}
+  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
+  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
+  #ghGate input:focus{border-color:#4e84de;}
+  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
+  #ghGate button:hover{filter:brightness(1.06);}
+  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
+  #ghGate .gh-shake{animation:ghshake .3s;}
+  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+<div id="ghGate">
+  <div class="gh-wrap">
+    <div class="gh-brand">
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#c5d9fa" stroke-width="14" stroke-linecap="round" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g><circle cx="150" cy="50" r="26" fill="#ffffff"/><circle cx="236.6" cy="100" r="26" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="26" fill="#ffffff"/><circle cx="150" cy="250" r="26" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="26" fill="#ffffff"/><circle cx="63.4" cy="100" r="26" fill="#c5d9fa"/><circle cx="150" cy="150" r="44" fill="#ebb018"/></svg>
+      <span>Growth Hub</span>
+    </div>
+    <div class="gh-card">
+      <h2>Passcode</h2>
+      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
+      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
+      <button id="ghGo" type="button">Enter the Hub</button>
+      <div class="gh-err" id="ghErr"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
+  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+  if(!unlocked()) document.documentElement.classList.add('gh-locked');
+  function open(){ document.documentElement.classList.remove('gh-locked'); }
+  async function check(){
+    var v=document.getElementById('ghPass').value;
+    var ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        ok=(hex===HASH);
+      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
+    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
+    if(ok){ remember(); open(); }
+    else{
+      var card=document.querySelector('#ghGate .gh-card');
+      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
+      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
+      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    if(unlocked()) return;
+    document.getElementById('ghGo').addEventListener('click', check);
+    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
+  });
+})();
+</script>
+<!-- ============ /GROWTH HUB GATE ============ -->
+
+
+<section class="hero">
+  <div class="hero-inner">
+    <a class="back" href="../index.html">&larr; Growth Hub</a>
+    <div class="eyebrow">FSG App FAQs · Engage · engage.fsgapps.com</div>
+    <h1>Ask Engage. Get the Play.</h1>
+    <p class="sub">Type what you're trying to do — the answer and the guide come to you. Built from the Engage Plays and the Engage Live training series. New guides land here as they ship.</p>
+  </div>
+</section>
+
+<div class="askbar">
+  <div class="ask-inner">
+    <div class="ask-wrap">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input type="text" id="ask" placeholder="What are you trying to do? e.g. assign the solutions team, close lost, activate an account…" aria-label="Ask Engage">
+    </div>
+    <div class="quick-row" id="quickRow">
+      <span class="qchip">get my proof live</span>
+      <span class="qchip">assign the solutions team</span>
+      <span class="qchip">activate an account</span>
+      <span class="qchip">request an account</span>
+      <span class="qchip">estimated value</span>
+      <span class="qchip">close lost</span>
+      <span class="qchip">rebates</span>
+      <span class="qchip">rush quote</span>
+      <span class="qchip">engage live</span>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="count-line" id="countLine"></div>
+
+  <!-- ============ QUICK ANSWERS ============ -->
+  <section id="answersSec">
+    <div class="kicker">Type · Ask · Find</div>
+    <h2 class="sec">Quick Answers</h2>
+    <p class="sec-sub">The questions the team actually asks — each one links to the full play.</p>
+    <hr class="gold-rule">
+    <div id="askList"></div>
+  </section>
+
+  <!-- ============ TRAINING GUIDES ============ -->
+  <section id="guidesSec">
+    <div class="kicker">The Playbook Shelf</div>
+    <h2 class="sec">Training Guides</h2>
+    <p class="sec-sub">Step-by-step Engage Plays — more added as we go. <a href="plays.html" style="font-weight:700;">Browse the full Playbook — every play &amp; guide, newest first &rarr;</a></p>
+    <hr class="gold-rule">
+    <div class="grid" id="guideGrid"></div>
+  </section>
+
+  <!-- ============ ENGAGE LIVE ============ -->
+  <section id="liveSec">
+    <div class="kicker">The Webinar Series · Two Seasons · 24 Episodes</div>
+    <h2 class="sec">Engage Live — Seasons Training Guide</h2>
+    <p class="sec-sub">FSG's enterprise webinar series on how we use Engage to deliver an exceptional experience. Live on Zoom, 30 minutes, every role welcome. Every episode: a Play of the Week, real workflows live in Engage, and Your One Move.</p>
+    <hr class="gold-rule">
+
+    <div class="live-banner">
+      <div>
+        <div class="abc">A.B.C. — ALWAYS BE CAPTURING</div>
+        <div class="when">Live on Zoom · 30 minutes · Two seasons, 24 episodes · Watch for the invite</div>
+      </div>
+      <div style="display:flex;gap:9px;flex-wrap:wrap;">
+        <a class="poster" href="engage/engage-live-seasons.html">Full Training Guide</a>
+        <a class="poster" style="background:transparent;border:1.5px solid #718dbc;color:#c5d9fa;" href="engage/engage-live-one-sheet.html">The One Sheet</a>
+      </div>
+    </div>
+
+    <div class="season-label" data-season="1">Season One — Master the Tool · Episodes 1–11, every core Engage feature, live</div>
+    <table class="lineup" id="s1">
+      <tr><th>Ep.</th><th>Title</th><th>Focus</th></tr>
+      <tr><td class="n">1</td><td class="t">Mission Control</td><td>Dashboard, Navigation &amp; Find</td></tr>
+      <tr><td class="n">2</td><td class="t">Know Your Territory</td><td>Accounts</td></tr>
+      <tr><td class="n">3</td><td class="t">The Film Room</td><td>Account Review</td></tr>
+      <tr><td class="n">4</td><td class="t">Built Right the First Time</td><td>Account Setup</td></tr>
+      <tr><td class="n">5</td><td class="t">The Hunt</td><td>Leads</td></tr>
+      <tr><td class="n">6</td><td class="t">Money in Motion</td><td>Opportunities</td></tr>
+      <tr><td class="n">7</td><td class="t">Face Time Wins</td><td>Meetings</td></tr>
+      <tr><td class="n">8</td><td class="t">Inbox to Income</td><td>Email</td></tr>
+      <tr><td class="n">9</td><td class="t">Nothing Slips</td><td>Tasks</td></tr>
+      <tr><td class="n">10</td><td class="t">Own Your Pipeline</td><td>Pipeline Management</td></tr>
+      <tr><td class="n">11</td><td class="t">The Scouting Report</td><td>Account Review — Capstone</td></tr>
+    </table>
+
+    <div class="season-label" data-season="2">Season Two — Master the Machine · Episodes 12–24, every role, division, and handoff</div>
+    <table class="lineup" id="s2">
+      <tr><th>Ep.</th><th>Title</th><th>Focus</th></tr>
+      <tr><td class="n">12</td><td class="t">The Quarterback</td><td>Role of an Account Manager</td></tr>
+      <tr><td class="n">13</td><td class="t">The Rainmakers</td><td>Role of Business Development</td></tr>
+      <tr><td class="n">14</td><td class="t">Air Support</td><td>Campaigns &amp; SDR — The Guide</td></tr>
+      <tr><td class="n">15</td><td class="t">A Day in the Life — The Sales Coach</td><td>Sales Coach</td></tr>
+      <tr><td class="n">16</td><td class="t">A Day in the Life — The Solutions Team</td><td>Solutions Team</td></tr>
+      <tr><td class="n">17</td><td class="t">Follow the Money</td><td>Corporate Accounting Engagement</td></tr>
+      <tr><td class="n">18</td><td class="t">Boots on the Ground</td><td>Operations in Engage</td></tr>
+      <tr><td class="n">19</td><td class="t">Service Labs 101</td><td>Service Labs</td></tr>
+      <tr><td class="n">20</td><td class="t">Construction Labs 101</td><td>Construction Labs</td></tr>
+      <tr><td class="n">21</td><td class="t">Command Center</td><td>Project Management — APEX Dashboard &amp; Client UI</td></tr>
+      <tr><td class="n">22</td><td class="t">The Boardroom</td><td>QBR — Quarterly Business Reviews</td></tr>
+      <tr><td class="n">23</td><td class="t">By the Numbers</td><td>Reports</td></tr>
+      <tr><td class="n">24</td><td class="t">The Handoff</td><td>Sales-to-Ops Transition — Season Finale</td></tr>
+    </table>
+  </section>
+
+  <div class="empty" id="emptyState">
+    No play for that one yet — <a id="askBobby" href="#">ask for it</a> and it gets added to the shelf.
+  </div>
+
+  <div class="support" id="supportLine">
+    <b>Engage Support:</b> apphelp@fsgi.com &nbsp;|&nbsp; <b>Escalations &amp; Strategy:</b> David Burrough — always available, call or text.
+  </div>
+</main>
+
+<footer>
+  <div class="grind">Always Be Capturing</div>
+  FSG Engage &nbsp;|&nbsp; Internal Enablement &nbsp;|&nbsp; engage.fsgapps.com
+</footer>
+
+<script>
+/* ================= GUIDES — ADD NEW GUIDES HERE =================
+   One entry per training guide. File goes in tools/engage/, entry
+   goes here, done — the card and search pick it up automatically. */
+var GUIDES = [
+  { file: "engage/inbox-to-income.html",
+    title: "Inbox to Income — Email",
+    pill: "Engage Play",
+    gold: true,
+    desc: "Episode 8: email wired into the deal — the Emails tab on every opportunity, Find Related Emails with Gmail search and auto-match, pinning threads so the whole team sees them, and the Deal Coach Suggested Email with Refresh coaching. Plus the cadence that turns an inbox into income.",
+    tags: "inbox to income email emails tab pin email thread gmail search deal coach suggested email refresh coaching follow up cadence click to call click to email episode 8" },
+  { file: "../resources/engage-mark.html",
+    title: "The Engage Mark — Three Bars, One Arrow",
+    pill: "Guide",
+    desc: "What the Engage logo means: the upright is the Guide, the top bar is Business Development, the bottom bar is the Account Manager, and the gold arrow is chosen, called, sent. The mark builds as you scroll.",
+    tags: "engage mark logo meaning brand what does the logo mean three bars arrow guide bd am chosen called sent" },
+  { file: "engage/face-time-wins.html",
+    title: "Face Time Wins — Meetings",
+    pill: "Engage Play",
+    gold: true,
+    desc: "Episode 7: the Engage Meeting record — schedule it from the account or opportunity, the five-line note that lasts, Notes → Tasks with owners and dates, attachments and the summary — run live on the Reformation internal account-planning session. Plus the three roles (Guide, BD, AM) on Protect · Land · Expand.",
+    tags: "face time wins meetings meeting record schedule log notes tasks attachments summary internal meeting account planning reformation guide business development account manager episode 7" },
+  { file: "engage/money-in-motion.html",
+    title: "Money in Motion — Opportunities",
+    pill: "Engage Play",
+    gold: true,
+    desc: "Episode 6: Pipeline, WIP, and Earned — the three states of money — the shared Money in Motion view in Opportunities and Accounts (filter FSG Owner to you), the four cleanup views with double-click editing, and YTD sales by account and territory on an interactive five-screen walkthrough. Session video linked inside.",
+    tags: "money in motion opportunities pipeline wip earned ytd sales account territory shared view kill the blanks follow-up missed due date missed close date double click edit forecast episode 6" },
+  { file: "engage/mission-control.html",
+    title: "Mission Control — Dashboard, Navigation & Find",
+    pill: "Engage Play",
+    desc: "Episode 1: the dashboard tour, global search in under 10 seconds, the navigation map, and pinning My Accounts + Tasks to your home view. Session video linked inside.",
+    tags: "mission control dashboard navigation find global search top matches pin home view my accounts three clicks episode 1" },
+  { file: "engage/know-your-territory.html",
+    title: "Know Your Territory — Accounts",
+    pill: "Engage Play",
+    desc: "Episode 2: the account fields that feed reporting and commissions, ownership, parent/child hierarchy and rollups, territory lists, and linking contacts into the org map. Session video linked inside.",
+    tags: "know your territory accounts account record fields ownership hierarchy parent child rollup account class ba ma ea lists filters book of business episode 2" },
+  { file: "engage/the-hunt.html",
+    title: "The Hunt — Leads & the 5-Star Test",
+    pill: "Engage Play",
+    gold: true,
+    desc: "Episode 5: why most leads waste your time, the AI-powered capture that makes logging free, and the 5-Star Lead test — score any lead in 60 seconds, then convert it, disqualify it, or date it. Nothing rots.",
+    tags: "the hunt leads episode 5 five star 5-star lead qualify qualification disqualify convert speed to lead lead aging queue hygiene willing to engage friendly collaborative knows what when from you rate the lead next action follow-up" },
+  { file: "../resources/using-the-hub.html",
+    title: "How To Run The Hub",
+    pill: "Start Here",
+    gold: true,
+    desc: "The Growth Hub field guide: what's behind every chip, the 10-minute meeting prep, the weekly rhythm — and the +Proof Builder play, step by step, for getting your win on the board.",
+    tags: "how to run the hub growth hub field guide start here getting started new rep onboarding help six spokes chips ten minute prep meeting prep proof builder get my proof live proof card submit a win how do i use the hub instructions rhythm" },
+  { file: "engage/assigning-the-solutions-team.html",
+    title: "Assigning the Solutions Team",
+    pill: "Engage Play",
+    desc: "Get the right expert on the deal — the owner matrix, required fields, docs to upload, and the 48-hour confirm.",
+    tags: "assign solutions team product owner delivery method quote proposal estimate turnaround rush lighting signs energy electrical" },
+  { file: "engage/opportunity-fields-that-matter.html",
+    title: "Opportunity Fields That Matter",
+    pill: "Engage Play",
+    desc: "The fields that drive the pipeline, the stages that move, and three 5-minute steps to keep it real.",
+    tags: "opportunity fields follow-up date estimated close value stage pipeline closed lost reason dashboard" },
+  { file: "engage/account-activation-request.html",
+    title: "Account Activation Request",
+    pill: "Engage Play",
+    desc: "From new record to approved-to-sell: contact, FEIN from the W-9, AP contact, Bill To & surcharges, request approval.",
+    tags: "account activation activate approval to sell fein w-9 w9 ap contact bill to surcharges new customer" },
+  { file: "engage/my-accounts-request-assignment.html",
+    title: "My Accounts + Request Assignment Button",
+    pill: "Engage Play",
+    desc: "What you see = what you own. The two levels, the request flow step by step, and who updates what.",
+    tags: "my accounts request assignment button ownership visibility see account assigned territory" },
+  { file: "engage/engage-live-seasons.html",
+    title: "Engage Live — Seasons 1 & 2 Training Guide",
+    pill: "Living Document",
+    gold: true,
+    desc: "The full playbook: why the series exists, the story arc, and all 24 episodes — mantra, Closer's Creed, hook, what we cover, and Your One Move.",
+    tags: "engage live seasons training guide episodes playbook closers creed one move play of the week mantra season one two master the tool machine curriculum" },
+  { file: "engage/engage-live-one-sheet.html",
+    title: "Engage Live — The One Sheet",
+    pill: "Series Cover",
+    desc: "The poster: two seasons, 24 episodes, live on Zoom — the series cover with the full lineup.",
+    tags: "engage live one sheet poster webinar series zoom seasons episodes lineup cover" },
+  { file: "engage/film-room-sunbelt-game-film.html",
+    title: "The Film Room — Sunbelt Game Film",
+    pill: "Engage Play",
+    gold: true,
+    desc: "Episode 3's tape: a full account review on Sunbelt Rentals, frame by frame — opportunities, contacts, A/R, master rep &amp; site assignments, then business-card capture, Enrich, AI Brief, and a clean lead-to-account conversion.",
+    tags: "film room game film sunbelt account review episode 3 opportunities contacts ar status master rep site assignments click to assign lead convert business card scan enrich zoominfo ai brief duplicate" },
+  { file: "engage/built-right-the-first-time.html",
+    title: "Built Right the First Time — Account Setup",
+    pill: "Engage Play",
+    gold: true,
+    desc: "Episode 4's run-scoring double: search first, read the four chips (Status, Sell, Owner, Class), then Lead &rarr; Enrich &rarr; Convert with naming to standard — run live on the C&amp;W - Bank of New York build.",
+    tags: "built right the first time account setup episode 4 new account naming convention paper c&w cbre jll lead enrich convert duplicate screen account class ba ea ma hierarchy parent child required fields rep id auto assign" },
+  { file: "engage/understanding-the-sales-commission-statement.html",
+    title: "Understanding the Sales Commission Statement",
+    pill: "Guide",
+    gold: true,
+    desc: "Your statement is your scoreboard \u2014 and your paycheck. Read the summary and every line, know WIP vs. Earned, and work your days 15\u201319 review window before the statement auto-approves.",
+    tags: "commission statement commissions comm earned wip paid due contested salary approval contest ngp cx rate basis account class ba ea ma invoice sale period payroll paycheck when do i get paid review window deadline auto approve" },
+  { file: "engage/account-class-defined.html",
+    title: "Account Class Defined",
+    pill: "Guide",
+    gold: true,
+    desc: "Business, Market, or Enterprise — the three tests, who owns each class, who gets paid, and how accounts move up and down at the quarterly review.",
+    tags: "account class defined ba ea ma business market enterprise house account classification qualify quarterback owner cross-line multi-site revenue threshold leadership override reclassification quarterly review who gets paid" }
+];
+
+/* ================= QUICK ANSWERS — ADD NEW ASKS HERE =================
+   q = the question as a rep would type it · a = the short answer (HTML ok)
+   link = the guide that goes deeper · tags = extra words people search with */
+var ASKS = [
+  { q: "How do I get an email thread onto an opportunity?",
+    a: "Open the opportunity and click the <b>Emails</b> tab. Under <b>Find Related Emails</b>, search Gmail directly — or leave the field blank and it auto-matches threads using the opportunity's contacts. Find the thread that matters and <b>pin it</b>: pinned threads stay on the record for the whole team, even teammates without Gmail access, and anyone can pin from their own inbox. Then open <b>Deal Coach</b> for the AI <b>Suggested Email</b> drafted off the record — and hit <b>Refresh coaching</b> whenever the deal moves.",
+    link: "engage/inbox-to-income.html", label: "Inbox to Income — Email",
+    tags: "email thread opportunity pin pinned emails tab gmail find related emails attach email log email deal coach suggested email refresh how do i pin an email link email to deal" },
+  { q: "How do I log a customer meeting in Engage?",
+    a: "Open the account or the opportunity and create a <b>Meeting</b> — title, date, join link, attendees. In <b>Notes</b>, write the five-line note: who, what they said, what we owe, what they owe, next action + date. Then put the next action in the <b>Tasks</b> tab with an owner and a due date. Do it within 24 hours. Attach it to the opportunity when the meeting moved a deal.",
+    link: "engage/face-time-wins.html", label: "Face Time Wins — Meetings",
+    tags: "log meeting record a meeting meeting notes schedule meeting attendees join link tasks after meeting follow-up task how do i log a meeting" },
+  { q: "How do I see my YTD sales and my pipeline?",
+    a: "Select the shared <b>&#128176; Money in Motion</b> view — it's in the view picker in both <b>Opportunities</b> and <b>Accounts</b> — and filter <b>FSG Owner</b> to you. Opportunities shows every open deal with follow-up, due date, close date, value, and probability; Accounts shows each account's open opps, <b>Opportunity $</b>, <b>2026 Sales YTD</b>, and <b>2025 Sales</b>. Sort YTD high to low for your top accounts, filter State for the territory cut. If it looks messy, run the cleanup views first — Kill the Blanks, Follow-Up Date, Missed Due Date, Missed Close Date — and <b>double-click any cell</b> to fix it right in the table.",
+    link: "engage/money-in-motion.html", label: "Money in Motion — Opportunities",
+    tags: "ytd sales pipeline money in motion view by account by territory 2026 sales opportunity dollars wip earned fsg owner filter where is my money how much have i sold" },
+  { q: "How do I find an account, contact, or opportunity fast?",
+    a: "The <b>global search bar</b> at the top reads across people, leads, accounts, and opportunities at once — exact name for a straight hit (check <b>Top Matches</b>, not just your tab), partial name + the module's <b>Contains</b> filter for the wide net. The standard: any record in <b>under 10 seconds</b>. And always search before you create — that's how duplicates die.",
+    link: "engage/mission-control.html", label: "Mission Control — Dashboard, Navigation & Find",
+    tags: "find search account contact opportunity global search top matches fast locate lookup where is how do i find" },
+  { q: "How should I set up and work my accounts?",
+    a: "Treat the account record as the asset: <b>fill every core field</b> the day you touch it (name to standard, sector, class, owner), confirm <b>ownership</b> — if you work it but don't own it, run Request Assignment — attach work at the <b>child location</b> so the rollup credits the parent, slice your territory into <b>lists</b> (sector, size, last activity), and <b>link every contact</b> you meet to the account. Weak account data is weak leads.",
+    link: "engage/know-your-territory.html", label: "Know Your Territory — Accounts",
+    tags: "accounts territory account setup fields ownership hierarchy rollup lists filters link contacts book of business work my accounts episode 2" },
+  { q: "How do I know if a lead is worth my time?",
+    a: "Run the <b>5-Star test</b> — sixty seconds, five signals: <b>willing to engage</b>, <b>friendly and collaborative</b>, <b>knows what they want</b> (and it's an FSG product), <b>knows when they want it</b>, and <b>knows they want it from YOU</b>. Five for five = convert it today. Fewer stars = you've got work to do, and the missing stars tell you exactly what work. It runs on today's Engage record: the complete card (name/email/phone/company/role), Notes + AI Enrichment, Primary Interest keyed to business line + product, the purchasing time frame, and a clear CTA into Convert — with Status as the process clock and Follow-Up as the cadence, not the score.",
+    link: "engage/the-hunt.html", label: "The Hunt — Leads & the 5-Star Test",
+    tags: "qualify lead worth my time five star 5-star test good lead bad lead score rate prioritize which leads" },
+  { q: "What do I do with a lead that isn't ready to buy?",
+    a: "Every lead leaves the queue one of <b>three ways</b> — convert, disqualify (with a reason), or <b>date it</b>: log a next action aimed at one specific missing star and set the follow-up date. The one thing you may not do is nothing — an untouched lead isn't pending, it's rotting on the aging report. Touch every new lead inside 24 hours.",
+    link: "engage/the-hunt.html", label: "The Hunt — Leads & the 5-Star Test",
+    tags: "lead not ready nurture follow up next action disqualify aging rot queue hygiene speed to lead 24 hours what do i do with a lead" },
+  { q: "How should I organize my lead queue?",
+    a: "Set the grid up once, fifteen minutes: columns in scorecard order (<b>Rating &middot; Status &middot; Source &middot; Primary Interest &middot; Est. Value &middot; Follow-Up &middot; Last Activity</b>), the Rating icon as your star column (Hot = 4&ndash;5 stars, Warm = 2&ndash;3, Cold = 0&ndash;1), the score in each lead's first note, and <b>three saved Views</b>: the Five Star Board (convert list), the Workbench (next actions), and Going Gray (14+ days untouched — cleared to zero every Friday).",
+    link: "engage/the-hunt.html", label: "The Hunt — Coach's Corner",
+    tags: "organize lead queue views columns rating hot warm cold five star board workbench going gray sort grid my leads setup how do i organize" },
+  { q: "What are the account classes — BA, MA, EA?",
+    a: "Three classes, three tests. <b>Business (BA)</b> — house account, revenue arrives on its own, no rep assigned. <b>Market (MA)</b> — one approved owner actively drives it, one person can cover it. <b>Enterprise (EA)</b> — coordinated selling across lines and sites, run by a quarterback + support team. The class is about what drives the revenue, not how big the account looks.",
+    link: "engage/account-class-defined.html", label: "Account Class Defined",
+    tags: "account class ba ma ea business market enterprise what are the classes classification house account tiers" },
+  { q: "How does an account qualify as Enterprise?",
+    a: "Foundation first: a formally assigned, approved owner actively working the account — QBRs, account plan, budget, renewals. Then it must meet <b>two of three</b> scale tests: cross-line scope, multi-site footprint, or revenue at the Enterprise threshold. The CGO can also name an account Enterprise for strategic reasons — overrides are tracked on an explicit, named list.",
+    link: "engage/account-class-defined.html", label: "Account Class Defined",
+    tags: "enterprise qualify two of three cross-line multi-site revenue threshold quarterback leadership override cgo strategic" },
+  { q: "When does a house account start paying commission?",
+    a: "<b>Business → Market:</b> when a formally assigned, approved owner takes it on — commission applies <b>going forward only</b>, no backdated credit on existing house revenue. A large unsolicited order on a house account triggers a <b>coverage review</b>, not an automatic reclass or a retroactive payout.",
+    link: "engage/account-class-defined.html", label: "Account Class Defined",
+    tags: "house account commission business to market convert assigned owner backdated credit unsolicited order walked in the door retroactive payout" },
+  { q: "Who reviews account classifications — and when?",
+    a: "<b>Quarterly, by Sales Operations with CGO sign-off.</b> You can flag an account for re-tiering any time, but changes take effect at the review — with credit handling agreed in advance — so timing never drives the outcome.",
+    link: "engage/account-class-defined.html", label: "Account Class Defined",
+    tags: "review cadence quarterly reclassification re-tier flag account sales operations cgo sign-off credit handling when does class change" },
+  { q: "Where do I find my commission statement?",
+    a: "In Engage \u2014 <b>engage.fsgapps.com \u2192 Commission Statements</b>. The summary up top is your YTD and month-by-month totals; every line below is one invoice. Each <b>Invoice #</b> is a live link \u2014 click it to open the Job, WO, or OE behind the line.",
+    link: "engage/understanding-the-sales-commission-statement.html", label: "Understanding the Sales Commission Statement",
+    tags: "commission statement where find my commissions pay engage statements paycheck" },
+  { q: "What's the difference between WIP and Earned commission?",
+    a: "<b>WIP</b> = the job/WO/OE isn't closed or posted yet \u2014 you still earn at typical rates, but the number can adjust (negative correction lines are normal). <b>Earned</b> = the transaction is complete and your commission is essentially locked in. Multiple invoices per job are normal \u2014 typically one per open period.",
+    link: "engage/understanding-the-sales-commission-statement.html", label: "Understanding the Sales Commission Statement",
+    tags: "wip earned status commission negative line correction locked multiple invoices work in progress" },
+  { q: "Something on my commission statement looks wrong \u2014 what do I do?",
+    a: "Tag the record <b>\u201cContest\u201d</b> and add notes describing the problem \u2014 check Account Class (BA/EA/MA), Account Rep / Site Rep credit, and CX Rate &amp; Basis. It returns to your manager to resolve, rebuilds automatically, and comes back to you for approval. <b>Contested records will not pay until resolved and approved.</b>",
+    link: "engage/understanding-the-sales-commission-statement.html", label: "Understanding the Sales Commission Statement",
+    tags: "contest wrong commission dispute error missing credit account class cx rate basis notes fix" },
+  { q: "When do I review my commission statement?",
+    a: "<b>Days 15\u201319 of the month</b>, after your manager\u2019s review (days 10\u201314). Review every line, contest anything wrong, and submit \u2014 <b>statements not approved by the deadline auto-approve and close</b>, and you lose the window to contest. Both approvals send it to payroll on day 20+.",
+    link: "engage/understanding-the-sales-commission-statement.html", label: "Understanding the Sales Commission Statement",
+    tags: "review window days 15 19 deadline auto approve approval cycle when payroll hr paid" },
+  { q: "I just won a job — how do I get my proof live?",
+    a: "Open <b>Proof Builder</b> (Growth Hub → Development), fill the story, tag the cell (<b>product line × delivery method × type</b>), put dollars in the gold stat, drop the logo and job photos, check the four permission toggles, then hit <b>Email Growth Hub</b> — and attach the downloaded card before you send. It runs through QA and lands in Results with <b>★ Proof submitted by you</b> on it. About 15 minutes if your files are ready.",
+    link: "../resources/using-the-hub.html", label: "How To Run The Hub — the Proof Builder play",
+    tags: "proof builder win proof card case study submit my proof live results credit gold stat permissions photos logo cell product delivery type how do i" },
+  { q: "How do I actually use the Growth Hub?",
+    a: "Learn the wheel, then run the <b>10-minute prep</b> before any meeting: vertical playbook, one same-cell proof, and the money page. The field guide walks through what's behind every chip, what to do before/during/after the meeting, and the weekly rhythm. <b>Products</b>, <b>Plays</b>, and <b>Wire</b> sit in the chip row; Proof Builder lives in the Playbook.",
+    link: "../resources/using-the-hub.html", label: "How To Run The Hub",
+    tags: "growth hub how to use start here getting started new rep onboarding help navigate chips find deck playbook prep meeting rhythm what is the hub" },
+  { q: "Who do I assign this opportunity to?",
+    a: "Match the <b>Product × Delivery Method</b> on the opportunity to the owner matrix — one Product Owner per lane (e.g., Lighting × Construction → Lee Wills; Lighting × Distribution → Courtney Mitchell). <b>Don't default to David Burrough</b> — he's the escalation path.",
+    link: "engage/assigning-the-solutions-team.html", label: "Assigning the Solutions Team",
+    tags: "assignee product owner matrix who lighting signs technology energy solutions team route" },
+  { q: "How do I get a quote or proposal from the Solutions Team?",
+    a: "Set Status to <b>Scope Development</b>, enter the real Bid Due Date, put ALL details in the <b>Customer Problem</b> field (specifics, quote type, triggers), upload the docs, assign per the matrix, and send the assignee the link. Confirmation + ETA lands within 48 hours.",
+    link: "engage/assigning-the-solutions-team.html", label: "Assigning the Solutions Team",
+    tags: "quote proposal scope development bid due date customer problem estimate request pricing" },
+  { q: "How long does an estimate take?",
+    a: "<b>Electrical estimation: 7–10 business days.</b> Budgetary / ROM: 3–5 business days. Turnkey lighting: ETA within the 48-hour confirm. Unanswered questions in Notes stall the clock.",
+    link: "engage/assigning-the-solutions-team.html", label: "Assigning the Solutions Team",
+    tags: "turnaround estimate eta how long days rom budgetary electrical timeline" },
+  { q: "Rush request — who do I contact?",
+    a: "Email <b>David Burrough</b>, CC Frank Agraz &amp; Chad Jones (Lighting), Cameron Carpenter (ECMs), or Steven Miller (Electrical).",
+    link: "engage/assigning-the-solutions-team.html", label: "Assigning the Solutions Team",
+    tags: "rush urgent expedite escalation david burrough fast" },
+  { q: "What do I need for a rebate estimate?",
+    a: "The full package: utility bill (name must match), signed LOA, signed proposal, line-by-line SOW, plus a responsive POC. Processing takes <b>6–8 weeks — never guarantee estimates to customers</b>.",
+    link: "engage/assigning-the-solutions-team.html", label: "Assigning the Solutions Team",
+    tags: "rebate utility loa sow incentive processing weeks guarantee" },
+  { q: "What goes in the Customer Problem field?",
+    a: "Everything, in one place — <b>never scattered across notes</b>: project specifics, quote type (ROM/Budget or Hard Quote), and the customer triggers driving the project (ROI, compliance, dollars).",
+    link: "engage/assigning-the-solutions-team.html", label: "Assigning the Solutions Team",
+    tags: "customer problem field notes details scope description" },
+  { q: "What do I put for Estimated Value when I don't know it?",
+    a: "Never $0 or blank — enter <b>$1 or a humble estimate</b> until Operations gives you a real number. The placeholder is a bridge, not a home: update it the moment you get the real figure.",
+    link: "engage/opportunity-fields-that-matter.html", label: "Opportunity Fields That Matter",
+    tags: "estimated value dollar amount blank zero unknown placeholder" },
+  { q: "Budget is unsure — what close date do I use?",
+    a: "Push the Estimated Close Date to <b>January of next year</b> and use your Follow-Up Date to check in this year. Never leave a close date in the past — the deal reads as dead in every report.",
+    link: "engage/opportunity-fields-that-matter.html", label: "Opportunity Fields That Matter",
+    tags: "estimated close date budget unsure january follow-up past due" },
+  { q: "What are the stages and when do I move them?",
+    a: "Qualifying → Scope Development → Proposing → Negotiating → Closed Won, with Project On Hold and Closed Lost as off-ramps. <b>One owner, one assignee, one follow-up date</b> — the assignee changes by stage.",
+    link: "engage/opportunity-fields-that-matter.html", label: "Opportunity Fields That Matter",
+    tags: "stages stage qualifying scope proposing negotiating closed won on hold move exit" },
+  { q: "How do I close an opportunity as Lost?",
+    a: "Closed Lost requires a <b>Lost Reason</b> — pick what actually happened: No Decision, Pricing, Competitor, Customer Not Awarded, Qualification, Duplicate, or Internal Misalignment. It's how we learn where deals die.",
+    link: "engage/opportunity-fields-that-matter.html", label: "Opportunity Fields That Matter",
+    tags: "closed lost reason dead deal kill close out duplicate competitor" },
+  { q: "How do I keep my pipeline clean?",
+    a: "<b>Five minutes a day:</b> open the Dashboard, click the top opportunity, update the Follow-Up Date, update the Close Date (and fix any $0 value), click the next one. Base hits win championships.",
+    link: "engage/opportunity-fields-that-matter.html", label: "Opportunity Fields That Matter",
+    tags: "pipeline hygiene clean dashboard daily weekly follow-up habit healthy" },
+  { q: "How do I activate an account so we're approved to sell?",
+    a: "Five steps: add the contact, enter the <b>FEIN from the W-9</b>, set the AP contact on the account, confirm Bill To &amp; update surcharges, then save, go Active, and request approval to sell.",
+    link: "engage/account-activation-request.html", label: "Account Activation Request",
+    tags: "activate account activation approved to sell new customer setup fein w9 w-9 ap billing surcharge" },
+  { q: "Why can't I see an account in Engage?",
+    a: "<b>What you see = what you own.</b> Your My Accounts view shows your assigned book. If an account should be yours, use the Request Assignment button and the request flow takes it from there.",
+    link: "engage/my-accounts-request-assignment.html", label: "My Accounts + Request Assignment",
+    tags: "can't see account visibility missing my accounts view book of business" },
+  { q: "How do I get an account assigned to me?",
+    a: "Open the account and hit the <b>Request Assignment</b> button — the request routes for approval and the guide shows who updates what at each level.",
+    link: "engage/my-accounts-request-assignment.html", label: "My Accounts + Request Assignment",
+    tags: "request assignment button assign account to me claim territory transfer ownership" },
+  { q: "What is Engage Live and how do I join?",
+    a: "<b>Live on Zoom, 30 minutes</b> — open to every role in the enterprise. Two seasons, 24 episodes: Season One masters the tool, Season Two masters the machine. <b>Watch for the invite</b> — dates go out by email and Slack.",
+    link: "engage/engage-live-seasons.html", label: "Engage Live — Seasons Training Guide",
+    tags: "engage live webinar zoom when schedule join invite training series episode season what is" },
+  { q: "What's in the next Engage Live episode?",
+    a: "Every episode in the training guide carries its mantra, the Closer's Creed line, what attendees walk away with, the opening hook, the Play of the Week, what we cover, and <b>Your One Move</b> before the next session. Search the guide by topic — pipeline, leads, handoff.",
+    link: "engage/engage-live-seasons.html", label: "Engage Live — Seasons Training Guide",
+    tags: "episode next what covered curriculum agenda one move play of the week creed mantra lineup" },
+  { q: "Who do I contact for Engage help?",
+    a: "<b>apphelp@fsgi.com</b> for support. Escalations &amp; strategy: David Burrough — always available, call or text.",
+    link: "engage/assigning-the-solutions-team.html", label: "Engage Plays",
+    tags: "help support contact apphelp broken issue bug question" },
+  { q: "How do I run an account review (film room style)?",
+    a: "Plan first, then tabs: open the <b>account plan</b>, then Opportunities (scoreboard cards + blank-field hunt), Contacts (compare to the plan's contact map), A/R Status (can this customer activate?), and Sites (who owns each location?). The Sunbelt game film walks every frame with real screenshots.",
+    link: "engage/film-room-sunbelt-game-film.html", label: "The Film Room — Sunbelt Game Film",
+    tags: "account review film room how do i review an account whitespace tape sunbelt scoreboard game film" },
+  { q: "How do I convert a lead without creating a duplicate account?",
+    a: "Convert Lead → New Account → <b>Next</b> — then read the duplicate screen before you save. If Engage shows an <b>exact match</b>, select it and attach; only <b>Save as New Account</b> when nothing real matches. A duplicate national account splits the pipeline and orphans site assignments.",
+    link: "engage/film-room-sunbelt-game-film.html", label: "The Film Room — Sunbelt Game Film",
+    tags: "convert lead duplicate account exact match save as new account business card scan capture enrich ai brief lead to account" },
+  { q: "How do I set up a new account right the first time?",
+    a: "Search first — Top Matches, not just your tab. Then one path either way: add the contact in <b>Leads</b>, <b>Enrich</b>, and <b>Convert</b> — the convert opens the account, auto-assigns your Rep ID, and the duplicate screen keeps you honest. Name it to standard (<b>paper first, customer second</b> — e.g., C&amp;W - Bank of New York), fill the required fields, place it in hierarchy, drop the deal files, assign and notate. Five minutes of setup saves five hours of cleanup.",
+    link: "engage/built-right-the-first-time.html", label: "Built Right the First Time — Account Setup",
+    tags: "new account create account setup account right naming convention lead convert enrich five minute setup how do i add an account" },
+  { q: "The account exists but it's inactive or not mine — what do I do?",
+    a: "Read the four chips before you touch it: <b>Status</b> (inactive = paper, not reality), <b>Sell</b> (approved to sell?), <b>Owner</b> (someone else's? use Request Assignment — don't build a twin), and <b>Account Class</b> (the BA / EA / MA review). Then still enter your contact through <b>Leads &rarr; Enrich &rarr; Convert</b> and attach to the existing account on the duplicate screen.",
+    link: "engage/built-right-the-first-time.html", label: "Built Right the First Time — Account Setup",
+    tags: "inactive account not my account assigned someone else status sell chip account class ba ea ma reactivate existing account attach duplicate" }
+];
+
+/* ---------------- render ---------------- */
+var esc = function(s){ return String(s).replace(/&(?!amp;|lt;|gt;|quot;)/g,'&amp;').replace(/</g,'&lt;'); };
+var askList = document.getElementById('askList');
+askList.innerHTML = ASKS.map(function(x,i){
+  return '<div class="ask-card" data-i="'+i+'"><div class="q">'+esc(x.q)+'</div><div class="a">'+x.a+'</div>'
+    + '<a class="go" href="'+x.link+'">'+esc(x.label)+'</a></div>';
+}).join('');
+
+var guideGrid = document.getElementById('guideGrid');
+guideGrid.innerHTML = GUIDES.map(function(g,i){
+  return '<a class="gcard" data-i="'+i+'" href="'+g.file+'"><span class="pill'+(g.gold?' gold':'')+'">'+esc(g.pill)+'</span>'
+    + '<h3>'+esc(g.title)+'</h3><p>'+esc(g.desc)+'</p><span class="cta">Open</span></a>';
+}).join('');
+
+/* ---------------- quick type ask find ---------------- */
+var ask = document.getElementById('ask');
+var emptyState = document.getElementById('emptyState');
+function norm(s){ return s.toLowerCase().replace(/[^a-z0-9$\s-]/g,' '); }
+function hit(hay, words){ return words.every(function(w){ return hay.indexOf(w) !== -1; }); }
+
+function applyAsk(){
+  var q = norm(ask.value).trim();
+  var words = q ? q.split(/\s+/) : [];
+  var shown = 0, total = 0;
+
+  document.querySelectorAll('.ask-card').forEach(function(el){
+    var x = ASKS[+el.dataset.i];
+    var hay = norm(x.q + ' ' + x.a + ' ' + x.tags + ' ' + x.label);
+    var show = !words.length || hit(hay, words);
+    el.style.display = show ? '' : 'none'; if (show) shown++;
+    total++;
+  });
+  document.querySelectorAll('.gcard').forEach(function(el){
+    var g = GUIDES[+el.dataset.i];
+    var show = !words.length || hit(norm(g.title + ' ' + g.desc + ' ' + g.tags + ' ' + g.pill), words);
+    el.style.display = show ? '' : 'none'; if (show) shown++;
+  });
+  ['s1','s2'].forEach(function(id){
+    var anyRow = false;
+    document.querySelectorAll('#'+id+' tr').forEach(function(tr,ix){
+      if (!ix) return; // header
+      var show = !words.length || hit(norm(tr.textContent + ' engage live episode season'), words);
+      tr.classList.toggle('hid', !show); if (show) { anyRow = true; shown++; }
+    });
+    document.getElementById(id).style.display = anyRow ? '' : 'none';
+    document.querySelector('.season-label[data-season="'+(id==='s1'?'1':'2')+'"]').style.display = anyRow ? '' : 'none';
+  });
+
+  // hide section shells that emptied out
+  ['answersSec','guidesSec','liveSec'].forEach(function(id){
+    var sec = document.getElementById(id);
+    var vis = sec.querySelectorAll('.ask-card:not([style*="none"]), .gcard:not([style*="none"]), table.lineup:not([style*="none"])').length;
+    sec.style.display = vis ? '' : 'none';
+  });
+  emptyState.style.display = shown ? 'none' : 'block';
+  document.getElementById('countLine').textContent = words.length ? (shown ? shown + ' match' + (shown===1?'':'es') + ' — tap through, or refine the ask.' : '') : '';
+}
+ask.addEventListener('input', applyAsk);
+document.getElementById('quickRow').addEventListener('click', function(e){
+  var c = e.target.closest('.qchip'); if(!c) return;
+  ask.value = c.textContent; applyAsk(); ask.focus();
+});
+document.getElementById('askBobby').addEventListener('click', function(e){
+  e.preventDefault();
+  var q = ask.value.trim() || '[type your question]';
+  location.href = 'mailto:bobby.graham@fsgi.com?subject=' + encodeURIComponent('FSG App FAQs — new guide request')
+    + '&body=' + encodeURIComponent('Bobby,\n\nI searched the FSG App FAQs for:\n\n"' + q + '"\n\n…and there’s no play for it yet. Can we add one?\n\n— Sent from FSG App FAQs');
+});
+applyAsk();
+</script>
+</body>
+</html>
