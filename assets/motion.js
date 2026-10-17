@@ -21,6 +21,16 @@
        Paste the week block Paula hands you after Monday review right below
        this marker. Nothing else in this file changes.
        ============================================================================ */
+    { week: "2026-10-19", cards: [
+      { lane: "RESULTS", tone: "navy", standard: "Results end the argument.", move: "Skip the hallway debate. Log the win in Engage and let the number talk." },
+      { lane: "EXECUTION", tone: "deep", standard: "Win the rep, not the headline.", move: "Forget the quarter for an hour. Nail the next call: the prep, the ask, the follow-up." },
+      { lane: "DEVELOPMENT", tone: "light", standard: "Nobody gets good at what they don't practice.", move: "Pick one skill (discovery, pricing, the close) and run ten reps on it this week." },
+      { lane: "PEOPLE", tone: "navy", standard: "You're not the finished product. Neither am I.", move: "Ask a customer or teammate one thing you could do better. Act on it before Friday." },
+      { lane: "VISION", tone: "deep", standard: "What you let slide becomes your standard.", move: "Name one thing you've been tolerating in your book. Fix it or flag it this week." },
+      { lane: "EXECUTION", tone: "light", standard: "Call it what it is. Then deal with it.", move: "Scrub one stalled opportunity today. Real close date, real next step, or close it out." },
+      { lane: "VALUE", tone: "navy", standard: "Decide how far you'll go and the worry gets quiet.", move: "Before the big meeting, write your walk-away and the three things you'll do to win it. Then go." },
+      { lane: "PEOPLE", tone: "deep", standard: "Build something people remember you for.", move: "Leave one customer better off than the contract asked. Then show your team how you did it." }
+    ]},
     { week: "2026-10-05", cards: [
       { lane: "VALUE",       tone: "navy", standard: "Do the right thing. When you screw up, own it and fix it.", move: "Call the customer before they call you. Name the miss, bring the fix, set the date." },
       { lane: "PEOPLE",      tone: "deep", standard: "Surround yourself with people who expect you to be better.", move: "Pick one person who pushes you. Put 30 minutes on the calendar this week and bring a real problem." },
