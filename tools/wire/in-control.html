@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>In Control — FSG Wire</title>
+<meta name="description" content="Seven decisions decide every lighting-controls project. Frank Agraz at the North Texas Facilities Expo, as covered by BUILDINGS. FSG Wire, October 2026.">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+    :root{
+      --deep-navy:#0b1421; --dark-navy:#133865; --brand-blue:#365aa0;
+      --steel:#718dbc; --light-blue:#c5d9fa; --light-gray:#ededed;
+      --gold:#ebb018; --bright-blue:#4e84de;
+      --page:#f7f8fa; --card:#ffffff; --ink:#0b1421;
+      --rule:#e3e7ee;
+      --shadow:0 1px 2px rgba(11,20,33,.06), 0 8px 24px rgba(11,20,33,.06);
+      --cond:'Oswald','Arial Narrow',Arial,sans-serif;
+      --body:'Open Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;
+    }
+    *{box-sizing:border-box}
+    html{-webkit-text-size-adjust:100%}
+    body{
+      margin:0; background:var(--page); color:var(--ink);
+      font-family:var(--body); font-size:16px; line-height:1.62;
+      -webkit-font-smoothing:antialiased;
+    }
+    img{max-width:100%; display:block}
+    a{color:var(--bright-blue); text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    .wrap{max-width:1080px; margin:0 auto; padding:0 24px}
+
+    /* ---------- masthead ---------- */
+    .mast{
+      background:linear-gradient(135deg,#0b1421 0%,#133865 55%,#1b4a80 100%);
+      color:#fff; border-bottom:3px solid var(--gold);
+    }
+    .mast .wrap{display:flex; align-items:center; justify-content:space-between;
+      gap:20px; padding-top:22px; padding-bottom:22px}
+    .mast img.logo{height:38px; width:auto}
+    .mast .flag{text-align:right; line-height:1.25}
+    .mast .flag .name{
+      font-family:var(--cond); font-weight:700; font-size:24px;
+      letter-spacing:.16em; color:var(--gold); text-transform:uppercase;
+    }
+    .mast .flag .date{font-size:12.5px; letter-spacing:.1em; text-transform:uppercase; color:#c9d6ea}
+
+    .backbar{background:var(--deep-navy); color:#fff}
+    .backbar .wrap{display:flex; gap:22px; align-items:center; flex-wrap:wrap;
+      padding-top:11px; padding-bottom:11px}
+    .backbar a{
+      font-family:var(--cond); font-weight:500; font-size:12.5px;
+      letter-spacing:.16em; text-transform:uppercase; color:var(--steel);
+    }
+    .backbar a:hover{color:var(--gold); text-decoration:none}
+
+    /* ---------- shared type ---------- */
+    .eyebrow{
+      font-family:var(--cond); font-weight:600; font-size:13px;
+      letter-spacing:.24em; text-transform:uppercase; color:var(--gold); margin:0 0 10px;
+    }
+    h1,h2,h3,h4{font-family:var(--cond); font-weight:700; color:var(--dark-navy); margin:0}
+    h1{font-size:clamp(2.1rem,6vw,3.6rem); line-height:1.03; letter-spacing:.005em; text-transform:uppercase}
+    h2{font-size:clamp(1.4rem,3.4vw,1.95rem); line-height:1.1; text-transform:uppercase; letter-spacing:.02em}
+    h3{font-size:1.16rem; line-height:1.2; letter-spacing:.02em}
+    .rule{width:56px; height:3px; background:var(--gold); border:0; margin:14px 0 0}
+
+    /* ---------- footer ---------- */
+    footer.site{
+      background:var(--deep-navy); color:#8ea6c6; margin-top:64px;
+      border-top:3px solid var(--gold);
+    }
+    footer.site .wrap{padding-top:26px; padding-bottom:26px; display:flex;
+      justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap}
+    footer.site .fsg{font-family:var(--cond); letter-spacing:.14em; text-transform:uppercase;
+      font-size:13px; color:var(--gold)}
+    footer.site .fine{font-size:12px; letter-spacing:.04em}
+
+    /* ---------- passcode gate ---------- */
+    #gate{
+      position:fixed; inset:0; z-index:9999; display:flex; align-items:center;
+      justify-content:center; padding:24px;
+      background:linear-gradient(135deg,#0b1421 0%,#133865 60%,#1b4a80 100%);
+    }
+    #gate .box{width:100%; max-width:380px; text-align:center; color:#fff}
+    #gate svg{margin:0 auto 20px; display:block}
+    #gate .gname{font-family:var(--cond); font-weight:700; letter-spacing:.2em;
+      text-transform:uppercase; font-size:19px; color:#fff; margin-bottom:6px}
+    #gate .gsub{font-size:13px; color:#a9c0dd; margin-bottom:22px; letter-spacing:.04em}
+    #gate input{
+      width:100%; padding:13px 15px; border-radius:8px; border:1px solid rgba(255,255,255,.22);
+      background:rgba(255,255,255,.08); color:#fff; font-family:var(--body); font-size:15px;
+      text-align:center; letter-spacing:.06em;
+    }
+    #gate input::placeholder{color:#8ea6c6}
+    #gate input:focus{outline:2px solid var(--gold); outline-offset:1px}
+    #gate button{
+      margin-top:12px; width:100%; padding:13px 15px; border:0; border-radius:8px;
+      background:var(--gold); color:var(--deep-navy); cursor:pointer;
+      font-family:var(--cond); font-weight:700; font-size:14px;
+      letter-spacing:.16em; text-transform:uppercase;
+    }
+    #gate button:hover{background:#f5be2e}
+    #gate .err{min-height:20px; margin-top:12px; font-size:13px; color:#ffbdbd}
+    body.locked{overflow:hidden}
+    .gated{display:none}
+    body.unlocked .gated{display:block}
+
+
+    /* ---------- article ---------- */
+    .hero{background:var(--card); border-bottom:1px solid var(--rule)}
+    .hero .wrap{padding-top:44px; padding-bottom:34px}
+    .hero .deck{
+      font-size:clamp(1.02rem,2.1vw,1.22rem); font-style:italic; color:var(--brand-blue);
+      max-width:44ch; margin:14px 0 0; line-height:1.5;
+    }
+    .meta{
+      display:flex; gap:10px 20px; flex-wrap:wrap; margin-top:22px;
+      font-family:var(--cond); font-size:12px; letter-spacing:.16em;
+      text-transform:uppercase; color:var(--steel);
+    }
+    .meta span{display:inline-flex; align-items:center; gap:8px}
+    .meta span::before{content:""; width:6px; height:6px; border-radius:50%; background:var(--gold)}
+
+    .figs{
+      display:grid; grid-template-columns:1fr 1.1fr 1fr; gap:20px;
+      margin:34px 0 0; align-items:stretch;
+    }
+    figure{margin:0; background:var(--card); border:1px solid var(--rule);
+      border-radius:10px; overflow:hidden; box-shadow:var(--shadow);
+      display:flex; flex-direction:column}
+    figure figcaption{margin-top:auto}
+    figure .imgbox{background:var(--light-gray)}
+    figure img{width:100%; height:100%; object-fit:cover}
+    figure.tall .imgbox{aspect-ratio:1/1}
+    figure.wide .imgbox{aspect-ratio:644/468}
+    figcaption{
+      padding:11px 13px 13px; font-size:11.5px; line-height:1.45; color:var(--steel);
+      border-top:1px solid var(--rule);
+    }
+    .pull{
+      background:linear-gradient(160deg,var(--dark-navy),#0f2b4d); color:#fff;
+      border-radius:10px; padding:26px 22px; box-shadow:var(--shadow);
+      display:flex; flex-direction:column; justify-content:center; min-height:100%;
+    }
+    .pull q{
+      font-family:var(--cond); font-weight:700; font-size:clamp(1.6rem,3vw,2.1rem);
+      line-height:1.05; text-transform:uppercase; quotes:'\201C' '\201D'; display:block;
+    }
+    .pull .attrib{
+      margin-top:16px; padding-top:14px; border-top:1px solid rgba(235,176,24,.45);
+      font-size:12.5px; line-height:1.5; color:var(--light-blue);
+    }
+
+    /* timeline */
+    .timeline{margin:52px 0 0}
+    .track{
+      display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin-top:22px;
+      border-top:3px solid var(--light-blue); position:relative;
+    }
+    .stop{padding:22px 18px 0 0; position:relative}
+    .stop::before{
+      content:""; position:absolute; top:-9px; left:0; width:15px; height:15px;
+      border-radius:50%; background:var(--card); border:3px solid var(--brand-blue);
+    }
+    .stop.key::before{background:var(--gold); border-color:var(--gold)}
+    .stop .when{
+      font-family:var(--cond); font-weight:600; font-size:12.5px; letter-spacing:.14em;
+      text-transform:uppercase; color:var(--brand-blue); display:block; margin-bottom:5px;
+    }
+    .stop.key .when{color:#a8790a}
+    .stop .what{font-size:14px; line-height:1.5; color:var(--ink)}
+
+    /* body copy */
+    .story{
+      margin:52px 0 0; column-count:2; column-gap:44px;
+    }
+    .story section{break-inside:avoid-column; margin:0 0 26px}
+    .story h3{
+      color:var(--dark-navy); padding-bottom:7px; margin-bottom:11px;
+      border-bottom:2px solid var(--gold); display:inline-block;
+      text-transform:uppercase;
+    }
+    .story p{margin:0; font-size:15.3px}
+    .story .yr{color:var(--steel); font-weight:400}
+
+    .callout{
+      margin:52px 0 0; background:var(--light-blue); border-left:5px solid var(--gold);
+      border-radius:0 10px 10px 0; display:grid; grid-template-columns:1.55fr 1fr;
+      gap:28px; align-items:center; padding:28px 30px;
+    }
+    .callout h3{color:var(--dark-navy); margin-bottom:9px}
+    .callout p{margin:0; font-size:14.6px; color:#12325a; line-height:1.6}
+    .equation{
+      text-align:center; font-family:var(--cond); font-weight:700;
+      font-size:clamp(1.15rem,2.4vw,1.5rem); line-height:1.18; color:var(--dark-navy);
+      text-transform:uppercase; letter-spacing:.02em;
+      border-left:1px solid rgba(19,56,101,.22); padding-left:24px;
+    }
+    .equation em{display:block; font-style:normal; color:#a8790a}
+
+    .sources{margin:52px 0 0}
+    .sources ul{
+      list-style:none; padding:0; margin:18px 0 0; font-size:12.5px; line-height:1.65;
+      color:var(--steel); columns:2; column-gap:40px;
+    }
+    .sources li{margin:0 0 7px; break-inside:avoid}
+    .sources strong{color:var(--dark-navy); font-weight:600}
+
+    .nextprev{
+      margin:52px 0 0; padding-top:22px; border-top:1px solid var(--rule);
+      display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
+      font-family:var(--cond); font-size:13px; letter-spacing:.14em; text-transform:uppercase;
+    }
+
+    @media print{
+      .backbar,#gate,.nextprev{display:none!important}
+      body{background:#fff}
+      .story{column-gap:30px}
+      figure,.pull{box-shadow:none}
+    }
+    @media (max-width:860px){
+      .figs{grid-template-columns:1fr 1fr}
+      .pull{grid-column:1/-1; min-height:0}
+      .story{column-count:1}
+      .track{grid-template-columns:1fr 1fr}
+      .stop{padding-bottom:18px}
+      .callout{grid-template-columns:1fr}
+      .equation{border-left:0; border-top:1px solid rgba(19,56,101,.22); padding:18px 0 0; text-align:left}
+      .sources ul{columns:1}
+    }
+    @media (max-width:560px){
+      .wrap{padding:0 18px}
+      .figs{grid-template-columns:1fr}
+      .mast .wrap{padding-top:16px; padding-bottom:16px}
+      .mast img.logo{height:30px}
+      .mast .flag .name{font-size:19px}
+    }
+
+/* ---------- text cards (no-photo issue) ---------- */
+.cardtxt{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+box-shadow:var(--shadow); padding:22px 20px; display:flex; flex-direction:column}
+.cardtxt .eyebrow{margin-bottom:6px}
+.cardtxt h3{color:var(--dark-navy); text-transform:uppercase; margin-bottom:10px}
+.cardtxt ul{list-style:none; padding:0; margin:0; font-size:14px; line-height:1.55}
+.cardtxt li{padding:7px 0; border-bottom:1px solid var(--rule)}
+.cardtxt li:last-child{border-bottom:0}
+.cardtxt .foot{margin:10px 0 0; font-size:13px; color:var(--steel); line-height:1.55}
+.figs .cardtxt{min-height:100%}
+</style>
+</head>
+<body class="locked">
+
+<!-- ===== passcode gate ===== -->
+<div id="gate">
+  <div class="box">
+    <div class="gname">Growth Hub</div>
+    <div class="gsub">Internal — enter the passcode to continue.</div>
+    <form id="gateForm" autocomplete="off">
+      <input id="gateInput" type="password" placeholder="Passcode" aria-label="Passcode" autocomplete="off">
+      <button type="submit">Enter</button>
+    </form>
+    <div class="err" id="gateErr" role="alert"></div>
+  </div>
+</div>
+
+<div class="gated">
+
+<header class="mast">
+    <div class="wrap">
+      <img class="logo" src="data:image/png;base64,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" alt="FSG — Facility Solutions Group">
+      <div class="flag">
+        <div class="name">Wire</div>
+        <div class="date">October 2026</div>
+      </div>
+    </div>
+  </header>
+
+<nav class="backbar">
+  <div class="wrap">
+    <a href="../../index.html">&larr; Growth Hub</a>
+    <a href="../wire.html">&larr; The Wire</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="wrap">
+    <p class="eyebrow">North Texas Facilities Expo &middot; 2026</p>
+    <h1>In Control</h1>
+    <p class="deck">Seven decisions decide every lighting-controls project. FSG&rsquo;s Frank Agraz laid them out on the expo stage &mdash; and <em>BUILDINGS</em> put them in print.</p>
+    <div class="meta">
+      <span>Technology</span>
+      <span>Controls</span>
+      <span>Frank Agraz, LC, CLMC, IES</span>
+      <span>5 min read</span>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <div class="figs">
+    <div class="cardtxt">
+      <p class="eyebrow">The 60% recipe</p>
+      <h3>Six strategies, two levers</h3>
+      <ul>
+        <li><strong>Shorter hours</strong> &mdash; occupancy sensors, scheduling, plug-load control</li>
+        <li><strong>Lower wattage</strong> &mdash; task tuning, daylight harvesting</li>
+        <li><strong>Grid plays</strong> &mdash; demand response</li>
+      </ul>
+      <p class="foot">Stack them and the existing lighting load can drop by more than half.</p>
+    </div>
+    <div class="pull">
+      <q>A good recipe for saving up to 60% of your existing load.</q>
+      <div class="attrib">Frank Agraz, FSG &mdash; as quoted in <em>BUILDINGS</em><br>Oct. 16, 2026</div>
+    </div>
+    <div class="cardtxt">
+      <p class="eyebrow">In print</p>
+      <h3>FSG on the record</h3>
+      <p class="foot" style="margin-top:10px"><em>BUILDINGS</em> editor-in-chief Janelle Penny covered Frank&rsquo;s North Texas Facilities Expo session and turned it into a national how-to: &ldquo;7 Top Considerations for Lighting Control Projects.&rdquo;</p>
+      <p class="foot"><a href="https://www.buildings.com/building-systems-om/lighting/article/55412558/7-top-considerations-for-lighting-control-projects-north-texas-facilities-expo-2026" target="_blank" rel="noopener">Read the article on buildings.com &rarr;</a></p>
+    </div>
+  </div>
+
+  <section class="timeline">
+    <p class="eyebrow">Before the hardware</p>
+    <h2>How the savings stack</h2>
+    <hr class="rule">
+    <div class="track">
+      <div class="stop">
+        <span class="when">Lever one</span>
+        <span class="what">Run the lights fewer hours: occupancy and vacancy sensors, schedules, plug-load control.</span>
+      </div>
+      <div class="stop">
+        <span class="when">Lever two</span>
+        <span class="what">Run them at lower wattage: task tuning and daylight harvesting trim what&rsquo;s left.</span>
+      </div>
+      <div class="stop key">
+        <span class="when">Lever three</span>
+        <span class="what">Demand response &mdash; shed load when the grid needs it, and get paid to do it.</span>
+      </div>
+      <div class="stop key">
+        <span class="when">Combined</span>
+        <span class="what">Up to 60% of the existing lighting load &mdash; before a single fixture changes.</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="story">
+    <section>
+      <h3>1 &middot; Functionality</h3>
+      <p>Decide how each space should behave before you pick a part number. Some rooms want motion or ambient-light sensors. Some want schedules &mdash; timers, cloud apps, or the building management system. Some just want a switch and a scene selector. The right answer is per space, not per catalog.</p>
+    </section>
+    <section>
+      <h3>2 &middot; Adjustment</h3>
+      <p>How much control does the light itself need? On/off is the floor. From there: dimming, tunable white, full color-changing &mdash; or a combination. The occupant experience you&rsquo;re promising sets this one.</p>
+    </section>
+    <section>
+      <h3>3 &middot; Connection</h3>
+      <p>Wired controls are generally more reliable &mdash; and more expensive to retrofit. Wireless installs faster, fits existing buildings, and lets you regroup fixtures without pulling a single new wire. In retrofit work, that flexibility is often the whole ballgame.</p>
+    </section>
+    <section>
+      <h3>4 &middot; Power</h3>
+      <p>Four ways to feed a control: line voltage (120V or 277V &mdash; lower upfront cost, handles heavy loads), low voltage (12V or 24V, needs a transformer), battery-operated (cheapest to install, but batteries become a maintenance line item), and kinetic &mdash; switches that power themselves from the press.</p>
+    </section>
+    <section>
+      <h3>5 &middot; Protocol</h3>
+      <p>0-10V is one-way analog &mdash; simple and everywhere. DALI is two-way wired and can report driver status back. DMX runs theatrical and architectural color. Wireless brings Bluetooth mesh, Zigbee, Z-Wave, and Wi-Fi, each with trade-offs &mdash; Frank&rsquo;s nod went to Bluetooth Low Energy, because nearly every phone and laptop in the building already speaks it.</p>
+    </section>
+    <section>
+      <h3>6 &middot; Scalability</h3>
+      <p>Standalone controls are cost-effective for a single room &mdash; and tell you almost nothing. Networked controls span rooms, floors, and whole buildings, and hand back the analytics. Decide early which one you&rsquo;re buying, because you can&rsquo;t bolt a network onto standalone parts later.</p>
+    </section>
+    <section>
+      <h3>7 &middot; Tracking</h3>
+      <p>A networked system is more than a light switch. It can feed energy management and ESG reporting, track tagged assets through the building, and show how space actually gets used through its occupancy sensing. The controls budget starts buying answers, not just light.</p>
+    </section>
+    <section>
+      <h3>And Then: Pick Your Partner</h3>
+      <p>Many of the biggest names in lighting have exited the market. Ask what happens to support if your vendor disappears &mdash; and be wary when the warranty is longer than the provider has been in business. In Frank&rsquo;s words: &ldquo;that&rsquo;s not a good sign. Pick carefully.&rdquo; Work with subject-matter experts who will still pick up the phone in year nine.</p>
+    </section>
+  </div>
+
+  <div class="callout">
+    <div>
+      <h3>Seven questions, one partner</h3>
+      <p>This is the ESCO conversation FSG has with customers every day &mdash; walking all seven decisions before the first fixture ships, then standing behind the system for its whole life. When a national publication prints our framework, that&rsquo;s the proof: the expertise your customers are reading about works down the hall from you.</p>
+    </div>
+    <div class="equation">Contributing + Service<em>= Value</em></div>
+  </div>
+
+  <section class="sources">
+    <p class="eyebrow">Sources</p>
+    <h2>Where this came from</h2>
+    <hr class="rule">
+    <ul>
+      <li><strong>BUILDINGS</strong>, &ldquo;7 Top Considerations for Lighting Control Projects,&rdquo; Janelle Penny, Oct. 16, 2026 &mdash; buildings.com</li>
+      <li><strong>North Texas Facilities Expo 2026</strong> &mdash; Frank Agraz session on specifying lighting controls</li>
+      <li><strong>Frank Agraz, LC, CLMC, IES</strong> &mdash; FSG Corporate, ESCO Solutions Manager</li>
+    </ul>
+  </section>
+
+  <div class="nextprev">
+    <a href="../wire.html">&larr; All Wire issues</a>
+    <a href="mailto:bobby.graham@fsgi.com?subject=Wire%20story%20idea">Pitch a story &rarr;</a>
+  </div>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span class="fsg">www.fsg.com</span>
+    <span class="fine">FSG Wire &middot; Internal use &middot; Contribution + Service = Value</span>
+  </div>
+</footer>
+
+</div>
+
+<script>
+/* ---------- passcode gate ----------
+   Same mechanics as the hub's index.html: SHA-256 check (no plaintext
+   passcode in the file) and the shared 'gh-unlocked' session key, so
+   unlocking the hub unlocks these pages too. */
+(function(){
+  var KEY='gh-unlocked',
+      HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259',
+      B64='RlM2IUdyb3d0aCMyNg==';
+  var gate=document.getElementById('gate');
+
+  function unlock(){
+    if(gate && gate.parentNode) gate.parentNode.removeChild(gate);
+    document.body.classList.remove('locked');
+    document.body.classList.add('unlocked');
+  }
+  function remembered(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+
+  if(remembered()){ unlock(); return; }
+
+  async function check(){
+    var input=document.getElementById('gateInput'), v=input.value, ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        ok=(Array.from(new Uint8Array(buf)).map(function(b){
+          return b.toString(16).padStart(2,'0');
+        }).join('')===HASH);
+      } else {
+        ok=(btoa(unescape(encodeURIComponent(v)))===B64);
+      }
+    }catch(e){ try{ ok=(btoa(v)===B64); }catch(e2){ ok=false; } }
+
+    if(ok){ remember(); unlock(); }
+    else{
+      document.getElementById('gateErr').textContent='Not it — check with your FSG contact.';
+      input.value=''; input.focus();
+    }
+  }
+
+  document.getElementById('gateForm').addEventListener('submit',function(e){
+    e.preventDefault(); check();
+  });
+  document.getElementById('gateInput').focus();
+})();
+
+</script>
+</body>
+</html>
