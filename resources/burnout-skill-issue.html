@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Burnout Is A Skill Issue — Personal Development | Growth Hub</title>
+<link rel="icon" href="../apple-touch-icon.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --deep:#0b1421; --navy:#133865; --blue:#365aa0; --steel:#718dbc;
+  --lite:#c5d9fa; --gray:#ededed; --gold:#ebb018; --link:#4e84de;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Open Sans',Arial,sans-serif;color:var(--deep);background:#fff;line-height:1.65}
+a{color:var(--link)}
+.crumb{background:var(--deep);padding:10px 22px;font-size:13px}
+.crumb a{color:var(--lite);text-decoration:none;margin-right:14px}
+.crumb a:hover{color:var(--gold)}
+
+/* HERO */
+.hero{background:linear-gradient(160deg,var(--deep) 0%,var(--navy) 70%,#1a4a85 100%);color:#fff;padding:56px 22px 48px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--gold)}
+.hwrap{max-width:960px;margin:0 auto}
+.eyebrow{font-family:'Oswald',sans-serif;letter-spacing:.22em;text-transform:uppercase;font-size:13px;color:var(--gold);margin-bottom:14px}
+h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(38px,7vw,64px);line-height:1.05;text-transform:uppercase}
+h1 span{color:var(--gold)}
+.sub{margin-top:16px;font-size:18px;color:var(--lite);max-width:640px}
+.spoke-pill{display:inline-block;margin-top:22px;border:1px solid var(--gold);color:var(--gold);font-family:'Oswald',sans-serif;letter-spacing:.14em;text-transform:uppercase;font-size:12px;padding:6px 14px;border-radius:999px}
+.credit{margin-top:18px;font-size:13px;color:var(--steel)}
+.credit b{color:var(--lite);font-weight:600}
+
+main{max-width:960px;margin:0 auto;padding:48px 22px 80px}
+h2{font-family:'Oswald',sans-serif;color:var(--navy);font-size:26px;text-transform:uppercase;letter-spacing:.04em;margin:52px 0 6px}
+h2::after{content:"";display:block;width:56px;height:3px;background:var(--gold);margin-top:8px}
+h2 .n{display:inline-block;width:34px;height:34px;line-height:34px;text-align:center;border-radius:50%;background:var(--gold);color:var(--deep);font-size:18px;margin-right:12px;vertical-align:middle}
+p{margin:16px 0;font-size:17px}
+.big{font-size:20px;font-weight:600;color:var(--navy)}
+
+/* full-width sketchnote band */
+.band{margin:34px 0 40px;position:relative}
+.band img{display:block;width:100%;border-radius:10px;border:5px solid var(--gold);box-shadow:0 18px 44px rgba(11,20,33,.3);background:#fff}
+.band .tag{display:inline-block;margin-top:12px;background:var(--deep);color:#fff;font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:7px 14px;border-left:4px solid var(--gold)}
+
+/* THE WORD (the message) */
+.word{background:var(--deep);color:#fff;border-radius:12px;padding:44px 36px;margin:40px 0;border-top:5px solid var(--gold)}
+.word p{color:#e9eef7;font-size:18px}
+.word .punch{font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:26px;letter-spacing:.03em;color:var(--gold);margin:26px 0 10px;line-height:1.2}
+.word .beat{color:var(--steel);font-style:italic}
+.callout{background:var(--lite);border-left:5px solid var(--gold);padding:18px 22px;margin:26px 0;color:var(--navy);font-size:16px}
+.callout b{color:var(--navy)}
+
+/* myth strikeout list */
+.myth{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:22px 0}
+.myth div{border:1px dashed var(--steel);border-radius:8px;padding:16px 18px;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:15px;color:var(--steel);text-decoration:line-through;text-decoration-color:var(--gold);text-decoration-thickness:3px;text-align:center}
+
+/* cards */
+.gut{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:26px 0}
+.gcard{border:1px solid var(--gray);border-top:4px solid var(--gold);border-radius:8px;padding:20px}
+.gcard h3{font-family:'Oswald',sans-serif;color:var(--navy);font-size:17px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+.gcard p{font-size:15px;margin:0}
+.gcard .q{display:block;margin-top:12px;padding-top:10px;border-top:1px solid var(--gray);font-size:14px;color:var(--navy);font-style:italic}
+
+/* two systems */
+.sys{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:26px 0}
+.scard{border-radius:12px;padding:26px 24px;color:#fff;background:var(--navy);border-top:6px solid var(--gold)}
+.scard.hw{background:var(--deep)}
+.scard .k{font-family:'Oswald',sans-serif;letter-spacing:.2em;text-transform:uppercase;font-size:12px;color:var(--gold)}
+.scard h3{font-family:'Oswald',sans-serif;font-size:28px;text-transform:uppercase;letter-spacing:.04em;margin:4px 0 2px}
+.scard .d{color:var(--lite);font-size:14px;margin-bottom:14px}
+.scard ul{list-style:none;margin:0}
+.scard li{padding:10px 0;border-top:1px solid rgba(255,255,255,.12);font-size:16px}
+.scard li b{color:var(--gold);font-family:'Oswald',sans-serif;letter-spacing:.08em;text-transform:uppercase;font-size:14px;margin-right:8px}
+.scard .chk{margin-top:14px;background:rgba(255,255,255,.07);border-radius:8px;padding:12px 14px;font-size:14px;color:var(--lite)}
+.scard .chk b{color:#fff;display:block;font-family:'Oswald',sans-serif;letter-spacing:.14em;text-transform:uppercase;font-size:12px;margin-bottom:4px}
+
+/* marquee band */
+.stage{background:var(--navy);overflow:hidden;padding:14px 0;margin:44px -22px;border-top:3px solid var(--gold);border-bottom:3px solid var(--gold)}
+.stage .track{display:flex;gap:48px;white-space:nowrap;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.18em;font-size:15px;color:#fff;animation:roll 26s linear infinite;width:max-content}
+.stage .track span b{color:var(--gold)}
+@keyframes roll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.stage .track{animation:none;flex-wrap:wrap;white-space:normal;justify-content:center}}
+
+/* THE AUDIT — interactive */
+.audit{background:linear-gradient(160deg,var(--deep),var(--navy));color:#fff;border-radius:14px;padding:44px 34px;margin:56px 0 0;border-top:6px solid var(--gold)}
+.audit h2{color:var(--gold);margin:0 0 8px}
+.audit h2::after{background:#fff;opacity:.35}
+.audit p{color:var(--lite)}
+.audit .step{margin-top:26px}
+.audit .step .k{font-family:'Oswald',sans-serif;letter-spacing:.2em;text-transform:uppercase;font-size:12px;color:var(--gold)}
+.audit .step h3{font-family:'Oswald',sans-serif;font-size:22px;text-transform:uppercase;letter-spacing:.04em;margin:4px 0 8px}
+.qs{display:grid;gap:10px;margin-top:12px}
+.qs label{display:flex;align-items:flex-start;gap:12px;background:#0e1a2e;border:2px solid var(--steel);border-radius:10px;padding:12px 14px;cursor:pointer;font-size:15px;color:#fff;transition:border-color .15s}
+.qs label:hover{border-color:var(--gold)}
+.qs input{margin-top:4px;accent-color:var(--gold);width:18px;height:18px;flex:none}
+.qs label.yes{border-color:var(--gold);background:#152a4a}
+.audit textarea{width:100%;min-height:84px;border:2px solid var(--steel);border-radius:10px;background:#0e1a2e;color:#fff;padding:14px 16px;font-family:'Open Sans',Arial,sans-serif;font-size:16px;margin-top:12px;resize:vertical}
+.audit textarea:focus{outline:none;border-color:var(--gold)}
+.audit .go{display:inline-block;margin-top:18px;background:var(--gold);color:var(--deep);border:0;border-radius:999px;padding:15px 38px;font-family:'Oswald',sans-serif;font-size:18px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease}
+.audit .go:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(235,176,24,.35)}
+.audit .stamp{margin-top:18px;font-family:'Oswald',sans-serif;letter-spacing:.14em;text-transform:uppercase;font-size:15px;color:var(--gold);min-height:22px}
+.audit .micro{font-size:13px;color:var(--steel);margin-top:10px}
+.score{margin-top:16px;font-family:'Oswald',sans-serif;letter-spacing:.1em;text-transform:uppercase;font-size:14px;color:var(--lite)}
+.score b{color:var(--gold);font-size:22px;margin-right:6px}
+
+/* next read */
+.next{display:grid;grid-template-columns:minmax(260px,480px) 1fr;gap:30px;align-items:center;margin:48px 0 0}
+.next .frame{position:relative;transform:rotate(-1.5deg)}
+.next .frame img{display:block;width:100%;border:5px solid var(--navy);border-radius:6px;box-shadow:0 18px 44px rgba(11,20,33,.3);background:#fff}
+.next .frame .tag{display:inline-block;margin-top:12px;background:var(--deep);color:#fff;font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:7px 14px;border-left:4px solid var(--gold)}
+.next .k{font-family:'Oswald',sans-serif;letter-spacing:.2em;text-transform:uppercase;font-size:12px;color:var(--gold)}
+.next h3{font-family:'Oswald',sans-serif;color:var(--navy);font-size:24px;text-transform:uppercase;letter-spacing:.04em;margin:4px 0 8px}
+
+.creed{background:var(--navy);color:#fff;text-align:center;padding:40px 24px;border-radius:12px;margin:56px 0 0}
+.creed .m{font-family:'Oswald',sans-serif;font-size:clamp(22px,4vw,32px);text-transform:uppercase;letter-spacing:.05em}
+.creed .m b{color:var(--gold)}
+.creed .v{margin-top:12px;color:var(--lite);font-size:15px}
+
+.vc{margin-top:56px;border-top:1px solid var(--gray);padding-top:14px;font-size:13px;color:var(--steel)}
+.vc .st{display:block;margin-top:6px}
+
+@media(max-width:720px){
+  .sys,.next{grid-template-columns:1fr}
+  .word{padding:32px 22px}
+  .audit{padding:32px 22px}
+  .next .frame{max-width:420px;margin:0 auto}
+}
+
+/* DYNAMIC — scroll reveals */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.rv.on{opacity:1;transform:none}
+.rv.d1{transition-delay:.12s}.rv.d2{transition-delay:.24s}.rv.d3{transition-delay:.36s}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<div class="crumb"><a href="../index.html">&larr; Growth Hub</a><a href="../tools/plays.html">The Playbook</a></div>
+
+<header class="hero"><div class="hwrap">
+  <div class="eyebrow">Personal Development &middot; The Development Spoke</div>
+  <h1>Burnout Is A <span>Skill Issue</span></h1>
+  <p class="sub">Most burnout advice assumes it's a workload problem. It isn't. There are two real reasons people burn out &mdash; and neither one has much to do with how many hours you worked this week.</p>
+  <span class="spoke-pill">Development &middot; Momentum over comfort</span>
+  <div class="credit">Adapted from <b>Sharran Srivatsaa</b>, <i>The Next Billion</i> &mdash; &ldquo;Your Life Will Change Once You Realize Burnout Is A Skill Issue&rdquo; (Oct 31, 2026). Sketchnotes by Sharran.</div>
+</div></header>
+
+<main>
+
+<h2>The pull to just get things done</h2>
+<p>You know the feeling. Three free hours open up. The kids are quiet, the inbox is loaded, and the to-do list has no bottom. The pull to push something forward is overwhelming &mdash; and the guilt when you don't is worse.</p>
+<p>Here's the problem: &ldquo;get a bunch of stuff done&rdquo; never changes anything, because it never actually ends. In sales, the pipeline doesn't close. There's always one more follow-up, one more proposal, one more account to touch. If your only defense against burnout is working less, you're going to lose &mdash; because the work isn't going anywhere.</p>
+<p class="big">So the question isn't &ldquo;how do I work less?&rdquo; It's &ldquo;why does some work drain me and some work fuel me?&rdquo;</p>
+
+<div class="callout rv"><b>The advice you've heard is wrong.</b> Today's answer to burnout treats it as a workload problem &mdash; something you fix with time off. Sharran's argument, and ours: burnout is a <b>skill</b>. You can learn it the same way you'd learn writing, marketing, or prospecting.</div>
+
+<div class="myth rv" aria-label="What doesn't fix burnout">
+  <div>A vacation</div>
+  <div>A long weekend</div>
+  <div>Fewer meetings</div>
+</div>
+<p>Those are fine. They just don't fix the two things that actually cause it.</p>
+
+<h2><span class="n">1</span>You're not working in your zone of genius</h2>
+<p>Your zone of genius is the intersection of three things. Work that sits outside that intersection drains you no matter how good you are at it or how much it pays.</p>
+
+<div class="band rv">
+  <img src="../assets/pd/burnout-zone-of-genius.jpg" alt="Sketchnote: Find Your Zone of Genius — the overlap of Joy, Market, and Money; good at it does not equal energized by it; the momentum loop: meaningful work leads to visible progress, energy returns, keep growing. Stop optimizing for comfort. Start optimizing for momentum.">
+  <div class="tag">Reason one &middot; Find your zone of genius</div>
+</div>
+
+<div class="gut rv">
+  <div class="gcard"><h3>Joy</h3><p>The work you'd still choose to do if nobody was watching and no result was guaranteed.</p><span class="q">Would I do this with no applause and no guaranteed outcome?</span></div>
+  <div class="gcard"><h3>Market</h3><p>Whether anyone out there actually wants what you're offering right now &mdash; and will pay for it.</p><span class="q">Do people want this today, and will they pay?</span></div>
+  <div class="gcard"><h3>Money</h3><p>The work pays enough to support the life you want to live.</p><span class="q">Does this fund the life I'm actually building?</span></div>
+</div>
+
+<p>Here's the trap for A-players: you can be excellent at something, get paid well for it, and still burn out doing it. Excellence and pay aren't enough. For most people, <b>joy</b> is the missing piece &mdash; and the standard advice says the way to find joy is &ldquo;work-life balance.&rdquo;</p>
+<p>But balance implies you're not moving. And it's staying in the same place too long that makes A-players start to resent their own work. Most people who say they need balance to be happy spend the balance doomscrolling.</p>
+
+<div class="word rv">
+  <p>You don't need balance.</p>
+  <p>You need to be in constant <i>movement</i>.</p>
+  <p class="beat">When you're moving forward, energy returns. When you can see growth, the work becomes the reward.</p>
+  <p class="punch">Stop optimizing for comfort. Start optimizing for momentum.</p>
+  <p>Chase balance if you want to stay average. Chase progress if you want to build something meaningful. Progress is what happens when you're in your zone of genius.</p>
+</div>
+
+<div class="stage" aria-hidden="true"><div class="track">
+  <span>Work in your <b>zone</b></span><span>Make progress you can <b>see</b></span><span>Joy &middot; Market &middot; <b>Money</b></span><span>Good at it &ne; <b>energized by it</b></span><span>Optimize for <b>momentum</b></span><span>Keep both systems <b>running</b></span>
+  <span>Work in your <b>zone</b></span><span>Make progress you can <b>see</b></span><span>Joy &middot; Market &middot; <b>Money</b></span><span>Good at it &ne; <b>energized by it</b></span><span>Optimize for <b>momentum</b></span><span>Keep both systems <b>running</b></span>
+</div></div>
+
+<h2><span class="n">2</span>You don't have the skill to avoid burnout</h2>
+<p>Burnout is preventable, not inevitable. You build the skill of avoiding it the exact same way you'd build any other skill &mdash; and this is the easier reason to solve today. To learn it, you need to understand two systems, both of which have to keep running at once.</p>
+
+<div class="band rv">
+  <img src="../assets/pd/burnout-hardware-software.jpg" alt="Sketchnote: Build the Skill of Avoiding Burnout — two systems, both need to keep running. Hardware is physical health: sleep, then food. Software is mental and emotional health: a support network and relationships. One cannot compensate for the other. Keep both systems running.">
+  <div class="tag">Reason two &middot; Hardware and software</div>
+</div>
+
+<div class="sys rv">
+  <div class="scard hw">
+    <div class="k">Physical health</div>
+    <h3>Hardware</h3>
+    <div class="d">Sleep and food, in that order. Neither is negotiable to function &mdash; and both get sacrificed first when things get busy.</div>
+    <ul>
+      <li><b>1 &middot; Sleep</b> Protect it before everything else.</li>
+      <li><b>2 &middot; Food</b> Eat the right food for your body.</li>
+    </ul>
+    <div class="chk"><b>Check your hardware</b>Am I actually getting enough sleep? Am I eating well for my body?</div>
+  </div>
+  <div class="scard">
+    <div class="k">Mental + emotional health</div>
+    <h3>Software</h3>
+    <div class="d">Not a nice-to-have. It's part of the system that keeps you functioning.</div>
+    <ul>
+      <li><b>Mental</b> A support network &mdash; people whose job is to help you process what's happening instead of carrying it alone.</li>
+      <li><b>Emotional</b> Love. The people in your life you give it to and get it back from. Keep that connection.</li>
+    </ul>
+    <div class="chk"><b>Check your software</b>What emotional weight is unresolved? Do my relationships help me feel supported?</div>
+  </div>
+</div>
+
+<div class="callout rv"><b>One cannot compensate for the other.</b> No amount of sleep will fix unprocessed emotional work. No support network can make up for a lack of sleep or rest. Good software can't run on a dead battery &mdash; you'd never expect a laptop to work that way, so don't expect it of yourself.</div>
+
+<h2>Where this shows up in the work</h2>
+<div class="gut rv">
+  <div class="gcard"><h3>The account you resent</h3><p>Great at it, well paid for it, drained by it. That's a zone-of-genius miss, not a workload problem. Name it. Then decide what moves &mdash; the account, your role on it, or the way you work it.</p></div>
+  <div class="gcard"><h3>Visible progress beats busy</h3><p>A full calendar isn't momentum. A pipeline that moves is. Build the week around progress you can see &mdash; stages advanced, proposals out, decisions made &mdash; not tasks cleared.</p></div>
+  <div class="gcard"><h3>Sleep is a sales tool</h3><p>The first thing a busy quarter steals is sleep, and the first thing that goes with it is judgment. Protect the hardware before the big meeting, not after.</p></div>
+  <div class="gcard"><h3>Don't carry it alone</h3><p>The lost deal, the hard conversation, the quarter that stung &mdash; process it with someone. A teammate, a mentor, a professional. Carrying it solo is the slow version of burnout.</p></div>
+</div>
+
+<div class="audit rv">
+  <h2>Run the audit</h2>
+  <p>Two steps. Be honest &mdash; this stays on your device. If the answer is &ldquo;no&rdquo; to any of these, you've found where the drain is coming from.</p>
+
+  <div class="step">
+    <div class="k">Step one</div>
+    <h3>Audit your zone of genius</h3>
+    <p>If you don't know what your zone is, flip the question: <i>What don't I want?</i> What doesn't give me joy? What work has no market for it? What doesn't pay the money that lets me live the life I want?</p>
+    <div class="qs" id="q1">
+      <label><input type="checkbox" value="joy"> The work I'm doing gives me joy &mdash; I'd do it without the applause.</label>
+      <label><input type="checkbox" value="market"> There's a real market for it &mdash; people want it now and will pay.</label>
+      <label><input type="checkbox" value="money"> It pays enough to support the life I actually want.</label>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="k">Step two</div>
+    <h3>Look at your hardware and software</h3>
+    <div class="qs" id="q2">
+      <label><input type="checkbox" value="sleep"> I'm actually getting enough sleep.</label>
+      <label><input type="checkbox" value="food"> I'm eating the right food for my body.</label>
+      <label><input type="checkbox" value="mental"> I have people who help me process what's happening instead of carrying it alone.</label>
+      <label><input type="checkbox" value="emotional"> My relationships leave me feeling supported.</label>
+    </div>
+    <div class="score" id="score"></div>
+  </div>
+
+  <div class="step">
+    <div class="k">Step three</div>
+    <h3>Your one move</h3>
+    <p>Pick the single &ldquo;no&rdquo; above that would change the most, and name what you'll do about it this week.</p>
+    <textarea id="move" placeholder="The no I'm fixing first: ______  &middot;  This week I will: ______"></textarea><br>
+    <button class="go" id="lockBtn" type="button">Lock It In</button>
+    <div class="stamp" id="stamp"></div>
+    <p class="micro">Your audit stays on this device. Come back next month &mdash; it'll still be here, asking if the no turned into a yes.</p>
+  </div>
+</div>
+
+<h2>Next read</h2>
+<section class="next rv">
+  <div class="frame">
+    <img src="../assets/pd/burnout-productivity-system.jpg" alt="Sketchnote: Maximum Productivity System by Sharran Srivatsaa — Audit, Build, Calendar and Triggers. Productivity is a system. Build assets. Free your attention.">
+    <div class="tag">Sharran Srivatsaa &middot; Audit &rarr; Build &rarr; Triggers</div>
+  </div>
+  <div>
+    <div class="k">The companion post</div>
+    <h3>Become Dangerously Productive Like a CEO</h3>
+    <p>Once you're in your zone and both systems are running, momentum needs a system. Sharran's follow-up lays out his: audit where time and energy really go, build one repeatable system at a time, and put each one on a calendar or a trigger so it runs without reminders. One complete system beats five half-built ones.</p>
+    <p class="big">Momentum isn't a mood. It's a system you built on purpose.</p>
+  </div>
+</section>
+
+<div class="creed rv">
+  <div class="m">Work in your zone. <b>Keep both systems running.</b></div>
+  <div class="v">Stop optimizing for comfort. Start optimizing for momentum.</div>
+</div>
+
+<div class="vc">Growth Hub &middot; Personal Development &middot; Burnout Is A Skill Issue &middot; v1.0 (open link &mdash; no passcode) &mdash; Nov 2, 2026 &middot; Bobby Graham<span class="st">Source: Sharran Srivatsaa, <i>The Next Billion</i>, Oct 31, 2026 &middot; Sketchnotes &copy; Sharran Srivatsaa, used for internal team development &middot; Prepared by Lumen | FSG Business Development AI</span></div>
+
+</main>
+
+<script>
+(function(){
+  var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target);} });
+  },{threshold:0.15}) : null;
+  document.querySelectorAll('.rv').forEach(function(el){ io ? io.observe(el) : el.classList.add('on'); });
+
+  var K='gh-burnout-audit';
+  var boxes=document.querySelectorAll('.qs input'), move=document.getElementById('move'),
+      btn=document.getElementById('lockBtn'), stamp=document.getElementById('stamp'), score=document.getElementById('score');
+  function paint(){
+    var yes=0;
+    boxes.forEach(function(b){ b.parentNode.classList.toggle('yes',b.checked); if(b.checked) yes++; });
+    var no=boxes.length-yes;
+    score.innerHTML = no===0 ? '<b>7/7</b> Both systems running. Now protect it.' :
+      '<b>'+yes+'/7</b> '+no+(no===1?' no':' nos')+' &mdash; that’s where the drain is.';
+  }
+  function save(){
+    var s={yes:[],text:(move.value||'').trim(),date:null};
+    boxes.forEach(function(b){ if(b.checked) s.yes.push(b.value); });
+    try{ var old=JSON.parse(localStorage.getItem(K)||'null'); if(old&&old.date) s.date=old.date; localStorage.setItem(K,JSON.stringify(s)); }catch(e){}
+    return s;
+  }
+  try{
+    var saved=JSON.parse(localStorage.getItem(K)||'null');
+    if(saved){
+      boxes.forEach(function(b){ b.checked=(saved.yes||[]).indexOf(b.value)>-1; });
+      if(saved.text) move.value=saved.text;
+      if(saved.date) stamp.textContent='Locked in '+saved.date+' — did the no become a yes?';
+    }
+  }catch(e){}
+  paint();
+  boxes.forEach(function(b){ b.addEventListener('change',function(){ paint(); save(); }); });
+  btn.addEventListener('click',function(){
+    var t=(move.value||'').trim();
+    if(!t){ stamp.textContent='Name the one move first. One sentence.'; move.focus(); return; }
+    var d=new Date().toLocaleDateString('en-US',{month:'short',day:'numeric'});
+    var s=save(); s.date=d; try{ localStorage.setItem(K,JSON.stringify(s)); }catch(e){}
+    stamp.textContent='★ Locked in '+d+' — optimize for momentum.';
+  });
+})();
+</script>
+
+<style media="print">
+.crumb{display:none!important}
+body{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+.sys,.gut,.next{display:grid!important}
+.rv{opacity:1!important;transform:none!important}
+</style>
+
+</body>
+</html>
