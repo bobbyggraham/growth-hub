@@ -108,12 +108,17 @@ p{margin:16px 0;font-size:17px}
 .score b{color:var(--gold);font-size:22px;margin-right:6px}
 
 /* next read */
-.next{display:grid;grid-template-columns:minmax(260px,480px) 1fr;gap:30px;align-items:center;margin:48px 0 0}
-.next .frame{position:relative;transform:rotate(-1.5deg)}
-.next .frame img{display:block;width:100%;border:5px solid var(--navy);border-radius:6px;box-shadow:0 18px 44px rgba(11,20,33,.3);background:#fff}
-.next .frame .tag{display:inline-block;margin-top:12px;background:var(--deep);color:#fff;font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:7px 14px;border-left:4px solid var(--gold)}
+.next{margin:34px 0 0}
+.next .band{margin:0 0 26px}
+.next .band a{display:block;line-height:0}
+.next .band img{transition:transform .25s ease}
+.next .band a:hover img{transform:translateY(-3px)}
 .next .k{font-family:'Oswald',sans-serif;letter-spacing:.2em;text-transform:uppercase;font-size:12px;color:var(--gold)}
 .next h3{font-family:'Oswald',sans-serif;color:var(--navy);font-size:24px;text-transform:uppercase;letter-spacing:.04em;margin:4px 0 8px}
+.next h3 a{color:var(--navy);text-decoration:none;border-bottom:3px solid var(--gold)}
+.next h3 a:hover{color:var(--blue)}
+.pdfbtn{display:inline-block;margin-top:8px;background:var(--navy);color:#fff;text-decoration:none;border-radius:999px;padding:13px 30px;font-family:'Oswald',sans-serif;font-size:16px;letter-spacing:.12em;text-transform:uppercase;border-bottom:3px solid var(--gold);transition:transform .15s ease,box-shadow .15s ease}
+.pdfbtn:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(19,56,101,.35)}
 
 .creed{background:var(--navy);color:#fff;text-align:center;padding:40px 24px;border-radius:12px;margin:56px 0 0}
 .creed .m{font-family:'Oswald',sans-serif;font-size:clamp(22px,4vw,32px);text-transform:uppercase;letter-spacing:.05em}
@@ -124,10 +129,9 @@ p{margin:16px 0;font-size:17px}
 .vc .st{display:block;margin-top:6px}
 
 @media(max-width:720px){
-  .sys,.next{grid-template-columns:1fr}
+  .sys{grid-template-columns:1fr}
   .word{padding:32px 22px}
   .audit{padding:32px 22px}
-  .next .frame{max-width:420px;margin:0 auto}
 }
 
 /* DYNAMIC — scroll reveals */
@@ -276,16 +280,17 @@ p{margin:16px 0;font-size:17px}
 
 <h2>Next read</h2>
 <section class="next rv">
-  <div class="frame">
-    <img src="../assets/pd/burnout-productivity-system.jpg" alt="Sketchnote: Maximum Productivity System by Sharran Srivatsaa — Audit, Build, Calendar and Triggers. Productivity is a system. Build assets. Free your attention.">
-    <div class="tag">Sharran Srivatsaa &middot; Audit &rarr; Build &rarr; Triggers</div>
+  <div class="band">
+    <a href="maximum-productivity-system.html" title="Open the guide">
+      <img src="../assets/pd/burnout-productivity-system.jpg" alt="Sketchnote: Maximum Productivity System by Sharran Srivatsaa — Audit, Build, Calendar and Triggers. Productivity is a system. Build assets. Free your attention.">
+    </a>
+    <div class="tag">Sharran Srivatsaa &middot; Audit &rarr; Build &rarr; Calendar &amp; Triggers &middot; Click to open the guide</div>
   </div>
-  <div>
-    <div class="k">The companion post</div>
-    <h3>Become Dangerously Productive Like a CEO</h3>
-    <p>Once you're in your zone and both systems are running, momentum needs a system. Sharran's follow-up lays out his: audit where time and energy really go, build one repeatable system at a time, and put each one on a calendar or a trigger so it runs without reminders. One complete system beats five half-built ones.</p>
-    <p class="big">Momentum isn't a mood. It's a system you built on purpose.</p>
-  </div>
+  <div class="k">The companion guide</div>
+  <h3><a href="maximum-productivity-system.html">Dangerously Productive Like a CEO</a></h3>
+  <p>Once you're in your zone and both systems are running, momentum needs a system. Sharran's follow-up lays out his: audit where time and energy really go, build one repeatable system at a time, and put each one on a calendar or a trigger so it runs without reminders. One complete system beats five half-built ones.</p>
+  <p class="big">Momentum isn't a mood. It's a system you built on purpose.</p>
+  <a class="pdfbtn" href="maximum-productivity-system.html">Open the guide &rarr;</a>
 </section>
 
 <div class="creed rv">
@@ -293,7 +298,7 @@ p{margin:16px 0;font-size:17px}
   <div class="v">Stop optimizing for comfort. Start optimizing for momentum.</div>
 </div>
 
-<div class="vc">Growth Hub &middot; Personal Development &middot; Burnout Is A Skill Issue &middot; v1.0 (open link &mdash; no passcode) &mdash; Nov 2, 2026 &middot; Bobby Graham<span class="st">Source: Sharran Srivatsaa, <i>The Next Billion</i>, Oct 31, 2026 &middot; Sketchnotes &copy; Sharran Srivatsaa, used for internal team development &middot; Prepared by Lumen | FSG Business Development AI</span></div>
+<div class="vc">Growth Hub &middot; Personal Development &middot; Burnout Is A Skill Issue &middot; v1.2 (open link &mdash; no passcode) &mdash; Nov 2, 2026 &middot; Bobby Graham<span class="st">Source: Sharran Srivatsaa, <i>The Next Billion</i>, Oct 31, 2026 &middot; Sketchnotes &copy; Sharran Srivatsaa, used for internal team development &middot; Prepared by Lumen | FSG Business Development AI</span></div>
 
 </main>
 
@@ -343,7 +348,7 @@ p{margin:16px 0;font-size:17px}
 <style media="print">
 .crumb{display:none!important}
 body{print-color-adjust:exact;-webkit-print-color-adjust:exact}
-.sys,.gut,.next{display:grid!important}
+.sys,.gut{display:grid!important}
 .rv{opacity:1!important;transform:none!important}
 </style>
 

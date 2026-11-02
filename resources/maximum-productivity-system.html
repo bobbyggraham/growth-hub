@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Dangerously Productive Like a CEO — Personal Development | Growth Hub</title>
+<link rel="icon" href="../apple-touch-icon.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --deep:#0b1421; --navy:#133865; --blue:#365aa0; --steel:#718dbc;
+  --lite:#c5d9fa; --gray:#ededed; --gold:#ebb018; --link:#4e84de;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Open Sans',Arial,sans-serif;color:var(--deep);background:#fff;line-height:1.65}
+a{color:var(--link)}
+.crumb{background:var(--deep);padding:10px 22px;font-size:13px}
+.crumb a{color:var(--lite);text-decoration:none;margin-right:14px}
+.crumb a:hover{color:var(--gold)}
+
+/* HERO */
+.hero{background:linear-gradient(160deg,var(--deep) 0%,var(--navy) 70%,#1a4a85 100%);color:#fff;padding:56px 22px 48px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--gold)}
+.hwrap{max-width:960px;margin:0 auto}
+.eyebrow{font-family:'Oswald',sans-serif;letter-spacing:.22em;text-transform:uppercase;font-size:13px;color:var(--gold);margin-bottom:14px}
+h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(38px,7vw,64px);line-height:1.05;text-transform:uppercase}
+h1 span{color:var(--gold)}
+.sub{margin-top:16px;font-size:18px;color:var(--lite);max-width:640px}
+.spoke-pill{display:inline-block;margin-top:22px;border:1px solid var(--gold);color:var(--gold);font-family:'Oswald',sans-serif;letter-spacing:.14em;text-transform:uppercase;font-size:12px;padding:6px 14px;border-radius:999px}
+.credit{margin-top:18px;font-size:13px;color:var(--steel)}
+.credit b{color:var(--lite);font-weight:600}
+
+main{max-width:960px;margin:0 auto;padding:48px 22px 80px}
+h2{font-family:'Oswald',sans-serif;color:var(--navy);font-size:26px;text-transform:uppercase;letter-spacing:.04em;margin:52px 0 6px}
+h2::after{content:"";display:block;width:56px;height:3px;background:var(--gold);margin-top:8px}
+h2 .n{display:inline-block;width:34px;height:34px;line-height:34px;text-align:center;border-radius:50%;background:var(--gold);color:var(--deep);font-size:18px;margin-right:12px;vertical-align:middle}
+p{margin:16px 0;font-size:17px}
+.big{font-size:20px;font-weight:600;color:var(--navy)}
+
+/* full-width sketchnote band */
+.band{margin:34px 0 40px}
+.band img{display:block;width:100%;border-radius:10px;border:5px solid var(--gold);box-shadow:0 18px 44px rgba(11,20,33,.3);background:#fff}
+.band .tag{display:inline-block;margin-top:12px;background:var(--deep);color:#fff;font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:7px 14px;border-left:4px solid var(--gold)}
+
+/* THE WORD (the message) */
+.word{background:var(--deep);color:#fff;border-radius:12px;padding:44px 36px;margin:40px 0;border-top:5px solid var(--gold)}
+.word p{color:#e9eef7;font-size:18px}
+.word .punch{font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:26px;letter-spacing:.03em;color:var(--gold);margin:26px 0 10px;line-height:1.2}
+.word .beat{color:var(--steel);font-style:italic}
+.callout{background:var(--lite);border-left:5px solid var(--gold);padding:18px 22px;margin:26px 0;color:var(--navy);font-size:16px}
+.callout b{color:var(--navy)}
+
+/* myth strikeout list */
+.myth{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:22px 0}
+.myth div{border:1px dashed var(--steel);border-radius:8px;padding:16px 18px;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:15px;color:var(--steel);text-decoration:line-through;text-decoration-color:var(--gold);text-decoration-thickness:3px;text-align:center}
+
+/* the 5 am club growth strip */
+.grow{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 18px;margin:24px 0;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.08em;color:var(--navy)}
+.grow span{font-size:clamp(18px,3.2vw,30px);font-weight:600}
+.grow span:last-child{color:var(--gold);font-size:clamp(26px,4.6vw,42px)}
+.grow i{color:var(--steel);font-style:normal;font-size:18px}
+
+/* cards */
+.gut{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:26px 0}
+.gcard{border:1px solid var(--gray);border-top:4px solid var(--gold);border-radius:8px;padding:20px}
+.gcard h3{font-family:'Oswald',sans-serif;color:var(--navy);font-size:17px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+.gcard h3 .s{display:inline-block;width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;background:var(--gold);color:var(--deep);font-size:14px;margin-right:8px}
+.gcard p{font-size:15px;margin:0}
+.gcard .q{display:block;margin-top:12px;padding-top:10px;border-top:1px solid var(--gray);font-size:14px;color:var(--navy);font-style:italic}
+
+/* build loop */
+.loop{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:10px;margin:26px 0}
+.loop .st{background:var(--navy);color:#fff;border-radius:10px;padding:22px 16px;text-align:center;border-top:5px solid var(--gold)}
+.loop .st b{display:block;font-family:'Oswald',sans-serif;font-size:22px;text-transform:uppercase;letter-spacing:.06em}
+.loop .st small{display:block;margin-top:6px;color:var(--lite);font-size:13px}
+.loop .ar{font-family:'Oswald',sans-serif;font-size:30px;color:var(--gold);text-align:center}
+
+/* two systems */
+.sys{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:26px 0}
+.scard{border-radius:12px;padding:26px 24px;color:#fff;background:var(--navy);border-top:6px solid var(--gold)}
+.scard.tr{background:var(--deep)}
+.scard .k{font-family:'Oswald',sans-serif;letter-spacing:.2em;text-transform:uppercase;font-size:12px;color:var(--gold)}
+.scard h3{font-family:'Oswald',sans-serif;font-size:28px;text-transform:uppercase;letter-spacing:.04em;margin:4px 0 2px}
+.scard .d{color:var(--lite);font-size:14px;margin-bottom:14px}
+.scard ul{list-style:none;margin:0}
+.scard li{padding:10px 0;border-top:1px solid rgba(255,255,255,.12);font-size:15px}
+.scard li b{color:var(--gold)}
+.scard .chk{margin-top:14px;background:rgba(255,255,255,.07);border-radius:8px;padding:12px 14px;font-size:14px;color:var(--lite)}
+.scard .chk b{color:#fff;display:block;font-family:'Oswald',sans-serif;letter-spacing:.14em;text-transform:uppercase;font-size:12px;margin-bottom:4px}
+.scard ol{margin:8px 0 0 20px;color:#fff;font-size:15px}
+.scard ol li{border:0;padding:3px 0}
+
+/* marquee band */
+.stage{background:var(--navy);overflow:hidden;padding:14px 0;margin:44px -22px;border-top:3px solid var(--gold);border-bottom:3px solid var(--gold)}
+.stage .track{display:flex;gap:48px;white-space:nowrap;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.18em;font-size:15px;color:#fff;animation:roll 26s linear infinite;width:max-content}
+.stage .track span b{color:var(--gold)}
+@keyframes roll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.stage .track{animation:none;flex-wrap:wrap;white-space:normal;justify-content:center}}
+
+/* START THIS WEEK — interactive */
+.audit{background:linear-gradient(160deg,var(--deep),var(--navy));color:#fff;border-radius:14px;padding:44px 34px;margin:56px 0 0;border-top:6px solid var(--gold)}
+.audit h2{color:var(--gold);margin:0 0 8px}
+.audit h2::after{background:#fff;opacity:.35}
+.audit p{color:var(--lite)}
+.audit .step{margin-top:26px}
+.audit .step .k{font-family:'Oswald',sans-serif;letter-spacing:.2em;text-transform:uppercase;font-size:12px;color:var(--gold)}
+.audit .step h3{font-family:'Oswald',sans-serif;font-size:22px;text-transform:uppercase;letter-spacing:.04em;margin:4px 0 8px}
+.audit input[type=text],.audit textarea{width:100%;border:2px solid var(--steel);border-radius:10px;background:#0e1a2e;color:#fff;padding:14px 16px;font-family:'Open Sans',Arial,sans-serif;font-size:16px;margin-top:10px}
+.audit textarea{min-height:72px;resize:vertical}
+.audit input:focus,.audit textarea:focus{outline:none;border-color:var(--gold)}
+.pick{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.pick label{display:block;background:#0e1a2e;border:2px solid var(--steel);border-radius:10px;padding:14px 16px;cursor:pointer;transition:border-color .15s}
+.pick label:hover{border-color:var(--gold)}
+.pick label.on{border-color:var(--gold);background:#152a4a}
+.pick input{display:none}
+.pick b{display:block;font-family:'Oswald',sans-serif;letter-spacing:.14em;text-transform:uppercase;font-size:14px;color:var(--gold)}
+.pick small{display:block;color:var(--lite);font-size:13px;margin-top:4px}
+.audit .go{display:inline-block;margin-top:18px;background:var(--gold);color:var(--deep);border:0;border-radius:999px;padding:15px 38px;font-family:'Oswald',sans-serif;font-size:18px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease}
+.audit .go:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(235,176,24,.35)}
+.audit .stamp{margin-top:18px;font-family:'Oswald',sans-serif;letter-spacing:.14em;text-transform:uppercase;font-size:15px;color:var(--gold);min-height:22px}
+.audit .micro{font-size:13px;color:var(--steel);margin-top:10px}
+
+/* related read */
+.rel{display:grid;grid-template-columns:minmax(220px,300px) 1fr;gap:26px;align-items:center;margin:48px 0 0;border:1px solid var(--gray);border-left:6px solid var(--gold);border-radius:10px;padding:22px}
+.rel img{display:block;width:100%;border-radius:6px;border:3px solid var(--navy)}
+.rel .k{font-family:'Oswald',sans-serif;letter-spacing:.2em;text-transform:uppercase;font-size:12px;color:var(--gold)}
+.rel h3{font-family:'Oswald',sans-serif;color:var(--navy);font-size:22px;text-transform:uppercase;letter-spacing:.04em;margin:4px 0 6px}
+.rel h3 a{color:var(--navy);text-decoration:none;border-bottom:3px solid var(--gold)}
+.rel h3 a:hover{color:var(--blue)}
+.rel p{font-size:15px;margin:6px 0 0}
+
+.creed{background:var(--navy);color:#fff;text-align:center;padding:40px 24px;border-radius:12px;margin:56px 0 0}
+.creed .m{font-family:'Oswald',sans-serif;font-size:clamp(22px,4vw,32px);text-transform:uppercase;letter-spacing:.05em}
+.creed .m b{color:var(--gold)}
+.creed .v{margin-top:12px;color:var(--lite);font-size:15px}
+
+.vc{margin-top:56px;border-top:1px solid var(--gray);padding-top:14px;font-size:13px;color:var(--steel)}
+.vc .st{display:block;margin-top:6px}
+
+@media(max-width:720px){
+  .sys,.rel,.pick{grid-template-columns:1fr}
+  .loop{grid-template-columns:1fr}
+  .loop .ar{transform:rotate(90deg)}
+  .word{padding:32px 22px}
+  .audit{padding:32px 22px}
+}
+
+/* DYNAMIC — scroll reveals */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.rv.on{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<div class="crumb"><a href="../index.html">&larr; Growth Hub</a><a href="../tools/plays.html">The Playbook</a><a href="burnout-skill-issue.html">Burnout Is A Skill Issue</a></div>
+
+<header class="hero"><div class="hwrap">
+  <div class="eyebrow">Personal Development &middot; The Development Spoke</div>
+  <h1>Dangerously Productive <span>Like a CEO</span></h1>
+  <p class="sub">Productivity isn't hustle. It's a system &mdash; Audit, Build, then Calendar &amp; Triggers &mdash; that gets the repeated work off your plate and your attention back on the work that moves.</p>
+  <span class="spoke-pill">Development &middot; Productivity is a system</span>
+  <div class="credit">Adapted from <b>Sharran Srivatsaa</b>, <i>The Next Billion</i> &mdash; &ldquo;Become Dangerously Productive Like a CEO (Just Copy Me)&rdquo; (Oct 24, 2026). Sketchnote by Sharran.</div>
+</div></header>
+
+<main>
+
+<h2>The advice that burns people out</h2>
+<p>Most productivity advice tells you the same three things. If it worked, business owners wouldn't be more burned out than ever.</p>
+
+<div class="myth rv" aria-label="What doesn't make you productive">
+  <div>Work earlier</div>
+  <div>Sleep less</div>
+  <div>Hustle more</div>
+</div>
+
+<p>Sharran would know. Building his first billion-dollar business with a newborn at home, he wasn't burning the candle at both ends &mdash; in his words, he'd doused the thing in gasoline and set the whole wick on fire. Asleep at the laptop at 3 AM, up for a 7 AM meeting, and his wife watching it all play out. His doctor's prescription, after a few weeks of tracking, wasn't medication. It was: <b>wake up earlier.</b> Every time he did, his numbers improved across the board.</p>
+<p>He knew he'd never hold a 5 AM wake-up without stakes. So he asked three friends to jump on a call with him at 5 AM for one week. They invited others.</p>
+
+<div class="grow rv" aria-label="How the 5 AM Club grew"><span>3</span><i>&rarr;</i><span>30</span><i>&rarr;</i><span>300</span><i>&rarr;</i><span>3,000</span><i>&rarr;</i><span>10,000+</span></div>
+<p>That's the 5 AM Club &mdash; seven days a week, 365 days a year, for over a decade, with two or three thousand people live every morning. Accountability is what made it stick. And that was the first lesson of the system.</p>
+
+<p class="big">Productivity is a system. Not 16-hour days and ruined health.</p>
+
+<div class="band rv">
+  <img src="../assets/pd/burnout-productivity-system.jpg" alt="Sketchnote: Maximum Productivity System by Sharran Srivatsaa — 1 Audit: see where time and energy really go, screenshot every hour, AI check-in every 50–60 minutes, end of day ask AI for the truth. 2 Build: repeatable or worth doing again? Systemize. Build one system at a time. Complete, prove, move to the next. 3 Calendar and Triggers: does this task still need me in the room? Trigger is an event; schedule is a time. Productivity is a system. Build assets. Free your attention.">
+  <div class="tag">The Maximum Productivity System &middot; Audit &rarr; Build &rarr; Calendar &amp; Triggers</div>
+</div>
+
+<h2><span class="n">1</span>Audit</h2>
+<p>You can't fix what you can't see. Most people think their day is deep work; the audit usually shows three hours of email and Slack. You don't need a 5 AM start to run one &mdash; you need evidence. Here's the version you can do today.</p>
+
+<div class="gut rv">
+  <div class="gcard"><h3><span class="s">1</span>Screenshot every hour</h3><p>Take a screenshot of your screen once an hour. It's proof of what you were actually doing at work &mdash; not what you remember doing.</p></div>
+  <div class="gcard"><h3><span class="s">2</span>AI check-in every 50&ndash;60 min</h3><p>Have an AI ask you what you're actually doing right now. It keeps you accountable to the hour you're in.</p></div>
+  <div class="gcard"><h3><span class="s">3</span>End of day: ask for the truth</h3><p>Hand the screenshots and check-ins to AI and ask it to pull it together and tell you the truth &mdash; not the version you wanted to hear.</p></div>
+</div>
+
+<div class="callout rv"><b>Evidence &rarr; patterns &rarr; honest review.</b> The audit shows where your time and energy are being invested each day. But without step two, that time can still be wasted on the wrong things.</div>
+
+<h2><span class="n">2</span>Build</h2>
+<p>Once the audit shows where the time goes, ask two questions about each task: <b>Is it repeatable?</b> <b>Is it worth doing more than once?</b> If the answer is yes to either, build a system for it. Every repeated task is either burning cognitive capacity or building an asset &mdash; and the way you convert one into the other is by capturing what you know into something reusable.</p>
+
+<div class="loop rv">
+  <div class="st"><b>Complete</b><small>one system, start to finish</small></div>
+  <div class="ar">&rarr;</div>
+  <div class="st"><b>Prove</b><small>it works in the real week</small></div>
+  <div class="ar">&rarr;</div>
+  <div class="st"><b>Next</b><small>then, and only then, the next one</small></div>
+</div>
+
+<div class="word rv">
+  <p>This only happens if you actually sit down and build a system, one at a time, instead of staring at the whole list with analysis paralysis.</p>
+  <p class="punch">One system built properly is worth five half-built systems you will never use.</p>
+  <p class="beat">Then, once a system works, ask one more question&hellip;</p>
+  <p class="punch">Does this task still need me in the room?</p>
+  <p>If the answer is no, there are two ways to get yourself out of it.</p>
+</div>
+
+<div class="stage" aria-hidden="true"><div class="track">
+  <span>Audit &middot; Build &middot; <b>Calendar &amp; Triggers</b></span><span>Productivity is a <b>system</b></span><span>Build <b>assets</b></span><span>Free your <b>attention</b></span><span>One complete system beats <b>five half-built</b></span><span>Does this still need me <b>in the room?</b></span>
+  <span>Audit &middot; Build &middot; <b>Calendar &amp; Triggers</b></span><span>Productivity is a <b>system</b></span><span>Build <b>assets</b></span><span>Free your <b>attention</b></span><span>One complete system beats <b>five half-built</b></span><span>Does this still need me <b>in the room?</b></span>
+</div></div>
+
+<h2><span class="n">3</span>Calendar &amp; Triggers</h2>
+<p>Two types of system get you out of the room. One runs because something happened. The other runs because it's time. Picking the right one is the whole game.</p>
+
+<div class="sys rv">
+  <div class="scard tr">
+    <div class="k">Runs because of an input</div>
+    <h3>Trigger</h3>
+    <div class="d">The event is the trigger. You never touch any part of the task.</div>
+    <ul>
+      <li>A lead fills out a form</li>
+      <li>&rarr; an automation sends the follow-up</li>
+      <li>&rarr; a reminder goes out automatically</li>
+    </ul>
+    <div class="chk"><b>Build it as a trigger when</b>The task only works when an input happens &mdash; a payment, a signup, a cancellation.</div>
+  </div>
+  <div class="scard">
+    <div class="k">Runs because of a time</div>
+    <h3>Schedule</h3>
+    <div class="d">The time slot is the whole system. It runs regardless of what else is going on.</div>
+    <ul>
+      <li><b>At home:</b> his 14-year-old's one chore is Sunday trash. The weekly reminder was becoming a part-time job, so it became a 20-second Sunday check-in:
+        <ol><li>Did I remember?</li><li>Did I do it well?</li><li>Did I have a good attitude?</li></ol></li>
+      <li><b>At work:</b> the same system across the company, three questions reworded:
+        <ol><li>What worked?</li><li>What didn't?</li><li>What would you do if you were CEO?</li></ol></li>
+    </ul>
+    <div class="chk"><b>Build it as a calendar when</b>The task works no matter what else is going on &mdash; a weekly review, a daily habit.</div>
+  </div>
+</div>
+
+<div class="callout rv"><b>Match the system to the task.</b> A calendar system for something that should be a trigger means you're waiting on something that hasn't happened yet. A trigger for something that should be a calendar means it only runs when a specific event happens &mdash; which could mean it barely happens at all.</div>
+
+<h2>Where this shows up in the work</h2>
+<div class="gut rv">
+  <div class="gcard"><h3>Audit your selling day</h3><p>Run the hourly screenshot for one week. Most reps will find the &ldquo;deep work&rdquo; was CRM cleanup and email. The number that matters is hours in front of customers &mdash; now you know yours.</p></div>
+  <div class="gcard"><h3>Build one system, not six</h3><p>The proposal you rebuild every time, the site-walk checklist, the kickoff email &mdash; pick the one you repeat most, finish it properly, and prove it in a live deal before you touch the next.</p></div>
+  <div class="gcard"><h3>Triggers live in Engage</h3><p>Proposal sent &rarr; three-day follow-up. Stage change &rarr; the next task appears. If it only matters when the customer does something, don't put it on a calendar &mdash; wire it to the event.</p></div>
+  <div class="gcard"><h3>The Friday pipeline review</h3><p>What worked, what didn't, what would you do if you ran the office? Same slot every week, regardless of the week. That's a calendar system &mdash; and it's where the next system to build shows up.</p></div>
+</div>
+
+<div class="audit rv">
+  <h2>Start this week</h2>
+  <p>Sharran's three moves, in order. Name them here &mdash; it stays on your device.</p>
+
+  <div class="step">
+    <div class="k">Step one</div>
+    <h3>Audit a day with AI</h3>
+    <p>Screenshot every hour, check in every 50&ndash;60 minutes, and ask for the truth at the end. Which day?</p>
+    <input type="text" id="aday" placeholder="The day I'm auditing: ______">
+  </div>
+
+  <div class="step">
+    <div class="k">Step two</div>
+    <h3>Pick ONE system to build</h3>
+    <p>At the end of the week, use the audit to find the daily task that could be a system. Make a task for next week to build just one.</p>
+    <textarea id="asys" placeholder="The one repeated task I'm turning into a system: ______"></textarea>
+  </div>
+
+  <div class="step">
+    <div class="k">Step three</div>
+    <h3>Trigger or schedule?</h3>
+    <p>Ask: does this task still need me in the room? Then choose how it runs without you.</p>
+    <div class="pick" id="pick">
+      <label><input type="radio" name="kind" value="trigger"><b>Trigger</b><small>Runs when an input happens &mdash; a lead, a payment, a stage change.</small></label>
+      <label><input type="radio" name="kind" value="schedule"><b>Schedule</b><small>Runs at a set time no matter what &mdash; a daily habit, a weekly review.</small></label>
+    </div>
+    <button class="go" id="lockBtn" type="button">Lock It In</button>
+    <div class="stamp" id="stamp"></div>
+    <p class="micro">Stays on this device. Come back next Friday &mdash; it'll ask whether the system got built.</p>
+  </div>
+</div>
+
+<section class="rel rv">
+  <img src="../assets/pd/burnout-zone-of-genius.jpg" alt="Sketchnote: Find Your Zone of Genius — Joy, Market, Money">
+  <div>
+    <div class="k">Start here if you haven't</div>
+    <h3><a href="burnout-skill-issue.html">Burnout Is A Skill Issue</a></h3>
+    <p>Before you systemize the work, make sure it's the right work. Find your zone of genius, keep your hardware and software running, and stop optimizing for comfort.</p>
+  </div>
+</section>
+
+<div class="creed rv">
+  <div class="m">Build assets. <b>Free your attention.</b></div>
+  <div class="v">Audit your days. Pick one system. Choose trigger or schedule. Stop relying on reminders.</div>
+</div>
+
+<div class="vc">Growth Hub &middot; Personal Development &middot; Dangerously Productive Like a CEO &middot; v1.0 (open link &mdash; no passcode) &mdash; Nov 2, 2026 &middot; Bobby Graham<span class="st">Source: Sharran Srivatsaa, <i>The Next Billion</i>, Oct 24, 2026 &middot; Sketchnote &copy; Sharran Srivatsaa, used for internal team development &middot; Prepared by Lumen | FSG Business Development AI</span></div>
+
+</main>
+
+<script>
+(function(){
+  var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target);} });
+  },{threshold:0.15}) : null;
+  document.querySelectorAll('.rv').forEach(function(el){ io ? io.observe(el) : el.classList.add('on'); });
+
+  var K='gh-mps-start';
+  var day=document.getElementById('aday'), sys=document.getElementById('asys'),
+      radios=document.querySelectorAll('#pick input'), btn=document.getElementById('lockBtn'), stamp=document.getElementById('stamp');
+  function paint(){ radios.forEach(function(r){ r.parentNode.classList.toggle('on',r.checked); }); }
+  function kind(){ var k=''; radios.forEach(function(r){ if(r.checked) k=r.value; }); return k; }
+  try{
+    var saved=JSON.parse(localStorage.getItem(K)||'null');
+    if(saved){
+      if(saved.day) day.value=saved.day;
+      if(saved.sys) sys.value=saved.sys;
+      radios.forEach(function(r){ r.checked=(r.value===saved.kind); });
+      if(saved.date) stamp.textContent='Locked in '+saved.date+' — did the system get built?';
+    }
+  }catch(e){}
+  paint();
+  radios.forEach(function(r){ r.addEventListener('change',paint); });
+  btn.addEventListener('click',function(){
+    var s=(sys.value||'').trim();
+    if(!s){ stamp.textContent='Name the one system first. One sentence.'; sys.focus(); return; }
+    var d=new Date().toLocaleDateString('en-US',{month:'short',day:'numeric'});
+    try{ localStorage.setItem(K,JSON.stringify({day:(day.value||'').trim(),sys:s,kind:kind(),date:d})); }catch(e){}
+    stamp.textContent='★ Locked in '+d+' — one complete system beats five half-built.';
+  });
+})();
+</script>
+
+<style media="print">
+.crumb{display:none!important}
+body{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+.sys,.gut,.rel,.loop{display:grid!important}
+.rv{opacity:1!important;transform:none!important}
+</style>
+
+</body>
+</html>
