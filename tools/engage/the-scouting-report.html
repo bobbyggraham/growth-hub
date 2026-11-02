@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engage Plays — The Scouting Report · Season Finale</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='115' fill='%23133865'/><g stroke='%23c5d9fa' stroke-width='22' stroke-linecap='round'><line x1='256' y1='256' x2='256' y2='96'/><line x1='256' y1='256' x2='394.6' y2='176'/><line x1='256' y1='256' x2='394.6' y2='336'/><line x1='256' y1='256' x2='256' y2='416'/><line x1='256' y1='256' x2='117.4' y2='336'/><line x1='256' y1='256' x2='117.4' y2='176'/></g><circle cx='256' cy='96' r='42' fill='%23ffffff'/><circle cx='394.6' cy='176' r='42' fill='%23c5d9fa'/><circle cx='394.6' cy='336' r='42' fill='%23ffffff'/><circle cx='256' cy='416' r='42' fill='%23c5d9fa'/><circle cx='117.4' cy='336' r='42' fill='%23ffffff'/><circle cx='117.4' cy='176' r='42' fill='%23ebb018'/><circle cx='256' cy='256' r='76' fill='%23ebb018'/></svg>">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fsg-deep-navy: #0b1421;
+    --fsg-dark-navy: #133865;
+    --fsg-brand-blue: #365aa0;
+    --fsg-steel-blue: #718dbc;
+    --fsg-light-blue: #c5d9fa;
+    --fsg-light-gray: #ededed;
+    --fsg-gold: #ebb018;
+    --fsg-bright-blue: #4e84de;
+    --fsg-red: #c0392b;
+    --fsg-green: #1e8a4c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    color: var(--fsg-deep-navy);
+    background: #ffffff;
+    line-height: 1.55;
+    font-size: 16px;
+  }
+  .page { max-width: 960px; margin: 0 auto; padding: 32px 24px 48px; }
+
+  .hero {
+    background: var(--fsg-dark-navy);
+    border-radius: 8px;
+    padding: 28px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .hero .eyebrow { color: var(--fsg-light-blue); font-weight: 700; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+  .hero h1 { font-family: 'Oswald', Arial, sans-serif; font-weight: 700; font-size: 40px; color: #ffffff; line-height: 1.15; margin-bottom: 10px; }
+  .hero .subtitle { color: var(--fsg-light-blue); font-size: 14px; max-width: 560px; }
+  .hero .org { text-align: right; color: #fff; }
+  .hero .org .fsg { font-family: 'Oswald', Arial, sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 1px; }
+  .hero .org .sub { color: var(--fsg-steel-blue); font-size: 12px; margin-top: 4px; }
+  .gold-rule { border: none; border-top: 3px solid var(--fsg-gold); margin: 18px 0 28px; }
+
+  .creed { background: var(--fsg-dark-navy); border-radius: 8px; text-align: center; padding: 22px 24px; margin: 6px 0 8px; }
+  .creed .k { color: var(--fsg-gold); font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:13px; letter-spacing:3px; text-transform:uppercase; margin-bottom:6px; }
+  .creed .q { color:#fff; font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:26px; }
+  .mantra { text-align:center; color: var(--fsg-steel-blue); font-style: italic; margin: 14px 0 4px; }
+
+  h2 { font-family: 'Oswald', Arial, sans-serif; font-weight: 700; color: var(--fsg-dark-navy); font-size: 26px; margin: 38px 0 6px; padding-bottom: 6px; border-bottom: 2px solid var(--fsg-gold); }
+  p { margin: 12px 0; }
+  b { color: var(--fsg-deep-navy); }
+
+  .callout { background: var(--fsg-light-blue); border-left: 4px solid var(--fsg-gold); border-radius: 0 6px 6px 0; padding: 14px 20px; margin: 20px 0; color: var(--fsg-dark-navy); font-size: 15px; }
+  .whistle { background:#fdf0ee; border-left:4px solid var(--fsg-red); border-radius:0 6px 6px 0; padding:14px 20px; margin:20px 0; font-size:15px; }
+  .whistle b:first-child { color: var(--fsg-red); text-transform: uppercase; font-family:'Oswald',Arial,sans-serif; letter-spacing:1px; }
+
+  table.brand { width: 100%; border-collapse: collapse; font-size: 15px; margin: 16px 0; }
+  table.brand th { background: var(--fsg-dark-navy); color: #fff; text-align: left; padding: 10px 14px; font-weight: 700; }
+  table.brand td { padding: 10px 14px; vertical-align: top; }
+  table.brand tr:nth-child(even) td { background: var(--fsg-light-blue); }
+  table.brand td:first-child { font-weight: 700; white-space: nowrap; }
+
+  .tile { display:flex; align-items:stretch; background:var(--fsg-light-gray); border-radius:6px; overflow:hidden; margin:14px 0; }
+  .tile .badge { background:var(--fsg-dark-navy); color:#fff; font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:24px; display:flex; align-items:center; justify-content:center; min-width:64px; }
+  .tile .badge.gold { color: var(--fsg-gold); }
+  .tile .body { padding:14px 18px; }
+  .tile .body h4 { font-family:'Oswald',Arial,sans-serif; font-size:18px; color:var(--fsg-dark-navy); text-transform:uppercase; margin-bottom:4px; }
+  .tile .body p { margin:0; font-size:15px; }
+
+  .check { border:1.5px solid var(--fsg-light-gray); border-radius:8px; overflow:hidden; margin:16px 0; }
+  .check .bar { background:var(--fsg-light-gray); height:10px; }
+  .check .bar i { display:block; height:100%; width:0; background:var(--fsg-gold); transition:width .25s; }
+  .check .items { padding:6px 0; }
+  .check label { display:flex; gap:12px; align-items:flex-start; padding:12px 18px; cursor:pointer; font-size:15px; border-bottom:1px solid #f2f2f2; }
+  .check label:last-child { border-bottom:none; }
+  .check input { margin-top:4px; width:18px; height:18px; accent-color:var(--fsg-gold); flex:none; }
+  .check label.done { color:var(--fsg-steel-blue); }
+  .check label.done b { color:var(--fsg-steel-blue); text-decoration:line-through; }
+  .check .score { padding:10px 18px 14px; font-family:'Oswald',Arial,sans-serif; font-weight:600; color:var(--fsg-dark-navy); font-size:14px; letter-spacing:1px; text-transform:uppercase; }
+
+  .dd { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:16px 0; }
+  .dd .col { border-radius:8px; padding:16px 18px; font-size:15px; }
+  .dd .do { background:#eef7f1; border-top:4px solid var(--fsg-green); }
+  .dd .dont { background:#fdf0ee; border-top:4px solid var(--fsg-red); }
+  .dd h4 { font-family:'Oswald',Arial,sans-serif; text-transform:uppercase; letter-spacing:1px; font-size:16px; margin-bottom:8px; }
+  .dd .do h4 { color:var(--fsg-green); } .dd .dont h4 { color:var(--fsg-red); }
+  .dd ul { margin-left:18px; } .dd li { margin-bottom:8px; }
+  @media (max-width:640px){ .dd { grid-template-columns:1fr; } .hero h1 { font-size:32px; } table.brand { display:block; overflow-x:auto; } table.brand td:first-child { white-space:normal; } }
+
+  /* ---- Feature Drop stepper ---- */
+  .player { border:1.5px solid var(--fsg-light-gray); border-radius:10px; overflow:hidden; margin:18px 0 8px; }
+  .player .phead { background:var(--fsg-dark-navy); padding:14px 18px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+  .player .ptitle { color:#fff; font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:16px; letter-spacing:1px; text-transform:uppercase; }
+  .player .pdots { display:flex; gap:8px; }
+  .player .pdots button { width:30px; height:30px; border-radius:50%; border:1.5px solid var(--fsg-steel-blue); background:transparent; color:var(--fsg-light-blue); font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:14px; cursor:pointer; line-height:1; }
+  .player .pdots button.on { background:var(--fsg-gold); border-color:var(--fsg-gold); color:var(--fsg-deep-navy); }
+  .player .pdots button.done { border-color:var(--fsg-gold); color:var(--fsg-gold); }
+  .player .pbar { height:6px; background:var(--fsg-light-gray); } .player .pbar i { display:block; height:100%; width:33.3%; background:var(--fsg-gold); transition:width .3s; }
+  .pstep { display:none; padding:20px 22px 22px; } .pstep.on { display:block; }
+  .pstep .kicker { font-family:'Oswald',Arial,sans-serif; font-weight:600; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--fsg-steel-blue); }
+  .pstep h3 { font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:22px; color:var(--fsg-dark-navy); margin:2px 0 10px; }
+  .pstep .shot { position:relative; border:1.5px solid var(--fsg-light-gray); border-radius:8px; overflow:hidden; cursor:zoom-in; }
+  .pstep .shot img { display:block; width:100%; height:auto; }
+  .pstep .shot.tall { max-width:460px; margin:0 auto; }
+  .pstep .shot .zoomtag { position:absolute; right:10px; bottom:10px; background:rgba(11,20,33,.82); color:#fff; font-family:'Oswald',Arial,sans-serif; font-size:11px; letter-spacing:1px; text-transform:uppercase; padding:4px 10px; border-radius:999px; }
+  .pstep .coach { background:var(--fsg-light-blue); border-left:4px solid var(--fsg-gold); border-radius:0 6px 6px 0; padding:12px 16px; margin-top:14px; font-size:15px; color:var(--fsg-dark-navy); }
+  .player .pnav { display:flex; justify-content:space-between; align-items:center; padding:0 22px 20px; gap:12px; }
+  .player .pnav button { font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:15px; letter-spacing:1px; text-transform:uppercase; border:none; border-radius:8px; padding:12px 22px; cursor:pointer; min-height:44px; }
+  .player .pnav .back { background:var(--fsg-light-gray); color:var(--fsg-dark-navy); }
+  .player .pnav .next { background:var(--fsg-gold); color:var(--fsg-deep-navy); }
+  .player .pnav button:disabled { opacity:.35; cursor:default; }
+  .player .pnav .where { font-family:'Oswald',Arial,sans-serif; font-size:13px; letter-spacing:1px; color:var(--fsg-steel-blue); text-transform:uppercase; }
+  #shotZoom { position:fixed; inset:0; z-index:9998; background:rgba(11,20,33,.92); display:none; align-items:center; justify-content:center; padding:24px; cursor:zoom-out; }
+  #shotZoom.on { display:flex; }
+  #shotZoom img { max-width:100%; max-height:92vh; border-radius:8px; box-shadow:0 20px 60px rgba(0,0,0,.5); }
+  @media (max-width:640px){ .player .phead { justify-content:center; } .pstep h3 { font-size:19px; } }
+
+  .vc { margin-top: 40px; padding-top: 18px; border-top: 3px solid var(--fsg-gold); }
+  .vc h3 { font-family:'Oswald',Arial,sans-serif; color:var(--fsg-dark-navy); font-size:18px; margin-bottom:10px; }
+  table.vc-table { width:100%; border-collapse:collapse; font-size:14px; }
+  table.vc-table th { background:var(--fsg-dark-navy); color:#fff; text-align:left; padding:8px 12px; font-weight:700; }
+  table.vc-table td { padding:8px 12px; border:1px solid var(--fsg-light-gray); }
+
+  footer { text-align:center; color:var(--fsg-steel-blue); font-size:13px; margin-top:40px; }
+  a { color: var(--fsg-bright-blue); }
+
+  /* ---- Ep 11 · Season Finale ---- */
+  .btn { display:inline-block; background:var(--fsg-dark-navy); color:#fff; font-family:'Oswald',Arial,sans-serif; font-weight:700; letter-spacing:1px; text-transform:uppercase; font-size:14px; padding:10px 20px; border-radius:6px; text-decoration:none; border:none; border-bottom:3px solid var(--fsg-gold); margin:6px 8px 6px 0; cursor:pointer; min-height:44px; }
+  .btn.ghost { background:#fff; color:var(--fsg-dark-navy); border:1.5px solid var(--fsg-dark-navy); border-bottom:3px solid var(--fsg-gold); }
+  .btn.gold { background:var(--fsg-gold); color:var(--fsg-deep-navy); border-bottom-color:var(--fsg-dark-navy); }
+  .finale-hero { background: radial-gradient(120% 140% at 85% 0%, #1f4f8f 0%, var(--fsg-dark-navy) 45%, var(--fsg-deep-navy) 100%); }
+  .finale-tag { display:inline-block; background:var(--fsg-gold); color:var(--fsg-deep-navy); font-family:'Oswald',Arial,sans-serif; font-weight:700; letter-spacing:3px; font-size:12px; text-transform:uppercase; padding:4px 12px; border-radius:3px; margin-bottom:10px; }
+  .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:18px 0 6px; }
+  .stats div { background:var(--fsg-deep-navy); border-radius:8px; text-align:center; padding:14px 8px; color:var(--fsg-light-blue); font-size:12px; letter-spacing:1px; text-transform:uppercase; font-family:'Oswald',Arial,sans-serif; }
+  .stats b { display:block; color:var(--fsg-gold); font-size:30px; line-height:1.1; }
+  /* highlight reel */
+  .reel { background:var(--fsg-deep-navy); border-radius:12px; overflow:hidden; margin:16px 0; color:#fff; }
+  .reel .rhead { display:flex; justify-content:space-between; align-items:center; gap:10px; padding:14px 18px; flex-wrap:wrap; }
+  .reel .rt { font-family:'Oswald',Arial,sans-serif; font-weight:700; letter-spacing:2px; text-transform:uppercase; font-size:15px; }
+  .reel .rt span { color:var(--fsg-gold); }
+  .reel .rbar { height:4px; background:#1d2a3d; } .reel .rbar i { display:block; height:100%; width:0; background:var(--fsg-gold); }
+  .reel .frame { position:relative; min-height:260px; padding:26px 24px 20px; }
+  .reel .card { display:none; animation: pop .45s ease; } .reel .card.on { display:block; }
+  @keyframes pop { from { opacity:0; transform: translateY(8px) scale(.985);} to { opacity:1; transform:none; } }
+  .reel .num { font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:64px; line-height:1; color:var(--fsg-gold); float:left; margin:0 18px 6px 0; }
+  .reel .ep { font-family:'Oswald',Arial,sans-serif; letter-spacing:2px; text-transform:uppercase; color:var(--fsg-steel-blue); font-size:12px; }
+  .reel h3 { font-family:'Oswald',Arial,sans-serif; font-size:30px; line-height:1.15; margin:2px 0 6px; color:#fff; }
+  .reel .cr { font-family:'Oswald',Arial,sans-serif; font-size:20px; color:var(--fsg-light-blue); clear:both; padding-top:10px; }
+  .reel .sk { margin-top:10px; font-size:15px; color:#dbe6fb; }
+  .reel .sk b { color:var(--fsg-gold); }
+  .reel .card a { color:var(--fsg-gold); font-weight:700; font-size:14px; display:inline-block; margin-top:12px; }
+  .reel .rnav { display:flex; justify-content:space-between; align-items:center; gap:8px; padding:0 18px 16px; flex-wrap:wrap; }
+  .reel .rnav button { background:#1d2a3d; color:#fff; border:none; border-radius:6px; min-height:44px; min-width:44px; padding:8px 14px; font-family:'Oswald',Arial,sans-serif; font-weight:700; letter-spacing:1px; cursor:pointer; }
+  .reel .rnav button.play { background:var(--fsg-gold); color:var(--fsg-deep-navy); }
+  .reel .rdots { display:flex; gap:5px; flex-wrap:wrap; justify-content:center; }
+  .reel .rdots button { min-width:30px; min-height:30px; padding:0; border-radius:50%; font-size:12px; background:#1d2a3d; color:var(--fsg-steel-blue); }
+  .reel .rdots button.on { background:var(--fsg-gold); color:var(--fsg-deep-navy); }
+  /* five passes */
+  .passes { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin:14px 0; }
+  .passes div { background:var(--fsg-light-gray); border-radius:8px; padding:12px; font-size:13px; border-top:4px solid var(--fsg-brand-blue); }
+  .passes div:last-child { border-top-color:var(--fsg-gold); }
+  .passes b.t { display:block; font-family:'Oswald',Arial,sans-serif; text-transform:uppercase; letter-spacing:1px; font-size:16px; color:var(--fsg-dark-navy); }
+  .passes .e { display:block; color:var(--fsg-steel-blue); font-size:11px; letter-spacing:1px; text-transform:uppercase; font-weight:700; margin:2px 0 4px; }
+  .ple { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:14px 0; }
+  .ple div { border-radius:8px; padding:14px 16px; color:#fff; font-size:14px; }
+  .ple .p { background:var(--fsg-dark-navy); } .ple .l { background:var(--fsg-brand-blue); } .ple .x { background:var(--fsg-gold); color:var(--fsg-deep-navy); }
+  .ple h4 { font-family:'Oswald',Arial,sans-serif; font-size:22px; text-transform:uppercase; letter-spacing:2px; margin-bottom:4px; color:inherit; }
+  .ple b { color:inherit; }
+  /* builder */
+  .builder { border:1.5px solid var(--fsg-dark-navy); border-radius:12px; overflow:hidden; margin:16px 0; }
+  .builder .bh { background:var(--fsg-dark-navy); color:#fff; padding:12px 18px; font-family:'Oswald',Arial,sans-serif; font-weight:700; letter-spacing:2px; text-transform:uppercase; }
+  .builder .bh span { color:var(--fsg-gold); }
+  .builder .bb { padding:16px 18px; display:grid; grid-template-columns:1fr 1fr; gap:12px 16px; }
+  .builder .full { grid-column:1 / -1; }
+  .builder label { display:block; font-family:'Oswald',Arial,sans-serif; font-size:13px; letter-spacing:1px; text-transform:uppercase; color:var(--fsg-dark-navy); margin-bottom:4px; }
+  .builder label small { text-transform:none; letter-spacing:0; color:var(--fsg-steel-blue); font-family:'Open Sans',Arial,sans-serif; }
+  .builder input, .builder textarea { width:100%; font:inherit; font-size:16px; border:1.5px solid #d6dbe5; border-radius:6px; padding:9px 11px; background:#fff; color:var(--fsg-deep-navy); }
+  .builder textarea { min-height:64px; resize:vertical; }
+  .builder input:focus, .builder textarea:focus { outline:2px solid var(--fsg-gold); border-color:var(--fsg-gold); }
+  .moves { display:grid; grid-template-columns:2fr 1fr 1fr; gap:8px; }
+  .builder .bf { padding:0 18px 16px; }
+  .brief { background:var(--fsg-deep-navy); color:#e6eefc; border-radius:8px; padding:16px 18px; white-space:pre-wrap; font-size:14px; line-height:1.55; margin-top:10px; display:none; }
+  .brief.on { display:block; }
+  .clock { display:none; margin-top:12px; background:var(--fsg-light-gray); border-radius:8px; padding:14px 16px; }
+  .clock.on { display:block; }
+  .clock .t { font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:40px; color:var(--fsg-dark-navy); }
+  .clock .seg { font-family:'Oswald',Arial,sans-serif; letter-spacing:1px; text-transform:uppercase; color:var(--fsg-brand-blue); }
+  .segs { display:grid; grid-template-columns:repeat(5,1fr); gap:6px; margin:14px 0; }
+  .segs div { background:var(--fsg-light-gray); border-radius:6px; padding:10px; font-size:13px; }
+  .segs div.on { background:var(--fsg-gold); }
+  .segs b { display:block; font-family:'Oswald',Arial,sans-serif; color:var(--fsg-dark-navy); font-size:15px; }
+  /* certified */
+  .cert { display:none; text-align:center; background:linear-gradient(135deg,var(--fsg-dark-navy),var(--fsg-deep-navy)); color:#fff; border-radius:10px; padding:20px; margin:10px 0; border:2px solid var(--fsg-gold); }
+  .cert.on { display:block; animation: pop .5s ease; }
+  .cert .big { font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:28px; color:var(--fsg-gold); letter-spacing:2px; text-transform:uppercase; }
+  /* cliffhanger */
+  .cliff { background:#05090f; color:#fff; border-radius:14px; padding:30px 24px 26px; margin:36px 0 10px; position:relative; overflow:hidden; }
+  .cliff:before { content:""; position:absolute; inset:0; background: repeating-linear-gradient(0deg, rgba(255,255,255,.025) 0 2px, transparent 2px 4px); pointer-events:none; }
+  .cliff .lbl { font-family:'Oswald',Arial,sans-serif; letter-spacing:4px; text-transform:uppercase; color:var(--fsg-gold); font-size:13px; }
+  .cliff h2 { color:#fff; border:none; font-size:36px; margin:6px 0 8px; padding:0; }
+  .cliff p { color:#c9d6ee; }
+  .cliff .line { font-family:'Oswald',Arial,sans-serif; font-size:22px; color:#fff; margin:14px 0; opacity:0; transform:translateY(6px); transition: all .6s ease; }
+  .cliff .line.in { opacity:1; transform:none; }
+  .files { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin:18px 0; }
+  .file { background:#101b2b; border:1px solid #23344d; border-radius:8px; padding:12px 10px; min-height:118px; cursor:pointer; text-align:left; color:#fff; font:inherit; position:relative; }
+  .file .n { font-family:'Oswald',Arial,sans-serif; color:var(--fsg-gold); font-weight:700; font-size:22px; }
+  .file .ti { font-family:'Oswald',Arial,sans-serif; font-size:16px; filter:blur(6px); transition:filter .4s; }
+  .file .ro { font-size:12px; color:var(--fsg-steel-blue); filter:blur(5px); transition:filter .4s; }
+  .file .st { position:absolute; right:8px; top:8px; font-size:10px; letter-spacing:2px; color:var(--fsg-red); font-weight:700; border:1px solid var(--fsg-red); padding:1px 5px; border-radius:3px; }
+  .file.open .ti, .file.open .ro { filter:none; }
+  .file.open .st { color:var(--fsg-green); border-color:var(--fsg-green); }
+  .vault { border:1.5px dashed var(--fsg-gold); border-radius:10px; padding:18px; text-align:center; margin-top:14px; }
+  .vault .n { font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:44px; color:var(--fsg-gold); line-height:1; }
+  .vault .x { font-family:'Oswald',Arial,sans-serif; letter-spacing:3px; color:var(--fsg-red); text-transform:uppercase; font-weight:700; }
+  .vault .q { font-family:'Oswald',Arial,sans-serif; font-size:20px; margin-top:8px; }
+  .tbc { text-align:center; font-family:'Oswald',Arial,sans-serif; font-size:30px; letter-spacing:6px; text-transform:uppercase; color:var(--fsg-gold); margin-top:22px; }
+  @media (max-width:760px){
+    .stats { grid-template-columns:repeat(2,1fr); }
+    .passes, .segs { grid-template-columns:1fr; } .ple { grid-template-columns:1fr; }
+    .builder .bb { grid-template-columns:1fr; } .moves { grid-template-columns:1fr 1fr; } .moves input:nth-child(3n+1){ grid-column:1 / -1; }
+    .files { grid-template-columns:1fr 1fr; } .reel h3 { font-size:24px; } .reel .num { font-size:48px; } .cliff h2 { font-size:28px; }
+  }
+  @media (prefers-reduced-motion: reduce){ .reel .card, .cert.on { animation:none; } .cliff .line { transition:none; } }
+</style>
+</head>
+<body>
+
+<!-- ============ GROWTH HUB GATE ============ -->
+<style>
+  html.gh-locked > body > :not(#ghGate){display:none !important;}
+  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
+  html:not(.gh-locked) #ghGate{display:none;}
+  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
+  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
+  #ghGate .gh-brand svg{width:30px;height:30px;}
+  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
+  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
+  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;}
+  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
+  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
+  #ghGate input:focus{border-color:#4e84de;}
+  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
+  #ghGate button:hover{filter:brightness(1.06);}
+  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
+  #ghGate .gh-shake{animation:ghshake .3s;}
+  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+<div id="ghGate">
+  <div class="gh-wrap">
+    <div class="gh-brand">
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#c5d9fa" stroke-width="14" stroke-linecap="round" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g><circle cx="150" cy="50" r="26" fill="#ffffff"/><circle cx="236.6" cy="100" r="26" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="26" fill="#ffffff"/><circle cx="150" cy="250" r="26" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="26" fill="#ffffff"/><circle cx="63.4" cy="100" r="26" fill="#c5d9fa"/><circle cx="150" cy="150" r="44" fill="#ebb018"/></svg>
+      <span>Growth Hub</span>
+    </div>
+    <div class="gh-card">
+      <h2>Passcode</h2>
+      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
+      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
+      <button id="ghGo" type="button">Enter the Hub</button>
+      <div class="gh-err" id="ghErr"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
+  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+  if(!unlocked()) document.documentElement.classList.add('gh-locked');
+  function open(){ document.documentElement.classList.remove('gh-locked'); }
+  async function check(){
+    var v=document.getElementById('ghPass').value;
+    var ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        ok=(hex===HASH);
+      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
+    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
+    if(ok){ remember(); open(); }
+    else{
+      var card=document.querySelector('#ghGate .gh-card');
+      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
+      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
+      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    if(unlocked()) return;
+    document.getElementById('ghGo').addEventListener('click', check);
+    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
+  });
+})();
+</script>
+<!-- ============ /GROWTH HUB GATE ============ -->
+
+<div style="max-width:960px;margin:0 auto;padding:18px 24px 0;"><a href="../../index.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">&larr; Growth Hub</a><span style="color:#c5d9fa;margin:0 8px;">|</span><a href="../plays.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">&larr; The Playbook</a><span style="color:#c5d9fa;margin:0 8px;">|</span><a href="../fsg-app-faq.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;">&larr; FSG App FAQs</a></div>
+<div class="page">
+
+  <div class="hero finale-hero">
+    <div>
+      <div class="finale-tag">&#9733; Season One Finale</div>
+      <div class="eyebrow">Engage Plays &nbsp;·&nbsp; Season One &nbsp;·&nbsp; Episode 11 of 24</div>
+      <h1>The Scouting Report</h1>
+      <div class="subtitle">Account Review &mdash; Capstone. Ten episodes. Ten skills. Today we put every one of them on the field against one account &mdash; live. One account, one report, one game plan: <b style="color:#fff;">Protect · Land · Expand.</b></div>
+    </div>
+    <div class="org">
+      <div class="fsg">FACILITY SOLUTIONS GROUP</div>
+      <div class="sub">Growth Organization &nbsp;·&nbsp; 2026</div>
+    </div>
+  </div>
+  <hr class="gold-rule">
+
+  <p class="mantra">"Everything you've learned, deployed on one account. Season finale."</p>
+  <div class="creed">
+    <div class="k">The Closer's Creed — No. 11</div>
+    <div class="q">&ldquo;Do the film work. Win on game day.&rdquo;</div>
+  </div>
+
+  <!-- 🎥 SESSION RECORDING — swap in the Drive link after the live session, same pattern as Ep 1–10:
+  <div class="callout">&#127909; <b>Missed it live?</b> The full session recording is saved in the Growth Hub Drive folder &mdash; anyone with the link can watch.<br><a href="DRIVE_LINK_HERE" target="_blank" rel="noopener" class="btn">&#9654;&nbsp; Watch Episode 11 &mdash; The Scouting Report</a><br><span style="display:inline-block;margin-top:8px;font-size:13px;opacity:.8;">Click the button &mdash; the video opens in Google Drive.</span></div>
+  -->
+
+  <div class="stats">
+    <div><b>10</b>Episodes</div>
+    <div><b>10</b>Skills</div>
+    <div><b>1</b>Account</div>
+    <div><b>5:00</b>Briefing</div>
+  </div>
+
+  <h2>Cold Open — The Highlight Reel</h2>
+  <p>Before we scout, we roll the tape. Every episode of Season One, one creed, one skill you now own. Hit <b>Play the reel</b> &mdash; or tap through it yourself.</p>
+
+  <div class="reel" id="reel">
+    <div class="rhead">
+      <span class="rt">Season One <span>· The Reel</span></span>
+      <span class="rt" id="reelWhere" style="font-size:13px;color:var(--fsg-steel-blue);">1 / 10</span>
+    </div>
+    <div class="rbar"><i id="reelBar"></i></div>
+    <div class="frame" id="reelFrame" aria-live="polite"></div>
+    <div class="rnav">
+      <button type="button" id="reelBack" aria-label="Previous episode">&larr;</button>
+      <div class="rdots" id="reelDots"></div>
+      <button type="button" class="play" id="reelPlay">&#9654; Play the reel</button>
+      <button type="button" id="reelNext" aria-label="Next episode">&rarr;</button>
+    </div>
+  </div>
+
+  <h2>Play of the Week — The Season Highlight Reel</h2>
+  <div class="callout"><b>Three plays. Sixty seconds each.</b> The three best Plays of the Week from Season One, replayed back-to-back &mdash; the teammates, the clients, the wins Engage powered. This is what the season looked like when it went right.</div>
+
+  <h2>Why — Film Work Wins Game Day</h2>
+  <p>Every skill in Season One was a single position. The Scouting Report is the whole team on the field. Teams that win on Saturday don&rsquo;t get lucky on Saturday &mdash; they did the film work on Tuesday. A scouting report is how you walk into the meeting already knowing what we protect, where we land, and how we expand &mdash; and which threats could take it all away.</p>
+  <div class="ple">
+    <div class="p"><h4>Protect</h4>What we already do here. The revenue we can&rsquo;t afford to lose &mdash; and who could take it.</div>
+    <div class="l"><h4>Land</h4>The open deals. Honest stage, honest date, a stakeholder on every one.</div>
+    <div class="x"><h4>Expand</h4>The whitespace. New lines, new sites, new stakeholders &mdash; the Next column.</div>
+  </div>
+
+  <h2>What — Five Passes, One Account</h2>
+  <p>One account, scouted in five passes. Every pass is an episode you already ran.</p>
+  <div class="passes">
+    <div><b class="t">1 · Find</b><span class="e">Ep 1 · Ep 2</span>Pull it up in three clicks. Ownership, class, hierarchy, sites &mdash; is the record right?</div>
+    <div><b class="t">2 · Fix</b><span class="e">Ep 4</span>Anything built wrong gets built right before you scout on top of it.</div>
+    <div><b class="t">3 · Watch</b><span class="e">Ep 3 · 7 · 8</span>The tape: meetings, emails, activity. Who we talk to &mdash; and who we don&rsquo;t.</div>
+    <div><b class="t">4 · Count</b><span class="e">Ep 5 · 6 · 10</span>Leads, opportunities, the account plan. Done · Doing · Next.</div>
+    <div><b class="t">5 · Call it</b><span class="e">Ep 9 · 10</span>Three moves, owners, dates &mdash; logged as tasks and opportunities.</div>
+  </div>
+
+  <h3 style="font-family:'Oswald',Arial,sans-serif;color:var(--fsg-dark-navy);text-transform:uppercase;letter-spacing:1px;margin-top:22px;">The Threat Assessment</h3>
+  <p>Every scouting report names what can beat us. Three things to look for on the tape:</p>
+  <div class="tile"><div class="badge">1</div><div class="body"><h4>Competitor presence</h4><p>Who else is on site? Which service lines are going to somebody else &mdash; and why?</p></div></div>
+  <div class="tile"><div class="badge">2</div><div class="body"><h4>Contract timing</h4><p>What renews, rebids, or expires in the next twelve months? A date nobody tracked is a door somebody else walks through.</p></div></div>
+  <div class="tile"><div class="badge">3</div><div class="body"><h4>Relationship gaps</h4><p>One contact is a relationship; three is an account. If our champion left tomorrow, who picks up the phone?</p></div></div>
+
+  <h2>How — Build Your Scouting Report, Live</h2>
+  <p>Fill it in on your #1 strategic account. The report writes your 5-minute briefing for you &mdash; then start the clock and rehearse it.</p>
+
+  <div class="builder" id="builder">
+    <div class="bh">The Scouting Report &mdash; <span>Play Sheet</span></div>
+    <div class="bb">
+      <div><label for="sAcct">Account</label><input id="sAcct" placeholder="e.g. your #1 strategic account"></div>
+      <div><label for="sTeam">Our team <small>— owner + support</small></label><input id="sTeam" placeholder="Owner, Guide, BD, AM, Solutions…"></div>
+      <div class="full"><label for="sProtect">Protect <small>— what we do here today, and what&rsquo;s at risk</small></label><textarea id="sProtect"></textarea></div>
+      <div class="full"><label for="sLand">Land <small>— open opportunities: stage, date, stakeholder</small></label><textarea id="sLand"></textarea></div>
+      <div class="full"><label for="sExpand">Expand <small>— the whitespace in Next</small></label><textarea id="sExpand"></textarea></div>
+      <div class="full"><label for="sThreat">Threats <small>— competitors, contract timing, relationship gaps</small></label><textarea id="sThreat"></textarea></div>
+      <div class="full">
+        <label>The Play Sheet <small>— three moves, owners, dates</small></label>
+        <div class="moves">
+          <input id="m1" placeholder="Move 1"><input id="o1" placeholder="Owner"><input id="d1" placeholder="Date">
+          <input id="m2" placeholder="Move 2"><input id="o2" placeholder="Owner"><input id="d2" placeholder="Date">
+          <input id="m3" placeholder="Move 3"><input id="o3" placeholder="Owner"><input id="d3" placeholder="Date">
+        </div>
+      </div>
+      <div class="full"><label for="sAsk">The ask <small>— what you need from leadership</small></label><input id="sAsk"></div>
+    </div>
+    <div class="bf">
+      <button type="button" class="btn" id="genBtn">Build my briefing</button>
+      <button type="button" class="btn ghost" id="copyBtn">Copy</button>
+      <button type="button" class="btn gold" id="clockBtn">&#9201; Start the 5:00 clock</button>
+      <button type="button" class="btn ghost" id="clearBtn">Clear</button>
+      <div class="brief" id="brief"></div>
+      <div class="clock" id="clock"><div class="seg" id="clockSeg">The account</div><div class="t" id="clockT">5:00</div><div id="clockCue" style="font-size:14px;"></div></div>
+      <div style="font-size:12px;color:var(--fsg-steel-blue);margin-top:8px;">Saved on this device only. Nothing leaves your browser &mdash; log the three moves in Engage as tasks and opportunities.</div>
+    </div>
+  </div>
+
+  <h3 style="font-family:'Oswald',Arial,sans-serif;color:var(--fsg-dark-navy);text-transform:uppercase;letter-spacing:1px;margin-top:22px;">The 5-Minute Briefing</h3>
+  <p>The account briefing your leadership wants to hear. One minute a segment. No slides &mdash; Engage open on the account.</p>
+  <div class="segs" id="segs">
+    <div><b>0:00 · The Account</b>Who they are, what we do, who owns it.</div>
+    <div><b>1:00 · Protect</b>What we keep &mdash; and what&rsquo;s at risk.</div>
+    <div><b>2:00 · Land</b>Open deals. Stage, date, stakeholder.</div>
+    <div><b>3:00 · Expand + Threats</b>The whitespace, and what can beat us.</div>
+    <div><b>4:00 · The Play</b>Three moves, owners, dates &mdash; and the ask.</div>
+  </div>
+
+  <h2>Season One Scorecard</h2>
+  <p>Ten skills. Check the ones you can do today, in Engage, without asking anyone.</p>
+  <div class="check" id="seasonCheck">
+    <div class="bar"><i id="checkBar"></i></div>
+    <div class="items">
+      <label><input type="checkbox"><span><b>Ep 1 &middot; Mission Control</b> &mdash; I can find any record in three clicks or less.</span></label>
+      <label><input type="checkbox"><span><b>Ep 2 &middot; Know Your Territory</b> &mdash; my account records are complete and owned.</span></label>
+      <label><input type="checkbox"><span><b>Ep 3 &middot; The Film Room</b> &mdash; I can run a structured account review.</span></label>
+      <label><input type="checkbox"><span><b>Ep 4 &middot; Built Right the First Time</b> &mdash; I set up new accounts right, once.</span></label>
+      <label><input type="checkbox"><span><b>Ep 5 &middot; The Hunt</b> &mdash; my leads get worked or disqualified, never left to rot.</span></label>
+      <label><input type="checkbox"><span><b>Ep 6 &middot; Money in Motion</b> &mdash; every deal I&rsquo;m working is an opportunity in Engage.</span></label>
+      <label><input type="checkbox"><span><b>Ep 7 &middot; Face Time Wins</b> &mdash; my meetings are logged with a next step.</span></label>
+      <label><input type="checkbox"><span><b>Ep 8 &middot; Inbox to Income</b> &mdash; key email threads live on the record.</span></label>
+      <label><input type="checkbox"><span><b>Ep 9 &middot; Nothing Slips</b> &mdash; I run my day from the task list.</span></label>
+      <label><input type="checkbox"><span><b>Ep 10 &middot; Own Your Pipeline</b> &mdash; my top accounts run on Done · Doing · Next.</span></label>
+    </div>
+    <div class="score" id="checkScore">0 of 10</div>
+  </div>
+  <div class="cert" id="cert">
+    <div style="font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--fsg-light-blue);">Engage Live &middot; Season One</div>
+    <div class="big">Season One Closer</div>
+    <div style="color:var(--fsg-light-blue);margin-top:6px;">Ten for ten. You mastered the tool. Now meet the machine.</div>
+  </div>
+
+  <h2>Do / Don't</h2>
+  <div class="dd">
+    <div class="col do"><h4>Do this</h4><ul>
+      <li>Scout before every big meeting &mdash; film work first.</li>
+      <li>Name the threats out loud. What you name, you can beat.</li>
+      <li>Log the three moves in Engage before you close the report.</li>
+      <li>Brief it in five minutes. If it takes fifteen, you don&rsquo;t know it yet.</li>
+    </ul></div>
+    <div class="col dont"><h4>Not this</h4><ul>
+      <li>Walk in on memory and hope.</li>
+      <li>Build a report nobody acts on &mdash; a scouting report without moves is a scrapbook.</li>
+      <li>Scout on a broken record &mdash; fix the account first.</li>
+      <li>Keep it to yourself &mdash; share it with your manager and your support team.</li>
+    </ul></div>
+  </div>
+
+  <h2>Your One Move</h2>
+  <div class="creed" style="margin:14px 0;">
+    <div class="k">Before Season Two</div>
+    <div class="q">Build a full Scouting Report on your #1 strategic account and share it with your manager.</div>
+  </div>
+
+  <!-- ================= CLIFFHANGER ================= -->
+  <div class="cliff" id="cliff">
+    <div class="lbl">&#9679; Next Season on Engage Live</div>
+    <h2>Season Two: Master the Machine</h2>
+    <p>Season One mastered the tool. But you don&rsquo;t sell alone &mdash; and the deal doesn&rsquo;t end when you win it.</p>
+    <div class="line">You built the scouting report.</div>
+    <div class="line">You ran the play. You won the deal.</div>
+    <div class="line">Now you hand it to someone else&hellip;</div>
+    <div class="line" style="color:var(--fsg-gold);">&hellip;and find out who was really on your team.</div>
+
+    <p style="margin-top:18px;"><b style="color:#fff;">Five new files. Tap to declassify.</b></p>
+    <div class="files" id="files">
+      <button type="button" class="file" aria-label="Declassify Episode 12"><span class="st">Classified</span><div class="n">12</div><div class="ti">The Quarterback</div><div class="ro">Account Manager &middot; &ldquo;Be the play-caller.&rdquo;</div></button>
+      <button type="button" class="file" aria-label="Declassify Episode 13"><span class="st">Classified</span><div class="n">13</div><div class="ti">The Rainmakers</div><div class="ro">Business Development &middot; new logos</div></button>
+      <button type="button" class="file" aria-label="Declassify Episode 14"><span class="st">Classified</span><div class="n">14</div><div class="ti">Air Support</div><div class="ro">Campaigns &amp; SDR &middot; The Guide</div></button>
+      <button type="button" class="file" aria-label="Declassify Episode 15"><span class="st">Classified</span><div class="n">15</div><div class="ti">The Sales Coach</div><div class="ro">&ldquo;See the stall before the rep does.&rdquo;</div></button>
+      <button type="button" class="file" aria-label="Declassify Episode 16"><span class="st">Classified</span><div class="n">16</div><div class="ti">The Solutions Team</div><div class="ro">&ldquo;Complexity is where we win.&rdquo;</div></button>
+    </div>
+    <p style="font-size:14px;">Then the enterprise plugs in &mdash; accounting, operations, service, construction, project management. Then the QBR. Then the numbers. And then&hellip;</p>
+
+    <div class="vault">
+      <div class="n">24</div>
+      <div class="x">Locked until the finale</div>
+      <div class="q">&ldquo;Deals aren&rsquo;t lost at the close. They&rsquo;re fumbled at the handoff.&rdquo;</div>
+      <div style="font-size:13px;color:var(--fsg-steel-blue);margin-top:6px;">One deal. Every role in the series. One FSG.</div>
+    </div>
+
+    <div class="tbc">To be continued&hellip;</div>
+    <p style="text-align:center;margin-top:8px;font-size:14px;">Season Two premieres with <b style="color:var(--fsg-gold);">Episode 12 &mdash; The Quarterback.</b><br>Your scouting report is your ticket in.</p>
+    <!-- Add the Season Two premiere date here once it's set -->
+    <p style="text-align:center;"><a class="btn gold" href="engage-live-seasons.html#season2">See the Season Two lineup &rarr;</a></p>
+  </div>
+
+  <p style="margin-top:26px;"><b>Go deeper:</b> <a href="film-room-sunbelt-game-film.html">The Film Room</a> (the account review this capstone builds on) &nbsp;·&nbsp; <a href="own-your-pipeline.html">Own Your Pipeline</a> (Done · Doing · Next) &nbsp;·&nbsp; <a href="nothing-slips.html">Nothing Slips</a> (turn moves into tasks) &nbsp;·&nbsp; <a href="engage-live-seasons.html">The full series</a></p>
+
+  <div class="vc">
+    <h3>Version Control</h3>
+    <table class="vc-table">
+      <tr><th>Version</th><th>Date</th><th>Owner</th><th>Change Summary</th></tr>
+      <tr><td>1.0</td><td>November 2, 2026</td><td>Bobby Graham — Growth</td><td>Companion page to Engage Live Season 1, Episode 11 — the Season One finale. Highlight reel of Episodes 1–10, the Scouting Report framework (five passes, Protect · Land · Expand, threat assessment), an interactive play-sheet builder with a timed 5-minute briefing, the Season One scorecard, and the Season Two cliffhanger.</td></tr>
+    </table>
+  </div>
+
+  <footer>FSG Engage &nbsp;|&nbsp; Internal Enablement</footer>
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Highlight reel ---------- */
+  var EPS = [
+    [1,'Mission Control','Dashboard, Navigation &amp; Find','You can&rsquo;t close what you can&rsquo;t find.','Any account, contact, or deal in <b>three clicks or less</b>.','mission-control.html'],
+    [2,'Know Your Territory','Accounts','The leads aren&rsquo;t weak. Weak account data is weak.','Every account <b>complete, owned, and right</b>.','know-your-territory.html'],
+    [3,'The Film Room','Account Review','Winners watch the tape.','A <b>structured account review</b> &mdash; activity, opps, coverage.','film-room-sunbelt-game-film.html'],
+    [4,'Built Right the First Time','Account Setup','Build it right once, or rebuild it forever.','New accounts <b>set up right the first time</b>.','built-right-the-first-time.html'],
+    [5,'The Hunt','Leads','A lead only goes cold if you let it.','Leads <b>worked or disqualified</b> &mdash; never left to rot.','the-hunt.html'],
+    [6,'Money in Motion','Opportunities','Put. That deal. In Engage.','If it&rsquo;s not an opportunity, <b>it doesn&rsquo;t exist</b>.','money-in-motion.html'],
+    [7,'Face Time Wins','Meetings','Deals move at the speed of meetings.','Every meeting <b>logged with a next step</b>.','face-time-wins.html'],
+    [8,'Inbox to Income','Email','Your inbox is full of money. Log it.','Key threads <b>on the record</b>, coached by the Deal Coach.','inbox-to-income.html'],
+    [9,'Nothing Slips','Tasks','You don&rsquo;t need a better memory. You need a better system.','Every promise a <b>task &mdash; owner, date, deal</b>.','nothing-slips.html'],
+    [10,'Own Your Pipeline','Pipeline Management','Your pipeline is your paycheck&rsquo;s rough draft. Edit it weekly.','Top accounts on <b>Done · Doing · Next</b>.','own-your-pipeline.html']
+  ];
+  var frame=document.getElementById('reelFrame'), dots=document.getElementById('reelDots'), bar=document.getElementById('reelBar'), where=document.getElementById('reelWhere'), playB=document.getElementById('reelPlay');
+  EPS.forEach(function(e,i){
+    var c=document.createElement('div'); c.className='card';
+    c.innerHTML='<div class="num">'+e[0]+'</div><div class="ep">Episode '+e[0]+' &middot; '+e[2]+'</div><h3>'+e[1]+'</h3><div class="cr">&ldquo;'+e[3]+'&rdquo;</div><div class="sk"><b>You now own:</b> '+e[4]+'</div><a href="'+e[5]+'">Rewatch the play &rarr;</a>';
+    frame.appendChild(c);
+    var d=document.createElement('button'); d.type='button'; d.textContent=e[0]; d.setAttribute('aria-label','Episode '+e[0]);
+    d.addEventListener('click',function(){ stop(); show(i); }); dots.appendChild(d);
+  });
+  var cards=frame.querySelectorAll('.card'), cur=0, timer=null, DUR=4200;
+  function show(i){
+    cur=(i+EPS.length)%EPS.length;
+    cards.forEach(function(c,j){ c.classList.toggle('on', j===cur); });
+    dots.querySelectorAll('button').forEach(function(d,j){ d.classList.toggle('on', j===cur); });
+    where.textContent=(cur+1)+' / '+EPS.length;
+    bar.style.transition='none'; bar.style.width=((cur)/EPS.length*100)+'%';
+    if(timer && !reduce){ requestAnimationFrame(function(){ bar.style.transition='width '+DUR+'ms linear'; bar.style.width=((cur+1)/EPS.length*100)+'%'; }); }
+    else { bar.style.width=((cur+1)/EPS.length*100)+'%'; }
+  }
+  function stop(){ if(timer){ clearInterval(timer); timer=null; } playB.innerHTML='&#9654; Play the reel'; }
+  function play(){
+    if(cur===EPS.length-1) cur=-1;
+    timer=setInterval(function(){ if(cur>=EPS.length-1){ stop(); return; } show(cur+1); }, DUR);
+    playB.innerHTML='&#10074;&#10074; Pause'; show(cur+1);
+  }
+  playB.addEventListener('click',function(){ timer?stop():play(); });
+  document.getElementById('reelBack').addEventListener('click',function(){ stop(); show(cur-1); });
+  document.getElementById('reelNext').addEventListener('click',function(){ stop(); show(cur+1); });
+  show(0);
+
+  /* ---------- Scouting Report builder ---------- */
+  var ids=['sAcct','sTeam','sProtect','sLand','sExpand','sThreat','m1','o1','d1','m2','o2','d2','m3','o3','d3','sAsk'];
+  var KEY='gh-ep11-scouting';
+  function el(id){ return document.getElementById(id); }
+  try { var saved=JSON.parse(localStorage.getItem(KEY)||'{}'); ids.forEach(function(id){ if(saved[id]) el(id).value=saved[id]; }); } catch(e){}
+  function save(){ try { var o={}; ids.forEach(function(id){ o[id]=el(id).value; }); localStorage.setItem(KEY, JSON.stringify(o)); } catch(e){} }
+  ids.forEach(function(id){ el(id).addEventListener('input', save); });
+  function v(id,f){ var x=el(id).value.trim(); return x||f; }
+  function buildText(){
+    var moves=[1,2,3].map(function(n){ var m=v('m'+n,''); if(!m) return null; return '  '+n+'. '+m+(v('o'+n,'')?' — '+v('o'+n,''):'')+(v('d'+n,'')?' — by '+v('d'+n,''):''); }).filter(Boolean);
+    return 'SCOUTING REPORT — '+v('sAcct','[Account]').toUpperCase()+'\n'+
+      'Team: '+v('sTeam','[Owner + support team]')+'\n\n'+
+      '0:00  THE ACCOUNT\n  '+v('sAcct','[Account]')+' — '+v('sTeam','[team]')+'\n\n'+
+      '1:00  PROTECT\n  '+v('sProtect','[What we do today, and what’s at risk]')+'\n\n'+
+      '2:00  LAND\n  '+v('sLand','[Open opportunities — stage, date, stakeholder]')+'\n\n'+
+      '3:00  EXPAND + THREATS\n  Expand: '+v('sExpand','[Whitespace]')+'\n  Threats: '+v('sThreat','[Competitors, contract timing, relationship gaps]')+'\n\n'+
+      '4:00  THE PLAY\n'+(moves.length?moves.join('\n'):'  [Three moves — owner — date]')+'\n  The ask: '+v('sAsk','[What I need from leadership]')+'\n\n'+
+      'Do the film work. Win on game day.';
+  }
+  var brief=el('brief');
+  el('genBtn').addEventListener('click',function(){ brief.textContent=buildText(); brief.classList.add('on'); brief.scrollIntoView({behavior: reduce?'auto':'smooth', block:'nearest'}); });
+  el('copyBtn').addEventListener('click',function(){
+    var t=buildText(), b=this;
+    function done(){ b.textContent='Copied ✓'; setTimeout(function(){ b.textContent='Copy'; },1600); }
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(done,fallback); } else fallback();
+    function fallback(){ var ta=document.createElement('textarea'); ta.value=t; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); done(); }catch(e){} document.body.removeChild(ta); }
+  });
+  el('clearBtn').addEventListener('click',function(){ if(!confirm('Clear your scouting report?')) return; ids.forEach(function(id){ el(id).value=''; }); save(); brief.classList.remove('on'); });
+
+  /* ---------- 5:00 clock ---------- */
+  var SEGS=[['The Account','Who they are, what we do, who owns it.'],['Protect','What we keep — and what’s at risk.'],['Land','Open deals: stage, date, stakeholder.'],['Expand + Threats','The whitespace, and what can beat us.'],['The Play','Three moves, owners, dates — and the ask.']];
+  var clock=el('clock'), cT=el('clockT'), cS=el('clockSeg'), cC=el('clockCue'), cBtn=el('clockBtn'), segEls=document.querySelectorAll('#segs div');
+  var ct=null, left=300;
+  function paint(){
+    var m=Math.floor(left/60), s=left%60; cT.textContent=m+':'+(s<10?'0':'')+s;
+    var idx=Math.min(4, Math.floor((300-left)/60)); if(left===0) idx=4;
+    cS.textContent=(idx+1)+' / 5 · '+SEGS[idx][0]; cC.textContent=SEGS[idx][1];
+    segEls.forEach(function(d,j){ d.classList.toggle('on', j===idx && ct!==null); });
+  }
+  cBtn.addEventListener('click',function(){
+    if(ct){ clearInterval(ct); ct=null; cBtn.innerHTML='&#9201; Start the 5:00 clock'; paint(); return; }
+    left=300; clock.classList.add('on'); cBtn.innerHTML='&#9632; Stop the clock';
+    ct=setInterval(function(){ left--; paint(); if(left<=0){ clearInterval(ct); ct=null; cBtn.innerHTML='&#9201; Run it again'; cS.textContent='Time — that’s the briefing'; cC.textContent='Five minutes, done. Now share it with your manager.'; segEls.forEach(function(d){ d.classList.remove('on'); }); } },1000);
+    paint();
+  });
+
+  /* ---------- Season scorecard ---------- */
+  var boxEls=document.querySelectorAll('#seasonCheck input'), cbar=el('checkBar'), score=el('checkScore'), cert=el('cert');
+  function tally(){
+    var n=0; boxEls.forEach(function(cb){ cb.closest('label').classList.toggle('done', cb.checked); if(cb.checked) n++; });
+    cbar.style.width=(n/boxEls.length*100)+'%';
+    var m = n===10 ? 'SEASON ONE CLOSER ✓' : n>=7 ? 'playoff ready' : n>=4 ? 'making the roster' : 'back to the film room';
+    score.textContent=n+' of 10 — '+m; score.style.color = n===10 ? 'var(--fsg-green)' : 'var(--fsg-dark-navy)';
+    cert.classList.toggle('on', n===10);
+  }
+  boxEls.forEach(function(cb){ cb.addEventListener('change', tally); }); tally();
+
+  /* ---------- Cliffhanger ---------- */
+  document.querySelectorAll('#files .file').forEach(function(f){
+    f.addEventListener('click',function(){ f.classList.add('open'); f.querySelector('.st').textContent='Declassified'; });
+  });
+  var lines=document.querySelectorAll('#cliff .line');
+  function reveal(){ lines.forEach(function(l,i){ setTimeout(function(){ l.classList.add('in'); }, reduce?0:i*700); }); }
+  if(reduce || !('IntersectionObserver' in window)){ reveal(); }
+  else { var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ reveal(); io.disconnect(); } }); },{threshold:.25}); io.observe(el('cliff')); }
+})();
+</script>
+</body>
+</html>
