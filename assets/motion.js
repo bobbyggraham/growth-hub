@@ -21,6 +21,16 @@
        Paste the week block Paula hands you after Monday review right below
        this marker. Nothing else in this file changes.
        ============================================================================ */
+    { week: "2026-11-02", cards: [
+      { lane: "PEOPLE",      tone: "navy",  standard: "Nobody's a finished product. Build each other up.", move: "Before you critique a teammate's record, ask what you'd want asked of yours. Then sit down and fix it together." },
+      { lane: "EXECUTION",   tone: "deep",  standard: "Great teams aren't built on the good weeks.", move: "Something went sideways on an account this week. Pull the team into one Engage Meeting, own it, assign the fix. No fingers." },
+      { lane: "RESULTS",     tone: "light", standard: "Confidence is a receipt, not a feeling.", move: "Keep three promises to customers this week and log all three. Proof you do what you say compounds." },
+      { lane: "VISION",      tone: "navy",  standard: "Hold the standard when it costs you something.", move: "Say the uncomfortable thing in one meeting this week: the real close date, the real scope, the real number." },
+      { lane: "DEVELOPMENT", tone: "deep",  standard: "Uncomfortable means you care. Keep going.", move: "Make the one call you've been avoiding. Before noon. Then put the next step on a follow-up date." },
+      { lane: "EXECUTION",   tone: "light", standard: "Diagnose before you prescribe.", move: "Next discovery: clarify why they called, name the problem, ask what they've already tried. No pitch until you can repeat their pain back to them." },
+      { lane: "VALUE",       tone: "navy",  standard: "The sale isn't done when they say yes.", move: "After the win, reinforce it: one note on what they'll get and when. Log it as the next step, then go deliver it." },
+      { lane: "FINANCE",     tone: "deep",  standard: "Energy is a budget. Spend the first hour on pipeline.", move: "Nothing from the inbox until your Money in Motion view is clean. Protect that hour like a customer meeting, because it is one." }
+    ]},
     { week: "2026-10-19", cards: [
       { lane: "RESULTS", tone: "navy", standard: "Results end the argument.", move: "Skip the hallway debate. Log the win in Engage and let the number talk." },
       { lane: "EXECUTION", tone: "deep", standard: "Win the rep, not the headline.", move: "Forget the quarter for an hour. Nail the next call: the prep, the ask, the follow-up." },
