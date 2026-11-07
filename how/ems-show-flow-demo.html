@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EMS Show Flow — The 45-Minute Chariot Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root { --fsg-deep-navy:#0b1421; --fsg-dark-navy:#133865; --fsg-brand-blue:#365aa0; --fsg-steel-blue:#718dbc; --fsg-light-blue:#c5d9fa; --fsg-light-gray:#ededed; --fsg-gold:#ebb018; --fsg-bright-blue:#4e84de; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Open Sans',Arial,sans-serif; color:var(--fsg-deep-navy); background:#fff; line-height:1.55; font-size:16px; }
+  .page { max-width:960px; margin:0 auto; padding:32px 24px 48px; }
+  .hero { background:var(--fsg-dark-navy); border-radius:8px; padding:28px 32px; }
+  .hero .eyebrow { color:var(--fsg-light-blue); font-weight:700; font-size:13px; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .hero h1 { font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:40px; color:#fff; line-height:1.15; margin-bottom:10px; }
+  .hero .subtitle { color:var(--fsg-light-blue); font-size:14px; }
+  .gold-rule { border:none; border-top:3px solid var(--fsg-gold); margin:18px 0 28px; }
+  h2 { font-family:'Oswald',Arial,sans-serif; font-weight:700; color:var(--fsg-dark-navy); font-size:26px; margin:34px 0 12px; }
+  h3 { font-family:'Oswald',Arial,sans-serif; color:var(--fsg-brand-blue); font-size:19px; margin:22px 0 6px; }
+  p { margin:12px 0; } b { color:var(--fsg-deep-navy); }
+  .glance { display:flex; gap:6px; margin:14px 0 8px; flex-wrap:wrap; }
+  .glance .chip { flex:1 1 160px; background:var(--fsg-dark-navy); color:#fff; font-weight:700; font-size:13px; text-align:center; padding:12px 10px; border-radius:6px; }
+  .glance .chip:nth-child(even) { background:var(--fsg-brand-blue); }
+  .step { margin-top:40px; }
+  .step-header { display:flex; align-items:stretch; background:var(--fsg-light-gray); border-radius:6px; overflow:hidden; }
+  .step-num { background:var(--fsg-dark-navy); color:#fff; font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:28px; display:flex; align-items:center; justify-content:center; min-width:64px; }
+  .step-title { font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:22px; color:var(--fsg-dark-navy); text-transform:uppercase; padding:14px 18px; display:flex; align-items:center; }
+  .step p { margin:16px 0 10px; } .step ul { margin:10px 0 14px 22px; } .step li { margin-bottom:9px; }
+  .step h4 { font-family:'Oswald',Arial,sans-serif; color:var(--fsg-brand-blue); font-size:17px; margin:18px 0 4px; }
+  table.brand { width:100%; border-collapse:collapse; font-size:15px; margin:16px 0; }
+  table.brand th { background:var(--fsg-dark-navy); color:#fff; text-align:left; padding:10px 14px; font-weight:700; }
+  table.brand td { padding:10px 14px; vertical-align:top; }
+  table.brand tr:nth-child(even) td { background:var(--fsg-light-blue); }
+  table.brand td:first-child { font-weight:700; }
+  table.brand td ul { margin:6px 0 0 18px; } table.brand td li { margin-bottom:4px; }
+  .callout { background:var(--fsg-light-blue); border-left:4px solid var(--fsg-gold); border-radius:0 6px 6px 0; padding:20px 24px; margin:32px 0 24px; }
+  .callout h3 { font-family:'Oswald',Arial,sans-serif; color:var(--fsg-dark-navy); font-size:20px; margin:0 0 10px; }
+  .callout ul { margin-left:20px; } .callout li { margin-bottom:7px; font-size:15px; color:var(--fsg-dark-navy); }
+  .wedge { background:var(--fsg-dark-navy); color:#fff; border-radius:8px; padding:24px 28px; margin:20px 0; }
+  .wedge h4 { font-family:'Oswald',Arial,sans-serif; font-size:15px; letter-spacing:2px; text-transform:uppercase; color:var(--fsg-gold); margin-bottom:10px; }
+  .wedge p { color:var(--fsg-light-blue); margin:8px 0; font-size:15px; } .wedge p b { color:#fff; }
+  .q { background:#fff; border:1px solid #e4e7ee; border-left:4px solid var(--fsg-brand-blue); border-radius:0 6px 6px 0; padding:12px 16px; margin:10px 0; font-size:15px; }
+  .q b { color:var(--fsg-brand-blue); }
+  .contact-line { font-style:italic; color:var(--fsg-steel-blue); font-size:14px; margin:24px 0 0; }
+  .vc { margin-top:28px; padding-top:18px; border-top:3px solid var(--fsg-gold); }
+  .vc h3 { font-family:'Oswald',Arial,sans-serif; color:var(--fsg-dark-navy); font-size:18px; margin:0 0 10px; }
+  table.vc-table { width:100%; border-collapse:collapse; font-size:14px; }
+  table.vc-table th { background:var(--fsg-dark-navy); color:#fff; text-align:left; padding:8px 12px; font-weight:700; }
+  table.vc-table td { padding:8px 12px; border:1px solid var(--fsg-light-gray); }
+  footer { text-align:center; color:var(--fsg-steel-blue); font-size:13px; margin-top:40px; }
+  a { color:var(--fsg-bright-blue); }
+  @media print { .page{max-width:none;padding:0} * { -webkit-print-color-adjust:exact; print-color-adjust:exact; } .step,.callout,tr{break-inside:avoid} }
+  .related { margin-top:36px; border-top:3px solid var(--fsg-gold); padding-top:16px; }
+  .rel-head { font-weight:700; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--fsg-brand-blue); margin-bottom:10px; }
+  .rel-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:8px; }
+  .rel { display:block; text-decoration:none; background:var(--fsg-light-gray); border-left:4px solid var(--fsg-dark-navy); border-radius:6px; padding:10px 12px; color:var(--fsg-deep-navy); }
+  .rel b { display:block; font-size:14px; } .rel span { font-size:12px; color:var(--fsg-steel-blue); }
+  .rel:hover { background:var(--fsg-light-blue); }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="eyebrow">Growth Hub · Engage Plays · Energy Performance</div>
+    <h1>EMS Show Flow — The 45-Minute Chariot Demo</h1>
+    <div class="subtitle">What to say, what to show, what to ask &nbsp;·&nbsp; FSG Energy Management (EMS) &nbsp;·&nbsp; Run on FSG's own demonstration site</div>
+  </div>
+  <hr class="gold-rule">
+
+  <h2>Why This Play Matters</h2>
+  <p>Nobody buys an EMS from a slide. They buy it when they watch a cooler alarm fire, a setpoint change land, and a trend prove a unit isn't cooling. The demo is the sale. This show flow runs Chariot live on FSG's demonstration site (FSG – 01 Smart Buildings, Round Rock) in eight scenes, each with a line to say, a screen to show and a question to ask. Forty-five minutes, including discussion. Thirty if you're tight.</p>
+
+  <h2>The Play at a Glance</h2>
+  <div class="glance">
+    <div class="chip">0. Set up</div>
+    <div class="chip">1. The problem</div>
+    <div class="chip">2. Sites &amp; map</div>
+    <div class="chip">3. Zones &amp; Grid</div>
+    <div class="chip">4. Setpoint &amp; Deep Control</div>
+    <div class="chip">5. Schedules</div>
+    <div class="chip">6. Trends</div>
+    <div class="chip">7. Rules &amp; alerts</div>
+    <div class="chip">8. Support &amp; close</div>
+  </div>
+
+  <div class="step">
+    <div class="step-header"><div class="step-num">0</div><div class="step-title">Set Up (the day before)</div></div>
+    <ul>
+      <li><b>Book the demo site.</b> Ask Smart Buildings for a demo login and confirm the Round Rock site is online (green check). Never demo on a customer's live portal.</li>
+      <li><b>Know the room.</b> Facilities wants Grid and Rules. Finance wants trends and tiers. IT wants the architecture slide, not the app. Store ops wants schedules and the thermostat card. Plan which scene gets the extra five minutes.</li>
+      <li><b>Pre-stage the screens.</b> Open four tabs: Sites, the site's Grid view, Trends with three points on RTU05 (SpaceTemp, SupplyAirTemp, OccCoolSetPoint) over the last 7 days at Medium resolution, and Notifications. Tab-switching beats clicking.</li>
+      <li><b>Bring the leave-behinds.</b> The EMS one-pager and the pricing menu as PDFs, ready to send the moment the demo ends.</li>
+      <li><b>Open Chariot in Dark theme</b> on a 1080p-or-better screen. Hide the browser bookmarks bar. Close email.</li>
+      <li><b>Pre-demo note in Engage:</b> opportunity at stage 2 Scope Development, demo date on the record, Smart Buildings sales engineer added if they're joining.</li>
+    </ul>
+  </div>
+
+  <div class="step">
+    <div class="step-header"><div class="step-num">1</div><div class="step-title">The Problem (3 min) — no screen yet</div></div>
+    <p><b>Say:</b> "Before I show you anything, I want to make sure we're solving the right problem. Most of the operators we work with have three systems they can't see from headquarters: the rooftop units, the lights, and the coolers. Everything's fine until it isn't, and you find out from a bill or a spoiled case."</p>
+    <div class="q"><b>Ask:</b> "If a walk-in failed at two this morning, how would you find out, and when?"</div>
+    <div class="q"><b>Ask:</b> "What's your store standard for setpoints, and how do you know a site is on it?"</div>
+    <p><i>Write their answers down. You'll use them in Scene 7.</i></p>
+  </div>
+
+  <div class="step">
+    <div class="step-header"><div class="step-num">2</div><div class="step-title">Sites &amp; Map (4 min) — Sites page</div></div>
+    <p><b>Show:</b> the Sites list and map. Point at the green check. Filter by State, then Favorite. Zoom the map.</p>
+    <p><b>Say:</b> "This is the whole portfolio. Green means the site is connected and reporting. If it's not green, we know before you do, and our support center is already on it. Your team searches by site number, filters by region, and favorites the stores they own."</p>
+    <div class="q"><b>Ask:</b> "How many sites would be on this map for you? Are they all on the same controls today, or is it a mix?"</div>
+    <p><i>Lesson for you: a mixed portfolio is a multi-vendor support story. FSG supports systems it didn't install. Say so here.</i></p>
+  </div>
+
+  <div class="step">
+    <div class="step-header"><div class="step-num">3</div><div class="step-title">Zones &amp; Grid (6 min) — open the site</div></div>
+    <p><b>Show:</b> the Zones view first. Walk one thermostat card: big number is space temperature, flame is heating setpoint, snowflake is cooling, the word under it (COOLING 1, STANDBY) is what the unit is doing now, the small figures are humidity and fan, the line is the recent trend. Hover for Quick Trend. Then switch to Grid.</p>
+    <p><b>Say:</b> "Every unit at the site in one table: zone, space temp, supply temp, occupied and unoccupied setpoints, system mode. Run your eye down the Supply Temp column. When a unit is cooling, supply air should be sixteen to twenty degrees below the space. The one that isn't, that's your service call, and you found it in ten seconds."</p>
+    <div class="q"><b>Ask:</b> "Who on your team would open this every morning? What would they do differently if they could see this for every store?"</div>
+    <p><i>Lesson: this is where "pricing follows complexity, not square footage" becomes real. Count the units on the grid with them.</i></p>
+  </div>
+
+  <div class="step">
+    <div class="step-header"><div class="step-num">4</div><div class="step-title">Change a Setpoint &amp; Deep Control (5 min)</div></div>
+    <p><b>Show:</b> on the card, press + once on the cooling setpoint. Wait. Watch the value hold. Then open the unit's Deep Control from the blue arrow in Grid: Unoccupied setpoints, Occupied setpoints, Deadband, Fan Mode, System Mode on top; Connection Status, Cooling Stage Active, Effective Occupancy, Fan Status below. Put the setpoint back.</p>
+    <p><b>Say:</b> "That change went to the rooftop unit just now. Your facilities lead can do that from a phone in a parking lot. Your store manager can't, because you decide who can change what. Deep Control is everything we know about one unit, settings on top, status underneath."</p>
+    <div class="q"><b>Ask:</b> "Who should be allowed to change a setpoint today, and who actually does?"</div>
+    <p><i>Lesson: Deadband is where the energy lives. A one-degree wider deadband across a portfolio is a real number. Don't quote it; let the pilot measure it.</i></p>
+  </div>
+
+  <div class="step">
+    <div class="step-header"><div class="step-num">5</div><div class="step-title">Schedules (4 min) — calendar icon in the site header</div></div>
+    <p><b>Show:</b> Daily Schedules (weekly open/close), then Exception Schedules. Add a holiday exception for a date next month. Show Equipment Presets briefly.</p>
+    <p><b>Say:</b> "Schedules decide when a site is occupied, and therefore which setpoints and lighting states apply. The exception schedule is the one people forget: add the holiday now and the store doesn't run a full occupied day with the doors locked. Presets are your store standard in a button: setpoints and modes applied the moment a period starts."</p>
+    <div class="q"><b>Ask:</b> "How do holiday hours get to the equipment today? What happened last Thanksgiving?"</div>
+  </div>
+
+  <div class="step">
+    <div class="step-header"><div class="step-num">6</div><div class="step-title">Trends (6 min) — the pre-staged tab</div></div>
+    <p><b>Show:</b> the three-point trend on one RTU. Read it aloud: cooling setpoint flat at 72, supply air dropping to the mid-50s when the unit cools, space temp holding near setpoint. Overnight the supply air drifts toward room temperature because the unit isn't running. Drag the overview strip to zoom one afternoon. Switch to heat map for one second, then back.</p>
+    <p><b>Say:</b> "This is how an argument ends. A store says it's hot. A tech says the unit's running. Chariot shows the unit's running and the supply air is warm, which means it's not cooling. You dispatch with a diagnosis, not a complaint. And when the repair is done, the trend proves it."</p>
+    <div class="q"><b>Ask:</b> "When a store complains it's hot, what happens next today? How many of those end with a truck roll that finds nothing?"</div>
+    <p><i>Lesson: resolution matters. Low is one reading every two hours (months of data, fast). Medium is every 15 minutes (most reviews). High is every 5. Show all data is for one bad day.</i></p>
+  </div>
+
+  <div class="step">
+    <div class="step-header"><div class="step-num">7</div><div class="step-title">Rules &amp; Alerts (6 min) — bell icon</div></div>
+    <p><b>Show:</b> the Rules list and the on/off switch. Open New Rule. Build the customer's own rule from Scene 1: "Walk-in cooler above 41°F for 15 minutes" — condition on the cooler's point, time condition 0 hours 15 minutes, priority High, type Phone, their number. Don't save it on the demo site; show the Notifications history instead, newest first, filtered to one rule.</p>
+    <p><b>Say:</b> "You told me earlier you'd find out about that cooler from the morning shift. This is the rule that texts you at 2:15 instead. Fifteen minutes so a door left open during restocking doesn't page anyone. Every alert sent is logged with the rule, the time and the message, so when the health inspector asks, the history is there."</p>
+    <div class="q"><b>Ask:</b> "What are the three things you'd want a text about before anyone on site knows?"</div>
+    <p><i>Lesson: Set Points and Send To FlightDeck at the bottom of a rule perform automatic actions when it triggers. Don't demo them. Say "the rule can also act, not just alert, and our support center sets that up with you."</i></p>
+  </div>
+
+  <div class="step">
+    <div class="step-header"><div class="step-num">8</div><div class="step-title">Support &amp; Close (8 min) — close the laptop</div></div>
+    <p><b>Say:</b> "Here's the part most EMS vendors don't have. Everything you just saw is also on a screen in Round Rock, Texas, where a US-based support center staffed with live controls people watches it around the clock. They receive and clear the alarms, fix what they can remotely, and dispatch when they can't, either our crews or your preferred vendor. Last year for one customer that was 735,955 alarms cleared and 3,523 truck rolls that never rolled. The support agreement is a flat fee per site. That's the difference between an install and a program."</p>
+    <p><b>Then the offer:</b> "The way this starts is a site survey. Our engineers walk five to twenty of your stores, assign a tier to each one, and come back with a firm per-store price and a 90-day measurement plan. The survey's included. Pricing follows what we find, not square footage; I'll leave you budgetary ranges today so finance isn't surprised."</p>
+    <div class="q"><b>Ask (the small yes):</b> "If we surveyed five stores, which five would teach us the most about your portfolio?"</div>
+    <div class="q"><b>Ask (the next step):</b> "Who else needs to see what you just saw before a pilot gets approved?"</div>
+    <p><b>Hand over:</b> the one-pager and the pricing menu. Book the survey or the second demo before you leave the room.</p>
+  </div>
+
+  <div class="callout">
+    <h3>Objections You'll Hear, and the Honest Answer</h3>
+    <ul>
+      <li><b>"We already have a system."</b> Good. Which one, and who supports it? FSG monitors and supports other vendors' BAS/EMS equipment; the pilot can start with what's in the building.</li>
+      <li><b>"Our managers will just override it."</b> Setpoint lockouts, per-user permissions and drift protection. They can see; they can't undo the standard.</li>
+      <li><b>"What if the internet goes down?"</b> Distributed control. The site keeps running and logging on the Clarity panel; the cloud catches up when it reconnects.</li>
+      <li><b>"IT won't let you connect."</b> CloudBridge VPN gateway, individual logins, open-protocol architecture. Offer the IT architecture conversation as a separate 30 minutes with Smart Buildings engineering.</li>
+      <li><b>"What's the ROI?"</b> Tier ranges are ~3 years for Core and ~5 for Standard and Advanced. The pilot measures yours against your baseline. Say "measured," never "guaranteed."</li>
+      <li><b>"Can you just send pricing?"</b> Yes: budgetary ranges today, a firm number after the survey. The survey is included and takes a few weeks.</li>
+    </ul>
+  </div>
+
+  <div class="callout">
+    <h3>Common Misses — Check Before You Walk Away</h3>
+    <ul>
+      <li><b>Demoing features instead of their problem.</b> Scene 1 gives you their words. Every scene after that answers them.</li>
+      <li><b>Saving a rule or changing a schedule on the demo site and leaving it.</b> Put everything back. The next rep demos after you.</li>
+      <li><b>Letting the Trends tab load live.</b> Pre-stage it. A spinner kills the moment.</li>
+      <li><b>Skipping Scene 8.</b> The support center is the differentiator. If you run out of time, cut Schedules, not Support.</li>
+      <li><b>Leaving without the small yes.</b> Store list or second-demo date. One of the two, every time.</li>
+      <li><b>No Engage note.</b> Log the demo, who attended, the objections and the next step within the hour.</li>
+    </ul>
+  </div>
+
+  <p class="contact-line">Demo logins and the demonstration site: FSG Smart Buildings, Round Rock, TX &nbsp;|&nbsp; Product reference: Chariot User Guide v1.0 (Oct 2026) &nbsp;|&nbsp; Escalations: David Burrough.</p>
+
+  <div class="vc">
+    <h3>Version Control</h3>
+    <table class="vc-table">
+      <tr><th>Version</th><th>Date</th><th>Owner</th><th>Change Summary</th></tr>
+      <tr><td>1.0</td><td>November 2026</td><td>Bobby Graham — Growth</td><td>Initial publication. Scenes follow the Chariot User Guide v1.0 (Sites, Site page, Setpoints, Deep Control, Schedules, Trends, Rules, Getting Help).</td></tr>
+    </table>
+    <p class="contact-line" style="margin-top:12px;">Prepared by Lumen | FSG Business Development AI<br>For Bobby Graham, Chief Growth Officer · bobby.graham@fsg.com · (312) 593-0416</p>
+  </div>
+
+<div class="related"><div class="rel-head">FSG Energy Management (EMS) · the play</div><div class="rel-grid"><a class="rel" href="../how/ems-product-overview.html"><b>Product Overview</b><span>What EMS is, who buys it, tiers, proof, Engage coding</span></a><a class="rel" href="../how/ems-one-pager.html"><b>One-Pager</b><span>Seven questions, proof, pricing ranges, never/always</span></a><a class="rel" href="../story/ems-pitch-deck.html"><b>4-MAT Pitch Deck</b><span>Customer-facing deck · press N for sales notes</span></a><a class="rel" href="../story/chariot-show-flow-deck.html"><b>Chariot Show Flow Deck</b><span>UI walkthrough with guide screenshots · N notes, Z zoom</span></a></div></div>
+  <footer>FSG Engage &nbsp;|&nbsp; Growth Hub &nbsp;|&nbsp; Internal Enablement</footer>
+</div>
+</body>
+</html>

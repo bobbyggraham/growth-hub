@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FSG Energy Management (EMS) — One-Pager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root { --fsg-deep-navy:#0b1421; --fsg-dark-navy:#133865; --fsg-brand-blue:#365aa0; --fsg-steel-blue:#718dbc; --fsg-light-blue:#c5d9fa; --fsg-light-gray:#ededed; --fsg-gold:#ebb018; --fsg-bright-blue:#4e84de; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Open Sans',Arial,sans-serif; color:var(--fsg-deep-navy); background:#fff; line-height:1.55; font-size:16px; }
+  .page { max-width:960px; margin:0 auto; padding:32px 24px 48px; }
+  .hero { background:var(--fsg-dark-navy); border-radius:8px; padding:28px 32px; }
+  .hero .eyebrow { color:var(--fsg-light-blue); font-weight:700; font-size:13px; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .hero h1 { font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:40px; color:#fff; line-height:1.15; margin-bottom:10px; }
+  .hero .subtitle { color:var(--fsg-light-blue); font-size:14px; }
+  .gold-rule { border:none; border-top:3px solid var(--fsg-gold); margin:18px 0 28px; }
+  h2 { font-family:'Oswald',Arial,sans-serif; font-weight:700; color:var(--fsg-dark-navy); font-size:26px; margin:34px 0 12px; }
+  h3 { font-family:'Oswald',Arial,sans-serif; color:var(--fsg-brand-blue); font-size:19px; margin:22px 0 6px; }
+  p { margin:12px 0; } b { color:var(--fsg-deep-navy); }
+  .glance { display:flex; gap:6px; margin:14px 0 8px; flex-wrap:wrap; }
+  .glance .chip { flex:1 1 160px; background:var(--fsg-dark-navy); color:#fff; font-weight:700; font-size:13px; text-align:center; padding:12px 10px; border-radius:6px; }
+  .glance .chip:nth-child(even) { background:var(--fsg-brand-blue); }
+  .step { margin-top:40px; }
+  .step-header { display:flex; align-items:stretch; background:var(--fsg-light-gray); border-radius:6px; overflow:hidden; }
+  .step-num { background:var(--fsg-dark-navy); color:#fff; font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:28px; display:flex; align-items:center; justify-content:center; min-width:64px; }
+  .step-title { font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:22px; color:var(--fsg-dark-navy); text-transform:uppercase; padding:14px 18px; display:flex; align-items:center; }
+  .step p { margin:16px 0 10px; } .step ul { margin:10px 0 14px 22px; } .step li { margin-bottom:9px; }
+  .step h4 { font-family:'Oswald',Arial,sans-serif; color:var(--fsg-brand-blue); font-size:17px; margin:18px 0 4px; }
+  table.brand { width:100%; border-collapse:collapse; font-size:15px; margin:16px 0; }
+  table.brand th { background:var(--fsg-dark-navy); color:#fff; text-align:left; padding:10px 14px; font-weight:700; }
+  table.brand td { padding:10px 14px; vertical-align:top; }
+  table.brand tr:nth-child(even) td { background:var(--fsg-light-blue); }
+  table.brand td:first-child { font-weight:700; }
+  table.brand td ul { margin:6px 0 0 18px; } table.brand td li { margin-bottom:4px; }
+  .callout { background:var(--fsg-light-blue); border-left:4px solid var(--fsg-gold); border-radius:0 6px 6px 0; padding:20px 24px; margin:32px 0 24px; }
+  .callout h3 { font-family:'Oswald',Arial,sans-serif; color:var(--fsg-dark-navy); font-size:20px; margin:0 0 10px; }
+  .callout ul { margin-left:20px; } .callout li { margin-bottom:7px; font-size:15px; color:var(--fsg-dark-navy); }
+  .wedge { background:var(--fsg-dark-navy); color:#fff; border-radius:8px; padding:24px 28px; margin:20px 0; }
+  .wedge h4 { font-family:'Oswald',Arial,sans-serif; font-size:15px; letter-spacing:2px; text-transform:uppercase; color:var(--fsg-gold); margin-bottom:10px; }
+  .wedge p { color:var(--fsg-light-blue); margin:8px 0; font-size:15px; } .wedge p b { color:#fff; }
+  .q { background:#fff; border:1px solid #e4e7ee; border-left:4px solid var(--fsg-brand-blue); border-radius:0 6px 6px 0; padding:12px 16px; margin:10px 0; font-size:15px; }
+  .q b { color:var(--fsg-brand-blue); }
+  .contact-line { font-style:italic; color:var(--fsg-steel-blue); font-size:14px; margin:24px 0 0; }
+  .vc { margin-top:28px; padding-top:18px; border-top:3px solid var(--fsg-gold); }
+  .vc h3 { font-family:'Oswald',Arial,sans-serif; color:var(--fsg-dark-navy); font-size:18px; margin:0 0 10px; }
+  table.vc-table { width:100%; border-collapse:collapse; font-size:14px; }
+  table.vc-table th { background:var(--fsg-dark-navy); color:#fff; text-align:left; padding:8px 12px; font-weight:700; }
+  table.vc-table td { padding:8px 12px; border:1px solid var(--fsg-light-gray); }
+  footer { text-align:center; color:var(--fsg-steel-blue); font-size:13px; margin-top:40px; }
+  a { color:var(--fsg-bright-blue); }
+  @media print { .page{max-width:none;padding:0} * { -webkit-print-color-adjust:exact; print-color-adjust:exact; } .step,.callout,tr{break-inside:avoid} }
+  .related { margin-top:36px; border-top:3px solid var(--fsg-gold); padding-top:16px; }
+  .rel-head { font-weight:700; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--fsg-brand-blue); margin-bottom:10px; }
+  .rel-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:8px; }
+  .rel { display:block; text-decoration:none; background:var(--fsg-light-gray); border-left:4px solid var(--fsg-dark-navy); border-radius:6px; padding:10px 12px; color:var(--fsg-deep-navy); }
+  .rel b { display:block; font-size:14px; } .rel span { font-size:12px; color:var(--fsg-steel-blue); }
+  .rel:hover { background:var(--fsg-light-blue); }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="eyebrow">Growth Hub · Products · Energy Performance · One-Pager</div>
+    <h1>FSG Energy Management (EMS)</h1>
+    <div class="subtitle">Every site's HVAC, lighting and refrigeration on one screen, under one standard, backed by a 24/7 support center &nbsp;·&nbsp; Lead product · Services and Distribution</div>
+  </div>
+  <hr class="gold-rule">
+
+  <table class="brand">
+    <tr><th style="width:24%">What it is</th><td>Chariot software (FSG's own) + Clarity controls (built in FSG's UL 508A shop) + FSG crews + a 24/7 US-based support center that clears alarms and avoids truck rolls. Turnkey from 1 to 10,000+ sites, open-protocol, and we support systems we didn't install.</td></tr>
+    <tr><th>Who buys it</th><td>VP/Director Facilities (fewer truck rolls, one standard) · Energy/Sustainability (verified savings, ESG) · Store Ops (cold coolers, locked thermostats) · Finance (payback, OpEx, one vendor) · IT (secure gateway, data ownership)</td></tr>
+    <tr><th>Triggers</th><td>New prototype, rebrand or remodel wave · refrigeration or food-safety incident · foodservice expansion · demand-charge spike or ESG reporting · orphaned controls the incumbent won't support · maintenance budget cut</td></tr>
+    <tr><th>The problem we name</th><td>Zero visibility. Setpoints drift, closed stores run occupied days, coolers fail silently, and truck rolls go out for "it was just a setting."</td></tr>
+    <tr><th>The outcome we sell</th><td>See every site. Enforce the standard. Catch the alarm before the loss. Fix it remotely. Measure the savings. Then roll it out.</td></tr>
+  </table>
+
+  <div class="glance">
+    <div class="chip">Core · ~$10K–$20K / site · ~3-yr ROI</div>
+    <div class="chip">Standard · ~$20K–$40K / site · ~5-yr ROI</div>
+    <div class="chip">Advanced · ~$50K–$100K+ / site · ~5-yr ROI</div>
+    <div class="chip">Chariot + Support · ~$30 + ~$30 / site / month</div>
+  </div>
+  <p style="font-size:13px;color:var(--fsg-steel-blue);margin:6px 0 0;"><i>Budgetary ranges, as stated in FSG Smart Buildings program pricing. Quote as ranges only. A firm per-site price follows the site survey. FSG files the rebates; never estimate a rebate amount.</i></p>
+
+  <h2>Seven questions that open the deal</h2>
+  <div class="q"><b>1.</b> "If a walk-in failed at 2 a.m., how would you find out, and when?"</div>
+  <div class="q"><b>2.</b> "What's your setpoint and schedule standard, and how do you know a site is on it?"</div>
+  <div class="q"><b>3.</b> "How many service calls last year ended with 'it was just a setting'? What does one cost?"</div>
+  <div class="q"><b>4.</b> "What controls the HVAC today, who supports it, and what happens when it's offline?"</div>
+  <div class="q"><b>5.</b> "What's rolling out across the portfolio in the next 18 months, and who specs the controls?"</div>
+  <div class="q"><b>6.</b> "Where does energy show up on your P&amp;L, and who owns that line?"</div>
+  <div class="q"><b>7.</b> "If we surveyed five stores at no cost, which five would teach us the most?"</div>
+
+  <h2>Proof (use exactly as written)</h2>
+  <table class="brand">
+    <tr><th>Any audience</th><td>10,000+ sites per program · 30,000+ EMS integrated · 24/7 US-based support, 500+ support guides · 25+ years BAS · 20,000+ FSG Certified Technicians, coast-to-coast · 200,000,000+ kWh saved</td></tr>
+    <tr><th>Internal / authorized</th><td>Circle K: 7,000 sites, 735,955 alarms cleared and 3,523 truck rolls avoided (FY24), 6,500 sites on Complete Support, one EMS challenge → six categories and $300M+ · Verizon 1,272 sites · Wells Fargo 1,975 sites audited in 5 days · ULTA 320 remote saves / $120K</td></tr>
+  </table>
+
+  <h2>How it codes in Engage</h2>
+  <table class="brand">
+    <tr><th>Services · Energy Performance</th><td><b>Default.</b> FSG designs, installs, commissions and supports. Pilots, retrofits, rollouts, Complete Support and M&amp;M. Types: Building Management System, Retrofit, ECMs, Planned Maintenance, Controls. Owner: Steven Sparling (BMS); Cameron Carpenter / Frank Agraz (Retrofit, ECMs, PM).</td></tr>
+    <tr><th>Distribution · Energy Performance</th><td>FSG supplies hardware, someone else installs: thermostat kits, BrightBox, sensor suites, swap/prefab panel programs. Confirm type against the live picklist.</td></tr>
+    <tr><th>Always two records</th><td>The install opportunity and its Complete Support companion. Follow-up date set, close date in the future, value ≥ $1 until priced.</td></tr>
+  </table>
+
+  <h2>The path</h2>
+  <div class="glance">
+    <div class="chip">1. Discovery</div>
+    <div class="chip">2. Chariot demo (Show Flow)</div>
+    <div class="chip">3. Site survey, 5–20 sites</div>
+    <div class="chip">4. Firm price + 90-day plan</div>
+    <div class="chip">5. Pilot → measure → rollout</div>
+  </div>
+
+  <div class="callout">
+    <h3>Never say · Always say</h3>
+    <ul>
+      <li>Never "guaranteed savings" or "ESCO." Always "measurable" or "verified" savings, proven with M&amp;V.</li>
+      <li>Never a number inside the range. Always "budgetary; firm after the survey."</li>
+      <li>Never "we replace your system." Always "we can start with what's in the building."</li>
+      <li>Never "43+ locations." Always "local offices in every major city, FSG Certified Technicians across the nation, self-performed coast-to-coast."</li>
+    </ul>
+  </div>
+
+  <p class="contact-line">Next step after any conversation: book the demo or the survey. Deliverables for the customer: EMS pitch deck (4-MAT) and the pilot pricing menu. Product questions: FSG Smart Buildings, Round Rock, TX. Escalations: David Burrough.</p>
+
+  <div class="vc">
+    <p class="contact-line" style="margin:0;">Prepared by Lumen | FSG Business Development AI<br>For Bobby Graham, Chief Growth Officer · bobby.graham@fsg.com · (312) 593-0416 &nbsp;·&nbsp; v1.0 · November 2026</p>
+  </div>
+<div class="related"><div class="rel-head">FSG Energy Management (EMS) · the play</div><div class="rel-grid"><a class="rel" href="../how/ems-product-overview.html"><b>Product Overview</b><span>What EMS is, who buys it, tiers, proof, Engage coding</span></a><a class="rel" href="../how/ems-show-flow-demo.html"><b>Show Flow Demo script</b><span>The 45-minute Chariot demo, scene by scene</span></a><a class="rel" href="../story/ems-pitch-deck.html"><b>4-MAT Pitch Deck</b><span>Customer-facing deck · press N for sales notes</span></a><a class="rel" href="../story/chariot-show-flow-deck.html"><b>Chariot Show Flow Deck</b><span>UI walkthrough with guide screenshots · N notes, Z zoom</span></a></div></div>
+  <footer>FSG Engage &nbsp;|&nbsp; Growth Hub &nbsp;|&nbsp; Internal Enablement</footer>
+</div>
+</body>
+</html>
