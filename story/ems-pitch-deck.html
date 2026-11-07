@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Every Site, One Screen — FSG Energy Management (EMS)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg:#0b1421; --surface:#15253f; --surface2:#1c3050; --border:#1e3558;
+  --accent:#ebb018; --accent-glow:rgba(235,176,24,0.12);
+  --text:#F2EEE9; --text-muted:#718dbc; --text-subtle:#3a4d6e;
+  --font-head:'Oswald','Arial Black',sans-serif;
+  --font-body:'Open Sans',Arial,Helvetica,sans-serif;
+}
+html,body{width:100%;height:100%;background:var(--bg);font-family:var(--font-body);color:var(--text);overflow:hidden;-webkit-font-smoothing:antialiased;}
+#deck{width:100vw;height:100vh;position:relative;overflow:hidden;transition:width .3s;}
+body.notes #deck{width:66vw;}
+.slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:6vh 8vw;opacity:0;transform:translateY(20px);transition:opacity .38s cubic-bezier(.4,0,.2,1),transform .38s cubic-bezier(.4,0,.2,1);pointer-events:none;z-index:1;}
+.slide.active{opacity:1;transform:translateY(0);pointer-events:all;z-index:2;}
+.slide.out{opacity:0;transform:translateY(-20px);}
+#counter{position:fixed;top:28px;right:72px;font-size:12px;font-weight:500;letter-spacing:.06em;color:var(--text-subtle);z-index:100;}
+body.notes #counter{right:calc(34vw + 72px);}
+#counter b{color:var(--text-muted);font-weight:600;}
+#nav-dots{position:fixed;right:26px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:7px;z-index:100;}
+body.notes #nav-dots{right:calc(34vw + 26px);}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--text-subtle);cursor:pointer;transition:background .2s,transform .2s;}
+.dot:hover{background:var(--text-muted);}
+.dot.on{background:var(--accent);transform:scale(1.35);}
+#hint{position:fixed;bottom:18px;right:72px;font-size:11px;color:var(--text-subtle);letter-spacing:.07em;z-index:100;user-select:none;}
+body.notes #hint{right:calc(34vw + 72px);}
+.stamp{position:fixed;bottom:18px;left:40px;font-size:10px;color:var(--text-subtle);letter-spacing:.06em;z-index:100;}
+.glow{position:fixed;border-radius:50%;filter:blur(130px);pointer-events:none;z-index:0;}
+.glow-a{width:700px;height:700px;background:rgba(235,176,24,.035);top:-250px;right:-200px;}
+.glow-b{width:500px;height:500px;background:rgba(54,90,160,.08);bottom:-200px;left:-150px;}
+.eyebrow{font-family:var(--font-head);font-size:clamp(9px,1vw,12px);font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;}
+.hl{color:var(--accent);font-style:normal;}
+.l-statement{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:860px;}
+.l-statement .big{font-family:var(--font-head);font-size:clamp(52px,8.5vw,108px);font-weight:700;line-height:1.0;letter-spacing:-2px;margin-bottom:28px;}
+body.notes .l-statement .big{font-size:clamp(40px,6vw,76px);}
+.l-statement .sub{font-size:clamp(15px,1.7vw,22px);font-style:italic;color:var(--text-muted);line-height:1.6;margin-bottom:32px;max-width:600px;}
+.rule{width:44px;height:2px;background:var(--accent);margin:0 auto 28px;}
+.byline{font-size:clamp(10px,1vw,12px);font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--text-subtle);}
+.l-section{display:flex;flex-direction:column;align-items:flex-start;width:100%;max-width:1060px;}
+.l-section .big{font-family:var(--font-head);font-size:clamp(36px,5.8vw,72px);font-weight:700;line-height:1.06;letter-spacing:-1.5px;margin-bottom:36px;}
+body.notes .l-section .big{font-size:clamp(28px,4vw,52px);margin-bottom:22px;}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px 26px;}
+.card.hi{border-color:var(--accent);box-shadow:inset 0 0 50px var(--accent-glow);}
+.c-label{font-family:var(--font-head);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+.c-title{font-size:clamp(14px,1.6vw,18px);font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.25;}
+.c-body{font-size:clamp(11px,1.2vw,14px);color:var(--text-muted);line-height:1.55;}
+.stat{font-family:var(--font-head);font-size:clamp(30px,3.6vw,46px);font-weight:700;color:var(--accent);line-height:1;margin-bottom:6px;}
+.l-split{display:grid;grid-template-columns:1fr 1fr;gap:64px;max-width:1060px;width:100%;align-items:center;}
+body.notes .l-split{gap:36px;}
+.l-split .big{font-family:var(--font-head);font-size:clamp(34px,5vw,62px);font-weight:700;line-height:1.06;letter-spacing:-1px;margin-bottom:18px;}
+body.notes .l-split .big{font-size:clamp(26px,3.6vw,46px);}
+.l-split .desc{font-size:clamp(13px,1.45vw,17px);color:var(--text-muted);line-height:1.65;}
+.feat-list{display:flex;flex-direction:column;gap:10px;}
+.feat{display:flex;align-items:flex-start;gap:14px;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:10px;}
+.fdot{width:7px;height:7px;border-radius:50%;background:var(--accent);margin-top:5px;flex-shrink:0;}
+.ft{font-size:clamp(13px,1.4vw,16px);font-weight:600;color:var(--text);line-height:1.35;}
+.fs{font-size:clamp(10px,1.1vw,13px);color:var(--text-muted);margin-top:3px;line-height:1.4;}
+
+/* ---- N: sales notes panel (internal) ---- */
+#notes{position:fixed;top:0;right:0;width:34vw;height:100vh;background:#0f1b2e;border-left:1px solid var(--border);padding:34px 30px 30px;overflow-y:auto;transform:translateX(100%);transition:transform .3s;z-index:200;font-size:13.5px;line-height:1.55;}
+body.notes #notes{transform:translateX(0);}
+#notes .n-head{font-family:var(--font-head);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;}
+#notes .n-title{font-family:var(--font-head);font-size:20px;font-weight:700;color:var(--text);margin-bottom:18px;}
+#notes .n-tag{display:inline-block;padding:3px 9px;border:1px solid var(--border);border-radius:100px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);margin:0 6px 14px 0;}
+#notes h5{font-family:var(--font-head);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:18px 0 8px;padding-top:14px;border-top:1px solid var(--border);}
+#notes h5:first-of-type{border-top:none;padding-top:0;}
+#notes ul{list-style:none;}
+#notes li{position:relative;padding-left:16px;margin-bottom:9px;color:var(--text);}
+#notes li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--accent);}
+#notes li.k::before{background:var(--text-muted);}
+#notes li.k{color:var(--text-muted);}
+#notes li b{color:var(--text);}
+#notes .n-code{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:12px;color:var(--text-muted);margin-top:8px;}
+#notes .n-code b{color:var(--accent);}
+#notes .n-foot{margin-top:24px;font-size:10px;color:var(--text-subtle);letter-spacing:.06em;}
+#ntoggle{position:fixed;top:24px;right:26px;z-index:300;width:30px;height:30px;border-radius:50%;border:1px solid var(--border);background:var(--surface);color:var(--text-muted);font-family:var(--font-head);font-weight:700;font-size:12px;cursor:pointer;}
+body.notes #ntoggle{color:#0b1421;background:var(--accent);border-color:var(--accent);}
+.n-data{display:none;}
+</style>
+</head>
+<body>
+<div id="deck">
+  <div class="glow glow-a"></div>
+  <div class="glow glow-b"></div>
+  <div id="counter"><b>01</b> / 1</div>
+  <div id="nav-dots"></div>
+  <div id="hint">arrows to navigate · F fullscreen · N sales notes</div>
+  <div class="stamp"><a href="../how/ems.html" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor;">← EMS play</a> &nbsp;·&nbsp; Prepared by Lumen | FSG Business Development AI &nbsp;·&nbsp; FSG Energy Management (EMS) · Growth Hub</div>
+
+  <!-- 1. TITLE -->
+  <div class="slide active">
+    <div class="l-statement">
+      <div class="eyebrow">FSG Energy Performance · Energy Management</div>
+      <h1 class="big">Every Site,<br>One <em class="hl">Screen</em></h1>
+      <p class="sub">HVAC, lighting and refrigeration — seen, controlled and kept running across your whole portfolio.</p>
+      <div class="rule"></div>
+      <div class="byline">Bobby Graham &nbsp;·&nbsp; CGO, FSG</div>
+    </div>
+    <div class="n-data">
+      <div class="n-title">Open with their world, not ours</div>
+      <span class="n-tag">Why · Title</span><span class="n-tag">2 min</span>
+      <h5>Ask</h5><ul>
+        <li>"Before we start, how many sites are you responsible for, and how many of them can you see from your desk right now?"</li>
+        <li>"What made you take this meeting?"</li></ul>
+      <h5>Know</h5><ul>
+        <li class="k"><b>EMS</b> = Energy Management System: controls + software + people that run a building's energy-using equipment to the business's standard. Say "EMS" to executives and finance; "BAS/BMS" to facilities and IT. Same thing.</li>
+        <li class="k">Replace "your whole portfolio" with their number the moment you have it. "Every site" is the promise; their number is the hook.</li></ul>
+      <h5>Objection</h5><ul><li>"We're just gathering information." → "Good. Then let me show you the three things that cost operators money that they can't see. If none of them apply, we're done in fifteen minutes."</li></ul>
+      <div class="n-code"><b>Engage</b> · Product: Energy Performance · Delivery Method: Services (default) · Stage 1 Qualifying</div>
+    </div>
+  </div>
+
+  <!-- 2. WHY -->
+  <div class="slide">
+    <div class="l-statement">
+      <div class="eyebrow">Why</div>
+      <h1 class="big">The Problem<br>Is <em class="hl">Silent</em></h1>
+      <p class="sub">A cooler drifts past 41°F overnight. A thermostat walks from 74 to 68. A closed store runs a full occupied day. Nobody sees it until the bill or the spoilage.</p>
+      <div class="rule"></div>
+      <div class="byline">Zero visibility is the most expensive line item nobody budgets for</div>
+    </div>
+    <div class="n-data">
+      <div class="n-title">Name the problem before the product</div>
+      <span class="n-tag">Why · Problem</span><span class="n-tag">4 min</span>
+      <h5>Ask</h5><ul>
+        <li>"If a walk-in failed at 2 a.m. tonight, how would you find out, and when?"</li>
+        <li>"What's your setpoint and schedule standard, and how do you know a site is actually on it?"</li>
+        <li>"How many service calls last year ended with 'it was just a setting'?"</li></ul>
+      <h5>Know</h5><ul>
+        <li class="k"><b>Setpoint</b>: the target temperature a unit works to. Chariot shows a heating setpoint (flame) and a cooling setpoint (snowflake); occupied and unoccupied pairs follow the schedule.</li>
+        <li class="k"><b>Drift</b>: a manager nudges the thermostat and nobody notices. Across 500 sites, one degree of drift is a real number. Don't quote it; let the pilot measure it.</li>
+        <li class="k"><b>41°F</b> is the food-code cold-holding line. Every store ops lead knows it. Use it.</li></ul>
+      <h5>Objection</h5><ul><li>"Our stores call us when something's wrong." → "They call you when they notice. The cooler doesn't call anyone. What's the gap between when it fails and when someone notices?"</li></ul>
+      <div class="n-code"><b>Write down their answers.</b> You'll build their rule from them on the alerts slide.</div>
+    </div>
+  </div>
+
+  <!-- 3. WHY NOW -->
+  <div class="slide">
+    <div class="l-split">
+      <div>
+        <div class="eyebrow">Why now</div>
+        <h2 class="big">What's Moving<br>in Your <em class="hl">Portfolio</em></h2>
+        <p class="desc">Energy, refrigeration and comfort are on the line every time the portfolio changes. Controls get specified once and travel with every site that follows.</p>
+      </div>
+      <div class="feat-list">
+        <div class="feat"><div class="fdot"></div><div><div class="ft">New prototypes, rebrands, remodels</div><div class="fs">The store standard gets written now. Put the controls in it.</div></div></div>
+        <div class="feat"><div class="fdot"></div><div><div class="ft">Foodservice and refrigeration growth</div><div class="fs">More load per site, more alarms worth catching, more to lose.</div></div></div>
+        <div class="feat"><div class="fdot"></div><div><div class="ft">Rates, demand charges, ESG reporting</div><div class="fs">The peak sets the bill. Someone has to report the kWh.</div></div></div>
+        <div class="feat"><div class="fdot"></div><div><div class="ft">Orphaned controls, thinner maintenance budgets</div><div class="fs">Fewer truck rolls, not more technicians.</div></div></div>
+      </div>
+    </div>
+    <div class="n-data">
+      <div class="n-title">Find the trigger — it's always one of these four</div>
+      <span class="n-tag">Why · Trigger</span><span class="n-tag">4 min</span>
+      <h5>Ask</h5><ul>
+        <li>"What's rolling out across the portfolio in the next 18 months — remodels, foodservice, EV, solar? Who specs the controls?"</li>
+        <li>"Has anything changed on the utility side — a rate change, a demand-charge spike, a sustainability report you now owe?"</li>
+        <li>"What's controlling the HVAC today, who supports it, and what happens when it goes offline?"</li></ul>
+      <h5>Know</h5><ul>
+        <li class="k"><b>Demand charge</b>: the part of a utility bill set by the highest 15-minute peak, not total use. Demand-charge management staggers equipment so the peak never sets. Separate from utility demand-response programs.</li>
+        <li class="k"><b>EUI</b> (kBtu per sq ft): how stores get ranked against peers and climate zones. Stores above the 75th percentile become the retrofit pipeline.</li>
+        <li class="k">An orphaned incumbent is the best trigger of all: FSG supports other vendors' BAS/EMS equipment.</li></ul>
+      <h5>Objection</h5><ul><li>"We're not budgeted for this year." → "That's why we start with a pilot. Five to twenty sites, measured, so next year's budget has a number behind it."</li></ul>
+      <div class="n-code"><b>Engage</b> · Log the trigger in the Customer Problem field. One place, complete.</div>
+    </div>
+  </div>
+
+  <!-- 4. WHAT -->
+  <div class="slide">
+    <div class="l-section">
+      <div class="eyebrow">What</div>
+      <h2 class="big">One Platform <em class="hl">Underneath</em></h2>
+      <div class="grid">
+        <div class="card hi"><div class="c-label">Software</div><div class="c-title">Chariot</div><div class="c-body">FSG's own platform. Every site, every system, one browser window. Nothing to install.</div></div>
+        <div class="card"><div class="c-label">Hardware</div><div class="c-title">Clarity panels, built in-house</div><div class="c-body">UL-listed Niagara 4 controllers, thermostats, sensors and metering from FSG's UL 508A shop.</div></div>
+        <div class="card"><div class="c-label">Crews</div><div class="c-title">FSG installs and services it</div><div class="c-body">20,000+ FSG Certified Technicians. Self-performed, coast-to-coast. We service what we install.</div></div>
+        <div class="card"><div class="c-label">Support</div><div class="c-title">24/7 US-based support center</div><div class="c-body">Live controls experts who clear the alarms and avoid the truck rolls. That's where the savings stick.</div></div>
+      </div>
+    </div>
+    <div class="n-data">
+      <div class="n-title">The container: four things most EMS vendors can't say together</div>
+      <span class="n-tag">What · Framework</span><span class="n-tag">3 min</span>
+      <h5>Ask</h5><ul>
+        <li>"Of these four, which one is missing from what you have today?"</li>
+        <li>"When your current system has a problem, who do you call, and do they own the fix or just the ticket?"</li></ul>
+      <h5>Know</h5><ul>
+        <li class="k"><b>Chariot</b> is FSG-developed and system-agnostic. Customer portal lives at their own address on fsgchariot.app.</li>
+        <li class="k"><b>Clarity Pro Connect</b>: wired, hardened, UL-listed Niagara 4 panel (BACnet, Modbus, TCP, MQTT, API) with distributed control. <b>Pro Reach</b> is wireless (Zigbee); <b>Agile Connect</b> is the MicroBox package for small retail and car wash.</li>
+        <li class="k"><b>Distributed control</b>: the site keeps running and logging on the panel if the cloud connection drops. This is the answer to "what if the internet goes down."</li>
+        <li class="k">The Lumen rule: FSG's brand line is "Monitoring platforms can watch. We fix."</li></ul>
+      <h5>Objection</h5><ul><li>"We'd rather not be locked into one vendor." → "Open protocol — BACnet, Modbus, MQTT, API. We integrate what's in the building, and the data is yours."</li></ul>
+      <div class="n-code"><b>Engage</b> · Services · Energy Performance (FSG installs and supports). Distribution · Energy Performance only when FSG ships hardware and someone else installs.</div>
+    </div>
+  </div>
+
+  <!-- 5. HOW 1 SEE -->
+  <div class="slide">
+    <div class="l-split">
+      <div>
+        <div class="eyebrow">How · 01</div>
+        <h2 class="big">See <em class="hl">Everything</em></h2>
+        <p class="desc">Chariot was written for store and facilities teams, not engineers. Sites on a map, live conditions, trends and alerts — on a phone or a desk.</p>
+      </div>
+      <div class="feat-list">
+        <div class="feat"><div class="fdot"></div><div><div class="ft">Every site, online status at a glance</div><div class="fs">Green check means connected and reporting.</div></div></div>
+        <div class="feat"><div class="fdot"></div><div><div class="ft">Every RTU in one table</div><div class="fs">Space temp, supply temp, setpoints, mode. The outlier is obvious.</div></div></div>
+        <div class="feat"><div class="fdot"></div><div><div class="ft">Trends that settle arguments</div><div class="fs">A unit that's "running" but not cooling shows up in one chart.</div></div></div>
+        <div class="feat"><div class="fdot"></div><div><div class="ft">Rules that text the manager</div><div class="fs">"Walk-in cooler above 41°F for 15 minutes" — before product is lost.</div></div></div>
+      </div>
+    </div>
+    <div class="n-data">
+      <div class="n-title">If the laptop is open, this is where you switch to the live demo</div>
+      <span class="n-tag">How · See</span><span class="n-tag">5 min</span>
+      <h5>Ask</h5><ul>
+        <li>"Who on your team would open this every morning? What would they do differently?"</li>
+        <li>"When a store says it's hot, what happens next today?"</li></ul>
+      <h5>Know</h5><ul>
+        <li class="k"><b>Grid view</b> columns: Zone, Space Temp, Fan, Fan Mode, Supply Temp, Occupied setpoints, Unoccupied setpoints, System Mode. Lighting zones below.</li>
+        <li class="k"><b>Is it working?</b> When a unit is actively cooling, supply air is usually 16–20°F below the space temperature. A much smaller difference while running means a problem worth reporting. This is the single most useful thing a rep can teach a facilities lead.</li>
+        <li class="k"><b>Trend resolution</b>: Low ≈ every 2 h (months, fast) · Medium ≈ 15 min (most reviews) · High ≈ 5 min · Show all data for one bad day.</li>
+        <li class="k"><b>Deep Control</b>: everything about one unit — adjustable settings on top (Unoccupied, Occupied, Deadband, Fan Mode, System Mode), read-only status below.</li></ul>
+      <h5>Objection</h5><ul><li>"Our people aren't technical." → "The user guide is written for store managers. No technical background needed, and each person gets their own login with only what they should touch."</li></ul>
+      <div class="n-code"><b>Show Flow</b> · Scenes 2–6 of the EMS demo script cover this slide live.</div>
+    </div>
+  </div>
+
+  <!-- 6. HOW 2 CONTROL -->
+  <div class="slide">
+    <div class="l-section">
+      <div class="eyebrow">How · 02</div>
+      <h2 class="big">Control the Three That <em class="hl">Matter</em></h2>
+      <div class="grid">
+        <div class="card"><div class="c-label">HVAC</div><div class="c-title">One site standard, enforced</div><div class="c-body">Remote setpoints and schedules. Drift protection keeps 68/74 from walking one thermostat at a time.</div></div>
+        <div class="card"><div class="c-label">Lighting</div><div class="c-title">Canopy, lot and store on one clock</div><div class="c-body">Astronomical scheduling, dimming and daylight harvesting. BrightBox controls up to 48 circuits per panel.</div></div>
+        <div class="card hi"><div class="c-label">Refrigeration</div><div class="c-title">Alarms before spoilage</div><div class="c-body">Demand-based defrost, temperature and offline alarms, and an audit-ready food-safety history.</div></div>
+        <div class="card"><div class="c-label">And the rest</div><div class="c-title">Fuel, car wash, kitchen, EV, solar</div><div class="c-body">Critical asset monitoring, kitchen scheduling, demand-charge management, EV managed charging, solar O&amp;M on the same platform.</div></div>
+      </div>
+    </div>
+    <div class="n-data">
+      <div class="n-title">Three systems, three buyers — find out which one hurts</div>
+      <span class="n-tag">How · Control</span><span class="n-tag">5 min</span>
+      <h5>Ask</h5><ul>
+        <li>"Of HVAC, lighting and refrigeration, which one generates the most calls? Which one costs the most when it fails?"</li>
+        <li>"Who owns refrigeration — facilities or operations? Who gets the call when product is lost?"</li>
+        <li>"What else is in the store that stops sales when it fails?" (fuel dispensers, car wash, fountain, kitchen)</li></ul>
+      <h5>Know</h5><ul>
+        <li class="k"><b>Deadband</b>: the minimum gap between heating and cooling setpoints so a unit doesn't flip back and forth. Energy lives in the deadband.</li>
+        <li class="k"><b>Astronomical scheduling</b>: lights follow sunrise/sunset by location, not a fixed clock. <b>Daylight harvesting</b> dims when natural light is enough.</li>
+        <li class="k"><b>KE2 Therm</b>: refrigeration controller on cooler/freezer evaporators for on-demand defrost, integrated to Chariot with alarms. Demand-based defrost only runs when ice is actually there.</li>
+        <li class="k"><b>Digital food safety</b>: cold- and hot-holding exception monitoring with probe-problem and logging-gap detection and an audit-ready temperature history.</li>
+        <li class="k">Refrigeration is highlighted because it's where the alarms and the savings are. It's also what moves a site from Core to Standard.</li></ul>
+      <h5>Objection</h5><ul><li>"We only need HVAC." → "Then start at Core. Standard is there when refrigeration is ready. Same platform; nothing to rip out."</li></ul>
+      <div class="n-code"><b>Tier tell</b> · HVAC only → Core · + refrigeration → Standard · + appliances, solar, EV → Advanced</div>
+    </div>
+  </div>
+
+  <!-- 7. HOW 3 KEEP -->
+  <div class="slide">
+    <div class="l-split">
+      <div>
+        <div class="eyebrow">How · 03</div>
+        <h2 class="big">Keep the <em class="hl">Savings</em></h2>
+        <p class="desc">Most platforms watch. FSG fixes. The support center is the difference between an install and a program.</p>
+      </div>
+      <div class="feat-list">
+        <div class="feat"><div class="fdot"></div><div><div class="ft">Alarm triage, on your behalf</div><div class="fs">FSG receives, qualifies and clears the noise. You see what matters.</div></div></div>
+        <div class="feat"><div class="fdot"></div><div><div class="ft">Remote fixes before a truck rolls</div><div class="fs">Live controls experts de-escalate most issues from the center.</div></div></div>
+        <div class="feat"><div class="fdot"></div><div><div class="ft">Weekly portfolio health report</div><div class="fs">Offline sites, setpoint compliance, lighting waste, equipment health.</div></div></div>
+        <div class="feat"><div class="fdot"></div><div><div class="ft">Contracted SLAs, flat per-site fee</div><div class="fs">P1/P2/P3 response times. Warranty managed so you never pay for covered items.</div></div></div>
+      </div>
+    </div>
+    <div class="n-data">
+      <div class="n-title">This is the slide competitors can't give — slow down here</div>
+      <span class="n-tag">How · Keep</span><span class="n-tag">5 min</span>
+      <h5>Ask</h5><ul>
+        <li>"When an alarm fires today, who sees it first, and what do they do with it?"</li>
+        <li>"What does a truck roll cost you, all in? How many last year found nothing wrong?"</li>
+        <li>"If one vendor owned the alarm, the fix and the dispatch, what would your team stop doing?"</li></ul>
+      <h5>Know</h5><ul>
+        <li class="k"><b>Customer Support Center</b>: US-based, live controls SMEs; ~30–53 sec average answer, ~8–10 min resolution; 50+ staff. Brand kit: 24/7/365, 500+ support guides.</li>
+        <li class="k"><b>Complete Support agreement</b>: bundled post-install program — cost avoidance, scope creation, service-call reduction, 24/7 phone support, alarm triage, warranty mgmt, maintenance. Flat per-site fee.</li>
+        <li class="k"><b>Multi-vendor</b>: 24/7 monitoring and support for FSG and other vendors' BAS/EMS equipment. Support doesn't require FSG to have done the install.</li>
+        <li class="k"><b>Web Relay</b>: lets the support center remotely power-cycle site equipment — a truck roll avoided from a desk.</li></ul>
+      <h5>Objection</h5><ul><li>"We have our own techs." → "Keep them. We dispatch your preferred vendor when a truck has to roll. Our job is making sure it has to."</li></ul>
+      <div class="n-code"><b>Engage</b> · Create the Complete Support companion opportunity now. Services · Energy Performance · Type: Building Management System.</div>
+    </div>
+  </div>
+
+  <!-- 8. PROOF -->
+  <div class="slide">
+    <div class="l-section">
+      <div class="eyebrow">Proven at scale</div>
+      <h2 class="big">This Already <em class="hl">Runs</em></h2>
+      <div class="grid">
+        <div class="card hi"><div class="stat">30,000+</div><div class="c-title">EMS locations integrated</div><div class="c-body">One program alone: 7,000 sites deployed, 6,500 on Complete Support.</div></div>
+        <div class="card"><div class="stat">735,955</div><div class="c-title">Alarms cleared in one year</div><div class="c-body">Triage turns noise into a short list your team can act on.</div></div>
+        <div class="card"><div class="stat">3,523</div><div class="c-title">Truck rolls avoided</div><div class="c-body">Fixed from the support center instead of the parking lot.</div></div>
+        <div class="card"><div class="stat">1,975</div><div class="c-title">Sites audited in five days</div><div class="c-body">Enterprise-scale BAS audit and proposal program. 200,000,000+ kWh saved for customers.</div></div>
+      </div>
+    </div>
+    <div class="n-data">
+      <div class="n-title">Proof — know which numbers are cleared for this room</div>
+      <span class="n-tag">Proof</span><span class="n-tag">3 min</span>
+      <h5>Ask</h5><ul>
+        <li>"What would you need to see from a pilot to believe these numbers for your portfolio?"</li>
+        <li>"Who inside your company would want to talk to a reference?"</li></ul>
+      <h5>Know</h5><ul>
+        <li class="k">The slide is <b>customer-agnostic on purpose</b>. The figures are: Circle K 7,000 sites / 30,000+ EMS locations / 735,955 alarms and 3,523 truck rolls (FY24) / 6,500 on Complete Support; Wells Fargo 1,975 sites audited, 5-day turnaround. Name them only for internal or authorized audiences.</li>
+        <li class="k">Other cleared stories: Verizon 1,272 sites (M&amp;M); ULTA 320 remote saves / $120K; Circle K one EMS challenge → six categories and $300M+ delivered.</li>
+        <li class="k"><b>Never round, freshen or combine</b> a number. Brand Kit §3 and the Smart Buildings capabilities list are the only sources.</li>
+        <li class="k">Lab store: FSG pilots and measures new technology at the Round Rock lab store before it scales (ENRG Blanket, Tune, KE2 Therm, BrainBox).</li></ul>
+      <h5>Objection</h5><ul><li>"Those are bigger than us." → "The support model is the same at 50 sites or 5,000. Pricing follows complexity per site, not your logo."</li></ul>
+      <div class="n-code"><b>Clearance</b> · Ask Bobby before putting a named customer in front of that customer's competitor.</div>
+    </div>
+  </div>
+
+  <!-- 9. PRICING -->
+  <div class="slide">
+    <div class="l-section">
+      <div class="eyebrow">Budgetary · per site</div>
+      <h2 class="big">Pricing Follows <em class="hl">Complexity</em></h2>
+      <div class="grid">
+        <div class="card"><div class="c-label">Core · ~3-yr ROI</div><div class="c-title">~$10K – $20K per site</div><div class="c-body">Smart thermostats on HVAC plus on/off lighting via contactors. Every site can start here.</div></div>
+        <div class="card hi"><div class="c-label">Standard · ~5-yr ROI</div><div class="c-title">~$20K – $40K per site</div><div class="c-body">Core plus refrigeration control and limited integration. Where most multi-site operators land.</div></div>
+        <div class="card"><div class="c-label">Advanced · ~5-yr ROI</div><div class="c-title">~$50K – $100K+ per site</div><div class="c-body">Full BAS: RTUs, refrigeration, appliances, solar inverters, EV chargers on a Clarity Pro panel.</div></div>
+        <div class="card"><div class="c-label">Recurring</div><div class="c-title">~$30 / site / month, each</div><div class="c-body">Chariot platform and Complete Support, flat per site. Rebates filed by FSG. Firm pricing follows the site survey.</div></div>
+      </div>
+    </div>
+    <div class="n-data">
+      <div class="n-title">Say "budgetary" out loud. Then say it again.</div>
+      <span class="n-tag">Pricing</span><span class="n-tag">4 min</span>
+      <h5>Ask</h5><ul>
+        <li>"Does this live in capex or opex for you? Who signs at each tier?"</li>
+        <li>"What payback does a project need to clear to get approved?"</li>
+        <li>"Have you filed utility rebates on controls before? Who did the paperwork?"</li></ul>
+      <h5>Know</h5><ul>
+        <li class="k">These ranges are <b>as stated in FSG Smart Buildings program pricing</b>. Quote them as ranges, labeled budgetary. Never a number inside the range; that comes from the site survey.</li>
+        <li class="k"><b>ROI</b> is approximate and depends on utility rates, climate and what's being controlled. The pilot measures theirs. Say "measurable" or "verified." Never "guaranteed." FSG is not an ESCO.</li>
+        <li class="k"><b>Rebates</b>: FSG identifies and files them. Never estimate an amount; processing takes 6–8 weeks and estimates aren't guaranteed.</li>
+        <li class="k"><b>OpEx / SaaS</b> structures exist (rebate administration &amp; financing). Route to Watt-checked pricing before anything is in writing.</li>
+        <li class="k">Worked example you may say: a 10-site Standard pilot sits around $200K–$400K hardware and install, plus roughly $600 per site per year recurring.</li></ul>
+      <h5>Objection</h5><ul><li>"Can you just send me a price?" → "Yes: these ranges today, a firm number after the survey. The survey's included."</li></ul>
+      <div class="n-code"><b>Engage</b> · Est. value stays $1 until Smart Buildings prices it. Close date in the future. Follow-up never blank.</div>
+    </div>
+  </div>
+
+  <!-- 10. PILOT -->
+  <div class="slide">
+    <div class="l-split">
+      <div>
+        <div class="eyebrow">The plan</div>
+        <h2 class="big">A Pilot That <em class="hl">Proves</em> It</h2>
+        <p class="desc">5–20 sites across formats and climates. Measured against a real baseline so the rollout decision is a number, not a feeling.</p>
+      </div>
+      <div class="feat-list">
+        <div class="feat"><div class="fdot"></div><div><div class="ft">1 · Survey</div><div class="fs">FSG engineers walk the sites and set a tier per site. Included.</div></div></div>
+        <div class="feat"><div class="fdot"></div><div><div class="ft">2 · Firm price</div><div class="fs">Per-site proposal. Rebates identified and filed.</div></div></div>
+        <div class="feat"><div class="fdot"></div><div><div class="ft">3 · Install and commission</div><div class="fs">FSG crews. Chariot portal and training for your team.</div></div></div>
+        <div class="feat"><div class="fdot"></div><div><div class="ft">4 · Measure, then decide</div><div class="fs">90 days of trends, alarms and energy vs. baseline. Health reports at 30, 60, 90.</div></div></div>
+      </div>
+    </div>
+    <div class="n-data">
+      <div class="n-title">The plan is the close — make it small, dated and theirs</div>
+      <span class="n-tag">How · Plan</span><span class="n-tag">4 min</span>
+      <h5>Ask</h5><ul>
+        <li>"Which five sites would teach us the most about your portfolio?"</li>
+        <li>"Could we get twelve months of utility bills for those sites so the 90 days has a real baseline?"</li>
+        <li>"Who approves a pilot, and what do they need to see?"</li></ul>
+      <h5>Know</h5><ul>
+        <li class="k"><b>M&amp;V</b> (measurement and verification): baseline + interval data + before/after. It's how a savings claim becomes a fact. The 30/60/90 portfolio health reports are the deliverable.</li>
+        <li class="k"><b>Robust commissioning</b>: physical-layer and remote, with data logs and deficiency notification. Say it; it's why FSG installs work on day one.</li>
+        <li class="k"><b>Training</b> is web-based and in-person on Chariot, panels, thermostats, reports and troubleshooting.</li>
+        <li class="k">Pilot sites should span formats and climate zones so the result reads as a portfolio proof, not a single-site trial.</li></ul>
+      <h5>Objection</h5><ul><li>"Why not just do all of them?" → "Because a measured pilot gets the rollout approved with a per-site number. Twenty sites, one quarter, then the decision is easy."</li></ul>
+      <div class="n-code"><b>Engage</b> · Stage 2 Scope Development once the survey is agreed. Add Smart Buildings sales engineering to the record.</div>
+    </div>
+  </div>
+
+  <!-- 11. NOW -->
+  <div class="slide">
+    <div class="l-statement">
+      <div class="eyebrow">Now</div>
+      <h1 class="big">Start With the<br><em class="hl">Site List</em></h1>
+      <p class="sub">Send 5–20 candidate sites. FSG scopes the survey and brings a live Chariot demo to your team — on us.</p>
+      <div class="rule"></div>
+      <div class="byline">Bobby Graham &nbsp;·&nbsp; CGO, FSG</div>
+    </div>
+    <div class="n-data">
+      <div class="n-title">One domino. Don't leave with a list of them.</div>
+      <span class="n-tag">Now · Next</span><span class="n-tag">3 min</span>
+      <h5>Ask</h5><ul>
+        <li>"Can you get me that site list by Friday?"</li>
+        <li>"Who else needs to see this before a pilot gets approved — can we put the demo on their calendar now?"</li></ul>
+      <h5>Know</h5><ul>
+        <li class="k">The ask is the <b>site list</b>, not the pilot. Once FSG is scoping specific sites, it's the pilot vendor in everything but signature.</li>
+        <li class="k">Leave behind: the EMS one-pager and the pilot pricing menu. Not this deck's notes.</li>
+        <li class="k">Within the hour: Engage note with attendees, objections, next step and date. Two records: the pilot opportunity and the Complete Support companion.</li></ul>
+      <h5>Objection</h5><ul><li>"Let me think about it." → "Of course. What would make the site list an easy yes — fewer sites, a different region, someone else in the room?"</li></ul>
+      <div class="n-code"><b>Delivery methods</b> · Services · Energy Performance for the pilot and the support agreement. Distribution · Energy Performance if they want hardware kits for a self-install program. Live picklist wins.</div>
+    </div>
+  </div>
+
+</div>
+
+<button id="ntoggle" title="Sales notes (N)">N</button>
+<aside id="notes">
+  <div class="n-head">Sales notes · internal · not for the customer screen</div>
+  <div id="notes-body"></div>
+  <div class="n-foot">FSG Energy Management (EMS) · Growth Hub · Prepared by Lumen | FSG Business Development AI</div>
+</aside>
+
+<script>
+(function(){
+  const slides=Array.from(document.querySelectorAll('.slide'));
+  const total=slides.length;
+  let cur=0;
+  const dotsEl=document.getElementById('nav-dots');
+  const notesBody=document.getElementById('notes-body');
+  slides.forEach((_,i)=>{const d=document.createElement('div');d.className='dot'+(i===0?' on':'');d.addEventListener('click',()=>go(i));dotsEl.appendChild(d);});
+  function renderNotes(){const src=slides[cur].querySelector('.n-data');notesBody.innerHTML=src?('<div class="n-head">Slide '+String(cur+1).padStart(2,'0')+' of '+total+'</div>'+src.innerHTML):'';document.getElementById('notes').scrollTop=0;}
+  function updateUI(){const n=String(cur+1).padStart(2,'0');document.getElementById('counter').innerHTML='<b>'+n+'</b> / '+total;dotsEl.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('on',i===cur));renderNotes();}
+  function go(n){if(n===cur)return;slides[cur].classList.add('out');slides[cur].classList.remove('active');setTimeout(()=>slides[n].classList.remove('out'),380);cur=Math.max(0,Math.min(total-1,n));slides[cur].classList.add('active');updateUI();}
+  function next(){if(cur<total-1)go(cur+1);}
+  function prev(){if(cur>0)go(cur-1);}
+  function toggleNotes(){document.body.classList.toggle('notes');renderNotes();}
+  document.getElementById('ntoggle').addEventListener('click',toggleNotes);
+  document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' ')next();if(e.key==='ArrowLeft'||e.key==='ArrowUp')prev();if(e.key==='f'||e.key==='F')document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();if(e.key==='n'||e.key==='N')toggleNotes();});
+  let tx=0;document.addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});document.addEventListener('touchend',e=>{const dx=tx-e.changedTouches[0].clientX;if(Math.abs(dx)>40)dx>0?next():prev();},{passive:true});
+  updateUI();
+})();
+</script>
+</body>
+</html>

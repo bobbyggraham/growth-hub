@@ -265,6 +265,9 @@ const R = {
   uwp:         {name:'Universal Waste Policy', kind:'Compliance Policy + Walkthrough', href:'universal-waste-policy.html', pdf:'../assets/compliance/FSG_Universal_Waste_Policy.pdf'},
   uwppdf:      {name:'Universal Waste Policy — PDF', kind:'PDF · Proposal / RFP Attachment', href:'../assets/compliance/FSG_Universal_Waste_Policy.pdf', pdf:'../assets/compliance/FSG_Universal_Waste_Policy.pdf'},
   master:      {name:'FSG Master Presentation', kind:'Deck + PDF', href:'master-2026.html', pdf:'../assets/master/FSG_Master_Presentation.pdf'},
+  emsdeck:     {name:'FSG Energy Management (EMS) — Pitch Deck', kind:'Deck + PDF · 4-MAT', href:'ems-pitch-deck.html', pdf:'../assets/ems/FSG_Energy_Management_EMS_Pitch_Deck.pdf'},
+  chariotdeck: {name:'Chariot Show Flow — UI Walkthrough', kind:'Deck + PDF · Demo rail', href:'chariot-show-flow-deck.html', pdf:'../assets/ems/FSG_Chariot_Show_Flow_Deck.pdf'},
+  emsplay:     {name:'FSG Energy Management (EMS) Play', kind:'Sales Play · Internal', href:'../how/ems.html'},
   culture:     {name:'The Institution & Culture', kind:'Deck', href:'institution-culture.html'},
   lightplay:   {name:'FSG Lighting Design Playbook', kind:'Sales Play', href:'../plays/lighting-design-playbook.html'},
   cstore:      {name:'C-Store Playbook', kind:'Sales Play', href:'../plays/c-store.html'},
@@ -319,11 +322,11 @@ const LINES = [
  {name:'Energy Performance', hi:true, tag:'"Energy that performs."',
   cells:{
    construction:{desc:'We install what cuts the bill — EMS installs, solar (“Own your power”), EV charging (“Ready to charge”), and storage. Solar returns exceeding 10% IRR over 20 years.',
-     types:['EMS installs','Solar','EV charging','Storage'], proofs:['Tesla','IKEA','Sunbelt','Public Storage','Boeing','Lillibridge'], res:['master','roi']},
-   service:{desc:'We watch the meters and fix what they find — EMS monitoring, alarm response, portfolio optimization, utility programs, retrofits, and national rollouts. We cut your energy costs and guarantee the savings — proven at the meter.',
-     types:['EMS monitoring','Alarm response','Portfolio optimization','Utility programs','Retrofits','National rollouts','Solar Maintenance & Monitoring','EV charging'], proofs:['Circle K','ULTA','Bass Pro'], res:['nsa','uwp','master','cstore']},
+     types:['EMS installs','Solar','EV charging','Storage'], proofs:['Tesla','IKEA','Sunbelt','Public Storage','Boeing','Lillibridge'], res:['emsdeck','emsplay','master','roi']},
+   service:{desc:'We watch the meters and fix what they find — EMS monitoring, alarm response, portfolio optimization, utility programs, retrofits, and national rollouts. We cut your energy costs with measurable savings, verified at the meter.',
+     types:['EMS monitoring','Alarm response','Portfolio optimization','Utility programs','Retrofits','National rollouts','Solar Maintenance & Monitoring','EV charging'], proofs:['Circle K','ULTA','Bass Pro'], res:['emsdeck','chariotdeck','emsplay','nsa','uwp','master','cstore']},
    distribution:{desc:'We supply the hardware — EV chargers, solar equipment, and EMS hardware, specified and delivered for deployment anywhere you operate.',
-     types:['EV chargers','Solar equipment','EMS hardware','EV charging'], proofs:[], res:['master']}
+     types:['EV chargers','Solar equipment','EMS hardware','EV charging'], proofs:[], res:['emsdeck','emsplay','master']}
   }}
 ];
 
