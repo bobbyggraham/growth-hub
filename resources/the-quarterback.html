@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Engage Live · The Quarterback</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#133865; --deep:#0b1421; --blue:#365aa0; --bright:#4e84de; --steel:#718dbc; --sky:#c5d9fa; --gold:#ebb018; --gray:#ededed;
+  --ink:#ffffff; --muted:#a9bbd8; --panel:#16294a; --line:rgba(197,217,250,.18);
+  --ok:#5fd08a; --warn:#ffb4a2;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ color-scheme: dark; } }
+:root[data-theme="dark"]{ color-scheme: dark; }
+*{box-sizing:border-box;margin:0;padding:0}
+:root{ box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px); }
+html,body{height:100%;background:var(--deep);color:var(--ink);font-family:'Open Sans',Arial,Helvetica,sans-serif;overflow:hidden}
+button{font:inherit;color:inherit}
+h1,h2,h3,h4,.osw{font-family:'Oswald','Arial Narrow',Arial,sans-serif;font-weight:600;letter-spacing:.3px}
+
+/* stage: fixed 1600x900 canvas scaled to fit */
+#viewport{position:fixed;inset:0 0 56px 0;overflow:hidden}
+#deck{width:1600px;height:900px;position:absolute;left:50%;top:50%;transform-origin:center center}
+.slide{position:absolute;inset:0;padding:70px 96px 60px;display:none;flex-direction:column;
+  background:radial-gradient(1200px 700px at 85% -10%, rgba(78,132,222,.22), transparent 60%), linear-gradient(160deg,#10284b 0%, var(--deep) 75%);
+  border-radius:14px;overflow:hidden}
+.slide.active{display:flex}
+.slide::after{content:"";position:absolute;left:96px;right:96px;bottom:34px;height:1px;background:var(--line)}
+.eyebrow{font-family:'Oswald',Arial,sans-serif;font-size:22px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.slide h2{font-size:64px;line-height:1.05;margin-bottom:26px}
+.slide h2 em{font-style:normal;color:var(--gold)}
+.lede{font-size:30px;line-height:1.4;color:var(--sky);max-width:1250px}
+.foot{position:absolute;left:96px;bottom:8px;font-size:15px;color:var(--steel);letter-spacing:1px;text-transform:uppercase;font-family:'Oswald',Arial,sans-serif}
+.chat{display:inline-flex;gap:14px;align-items:center;margin-top:auto;background:rgba(235,176,24,.12);border:1.5px solid var(--gold);border-radius:10px;padding:14px 22px;font-size:26px;color:#fff;align-self:flex-start}
+.chat b{font-family:'Oswald',Arial,sans-serif;color:var(--gold);letter-spacing:1px}
+
+/* click layers */
+.L{opacity:0;transform:translateY(14px);transition:opacity .35s ease, transform .35s ease}
+.L.on{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){ .L,.flip .f{transition:none} }
+
+/* title slide */
+.title-wrap{margin:auto 0;max-width:1300px}
+.title-wrap .series{font-family:'Oswald',Arial,sans-serif;color:var(--gold);font-size:28px;letter-spacing:4px;text-transform:uppercase}
+.title-wrap h1{font-size:132px;line-height:.95;margin:18px 0 28px}
+.title-wrap .tag{font-size:36px;color:var(--sky)}
+.title-wrap .who{margin-top:46px;font-size:24px;color:var(--steel)}
+.bar{width:120px;height:6px;background:var(--gold);border-radius:3px;margin:26px 0}
+
+/* generic blocks */
+.row{display:grid;gap:22px}
+.c2{grid-template-columns:repeat(2,1fr)} .c3{grid-template-columns:repeat(3,1fr)} .c4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:26px 28px}
+.card h3{font-size:34px;margin-bottom:10px}
+.card p{font-size:24px;line-height:1.45;color:var(--sky)}
+.card .k{font-family:'Oswald',Arial,sans-serif;font-size:20px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.card.gold{border-top:6px solid var(--gold)}
+.big3 .card{padding:34px}
+.big3 .card h3{font-size:56px;color:var(--gold)}
+.big3 .card p{font-size:27px}
+
+.agenda{list-style:none;display:grid;gap:12px;max-width:1150px}
+.agenda li{display:grid;grid-template-columns:150px 1fr;gap:20px;align-items:baseline;font-size:30px;padding:14px 22px;background:var(--panel);border-radius:10px;border-left:6px solid var(--blue)}
+.agenda li span{font-family:'Oswald',Arial,sans-serif;color:var(--gold);font-size:26px}
+.agenda li.hot{border-left-color:var(--gold)}
+
+.steps{list-style:none;counter-reset:s;display:grid;gap:14px;max-width:1350px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:64px 1fr;gap:18px;align-items:start;font-size:28px;line-height:1.35}
+.steps li::before{content:counter(s);font-family:'Oswald',Arial,sans-serif;font-size:30px;background:var(--gold);color:var(--deep);width:52px;height:52px;border-radius:50%;display:grid;place-items:center}
+.steps b{color:#fff} .steps i{color:var(--sky);font-style:normal}
+
+.quote{font-size:34px;line-height:1.4;font-style:italic;color:#fff;border-left:6px solid var(--gold);padding:8px 0 8px 28px;max-width:1300px}
+
+/* flip cards */
+.flips{display:grid;gap:18px}
+.flip{position:relative;height:190px;border:none;background:none;cursor:pointer;text-align:left;perspective:1000px;padding:0}
+.flip .f{position:absolute;inset:0;border-radius:12px;padding:22px 24px;backface-visibility:hidden;transition:transform .45s ease;display:flex;flex-direction:column}
+.flip .front{background:var(--navy);border:1px solid var(--line);justify-content:space-between}
+.flip .front .s{font-family:'Oswald',Arial,sans-serif;font-size:31px;line-height:1.15}
+.flip .front .t{font-size:16px;color:var(--steel);letter-spacing:1px;text-transform:uppercase}
+.flip .back{background:#fff;color:var(--deep);transform:rotateY(180deg);border:3px solid var(--gold);gap:8px}
+.flip .back .m{font-size:19px;color:var(--blue);font-style:italic}
+.flip .back .d{font-size:21px;line-height:1.35}
+.flip .back .d b{color:var(--navy)}
+.flip.on .front{transform:rotateY(-180deg)} .flip.on .back{transform:rotateY(0)}
+.flip:focus-visible{outline:3px solid var(--gold);outline-offset:4px;border-radius:12px}
+
+/* tabs */
+.tabs{display:flex;gap:12px;margin-bottom:22px}
+.tab{font-family:'Oswald',Arial,sans-serif;font-size:28px;padding:12px 28px;border-radius:10px;border:2px solid var(--steel);background:transparent;cursor:pointer;color:var(--sky)}
+.tab[aria-selected="true"]{background:var(--gold);border-color:var(--gold);color:var(--deep)}
+.tab:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.panel[hidden]{display:none}
+.panel .lead{font-size:30px;color:#fff;margin-bottom:22px;font-weight:600}
+.ticks{list-style:none;display:grid;gap:14px}
+.ticks li{font-size:27px;line-height:1.4;padding-left:40px;position:relative;color:var(--sky)}
+.ticks li::before{content:"";position:absolute;left:4px;top:13px;width:18px;height:18px;border-radius:4px;background:var(--gold)}
+.ticks li.no::before{background:transparent;border:3px solid var(--warn)}
+.ticks li b{color:#fff}
+
+/* roles picker */
+.roles{display:grid;grid-template-columns:330px 1fr;gap:28px;flex:1;min-height:0}
+.rolelist{display:grid;gap:8px;align-content:start}
+.rolebtn{text-align:left;font-family:'Oswald',Arial,sans-serif;font-size:24px;padding:10px 18px;border-radius:8px;border:1.5px solid var(--line);background:var(--panel);cursor:pointer;color:var(--sky)}
+.rolebtn[aria-selected="true"]{background:var(--gold);color:var(--deep);border-color:var(--gold)}
+.rolebtn:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.roleview{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:28px 32px}
+.roleview h3{font-size:44px;margin-bottom:4px}
+.roleview .sub{font-size:22px;color:var(--steel);margin-bottom:18px}
+.roleview .grid{display:grid;grid-template-columns:1fr 1.25fr;gap:26px}
+.roleview h4{font-size:22px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.roleview p,.roleview li{font-size:23px;line-height:1.4;color:var(--sky)}
+.roleview ul{list-style:none;display:grid;gap:8px}
+.roleview .asks li{color:#fff;font-style:italic}
+
+/* clock */
+.clock{display:flex;height:120px;border-radius:12px;overflow:hidden;font-family:'Oswald',Arial,sans-serif;margin:8px 0 18px}
+.clock div{display:flex;flex-direction:column;justify-content:center;padding:0 22px;font-size:30px;line-height:1.1;color:#fff}
+.clock small{font-family:'Open Sans',Arial,sans-serif;font-size:18px;opacity:.85;margin-top:6px}
+.k1{background:var(--blue)} .k2{background:var(--navy);border-left:2px solid var(--deep);border-right:2px solid var(--deep)} .k3{background:var(--steel)} .k4{background:var(--gold);color:var(--deep)!important}
+
+/* weak/strong close */
+.ws{display:grid;gap:14px;max-width:1400px}
+.wsrow{display:grid;grid-template-columns:1fr 60px 1fr;align-items:center;gap:16px;cursor:pointer;background:none;border:none;text-align:left;padding:0}
+.wsrow .w,.wsrow .s{font-size:27px;padding:18px 24px;border-radius:10px;line-height:1.35}
+.wsrow .w{background:var(--panel);color:var(--warn);text-decoration:line-through;text-decoration-color:rgba(255,180,162,.6)}
+.wsrow .arrow{font-size:34px;color:var(--gold);text-align:center}
+.wsrow .s{background:#fff;color:var(--deep);opacity:0;transition:opacity .3s}
+.wsrow.on .s{opacity:1}
+.wsrow:focus-visible{outline:3px solid var(--gold);outline-offset:4px;border-radius:10px}
+
+.cta{display:inline-block;font-family:'Oswald',Arial,sans-serif;font-size:30px;background:var(--gold);color:var(--deep);padding:16px 32px;border-radius:10px;text-decoration:none}
+.cta:focus-visible{outline:3px solid #fff;outline-offset:4px}
+.mega{font-family:'Oswald',Arial,sans-serif;font-size:96px;line-height:1.02;max-width:1350px}
+.mega em{font-style:normal;color:var(--gold)}
+
+
+/* football theme */
+.slide.field{background:
+  repeating-linear-gradient(90deg, transparent 0 158px, rgba(255,255,255,.045) 158px 160px),
+  radial-gradient(1100px 650px at 85% -10%, rgba(235,176,24,.14), transparent 60%),
+  linear-gradient(160deg,#0f2a1f 0%, #0b1a14 45%, var(--deep) 100%)}
+.slide.field::before{content:"";position:absolute;inset:0;pointer-events:none;background:
+  repeating-linear-gradient(90deg, transparent 0 30px, rgba(255,255,255,.05) 30px 32px) 0 30px/160px 18px no-repeat,
+  repeating-linear-gradient(90deg, transparent 0 30px, rgba(255,255,255,.05) 30px 32px) 0 calc(100% - 50px)/100% 18px no-repeat}
+.bug{position:absolute;right:96px;bottom:6px;display:flex;align-items:stretch;font-family:'Oswald',Arial,sans-serif;font-size:16px;letter-spacing:1px;text-transform:uppercase;border-radius:4px;overflow:hidden}
+.bug .t1{background:var(--gold);color:var(--deep);padding:3px 10px;font-weight:600}
+.bug .t2{background:#0a1626;color:var(--sky);padding:3px 12px;border:1px solid var(--line);border-left:none}
+.league{display:grid;grid-template-columns:1.45fr 1fr;gap:30px}
+.lg-h{font-family:'Oswald',Arial,sans-serif;font-size:22px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.lg-h.roast{color:var(--warn)}
+.lg-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.team{background:rgba(10,22,38,.85);border:1px solid var(--line);border-left:6px solid var(--gold);border-radius:10px;padding:14px 18px}
+.team .nm{display:flex;justify-content:space-between;align-items:baseline;font-family:'Oswald',Arial,sans-serif;font-size:30px}
+.team .nm b{font-weight:600}
+.team .nm span{color:var(--gold);font-size:30px}
+.team .dv{font-size:15px;color:var(--steel);letter-spacing:1px;text-transform:uppercase;margin:2px 0 6px}
+.team p{font-size:18px;line-height:1.35;color:var(--sky)}
+.lg-list{display:grid;gap:12px}
+.team.burn{border-left-color:var(--warn)}
+.team.burn .nm span{color:var(--warn)}
+.early{margin-top:22px;font-size:27px;background:rgba(235,176,24,.12);border:1.5px solid var(--gold);border-radius:10px;padding:14px 22px;align-self:flex-start}
+.early b{font-family:'Oswald',Arial,sans-serif;color:var(--gold);letter-spacing:1px}
+.early i{color:var(--sky);font-style:normal;margin-left:8px}
+.asof{position:absolute;right:96px;top:40px;font-size:14px;color:var(--steel);letter-spacing:1px;text-transform:uppercase}
+.flip .front .pen{font-family:'Oswald',Arial,sans-serif;font-size:18px;letter-spacing:2px;color:var(--gold);display:flex;align-items:center;gap:10px}
+.flip .front .pen::before{content:"";width:22px;height:16px;background:var(--gold);border-radius:2px;clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
+.flip .front .s{font-size:27px}
+.ws-h{display:grid;grid-template-columns:1fr 60px 1fr;gap:16px;font-family:'Oswald',Arial,sans-serif;font-size:20px;letter-spacing:3px;text-transform:uppercase}
+.ws-h span:first-child{color:var(--warn)} .ws-h span:last-child{color:var(--gold)}
+
+/* bottom control bar */
+#bar{position:fixed;left:0;right:0;bottom:0;height:56px;padding-bottom:env(safe-area-inset-bottom,0px);display:flex;align-items:center;gap:12px;padding-left:16px;padding-right:16px;background:#070d17;border-top:1px solid var(--line);z-index:5}
+#bar button{background:transparent;border:1px solid var(--line);border-radius:8px;height:38px;min-width:42px;padding:0 12px;cursor:pointer;color:var(--sky);font-size:15px}
+#bar button:hover{border-color:var(--steel)}
+#bar button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+#count{font-family:'Oswald',Arial,sans-serif;color:var(--sky);font-size:17px;min-width:70px;text-align:center}
+#prog{flex:1;height:5px;background:#18263d;border-radius:3px;overflow:hidden}
+#prog i{display:block;height:100%;width:0;background:var(--gold);transition:width .3s}
+#hint{font-size:13px;color:var(--steel)}
+body.hidebar #bar{opacity:0;transition:opacity .4s} body.hidebar #bar:hover{opacity:1}
+
+/* overview */
+#over{position:fixed;inset:0;background:rgba(7,13,23,.97);z-index:10;display:none;padding:40px;overflow:auto}
+#over.show{display:block}
+#over h3{font-size:28px;margin-bottom:20px;color:var(--gold)}
+#over .g{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+#over button{text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;cursor:pointer;color:#fff}
+#over button span{display:block;font-family:'Oswald',Arial,sans-serif;color:var(--gold);font-size:15px;letter-spacing:1px}
+#over button b{font-family:'Oswald',Arial,sans-serif;font-size:21px;font-weight:500}
+#over button.cur{border-color:var(--gold)}
+
+/* ===== LIGHT THEME + TEAM-COLOR POPS ===== */
+:root{ color-scheme: light; --ink:#0b1421; --body:#33465f; --muted:#5b6b82; --panel:#f3f6fb; --line:rgba(19,56,101,.14); --pop:#365aa0; }
+html,body{background:#dfe5ee;color:var(--ink)}
+.slide{background:radial-gradient(900px 500px at 92% -8%, color-mix(in srgb, var(--pop) 12%, transparent), transparent 65%), #ffffff;color:var(--ink);box-shadow:0 18px 50px rgba(11,20,33,.18)}
+.slide::before{content:"";position:absolute;left:0;right:0;top:0;height:10px;background:linear-gradient(90deg,#AA0000 0 11%,#00338D 11% 22%,#4F2683 22% 33%,#006778 33% 44%,#FFB612 44% 55%,#FB4F14 55% 66%,#E31837 66% 77%,#004C54 77% 88%,#0080C6 88% 100%)}
+.slide.field{background:
+  repeating-linear-gradient(90deg, transparent 0 158px, rgba(30,110,50,.10) 158px 160px),
+  radial-gradient(900px 500px at 92% -8%, color-mix(in srgb, var(--pop) 12%, transparent), transparent 65%),
+  linear-gradient(180deg,#f6faf5 0%, #edf5ec 100%)}
+.slide.field::before{background:linear-gradient(90deg,#AA0000 0 11%,#00338D 11% 22%,#4F2683 22% 33%,#006778 33% 44%,#FFB612 44% 55%,#FB4F14 55% 66%,#E31837 66% 77%,#004C54 77% 88%,#0080C6 88% 100%)}
+.slide::after{background:var(--line)}
+.eyebrow{color:var(--pop)}
+.slide h2{color:var(--ink)} .slide h2 em{color:var(--pop)}
+.lede{color:var(--body)} .lede b{color:var(--ink)!important}
+.title-wrap .series{color:var(--pop)} .title-wrap h1{color:var(--ink)} .title-wrap h1 span{color:var(--pop)!important}
+.title-wrap .tag{color:var(--body)} .title-wrap .who{color:var(--muted)} .bar{background:var(--pop)}
+.chat{background:color-mix(in srgb, var(--pop) 8%, #fff);border-color:var(--pop);color:var(--ink)} .chat b{color:var(--pop)}
+.card{background:#fff;border:1px solid var(--line);box-shadow:0 4px 14px rgba(11,20,33,.06)}
+.card h3{color:var(--ink)} .card p{color:var(--body)} .card .k{color:var(--pop)}
+.card.gold{border-top:6px solid var(--pop)}
+.big3 .card h3{color:var(--pop)}
+.agenda li{background:var(--panel);border-left-color:var(--steel);color:var(--ink)}
+.agenda li span{color:var(--pop)} .agenda li.hot{border-left-color:var(--pop)}
+.steps li::before{background:var(--pop);color:#fff}
+.steps b{color:var(--ink)} .steps i{color:var(--body)}
+.quote{color:var(--ink);border-left-color:var(--pop)}
+.flip .front{background:var(--pop);border:none;color:#fff;box-shadow:0 6px 16px rgba(11,20,33,.15)}
+.flip .front .t{color:rgba(255,255,255,.75)}
+.flip .front .pen{color:#fff} .flip .front .pen::before{background:#FFB612}
+.flip .back{background:#fff;color:var(--ink);border:3px solid var(--pop)}
+.flip .back .m{color:var(--pop)} .flip .back .d b{color:var(--ink)}
+.tab{border-color:var(--ink);color:var(--ink);background:#fff}
+.tab[aria-selected="true"]{background:var(--pop);border-color:var(--pop);color:#fff}
+.tab:focus-visible{outline-color:var(--pop)}
+.panel .lead{color:var(--ink)}
+.ticks li{color:var(--body)} .ticks li b{color:var(--ink)} .ticks li::before{background:var(--pop)} .ticks li.no::before{border-color:#c0392b}
+.rolebtn{background:var(--panel);color:var(--ink);border-color:var(--line)}
+.rolebtn[aria-selected="true"]{background:var(--pop);color:#fff;border-color:var(--pop)}
+.roleview{background:#fff;border:1px solid var(--line);border-top:6px solid var(--pop);box-shadow:0 4px 14px rgba(11,20,33,.06)}
+.roleview h3{color:var(--ink)} .roleview .sub{color:var(--muted)} .roleview h4{color:var(--pop)}
+.roleview p,.roleview li{color:var(--body)} .roleview .asks li{color:var(--ink)}
+.clock{box-shadow:0 6px 16px rgba(11,20,33,.12)}
+.ws-h span:first-child{color:#c0392b} .ws-h span:last-child{color:var(--pop)}
+.wsrow .w{background:#fdecea;color:#a3271b;text-decoration-color:rgba(163,39,27,.5)}
+.wsrow .s{background:var(--pop);color:#fff}
+.wsrow .arrow{color:var(--pop)}
+.mega{color:var(--ink)} .mega em{color:var(--pop)}
+.cta{background:var(--pop);color:#fff}
+.bug .t1{background:var(--pop);color:#fff} .bug .t2{background:#fff;color:var(--ink);border-color:var(--line)}
+.lg-h{color:var(--pop)} .lg-h.roast{color:#c0392b}
+.team{background:#fff;border:1px solid var(--line);border-left:8px solid var(--c1);box-shadow:0 4px 12px rgba(11,20,33,.07);position:relative;overflow:hidden}
+.team::after{content:"";position:absolute;right:0;top:0;bottom:0;width:6px;background:var(--c2)}
+.team .nm b{color:var(--ink)}
+.team .nm span{background:var(--c1);color:#fff;font-size:24px;padding:1px 12px;border-radius:6px}
+.team .dv{color:var(--muted)} .team p{color:var(--body)}
+.team.burn{border-left-color:var(--c1)} .team.burn .nm span{color:#fff}
+.early{background:color-mix(in srgb, var(--pop) 8%, #fff);border-color:var(--pop);color:var(--ink)} .early b{color:var(--pop)} .early i{color:var(--muted)}
+.asof{color:var(--muted)}
+#bar{background:#fff;border-top:1px solid var(--line)}
+#bar button{color:var(--ink);border-color:var(--line)}
+#count{color:var(--ink)} #prog{background:#e3e8ef} #prog i{background:linear-gradient(90deg,#AA0000,#00338D,#4F2683,#006778,#FB4F14)} #hint{color:var(--muted)}
+#over{background:rgba(236,240,246,.98)} #over h3{color:var(--ink)}
+#over button{background:#fff;color:var(--ink);border-color:var(--line)} #over button span{color:#365aa0} #over button.cur{border-color:#365aa0;box-shadow:0 0 0 2px #365aa0}
+
+/* ===== section timer (docked in the control bar) ===== */
+#tmr{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:20px;padding:3px 4px 3px 12px;background:#fff;font-family:'Oswald',Arial,sans-serif;white-space:nowrap}
+#tmr .nm{font-size:14px;color:var(--muted);letter-spacing:.5px;max-width:230px;overflow:hidden;text-overflow:ellipsis}
+#tmr .ck{font-size:19px;min-width:52px;text-align:right;font-variant-numeric:tabular-nums;color:#1d8a4e}
+#tmr.warn .ck{color:#c77700} #tmr.over .ck{color:#a3271b}
+#tmr button{border-radius:50%!important;width:30px;min-width:30px!important;height:30px!important;padding:0!important;display:grid;place-items:center;background:#1d8a4e!important;border-color:#1d8a4e!important;color:#fff!important;font-size:13px!important}
+#tmr.run button{background:#6b7a90!important;border-color:#6b7a90!important}
+#tmr.hide{display:none}
+#tmr .to-btn{width:auto!important;min-width:0!important;border-radius:14px!important;padding:0 10px!important;background:#fff!important;border:1.5px solid #4F2683!important;color:#4F2683!important;font-family:'Oswald',Arial,sans-serif!important;font-size:13px!important;letter-spacing:.5px}
+#tmr.to .to-btn{background:#4F2683!important;color:#fff!important}
+#tmr.run button.to-btn:not([aria-pressed="true"]){background:#fff!important;color:#4F2683!important;border-color:#4F2683!important}
+#tmr.run button.to-btn[aria-pressed="true"]{background:#4F2683!important;color:#fff!important;border-color:#4F2683!important}
+#tmr.to .ck,#tmr.to .nm{color:#4F2683}
+#tmr .fx{font-size:13px;color:var(--muted);padding-right:8px;font-variant-numeric:tabular-nums}
+#tmr .fx.low{color:#a3271b}
+
+/* ===== presenter notes (N) ===== */
+#notes{position:fixed;top:0;right:0;bottom:56px;width:440px;background:#fff;border-left:1px solid var(--line);box-shadow:-10px 0 30px rgba(11,20,33,.12);z-index:7;display:none;flex-direction:column;font-family:'Open Sans',Arial,sans-serif;color:var(--ink)}
+body.notes-open #notes{display:flex}
+body.notes-open #viewport{right:440px}
+#notes .nh{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line)}
+#notes .nh .nt{flex:1;font-family:'Oswald',Arial,sans-serif;font-size:17px;line-height:1.2}
+#notes .nh .nt small{display:block;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+#notes .nh button{border:1px solid var(--line);background:#fff;border-radius:8px;height:32px;padding:0 10px;cursor:pointer;font-size:13px;color:var(--ink)}
+#notes .nb{overflow:auto;padding:14px 18px 24px}
+#notes h5{font-family:'Oswald',Arial,sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin:14px 0 4px;color:#365aa0}
+#notes h5:first-child{margin-top:0}
+#notes h5.say{color:#1d8a4e} #notes h5.why{color:#4F2683} #notes h5.skill{color:#C8501A} #notes h5.ask{color:#AA0000}
+#notes p{font-size:15px;line-height:1.5;margin:0 0 4px}
+#notes ul{margin:0 0 0 18px;font-size:15px;line-height:1.45}
+#notes li{margin:3px 0}
+#notes .src{margin-top:16px;font-size:12px;color:var(--muted)}
+body.notesonly #viewport, body.notesonly #bar{display:none}
+body.notesonly #notes{display:flex;position:fixed;inset:0;width:auto;bottom:0;border:none;box-shadow:none}
+body.notesonly #notes p, body.notesonly #notes ul{font-size:18px}
+body.notesonly #notes .nav{display:flex}
+#notes .nav{display:none;gap:8px;padding:10px 16px;border-top:1px solid var(--line)}
+#notes .nav button{flex:1;height:44px;font-family:'Oswald',Arial,sans-serif;font-size:18px;border-radius:8px;border:1.5px solid var(--ink);background:#fff;cursor:pointer}
+#notes .nav button.nx{background:#365aa0;border-color:#365aa0;color:#fff}
+
+/* ===== present mode (full screen share) ===== */
+.slide{justify-content:center}
+body.present{background:#fff}
+body.present #viewport{inset:0!important;right:0!important}
+body.present .slide{border-radius:0;box-shadow:none}
+body.present #notes{display:none!important}
+body.present #bar{transform:translateY(100%);transition:transform .25s ease;box-shadow:0 -6px 20px rgba(11,20,33,.12)}
+body.present.showbar #bar{transform:none}
+body.present #over{z-index:20}
+#notes .ntimer{display:none;align-items:center;gap:12px;padding:10px 18px;border-bottom:1px solid var(--line);font-family:'Oswald',Arial,sans-serif;background:#f6f8fb}
+body.notesonly #notes .ntimer{display:flex}
+#notes .ntimer span{flex:1;font-size:18px;color:var(--muted)}
+#notes .ntimer b{font-size:34px;font-weight:500;color:#1d8a4e;font-variant-numeric:tabular-nums}
+#notes .ntimer.warn b{color:#c77700} #notes .ntimer.over b{color:#a3271b}
+#notes .ntimer button{width:44px;height:44px;border-radius:50%;border:none;background:#1d8a4e;color:#fff;font-size:16px;cursor:pointer}
+#notes .ntimer.run button{background:#6b7a90}
+#notes .ntimer .nto{width:auto;border-radius:22px;padding:0 14px;background:#fff;border:2px solid #4F2683;color:#4F2683;font-family:'Oswald',Arial,sans-serif;font-size:16px}
+#notes .ntimer.to .nto{background:#4F2683;color:#fff}
+#notes .ntimer.to b{color:#4F2683}
+#notes .ntimer small{font-size:15px;color:var(--muted);font-variant-numeric:tabular-nums}
+
+/* editable Play of the Week fields */
+.ed{outline:none;border-radius:4px;transition:background .2s}
+body:not(.present) .ed{background:rgba(235,176,24,.14);box-shadow:inset 0 -2px 0 rgba(235,176,24,.7);cursor:text}
+body:not(.present) .ed:focus{background:rgba(235,176,24,.28)}
+.ed{display:inline-block;min-width:3ch;vertical-align:baseline}
+p.ed{display:block;min-height:1.4em}
+.ed:empty::before{content:attr(data-ph);color:#8a97ab;font-style:italic}
+body.present .ed:empty::before{content:""}
+body.present .ed:focus{box-shadow:inset 0 -3px 0 var(--pop)}
+.ed:focus:empty::before{content:""}
+
+.cues{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}
+.cues div{background:var(--panel);border-radius:10px;padding:12px 16px;border-top:4px solid var(--pop)}
+.cues b{display:block;font-family:'Oswald',Arial,sans-serif;font-size:24px;font-weight:600;color:var(--ink)}
+.cues span{font-size:18px;color:var(--body)}
+.flip .front .pen.fum::before{background:#fff;border-radius:50%/40%}
+</style>
+</head>
+<body>
+<!-- ============ GROWTH HUB GATE ============ -->
+<style>
+  html.gh-locked > body > :not(#ghGate){display:none !important;}
+  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
+  html:not(.gh-locked) #ghGate{display:none;}
+  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
+  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
+  #ghGate .gh-brand svg{width:30px;height:30px;}
+  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
+  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
+  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;}
+  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
+  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
+  #ghGate input:focus{border-color:#4e84de;}
+  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
+  #ghGate button:hover{filter:brightness(1.06);}
+  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
+  #ghGate .gh-shake{animation:ghshake .3s;}
+  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+<div id="ghGate">
+  <div class="gh-wrap">
+    <div class="gh-brand">
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#c5d9fa" stroke-width="14" stroke-linecap="round" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g><circle cx="150" cy="50" r="26" fill="#ffffff"/><circle cx="236.6" cy="100" r="26" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="26" fill="#ffffff"/><circle cx="150" cy="250" r="26" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="26" fill="#ffffff"/><circle cx="63.4" cy="100" r="26" fill="#c5d9fa"/><circle cx="150" cy="150" r="44" fill="#ebb018"/></svg>
+      <span>Growth Hub</span>
+    </div>
+    <div class="gh-card">
+      <h2>Passcode</h2>
+      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
+      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
+      <button id="ghGo" type="button">Enter the Hub</button>
+      <div class="gh-err" id="ghErr"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
+  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+  if(!unlocked()) document.documentElement.classList.add('gh-locked');
+  function open(){ document.documentElement.classList.remove('gh-locked'); }
+  async function check(){
+    var v=document.getElementById('ghPass').value;
+    var ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        ok=(hex===HASH);
+      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
+    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
+    if(ok){ remember(); open(); }
+    else{
+      var card=document.querySelector('#ghGate .gh-card');
+      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
+      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
+      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    if(unlocked()) return;
+    document.getElementById('ghGo').addEventListener('click', check);
+    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
+  });
+})();
+</script>
+<!-- ============ /GROWTH HUB GATE ============ -->
+
+
+<div id="viewport"><div id="deck">
+
+<section class="slide field" data-title="Kickoff" data-bug="Pregame · Kickoff">
+  <div class="title-wrap">
+    <div class="series">Engage Live · The Quarterback</div>
+    <h1>Stand and Deliver.<br><span style="color:var(--gold)">Like a QB.</span></h1>
+    <div class="bar"></div>
+    <div class="tag">“You call the plays. Engage is your headset.”</div>
+    <div style="margin-top:30px;display:inline-block;background:#0b1421;color:#fff;border-radius:12px;padding:18px 26px;max-width:1100px"><div style="font-family:'Oswald',Arial,sans-serif;font-size:20px;letter-spacing:3px;color:#ebb018;margin-bottom:6px">THE CLOSER’S CREED — NO. 12</div><div style="font-size:28px">“Every account needs a play-caller. Be the play-caller.”</div></div>
+    <div class="who">Bobby Graham · Chief Growth Officer · Episode 12 · Role of an Account Manager</div>
+  </div>
+</section>
+
+<section class="slide" data-title="The game plan" data-bug="">
+  <div class="eyebrow">The game plan</div>
+  <h2>In 20 minutes, you’ll know what a quarterback AM owns — <em>and you’ll call the next play on your top account.</em></h2>
+  <ul class="agenda">
+    <li class="L"><span>Kickoff</span>Super Bowl picks, and why the AM is the QB</li>
+    <li class="L"><span>Drive 1</span>Know your book — what you own in Engage</li>
+    <li class="L"><span>Drive 2</span>Read the defense — and stand and deliver</li>
+    <li class="L"><span>Drive 3</span>Protect, expand, punch it in</li>
+    <li class="L hot"><span>2-min drill</span>Call a play live in Deal Coach</li>
+    <li class="L hot"><span>Final</span>Your one move</li>
+  </ul>
+  <div class="chat L"><b>CHAT</b> Who’s making the Super Bowl? Your team, ten words, defend it.</div>
+</section>
+
+<section class="slide field" data-title="Road to SoFi" data-bug="Pregame · Around the league">
+  <div class="eyebrow">Road to SoFi · Super Bowl LXI · Feb 14, 2027</div>
+  <h2>The contenders. <em>And the roast zone.</em></h2>
+  <div class="league">
+    <div>
+      <div class="lg-h">Contenders</div>
+      <div class="lg-grid" id="contenders"></div>
+    </div>
+    <div>
+      <div class="lg-h roast">Roast zone</div>
+      <div class="lg-list" id="roast"></div>
+    </div>
+  </div>
+  <div class="early L"><b>The early line:</b> <span id="line"></span> <i>Prove it wrong in chat.</i></div>
+  <div class="asof" id="asof"></div>
+</section>
+
+<section class="slide" data-title="Why the AM is the QB" data-bug="Pregame · The position">
+  <div class="eyebrow">The position</div>
+  <h2>The quarterback doesn’t play every position. <em>He runs the offense.</em></h2>
+  <div class="row c3 big3">
+    <div class="card gold L"><div class="k">Calls the play</div><h3>Owns the account</h3><p>Sets the win, owns the next step, and keeps it current in Engage.</p></div>
+    <div class="card gold L"><div class="k">Reads the defense</div><h3>Knows the room</h3><p>Who decides, who champions, who’s the skeptic — before the snap.</p></div>
+    <div class="card gold L"><div class="k">Gets it to the right player</div><h3>Brings the team</h3><p>Estimating, field ops, solutions — each one in the huddle for a reason.</p></div>
+  </div>
+  <p class="lede L" style="margin-top:28px">Every account has one quarterback. <b style="color:#fff">When nobody’s calling the play, the account stalls.</b></p>
+</section>
+
+<section class="slide" data-title="Know your book" data-bug="">
+  <div class="eyebrow">Drive 1 · Know your book</div>
+  <h2>Every account in your book has one QB. <em>It’s you.</em></h2>
+  <div class="row c3 big3">
+    <div class="card gold L"><div class="k">Your name on it</div><h3>Owner = you</h3><p>Set as the account owner in Engage. If it’s not your name, it’s nobody’s account.</p></div>
+    <div class="card gold L"><div class="k">No empty possessions</div><h3>A next play</h3><p>Every account has one open opportunity or a logged next action. No exceptions.</p></div>
+    <div class="card gold L"><div class="k">Film before kickoff</div><h3>Know the score</h3><p>Open opps, last touch, who’s in the room — before every meeting, not during.</p></div>
+  </div>
+  <p class="quote L" style="margin-top:30px">“By the end of this meeting, we will ___.” <span style="color:var(--muted);font-style:normal;font-size:26px">Can’t fill the blank? You don’t have a play.</span></p>
+</section>
+
+<section class="slide field" data-title="The morning screen" data-bug="">
+  <div class="eyebrow">Drive 1 · Daily rhythm</div>
+  <h2>Your morning screen. <em>Three checks before your first call.</em></h2>
+  <ol class="steps">
+    <li class="L"><div><b>Tasks.</b> <i>What’s due today? Do it or move it — never let it rot on the list.</i></div></li>
+    <li class="L"><div><b>Open opps.</b> <i>Which deal hasn’t moved? That’s today’s play call.</i></div></li>
+    <li class="L"><div><b>Account alerts.</b> <i>A new contact, a new site, a problem on a job — every alert is a reason to pick up the phone.</i></div></li>
+  </ol>
+  <p class="lede L" style="margin-top:30px"><b>Ten minutes, every morning.</b> Quarterbacks don’t wing Sundays — they watch film all week.</p>
+</section>
+
+<section class="slide" data-title="Read the defense" data-bug="Drive 2 · Read the defense">
+  <div class="eyebrow">Drive 2 · The relationships layer</div>
+  <h2>Map the org. <em>Ask about their job, not your scope.</em></h2>
+  <div class="roles">
+    <div class="rolelist" role="tablist" aria-label="Stakeholder" id="rolelist"></div>
+    <div class="roleview" id="roleview" role="tabpanel"></div>
+  </div>
+</section>
+
+<section class="slide" data-title="Stand and deliver" data-bug="">
+  <div class="eyebrow">Drive 2 · Stand and deliver</div>
+  <h2>Break the huddle in five calls.</h2>
+  <ol class="steps" style="gap:10px">
+    <li class="L"><div><b>Rapport — about them, 60 seconds.</b> <i>Asked about you? One sentence, then hand it back.</i></div></li>
+    <li class="L"><div><b>Call the play — the win.</b> <i>“By the end of today, you’ll have…”</i></div></li>
+    <li class="L"><div><b>Why it matters to them.</b> <i>A deadline, a cost, a complaint that goes away.</i></div></li>
+    <li class="L"><div><b>Intros — by why they’re on the field.</b> <i>Theirs: “What’s the one thing you want out of today?”</i></div></li>
+    <li class="L"><div><b>Hand them the ball.</b> <i>Then they talk 70% of the time.</i></div></li>
+  </ol>
+  <div class="cues L">
+    <div><b>Plant your feet</b><span>Move on purpose, never from nerves</span></div>
+    <div><b>Eyes on them</b><span>On camera, that means the lens</span></div>
+    <div><b>Own the pause</b><span>After the win, the number, the ask</span></div>
+    <div><b>Energy +10%</b><span>Two notches on camera</span></div>
+  </div>
+</section>
+
+<section class="slide" data-title="Flags and fumbles" data-bug="">
+  <div class="eyebrow">Drive 2 · Ball security</div>
+  <h2>Flags and fumbles. <em>Tap to see the call.</em></h2>
+  <div class="flips c4 row" data-flips="mix"></div>
+  <div class="chat L" style="margin-top:22px"><b>CHAT</b> Which one have you thrown on yourself this month?</div>
+</section>
+
+<section class="slide field" data-title="Protect and expand" data-bug="">
+  <div class="eyebrow">Drive 3 · Protect and expand</div>
+  <h2>Protect the house. <em>Then build an addition.</em></h2>
+  <div class="row c3 big3">
+    <div class="card gold L"><div class="k">Protect</div><h3>Run the review</h3><p>What we delivered, what it saved, and what’s still bugging them. Fix it before a competitor hears about it.</p></div>
+    <div class="card gold L"><div class="k">Expand</div><h3>Ask the question</h3><p>“What’s the next project on your plate that we’re not part of yet?”</p></div>
+    <div class="card gold L"><div class="k">Log it</div><h3>Whitespace = opp</h3><p>Every answer becomes an opportunity in Engage: owner, stage, next action.</p></div>
+  </div>
+  <p class="lede L" style="margin-top:28px"><b>One-service accounts are one bad quarter from a competitor.</b> Multi-service accounts are a dynasty.</p>
+</section>
+
+<section class="slide" data-title="Hand off, stay in the game" data-bug="">
+  <div class="eyebrow">Drive 3 · The handoff</div>
+  <h2>The QB hands off the ball. <em>He never leaves the field.</em></h2>
+  <div class="row c2">
+    <div class="card L"><div class="k">Hand it off</div><ul class="ticks"><li><b>Pricing and scope</b> → estimating</li><li><b>Crews and schedule</b> → field ops</li><li><b>Technical design</b> → solutions</li></ul></div>
+    <div class="card gold L"><div class="k">You keep it</div><ul class="ticks"><li><b>The relationship</b> and the meeting cadence</li><li><b>The next step</b> — and the date on it</li><li><b>The Engage record</b> — owner, opp, next action</li></ul></div>
+  </div>
+  <p class="lede L" style="margin-top:26px">Bring teammates for a reason — and introduce them by it: <i>“Maria’s here so pricing gets answered today.”</i></p>
+</section>
+
+<section class="slide" data-title="Drive 3: Red zone" data-bug="Drive 3 · Red zone · 1st &amp; goal">
+  <div class="eyebrow">Drive 3 · Red zone</div>
+  <h2>Don’t settle for a punt. <em>Punch it in.</em></h2>
+  <div class="ws">
+    <div class="ws-h"><span>Punt</span><span></span><span>Touchdown</span></div>
+    <button class="wsrow" type="button"><span class="w">“Let us know if you have any questions.”</span><span class="arrow">→</span><span class="s">“Pricing Thursday. Can we review it together Friday at 10?”</span></button>
+    <button class="wsrow" type="button"><span class="w">“We’ll circle back next week.”</span><span class="arrow">→</span><span class="s">“I’m booking 30 minutes on the 14th — does 2 p.m. work?”</span></button>
+    <button class="wsrow" type="button"><span class="w">“Sounds like there’s a lot of interest here.”</span><span class="arrow">→</span><span class="s">“Any reason we wouldn’t move forward with the site walk?”</span></button>
+    <button class="wsrow" type="button"><span class="w">“Thanks, everyone!”</span><span class="arrow">→</span><span class="s">“Three actions, three owners — in your inbox within the hour.”</span></button>
+  </div>
+  <p class="lede L" style="margin-top:22px">If it’s not on a calendar, <b style="color:#fff">it’s not on the scoreboard.</b> Log it in Engage within 24 hours.</p>
+</section>
+
+<section class="slide field" data-title="Two-minute drill: Deal Coach" data-bug="Two-minute drill · No timeouts">
+  <div class="eyebrow">Two-minute drill · Live build</div>
+  <h2>Your offensive coordinator: <em>Deal Coach.</em></h2>
+  <ol class="steps">
+    <li class="L"><div><b>Pick a real meeting</b> <i>on your calendar in the next two weeks.</i></div></li>
+    <li class="L"><div><b>Draw it up:</b> <i>the win, the stadium, the coverage, the clock, your questions, the ask.</i></div></li>
+    <li class="L"><div><b>Run Deal Coach.</b> <i>Clean up every flag until you’re green.</i></div></li>
+    <li class="L"><div><b>Copy the invite</b> <i>into Outlook or Teams — and send it.</i></div></li>
+  </ol>
+  <div class="L" style="margin-top:30px;display:flex;gap:22px;align-items:center">
+    <a class="cta" href="run-the-room.html#builder" target="_blank" rel="noopener">Open Deal Coach</a>
+    <span class="lede" style="font-size:24px">Growth Hub → Development → Show Up &amp; Run the Room</span>
+  </div>
+</section>
+
+<section class="slide" data-title="Postgame presser" data-bug="Postgame · Press conference">
+  <div class="eyebrow">Postgame press conference</div>
+  <div style="margin:auto 0">
+    <div class="mega">Questions from the press box?</div>
+    <p class="lede" style="margin-top:24px">Unmute or drop it in chat. Trash talk about your team’s record also accepted.</p>
+  </div>
+</section>
+
+<section class="slide field" data-title="Your play call" data-bug="Final · Your possession">
+  <div class="eyebrow">Your play call</div>
+  <div style="margin:auto 0">
+    <div class="mega L">Map your top 3 accounts. Each one gets <em>an open opp or a booked next step.</em></div>
+    <p class="lede L" style="margin-top:30px">Confirm you’re the owner in Engage. If one has no next action, draw up that meeting in Deal Coach and send it before the next episode.</p>
+    <div class="chat L" style="margin-top:34px"><b>CHAT</b> Type the account that needs a play call.</div>
+  </div>
+</section>
+
+</div></div>
+
+
+
+<aside id="notes" aria-label="Presenter notes">
+  <div class="nh"><div class="nt" id="nTitle"></div><button type="button" id="nPop" title="Open notes in their own window for a second screen">Pop out</button><button type="button" id="nClose" aria-label="Close notes">✕</button></div>
+  <div class="ntimer" id="nTimer"><span id="ntN">Timer</span><b id="ntC">--:--</b><button type="button" id="ntB" aria-label="Start or stop timer">▶</button><button type="button" id="ntTO" class="nto">Timeout</button><small id="ntF">Flex 10:00</small></div>
+  <div class="nb" id="nBody"></div>
+  <div class="nav"><button type="button" id="nPrev">← Back</button><button type="button" class="nx" id="nNext">Next →</button></div>
+</aside>
+
+<div id="bar" aria-label="Presentation controls">
+  <button type="button" id="prev" aria-label="Previous">←</button>
+  <button type="button" id="next" aria-label="Next">→</button>
+  <span id="count" aria-live="polite">1 / 15</span>
+  <div id="prog"><i></i></div>
+  <span id="tmr" title="Section timer — S to start/stop, T to hide"><span class="nm" id="tmrN">Kickoff</span><span class="ck" id="tmrC">2:00</span><button type="button" id="tmrB" aria-label="Start timer">▶</button><button type="button" class="to-btn" id="tmrTO" aria-pressed="false">Timeout</button><span class="fx" id="tmrF">Flex 10:00</span></span>
+  <button type="button" id="rstBtn" title="Reset the game: slide 1, full clock, all cards back">↺ New game</button>
+  <button type="button" id="nBtn" title="Presenter notes (N)">Notes</button>
+  <button type="button" id="ovBtn">Overview</button>
+  <button type="button" id="fsBtn">Full screen</button>
+</div>
+
+<div id="over" role="dialog" aria-label="Slide overview"><h3>Jump to a slide</h3><div class="g" id="overGrid"></div></div>
+
+<script>
+(function(){
+  /* ----- content ----- */
+  var KILLERS = [
+    ["Delay of game", "“Let’s give it a few more minutes…”", "5 yards and their respect.", "Start on time. Catch up late joiners in one line."],
+    ["False start", "“So… what did we want to talk about?”", "You didn’t prepare.", "Call the play — the win and agenda — in the first minutes."],
+    ["Illegal formation", "Round-robin bios, name and title", "Ten minutes gone, nothing learned.", "Introduce your side by why they’re on the field."],
+    ["Excessive celebration", "Your ten-minute weekend story", "This drive is about you.", "Ask about theirs. One sentence on you, then hand it back."],
+    ["Intentional grounding", "Reading the slides out loud", "You could have emailed this.", "Slides are the proof. You tell the story."],
+    ["Too many men on the field", "Bringing teammates with no role", "Nobody knows why you’re here.", "If you can’t say why they’re in the huddle, leave them off."]
+  ];
+  var PHRASES = [
+    ["“Can I pick your brain?”", "Free consulting, no agenda.", "“Two specific questions about your retrofit timeline.”"],
+    ["“Let’s circle back.”", "I’m never bringing this up again.", "“Pricing by Thursday at noon.”"],
+    ["“Just touching base.”", "I have nothing new to say.", "“The permit cleared — we start the 14th.”"],
+    ["“Let’s take this offline.”", "I don’t want to deal with this.", "“Jim and I solve it Tuesday and report back.”"],
+    ["“Low-hanging fruit.”", "I haven’t ranked anything.", "“These three sites pay back in under 18 months.”"],
+    ["“Does that make sense?”", "You might be too slow for this.", "“How does that fit what you need?”"],
+    ["“Best-in-class solutions.”", "Same line as every competitor.", "One proof: a site, a number, a result."],
+    ["“Enough about me…”", "…said ten minutes too late.", "Never needed. Start with them."]
+  ];
+
+  /* ===== League snapshot — update before you present ===== */
+  var ASOF = "Records after Week 9 · Nov 12, 2026";
+  var CONTENDERS = [
+    ["49ers", "7-1", "NFC West", "Hung 38 on the Raiders. Best record in football — and the Super Bowl is in their home state.", "#AA0000", "#B3995D"],
+    ["Bills", "7-1", "AFC East", "Beat Minnesota 23–6 and held the ball 42:32. That’s clock management.", "#00338D", "#C60C30"],
+    ["Vikings", "6-2", "NFC North", "Held to six at home on Monday night. The 7-2 Bears now lead the North.", "#4F2683", "#FFC62F"],
+    ["Jaguars", "6-2", "AFC South", "Best point differential in the league. That’s pipeline quality, not luck.", "#006778", "#D7A22A"],
+    ["Steelers · Bengals", "6-2", "AFC North", "Tied atop the North. They settle it Sunday night in Cincinnati.", "#101820", "#FB4F14"],
+    ["Broncos · Chiefs", "7-2 · 6-2", "AFC West", "Both won Sunday. Denver holds the AFC’s No. 2 seed; Kansas City is lurking.", "#FB4F14", "#E31837"]
+  ];
+  var ROAST = [
+    ["Cowboys", "4-5", "Dallas HQ won one! 4-5 is still a pipeline review — just a friendlier one.", "#003594", "#869397"],
+    ["Eagles", "2-7", "Lost to the Giants at home. In Engage, that’s a stage-stall alert.", "#004C54", "#A5ACAF"],
+    ["Chargers", "0-8", "Gave up 44 in their own building — the one hosting the Super Bowl. Suites only.", "#0080C6", "#FFC20E"],
+    ["Seahawks", "5-4", "Defending champs, one game over .500. Last year’s close doesn’t count this quarter.", "#002244", "#69BE28"]
+  ];
+  var LINE = "Bills vs. 49ers. Dark horse: Jacksonville.";
+  function teamCard(t, burn){
+    var d = document.createElement('div'); d.className = 'team L' + (burn ? ' burn' : ''); var c = burn ? [t[3], t[4]] : [t[4], t[5]]; d.style.setProperty('--c1', c[0]); d.style.setProperty('--c2', c[1]);
+    d.innerHTML = '<div class="nm"><b>' + t[0] + '</b><span>' + t[1] + '</span></div>' + (burn ? '' : '<div class="dv">' + t[2] + '</div>') + '<p>' + (burn ? t[2] : t[3]) + '</p>';
+    return d;
+  }
+  CONTENDERS.forEach(function(t){ document.getElementById('contenders').appendChild(teamCard(t, false)); });
+  ROAST.forEach(function(t){ document.getElementById('roast').appendChild(teamCard(t, true)); });
+  document.getElementById('line').textContent = LINE;
+  document.getElementById('asof').textContent = ASOF;
+
+  var ROLES = [
+    ["Facility Manager","Site level · lives in the work orders","Day-to-day uptime, work orders, and every vendor on site.",["Repeat calls on aging equipment","Thin staff, too many buildings","Vendors who no-show"],["What’s the work order that keeps coming back?","Which sites call you after hours the most?","When a vendor misses, what does it cost you?"]],
+    ["Director / VP Facilities","Portfolio level · owns the plan","The portfolio, capital plan, vendor strategy, and reporting up.",["Backlog bigger than the budget","Inconsistent vendors by region","Proving spend is an investment"],["What’s on next year’s capital plan that isn’t funded?","How many vendors do you manage today?","What would you show your boss to call this a win?"]],
+    ["Procurement","Owns the contract · protects the company","Vendor selection, terms, pricing structure, and vendor risk.",["Bids that don’t compare","Pressure to consolidate spend","Insurance and compliance gaps"],["How do you weigh national against local?","Which pricing structure makes your job easiest?","Once a vendor is picked, how long to a signed contract?"]],
+    ["CFO / Finance","Owns the money · thinks in payback","Budget, capex vs. opex, ROI hurdles, predictability.",["Surprise repair spend","Energy cost volatility","Projects that can’t show payback"],["What payback gets a project approved here?","Does this land as capex or opex?","Which facilities line surprised you most this year?"]],
+    ["Energy / Sustainability","Owns the targets · needs the data","Energy spend, ESG targets, rebates, and reporting.",["Public targets, real deadlines","Gaps in site-level data","Rebates that expire"],["What’s your reduction target, and by when?","Where does your energy data come from?","Which incentives are you chasing this year?"]],
+    ["IFM / Property Manager","JLL · CBRE · Cushman — answers to a client","The client relationship, SLAs, vendor performance, closeouts.",["SLA pressure and escalations","Vendors who miss paperwork","Too many subs, one standard"],["Which client KPI is under the most pressure?","What does a vendor do that makes you look good?","How do you want work orders and closeouts delivered?"]],
+    ["Operations Leader","Owns the business inside the building","Store or branch uptime, customer experience, brand standards.",["Installs that disrupt customers","After-hours access","Inconsistent look site to site"],["When can we work without hurting your business?","What does a bad install day look like?","Who signs off on site when we finish?"]],
+    ["EHS / Safety","Owns compliance · can stop a job","OSHA and NFPA 70E compliance, contractor safety, audits.",["Arc flash studies past due","Contractor prequal","Open audit findings"],["When was your last arc flash study?","What does your contractor prequal look like?","What finding from your last audit is still open?"]]
+  ];
+
+  function flips(el, data){
+    if (!el) return;
+    data.forEach(function(p){
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'flip'; b.setAttribute('aria-pressed','false');
+      var pen = p.length === 4;
+      var front = pen ? '<span class="pen">' + p[0] + '</span><span class="s">' + p[1] + '</span><span class="t">Flag on the play</span>' : '<span class="pen fum">Fumble</span><span class="s">' + p[0] + '</span><span class="t">Tap for the call</span>';
+      var back = '<span class="m">' + (pen ? 'The call: ' + p[2] : 'What they hear: ' + p[1]) + '</span><span class="d"><b>' + (pen ? 'Run this instead' : 'Secure the ball') + ':</b> ' + (pen ? p[3] : p[2]) + '</span>';
+      b.innerHTML = '<span class="f front">' + front + '</span><span class="f back">' + back + '</span>';
+      b.addEventListener('click', function(e){ e.stopPropagation(); var on = b.classList.toggle('on'); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+      el.appendChild(b);
+    });
+  }
+  flips(document.querySelector('[data-flips="mix"]'), [KILLERS[0], PHRASES[0], KILLERS[2], PHRASES[1], KILLERS[3], PHRASES[2], KILLERS[5], PHRASES[6]]);
+
+  document.querySelectorAll('.tabs').forEach(function(list){
+    var tabs = Array.prototype.slice.call(list.querySelectorAll('.tab'));
+    function sel(t){ tabs.forEach(function(x){ var on = x === t; x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1; document.getElementById(x.getAttribute('aria-controls')).hidden = !on; }); }
+    tabs.forEach(function(t){ t.addEventListener('click', function(e){ e.stopPropagation(); sel(t); }); });
+  });
+
+  var rl = document.getElementById('rolelist'), rv = document.getElementById('roleview');
+  function showRole(i){
+    var r = ROLES[i];
+    rl.querySelectorAll('.rolebtn').forEach(function(b, j){ b.setAttribute('aria-selected', j === i); b.tabIndex = j === i ? 0 : -1; });
+    rv.innerHTML = '<h3>'+r[0]+'</h3><div class="sub">'+r[1]+'</div><div class="grid"><div><h4>Owns</h4><p>'+r[2]+'</p><h4 style="margin-top:18px">Problems they face</h4><ul>'+r[3].map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul></div><div><h4>Ask</h4><ul class="asks">'+r[4].map(function(x){return '<li>“'+x+'”</li>';}).join('')+'</ul></div></div>';
+  }
+  ROLES.forEach(function(r, i){ var b = document.createElement('button'); b.type = 'button'; b.className = 'rolebtn'; b.setAttribute('role','tab'); b.textContent = r[0]; b.addEventListener('click', function(e){ e.stopPropagation(); showRole(i); }); rl.appendChild(b); });
+  showRole(0);
+
+  document.querySelectorAll('.wsrow').forEach(function(r){ r.addEventListener('click', function(e){ e.stopPropagation(); r.classList.toggle('on'); }); });
+
+  /* ----- deck engine ----- */
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var POPS = ['#00338D','#AA0000','#4F2683','#006778','#E31837','#004C54','#0080C6','#C8501A','#365aa0'];
+  slides.forEach(function(sl, i){ sl.style.setProperty('--pop', POPS[i % POPS.length]); });
+  slides.forEach(function(sl){ var b = document.createElement('div'); b.className = 'bug'; b.innerHTML = '<span class="t1">FSG</span><span class="t2"></span>'; b.lastChild.textContent = 'Engage Live · ' + (sl.getAttribute('data-bug') || ''); sl.appendChild(b); });
+  var cur = 0, deck = document.getElementById('deck');
+  function layers(s){ return Array.prototype.slice.call(s.querySelectorAll('.L')); }
+  function fit(){
+    var vp = document.getElementById('viewport'), pad = document.body.classList.contains('present') ? 0 : 24;
+    var W = vp.clientWidth - pad, H = vp.clientHeight - pad, a = W / H, cw = 1600, ch = 900;
+    if (a > 16 / 9) cw = Math.min(2140, Math.round(900 * a)); else ch = Math.min(1200, Math.round(1600 / a));
+    deck.style.width = cw + 'px'; deck.style.height = ch + 'px';
+    var k = Math.min(W / cw, H / ch);
+    deck.style.transform = 'translate(-50%,-50%) scale(' + k + ')';
+  }
+  function setPresent(on){ document.body.classList.toggle('present', on); if (on) document.body.classList.remove('notes-open'); fit(); }
+  document.addEventListener('fullscreenchange', function(){ setPresent(!!document.fullscreenElement); });
+  document.addEventListener('webkitfullscreenchange', function(){ setPresent(!!document.webkitFullscreenElement); });
+  var barTimer = null;
+  document.addEventListener('mousemove', function(e){
+    if (!document.body.classList.contains('present')) return;
+    if (e.clientY > window.innerHeight - 80) { document.body.classList.add('showbar'); clearTimeout(barTimer); barTimer = setTimeout(function(){ document.body.classList.remove('showbar'); }, 2500); }
+  });
+  function show(i, revealAll){
+    cur = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach(function(s, j){ s.classList.toggle('active', j === cur); });
+    layers(slides[cur]).forEach(function(l){ l.classList.toggle('on', !!revealAll); });
+    document.getElementById('count').textContent = (cur + 1) + ' / ' + slides.length;
+    document.getElementById('prog').firstElementChild.style.width = ((cur + 1) / slides.length * 100) + '%';
+    if (typeof NOTESONLY !== 'undefined' && NOTESONLY) return;
+    try { history.replaceState(null, '', '#s' + (cur + 1)); } catch(e) { location.hash = 's' + (cur + 1); }
+    if (typeof renderNotes === 'function' && document.body.classList.contains('notes-open')) renderNotes(cur);
+    if (typeof chan !== 'undefined' && chan) chan.postMessage({ type: 'slide', i: cur });
+  }
+  function next(){ var hidden = layers(slides[cur]).filter(function(l){ return !l.classList.contains('on'); }); if (hidden.length) hidden[0].classList.add('on'); else if (cur < slides.length - 1) show(cur + 1); }
+  function prev(){ var on = layers(slides[cur]).filter(function(l){ return l.classList.contains('on'); }); if (on.length) on[on.length - 1].classList.remove('on'); else if (cur > 0) show(cur - 1, true); }
+
+  var over = document.getElementById('over'), og = document.getElementById('overGrid');
+  slides.forEach(function(s, i){ var b = document.createElement('button'); b.type = 'button'; b.innerHTML = '<span>' + (i + 1) + '</span><b>' + s.getAttribute('data-title') + '</b>'; b.addEventListener('click', function(){ show(i, true); toggleOver(false); }); og.appendChild(b); });
+  function toggleOver(on){ var v = on === undefined ? !over.classList.contains('show') : on; over.classList.toggle('show', v); og.querySelectorAll('button').forEach(function(b, i){ b.classList.toggle('cur', i === cur); }); if (v) og.querySelectorAll('button')[cur].focus(); }
+  function fs(){ var d = document.documentElement; if (!document.fullscreenElement) { (d.requestFullscreen || d.webkitRequestFullscreen || function(){}).call(d); } else { (document.exitFullscreen || document.webkitExitFullscreen).call(document); } }
+
+  document.getElementById('next').addEventListener('click', next);
+  document.getElementById('prev').addEventListener('click', prev);
+  document.getElementById('ovBtn').addEventListener('click', function(){ toggleOver(); });
+  document.getElementById('fsBtn').addEventListener('click', fs);
+  document.addEventListener('keydown', function(e){
+    if (e.target.closest && (e.target.closest('input,textarea') || e.target.isContentEditable)) return;
+    var k = e.key;
+    if (over.classList.contains('show')) { if (k === 'Escape' || k === 'o' || k === 'O') { toggleOver(false); e.preventDefault(); } return; }
+    if (k === 'ArrowRight' || k === 'PageDown' || (k === ' ' && !(e.target.tagName === 'BUTTON' && e.target.closest('.slide')))) { e.preventDefault(); next(); }
+    else if (k === 'ArrowLeft' || k === 'PageUp') { e.preventDefault(); prev(); }
+    else if (k === 'Home') show(0); else if (k === 'End') show(slides.length - 1, true);
+    else if (k === 'o' || k === 'O') toggleOver(true);
+    else if (k === 'p' || k === 'P') setPresent(!document.body.classList.contains('present'));
+    else if (k === 'r' || k === 'R') document.getElementById('rstBtn').click();
+    else if (k === 'q' || k === 'Q') {
+      var les = slides[cur].querySelector('.ed[data-k="lesson"]');
+      if (les) { e.preventDefault(); les.focus(); var r = document.createRange(); r.selectNodeContents(les); r.collapse(false); var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r); }
+    }
+    else if ((k === 'n' || k === 'N') && !NOTESONLY) toggleNotes();
+    else if (k === 'f' || k === 'F') fs();
+    else if (k === 'h' || k === 'H') document.body.classList.toggle('hidebar');
+    else if (k === 's' || k === 'S') toggleRun();
+    else if (k === 't' || k === 'T') document.getElementById('tmr').classList.toggle('hide');
+    else if (k === 'x' || k === 'X') toggleTimeout();
+  });
+
+  /* ===== section timer: follows your slides ===== */
+  var SEGS = [
+    { name: 'Kickoff', min: 2, to: 3 },
+    { name: 'The position', min: 1, to: 4 },
+    { name: 'Know your book', min: 3, to: 6 },
+    { name: 'Read the defense', min: 5, to: 9 },
+    { name: 'Protect and expand', min: 4, to: 12 },
+    { name: 'Two-minute drill', min: 3, to: 13 },
+    { name: 'Presser', min: 1, to: 14 },
+    { name: 'Your play call', min: 1, to: 15 }
+  ];
+  var FLEX = 10 * 60;   /* timeout bank for deeper review */
+  function segOf(n){ for (var i = 0; i < SEGS.length; i++) if (n <= SEGS[i].to) return i; return SEGS.length - 1; }
+  /* score bug on every slide = the clock's section name */
+  slides.forEach(function(sl, i){ var t = sl.querySelector('.bug .t2'); if (t) t.textContent = 'Engage Live · ' + SEGS[segOf(i + 1)].name; });
+  var spent = SEGS.map(function(){ return 0; }), active = 0, running = false, last = Date.now(), flex = FLEX, timeout = false;
+  function fmt(sec){ var neg = sec < 0; sec = Math.abs(Math.floor(sec)); return (neg ? '+' : '') + Math.floor(sec / 60) + ':' + ('0' + sec % 60).slice(-2); }
+  function tick(){
+    var now = Date.now(), dt = (now - last) / 1000;
+    active = segOf(cur + 1);                                  /* the clock always shows the section you're on */
+    last = now;
+    if (running) {
+      if (timeout) flex -= dt;                                /* timeout: section clock frozen, flex bank runs */
+      else {
+        var before = SEGS[active].min * 60 - spent[active];
+        spent[active] += dt;
+        if (before <= 0) flex -= dt;                          /* running over a section draws from the flex bank */
+      }
+    }
+    var left = SEGS[active].min * 60 - spent[active], el = document.getElementById('tmr');
+    document.getElementById('tmrN').textContent = timeout ? 'Timeout' : SEGS[active].name;
+    document.getElementById('tmrC').textContent = timeout ? fmt(Math.max(flex, 0)) : fmt(left);
+    var fx = document.getElementById('tmrF'); fx.textContent = 'Flex ' + fmt(Math.max(flex, 0)); fx.classList.toggle('low', flex <= 120);
+    el.classList.toggle('to', timeout);
+    el.classList.toggle('warn', !timeout && left <= 60 && left > 0);
+    el.classList.toggle('over', !timeout && left <= 0);
+    el.title = 'Section clock follows your slides · Flex bank covers timeouts and overtime · S start/stop · X timeout · T hide';
+    el.classList.toggle('run', running);
+    var btn = document.getElementById('tmrB'); btn.textContent = running ? '❚❚' : '▶'; btn.setAttribute('aria-label', running ? 'Stop timer' : 'Start timer');
+    var tob = document.getElementById('tmrTO'); tob.textContent = timeout ? 'Resume' : 'Timeout'; tob.setAttribute('aria-pressed', timeout ? 'true' : 'false');
+    if (typeof chan !== 'undefined' && chan && !NOTESONLY) chan.postMessage({ type: 'tick', name: timeout ? 'Timeout · flex' : SEGS[active].name, left: timeout ? fmt(Math.max(flex, 0)) : fmt(left), flex: fmt(Math.max(flex, 0)), to: timeout, warn: el.classList.contains('warn'), over: el.classList.contains('over'), running: running });
+  }
+  function toggleTimeout(){ last = Date.now(); timeout = !timeout; if (timeout && !running) running = true; tick(); }
+  document.getElementById('tmrTO').addEventListener('click', function(e){ e.stopPropagation(); toggleTimeout(); });
+  function toggleRun(){ last = Date.now(); running = !running; tick(); }
+  document.getElementById('tmrB').addEventListener('click', function(e){ e.stopPropagation(); toggleRun(); });
+  setInterval(tick, 250);
+
+  /* Play of the Week: type on the slide, it remembers in this browser */
+  document.querySelectorAll('.ed').forEach(function(el){
+    var key = 'qb-potw-' + el.getAttribute('data-k');
+    try { var v = localStorage.getItem(key); if (v && v.trim() && v.trim().charAt(0) !== '[') el.textContent = v; } catch(e) {}
+    el.addEventListener('click', function(e){ e.stopPropagation(); });
+    el.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === 'Escape') { e.preventDefault(); el.blur(); } e.stopPropagation(); });
+    el.addEventListener('input', function(){ if (!el.textContent.trim()) el.innerHTML = ''; try { localStorage.setItem(key, el.textContent); } catch(e) {} });
+  });
+
+  /* ===== new game: reset everything to kickoff ===== */
+  function resetGame(){
+    running = false; timeout = false; flex = FLEX; spent = SEGS.map(function(){ return 0; }); last = Date.now();
+    document.querySelectorAll('.flip.on').forEach(function(b){ b.classList.remove('on'); b.setAttribute('aria-pressed', 'false'); });
+    document.querySelectorAll('.wsrow.on').forEach(function(r){ r.classList.remove('on'); });
+    document.querySelectorAll('.tabs').forEach(function(l){ var t = l.querySelector('.tab'); if (t) t.click(); });
+    var rb = document.querySelector('#rolelist .rolebtn'); if (rb) rb.click();
+    if (document.getElementById('over').classList.contains('show')) toggleOver(false);
+    show(0); tick();
+  }
+  (function(){
+    var b = document.getElementById('rstBtn'), armed = null;
+    b.addEventListener('click', function(e){
+      e.stopPropagation();
+      if (armed) { clearTimeout(armed); armed = null; b.textContent = '↺ New game'; b.style.cssText = ''; resetGame(); return; }
+      b.textContent = 'Click again to reset'; b.style.cssText = 'background:#a3271b;color:#fff;border-color:#a3271b';
+      armed = setTimeout(function(){ armed = null; b.textContent = '↺ New game'; b.style.cssText = ''; }, 3000);
+    });
+  })();
+
+  /* ===== presenter notes ===== */
+  var NOTES = [
+    { say: "“Every account has one quarterback. When nobody’s calling the play, the account stalls. Today: what the QB owns, snap by snap — and how to stand and deliver when it counts.”",
+      why: "Stage open for 104 people. Open with energy and one idea — never your bio.",
+      skill: ["Memorize your first line cold.", "Camera at eye level, look at the lens, smile in the first five seconds."],
+      ask: ["“Drop your city and your team in chat.”"] },
+    { say: "State the win: “In 20 minutes you’ll know what a quarterback AM owns — and you’ll call the next play on your top account.” Walk the game plan in one breath.",
+      why: "You’re modeling the play: win, why, agenda — in the first minute.",
+      skill: ["Open with the win.", "Preview the agenda, then hand them the floor."],
+      ask: ["“Who’s making the Super Bowl? Ten words, defend it.”"] },
+    { say: "Have fun — roast the Cowboys, salute the Bills holding the ball 42 minutes. Land one line: Jacksonville’s point differential is pipeline quality, not luck.",
+      why: "In a big group, rapport is one line about the room. Energy first — cap it at 90 seconds.",
+      skill: ["Read the chat and call people out by name."],
+      ask: ["“Cowboys fans — defend yourselves.”"] },
+    { say: "“The quarterback doesn’t play every position. You call the play, read the defense, and get the ball to the right player. You call the plays. Engage is your headset.”",
+      why: "The whole episode in one slide: the AM owns the account, the relationships, and the next step.",
+      skill: ["Every teammate you bring needs a reason to be in the huddle."],
+      ask: ["“Whose name is on your biggest account in Engage — yours?”"] },
+    { say: "“Every account in your book has one QB. It’s you.” Click through the three, then the one-sentence test.",
+      why: "If you’re not the owner in Engage, nobody is — and an account with no open opp or next action is a possession with no play called.",
+      skill: ["Top accounts: owner set, one open opp or a logged next action.", "Before any meeting, finish: “By the end of this meeting, we will ___.”"],
+      ask: ["“How many of your top 10 have no next action right now? Type the number.”"] },
+    { say: "“Ten minutes every morning: tasks, open opps, account alerts.” Click each.",
+      why: "The morning screen is film study. It turns a busy day into three play calls.",
+      skill: ["Tasks: do it or move it.", "Stalled opp: that’s today’s call.", "Alert: a reason to pick up the phone."],
+      ask: ["“What’s the first thing you open in the morning? If it’s email — we need to talk.”"] },
+    { say: "Click two or three roles that match your book — Facility Manager, IFM, CFO.",
+      why: "The relationships layer is an org map, not one contact. The right question to the wrong role gets a polite non-answer. Know the decision-maker, the champion, and the skeptic before kickoff.",
+      skill: ["Ask, then stop — count to three.", "Go one layer deeper: “Tell me more about that.”", "Play it back: “So what I’m hearing is ___.”", "Set a cadence per account — book the next meeting before this one ends."],
+      ask: ["Any room: “What’s the one facilities issue that keeps landing on your desk?”", "“Walk me through how a project like this gets approved.”"] },
+    { say: "“Here’s how a badass AM opens: five calls — and the win is on the table inside 90 seconds.” Click through, then the four cues.",
+      why: "Rapport is about them — 60 to 90 seconds, then call the play right away. Intros come after the win so every person ties to it: ‘Maria’s here so pricing gets answered today.’ Their answer to ‘What’s the one thing you want out of today?’ builds on the win you just stated. If a busy exec opens with ‘What do you have for me?’, skip rapport and lead with the win.",
+      skill: ["Bridge: “I want to respect your time — here’s what you’ll leave with today.”", "Pause after the win, the number, and the ask.", "On camera, the lens is their eyes."],
+      ask: ["“What’s your best rapport question? Drop it.”"] },
+    { say: "Flip three or four live. Ask for confessions.",
+      why: "Flags tell the room you don’t have a plan. Fumbles are words customers have heard a thousand times. Replace them with a number, a name, or a date.",
+      skill: ["Start on time.", "Intros by why, not bios.", "Swap “circle back” for a date."],
+      ask: ["“Which one have you thrown on yourself this month?”"] },
+    { say: "“Protect the house. Then build an addition.” Click through protect, expand, log it.",
+      why: "Account reviews protect revenue; the whitespace question finds the next service; Engage makes it real. One-service accounts are one bad quarter from a competitor.",
+      skill: ["Run a review: delivered, saved, still bugging them.", "Ask: “What’s the next project on your plate we’re not part of yet?”", "Log every answer as an opportunity with a next action."],
+      ask: ["“Who ran an account review this quarter? What did it find?”"] },
+    { say: "“The QB hands off the ball. He never leaves the field.”",
+      why: "Clear boundaries keep deals moving: estimating owns price, ops owns crews, solutions owns design — the AM keeps the relationship, the next step, and the record.",
+      skill: ["Introduce teammates by why they’re there.", "After a handoff, you still own the date and the Engage record."],
+      ask: ["“Where do your deals stall after a handoff?”"] },
+    { say: "Click each punt to reveal the touchdown.",
+      why: "No meeting ends without a decision, an owner, and a date. If it’s not on a calendar, it’s not on the scoreboard.",
+      skill: ["Recap, confirm the win, ask directly.", "Book it live. Follow up in 24 hours and log it in Engage."],
+      ask: ["Everyone together: “Is there any reason we wouldn’t move forward?”"] },
+    { say: "Open Deal Coach. Ghost-write Reformation for the 11/11 version — then run the flawed example and fix it live.",
+      why: "Reps on a real account are the only reps that count.",
+      skill: ["Subject leads with the ask: verb, outcome, account, time box, under 60 characters.", "Fix every flag until you’re green."],
+      ask: ["“Type the account you’d build this for.”"] },
+    { say: "Repeat each question so everyone hears it; answer to the whole room.",
+      why: "Never end on Q&A — your one move is next.",
+      skill: ["Repeat, answer to all, bridge back."],
+      ask: ["Seed it: “What’s the hardest account in your book right now?”"] },
+    { say: "“Your one move before the next episode: map your top 3 accounts. Owner set to you in Engage, and every one has an open opp or a logged next action. If one doesn’t — draw up that meeting in Deal Coach and send it.” Pause. Wait.",
+      why: "One clear call to action. Practice what we preach.",
+      skill: ["One ask. Then silence."],
+      ask: ["“Type the account that needs a play call.”", "Managers: check it in your 1-on-1s."] }
+  ];
+
+  var NOTESONLY = location.hash === '#notes';
+  var chan = null; try { chan = new BroadcastChannel('qb-deck'); } catch(e) {}
+  function li(a){ return '<ul>' + a.map(function(x){ return '<li>' + x + '</li>'; }).join('') + '</ul>'; }
+  function renderNotes(i){
+    var n = NOTES[i] || {}, sl = slides[i];
+    document.getElementById('nTitle').innerHTML = '<small>Slide ' + (i + 1) + ' of ' + slides.length + ' · ' + (typeof SEGS !== 'undefined' ? SEGS[segOf(i + 1)].name : '') + '</small>' + sl.getAttribute('data-title');
+    document.getElementById('nBody').innerHTML =
+      '<h5 class="say">Say it</h5><p>' + (n.say || '') + '</p>' +
+      '<h5 class="why">Why it matters</h5><p>' + (n.why || '') + '</p>' +
+      '<h5 class="skill">The skill</h5>' + li(n.skill || []) +
+      '<h5 class="ask">Questions to ask</h5>' + li(n.ask || []) +
+      '<p class="src">From the Growth Hub play: Show Up &amp; Run the Room</p>';
+  }
+  function toggleNotes(){ if (document.body.classList.contains('present')) { window.open(location.href.split('#')[0] + '#notes', 'qbnotes', 'width=560,height=860'); return; } document.body.classList.toggle('notes-open'); renderNotes(cur); fit(); }
+  document.getElementById('nBtn').addEventListener('click', toggleNotes);
+  document.getElementById('nClose').addEventListener('click', function(){ if (NOTESONLY) window.close(); else toggleNotes(); });
+  document.getElementById('nPop').addEventListener('click', function(){
+    window.open(location.href.split('#')[0] + '#notes', 'qbnotes', 'width=560,height=860');
+    if (document.body.classList.contains('notes-open')) toggleNotes();
+  });
+  document.getElementById('nPrev').addEventListener('click', function(){ if (chan) chan.postMessage({ type: 'go', dir: -1 }); });
+  document.getElementById('ntB').addEventListener('click', function(){ if (chan) chan.postMessage({ type: 'timer' }); });
+  document.getElementById('ntTO').addEventListener('click', function(){ if (chan) chan.postMessage({ type: 'timeout' }); });
+  document.getElementById('nNext').addEventListener('click', function(){ if (chan) chan.postMessage({ type: 'go', dir: 1 }); });
+  if (chan) chan.onmessage = function(e){
+    var d = e.data || {};
+    if (NOTESONLY) {
+      if (d.type === 'slide') { cur = d.i; renderNotes(d.i); }
+      if (d.type === 'tick') { var nt = document.getElementById('nTimer'); document.getElementById('ntN').textContent = d.name; document.getElementById('ntC').textContent = d.left; nt.classList.toggle('to', !!d.to); document.getElementById('ntF').textContent = 'Flex ' + d.flex; document.getElementById('ntTO').textContent = d.to ? 'Resume' : 'Timeout'; nt.classList.toggle('warn', d.warn); nt.classList.toggle('over', d.over); nt.classList.toggle('run', d.running); document.getElementById('ntB').textContent = d.running ? '❚❚' : '▶'; }
+    }
+    else {
+      if (d.type === 'go') { d.dir > 0 ? next() : prev(); }
+      if (d.type === 'timer') toggleRun();
+      if (d.type === 'timeout') toggleTimeout();
+      if (d.type === 'hello') chan.postMessage({ type: 'slide', i: cur });
+    }
+  };
+  if (NOTESONLY) { document.body.classList.add('notesonly'); document.getElementById('nPop').style.display = 'none'; renderNotes(0); if (chan) chan.postMessage({ type: 'hello' }); }
+  window.addEventListener('resize', fit);
+  window.addEventListener('hashchange', function(){ var m = /^#s(\d+)$/.exec(location.hash); if (m && +m[1] - 1 !== cur) show(+m[1] - 1, true); });
+  fit();
+  var m0 = /^#s(\d+)$/.exec(location.hash); show(m0 ? +m0[1] - 1 : 0, !!m0);
+})();
+</script>
+</body>
+</html>

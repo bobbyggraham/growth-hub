@@ -1,0 +1,1157 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Show Up &amp; Run the Room — FSG Meeting Play</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='115' fill='%23133865'/><g stroke='%23c5d9fa' stroke-width='22' stroke-linecap='round'><line x1='256' y1='256' x2='256' y2='96'/><line x1='256' y1='256' x2='394.6' y2='176'/><line x1='256' y1='256' x2='394.6' y2='336'/><line x1='256' y1='256' x2='256' y2='416'/><line x1='256' y1='256' x2='117.4' y2='336'/><line x1='256' y1='256' x2='117.4' y2='176'/></g><circle cx='256' cy='96' r='42' fill='%23ffffff'/><circle cx='394.6' cy='176' r='42' fill='%23c5d9fa'/><circle cx='394.6' cy='336' r='42' fill='%23ffffff'/><circle cx='256' cy='416' r='42' fill='%23c5d9fa'/><circle cx='117.4' cy='336' r='42' fill='%23ffffff'/><circle cx='117.4' cy='176' r='42' fill='%23ebb018'/><circle cx='256' cy='256' r='76' fill='%23ebb018'/></svg>">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fsg-deep-navy: #0b1421;
+    --fsg-dark-navy: #133865;
+    --fsg-brand-blue: #365aa0;
+    --fsg-steel-blue: #718dbc;
+    --fsg-light-blue: #c5d9fa;
+    --fsg-light-gray: #ededed;
+    --fsg-gold: #ebb018;
+    --fsg-bright-blue: #4e84de;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Open Sans', Arial, Helvetica, sans-serif; color: var(--fsg-deep-navy); background: #fff; line-height: 1.55; }
+  h1, h2, h3 { font-family: 'Oswald', 'Arial Narrow', Arial, sans-serif; color: var(--fsg-dark-navy); }
+  .page { max-width: 880px; margin: 0 auto; padding: 0 40px 48px; }
+
+  /* Cover */
+  .cover { background: var(--fsg-dark-navy); color: #fff; padding: 56px 40px 44px; }
+  .cover .inner { max-width: 880px; margin: 0 auto; }
+  .wordmark { font-family: 'Oswald', Arial, sans-serif; letter-spacing: 3px; font-size: 15px; color: #fff; text-transform: uppercase; }
+  .wordmark span { color: var(--fsg-gold); }
+  .cover .rule { border-top: 2px solid var(--fsg-gold); margin: 22px 0 26px; width: 120px; }
+  .cover h1 { color: #fff; font-size: 40px; line-height: 1.15; text-transform: uppercase; letter-spacing: 0.5px; }
+  .cover .sub { color: var(--fsg-light-blue); font-size: 17px; margin-top: 14px; max-width: 620px; }
+  .cover .meta { color: var(--fsg-steel-blue); font-size: 12px; margin-top: 26px; letter-spacing: 1px; text-transform: uppercase; }
+
+  section { margin-top: 44px; }
+  h2 { font-size: 26px; text-transform: uppercase; letter-spacing: 0.5px; padding-bottom: 8px; border-bottom: 2px solid var(--fsg-gold); }
+  h2 .num { color: var(--fsg-gold); margin-right: 10px; }
+  h3 { font-size: 17px; color: var(--fsg-brand-blue); margin: 22px 0 8px; }
+  p { margin: 10px 0; font-size: 15px; }
+  ul, ol { margin: 10px 0 10px 24px; font-size: 15px; }
+  li { margin: 6px 0; }
+  strong { color: var(--fsg-dark-navy); }
+
+  .callout { background: var(--fsg-light-blue); border-left: 4px solid var(--fsg-gold); padding: 14px 18px; margin: 18px 0; font-size: 14px; color: var(--fsg-dark-navy); border-radius: 0 4px 4px 0; }
+  .principle { background: var(--fsg-deep-navy); color: #fff; padding: 22px 26px; margin: 24px 0; border-radius: 6px; }
+  .principle h3 { color: var(--fsg-gold); margin: 0 0 6px; font-family: 'Oswald', Arial, sans-serif; text-transform: uppercase; letter-spacing: 1px; font-size: 14px; }
+  .principle p { color: #fff; font-size: 18px; font-weight: 600; margin: 0; }
+
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  th { background: var(--fsg-dark-navy); color: #fff; text-align: left; padding: 10px 12px; font-weight: 700; }
+  td { padding: 10px 12px; vertical-align: top; }
+  tr:nth-child(even) td { background: var(--fsg-light-blue); }
+  tr:nth-child(odd) td { background: #fff; }
+
+  .frames { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 18px 0; }
+  .frame { background: var(--fsg-light-gray); border-top: 4px solid var(--fsg-gold); padding: 14px; border-radius: 0 0 6px 6px; }
+  .frame h4 { font-family: 'Oswald', Arial, sans-serif; color: var(--fsg-dark-navy); font-size: 18px; text-transform: uppercase; margin-bottom: 4px; }
+  .frame p { font-size: 13px; margin: 4px 0; }
+  .frame .q { color: var(--fsg-brand-blue); font-style: italic; font-size: 12.5px; }
+
+  .shapes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 18px 0; }
+  .shape-card { text-align: center; padding: 18px 12px; background: #fff; border: 1px solid var(--fsg-light-gray); border-radius: 6px; }
+  .shape-card svg { margin-bottom: 8px; }
+  .shape-card h4 { font-family: 'Oswald', Arial, sans-serif; color: var(--fsg-dark-navy); font-size: 15px; text-transform: uppercase; }
+  .shape-card p { font-size: 12.5px; color: var(--fsg-steel-blue); margin: 4px 0 0; }
+
+  .script { background: var(--fsg-light-gray); border-radius: 6px; padding: 14px 18px; margin: 12px 0; font-size: 14px; }
+  .script .label { font-family: 'Oswald', Arial, sans-serif; text-transform: uppercase; letter-spacing: 1px; font-size: 11px; color: var(--fsg-brand-blue); display: block; margin-bottom: 6px; }
+  .script em { color: var(--fsg-dark-navy); }
+
+  footer { background: var(--fsg-deep-navy); color: var(--fsg-steel-blue); padding: 22px 40px; margin-top: 56px; font-size: 12px; }
+  footer .inner { max-width: 880px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+  @media (max-width: 700px) { .frames { grid-template-columns: repeat(2, 1fr); } .shapes { grid-template-columns: 1fr; } .cover h1 { font-size: 30px; } }
+  @media print { .cover { -webkit-print-color-adjust: exact; print-color-adjust: exact; } body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+
+  /* Run the Room additions */
+  .checklist { list-style: none; margin: 14px 0; padding: 0; }
+  .checklist li { position: relative; padding: 10px 14px 10px 44px; margin: 8px 0; background: var(--fsg-light-gray); border-radius: 6px; font-size: 15px; }
+  .checklist li::before { content: ""; position: absolute; left: 14px; top: 12px; width: 16px; height: 16px; border: 2px solid var(--fsg-dark-navy); border-radius: 3px; background: #fff; }
+
+  .phrases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 18px 0; }
+  .phrase { position: relative; min-height: 150px; border: none; padding: 0; background: none; cursor: pointer; text-align: left; font: inherit; perspective: 900px; }
+  .phrase .face { position: absolute; inset: 0; border-radius: 6px; padding: 16px; backface-visibility: hidden; transition: transform .45s ease; display: flex; flex-direction: column; }
+  .phrase .front { background: var(--fsg-dark-navy); color: #fff; justify-content: space-between; }
+  .phrase .front .said { font-family: 'Oswald', Arial, sans-serif; font-size: 21px; line-height: 1.2; }
+  .phrase .front .tap { font-size: 11.5px; color: var(--fsg-light-blue); }
+  .phrase .back { background: #fff; border: 2px solid var(--fsg-gold); transform: rotateY(180deg); }
+  .phrase .back .means { font-size: 13px; color: var(--fsg-steel-blue); font-style: italic; }
+  .phrase .back .instead { font-size: 13.5px; color: var(--fsg-dark-navy); margin-top: 8px; }
+  .phrase .back .instead b { color: var(--fsg-brand-blue); }
+  .phrase.flipped .front { transform: rotateY(-180deg); }
+  .phrase.flipped .back { transform: rotateY(0deg); }
+  .phrase:focus-visible { outline: 3px solid var(--fsg-bright-blue); outline-offset: 3px; border-radius: 6px; }
+  .phrase-tools { display: flex; gap: 10px; margin-top: 4px; }
+  .btn { font-family: 'Oswald', Arial, sans-serif; letter-spacing: .5px; font-size: 14px; background: var(--fsg-gold); color: var(--fsg-deep-navy); border: none; border-radius: 6px; padding: 9px 16px; cursor: pointer; min-height: 40px; }
+  .btn.ghost { background: transparent; border: 1.5px solid var(--fsg-dark-navy); color: var(--fsg-dark-navy); }
+  .btn:focus-visible { outline: 3px solid var(--fsg-bright-blue); outline-offset: 2px; }
+
+  .clock { display: flex; height: 64px; border-radius: 6px; overflow: hidden; margin: 18px 0 6px; font-family: 'Oswald', Arial, sans-serif; }
+  .clock div { display: flex; flex-direction: column; justify-content: center; padding: 0 12px; color: #fff; font-size: 14px; line-height: 1.2; }
+  .clock small { font-family: 'Open Sans', Arial, sans-serif; font-size: 11px; opacity: .85; }
+  .clock .c-open { flex: 3; background: var(--fsg-brand-blue); }
+  .clock .c-disc { flex: 17; background: var(--fsg-dark-navy); }
+  .clock .c-fit  { flex: 6; background: var(--fsg-steel-blue); }
+  .clock .c-close{ flex: 4; background: var(--fsg-gold); color: var(--fsg-deep-navy); }
+  .clock-note { font-size: 12.5px; color: var(--fsg-steel-blue); }
+
+  .scorer { background: var(--fsg-light-gray); border-radius: 6px; padding: 18px 20px; margin: 18px 0; }
+  .scorer label { display: flex; gap: 12px; align-items: flex-start; padding: 8px 0; font-size: 15px; cursor: pointer; border-bottom: 1px solid #dcdcdc; }
+  .scorer label:last-of-type { border-bottom: none; }
+  .scorer input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--fsg-dark-navy); flex: none; }
+  .score-out { margin-top: 14px; background: var(--fsg-deep-navy); color: #fff; border-radius: 6px; padding: 16px 20px; display: flex; align-items: center; gap: 18px; }
+  .score-out .n { font-family: 'Oswald', Arial, sans-serif; font-size: 40px; color: var(--fsg-gold); line-height: 1; min-width: 70px; }
+  .score-out .v { font-size: 15px; }
+
+  @media (max-width: 700px) {
+    .phrases { grid-template-columns: 1fr 1fr; }
+    .clock div { padding: 0 6px; font-size: 12px; }
+    .clock small { display: none; }
+  }
+  @media (max-width: 460px) { .phrases { grid-template-columns: 1fr; } }
+  @media (prefers-reduced-motion: reduce) { .phrase .face { transition: none; } }
+  @media print { .phrase .back { transform: none; position: static; } .phrase .front { display: none; } .phrase .face { position: static; } .phrase { min-height: 0; } }
+
+  /* v2 additions */
+  .cover .cta-row { margin-top: 26px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .btn-cta { display: inline-block; font-family: 'Oswald', Arial, sans-serif; font-size: 17px; letter-spacing: .5px; background: var(--fsg-gold); color: var(--fsg-deep-navy); text-decoration: none; padding: 12px 22px; border-radius: 6px; }
+  .btn-cta:hover { filter: brightness(1.06); }
+  .btn-cta:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+  .cover .cta-note { color: var(--fsg-light-blue); font-size: 13.5px; }
+
+  .examples { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 4px 0 18px 0; }
+  .ex { background: #fff; border: 1px solid #dcdcdc; border-top: 4px solid var(--fsg-gold); border-radius: 0 0 6px 6px; padding: 14px; }
+  .ex h4 { font-family: 'Oswald', Arial, sans-serif; color: var(--fsg-brand-blue); font-size: 15px; margin-bottom: 6px; }
+  .ex p { font-size: 13.5px; margin: 0; color: var(--fsg-dark-navy); }
+
+  .phrases.tall .phrase { min-height: 178px; }
+
+  .qcards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 14px 0 6px; }
+  .qcard { background: var(--fsg-light-blue); border-radius: 6px; padding: 12px 14px; }
+  .qcard h4 { font-family: 'Oswald', Arial, sans-serif; color: var(--fsg-dark-navy); font-size: 14px; margin-bottom: 4px; }
+  .qcard p { font-size: 13px; margin: 0; }
+
+  .roles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 16px 0; }
+  .role { border: 1px solid #dcdcdc; border-radius: 6px; overflow: hidden; background: #fff; display: flex; flex-direction: column; }
+  .role-head { background: var(--fsg-dark-navy); color: #fff; padding: 12px 16px; }
+  .role-head h4 { font-family: 'Oswald', Arial, sans-serif; font-size: 18px; color: #fff; }
+  .role-head p { font-size: 12.5px; color: var(--fsg-light-blue); margin: 2px 0 0; }
+  .role-body { padding: 12px 16px 14px; font-size: 13.5px; }
+  .role-body h5 { font-family: 'Oswald', Arial, sans-serif; font-size: 13px; color: var(--fsg-brand-blue); margin: 8px 0 3px; letter-spacing: .3px; }
+  .role-body h5:first-child { margin-top: 0; }
+  .role-body ul { margin: 0 0 0 18px; font-size: 13.5px; }
+  .role-body li { margin: 3px 0; }
+  .role-body .asks li { color: var(--fsg-dark-navy); font-style: italic; }
+
+  .builder { background: var(--fsg-light-gray); border-radius: 8px; padding: 22px; margin: 18px 0; }
+  .builder .row2 { display: grid; grid-template-columns: 1fr 1fr 130px; gap: 12px; }
+  .field { margin: 0 0 14px; }
+  .field label, .field .lbl { display: block; font-family: 'Oswald', Arial, sans-serif; font-size: 14px; color: var(--fsg-dark-navy); margin-bottom: 4px; }
+  .field .hint { font-size: 12px; color: #5b6b82; margin: 2px 0 0; }
+  .builder input[type=text], .builder input[type=number], .builder select, .builder textarea { width: 100%; font: inherit; font-size: 15px; padding: 10px 12px; border: 1.5px solid #c9d1dc; border-radius: 6px; background: #fff; color: var(--fsg-deep-navy); }
+  .builder textarea { min-height: 96px; resize: vertical; line-height: 1.45; }
+  .builder input:focus, .builder select:focus, .builder textarea:focus { outline: none; border-color: var(--fsg-bright-blue); box-shadow: 0 0 0 3px rgba(78,132,222,.2); }
+  .agenda-row { display: grid; grid-template-columns: 1fr 84px 40px; gap: 8px; margin-bottom: 8px; align-items: center; }
+  .agenda-row .rm { background: transparent; border: 1.5px solid #c9d1dc; border-radius: 6px; height: 42px; cursor: pointer; color: var(--fsg-dark-navy); font-size: 18px; }
+  .agenda-total { font-size: 13px; color: var(--fsg-dark-navy); margin-top: 2px; }
+  .agenda-total.off { color: #b45309; font-weight: 700; }
+  .btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+  .btn.coach { font-size: 17px; padding: 11px 22px; }
+
+  .coach-out { margin-top: 20px; display: none; }
+  .coach-out.show { display: block; }
+  .coach-head { background: var(--fsg-deep-navy); color: #fff; border-radius: 6px 6px 0 0; padding: 14px 18px; display: flex; gap: 16px; align-items: center; }
+  .coach-head .n { font-family: 'Oswald', Arial, sans-serif; font-size: 36px; color: var(--fsg-gold); line-height: 1; }
+  .coach-head .t { font-size: 15px; }
+  .coach-list { list-style: none; margin: 0; padding: 6px 0; background: #fff; border: 1px solid #dcdcdc; border-top: none; border-radius: 0 0 6px 6px; }
+  .coach-list li { display: grid; grid-template-columns: 58px 1fr; gap: 10px; padding: 9px 16px; border-bottom: 1px solid #eee; font-size: 14px; margin: 0; }
+  .coach-list li:last-child { border-bottom: none; }
+  .tag { font-family: 'Oswald', Arial, sans-serif; font-size: 12px; text-align: center; border-radius: 4px; padding: 2px 0; height: fit-content; }
+  .tag.ok { background: #dcefe3; color: #1d6b3a; }
+  .tag.fix { background: #fdecc8; color: #8a5a00; }
+  .coach-list b { color: var(--fsg-dark-navy); }
+
+  .invite { margin-top: 18px; background: #fff; border: 2px solid var(--fsg-dark-navy); border-radius: 8px; padding: 18px; }
+  .invite h3 { margin: 0 0 10px; color: var(--fsg-dark-navy); }
+  .invite textarea { min-height: 320px; font-size: 14px; font-family: 'Open Sans', Arial, sans-serif; }
+  .copied { font-size: 13px; color: #1d6b3a; margin-left: 4px; align-self: center; min-height: 18px; }
+  .send-steps { font-size: 14px; margin-top: 12px; }
+
+  @media (max-width: 760px) {
+    .examples { grid-template-columns: 1fr; }
+    .qcards { grid-template-columns: 1fr 1fr; }
+    .roles { grid-template-columns: 1fr; }
+    .builder { padding: 16px; }
+    .builder .row2 { grid-template-columns: 1fr; }
+  }
+  .tabs { display: flex; gap: 6px; flex-wrap: wrap; margin: 14px 0 0; }
+  .tab { font-family: 'Oswald', Arial, sans-serif; font-size: 15px; letter-spacing: .3px; background: #fff; color: var(--fsg-dark-navy); border: 1.5px solid var(--fsg-dark-navy); border-radius: 6px; padding: 9px 16px; cursor: pointer; min-height: 42px; }
+  .tab[aria-selected="true"] { background: var(--fsg-dark-navy); color: #fff; }
+  .tab:focus-visible { outline: 3px solid var(--fsg-bright-blue); outline-offset: 2px; }
+  .tabpanel { border: 1px solid #dcdcdc; border-top: 4px solid var(--fsg-gold); border-radius: 0 0 6px 6px; padding: 16px 18px; margin-top: 10px; background: #fff; }
+  .tabpanel[hidden] { display: none; }
+  .tabpanel .lead { font-size: 15px; font-weight: 600; color: var(--fsg-dark-navy); margin: 0 0 10px; }
+  .deliver { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 22px; }
+  .deliver h5 { font-family: 'Oswald', Arial, sans-serif; font-size: 14px; color: var(--fsg-brand-blue); margin: 0 0 2px; }
+  .deliver ul { margin: 0 0 0 18px; font-size: 14px; }
+  .deliver li { margin: 3px 0; }
+  .deliver .watch h5 { color: #8a5a00; }
+  .basics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 14px 0; }
+  .basic { background: var(--fsg-light-gray); border-radius: 6px; padding: 12px 14px; }
+  .basic h4 { font-family: 'Oswald', Arial, sans-serif; color: var(--fsg-dark-navy); font-size: 15px; margin-bottom: 3px; }
+  .basic p { font-size: 13.5px; margin: 0; }
+  .clock .c-hook { flex: 10; background: var(--fsg-brand-blue); }
+  .clock .c-qual { flex: 60; background: var(--fsg-dark-navy); }
+  .clock .c-prove{ flex: 30; background: var(--fsg-steel-blue); }
+  .clock .c-ask  { flex: 20; background: var(--fsg-gold); color: var(--fsg-deep-navy); }
+  .coach-tips { margin-top: 12px; background: var(--fsg-light-blue); border-left: 4px solid var(--fsg-gold); border-radius: 0 6px 6px 0; padding: 12px 16px; font-size: 14px; }
+  .coach-tips b { color: var(--fsg-dark-navy); }
+  .coach-tips ul { margin: 6px 0 0 18px; }
+  .builder .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  @media (max-width: 760px) { .deliver, .basics, .builder .row3 { grid-template-columns: 1fr; } }
+  @media print { .builder, .cta-row, .phrase-tools { display: none; } .tabpanel[hidden] { display: block; } }
+</style>
+</head>
+<body>
+
+<!-- ============ GROWTH HUB GATE ============ -->
+<style>
+  html.gh-locked > body > :not(#ghGate){display:none !important;}
+  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
+  html:not(.gh-locked) #ghGate{display:none;}
+  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
+  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
+  #ghGate .gh-brand svg{width:30px;height:30px;}
+  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
+  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
+  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;}
+  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
+  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
+  #ghGate input:focus{border-color:#4e84de;}
+  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
+  #ghGate button:hover{filter:brightness(1.06);}
+  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
+  #ghGate .gh-shake{animation:ghshake .3s;}
+  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+<div id="ghGate">
+  <div class="gh-wrap">
+    <div class="gh-brand">
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#c5d9fa" stroke-width="14" stroke-linecap="round" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g><circle cx="150" cy="50" r="26" fill="#ffffff"/><circle cx="236.6" cy="100" r="26" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="26" fill="#ffffff"/><circle cx="150" cy="250" r="26" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="26" fill="#ffffff"/><circle cx="63.4" cy="100" r="26" fill="#c5d9fa"/><circle cx="150" cy="150" r="44" fill="#ebb018"/></svg>
+      <span>Growth Hub</span>
+    </div>
+    <div class="gh-card">
+      <h2>Passcode</h2>
+      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
+      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
+      <button id="ghGo" type="button">Enter the Hub</button>
+      <div class="gh-err" id="ghErr"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
+  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+  if(!unlocked()) document.documentElement.classList.add('gh-locked');
+  function open(){ document.documentElement.classList.remove('gh-locked'); }
+  async function check(){
+    var v=document.getElementById('ghPass').value;
+    var ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        ok=(hex===HASH);
+      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
+    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
+    if(ok){ remember(); open(); }
+    else{
+      var card=document.querySelector('#ghGate .gh-card');
+      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
+      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
+      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    if(unlocked()) return;
+    document.getElementById('ghGo').addEventListener('click', check);
+    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
+  });
+})();
+</script>
+<!-- ============ /GROWTH HUB GATE ============ -->
+
+
+
+<div class="cover">
+  <div class="inner">
+    <a href="../index.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#718dbc;text-decoration:none;display:inline-block;margin-bottom:18px;">&larr; Growth Hub</a>
+    <div class="wordmark">Facility Solutions Group <span>|</span> Growth Organization</div>
+    <div class="rule"></div>
+    <h1>Show Up &amp; Run the Room</h1>
+    <div class="sub">The FSG meeting play for every room — in person, on camera, or on the trade show floor. Open with the win, lead by directive, and never leave without a date on the calendar.</div>
+    <div class="cta-row">
+      <a class="btn-cta" href="#builder">Build your next meeting</a>
+      <span class="cta-note">Plan it, run Deal Coach, and paste the invite into your calendar in five minutes.</span>
+    </div>
+    <div class="meta">Sales Leadership &nbsp;·&nbsp; November 2026 &nbsp;·&nbsp; Development Play</div>
+  </div>
+</div>
+
+<div class="page">
+
+  <section>
+    <h2>Why This Play Exists</h2>
+    <p>Most meetings die in the first three minutes and never recover. Nobody states the point, the seller talks for twenty minutes, and everyone leaves with a “let’s circle back.” Nothing moves.</p>
+    <p>This play sets one standard for every FSG meeting — customer, partner, or internal; one person, a conference room, or a full audience: <strong>open with the result, run the clock, and close with a clear call to action.</strong></p>
+    <div class="principle">
+      <h3>The Standard</h3>
+      <p>If you can’t say in one sentence what they walk away with, you’re not ready to send the invite.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">01</span>Show Up Ready</h2>
+    <p>Showing up starts the day before. Ten minutes of prep is the difference between running the room and reacting to it. It starts with one sentence: <strong>“By the end of this meeting, we will ___.”</strong> Most meetings are built around one of three things:</p>
+    <div class="examples">
+      <div class="ex"><h4>A problem to solve</h4><p>“By the end of this meeting, we’ll know the three stores with the most repeat lighting calls and agree on which one we price first.”</p></div>
+      <div class="ex"><h4>A project to move</h4><p>“By the end of this meeting, we’ll lock the Phase 2 scope, crew schedule, and a start date your store managers can plan around.”</p></div>
+      <div class="ex"><h4>Results to act on</h4><p>“By the end of this meeting, you’ll see the 18% energy savings from Phase 1 and decide whether we roll it out to the other 22 sites.”</p></div>
+    </div>
+    <ul class="checklist">
+      <li>Write your one-sentence result — a problem, a project, or results.</li>
+      <li>Send the agenda with the invite — three items max, each with a time box.</li>
+      <li>Know the account: open opportunities in Engage, last touch, who’s in the room and what each person owns.</li>
+      <li>Prepare five fact-finding questions you don’t already know the answer to.</li>
+      <li>Decide the ask you’ll make at the close — before you show up, not during.</li>
+      <li>Arrive or log in early. Camera on, phone face down, notes open.</li>
+      <li>Bringing a team? Assign roles: who leads, who takes notes, who owns the technical answers.</li>
+    </ul>
+  </section>
+
+  <section id="deliver">
+    <h2><span class="num">02</span>Stand and Deliver</h2>
+    <p>The play doesn’t change by room — the win, the clock, and the ask work everywhere. <strong>Your delivery does.</strong> Start with the basics that hold in every setting, then pick your setting and your audience.</p>
+    <div class="basics">
+      <div class="basic"><h4>Plant your feet</h4><p>Standing or seated, set your base and stay still. Movement should mean something — a transition, not nerves.</p></div>
+      <div class="basic"><h4>Land the sentence</h4><p>Finish every sentence on one person’s eyes. Drop your voice at the end — rising tones sound like questions.</p></div>
+      <div class="basic"><h4>Own the pause</h4><p>Pause after the win, after a key number, and after the ask. Silence reads as confidence. “Um” reads as the opposite.</p></div>
+      <div class="basic"><h4>Hands visible</h4><p>Open hands, used at chest height to count or frame a point. No pockets, no crossed arms, no pen clicking.</p></div>
+      <div class="basic"><h4>Energy +10%</h4><p>A notch above how you feel. It reads as normal to the room — and on camera, go higher.</p></div>
+      <div class="basic"><h4>Say their name</h4><p>Use it in the first minute and again at the ask. It’s the fastest way to make one person feel like the only person.</p></div>
+    </div>
+
+    <h3>Pick your setting</h3>
+    <div class="tabs" role="tablist" aria-label="Setting" data-group="setting">
+      <button class="tab" role="tab" aria-selected="true" aria-controls="set-person" id="t-person">In person</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="set-virtual" id="t-virtual" tabindex="-1">Virtual</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="set-event" id="t-event" tabindex="-1">Trade show / event</button>
+    </div>
+    <div class="tabpanel" role="tabpanel" id="set-person" aria-labelledby="t-person">
+      <p class="lead">You have the whole room to work with. Use the space on purpose.</p>
+      <div class="deliver">
+        <div><h5>Before they arrive</h5><ul><li>Get there 10 minutes early and see the room.</li><li>Pick a seat where you can see every face — the corner of the table, not across it.</li><li>Phone out of sight, leave-behind ready, one copy per person.</li></ul></div>
+        <div><h5>Body</h5><ul><li>Standing: feet shoulder-width, weight even, shoulders back.</li><li>Seated: lean in slightly, both feet down, hands on the table.</li><li>Firm handshake, eye contact, their name back to them.</li></ul></div>
+        <div><h5>Voice and eyes</h5><ul><li>Talk to the person, not the slide or the screen behind you.</li><li>Match their pace. If they’re clipped, be crisp. If they’re relaxed, slow down.</li></ul></div>
+        <div class="watch"><h5>Watch out for</h5><ul><li>Sitting before the host offers you a seat.</li><li>Checking your watch or phone — even once.</li><li>Spreading paper across their desk.</li></ul></div>
+      </div>
+    </div>
+    <div class="tabpanel" role="tabpanel" id="set-virtual" aria-labelledby="t-virtual" hidden>
+      <p class="lead">The camera flattens everything. You have to bring more to show the same.</p>
+      <div class="deliver">
+        <div><h5>Before you join</h5><ul><li>Camera at eye level, light in front of you, clean background.</li><li>Test the link and screen share. Close email and notifications.</li><li>Join two minutes early so you’re there to greet them.</li></ul></div>
+        <div><h5>Body</h5><ul><li>Frame head and shoulders with room for your hands to gesture.</li><li>Sit tall, or stand if you can — your voice gets stronger.</li><li>Smile in the first five seconds. It sets the tone of the whole call.</li></ul></div>
+        <div><h5>Voice and eyes</h5><ul><li>Look at the lens when you state the win and make the ask — that’s eye contact for them.</li><li>Call on people by name. There’s no body language to read who wants to talk.</li><li>Wait two extra seconds after a question. Unmuting takes time.</li><li>Drop the ask and the next-step link in the chat at the close.</li></ul></div>
+        <div class="watch"><h5>Watch out for</h5><ul><li>Talking to the grid of faces instead of the lens.</li><li>Reading notes off to the side — they can see your eyes move.</li><li>Sharing your whole desktop.</li></ul></div>
+      </div>
+    </div>
+    <div class="tabpanel" role="tabpanel" id="set-event" aria-labelledby="t-event" hidden>
+      <p class="lead">You have two minutes and a crowded aisle. The goal isn’t to sell — it’s to earn the next meeting.</p>
+      <div class="deliver">
+        <div><h5>Position</h5><ul><li>Stand at the front edge of the booth, facing the aisle — never behind the table.</li><li>No sitting, eating, or phones in the booth. No huddling with your own team.</li></ul></div>
+        <div><h5>Open in ten seconds</h5><ul><li>Lead with a question, not a pitch: “What’s the one facilities project on your plate for next year?”</li><li>Read the badge, use their name, and ask about their company — not yours.</li></ul></div>
+        <div><h5>Qualify fast</h5><ul><li>Three things: their role, a real project, and when it happens.</li><li>No project in the next 12 months? Be kind, be brief, and move on.</li></ul></div>
+        <div class="watch"><h5>Watch out for</h5><ul><li>“Can I help you?” — it gets “just looking” every time.</li><li>Handing out a brochure as the close.</li><li>Pitching the whole line card to someone who doesn’t qualify.</li></ul></div>
+      </div>
+    </div>
+
+    <h3>Pick your audience</h3>
+    <div class="tabs" role="tablist" aria-label="Audience" data-group="audience">
+      <button class="tab" role="tab" aria-selected="true" aria-controls="aud-one" id="t-one">1-on-1</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="aud-group" id="t-group" tabindex="-1">Group (3–12)</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="aud-stage" id="t-stage" tabindex="-1">Audience / stage</button>
+    </div>
+    <div class="tabpanel" role="tabpanel" id="aud-one" aria-labelledby="t-one">
+      <p class="lead">It’s a conversation, not a presentation. They should talk 70% of the time.</p>
+      <div class="deliver">
+        <div><h5>Deliver</h5><ul><li>Sit at an angle, not head-on — it feels like working together.</li><li>Mirror their energy and pace.</li><li>Use their name two or three times, no more.</li></ul></div>
+        <div><h5>The ask</h5><ul><li>One person can say yes — so ask them directly and wait for the answer.</li><li>If they can’t say yes, ask who can and how you get in front of them.</li></ul></div>
+      </div>
+    </div>
+    <div class="tabpanel" role="tabpanel" id="aud-group" aria-labelledby="t-group" hidden>
+      <p class="lead">You’re running the room now. Know who’s in it before you start.</p>
+      <div class="deliver">
+        <div><h5>Deliver</h5><ul><li>Find the decision-maker, the champion, and the skeptic before the meeting.</li><li>Run intros by why each person is here — and ask theirs what they want out of today.</li><li>Ask each role a question from their stakeholder card.</li><li>Spread your eye contact — don’t play only to the most senior person.</li><li>Call on quiet people by name. Park side debates.</li></ul></div>
+        <div><h5>The ask</h5><ul><li>Get the group to agree out loud on the next step.</li><li>Assign owners by name, with dates, before anyone leaves.</li></ul></div>
+      </div>
+    </div>
+    <div class="tabpanel" role="tabpanel" id="aud-stage" aria-labelledby="t-stage" hidden>
+      <p class="lead">You’re presenting to a room — a lunch-and-learn, a panel, a keynote, an Engage Live. Lead with energy and one idea.</p>
+      <div class="deliver">
+        <div><h5>Open</h5><ul><li>Open with a story or a number, never your bio. Memorize the first line cold.</li><li>Tell them the win in the first 30 seconds: what they’ll leave with.</li></ul></div>
+        <div><h5>Deliver</h5><ul><li>Stand still to land a point. Move only on transitions.</li><li>One person per thought — left, center, right sections of the room.</li><li>Three points, slow down 20%, and pause after every key line.</li></ul></div>
+        <div><h5>Q&amp;A</h5><ul><li>Repeat the question so the whole room hears it.</li><li>Answer to everyone, not just the person who asked.</li><li>Never end on Q&amp;A — end on your ask.</li></ul></div>
+        <div class="watch"><h5>Watch out for</h5><ul><li>Reading slides with your back to the room.</li><li>Pacing, swaying, or apologizing for running long.</li><li>An ask with five options. Give them one: scan, book, or visit.</li></ul></div>
+      </div>
+    </div>
+
+    <h3>The quick meet: two minutes on the show floor</h3>
+    <p>Same play, compressed. At a booth, a reception, or a hallway at the conference, you get two minutes. Spend them like this:</p>
+    <div class="clock" role="img" aria-label="Two-minute quick meet: hook 10 seconds, qualify 60 seconds, prove 30 seconds, ask 20 seconds">
+      <div class="c-hook">Hook<small>10 sec</small></div>
+      <div class="c-qual">Qualify — they talk<small>60 sec</small></div>
+      <div class="c-prove">Prove<small>30 sec</small></div>
+      <div class="c-ask">Ask<small>20 sec</small></div>
+    </div>
+    <div class="script">
+      <span class="label">Talk Track — Trade Show Booth</span>
+      <em>“Hi Chris — Westfield Properties, right? What’s the one facilities project on your plate for next year?” <strong>[Listen. Ask who else weighs in and when it happens.]</strong> “We just did that for a retailer — <strong>[one number from a real proof in Results]</strong>. Worth 30 minutes the week after the show to see if it fits? I’ll send the invite tonight — Tuesday or Wednesday?”</em>
+    </div>
+    <div class="callout"><strong>The event ask is always the next meeting.</strong> Book it on your phone before they walk away, scan the badge, note the one fact you learned, and log it in Engage within 24 hours.</div>
+  </section>
+
+  <section>
+    <h2><span class="num">03</span>The Meeting Killers</h2>
+    <p>These openers and habits tell the room you don’t have a plan. Every one of them is fixable before the meeting starts. <strong>Tap a card</strong> to see what the room hears and what to do instead.</p>
+    <div class="phrases tall" id="killers"></div>
+    <div class="phrase-tools">
+      <button class="btn" type="button" data-flip="killers" data-on="1">Flip all</button>
+      <button class="btn ghost" type="button" data-flip="killers" data-on="0">Reset</button>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">04</span>The Banned Phrase List</h2>
+    <p>Corporate slang fills air without moving anything forward. Customers have heard every one of these a thousand times — and they’ve learned none of them mean anything. <strong>Tap a card</strong> to see what it really says and what to say instead.</p>
+    <div class="phrases" id="phrases"></div>
+    <div class="phrase-tools">
+      <button class="btn" type="button" data-flip="phrases" data-on="1">Flip all</button>
+      <button class="btn ghost" type="button" data-flip="phrases" data-on="0">Reset</button>
+    </div>
+    <div class="callout"><strong>Rule of thumb:</strong> if a phrase could show up in any company’s meeting about any topic, cut it. Replace it with a number, a name, or a date. Deal Coach catches these in your invite.</div>
+  </section>
+
+  <section>
+    <h2><span class="num">05</span>Talk Less, Find More</h2>
+    <p>The seller who talks the most usually learns the least — and sells the least. Every minute you spend pitching is a minute you’re not learning what the customer would actually pay to fix. Target <strong>30% you, 70% them.</strong></p>
+    <h3>Signs you’ve fallen into the trap</h3>
+    <ul>
+      <li>You’re ten minutes in and haven’t asked a question.</li>
+      <li>You answer questions nobody asked: “And another thing our team does…”</li>
+      <li>You fill every silence. Silence is where the customer thinks — let it work.</li>
+      <li>You walk the full capability deck before you know the problem.</li>
+      <li>You ask yes/no questions and get one-word answers.</li>
+      <li>You know they had a good weekend — but they know your weekend, your kids, and your flight.</li>
+      <li>You leave without knowing the budget, the decision-maker, or the deadline.</li>
+    </ul>
+
+    <h3>Questions that work in any room</h3>
+    <div class="qcards">
+      <div class="qcard"><h4>The real problem</h4><p>“What’s the one facilities issue that keeps landing on your desk?”</p></div>
+      <div class="qcard"><h4>Cost of doing nothing</h4><p>“What happens if this isn’t fixed by next summer?”</p></div>
+      <div class="qcard"><h4>Priority</h4><p>“Where does this rank against everything else on your plate this year?”</p></div>
+      <div class="qcard"><h4>How they decide</h4><p>“Walk me through how a project like this gets approved — who else weighs in?”</p></div>
+      <div class="qcard"><h4>Budget</h4><p>“Where does funding stand — this year’s budget, or building the case for next year?”</p></div>
+      <div class="qcard"><h4>Timeline</h4><p>“What date would make this a win for you?”</p></div>
+      <div class="qcard"><h4>Past experience</h4><p>“What did your last vendor do that you never want to deal with again?”</p></div>
+      <div class="qcard"><h4>Success</h4><p>“Twelve months from now, how will you know this was the right call?”</p></div>
+    </div>
+
+    <h3>Know who’s in the room</h3>
+    <p>Every stakeholder owns something different and loses sleep over something different. Ask about <em>their</em> job, not your scope — the right question to the wrong role gets you a polite non-answer.</p>
+    <div class="roles">
+      <div class="role">
+        <div class="role-head"><h4>Facility Manager</h4><p>Site level · lives in the work orders</p></div>
+        <div class="role-body">
+          <h5>Owns</h5><p>Day-to-day uptime, work orders, and every vendor who shows up on site.</p>
+          <h5>Problems they face</h5><ul><li>Repeat calls on aging equipment</li><li>Thin staff covering too many buildings</li><li>Vendors who no-show or leave a mess</li></ul>
+          <h5>Ask</h5><ul class="asks"><li>“What’s the work order that keeps coming back?”</li><li>“Which sites call you after hours the most?”</li><li>“When a vendor misses, what does it cost you?”</li></ul>
+        </div>
+      </div>
+      <div class="role">
+        <div class="role-head"><h4>Director / VP of Facilities</h4><p>Portfolio level · owns the plan</p></div>
+        <div class="role-body">
+          <h5>Owns</h5><p>The portfolio, the capital plan, vendor strategy, and reporting up to leadership.</p>
+          <h5>Problems they face</h5><ul><li>A deferred-maintenance backlog bigger than the budget</li><li>Inconsistent vendors region to region</li><li>Proving facilities spend is an investment</li></ul>
+          <h5>Ask</h5><ul class="asks"><li>“What’s on next year’s capital plan that isn’t funded yet?”</li><li>“How many vendors are you managing across the portfolio today?”</li><li>“What would you need to show your boss to call this a win?”</li></ul>
+        </div>
+      </div>
+      <div class="role">
+        <div class="role-head"><h4>Procurement / Sourcing</h4><p>Owns the contract · protects the company</p></div>
+        <div class="role-body">
+          <h5>Owns</h5><p>Vendor selection, contract terms, pricing structure, and vendor risk.</p>
+          <h5>Problems they face</h5><ul><li>Bids that can’t be compared apples to apples</li><li>Pressure to consolidate spend</li><li>Vendor insurance and compliance gaps</li></ul>
+          <h5>Ask</h5><ul class="asks"><li>“How do you weigh a national vendor against a local one?”</li><li>“What pricing structure makes your job easiest — unit, T&amp;M, or fixed?”</li><li>“Once a vendor is picked, what’s the path and timeline to a signed contract?”</li></ul>
+        </div>
+      </div>
+      <div class="role">
+        <div class="role-head"><h4>CFO / Finance</h4><p>Owns the money · thinks in payback</p></div>
+        <div class="role-body">
+          <h5>Owns</h5><p>The budget, capex versus opex, ROI hurdles, and spend predictability.</p>
+          <h5>Problems they face</h5><ul><li>Surprise repair spend that wrecks the forecast</li><li>Energy cost volatility</li><li>Projects that can’t show payback</li></ul>
+          <h5>Ask</h5><ul class="asks"><li>“What payback period gets a project approved here?”</li><li>“Does this land as capex or opex in your world?”</li><li>“Which facilities line item surprised you most this year?”</li></ul>
+        </div>
+      </div>
+      <div class="role">
+        <div class="role-head"><h4>Energy / Sustainability Lead</h4><p>Owns the targets · needs the data</p></div>
+        <div class="role-body">
+          <h5>Owns</h5><p>Energy spend, ESG and carbon targets, rebates, and the reporting behind them.</p>
+          <h5>Problems they face</h5><ul><li>Public targets with real deadlines</li><li>Gaps in site-level energy data</li><li>Rebates that expire before projects start</li></ul>
+          <h5>Ask</h5><ul class="asks"><li>“What’s your reduction target, and by when?”</li><li>“Where does your energy data come from today?”</li><li>“Which rebates or incentives are you chasing this year?”</li></ul>
+        </div>
+      </div>
+      <div class="role">
+        <div class="role-head"><h4>IFM / Property Manager</h4><p>JLL, CBRE, Cushman · answers to their client</p></div>
+        <div class="role-body">
+          <h5>Owns</h5><p>The client relationship, SLAs, vendor performance, and closeout paperwork.</p>
+          <h5>Problems they face</h5><ul><li>SLA pressure and client escalations</li><li>Vendors who miss documentation and photos</li><li>Managing too many subs to one standard</li></ul>
+          <h5>Ask</h5><ul class="asks"><li>“Which of your client’s KPIs is under the most pressure?”</li><li>“What does a vendor do that makes you look good to your client?”</li><li>“How do you want work orders, photos, and closeouts delivered?”</li></ul>
+        </div>
+      </div>
+      <div class="role">
+        <div class="role-head"><h4>Operations / Regional Leader</h4><p>Owns the business running inside the building</p></div>
+        <div class="role-body">
+          <h5>Owns</h5><p>Store or branch uptime, customer experience, brand standards, and their people.</p>
+          <h5>Problems they face</h5><ul><li>Installs that disrupt customers or staff</li><li>After-hours access and security</li><li>Inconsistent look site to site</li></ul>
+          <h5>Ask</h5><ul class="asks"><li>“When can we work without hurting your business — nights, weekends?”</li><li>“What does a bad install day look like for your team?”</li><li>“Who on site needs to sign off when we finish?”</li></ul>
+        </div>
+      </div>
+      <div class="role">
+        <div class="role-head"><h4>EHS / Safety</h4><p>Owns compliance · can stop a job</p></div>
+        <div class="role-body">
+          <h5>Owns</h5><p>OSHA and NFPA 70E compliance, contractor safety, incidents, and audits.</p>
+          <h5>Problems they face</h5><ul><li>Arc flash studies past due</li><li>Contractor prequal and site safety</li><li>Open findings from the last audit</li></ul>
+          <h5>Ask</h5><ul class="asks"><li>“When was your last arc flash study done?”</li><li>“What does your contractor safety prequal look like?”</li><li>“What finding from your last audit is still open?”</li></ul>
+        </div>
+      </div>
+    </div>
+
+    <h3>Three habits that change everything</h3>
+    <ol>
+      <li><strong>Ask, then stop.</strong> Count to three in your head before you speak again.</li>
+      <li><strong>Go one layer deeper.</strong> “Tell me more about that.” The second answer is where the truth lives.</li>
+      <li><strong>Play it back.</strong> “So what I’m hearing is ___ — did I get that right?” It proves you listened and earns you the right to propose.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2><span class="num">06</span>Open With the Win</h2>
+    <p>The first 60 seconds decide whether people lean in or check email. Earn a little trust, open with the result they’ll leave with, then take control of the clock.</p>
+
+    <h3>Small talk: about them, on purpose</h3>
+    <p>Rapport matters — people buy from people they trust. But small talk isn’t a warm-up act for your stories. <strong>Keep it short, keep it about them, and use it to learn.</strong> Every personal detail they share is something you can bring back next time.</p>
+    <div class="deliver">
+      <div><h5>Do</h5><ul>
+        <li>Keep it to 60–90 seconds, then bridge: “I want to respect your time — here’s what you’ll leave with today.”</li>
+        <li>Open with something specific to them: the new building, a recent win, the photo on the wall, the show they just walked.</li>
+        <li>Follow up twice: “How did that come together?” “What’s next for it?” The second answer is where you learn something.</li>
+        <li>If they ask about you, answer in one true sentence — then hand it back. “Good — busy season. How was the trip to Austin?”</li>
+        <li>Write down what they share and log it in Engage. Asking about their daughter’s tournament next time is how trust compounds.</li>
+      </ul></div>
+      <div class="watch"><h5>Don’t</h5><ul>
+        <li>Tell your weekend story, your flight story, or your kids’ stats.</li>
+        <li>Refuse to share anything — zero back makes it feel like an interrogation. One sentence, then back to them.</li>
+        <li>Go near politics, religion, gossip, or complaining. Ever.</li>
+        <li>Force it. If they open with “What do you have for me?” — skip the small talk and lead with the win.</li>
+      </ul></div>
+    </div>
+    <p class="clock-note" style="margin-top:10px;">In a group, it’s one line about the room. On camera, use the minute while people join — talk to whoever is there first. At a booth, their badge is your opener.</p>
+
+    <h3>Introductions: why they’re in the room</h3>
+    <p>Name-and-title round robins burn minutes and teach you nothing — titles are already in the invite. What matters is <strong>why each person is here.</strong> The leader runs introductions; nobody gives a bio.</p>
+    <table>
+      <tr><th>Room</th><th>How to run it</th></tr>
+      <tr><td>1-on-1</td><td>No introductions. Rapport, then the win.</td></tr>
+      <tr><td>Small group (3–6)</td><td>You introduce your side in one pass, each person tied to their problem. Then each of them shares their role and <em>the one thing they want out of today.</em></td></tr>
+      <tr><td>Larger group (7–12)</td><td>You introduce your side. Ask their lead to introduce theirs — or skip names and ask the room: “What has to happen today for this to be worth your time?”</td></tr>
+      <tr><td>Audience / stage</td><td>No round robin. Name the key people in the room, and use a show of hands or a chat question to learn who’s there.</td></tr>
+    </table>
+    <div class="script">
+      <span class="label">Talk Track — Introducing Your Side</span>
+      <em>“Quick intros, then we’ll dive in. Maria runs our estimating — she’s here so any pricing question gets a real answer today, not a follow-up. Tom leads our field crews in Florida — he’s the one who’ll be standing on your sites. Now, I’d love to hear from each of you: your role, and the one thing you want out of the next 30 minutes.”</em>
+    </div>
+    <div class="deliver">
+      <div><h5>Why it works</h5><ul>
+        <li>“Why you’re here” tells the customer what each person can do for them.</li>
+        <li>“What you want out of today” is discovery before discovery — you hear each stakeholder’s priority in their own words.</li>
+        <li>Write down every answer. Play them back at the close: “Dana wanted a budget number, Chris wanted a start date — here’s both.”</li>
+      </ul></div>
+      <div class="watch"><h5>Watch out for</h5><ul>
+        <li>“Who wants to go next?” — call on people by name, in order.</li>
+        <li>Your own team giving bios and tenure. Fifteen seconds each, max.</li>
+        <li>Bringing someone who doesn’t have a reason to be there. If you can’t say why, leave them off the invite.</li>
+        <li>On camera: put names and roles in the invite so nobody spends the call reading them out.</li>
+      </ul></div>
+    </div>
+
+    <h3>The open, step by step</h3>
+    <p>Get the win on the table inside 90 seconds. Rapport first, then the play — intros come after, so every person ties to the win.</p>
+    <ol>
+      <li><strong>Rapport — about them, 60 seconds.</strong> One specific question, one follow-up, then bridge.</li>
+      <li><strong>Call the play — state the win.</strong> “Thanks for the 30 minutes. By the end of today, you’ll have a clear plan and a budget number to retrofit your top 10 sites before Q2.”</li>
+      <li><strong>Say why it matters to them.</strong> “That gets you ahead of the rebate deadline and takes lighting complaints off your plate.”</li>
+      <li><strong>Introductions — groups only.</strong> Your side by why they’re here (“Maria’s here so pricing gets answered today”); their side by the one thing they want out of today.</li>
+      <li><strong>Preview the agenda.</strong> “Three things: what’s driving this, what we’ve seen work, and the next step.”</li>
+      <li><strong>Hand them the floor.</strong> “Before I go further — what would make this meeting a home run for you?”</li>
+    </ol>
+    <div class="script">
+      <span class="label">Talk Track — Customer Meeting</span>
+      <em>“Thanks for making time, Dana. In the next 30 minutes my goal is to leave you with a clear path to cut lighting maintenance calls across your 40 stores. I’ll ask a few questions about what’s happening today, share how we’ve handled this for similar portfolios, and we’ll agree on whether a site walk makes sense. Anything you’d add?”</em>
+    </div>
+    <div class="script">
+      <span class="label">Talk Track — Internal Team Meeting</span>
+      <em>“We’re here to make one decision: which three accounts get the Q1 pursuit team. Twenty minutes. Marcus walks the data, we debate for ten, and we leave with names and owners.”</em>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">07</span>Run the Clock</h2>
+    <p>Lead by directive. You own the agenda, the time, and the transitions — polite, but in charge. Here’s how a 30-minute customer meeting breaks down. Protect the last four minutes: that’s where the deal moves.</p>
+    <div class="clock" role="img" aria-label="30-minute meeting: open 3 minutes, discovery 17 minutes, fit 6 minutes, close 4 minutes">
+      <div class="c-open">Open<small>0–3</small></div>
+      <div class="c-disc">Discovery — they talk<small>3–20 min</small></div>
+      <div class="c-fit">Fit<small>20–26</small></div>
+      <div class="c-close">Close<small>26–30</small></div>
+    </div>
+    <p class="clock-note">Open: a minute on them, then the win, why it matters, the agenda. Discovery: questions, follow-ups, play it back. Fit: two or three proof points tied to what you just heard — nothing else. Close: recap, the ask, owners, dates.</p>
+    <h3>Directive transitions</h3>
+    <ul>
+      <li>“That’s helpful. Let’s shift to how projects get approved.”</li>
+      <li>“I want to protect your time — let’s park that and come back if we have room.”</li>
+      <li>“We’ve got five minutes left, so let’s lock in next steps.”</li>
+    </ul>
+  </section>
+
+  <section id="builder">
+    <h2>Practice: Build Your Next Meeting</h2>
+    <p>Plan a real meeting you have coming up — in person, virtual, or at an event; one person or a full room. Fill in the win, the minutes, your questions, and the ask — then run <strong>Deal Coach</strong>. It checks your plan against this play, flags what’s weak, and writes the invite. Copy it into Outlook or Teams and send.</p>
+
+    <div class="builder">
+      <div class="row2">
+        <div class="field"><label for="bWho">Who’s it with</label><input type="text" id="bWho" placeholder="Dana Lopez, Director of Facilities"></div>
+        <div class="field"><label for="bAcct">Account</label><input type="text" id="bAcct" placeholder="Northline Retail"></div>
+        <div class="field"><label for="bLen">Length</label>
+          <select id="bLen"><option value="5">5 min</option><option value="10">10 min</option><option value="15">15 min</option><option value="20">20 min</option><option value="30" selected>30 min</option><option value="45">45 min</option><option value="60">60 min</option></select></div>
+      </div>
+      <div class="row3">
+        <div class="field"><label for="bSet">Setting</label>
+          <select id="bSet"><option value="person">In person</option><option value="virtual" selected>Virtual</option><option value="event">Trade show / event</option></select></div>
+        <div class="field"><label for="bAud">Audience</label>
+          <select id="bAud"><option value="one" selected>1-on-1</option><option value="group">Group (3–12)</option><option value="stage">Audience / stage</option></select></div>
+        <div class="field"><label for="bWhere" id="bWhereLbl">Teams or Zoom link</label><input type="text" id="bWhere" placeholder="Paste the meeting link"></div>
+      </div>
+      <div class="field"><label for="bWin">The win — by the end of this meeting, you’ll…</label><input type="text" id="bWin" placeholder="have a plan and budget number to retrofit your top 10 stores before Q2">
+        <p class="hint">A problem solved, a project moved, or results acted on. Put a number or a date in it.</p></div>
+      <div class="field"><label for="bWhy">Why it matters to them</label><input type="text" id="bWhy" placeholder="gets you ahead of the March rebate deadline and cuts after-hours service calls"></div>
+
+      <div class="field"><span class="lbl">Agenda — talking points and minutes</span>
+        <div id="agenda"></div>
+        <div class="btn-row"><button class="btn ghost" type="button" id="addRow">Add a talking point</button></div>
+        <p class="agenda-total" id="agendaTotal"></p></div>
+
+      <div class="field"><label for="bTeam">Who’s joining from your side — and why they’re in the room</label>
+        <textarea id="bTeam" style="min-height:70px" placeholder="Maria Ortiz, Estimating — so pricing questions get answered live&#10;Tom Reyes, Florida Field Ops — he’ll be on your sites"></textarea>
+        <p class="hint">One per line: name, role — why they’re here. Leave blank if it’s just you.</p></div>
+
+      <div class="field"><label for="bQs">Your fact-finding questions — one per line</label>
+        <textarea id="bQs" placeholder="What’s the one facilities issue that keeps landing on your desk?&#10;Walk me through how a project like this gets approved.&#10;What date would make this a win for you?"></textarea></div>
+
+      <div class="field"><label for="bAsk">The ask — the one next step you want them to say yes to</label><input type="text" id="bAsk" placeholder="Book a site walk at your two worst stores next Tuesday or Thursday"></div>
+      <div class="field"><label for="bSubj">Invite subject — lead with the ask</label><input type="text" id="bSubj" placeholder="Book site walk: 2 worst stores | Northline (30 min)">
+        <p class="hint">Leave it blank and Deal Coach drafts one from your ask.</p></div>
+      <div class="field"><label for="bFrom">Your name</label><input type="text" id="bFrom" placeholder="Your name"></div>
+
+      <div class="btn-row">
+        <button class="btn coach" type="button" id="runCoach">Run Deal Coach</button>
+        <button class="btn" type="button" id="ghostRef" style="background:#133865;color:#fff">Ghost-write: Reformation</button>
+        <button class="btn ghost" type="button" id="loadEx">Load a practice example (has flaws)</button>
+        <button class="btn ghost" type="button" id="clearAll">Clear</button>
+      </div>
+
+      <div class="coach-out" id="coachOut" aria-live="polite">
+        <div class="coach-head"><div class="n" id="coachN">0/10</div><div class="t" id="coachT"></div></div>
+        <ul class="coach-list" id="coachList"></ul>
+        <div class="coach-tips" id="coachTips"></div>
+
+        <div class="invite">
+          <h3>Your meeting invite</h3>
+          <div class="field"><label for="oSubj">Subject</label><input type="text" id="oSubj"></div>
+          <div class="field"><label for="oBody">Invite body</label><textarea id="oBody"></textarea></div>
+          <div class="btn-row">
+            <button class="btn" type="button" id="cpSubj">Copy subject</button>
+            <button class="btn" type="button" id="cpBody">Copy invite body</button>
+            <span class="copied" id="copied"></span>
+          </div>
+          <ol class="send-steps">
+            <li>New invite in Outlook or Teams. Paste the subject as the title.</li>
+            <li>Paste the body. Add attendees and set the length to match your clock.</li>
+            <li>Send it, then log the meeting on the opportunity in Engage.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <h3>How to build a subject line that gets a yes</h3>
+    <p>The subject is the first ask they see — before they open the invite. Lead with the decision, not the topic.</p>
+    <ol>
+      <li><strong>Start with an action verb.</strong> Book, approve, decide, pick, confirm, lock.</li>
+      <li><strong>Name the outcome.</strong> “Site walk: 2 worst stores” — not “lighting discussion.”</li>
+      <li><strong>Name the account</strong> so it’s findable later.</li>
+      <li><strong>Add the time box.</strong> “(30 min)” tells them you’ll respect it.</li>
+      <li><strong>Keep it under 60 characters</strong> so it doesn’t cut off on a phone.</li>
+    </ol>
+    <table>
+      <tr><th>Weak subject</th><th>Strong subject</th></tr>
+      <tr><td>Catch up</td><td>Pick site-walk dates: 2 worst stores (30 min)</td></tr>
+      <tr><td>FSG / Northline lighting</td><td>Approve Phase 2 scope + start date | Northline (30 min)</td></tr>
+      <tr><td>Quick sync</td><td>Decide: Q1 pursuit accounts (20 min)</td></tr>
+      <tr><td>Intro call</td><td>Confirm top 3 repair priorities | Westfield (30 min)</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2><span class="num">08</span>Close With a Call to Action</h2>
+    <p>No meeting ends without a decision, an owner, and a date. If the next step isn’t on a calendar before you hang up, it isn’t real.</p>
+    <ol>
+      <li><strong>Recap what you heard.</strong> “Three sites with failing fixtures, a rebate deadline in March, and approvals run through your VP of Ops.”</li>
+      <li><strong>Confirm the win.</strong> “Did we get you what you needed today?”</li>
+      <li><strong>Make the ask — directly.</strong> “Next step is a site walk at your two worst locations. Tuesday or Thursday next week?”</li>
+      <li><strong>Assign owners and dates.</strong> “I’ll send the walk checklist by Friday. You’ll loop in your facilities lead. We meet on the 14th.”</li>
+      <li><strong>Book it live.</strong> Send the invite before anyone leaves the room or the call.</li>
+      <li><strong>Follow up within 24 hours.</strong> Three lines: decisions, owners, dates. Log it in Engage.</li>
+    </ol>
+    <table>
+      <tr><th>Weak close</th><th>Strong close</th></tr>
+      <tr><td>“Let us know if you have any questions.”</td><td>“I’ll have pricing to you Thursday. Can we review it together Friday at 10?”</td></tr>
+      <tr><td>“We’ll circle back next week.”</td><td>“I’m booking 30 minutes on the 14th — does 2 p.m. work?”</td></tr>
+      <tr><td>“Sounds like there’s a lot of interest here.”</td><td>“Is there any reason we wouldn’t move forward with the site walk?”</td></tr>
+      <tr><td>“Thanks, everyone!”</td><td>“Three actions, three owners, all in your inbox within the hour.”</td></tr>
+    </table>
+    <div class="callout"><strong>The close is the whole game.</strong> A great conversation with no next step is just a nice chat.</div>
+  </section>
+
+  <section>
+    <h2>Score Your Last Meeting</h2>
+    <p>Think about the last customer meeting you ran. Check every one that’s true — be honest, nobody sees this but you.</p>
+    <div class="scorer" id="scorer">
+      <label><input type="checkbox"> I sent a time-boxed agenda with the invite.</label>
+      <label><input type="checkbox"> I started on time, set up for the room — camera, seat, or booth.</label>
+      <label><input type="checkbox"> I kept small talk about them — and talked about me in one sentence or less.</label>
+      <label><input type="checkbox"> My first minutes stated the win and why it mattered to them.</label>
+      <label><input type="checkbox"> I asked my first question within five minutes.</label>
+      <label><input type="checkbox"> They talked more than I did.</label>
+      <label><input type="checkbox"> I didn’t use a single phrase from the banned list.</label>
+      <label><input type="checkbox"> I made one clear, direct ask.</label>
+      <label><input type="checkbox"> The next step was on the calendar before we hung up.</label>
+      <div class="score-out" aria-live="polite"><div class="n" id="scoreN">0/9</div><div class="v" id="scoreV">Check what you actually did.</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Do / Don’t</h2>
+    <table>
+      <tr><th>Do</th><th>Don’t</th></tr>
+      <tr><td>Open with the result and why it matters to them</td><td>Wait for stragglers or ask “what did we want to cover?”</td></tr>
+      <tr><td>Send a three-item, time-boxed agenda</td><td>Wing it</td></tr>
+      <tr><td>Ask open questions, then stop talking</td><td>Pitch for ten minutes before your first question</td></tr>
+      <tr><td>Keep small talk about them — 60 seconds, then the win</td><td>Fill the first ten minutes with your weekend</td></tr>
+      <tr><td>Introduce people by why they’re in the room</td><td>Run a name-and-title round robin</td></tr>
+      <tr><td>Ask each stakeholder about their job</td><td>Pitch the same scope to every role in the room</td></tr>
+      <tr><td>Match your delivery to the room — camera, booth, or stage</td><td>Run a booth conversation like a 60-minute pitch</td></tr>
+      <tr><td>Use numbers, names, and dates</td><td>Say “circle back,” “pick your brain,” or “touch base”</td></tr>
+      <tr><td>Park side topics politely</td><td>Complain about anything</td></tr>
+      <tr><td>Make one clear ask and book it live</td><td>End with “let us know”</td></tr>
+      <tr><td>Follow up in 24 hours: decisions, owners, dates</td><td>Send a 12-paragraph recap</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Rollout: One Habit Per Week</h2>
+    <ol>
+      <li><strong>Week 1 — Open with the win.</strong> Every meeting starts with the one-sentence result — in person, on camera, or at the booth. Managers: listen for it in the first 60 seconds.</li>
+      <li><strong>Week 2 — Kill the banned list.</strong> Pick your two worst phrases. Your team calls them out every time they slip.</li>
+      <li><strong>Week 3 — Talk less.</strong> Bring five fact-finding questions, matched to the roles in the room. Aim for 70% them.</li>
+      <li><strong>Week 4 — Close with a date.</strong> Build every customer invite with Deal Coach, and run the scorecard after every meeting.</li>
+    </ol>
+    <div class="principle">
+      <h3>Your Call to Action</h3>
+      <p>Pick one meeting on your calendar this week. Build it with Deal Coach, send the invite, and run the room.</p>
+    </div>
+    <div style="margin-top:14px;"><a class="btn-cta" href="#builder">Build it now</a></div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="inner">
+    <div>Facility Solutions Group · Growth Organization · Internal Use</div>
+    <div>Questions: Bobby Graham · bobby.graham@fsgi.com</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* ---------- flip cards ---------- */
+  var KILLERS = [
+    ["“Let’s give it a few more minutes for people to join.”", "Your time doesn’t matter to me.", "Start on time. Catch up late joiners in one line."],
+    ["“So… what did everyone want to talk about?”", "I didn’t prepare.", "State the win and the agenda in the first 60 seconds."],
+    ["“Sorry, I know everyone’s super busy…”", "This meeting probably isn’t worth it.", "“Thanks for the 30 minutes. Here’s what you’ll leave with.”"],
+    ["Fighting the screen share for five minutes", "Amateur hour.", "Test links and slides before anyone joins."],
+    ["Complaining — traffic, the system, corporate, the weather", "Negativity, and an excuse is coming.", "Leave it in the truck. Nobody ever bought from a complainer."],
+    ["Repeating the same point three different ways", "You don’t trust me to get it.", "Say it once, then ask: “How does that land?”"],
+    ["Reading the slides out loud", "You could have emailed this.", "Slides show the proof. You tell the story."],
+    ["Letting one person hijack the agenda", "Nobody is running this.", "“Great point — let’s park it and come back at the end.”"],
+    ["Talking to the grid of faces, never the lens", "You’re not really talking to me.", "Look at the camera for the win and the ask."],
+    ["“Can I help you?” from behind the booth table", "Just looking — keep walking.", "Step to the aisle and open with a question about their year."],
+    ["Round-robin bios — everyone’s name, title, and tenure", "Ten minutes gone, nothing learned.", "Introduce your side by why they’re here. Ask theirs what they want out of today."],
+    ["Your ten-minute weekend story", "This meeting is about you.", "Ask about theirs. If they ask about you, one sentence — then hand it back."],
+    ["“Okay, cool, talk soon!”", "Nothing happens next.", "Recap decisions, owners, and dates. Book the next step live."]
+  ];
+  var PHRASES = [
+    ["“Can I pick your brain?”", "Give me free consulting with no agenda.", "“I have two specific questions about your retrofit timeline.”"],
+    ["“Let’s circle back.”", "I’m never bringing this up again.", "“I’ll send pricing by Thursday at noon.”"],
+    ["“Just touching base.”", "I have nothing new to say.", "“The permit cleared — we can start on the 14th.”"],
+    ["“Let’s take this offline.”", "I don’t want to deal with this.", "“Jim and I will solve it Tuesday and report back.”"],
+    ["“Low-hanging fruit.”", "I haven’t done the work to rank anything.", "“These three sites pay back in under 18 months.”"],
+    ["“Move the needle.”", "Something vague should happen.", "“Cut your energy spend 22% across 40 locations.”"],
+    ["“Synergy.”", "I’m out of real words.", "Name the specific outcome and the dollar figure."],
+    ["“At the end of the day…”", "A cliché is loading.", "Just say the point."],
+    ["“To be honest with you…”", "Wait — was I lying before?", "Drop it. Everything you say should be honest."],
+    ["“Does that make sense?”", "You might be too slow for this.", "“How does that fit what you need?”"],
+    ["“I just wanted to…”", "I’m apologizing for existing.", "“I’m calling to…” — say it with confidence."],
+    ["“We’re a full-service, best-in-class solutions provider.”", "Same line as every competitor in the market.", "One specific proof: a site, a number, a result."],
+    ["“Do you have the bandwidth?”", "I think you’re a server, not a person.", "“Do you have 20 minutes Thursday afternoon?”"],
+    ["“Per my last email…”", "You didn’t read it, and I’m annoyed.", "Restate the one thing they need — kindly."],
+    ["“Enough about me…”", "…said ten minutes too late.", "Never needed. Start with them and stay there."],
+    ["“Let me play devil’s advocate.”", "I’m about to derail this for sport.", "“One risk I see is ___. How would we handle it?”"]
+  ];
+  function renderFlip(id, data, doLabel){
+    var grid = document.getElementById(id);
+    data.forEach(function(p){
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'phrase'; b.setAttribute('aria-pressed','false');
+      b.innerHTML = '<span class="face front"><span class="said">'+p[0]+'</span><span class="tap">Tap to flip</span></span>'+
+        '<span class="face back"><span class="means">What the room hears: '+p[1]+'</span><span class="instead"><b>'+doLabel+':</b> '+p[2]+'</span></span>';
+      b.addEventListener('click', function(){ var on = b.classList.toggle('flipped'); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+      grid.appendChild(b);
+    });
+  }
+  renderFlip('killers', KILLERS, 'Do instead');
+  renderFlip('phrases', PHRASES, 'Say instead');
+  document.querySelectorAll('[data-flip]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var on = btn.getAttribute('data-on') === '1';
+      document.getElementById(btn.getAttribute('data-flip')).querySelectorAll('.phrase').forEach(function(b){
+        b.classList.toggle('flipped', on); b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+    });
+  });
+
+  /* ---------- setting / audience tabs ---------- */
+  document.querySelectorAll('.tabs[role=tablist]').forEach(function(list){
+    var tabs = Array.prototype.slice.call(list.querySelectorAll('[role=tab]'));
+    function select(t){
+      tabs.forEach(function(x){ var on = x === t; x.setAttribute('aria-selected', on ? 'true' : 'false'); x.tabIndex = on ? 0 : -1; document.getElementById(x.getAttribute('aria-controls')).hidden = !on; });
+    }
+    tabs.forEach(function(t, i){
+      t.addEventListener('click', function(){ select(t); });
+      t.addEventListener('keydown', function(e){
+        var j = e.key === 'ArrowRight' ? (i + 1) % tabs.length : e.key === 'ArrowLeft' ? (i - 1 + tabs.length) % tabs.length : -1;
+        if (j > -1) { e.preventDefault(); select(tabs[j]); tabs[j].focus(); }
+      });
+    });
+  });
+
+  /* ---------- scorecard ---------- */
+  var boxes = document.querySelectorAll('#scorer input');
+  var V = [[0,"Check what you actually did."],[1,"Rough one. Start with Week 1: open with the win."],[4,"You showed up. Now run the room — pick the gaps and drill them this week."],[7,"Solid. Tighten the close and you’re running the room."],[9,"You ran the room. Teach it to someone this week."]];
+  boxes.forEach(function(b){ b.addEventListener('change', function(){
+    var n = 0; boxes.forEach(function(x){ if(x.checked) n++; });
+    document.getElementById('scoreN').textContent = n + '/9';
+    var msg = V[0][1]; V.forEach(function(v){ if(n >= v[0]) msg = v[1]; });
+    document.getElementById('scoreV').textContent = msg;
+  }); });
+
+  /* ---------- meeting builder ---------- */
+  var $ = function(id){ return document.getElementById(id); };
+  var PLANS = {
+    meet:  [["Open — 60 seconds on them, then the win and agenda", 0.10], ["Discovery — their story, my questions", 0.57], ["Fit — two or three proof points tied to what we heard", 0.20], ["Close — recap, the ask, owners, dates", 0.13]],
+    quick: [["Hook — ask about their year", 0.10], ["Qualify — their role, project, and timing", 0.50], ["Prove — one result that fits", 0.20], ["Close — the ask: book the next meeting", 0.20]],
+    stage: [["Open — a story or a number, then the win", 0.10], ["Three points — what they need to know", 0.50], ["Q&A — their questions", 0.25], ["Close — the one ask", 0.15]]
+  };
+  var agenda = $('agenda');
+  function setting(){ return $('bSet').value; }
+  function audience(){ return $('bAud').value; }
+  function planKey(){ var L = len(); if (audience() === 'stage') return 'stage'; if (setting() === 'event' || L <= 10) return 'quick'; return 'meet'; }
+
+  function addRow(topic, mins){
+    var row = document.createElement('div'); row.className = 'agenda-row';
+    var t = document.createElement('input'); t.type = 'text'; t.value = topic || ''; t.placeholder = 'Talking point'; t.setAttribute('aria-label','Talking point');
+    var m = document.createElement('input'); m.type = 'number'; m.min = '1'; m.max = '120'; m.value = mins || 5; m.setAttribute('aria-label','Minutes');
+    var x = document.createElement('button'); x.type = 'button'; x.className = 'rm'; x.textContent = '×'; x.setAttribute('aria-label','Remove talking point');
+    x.addEventListener('click', function(){ row.remove(); total(); });
+    m.addEventListener('input', total);
+    row.appendChild(t); row.appendChild(m); row.appendChild(x); agenda.appendChild(row);
+  }
+  function rows(){ return Array.prototype.map.call(agenda.querySelectorAll('.agenda-row'), function(r){ var i = r.querySelectorAll('input'); return { topic: i[0].value.trim(), mins: parseInt(i[1].value, 10) || 0 }; }); }
+  function len(){ return parseInt($('bLen').value, 10); }
+  function total(){
+    var sum = rows().reduce(function(a, r){ return a + r.mins; }, 0), L = len();
+    var el = $('agendaTotal');
+    el.textContent = sum === L ? 'Agenda totals ' + sum + ' min — matches the ' + L + '-minute meeting.' : 'Agenda totals ' + sum + ' min for a ' + L + '-minute meeting.';
+    el.classList.toggle('off', sum !== L);
+  }
+  function resetAgenda(){
+    agenda.innerHTML = ''; var L = len(), plan = PLANS[planKey()];
+    var mins = plan.map(function(b){ return Math.max(1, Math.round(b[1] * L)); });
+    var diff = L - mins.reduce(function(a, b){ return a + b; }, 0), big = mins.indexOf(Math.max.apply(null, mins));
+    mins[big] += diff;
+    plan.forEach(function(b, i){ addRow(b[0], mins[i]); });
+    total();
+  }
+  var WHERE = { person: ['Where — address or room', 'Northline HQ, 3rd floor conference room'], virtual: ['Teams or Zoom link', 'Paste the meeting link'], event: ['Where — booth, room, or follow-up spot', 'Booth 1214, or the follow-up call'] };
+  function whereLabel(){ var w = WHERE[setting()]; $('bWhereLbl').textContent = w[0]; $('bWhere').placeholder = w[1]; }
+  $('bSet').addEventListener('change', function(){ if (setting() === 'event' && len() > 15) $('bLen').value = '10'; whereLabel(); resetAgenda(); });
+  $('bAud').addEventListener('change', resetAgenda);
+  whereLabel();
+  $('addRow').addEventListener('click', function(){ addRow('', 5); total(); });
+  $('bLen').addEventListener('change', resetAgenda);
+  resetAgenda();
+
+  var TIPS = {
+    person: ['Get there 10 minutes early and take the corner seat, not across the desk.', 'Phone out of sight. Finish every sentence on one person’s eyes.'],
+    virtual: ['Camera at eye level, light in front of you. Look at the lens for the win and the ask.', 'Call on people by name and wait two extra seconds after each question.'],
+    event: ['Stand at the aisle edge of the booth — never behind the table.', 'Open with a question about their year. Book the next meeting on your phone before they walk.'],
+    one: ['Start with a minute on them — one question, one follow-up. Talk about you in one sentence or less.', 'Sit at an angle and let them talk 70% of the time.', 'Ask the one person who can say yes — then wait for the answer.'],
+    group: ['Run intros by why each person is here, and ask each of theirs what they want out of today.', 'Know the decision-maker, the champion, and the skeptic before you start.', 'Assign owners by name before anyone leaves.'],
+    stage: ['Memorize your first line. Open with a story or a number, never your bio.', 'Stand still to land a point, repeat each question, and end on your ask — not on Q&A.']
+  };
+  var LABELS = { person: 'in person', virtual: 'virtual', event: 'at an event', one: '1-on-1', group: 'with a group', stage: 'in front of an audience' };
+
+  var BANNED = [
+    [/pick (your|ur) brain/i, "pick your brain", "ask two specific questions"],
+    [/circle back/i, "circle back", "name the date you’ll follow up"],
+    [/touch(ing)? base/i, "touch base", "say what’s new and why you’re reaching out"],
+    [/take (this|it) offline/i, "take this offline", "name who solves it and when"],
+    [/low[- ]hanging fruit/i, "low-hanging fruit", "name the sites and the payback"],
+    [/move the needle/i, "move the needle", "name the number you’ll move"],
+    [/synerg/i, "synergy", "name the outcome and the dollar figure"],
+    [/at the end of the day/i, "at the end of the day", "just say the point"],
+    [/to be honest/i, "to be honest", "drop it"],
+    [/does that make sense/i, "does that make sense", "“How does that fit what you need?”"],
+    [/i just wanted/i, "I just wanted", "“I’m reaching out to…”"],
+    [/best[- ]in[- ]class|full[- ]service/i, "best-in-class / full-service", "one specific proof"],
+    [/bandwidth/i, "bandwidth", "ask for a specific time"],
+    [/per my last/i, "per my last email", "restate the one thing they need"],
+    [/devil'?’?s advocate/i, "devil’s advocate", "name the risk directly"],
+    [/let (us|me) know/i, "let us know", "make one specific ask with a date"],
+    [/\bquick (sync|call|chat)\b|\bcatch[- ]up\b|\bcheck[- ]in\b/i, "quick sync / catch up / check-in", "name the decision instead"]
+  ];
+  var VERBS = /^(book|approve|decide|pick|choose|confirm|lock|review|sign|schedule|agree|select|finali[sz]e|walk|kick ?off|award|set|plan|map|price|launch|green[- ]light|align)\b/i;
+  var CLOSED = /^(is|are|do|does|did|can|could|will|would|have|has|should|shall|was|were|am)\b/i;
+  var TIMEISH = /\d|\b(mon|tues|wednes|thurs|fri|satur|sun)day\b|\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\b|\b(q[1-4]|next week|this week|tomorrow|eoy|end of (the )?(month|quarter|year))\b/i;
+  var WEAKSUBJ = /\b(sync|catch ?up|touch base|quick|intro|check[- ]in|discussion|meeting|chat|follow[- ]?up)\b/i;
+
+  function cap(s){ return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
+  function stripEnd(s){ return s.replace(/[.\s]+$/, ''); }
+  function draftSubject(ask, acct, L){
+    var a = stripEnd(ask)
+      .replace(/^(the )?next step (is|would be) (to )?/i, '')
+      .replace(/^(can we|could we|let'?’?s|we'?’?ll|we will|i'?’?d like to|i want to|to)\s+/i, '')
+      .replace(/\s+(next|this|on|by|before|the week of)\s+.*$/i, '')
+      .replace(/^(\w+)\s+(a|an|the)\s+/i, '$1 ')
+      .replace(/\s+(at|for|with|across)\s+(your|the|our)\s+/i, ': ')
+      .replace(/\s+your\s+/ig, ' ');
+    var stop = /\s+(a|an|the|at|of|your|to|for|and|or|with|on|in|two|three|four|five|top)$/i;
+    function fit(acc){
+      var tail = (acc ? ' | ' + acc : '') + ' (' + L + ' min)', room = 60 - tail.length, x = a;
+      if (x.length > room) { x = x.slice(0, room).replace(/\s+\S*$/, ''); while (stop.test(x)) x = x.replace(stop, ''); }
+      return cap(x.replace(/[:,\s]+$/, '')) + tail;
+    }
+    var full = fit(acct);
+    if (acct && full.replace(/ \|.*$/, '').length < a.length) { var short = fit(acct.split(/\s+/)[0]); if (short.length <= 60) return short; }
+    return full;
+  }
+  function coach(){
+    var who = $('bWho').value.trim(), acct = $('bAcct').value.trim(), L = len();
+    var win = stripEnd($('bWin').value.trim()), why = stripEnd($('bWhy').value.trim());
+    var ask = stripEnd($('bAsk').value.trim()), from = $('bFrom').value.trim();
+    var qs = $('bQs').value.split('\n').map(function(q){ return q.trim().replace(/^[-•*\d.)\s]+/, ''); }).filter(Boolean);
+    var R = rows(), sum = R.reduce(function(a, r){ return a + r.mins; }, 0);
+    var subj = $('bSubj').value.trim(); var drafted = false;
+    if (!subj && ask) { subj = draftSubject(ask, acct, L); drafted = true; }
+
+    var items = [];
+    function add(ok, title, tip){ items.push({ ok: ok, title: title, tip: tip }); }
+
+    add(!!win, 'The win is stated.', win ? 'They know what they walk away with.' : 'Write one sentence: what they walk away with — a problem solved, a project moved, or results acted on.');
+    add(!!win && TIMEISH.test(win), 'The win is measurable.', TIMEISH.test(win) ? 'It has a number or a date in it. Good.' : 'Add a number, a date, or a site count. “Top 10 stores before Q2” beats “improve lighting.”');
+    add(!!why, 'It says why it matters to them.', why ? 'You tied the win to their world.' : 'Add the stake for them — a deadline, a cost, a complaint that goes away.');
+    add(sum === L, 'The clock adds up.', sum === L ? 'Agenda totals ' + L + ' minutes.' : 'Agenda totals ' + sum + ' minutes for a ' + L + '-minute meeting. Trim or rebalance.');
+
+    var aud = audience(), set = setting();
+    if (aud === 'stage') {
+      var qa = R.filter(function(r){ return /q ?& ?a|question/i.test(r.topic); }).reduce(function(a, r){ return a + r.mins; }, 0);
+      add(qa >= L * 0.15, 'You left room for their questions.', qa >= L * 0.15 ? 'Q&A gets ' + qa + ' of ' + L + ' minutes.' : 'Add a Q&A block — at least ' + Math.ceil(L * 0.15) + ' minutes — before your close.');
+    } else {
+      var share = planKey() === 'quick' ? 0.4 : 0.45;
+      var disc = R.filter(function(r){ return /discover|question|their story|listen|learn|qualify/i.test(r.topic); }).reduce(function(a, r){ return a + r.mins; }, 0);
+      add(disc >= L * share, 'They do most of the talking.', disc >= L * share ? 'Discovery gets ' + disc + ' of ' + L + ' minutes.' : (disc ? 'Discovery only gets ' + disc + ' of ' + L + ' minutes. Give them the biggest block of time.' : 'Add a Discovery talking point where they talk — at least half the meeting.'));
+    }
+
+    var closeMin = Math.max(1, Math.round(L * 0.1));
+    var last = R[R.length - 1], closeOk = !!last && /close|ask|next step/i.test(last.topic) && last.mins >= closeMin;
+    add(closeOk, 'The close is protected.', closeOk ? 'Your last ' + last.mins + ' minute' + (last.mins > 1 ? 's are' : ' is') + ' for the ask.' : 'End the agenda with a Close block — recap, the ask, owners, dates — and give it at least ' + closeMin + ' minute' + (closeMin > 1 ? 's' : '') + '.');
+
+    var team = $('bTeam').value.split('\n').map(function(t){ return t.trim().replace(/^[-•*\s]+/, ''); }).filter(Boolean);
+    if (team.length) {
+      var noWhy = team.filter(function(t){ return !/—|–|-|:|\bso\b|\bto\b|because/.test(t.replace(/^[^,]*,/, '')); });
+      add(noWhy.length === 0, 'Everyone has a reason to be there.', noWhy.length ? 'Add why for: ' + noWhy.join('; ') + '. If you can’t say why, leave them off the invite.' : team.length + ' teammate' + (team.length > 1 ? 's' : '') + ', each tied to what the customer needs.');
+    }
+
+    var where = $('bWhere').value.trim();
+    var whereOk = set === 'virtual' ? /https?:\/\/|teams|zoom|webex|meet\.|existing|recurring/i.test(where) : !!where;
+    add(whereOk, 'The logistics are set.', whereOk ? (set === 'virtual' ? 'The link is in the invite. Test it before you join.' : 'They know where to be.') : (set === 'virtual' ? 'Paste the Teams or Zoom link so nobody hunts for it.' : set === 'event' ? 'Add the booth number or where you’ll meet.' : 'Add the address or room.'));
+
+    var closed = qs.filter(function(q){ return CLOSED.test(q); });
+    var qOk = qs.length >= 3 && closed.length === 0;
+    var qTip = qs.length < 3 ? 'You have ' + qs.length + '. Bring at least three — five is better. Use the stakeholder cards above.' :
+      (closed.length ? closed.length + ' yes/no question' + (closed.length > 1 ? 's' : '') + ' will get one-word answers: “' + closed[0] + '” Rewrite it to start with what, how, where, or walk me through.' : qs.length + ' open questions. They’ll talk.');
+    add(qOk, 'Your questions open them up.', qTip);
+
+    var askVague = /let (us|me) know|any questions|touch base|circle back|follow up|stay in touch|keep you posted/i.test(ask);
+    var eventMiss = set === 'event' && !!ask && !/meet|call|walk|demo|visit|session|lunch|coffee|tour/i.test(ask);
+    var askOk = !!ask && !askVague && !eventMiss && TIMEISH.test(ask);
+    add(askOk, 'The ask is specific.', !ask ? 'Write the one next step you want a yes to.' : askVague ? 'That’s not an ask. Name the step and the date: “Book a site walk Tuesday or Thursday.”' : eventMiss ? 'At an event, the ask is the next meeting: “30 minutes the week after the show — Tuesday or Wednesday?”' : TIMEISH.test(ask) ? 'One step, with a date on it.' : 'Put a day or date in it so they can say yes on the spot.');
+
+    var subjIssues = [];
+    if (!subj) subjIssues.push('write the ask first');
+    else {
+      if (!VERBS.test(subj)) subjIssues.push('start with an action verb — book, approve, decide, pick, confirm');
+      if (WEAKSUBJ.test(subj)) subjIssues.push('drop the filler word (sync, catch up, quick, meeting)');
+      if (subj.length > 60) subjIssues.push('cut it to 60 characters (it’s ' + subj.length + ')');
+    }
+    add(subjIssues.length === 0, 'The subject leads with the ask.', subjIssues.length ? (drafted ? 'Drafted from your ask — ' : '') + 'To make it strong: ' + subjIssues.join('; ') + '.' : (drafted ? 'Drafted from your ask: ' : '') + '“' + subj + '”');
+
+    var allText = [win, why, ask, subj, qs.join(' '), R.map(function(r){ return r.topic; }).join(' ')].join(' \n ');
+    var hits = BANNED.filter(function(b){ return b[0].test(allText); });
+    if (hits.length) items.push({ ok: false, title: 'Banned phrases found.', tip: hits.map(function(h){ return '“' + h[1] + '” → ' + h[2]; }).join(' · ') });
+
+    var checks = items.filter(function(i){ return i.title !== 'Banned phrases found.'; });
+    var n = checks.filter(function(i){ return i.ok; }).length, of = checks.length;
+    if (hits.length) n = Math.max(0, n - 1);
+    $('coachN').textContent = n + '/' + of;
+    $('coachT').textContent = n === of ? 'You’re ready to run the room. Send it.' : n >= of - 2 ? 'Close. Fix the flagged items and run it again.' : 'Not ready yet. Work the fixes below, then run Deal Coach again.';
+
+    var list = $('coachList'); list.innerHTML = '';
+    items.forEach(function(i){
+      var li = document.createElement('li');
+      var tag = document.createElement('span'); tag.className = 'tag ' + (i.ok ? 'ok' : 'fix'); tag.textContent = i.ok ? 'Strong' : 'Fix';
+      var txt = document.createElement('div'); var b = document.createElement('b'); b.textContent = i.title + ' '; txt.appendChild(b); txt.appendChild(document.createTextNode(i.tip));
+      li.appendChild(tag); li.appendChild(txt); list.appendChild(li);
+    });
+
+    var tips = $('coachTips'); tips.innerHTML = '';
+    var hb = document.createElement('b'); hb.textContent = 'Stand and deliver — ' + LABELS[set] + ', ' + LABELS[aud] + ':'; tips.appendChild(hb);
+    var ul = document.createElement('ul'); TIPS[set].concat(TIPS[aud]).forEach(function(t){ var li = document.createElement('li'); li.textContent = t; ul.appendChild(li); }); tips.appendChild(ul);
+
+    /* build the invite */
+    var first = who ? who.split(/[ ,]/)[0] : '';
+    var lines = [];
+    lines.push(first ? first + (aud === 'one' ? ',' : ' and team,') : (aud === 'one' ? 'Hi,' : 'Hi team,'));
+    lines.push('');
+    if (team.length) { lines.push('Joining with me:'); team.forEach(function(t){ lines.push('•  ' + t); }); lines.push(''); }
+    if (win) lines.push('By the end of our ' + L + ' minutes, you’ll ' + win.replace(/^(you'?’?ll|you will)\s+/i, '') + '.');
+    if (why) lines.push('Why it matters: ' + why.charAt(0).toLowerCase() + why.slice(1) + '.');
+    lines.push('');
+    lines.push('Agenda (' + L + ' min)');
+    var t = 0;
+    R.forEach(function(r){ if (!r.topic && !r.mins) return; lines.push('•  ' + t + '–' + (t + r.mins) + ' min  ' + (r.topic || 'Talking point')); t += r.mins; });
+    var open = qs.filter(function(q){ return !CLOSED.test(q); }).slice(0, 3);
+    if (open.length) { lines.push(''); lines.push('Come ready to talk through:'); open.forEach(function(q){ lines.push('•  ' + q); }); }
+    if (ask) { lines.push(''); lines.push('Our goal at the close: ' + ask.charAt(0).toLowerCase() + ask.slice(1) + '.'); }
+    if (where) { lines.push(''); lines.push(set === 'virtual' ? 'Join: ' + where + ' — cameras on, and I’ll keep us to the minute.' : 'Where: ' + where); }
+    lines.push(''); lines.push('Talk soon,'); lines.push(from || '[Your name]');
+    $('oSubj').value = subj;
+    $('oBody').value = lines.join('\n');
+    $('coachOut').classList.add('show');
+    $('coachOut').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+  }
+  $('runCoach').addEventListener('click', coach);
+
+  function copy(text){
+    function done(){ $('copied').textContent = 'Copied.'; setTimeout(function(){ $('copied').textContent = ''; }, 2000); }
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done, fallback); } else fallback();
+    function fallback(){ var ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); done(); } catch(e) { $('copied').textContent = 'Select the text and copy it.'; } ta.remove(); }
+  }
+  $('cpSubj').addEventListener('click', function(){ copy($('oSubj').value); });
+  $('cpBody').addEventListener('click', function(){ copy($('oBody').value); });
+
+  $('loadEx').addEventListener('click', function(){
+    $('bWho').value = 'Dana Lopez, Director of Facilities'; $('bAcct').value = 'Northline Retail'; $('bLen').value = '30'; $('bSet').value = 'person'; $('bAud').value = 'one'; whereLabel(); resetAgenda(); $('bWhere').value = 'Northline HQ, 3rd floor conference room'; $('bTeam').value = 'Maria Ortiz, Estimating — so pricing questions get answered live\nTom Reyes, Florida Field Ops';
+    $('bWin').value = 'have a plan and budget number to retrofit your top 10 stores before Q2';
+    $('bWhy').value = 'gets you ahead of the March rebate deadline and cuts the after-hours lighting calls landing on your desk';
+    $('bQs').value = 'What’s the one facilities issue that keeps landing on your desk?\nWhich stores call you most after hours?\nWalk me through how a project like this gets approved — who else weighs in?\nIs this funded this year?\nWhat date would make this a win for you?';
+    $('bAsk').value = 'Book a site walk at your two worst stores next Tuesday or Thursday';
+    $('bSubj').value = ''; $('bFrom').value = '';
+    $('coachOut').classList.remove('show');
+  });
+  function setAgenda(list){ agenda.innerHTML = ''; list.forEach(function(r){ addRow(r[0], r[1]); }); total(); }
+  $('ghostRef').addEventListener('click', function(){
+    $('bWho').value = 'Wayne Covington and the Merrick Park project team';
+    $('bAcct').value = 'Reformation — Merrick Park';
+    $('bLen').value = '30'; $('bSet').value = 'virtual'; $('bAud').value = 'group'; whereLabel();
+    $('bWhere').value = 'Merrick Park weekly call (existing Meet link)';
+    $('bTeam').value = 'John Brocken, FSG — so lighting and controls questions get answered live';
+    $('bWin').value = 'leave with the Merrick Park lighting approach locked — cove detail, scene controls, and the exit-sign path — so shop drawings stay inside the 5-week timeline';
+    $('bWhy').value = 'keeps the schedule on track and avoids redesign after the millwork shops are released';
+    setAgenda([
+      ['Open — 60 seconds on them, then the win and agenda', 3],
+      ['Discovery — their priorities on scenes, cove transitions, and exit signs', 14],
+      ['Fit — FSG options: remote-driver access hatch, tunable scene control, plug-and-play shelf lighting', 8],
+      ['Close — recap, the ask, owners, dates', 5]
+    ]);
+    $('bQs').value = 'What three or four lighting scenes do you want guests to feel in the fitting lounge and on the sales floor?\nHow will store staff switch scenes day to day — and who owns that setup after opening?\nWhich lighting details do you want standardized across the Tier B and C builds?\nWhat would make an exit-sign solution acceptable to the brand if a UL 924 millwork option isn’t available?\nWalk me through who signs off on the lighting package before shop drawings are released.';
+    $('bAsk').value = 'Approve the lighting direction and book a 30-minute controls mockup review next Thursday';
+    $('bSubj').value = 'Lock Merrick Park lighting + controls | Reformation (30 min)';
+    $('bFrom').value = 'Bobby Graham';
+    coach();
+  });
+  $('clearAll').addEventListener('click', function(){
+    ['bWho','bAcct','bWin','bWhy','bQs','bAsk','bSubj','bFrom','bWhere','bTeam'].forEach(function(id){ $(id).value = ''; });
+    $('bLen').value = '30'; $('bSet').value = 'virtual'; $('bAud').value = 'one'; whereLabel(); resetAgenda(); $('coachOut').classList.remove('show');
+  });
+})();
+</script>
+
+</body>
+</html>
