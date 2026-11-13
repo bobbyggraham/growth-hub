@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FSG Signs — Product Overview</title>
+<link rel="icon" href="../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root { --fsg-deep-navy:#0b1421; --fsg-dark-navy:#133865; --fsg-brand-blue:#365aa0; --fsg-steel-blue:#718dbc; --fsg-light-blue:#c5d9fa; --fsg-light-gray:#ededed; --fsg-gold:#ebb018; --fsg-bright-blue:#4e84de; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Open Sans',Arial,sans-serif; color:var(--fsg-deep-navy); background:#fff; line-height:1.55; font-size:16px; }
+  .page { max-width:960px; margin:0 auto; padding:32px 24px 48px; }
+  .back { display:inline-block; font-size:13px; color:var(--fsg-brand-blue); text-decoration:none; margin-bottom:12px; font-weight:600; }
+  .hero { background:var(--fsg-dark-navy); border-radius:8px; padding:28px 32px; }
+  .hero .eyebrow { color:var(--fsg-light-blue); font-weight:700; font-size:13px; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .hero h1 { font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:40px; color:#fff; line-height:1.15; margin-bottom:10px; }
+  .hero .subtitle { color:var(--fsg-light-blue); font-size:14px; }
+  .gold-rule { border:none; border-top:3px solid var(--fsg-gold); margin:18px 0 28px; }
+  h2 { font-family:'Oswald',Arial,sans-serif; font-weight:700; color:var(--fsg-dark-navy); font-size:26px; margin:34px 0 12px; }
+  h3.sub { font-family:'Oswald',Arial,sans-serif; font-weight:600; color:var(--fsg-dark-navy); font-size:19px; margin:20px 0 6px; }
+  p { margin:12px 0; }
+  ul.tight { margin:8px 0 8px 22px; } ul.tight li { margin:4px 0; }
+  .glance { display:flex; gap:6px; margin:14px 0 8px; flex-wrap:wrap; }
+  .glance .chip { flex:1 1 160px; background:var(--fsg-dark-navy); color:#fff; font-weight:700; font-size:13px; text-align:center; padding:12px 10px; border-radius:6px; text-decoration:none; }
+  .glance .chip:nth-child(even) { background:var(--fsg-brand-blue); }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; margin-top:14px; }
+  .card { display:block; text-decoration:none; color:var(--fsg-deep-navy); background:#fff; border:1px solid #d9e1ee; border-top:5px solid var(--fsg-dark-navy); border-radius:8px; padding:18px 20px; transition:box-shadow .15s, transform .15s; }
+  a.card:hover { box-shadow:0 8px 24px rgba(19,56,101,.14); transform:translateY(-2px); }
+  .card.story { border-top-color:var(--fsg-gold); }
+  .card .k { font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:700; color:var(--fsg-brand-blue); }
+  .card h3 { font-family:'Oswald',Arial,sans-serif; font-size:21px; color:var(--fsg-dark-navy); margin:6px 0 6px; }
+  .card p { font-size:14px; color:#2f3b4d; margin:0 0 10px; }
+  .card .use { font-size:12px; color:var(--fsg-steel-blue); }
+  .callout { border-left:5px solid var(--fsg-gold); background:#fbf6e8; padding:14px 18px; border-radius:0 6px 6px 0; margin:24px 0; font-size:15px; }
+  .callout b { color:var(--fsg-dark-navy); }
+  table.brand { width:100%; border-collapse:collapse; margin:14px 0; font-size:14px; }
+  table.brand th { background:var(--fsg-dark-navy); color:#fff; text-align:left; padding:10px 12px; font-family:'Oswald',Arial,sans-serif; font-weight:600; letter-spacing:.5px; }
+  table.brand td { padding:10px 12px; border-bottom:1px solid #e3e8f0; vertical-align:top; }
+  .figs { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:14px 0; }
+  .figs.two { grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); }
+  figure { margin:0; border:1px solid #d9e1ee; border-radius:8px; overflow:hidden; background:#fff; }
+  figure img { display:block; width:100%; height:auto; }
+  figure.photo img { aspect-ratio:4/3; object-fit:cover; }
+  figcaption { font-size:12px; color:var(--fsg-steel-blue); padding:8px 12px; border-top:1px solid #eef2f8; }
+  figcaption b { color:var(--fsg-dark-navy); }
+  .check { list-style:none; margin:10px 0; }
+  .check li { position:relative; padding:9px 12px 9px 40px; border:1px solid #e3e8f0; border-radius:6px; margin:6px 0; font-size:15px; background:#fafbfd; }
+  .check li:before { content:''; position:absolute; left:13px; top:12px; width:15px; height:15px; border:2px solid var(--fsg-brand-blue); border-radius:3px; }
+  .check li span { display:block; font-size:13px; color:var(--fsg-steel-blue); }
+  .stage { display:grid; grid-template-columns:56px 1fr; gap:16px; margin:22px 0; }
+  .stage .num { width:48px; height:48px; border-radius:50%; background:var(--fsg-dark-navy); color:#fff; font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:20px; display:flex; align-items:center; justify-content:center; box-shadow:0 0 0 5px rgba(235,176,24,.25); }
+  .stage .body { border-left:3px solid #e3e8f0; padding-left:18px; }
+  .stage h3 { font-family:'Oswald',Arial,sans-serif; font-size:22px; color:var(--fsg-dark-navy); margin:4px 0 2px; }
+  .stage .tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:700; color:var(--fsg-brand-blue); }
+  .stage .gets { background:#f3f7fd; border-radius:6px; padding:10px 14px; font-size:14px; margin-top:8px; }
+  .stage .gets b { color:var(--fsg-dark-navy); }
+  .rail { display:flex; flex-wrap:wrap; gap:6px; margin:14px 0 4px; }
+  .rail a { flex:1 1 90px; text-decoration:none; text-align:center; font-size:12px; font-weight:700; color:var(--fsg-dark-navy); background:#eef3fb; border:1px solid #d9e1ee; border-radius:6px; padding:8px 6px; }
+  .rail a b { display:block; font-family:'Oswald',Arial,sans-serif; font-size:18px; color:var(--fsg-brand-blue); }
+  footer { text-align:center; color:var(--fsg-steel-blue); font-size:13px; margin-top:40px; }
+  .vc { margin-top:32px; font-size:12px; color:var(--fsg-steel-blue); border-top:1px solid #e3e8f0; padding-top:12px; }
+  @media (max-width:600px){ .hero h1{font-size:30px;} .stage{grid-template-columns:40px 1fr;} .stage .num{width:36px;height:36px;font-size:16px;} }
+</style>
+</head>
+<body>
+<!-- ============ GROWTH HUB GATE ============ -->
+<style>
+  html.gh-locked > body > :not(#ghGate){display:none !important;}
+  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
+  html:not(.gh-locked) #ghGate{display:none;}
+  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
+  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
+  #ghGate .gh-brand svg{width:30px;height:30px;}
+  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
+  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
+  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;}
+  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
+  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
+  #ghGate input:focus{border-color:#4e84de;}
+  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
+  #ghGate button:hover{filter:brightness(1.06);}
+  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
+  #ghGate .gh-shake{animation:ghshake .3s;}
+  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+<div id="ghGate">
+  <div class="gh-wrap">
+    <div class="gh-brand">
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#c5d9fa" stroke-width="14" stroke-linecap="round" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g><circle cx="150" cy="50" r="26" fill="#ffffff"/><circle cx="236.6" cy="100" r="26" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="26" fill="#ffffff"/><circle cx="150" cy="250" r="26" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="26" fill="#ffffff"/><circle cx="63.4" cy="100" r="26" fill="#c5d9fa"/><circle cx="150" cy="150" r="44" fill="#ebb018"/></svg>
+      <span>Growth Hub</span>
+    </div>
+    <div class="gh-card">
+      <h2>Passcode</h2>
+      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
+      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
+      <button id="ghGo" type="button">Enter the Hub</button>
+      <div class="gh-err" id="ghErr"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
+  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+  if(!unlocked()) document.documentElement.classList.add('gh-locked');
+  function open(){ document.documentElement.classList.remove('gh-locked'); }
+  async function check(){
+    var v=document.getElementById('ghPass').value;
+    var ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        ok=(hex===HASH);
+      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
+    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
+    if(ok){ remember(); open(); }
+    else{
+      var card=document.querySelector('#ghGate .gh-card');
+      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
+      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
+      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    if(unlocked()) return;
+    document.getElementById('ghGo').addEventListener('click', check);
+    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
+  });
+})();
+</script>
+<!-- ============ /GROWTH HUB GATE ============ -->
+
+
+<div class="page">
+  <a class="back" href="signs.html">&larr; FSG Signs — The Play</a>
+  <div class="hero">
+    <div class="eyebrow">Growth Hub · Products · Signs · Product Overview</div>
+    <h1>Impossible to Miss</h1>
+    <div class="subtitle">What FSG Signs builds, how we light it, and why one accountable team beats a sign vendor plus an electrician plus a permit runner</div>
+  </div>
+  <hr class="gold-rule">
+
+  <p>The client's sign is the first thing their customers see. FSG Signs designs, permits, fabricates, installs and maintains it, at one storefront or across a national fleet. Since 1982, from single storefronts to NFL stadiums. The buyer gets one partner, one schedule and one price, with the electrical work to power the sign handled by the same company.</p>
+
+  <h2>What we build</h2>
+  <table class="brand">
+    <tr><th style="width:30%">Sign type</th><th>What it is</th></tr>
+    <tr><td>Channel letters</td><td>Individual aluminum letters and logos on the building, flush-mounted or on a raceway. Non-lit, face-lit or reverse-lit.</td></tr>
+    <tr><td>Monuments &amp; pylons</td><td>Ground signs at the drive or the road, new builds or new panels in an existing cabinet.</td></tr>
+    <tr><td>Wayfinding &amp; directional</td><td>Post-mounted and wall signs that move people and trucks: shipping and receiving, entrances, parking.</td></tr>
+    <tr><td>ADA &amp; door vinyl</td><td>Tactile and Braille room signs, door hours, entrance and window graphics, built to code.</td></tr>
+    <tr><td>Interior brand walls</td><td>Lobby and showroom logos in acrylic or metal letters.</td></tr>
+    <tr><td>Awnings &amp; storefront</td><td>Awning re-skins and storefront packages to match the brand.</td></tr>
+    <tr><td>Electronic &amp; digital</td><td>Digital displays: site evaluation, content setup and installation.</td></tr>
+  </table>
+
+  <h2>Three ways to light a sign</h2>
+  <p>Ask about lighting on the first call. It changes the letter build, the power at the wall and the price.</p>
+  <div class="figs">
+    <figure><img src="../assets/signs/option-non-lit.jpg" alt="Non-lit channel letters by day"><figcaption><b>Non-lit.</b> Painted faces, no power needed at the sign. Reads clearly by day; the lowest cost to build and maintain.</figcaption></figure>
+    <figure><img src="../assets/signs/option-face-lit.jpg" alt="Face-lit channel letters at night"><figcaption><b>Face-lit LED.</b> Light shines through a translucent face. The brand color glows after dark.</figcaption></figure>
+    <figure><img src="../assets/signs/option-reverse-lit.jpg" alt="Reverse-lit channel letters with halo"><figcaption><b>Reverse-lit.</b> Solid faces stand off the wall with a soft halo of light behind each letter.</figcaption></figure>
+  </div>
+  <p style="font-size:13px;color:var(--fsg-steel-blue);">Illustrative renders. Final size, mounting and lighting are confirmed by site survey.</p>
+
+  <h2>Why FSG</h2>
+  <div class="cards">
+    <div class="card"><div class="k">Fabrication</div><h3>Our own shop</h3><p>A 95,000 sq ft fabrication facility in San Antonio, Texas. Design, build and quality control stay in one place, so every set matches.</p></div>
+    <div class="card"><div class="k">Quality</div><h3>UL-certified, color-matched</h3><p>UL-certified channel letters built to code. Brand colors matched to the client's Pantone standard on every set.</p></div>
+    <div class="card"><div class="k">Reach</div><h3>Crews everywhere</h3><p>Self-performed crews with our own trucks and cranes, plus 2,000+ affiliated installers. 43+ FSG locations behind them.</p></div>
+    <div class="card"><div class="k">Power</div><h3>Electricians on staff</h3><p>Power at the sign is handled by the same company. No second contractor, no finger-pointing.</p></div>
+    <div class="card"><div class="k">Permits</div><h3>Code-checked first</h3><p>Sign area is checked against what code allows on every wall before permits are filed. Landlord and airport rules tracked per site.</p></div>
+    <div class="card story"><div class="k">Warranty</div><h3>10 + 5</h3><p>10-year lifetime warranty on LEDs. 5-year sign parts and labor warranty.</p></div>
+  </div>
+
+  <h2>Who buys it</h2>
+  <ul class="tight">
+    <li><b>Brands that just changed their name</b> — mergers, acquisitions, spin-offs and rebrands. Every building needs the new name.</li>
+    <li><b>Multi-site operators opening locations</b> — retail, grocery, restaurants, distribution and service centers that need the same package, site after site.</li>
+    <li><b>Facility and procurement leaders</b> who want one vendor accountable for survey through install, priced per site.</li>
+    <li><b>National accounts already buying FSG electrical or lighting</b> — signs extend the relationship, and a sign rollout opens the door to the rest.</li>
+  </ul>
+
+  <h2>Proof</h2>
+  <div class="cards">
+    <div class="card story"><div class="k">National rollout</div><h3>Wesco</h3><p>Anixter-to-Wesco rebrand: site surveys, drawings, removal and new channel letters, monuments and wayfinding.</p></div>
+    <div class="card story"><div class="k">New-store package</div><h3>H-E-B</h3><p>Complete store sign packages: site plan, elevations with code-allowed sign area, every sign through client approval.</p></div>
+    <div class="card"><div class="k">National rollout</div><h3>Duluth Trading Company</h3><p>Turnkey signage nationwide: design, permitting, fabrication and installation from one provider.</p></div>
+    <div class="card"><div class="k">Multi-unit</div><h3>Applebee's</h3><p>Restaurant signage delivered across the country.</p></div>
+  </div>
+
+  <div class="callout"><b>Next:</b> learn the nine stages in <a href="signs-delivery-method.html">How We Deliver a Sign Program</a> — that's the walk-through buyers ask for.</div>
+
+  <div class="vc">Prepared by Lumen | FSG Business Development AI &nbsp;·&nbsp; v1.0 · November 2026 &nbsp;·&nbsp; Facts from fsg.com/signs and FSG Signs deliverables</div>
+  <footer>FSG Engage &nbsp;|&nbsp; Growth Hub &nbsp;|&nbsp; Internal Enablement</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FSG Signs — How We Deliver a Sign Program</title>
+<link rel="icon" href="../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root { --fsg-deep-navy:#0b1421; --fsg-dark-navy:#133865; --fsg-brand-blue:#365aa0; --fsg-steel-blue:#718dbc; --fsg-light-blue:#c5d9fa; --fsg-light-gray:#ededed; --fsg-gold:#ebb018; --fsg-bright-blue:#4e84de; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Open Sans',Arial,sans-serif; color:var(--fsg-deep-navy); background:#fff; line-height:1.55; font-size:16px; }
+  .page { max-width:960px; margin:0 auto; padding:32px 24px 48px; }
+  .back { display:inline-block; font-size:13px; color:var(--fsg-brand-blue); text-decoration:none; margin-bottom:12px; font-weight:600; }
+  .hero { background:var(--fsg-dark-navy); border-radius:8px; padding:28px 32px; }
+  .hero .eyebrow { color:var(--fsg-light-blue); font-weight:700; font-size:13px; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .hero h1 { font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:40px; color:#fff; line-height:1.15; margin-bottom:10px; }
+  .hero .subtitle { color:var(--fsg-light-blue); font-size:14px; }
+  .gold-rule { border:none; border-top:3px solid var(--fsg-gold); margin:18px 0 28px; }
+  h2 { font-family:'Oswald',Arial,sans-serif; font-weight:700; color:var(--fsg-dark-navy); font-size:26px; margin:34px 0 12px; }
+  h3.sub { font-family:'Oswald',Arial,sans-serif; font-weight:600; color:var(--fsg-dark-navy); font-size:19px; margin:20px 0 6px; }
+  p { margin:12px 0; }
+  ul.tight { margin:8px 0 8px 22px; } ul.tight li { margin:4px 0; }
+  .glance { display:flex; gap:6px; margin:14px 0 8px; flex-wrap:wrap; }
+  .glance .chip { flex:1 1 160px; background:var(--fsg-dark-navy); color:#fff; font-weight:700; font-size:13px; text-align:center; padding:12px 10px; border-radius:6px; text-decoration:none; }
+  .glance .chip:nth-child(even) { background:var(--fsg-brand-blue); }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; margin-top:14px; }
+  .card { display:block; text-decoration:none; color:var(--fsg-deep-navy); background:#fff; border:1px solid #d9e1ee; border-top:5px solid var(--fsg-dark-navy); border-radius:8px; padding:18px 20px; transition:box-shadow .15s, transform .15s; }
+  a.card:hover { box-shadow:0 8px 24px rgba(19,56,101,.14); transform:translateY(-2px); }
+  .card.story { border-top-color:var(--fsg-gold); }
+  .card .k { font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:700; color:var(--fsg-brand-blue); }
+  .card h3 { font-family:'Oswald',Arial,sans-serif; font-size:21px; color:var(--fsg-dark-navy); margin:6px 0 6px; }
+  .card p { font-size:14px; color:#2f3b4d; margin:0 0 10px; }
+  .card .use { font-size:12px; color:var(--fsg-steel-blue); }
+  .callout { border-left:5px solid var(--fsg-gold); background:#fbf6e8; padding:14px 18px; border-radius:0 6px 6px 0; margin:24px 0; font-size:15px; }
+  .callout b { color:var(--fsg-dark-navy); }
+  table.brand { width:100%; border-collapse:collapse; margin:14px 0; font-size:14px; }
+  table.brand th { background:var(--fsg-dark-navy); color:#fff; text-align:left; padding:10px 12px; font-family:'Oswald',Arial,sans-serif; font-weight:600; letter-spacing:.5px; }
+  table.brand td { padding:10px 12px; border-bottom:1px solid #e3e8f0; vertical-align:top; }
+  .figs { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:14px 0; }
+  .figs.two { grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); }
+  figure { margin:0; border:1px solid #d9e1ee; border-radius:8px; overflow:hidden; background:#fff; }
+  figure img { display:block; width:100%; height:auto; }
+  figure.photo img { aspect-ratio:4/3; object-fit:cover; }
+  figcaption { font-size:12px; color:var(--fsg-steel-blue); padding:8px 12px; border-top:1px solid #eef2f8; }
+  figcaption b { color:var(--fsg-dark-navy); }
+  .check { list-style:none; margin:10px 0; }
+  .check li { position:relative; padding:9px 12px 9px 40px; border:1px solid #e3e8f0; border-radius:6px; margin:6px 0; font-size:15px; background:#fafbfd; }
+  .check li:before { content:''; position:absolute; left:13px; top:12px; width:15px; height:15px; border:2px solid var(--fsg-brand-blue); border-radius:3px; }
+  .check li span { display:block; font-size:13px; color:var(--fsg-steel-blue); }
+  .stage { display:grid; grid-template-columns:56px 1fr; gap:16px; margin:22px 0; }
+  .stage .num { width:48px; height:48px; border-radius:50%; background:var(--fsg-dark-navy); color:#fff; font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:20px; display:flex; align-items:center; justify-content:center; box-shadow:0 0 0 5px rgba(235,176,24,.25); }
+  .stage .body { border-left:3px solid #e3e8f0; padding-left:18px; }
+  .stage h3 { font-family:'Oswald',Arial,sans-serif; font-size:22px; color:var(--fsg-dark-navy); margin:4px 0 2px; }
+  .stage .tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:700; color:var(--fsg-brand-blue); }
+  .stage .gets { background:#f3f7fd; border-radius:6px; padding:10px 14px; font-size:14px; margin-top:8px; }
+  .stage .gets b { color:var(--fsg-dark-navy); }
+  .rail { display:flex; flex-wrap:wrap; gap:6px; margin:14px 0 4px; }
+  .rail a { flex:1 1 90px; text-decoration:none; text-align:center; font-size:12px; font-weight:700; color:var(--fsg-dark-navy); background:#eef3fb; border:1px solid #d9e1ee; border-radius:6px; padding:8px 6px; }
+  .rail a b { display:block; font-family:'Oswald',Arial,sans-serif; font-size:18px; color:var(--fsg-brand-blue); }
+  footer { text-align:center; color:var(--fsg-steel-blue); font-size:13px; margin-top:40px; }
+  .vc { margin-top:32px; font-size:12px; color:var(--fsg-steel-blue); border-top:1px solid #e3e8f0; padding-top:12px; }
+  @media (max-width:600px){ .hero h1{font-size:30px;} .stage{grid-template-columns:40px 1fr;} .stage .num{width:36px;height:36px;font-size:16px;} }
+</style>
+</head>
+<body>
+<!-- ============ GROWTH HUB GATE ============ -->
+<style>
+  html.gh-locked > body > :not(#ghGate){display:none !important;}
+  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
+  html:not(.gh-locked) #ghGate{display:none;}
+  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
+  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
+  #ghGate .gh-brand svg{width:30px;height:30px;}
+  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
+  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
+  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;}
+  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
+  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
+  #ghGate input:focus{border-color:#4e84de;}
+  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
+  #ghGate button:hover{filter:brightness(1.06);}
+  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
+  #ghGate .gh-shake{animation:ghshake .3s;}
+  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+<div id="ghGate">
+  <div class="gh-wrap">
+    <div class="gh-brand">
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#c5d9fa" stroke-width="14" stroke-linecap="round" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g><circle cx="150" cy="50" r="26" fill="#ffffff"/><circle cx="236.6" cy="100" r="26" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="26" fill="#ffffff"/><circle cx="150" cy="250" r="26" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="26" fill="#ffffff"/><circle cx="63.4" cy="100" r="26" fill="#c5d9fa"/><circle cx="150" cy="150" r="44" fill="#ebb018"/></svg>
+      <span>Growth Hub</span>
+    </div>
+    <div class="gh-card">
+      <h2>Passcode</h2>
+      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
+      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
+      <button id="ghGo" type="button">Enter the Hub</button>
+      <div class="gh-err" id="ghErr"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
+  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+  if(!unlocked()) document.documentElement.classList.add('gh-locked');
+  function open(){ document.documentElement.classList.remove('gh-locked'); }
+  async function check(){
+    var v=document.getElementById('ghPass').value;
+    var ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        ok=(hex===HASH);
+      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
+    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
+    if(ok){ remember(); open(); }
+    else{
+      var card=document.querySelector('#ghGate .gh-card');
+      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
+      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
+      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    if(unlocked()) return;
+    document.getElementById('ghGo').addEventListener('click', check);
+    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
+  });
+})();
+</script>
+<!-- ============ /GROWTH HUB GATE ============ -->
+
+
+<div class="page">
+  <a class="back" href="signs.html">&larr; FSG Signs — The Play</a>
+  <div class="hero">
+    <div class="eyebrow">Growth Hub · Products · Signs · Delivery Method</div>
+    <h1>How We Deliver a Sign Program</h1>
+    <div class="subtitle">Nine stages, tracked site by site in the FSG Signs app &nbsp;·&nbsp; nothing is priced before the client approves the drawing, nothing is built before they approve the price</div>
+  </div>
+  <hr class="gold-rule">
+
+  <p>Every site in a program runs as its own project in the FSG Signs app and moves through the same stages. Walk a buyer through this page and they see exactly what they get, when they sign off, and how one partner carries it from site list to service. The examples are real FSG deliverables from Wesco (an Anixter-to-Wesco rebrand) and H-E-B (a new store).</p>
+
+  <div class="rail">
+    <a href="#s1"><b>1</b>Site Provided</a><a href="#s2"><b>2</b>Site Survey</a><a href="#s3"><b>3</b>Brandbook Dev.</a><a href="#s4"><b>4</b>Brandbook Approval</a><a href="#s5"><b>5</b>Estimate</a><a href="#s6"><b>6</b>Estimate Approval</a><a href="#s7"><b>7</b>Permitting</a><a href="#s8"><b>8</b>Production</a><a href="#s9"><b>9</b>Support</a>
+  </div>
+
+  <div class="stage" id="s1"><div class="num">1</div><div class="body">
+    <div class="tag">Start</div><h3>Site Provided</h3>
+    <p>The client sends the site list. Each site is set up as its own project with an address, site contact, priority and work order.</p>
+    <div class="gets"><b>Client gets:</b> one project record per site and a single FSG project manager.</div>
+  </div></div>
+
+  <div class="stage" id="s2"><div class="num">2</div><div class="body">
+    <div class="tag">Field</div><h3>Site Survey</h3>
+    <p>A crew visits every site, with a bucket truck where needed. Every existing sign is photographed and measured; mounting surface, structure and power are checked; any extra old branding is flagged.</p>
+    <div class="figs">
+      <figure class="photo"><img src="../assets/signs/wesco-survey-wall.jpg" alt="Survey photo of existing wall sign with measurements"><figcaption><b>Wall sign, measured</b> — 16'-0" × 3'-6"</figcaption></figure>
+      <figure class="photo"><img src="../assets/signs/wesco-survey-monument.jpg" alt="Survey photo of existing monument sign"><figcaption><b>Monument</b></figcaption></figure>
+      <figure class="photo"><img src="../assets/signs/wesco-survey-directional.jpg" alt="Survey photo of existing directional sign"><figcaption><b>Directional</b></figcaption></figure>
+      <figure class="photo"><img src="../assets/signs/wesco-survey-door.jpg" alt="Survey photo of entrance door"><figcaption><b>Entrance door</b></figcaption></figure>
+    </div>
+    <div class="gets"><b>Client gets:</b> a photo report, measurements and an existing-sign inventory per site. Anything outside scope comes back as a priced change order. <i>Example: Wesco #1029U, North Charleston, SC.</i></div>
+  </div></div>
+
+  <div class="stage" id="s3"><div class="num">3</div><div class="body">
+    <div class="tag">Design</div><h3>Brandbook Development</h3>
+    <p>Designers build the site's sign package from the client's brand standards and the survey: a location plan showing where every sign goes, and a shop drawing for each sign with dimensions, materials, colors, scope and the existing-vs-proposed view.</p>
+    <div class="figs two">
+      <figure><img src="../assets/signs/wesco-location-plan.jpg" alt="Sign location plan with signs A through F"><figcaption><b>Sign location plan</b> — signs A–F pinned on the aerial</figcaption></figure>
+      <figure><img src="../assets/signs/wesco-shop-drawing.jpg" alt="Channel letter shop drawing with existing and proposed views"><figcaption><b>Shop drawing</b> — non-lit channel letters, existing vs. proposed</figcaption></figure>
+    </div>
+    <div class="gets"><b>Client gets:</b> a location plan and one drawing sheet per sign, each tied to its sign letter.</div>
+  </div></div>
+
+  <div class="stage" id="s4"><div class="num">4</div><div class="body">
+    <div class="tag">Client sign-off</div><h3>Brandbook Approval</h3>
+    <p>The drawings go to the client for approval. Every revision is versioned (R1, R2, R3…) and the stage stays open until the client signs the approval block on the sheet.</p>
+    <div class="gets"><b>Client gets:</b> control. Nothing is priced or built until they approve what it looks like.</div>
+  </div></div>
+
+  <div class="stage" id="s5"><div class="num">5</div><div class="body">
+    <div class="tag">Price</div><h3>Estimate Creation</h3>
+    <p>The site is priced from the approved drawings — in the client's cost template when they have one, otherwise on our five cost lines: surveys, fabrication, removal and installation, packaging and freight, and permits.</p>
+    <div class="gets"><b>Client gets:</b> a per-site price tied to an approved drawing, so the number can't drift from the design.</div>
+  </div></div>
+
+  <div class="stage" id="s6"><div class="num">6</div><div class="body">
+    <div class="tag">Client sign-off</div><h3>Estimate Approval</h3>
+    <p>The client approves each site's price. Anything found outside scope is priced as a change order and approved before the work.</p>
+    <div class="gets"><b>Client gets:</b> no surprise invoices.</div>
+  </div></div>
+
+  <div class="stage" id="s7"><div class="num">7</div><div class="body">
+    <div class="tag">Compliance</div><h3>Permitting</h3>
+    <p>Sign area is checked against what code allows on every wall, then permits are pulled and filed. Landlord, mall and airport-authority sign rules are tracked per site.</p>
+    <div class="figs two">
+      <figure><img src="../assets/signs/heb-elevations.jpg" alt="Building elevations with proposed and allowed sign area"><figcaption><b>Elevations with sign-area check</b> — south wall 864 SF proposed vs. 5,019 SF allowed</figcaption></figure>
+    </div>
+    <div class="gets"><b>Client gets:</b> a permit-ready set and permit status by site. <i>Example: H-E-B #820, San Antonio.</i></div>
+  </div></div>
+
+  <div class="stage" id="s8"><div class="num">8</div><div class="body">
+    <div class="tag">Build &amp; install</div><h3>Production &amp; Beyond</h3>
+    <p>Seven production steps run site by site: fabrication in our San Antonio shop, packaging and freight, removal and disposal of the old sign, installation, and closeout. Lit signs are engineered down to the LED layout and power, and the general contractor's requirements are called out on the drawing.</p>
+    <div class="figs two">
+      <figure><img src="../assets/signs/heb-channel-letters.jpg" alt="Illuminated channel letter drawing with section view"><figcaption><b>Lit channel letters</b> — section detail, power and GC requirements</figcaption></figure>
+      <figure><img src="../assets/signs/heb-led-layout.jpg" alt="LED module layout for channel letters"><figcaption><b>LED layout</b> — 366 modules, 169 W on one power supply</figcaption></figure>
+    </div>
+    <div class="gets"><b>Client gets:</b> the sign built, shipped, installed and the old one gone — with one crew lead to call.</div>
+  </div></div>
+
+  <div class="stage" id="s9"><div class="num">9</div><div class="body">
+    <div class="tag">After launch</div><h3>Product Support</h3>
+    <p>Warranty and service for the life of the sign. The site record keeps its drawings, photos and service history.</p>
+    <div class="gets"><b>Client gets:</b> a 10-year lifetime warranty on LEDs and a 5-year sign parts and labor warranty — and a service partner who already knows the site.</div>
+  </div></div>
+
+  <div class="callout"><b>How to use this with a buyer.</b> Share your screen and scroll it, or walk the nine stages on a whiteboard. Stop at stages 4 and 6 and say it plainly: "You approve the look before we price it, and you approve the price before we build it." Client drawings stay inside the hub — confirm permission before any Wesco or H-E-B sheet goes into a proposal.</div>
+
+  <div class="vc">Prepared by Lumen | FSG Business Development AI &nbsp;·&nbsp; v1.0 · November 2026 &nbsp;·&nbsp; Stages from the FSG Signs app; examples from Wesco #1029U and H-E-B #820 sign packages</div>
+  <footer>FSG Engage &nbsp;|&nbsp; Growth Hub &nbsp;|&nbsp; Internal Enablement</footer>
+</div>
+</body>
+</html>

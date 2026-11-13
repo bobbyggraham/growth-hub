@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FSG Signs — The Play</title>
+<link rel="icon" href="../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root { --fsg-deep-navy:#0b1421; --fsg-dark-navy:#133865; --fsg-brand-blue:#365aa0; --fsg-steel-blue:#718dbc; --fsg-light-blue:#c5d9fa; --fsg-light-gray:#ededed; --fsg-gold:#ebb018; --fsg-bright-blue:#4e84de; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Open Sans',Arial,sans-serif; color:var(--fsg-deep-navy); background:#fff; line-height:1.55; font-size:16px; }
+  .page { max-width:960px; margin:0 auto; padding:32px 24px 48px; }
+  .back { display:inline-block; font-size:13px; color:var(--fsg-brand-blue); text-decoration:none; margin-bottom:12px; font-weight:600; }
+  .hero { background:var(--fsg-dark-navy); border-radius:8px; padding:28px 32px; }
+  .hero .eyebrow { color:var(--fsg-light-blue); font-weight:700; font-size:13px; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .hero h1 { font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:40px; color:#fff; line-height:1.15; margin-bottom:10px; }
+  .hero .subtitle { color:var(--fsg-light-blue); font-size:14px; }
+  .gold-rule { border:none; border-top:3px solid var(--fsg-gold); margin:18px 0 28px; }
+  h2 { font-family:'Oswald',Arial,sans-serif; font-weight:700; color:var(--fsg-dark-navy); font-size:26px; margin:34px 0 12px; }
+  h3.sub { font-family:'Oswald',Arial,sans-serif; font-weight:600; color:var(--fsg-dark-navy); font-size:19px; margin:20px 0 6px; }
+  p { margin:12px 0; }
+  ul.tight { margin:8px 0 8px 22px; } ul.tight li { margin:4px 0; }
+  .glance { display:flex; gap:6px; margin:14px 0 8px; flex-wrap:wrap; }
+  .glance .chip { flex:1 1 160px; background:var(--fsg-dark-navy); color:#fff; font-weight:700; font-size:13px; text-align:center; padding:12px 10px; border-radius:6px; text-decoration:none; }
+  .glance .chip:nth-child(even) { background:var(--fsg-brand-blue); }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; margin-top:14px; }
+  .card { display:block; text-decoration:none; color:var(--fsg-deep-navy); background:#fff; border:1px solid #d9e1ee; border-top:5px solid var(--fsg-dark-navy); border-radius:8px; padding:18px 20px; transition:box-shadow .15s, transform .15s; }
+  a.card:hover { box-shadow:0 8px 24px rgba(19,56,101,.14); transform:translateY(-2px); }
+  .card.story { border-top-color:var(--fsg-gold); }
+  .card .k { font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:700; color:var(--fsg-brand-blue); }
+  .card h3 { font-family:'Oswald',Arial,sans-serif; font-size:21px; color:var(--fsg-dark-navy); margin:6px 0 6px; }
+  .card p { font-size:14px; color:#2f3b4d; margin:0 0 10px; }
+  .card .use { font-size:12px; color:var(--fsg-steel-blue); }
+  .callout { border-left:5px solid var(--fsg-gold); background:#fbf6e8; padding:14px 18px; border-radius:0 6px 6px 0; margin:24px 0; font-size:15px; }
+  .callout b { color:var(--fsg-dark-navy); }
+  table.brand { width:100%; border-collapse:collapse; margin:14px 0; font-size:14px; }
+  table.brand th { background:var(--fsg-dark-navy); color:#fff; text-align:left; padding:10px 12px; font-family:'Oswald',Arial,sans-serif; font-weight:600; letter-spacing:.5px; }
+  table.brand td { padding:10px 12px; border-bottom:1px solid #e3e8f0; vertical-align:top; }
+  .figs { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:14px 0; }
+  .figs.two { grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); }
+  figure { margin:0; border:1px solid #d9e1ee; border-radius:8px; overflow:hidden; background:#fff; }
+  figure img { display:block; width:100%; height:auto; }
+  figure.photo img { aspect-ratio:4/3; object-fit:cover; }
+  figcaption { font-size:12px; color:var(--fsg-steel-blue); padding:8px 12px; border-top:1px solid #eef2f8; }
+  figcaption b { color:var(--fsg-dark-navy); }
+  .check { list-style:none; margin:10px 0; }
+  .check li { position:relative; padding:9px 12px 9px 40px; border:1px solid #e3e8f0; border-radius:6px; margin:6px 0; font-size:15px; background:#fafbfd; }
+  .check li:before { content:''; position:absolute; left:13px; top:12px; width:15px; height:15px; border:2px solid var(--fsg-brand-blue); border-radius:3px; }
+  .check li span { display:block; font-size:13px; color:var(--fsg-steel-blue); }
+  .stage { display:grid; grid-template-columns:56px 1fr; gap:16px; margin:22px 0; }
+  .stage .num { width:48px; height:48px; border-radius:50%; background:var(--fsg-dark-navy); color:#fff; font-family:'Oswald',Arial,sans-serif; font-weight:700; font-size:20px; display:flex; align-items:center; justify-content:center; box-shadow:0 0 0 5px rgba(235,176,24,.25); }
+  .stage .body { border-left:3px solid #e3e8f0; padding-left:18px; }
+  .stage h3 { font-family:'Oswald',Arial,sans-serif; font-size:22px; color:var(--fsg-dark-navy); margin:4px 0 2px; }
+  .stage .tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:700; color:var(--fsg-brand-blue); }
+  .stage .gets { background:#f3f7fd; border-radius:6px; padding:10px 14px; font-size:14px; margin-top:8px; }
+  .stage .gets b { color:var(--fsg-dark-navy); }
+  .rail { display:flex; flex-wrap:wrap; gap:6px; margin:14px 0 4px; }
+  .rail a { flex:1 1 90px; text-decoration:none; text-align:center; font-size:12px; font-weight:700; color:var(--fsg-dark-navy); background:#eef3fb; border:1px solid #d9e1ee; border-radius:6px; padding:8px 6px; }
+  .rail a b { display:block; font-family:'Oswald',Arial,sans-serif; font-size:18px; color:var(--fsg-brand-blue); }
+  footer { text-align:center; color:var(--fsg-steel-blue); font-size:13px; margin-top:40px; }
+  .vc { margin-top:32px; font-size:12px; color:var(--fsg-steel-blue); border-top:1px solid #e3e8f0; padding-top:12px; }
+  @media (max-width:600px){ .hero h1{font-size:30px;} .stage{grid-template-columns:40px 1fr;} .stage .num{width:36px;height:36px;font-size:16px;} }
+</style>
+</head>
+<body>
+<!-- ============ GROWTH HUB GATE ============ -->
+<style>
+  html.gh-locked > body > :not(#ghGate){display:none !important;}
+  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
+  html:not(.gh-locked) #ghGate{display:none;}
+  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
+  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
+  #ghGate .gh-brand svg{width:30px;height:30px;}
+  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
+  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
+  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;}
+  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
+  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
+  #ghGate input:focus{border-color:#4e84de;}
+  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
+  #ghGate button:hover{filter:brightness(1.06);}
+  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
+  #ghGate .gh-shake{animation:ghshake .3s;}
+  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+<div id="ghGate">
+  <div class="gh-wrap">
+    <div class="gh-brand">
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#c5d9fa" stroke-width="14" stroke-linecap="round" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g><circle cx="150" cy="50" r="26" fill="#ffffff"/><circle cx="236.6" cy="100" r="26" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="26" fill="#ffffff"/><circle cx="150" cy="250" r="26" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="26" fill="#ffffff"/><circle cx="63.4" cy="100" r="26" fill="#c5d9fa"/><circle cx="150" cy="150" r="44" fill="#ebb018"/></svg>
+      <span>Growth Hub</span>
+    </div>
+    <div class="gh-card">
+      <h2>Passcode</h2>
+      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
+      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
+      <button id="ghGo" type="button">Enter the Hub</button>
+      <div class="gh-err" id="ghErr"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
+  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+  if(!unlocked()) document.documentElement.classList.add('gh-locked');
+  function open(){ document.documentElement.classList.remove('gh-locked'); }
+  async function check(){
+    var v=document.getElementById('ghPass').value;
+    var ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        ok=(hex===HASH);
+      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
+    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
+    if(ok){ remember(); open(); }
+    else{
+      var card=document.querySelector('#ghGate .gh-card');
+      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
+      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
+      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    if(unlocked()) return;
+    document.getElementById('ghGo').addEventListener('click', check);
+    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
+  });
+})();
+</script>
+<!-- ============ /GROWTH HUB GATE ============ -->
+
+
+<div class="page">
+  <a class="back" href="../story/products.html">&larr; Products &times; Delivery Method</a>
+  <div class="hero">
+    <div class="eyebrow">Growth Hub · Products · Signs</div>
+    <h1>FSG Signs — The Play</h1>
+    <div class="subtitle">Survey, design, permit, fabricate, install and support &nbsp;·&nbsp; one storefront or a national rebrand &nbsp;·&nbsp; built in our own San Antonio shop</div>
+  </div>
+  <hr class="gold-rule">
+
+  <p>Everything a rep needs to open, scope and advance a sign opportunity sits on this page. Read the product overview once, learn the delivery method so you can walk a buyer through it, and run the discovery questions on the first call. Signs are often the first FSG work a new account sees, so a clean sign rollout is how we earn the electrical, lighting and energy work that follows.</p>
+
+  <div class="glance">
+    <a class="chip" href="signs-product-overview.html">1. Learn it · Product Overview</a>
+    <a class="chip" href="signs-delivery-method.html">2. Walk it · Delivery Method</a>
+    <a class="chip" href="#discovery">3. Ask it · Discovery</a>
+    <a class="chip" href="#pricing">4. Price it · Cost Lines</a>
+    <a class="chip" href="../story/signs-capabilities-deck.html">5. Present it · Deck</a>
+  </div>
+
+  <h2>The guides</h2>
+  <div class="cards">
+    <a class="card" href="signs-product-overview.html"><div class="k">How · Read first</div><h3>Product Overview</h3><p>What we build, the three ways to light a sign, the shop, the installer network, the warranty and the proof to use.</p><div class="use">10 minutes · the lesson</div></a>
+    <a class="card" href="signs-delivery-method.html"><div class="k">How · Walk the buyer</div><h3>How We Deliver a Sign Program</h3><p>The nine stages from site list to product support, what the client gets at each one, with real Wesco and H-E-B deliverables.</p><div class="use">Show it on screen · or send the PDF</div></a>
+  </div>
+
+  <h2>The deck</h2>
+  <div class="cards">
+    <a class="card story" href="../story/signs-capabilities-deck.html"><div class="k">Story · Customer-facing</div><h3>Signs Capabilities Deck</h3><p>Why → What → How → Now. One team survey to sign-off, the nine-stage flow demo, the three ways to light it, proof, and the site-list ask. Wesco and H-E-B deliverables in the appendix.</p><div class="use">Arrows · F fullscreen · flow demo auto-plays</div></a>
+    <div class="card story"><div class="k">Send or tailor</div><h3>PDF &amp; PowerPoint</h3><p><a href="../assets/signs/FSG_Signs_Capabilities_Deck.pdf">Download the PDF</a> to attach to an email or proposal — the client-drawing appendix is left out so it's safe to send. <a href="../assets/signs/FSG_Signs_Capabilities_Deck.pptx">Download the PowerPoint</a> to tailor it: swap in the client's brand, site count and deadline on the title and "why" slides.</p><div class="use">Needs Oswald + Open Sans installed for PowerPoint</div></div>
+  </div>
+
+  <div class="callout"><b>The rebrand trigger.</b> Mergers and name changes leave the old name on every building. Anixter became Wesco; LSG Sky Chefs became SkyChefs. When an account acquires, merges or renames, open with the survey: "Every one of your sites still says the old name. We'll photograph and measure all of them, then price the change site by site."</div>
+
+  <h2 id="discovery">Discovery — ask these on the first call</h2>
+  <p>Each answer changes the price. Anything the buyer can't answer by proposal day becomes a written assumption in the proposal.</p>
+  <ul class="check">
+    <li>How many sites, and what are the street addresses and site contacts?<span>A site list with codes only is not enough to price travel, permits or freight.</span></li>
+    <li>What does each site have today, and do you have photos?<span>Existing sign type and size drive removal, disposal and mounting.</span></li>
+    <li>Non-lit, face-lit or reverse-lit — and is there power at the sign location today?<span>Lighting adds LEDs, power supplies and possibly a new circuit.</span></li>
+    <li>What sets the letter height — the capital letters or the overall height?<span>Changes letter size, weight and price on every set.</span></li>
+    <li>Where does the sign go on each building, and who owns the wall?<span>Landlord, mall or airport-authority sign rules can limit size and placement.</span></li>
+    <li>Any new buildings in the program? Who is the general contractor and when is it ready?<span>New builds need power, wall backing and pre-wiring from the GC.</span></li>
+    <li>How should we phase it — strict priority order or regional batches?<span>Regional batches cut travel; priority order follows the business.</span></li>
+    <li>Is removal and disposal ours, and do you need recycling documentation?</li>
+    <li>Is a master agreement already in place, or does it sign with this scope?</li>
+  </ul>
+
+  <h2 id="pricing">Price it the way national buyers read it</h2>
+  <p>Return the number in the buyer's own template when they send one. When they don't, use these five lines, each priced per site and totaled, with a per-site schedule behind it so survey findings have a baseline.</p>
+  <table class="brand">
+    <tr><th style="width:30%">Cost line</th><th>What it carries</th></tr>
+    <tr><td>Site surveys</td><td>Survey crew and lift per site; the photo report and measurements.</td></tr>
+    <tr><td>Fabrication</td><td>Letter sets or sign cabinets, raceway or backer if used, LEDs and power supplies if lit, mounting kit.</td></tr>
+    <tr><td>Removal &amp; installation</td><td>Crew, lift or bucket truck, disposal and travel. Call out remote sites and new builds separately.</td></tr>
+    <tr><td>Packaging &amp; freight</td><td>Estimate per site; actual freight approved by the buyer.</td></tr>
+    <tr><td>Permits</td><td>Allowance per site for pulling and filing; the permit fee itself passes through.</td></tr>
+  </table>
+  <p>Outside the base price, and named as such: permit fees beyond the allowance, change-order items found on survey, actual freight, and electrical work to bring power to the sign.</p>
+
+  <div class="callout"><b>The warranty line.</b> 10-year lifetime warranty on LEDs and a 5-year sign parts and labor warranty. Put both in every sign proposal.</div>
+
+  <h2>Proof to use</h2>
+  <table class="brand">
+    <tr><th style="width:26%">Client</th><th>Use it when</th></tr>
+    <tr><td><b>Wesco</b></td><td>A rebrand after a merger. Anixter signs came down and Wesco channel letters, monuments and wayfinding went up, site by site. See the survey, location plan and shop drawing in the delivery method.</td></tr>
+    <tr><td><b>H-E-B</b></td><td>A new building or a full sign package. Site plan, sign area checked against code on every wall, lit letters engineered down to the LED layout.</td></tr>
+    <tr><td><b>Duluth Trading Company</b></td><td>One provider for a national program: design, permitting, fabrication and installation.</td></tr>
+    <tr><td><b>Applebee's</b></td><td>Multi-unit restaurant signage across the country.</td></tr>
+  </table>
+  <p>Client drawings shown in these guides stay inside the hub. Before a Wesco or H-E-B sheet goes into a proposal or pitch PDF, confirm the client is OK being shown, or use a version with the address and job number removed.</p>
+
+  <h2>Engage coding</h2>
+  <table class="brand">
+    <tr><th style="width:34%">Delivery method · Product</th><th>When</th></tr>
+    <tr><td>Construction · Signs</td><td><b>Default for new signs and rebrands.</b> We survey, design, permit, fabricate and install.</td></tr>
+    <tr><td>Service · Signs</td><td>Maintenance, repair, relamping and re-facing existing signs, or a program of them.</td></tr>
+    <tr><td>Distribution · Signs</td><td>We build and ship the sign package; another qualified crew installs.</td></tr>
+  </table>
+  <p>Follow-up date set, close date in the future, value ≥ $1 until priced. The live picklist wins over anything written here.</p>
+
+  <div class="vc">Prepared by Lumen | FSG Business Development AI &nbsp;·&nbsp; v1.0 · November 2026 &nbsp;·&nbsp; Built from the FSG Signs capabilities work and live Wesco and H-E-B deliverables</div>
+  <footer>FSG Engage &nbsp;|&nbsp; Growth Hub &nbsp;|&nbsp; Internal Enablement</footer>
+</div>
+</body>
+</html>
