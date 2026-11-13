@@ -268,6 +268,10 @@ const R = {
   emsdeck:     {name:'FSG Energy Management (EMS) — Pitch Deck', kind:'Deck + PDF · 4-MAT', href:'ems-pitch-deck.html', pdf:'../assets/ems/FSG_Energy_Management_EMS_Pitch_Deck.pdf'},
   chariotdeck: {name:'Chariot Show Flow — UI Walkthrough', kind:'Deck + PDF · Demo rail', href:'chariot-show-flow-deck.html', pdf:'../assets/ems/FSG_Chariot_Show_Flow_Deck.pdf'},
   emsplay:     {name:'FSG Energy Management (EMS) Play', kind:'Sales Play · Internal', href:'../how/ems.html'},
+  signsdeck:   {name:'FSG Signs — Capabilities Deck', kind:'Deck + PDF · 4-MAT', href:'signs-capabilities-deck.html', pdf:'../assets/signs/FSG_Signs_Capabilities_Deck.pdf'},
+  signsplay:   {name:'FSG Signs — The Play', kind:'Sales Play · Internal', href:'../how/signs.html'},
+  signsoverview:{name:'FSG Signs — Product Overview', kind:'Guide · Internal', href:'../how/signs-product-overview.html'},
+  signsdelivery:{name:'How We Deliver a Sign Program', kind:'Guide · 9 stages · Internal', href:'../how/signs-delivery-method.html'},
   culture:     {name:'The Institution & Culture', kind:'Deck', href:'institution-culture.html'},
   lightplay:   {name:'FSG Lighting Design Playbook', kind:'Sales Play', href:'../plays/lighting-design-playbook.html'},
   cstore:      {name:'C-Store Playbook', kind:'Sales Play', href:'../plays/c-store.html'},
@@ -303,12 +307,12 @@ const LINES = [
   }},
  {name:'Signs', tag:'"Impossible to miss."',
   cells:{
-   construction:{desc:'We fabricate and install — one storefront or a national rebrand, delivered on a construction schedule your brand can bank on.',
-     types:['Fabrication','Install','Rebrand rollouts','Permitting'], proofs:['Valero'], res:['master','sunoco','cstore']},
-   service:{desc:'We keep the brand lit at every location — maintenance, repair, surveys, and permitting managed as one program.',
-     types:['Maintenance','Repair','Permitting & surveys','Permitting','Retrofits','National rollouts'], proofs:['HEB'], res:['nsa','master']},
+   construction:{desc:'We survey, design, permit, fabricate and install — one storefront or a national rebrand. Built in our 95,000 sq ft San Antonio shop, installed by our crews and 2,000+ affiliated installers, with power at the sign handled by the same team.',
+     types:['Rebrand rollouts','Channel letters','Monuments & pylons','Wayfinding & ADA','Site surveys','Fabrication','Install','Permitting'], proofs:['Wesco','HEB','Duluth Trading','Applebee\'s','Valero'], res:['signsdeck','signsplay','signsdelivery','signsoverview','master','sunoco','cstore']},
+   service:{desc:'We keep the brand lit at every location — maintenance, repair, re-facing, lighting upgrades, surveys and permitting managed as one program, backed by a 10-year LED and 5-year parts-and-labor warranty.',
+     types:['Maintenance','Repair','Permitting & surveys','Permitting','Retrofits','National rollouts','Lighting upgrades'], proofs:['HEB'], res:['signsdeck','signsplay','signsdelivery','nsa','master']},
    distribution:{desc:'We build the package and ship it to site — brand sign packages and components, install-ready for any qualified crew.',
-     types:['Brand packages','Components','Delivered to site'], proofs:[], res:['master']}
+     types:['Brand packages','Components','Delivered to site'], proofs:[], res:['signsdeck','signsoverview','master']}
   }},
  {name:'Technology Infrastructure', tag:'"Buildings that think."',
   cells:{
@@ -333,6 +337,11 @@ const LINES = [
 // ================= TYPE DEFINITIONS (from Growth Hub taxonomy sheet) =================
 const TYPEDEFS = {
  "Mission critical": "Electrical work for facilities that can't go dark — data centers, hospitals, 24/7 operations.",
+ "Channel letters": "Individual aluminum letters and logos on the building — non-lit, face-lit or reverse-lit, flush or raceway mounted.",
+ "Monuments & pylons": "Ground signs at the drive or road — new builds or new panels in an existing cabinet.",
+ "Wayfinding & ADA": "Directional, entrance and code-required ADA signage that moves people and trucks through the site.",
+ "Site surveys": "Every existing sign photographed and measured, with mounting, structure and power checked before design starts.",
+ "Lighting upgrades": "Converting signs to LED or adding face-lit or reverse-lit illumination to existing letters.",
  "Ground-up": "Complete electrical systems for new construction, from service entrance to final trim.",
  "Tenant finish-out": "Electrical scope that turns shell space into a move-in-ready tenant suite.",
  "Design-build": "Single-source design and installation — FSG engineers the system it builds.",
@@ -403,7 +412,16 @@ const TYPERES = {
  "Retrofits":               ['uwp','uwppdf'],
  "National rollouts":       ['uwp','uwppdf'],
  "Lamp & ballast programs": ['uwp','uwppdf'],
- "Emergency lighting":      ['uwp','uwppdf']
+ "Emergency lighting":      ['uwp','uwppdf'],
+ "Rebrand rollouts":        ['signsdeck','signsdelivery','signsplay'],
+ "Channel letters":         ['signsoverview'],
+ "Monuments & pylons":      ['signsoverview'],
+ "Wayfinding & ADA":        ['signsoverview'],
+ "Site surveys":            ['signsdelivery'],
+ "Permitting":              ['signsdelivery'],
+ "Fabrication":             ['signsoverview'],
+ "Install":                 ['signsdelivery'],
+ "Lighting upgrades":       ['signsoverview']
 };
 
 // ================= MATRIX RENDER =================
