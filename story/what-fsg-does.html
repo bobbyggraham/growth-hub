@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What FSG Does — The Five</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='115' fill='%23133865'/><g stroke='%23c5d9fa' stroke-width='22' stroke-linecap='round'><line x1='256' y1='256' x2='256' y2='96'/><line x1='256' y1='256' x2='394.6' y2='176'/><line x1='256' y1='256' x2='394.6' y2='336'/><line x1='256' y1='256' x2='256' y2='416'/><line x1='256' y1='256' x2='117.4' y2='336'/><line x1='256' y1='256' x2='117.4' y2='176'/></g><circle cx='256' cy='96' r='42' fill='%23ffffff'/><circle cx='394.6' cy='176' r='42' fill='%23c5d9fa'/><circle cx='394.6' cy='336' r='42' fill='%23ffffff'/><circle cx='256' cy='416' r='42' fill='%23c5d9fa'/><circle cx='117.4' cy='336' r='42' fill='%23ffffff'/><circle cx='117.4' cy='176' r='42' fill='%23ebb018'/><circle cx='256' cy='256' r='76' fill='%23ebb018'/></svg>">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--deep-navy:#0b1421;--dark-navy:#133865;--brand-blue:#365aa0;--steel-blue:#718dbc;--light-blue:#c5d9fa;--light-gray:#ededed;--gold:#ebb018;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Open Sans',Arial,sans-serif;color:var(--deep-navy);background:#fff;line-height:1.55;-webkit-font-smoothing:antialiased;}
+.hero{background:linear-gradient(160deg,var(--deep-navy) 0%,var(--dark-navy) 90%);color:#fff;padding:36px 20px 40px;border-bottom:3px solid var(--gold);}
+.inner{max-width:1100px;margin:0 auto;}
+.hero img.logo{height:34px;margin-bottom:24px;display:block;}
+.hero .back{font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--steel-blue);text-decoration:none;display:inline-block;margin-bottom:18px;}
+.hero .back:hover{color:var(--gold);}
+.hero .tag{font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.hero h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(32px,6vw,54px);line-height:1.05;letter-spacing:-1px;margin-bottom:12px;}
+.hero p{font-size:15px;color:var(--light-blue);max-width:660px;}
+main{padding:34px 20px 10px;}
+.kicker{font-family:'Oswald',sans-serif;font-size:12px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+h2{font-family:'Oswald',sans-serif;font-weight:600;font-size:24px;color:var(--dark-navy);text-transform:uppercase;margin-bottom:14px;}
+.answer{background:var(--deep-navy);border-left:5px solid var(--gold);border-radius:10px;padding:22px 24px;margin-bottom:34px;}
+.answer .lbl{font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.answer p{font-family:'Oswald',sans-serif;font-weight:500;font-size:clamp(18px,2.6vw,24px);line-height:1.35;color:#fff;}
+.answer .short{font-family:'Open Sans',sans-serif;font-size:13px;color:var(--light-blue);margin-top:12px;}
+.five{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;}
+.tile{background:#f2f5fb;border-top:4px solid var(--brand-blue);border-radius:0 0 8px 8px;padding:16px 15px 16px;display:flex;flex-direction:column;}
+.tile.hi{border-top-color:var(--gold);}
+.tile .n{font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;color:var(--brand-blue);}
+.tile h3{font-family:'Oswald',sans-serif;font-weight:700;font-size:23px;color:var(--dark-navy);margin:6px 0 4px;line-height:1.1;}
+.tile .sub{font-size:13.5px;line-height:1.4;}
+.tile ul{margin:9px 0 0 17px;font-size:12.5px;color:#33435c;line-height:1.5;}
+.tile .say{margin-top:14px;padding-top:12px;border-top:1px solid #d5ddec;font-size:13px;line-height:1.5;color:var(--deep-navy);}
+.tile .say b{display:block;font-family:'Oswald',sans-serif;font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--brand-blue);margin-bottom:3px;}
+.tile .ask{margin-top:14px;background:var(--deep-navy);color:#fff;border-radius:6px;padding:10px 12px;font-size:13px;line-height:1.45;}
+.tile .ask b{display:block;font-family:'Oswald',sans-serif;font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
+.tile .say{border-top:none;margin-top:10px;padding-top:0;}
+.tile .pf{margin-top:12px;font-size:12px;line-height:1.45;color:var(--brand-blue);font-weight:600;}
+.tile .pf.none{color:var(--steel-blue);font-weight:400;font-style:italic;}
+.tile .nx{margin-top:10px;margin-bottom:6px;background:#fff8e6;border:1px solid var(--gold);border-radius:6px;padding:9px 11px;font-size:12.5px;line-height:1.45;}
+.tile .nx b{display:block;font-family:'Oswald',sans-serif;font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--dark-navy);margin-bottom:2px;}
+.send{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border:1px solid var(--light-gray);border-left:4px solid var(--brand-blue);border-radius:10px;padding:18px 22px;margin-bottom:34px;}
+.send h3{font-family:'Oswald',sans-serif;font-weight:600;font-size:17px;text-transform:uppercase;color:var(--dark-navy);margin-bottom:4px;}
+.send p{font-size:14px;color:#33435c;max-width:620px;}
+.send .btns{display:flex;gap:10px;flex-wrap:wrap;}
+.send .btn{margin-top:0;}
+.tile a.go{margin-top:auto;display:inline-block;padding-top:14px;font-family:'Oswald',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--brand-blue);text-decoration:none;min-height:44px;white-space:nowrap;}
+.tile a.go:hover{color:var(--dark-navy);text-decoration:underline;}
+.thread{margin:16px 0 34px;background:#fff8e6;border:1px solid var(--gold);border-radius:10px;padding:14px 18px;font-size:14px;color:var(--deep-navy);}
+.thread b{color:var(--dark-navy);}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:34px;}
+.box{border:1px solid var(--light-gray);border-radius:10px;padding:20px 22px;}
+.box h3{font-family:'Oswald',sans-serif;font-weight:600;font-size:17px;text-transform:uppercase;color:var(--dark-navy);margin-bottom:8px;}
+.box p,.box li{font-size:14px;color:#33435c;}
+.box ol{margin:6px 0 0 18px;}
+.box li{margin-bottom:6px;}
+.btn{display:inline-block;margin-top:14px;font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;background:var(--gold);color:var(--deep-navy);border-radius:8px;padding:12px 18px;}
+.btn.navy{background:var(--dark-navy);color:#fff;}
+footer{background:var(--deep-navy);color:var(--steel-blue);padding:22px;text-align:center;font-size:12px;margin-top:24px;}
+footer .grind{font-family:'Oswald',sans-serif;font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+@media (max-width:980px){.five{grid-template-columns:repeat(2,minmax(0,1fr));}.tile a.go{white-space:normal;}}
+@media (max-width:620px){.five{grid-template-columns:1fr;}.two{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<!-- ============ GROWTH HUB GATE ============ -->
+<style>
+  html.gh-locked > body > :not(#ghGate){display:none !important;}
+  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
+  html:not(.gh-locked) #ghGate{display:none;}
+  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
+  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
+  #ghGate .gh-brand svg{width:30px;height:30px;}
+  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
+  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
+  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;}
+  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
+  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
+  #ghGate input:focus{border-color:#4e84de;}
+  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
+  #ghGate button:hover{filter:brightness(1.06);}
+  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
+  #ghGate .gh-shake{animation:ghshake .3s;}
+  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+<div id="ghGate">
+  <div class="gh-wrap">
+    <div class="gh-brand">
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#c5d9fa" stroke-width="14" stroke-linecap="round" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g><circle cx="150" cy="50" r="26" fill="#ffffff"/><circle cx="236.6" cy="100" r="26" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="26" fill="#ffffff"/><circle cx="150" cy="250" r="26" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="26" fill="#ffffff"/><circle cx="63.4" cy="100" r="26" fill="#c5d9fa"/><circle cx="150" cy="150" r="44" fill="#ebb018"/></svg>
+      <span>Growth Hub</span>
+    </div>
+    <div class="gh-card">
+      <h2>Passcode</h2>
+      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
+      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
+      <button id="ghGo" type="button">Enter the Hub</button>
+      <div class="gh-err" id="ghErr"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
+  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+  if(!unlocked()) document.documentElement.classList.add('gh-locked');
+  function open(){ document.documentElement.classList.remove('gh-locked'); }
+  async function check(){
+    var v=document.getElementById('ghPass').value;
+    var ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        ok=(hex===HASH);
+      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
+    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
+    if(ok){ remember(); open(); }
+    else{
+      var card=document.querySelector('#ghGate .gh-card');
+      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
+      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
+      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    if(unlocked()) return;
+    document.getElementById('ghGo').addEventListener('click', check);
+    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
+  });
+})();
+</script>
+<!-- ============ /GROWTH HUB GATE ============ -->
+
+<section class="hero">
+  <div class="inner">
+    <a class="back" href="../index.html?chip=story">&larr; Growth Hub &middot; Who We Are</a>
+    <img class="logo" src="data:image/png;base64,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" alt="FSG">
+    <div class="tag">Who We Are</div>
+    <h1>What FSG Does</h1>
+    <p>Someone asks what FSG does. You have thirty seconds and five words. Here they are, with the question to ask, the line to say, who we've proven it with, and where to take the account next.</p>
+  </div>
+</section>
+
+<main>
+  <div class="inner">
+    <div class="answer">
+      <div class="lbl">The 30-second answer</div>
+      <p id="answer">You shouldn't need five vendors to run a building. FSG is one accountable partner for electrical, lighting, signs, technology, and energy, self-performed coast to coast.</p>
+      <div class="short" id="short">Short version: Electrical. Lighting. Signs. Technology. Energy.</div>
+    </div>
+
+    <div class="kicker">Name the Five</div>
+    <h2>Five lines. One partner.</h2>
+    <!-- Static copy for search; assets/fsg-five.js re-renders it on load so the words stay in one place. -->
+    <div class="five" id="five"><div class="tile"><span class="n">01</span><h3>Electrical</h3><span class="sub">Electrical construction and service</span><ul><li>Preventative maintenance</li><li>Infrared scanning</li><li>New construction and renovations</li></ul><div class="ask"><b>Ask it first</b>When did a site last lose power, and what did that day cost you?</div><div class="say"><b>Then say it</b>Your power can't go down and your build can't run late. We build it, wire it, and keep it on, 24/7.</div><div class="pf">Proven with Boeing, Walmart</div><div class="nx"><b>Then ask about Energy</b>We're already in the gear. Ask what the building costs to run.</div><a class="go" href="products.html?line=electrical">Plays, decks &amp; proof →</a></div><div class="tile"><span class="n">02</span><h3>Lighting</h3><span class="sub">National lighting programs</span><ul><li>LED retrofits and upgrades</li><li>Lighting design and controls</li><li>Online ordering and tracking</li></ul><div class="ask"><b>Ask it first</b>How many of your sites are still on old lamps, and who handles it when one goes dark?</div><div class="say"><b>Then say it</b>A dark site costs you sales and safety. We design it, retrofit it, and keep every location lit, and we find the parts nobody else can.</div><div class="pf">Proven: Crash Champions: 660 locations in 38 states. Also U.S. Bank, Starbucks</div><div class="nx"><b>Then ask about Signs</b>Same lift, same crew, same site. Ask who keeps the sign lit.</div><a class="go" href="products.html?line=lighting">Plays, decks &amp; proof →</a></div><div class="tile"><span class="n">03</span><h3>Signs</h3><span class="sub">Commercial signs</span><ul><li>Interior and exterior signage</li><li>ADA and wayfinding</li><li>Repair and LED conversions</li></ul><div class="ask"><b>Ask it first</b>If I drove past your locations tonight, how many signs would be out?</div><div class="say"><b>Then say it</b>Your sign is your brand at every location. We survey, permit, build, and install it, then keep it lit.</div><div class="pf">Proven with HEB, Wesco, Valero</div><div class="nx"><b>Then ask about Lighting</b>A rebrand touches every site. Ask about the lot and the interior while the crew is there.</div><a class="go" href="products.html?line=signs">Plays, decks &amp; proof →</a></div><div class="tile"><span class="n">04</span><h3>Technology</h3><span class="sub">Smart buildings and technology infrastructure</span><ul><li>Cabling and network infrastructure</li><li>Audio/visual and security</li><li>Building automation and controls</li></ul><div class="ask"><b>Ask it first</b>When you open or remodel a site, how many vendors touch the cabling, cameras, and controls?</div><div class="say"><b>Then say it</b>Your building runs on its network. We build the backbone, cabling, AV, security, and controls, then keep it connected and current.</div><div class="pf none">Proof in build. Log yours in Proof Builder.</div><div class="nx"><b>Then ask about Electrical</b>Every device needs power. Ask who's pulling the circuits.</div><a class="go" href="products.html?line=technology">Plays, decks &amp; proof →</a></div><div class="tile hi"><span class="n">05</span><h3>Energy</h3><span class="sub">Energy efficiency across every product line</span><ul><li>Utility rebates and financing</li><li>Solar and EV charging</li><li>Energy audits and monitoring</li></ul><div class="ask"><b>Ask it first</b>Do you know which of your sites costs the most to run, and why?</div><div class="say"><b>Then say it</b>You're paying for energy you don't need. Everything we touch is built to cut that spend, verified at the meter. That's why energy runs through the other four.</div><div class="pf">Proven with Circle K, Tesla, IKEA</div><div class="nx"><b>Then ask about Lighting</b>Lighting is usually the quickest savings to prove. Start there.</div><a class="go" href="products.html?line=energy">Plays, decks &amp; proof →</a></div></div>
+    <div class="thread"><b>Energy is the gold one for a reason.</b> It runs through the other four: every electrical, lighting, sign, and technology job is built to cut the customer's energy spend. Lead with the line they called about. Close with energy.</div>
+
+    <div class="send">
+      <div><h3>The one you can send</h3><p>The hub stays inside FSG. This is the customer copy: the five lines on one clean page, no talk tracks, no client names. Use it as slide 2 in any deck, or attach the PDF.</p></div>
+      <div class="btns"><a class="btn navy" href="../assets/fsg/FSG_What_FSG_Does.pdf" download>Download PDF</a><a class="btn" href="../assets/fsg/FSG_What_FSG_Does.pptx" download>Download slide</a></div>
+    </div>
+
+    <div class="two">
+      <div class="box">
+        <h3>How to use it</h3>
+        <ol>
+          <li><b>Say the five.</b> In order, no notes. That's the answer to "what does FSG do?"</li>
+          <li><b>Ask before you tell.</b> Open their line with the question on the tile. Say the line once they've answered.</li>
+          <li><b>Prove it.</b> Each tile opens Products with that line's decks, plays, and proof ready to drop into a pitch PDF.</li>
+          <li><b>Expand.</b> They bought one. The gold box tells you which line to ask about next. Log it in Engage as a new opportunity.</li>
+        </ol>
+        <a class="btn navy" href="products.html">Open Products &rarr;</a>
+      </div>
+      <div class="box">
+        <h3>Prove you know it</h3>
+        <p>"Name the five" is on the Growth Hub certification check, and it's the one question you can't miss. If you can't name what we do, the rest doesn't count.</p>
+        <a class="btn" href="../resources/using-the-hub.html#check">Take the check &rarr;</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="grind">Protect. Land. Expand.</div>
+  <p>FSG &middot; What FSG Does &middot; part of Growth Hub &middot; internal use</p>
+</footer>
+
+<script src="../assets/fsg-five.js"></script>
+<script>
+(function(){
+  var F = window.FSG_FIVE; if(!F) return;
+  document.getElementById('answer').textContent = F.answer;
+  document.getElementById('short').textContent = 'Short version: ' + F.short;
+  document.getElementById('five').innerHTML = F.tiles.map(function(t){
+    var pf = t.proof || {}, nx = t.next && F.tiles.filter(function(x){ return x.key === t.next.key; })[0];
+    var others = (pf.names || []).filter(function(n){ return !pf.stat || pf.stat.indexOf(n) < 0; });
+    var proof = pf.stat ? '<div class="pf">Proven: ' + pf.stat + (others.length ? '. Also ' + others.join(', ') : '') + '</div>'
+      : (others.length ? '<div class="pf">Proven with ' + others.join(', ') + '</div>' : '<div class="pf none">Proof in build. Log yours in Proof Builder.</div>');
+    return '<div class="tile'+(t.hi?' hi':'')+'"><span class="n">'+t.n+'</span><h3>'+t.name+'</h3><span class="sub">'+t.sub+'</span>'
+      + '<ul>'+t.bullets.map(function(b){return '<li>'+b+'</li>';}).join('')+'</ul>'
+      + '<div class="ask"><b>Ask it first</b>'+t.ask+'</div>'
+      + '<div class="say"><b>Then say it</b>'+t.say+'</div>'
+      + proof
+      + (nx ? '<div class="nx"><b>Then ask about '+nx.name+'</b>'+t.next.why+'</div>' : '')
+      + '<a class="go" href="products.html?line='+t.key+'">Plays, decks &amp; proof &rarr;</a></div>';
+  }).join('');
+})();
+</script>
+</body>
+</html>
