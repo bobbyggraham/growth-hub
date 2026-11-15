@@ -410,7 +410,7 @@
       <a href="#drills"><b><i>4</i>Three Drills</b><span>Run them on a real account</span></a>
       <a href="#proof"><b><i>5</i>+ Proof Builder</b><span>Get your win on the board</span></a>
       <a href="#rhythm"><b><i>6</i>The Rhythm</b><span>Daily to quarterly</span></a>
-      <a href="#check"><b><i>7</i>Check Yourself</b><span>8 questions, get certified</span></a>
+      <a href="#check"><b><i>7</i>Check Yourself</b><span>9 questions, get certified</span></a>
       <a href="#teach"><b><i>8</i>Teach It</b><span>15-minute huddle + cheat sheet</span></a>
     </div>
     <div class="principle">
@@ -494,7 +494,7 @@
       <summary><span class="nm">Products &rarr;</span><span class="ln">How they'll buy it, and the pitch PDF you send</span><span class="pl">+</span></summary>
       <div class="bd">
         <dl class="kv">
-          <dt>What it is</dt><dd>Products × Delivery Method: five business lines, three ways to buy. Tap a cell to go deeper. The pitch tray combines decks, proofs, and types into one downloadable PDF.</dd>
+          <dt>What it is</dt><dd>Products × Delivery Method: five business lines, three ways to buy. Start with the five What FSG Does tiles up top: tap one and the page narrows to that line's decks, plays, and proof. Tap a cell to go deeper. The pitch tray combines decks, proofs, and types into one downloadable PDF.</dd>
           <dt>Spoke</dt><dd>Finance: what it costs, what it saves, how it's bought.</dd>
           <dt>Reach for it</dt><dd>Before you quote, and any time a customer asks you to "send something over."</dd>
           <dt>Master this</dt><dd>Build a custom pitch PDF in under two minutes. <strong>Never send a hub link outside FSG</strong>, because it's passcode-gated. Send the PDF.</dd>
@@ -846,7 +846,7 @@
 
   <section id="check">
     <h2><span class="num">07</span>Check Yourself</h2>
-    <p>Eight questions. Get 7 right and you're Growth Hub Certified. Miss one and the answer tells you why.</p>
+    <p>Nine questions. Get 8 right and you're Growth Hub Certified. One is non-negotiable: name the five things FSG does. Miss that one and you're not certified, whatever the score. <a href="../story/what-fsg-does.html" target="_blank" rel="noopener">Study What FSG Does</a> first.</p>
     <div class="quiz" id="quiz">
       <div class="qn" id="qNum"></div>
       <div class="qt" id="qText"></div>
@@ -881,7 +881,7 @@
         <tr><td>0–2</td><td>Open the hub home page on screen.</td><td>"The customer is the hero. We're the guide. This is the guide's kit: story, plan, proof, price. Contribution + Service = Value."</td></tr>
         <tr><td>2–6</td><td>Walk the chip row left to right. Click one plain chip, then one arrow chip.</td><td>"Plain chips filter. Arrow chips open a page. Products is how they buy it. Plays is every walkthrough, and Proof Builder lives there."</td></tr>
         <tr><td>6–11</td><td>Run Drill A live on a real account someone in the room is working.</td><td>"Ten minutes, four clicks. Who We Are for the hook, Results for the proof, Products for the price and the PDF."</td></tr>
-        <tr><td>11–14</td><td>Everyone takes the Check on their phone.</td><td>"Seven of eight and you're certified. Screenshot it and drop it in the team channel."</td></tr>
+        <tr><td>11–14</td><td>Everyone takes the Check on their phone.</td><td>"Eight of nine and you're certified, and you have to name the five. Screenshot it and drop it in the team channel."</td></tr>
         <tr><td>14–15</td><td>Go around the room.</td><td>"Pick one habit from the Rhythm and do it this week. Next huddle, we report it."</td></tr>
       </table>
     </div>
@@ -984,6 +984,9 @@
 
   /* ---------- check yourself ---------- */
   var Q = [
+    { q: 'Name the five. What does FSG do?', must: true,
+      o: ['Electrical, Lighting, Signs, Technology, Energy', 'Electrical, Plumbing, HVAC, Roofing, Janitorial', 'Construction, Service, Distribution, Design, Finance', 'Lighting, Solar, Security, Cabling, Paving'], a: 0,
+      w: 'Electrical, Lighting, Signs, Technology, Energy. Five lines, one partner, and energy runs through the other four. Construction, Service, and Distribution are how we deliver them. This is the one question you can’t miss. Open Who We Are → What FSG Does and say it out loud.' },
     { q: 'Where does Proof Builder live?', o: ['Behind the Growth chip', 'In the Playbook: Plays →, top bar', 'On the Results wall', 'On the Products page'], a: 1,
       w: 'Proof Builder lives in Plays. Open the Playbook and it’s in the top bar, next to the Get My Proof Live guide.' },
     { q: 'A chip with an arrow (Products →, Plays →, Wire →) does what?', o: ['Filters the home page', 'Opens its own page', 'Downloads a PDF', 'Shows hidden cards'], a: 1,
@@ -1001,7 +1004,8 @@
     { q: 'The Playbook’s three series are…', o: ['Engage Live, Engage Plays, Guides', 'Products, Results, Proof', 'Tools, Training, Templates', 'Start, Do, Next'], a: 0,
       w: 'Engage Live (the episodes), Engage Plays (the CRM), and Guides (field guides, hub plays, personal development).' }
   ];
-  var qi = 0, score = 0, answered = false;
+  var qi = 0, score = 0, answered = false, missedMust = false;
+  var PASS = Q.length - 1;
   var elN = document.getElementById('qNum'), elT = document.getElementById('qText'), elO = document.getElementById('qOpts'),
       elW = document.getElementById('qWhy'), elS = document.getElementById('qScore'), elNext = document.getElementById('qNext');
   var quiz = document.getElementById('quiz'), cert = document.getElementById('cert'), fail = document.getElementById('quizFail');
@@ -1015,7 +1019,7 @@
       var b = document.createElement('button'); b.type = 'button'; b.className = 'opt'; b.textContent = txt;
       b.addEventListener('click', function () {
         if (answered) return; answered = true;
-        var ok = k === it.a; if (ok) score++;
+        var ok = k === it.a; if (ok) score++; else if (it.must) missedMust = true;
         elO.querySelectorAll('.opt').forEach(function (x, j) { x.disabled = true; if (j === it.a) x.classList.add('right'); });
         if (!ok) b.classList.add('wrong');
         elW.textContent = (ok ? 'Right. ' : 'Not quite. ') + it.w; elW.className = 'why on';
@@ -1027,17 +1031,19 @@
   elNext.addEventListener('click', function () {
     if (qi < Q.length - 1) { qi++; render(); return; }
     quiz.style.display = 'none';
-    if (score >= 7) {
+    if (score >= PASS && !missedMust) {
       cert.classList.add('on'); fail.style.display = 'none';
       var dt = new Date();
       document.getElementById('certMeta').textContent = score + ' of ' + Q.length + ' · ' + dt.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
       state.check = true; save(); paint();
     } else {
       fail.style.display = 'block';
-      document.getElementById('failMsg').textContent = score + ' of ' + Q.length + '. You need 7.';
+      document.getElementById('failMsg').textContent = missedMust
+        ? score + ' of ' + Q.length + ', and you missed the one that counts most: name the five things FSG does.'
+        : score + ' of ' + Q.length + '. You need ' + PASS + '.';
     }
   });
-  function restart() { qi = 0; score = 0; quiz.style.display = ''; cert.classList.remove('on'); fail.style.display = 'none'; render(); }
+  function restart() { qi = 0; score = 0; missedMust = false; quiz.style.display = ''; cert.classList.remove('on'); fail.style.display = 'none'; render(); }
   document.getElementById('certRetry').addEventListener('click', restart);
   document.getElementById('failRetry').addEventListener('click', function () { restart(); });
   document.getElementById('certInput').addEventListener('input', function (e) { document.getElementById('certName').textContent = e.target.value; });
