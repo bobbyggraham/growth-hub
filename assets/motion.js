@@ -21,6 +21,16 @@
        Paste the week block Paula hands you after Monday review right below
        this marker. Nothing else in this file changes.
        ============================================================================ */
+    { week: "2026-11-16", cards: [
+      { lane: "RESULTS", tone: "navy", standard: "Lead with the job, not the adjectives.", move: "Next intro, skip \"we're the best.\" Name one finished job like theirs and what it changed for them." },
+      { lane: "EXECUTION", tone: "deep", standard: "Say the finish line first.", move: "Open your next meeting with one sentence: by the end, we'll have decided ___. Then start on time, even with two people in the room." },
+      { lane: "PEOPLE", tone: "light", standard: "Find what they're excited about. Then stay there.", move: "Swap \"How's the project going?\" for \"What's the most unexpected thing on this job?\" When they light up, ask one more." },
+      { lane: "VISION", tone: "navy", standard: "A team is a mirror. Fix your part first.", move: "Before you ask what the team needs to change, name one thing you'll change this week. Then do it." },
+      { lane: "DEVELOPMENT", tone: "deep", standard: "The best talkers are prepared. Keep a story bank.", move: "Put three short customer wins in a note on your phone. Glance at it before every big meeting." },
+      { lane: "VALUE", tone: "light", standard: "Your topic gets the meeting. Your energy gets the next one.", move: "On your next call, sit up, take a breath, and put real energy into your first five words." },
+      { lane: "EXECUTION", tone: "navy", standard: "End every meeting with a name and a date.", move: "Before anyone leaves, read each action back out loud: who, what, by when. No \"let's circle back.\"" },
+      { lane: "PEOPLE", tone: "deep", standard: "Open with a win, not a vent.", move: "Start your next huddle with 30 seconds each: one win from the week. Give the hard stuff five minutes, then move to next steps." }
+    ]},
     { week: "2026-11-02", cards: [
       { lane: "PEOPLE",      tone: "navy",  standard: "Nobody's a finished product. Build each other up.", move: "Before you critique a teammate's record, ask what you'd want asked of yours. Then sit down and fix it together." },
       { lane: "EXECUTION",   tone: "deep",  standard: "Great teams aren't built on the good weeks.", move: "Something went sideways on an account this week. Pull the team into one Engage Meeting, own it, assign the fix. No fingers." },
@@ -340,6 +350,90 @@
       if (w) openCard(w, +a.getAttribute("data-gim-i"));
     });
   }
+
+  /* ---------------- TODAY'S CARD: the gold strip at the top of the main page ----------------
+     First thing you see after the passcode. One card a day from the live week:
+     Mon = card 1, Tue = card 2 ... Sun = card 7 (the full set stays behind the Growth chip).
+     "Lock it in" is a one-tap commitment, remembered in this browser until tomorrow. */
+  (function () {
+    var host = document.getElementById("ghToday");
+    if (!host || !current.cards.length) return;
+    var DAYS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+    var now = new Date(), dow = now.getDay();          // 0 = Sun
+    var di = (dow + 6) % 7;                            // Mon = 0 ... Sun = 6
+    var ti = di % current.cards.length, c = current.cards[ti];
+    var KEY = "gh-today-lock", stamp = today + "|" + current.week + "|" + ti;
+    function isLocked() { try { return localStorage.getItem(KEY) === stamp; } catch (e) { return false; } }
+    function setLocked() { try { localStorage.setItem(KEY, stamp); } catch (e) {} }
+
+    var tcss = ""
+      + "#ghToday{background:#ebb018;color:#0b1421;position:relative;overflow:hidden;animation:gtIn .6s cubic-bezier(.2,.8,.2,1) both;}"
+      + "#ghToday::after{content:'';position:absolute;top:0;bottom:0;left:-40%;width:30%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);animation:gtSweep 2.8s ease-in-out .5s 2;pointer-events:none;}"
+      + "@keyframes gtIn{from{transform:translateY(-100%);opacity:0}to{transform:none;opacity:1}}"
+      + "@keyframes gtSweep{0%{left:-40%}100%{left:130%}}"
+      + ".gt-in{max-width:1100px;margin:0 auto;padding:16px 20px;display:flex;align-items:center;gap:18px;}"
+      + ".gt-tag{flex:none;display:flex;flex-direction:column;align-items:center;gap:4px;font:800 10px/1 'Open Sans',Arial,sans-serif;letter-spacing:2.5px;}"
+      + ".gt-tag b{font:700 22px/1 Oswald,'Arial Narrow',Arial,sans-serif;letter-spacing:1px;}"
+      + ".gt-body{flex:1;min-width:0;}"
+      + ".gt-kick{font:800 10.5px/1 'Open Sans',Arial,sans-serif;letter-spacing:2.5px;margin-bottom:6px;opacity:.85;}"
+      + ".gt-std{font:700 clamp(18px,2.6vw,26px)/1.1 Oswald,'Arial Narrow',Arial,sans-serif;text-transform:uppercase;margin:0 0 4px;color:#0b1421;}"
+      + ".gt-move{font:400 14px/1.45 'Open Sans',Arial,sans-serif;margin:0;color:#0b1421;}"
+      + ".gt-acts{flex:none;display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end;}"
+      + ".gt-btn{font:800 12px/1 'Open Sans',Arial,sans-serif;letter-spacing:.5px;border-radius:999px;padding:12px 16px;min-height:44px;cursor:pointer;border:2px solid #0b1421;background:transparent;color:#0b1421;transition:background .2s,color .2s;}"
+      + ".gt-btn:hover,.gt-btn:focus-visible{background:#0b1421;color:#ebb018;}"
+      + ".gt-btn.solid{background:#0b1421;color:#ebb018;}"
+      + ".gt-btn.solid:hover{background:#133865;}"
+      + ".gt-link{font:800 12px/1 'Open Sans',Arial,sans-serif;color:#0b1421;background:none;border:0;padding:12px 6px;min-height:44px;cursor:pointer;text-decoration:underline;text-underline-offset:3px;}"
+      /* locked: one slim line */
+      + "#ghToday.done .gt-in{padding:9px 20px;}"
+      + "#ghToday.done .gt-tag,#ghToday.done .gt-move,#ghToday.done .gt-kick,#ghToday.done [data-gt=lock]{display:none;}"
+      + "#ghToday.done .gt-std{font-size:15px;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}"
+      + "#ghToday.done .gt-std::before{content:'\\2713  Locked in \\00b7  ';font-family:'Open Sans',Arial,sans-serif;font-weight:800;font-size:12px;letter-spacing:1.5px;}"
+      + "#ghToday.done .gt-btn{min-height:36px;padding:8px 12px;}"
+      + "#ghToday.pop .gt-std{animation:gtPop .5s ease;}"
+      + "@keyframes gtPop{0%{transform:scale(1)}40%{transform:scale(1.04)}100%{transform:scale(1)}}"
+      + "@media (max-width:720px){.gt-in{flex-wrap:wrap;gap:12px;padding:14px 16px;}.gt-tag{flex-direction:row;gap:8px;}.gt-body{flex-basis:100%;order:2;}.gt-tag{order:1;}.gt-acts{order:3;justify-content:flex-start;width:100%;}"
+      + "#ghToday.done .gt-body{flex-basis:auto;flex:1;order:1}#ghToday.done .gt-acts{width:auto;order:2}#ghToday.done [data-gt=week]{display:none}"
+      + "#ghToday.done .gt-std{white-space:normal;font-size:14px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}}"
+      + "@media (prefers-reduced-motion: reduce){#ghToday,#ghToday::after,#ghToday.pop .gt-std{animation:none}}";
+    var st = document.createElement("style"); st.textContent = tcss; document.head.appendChild(st);
+
+    host.setAttribute("role", "region");
+    host.setAttribute("aria-label", "Today's Growth in Motion card");
+    host.innerHTML = '<div class="gt-in">'
+      + '<div class="gt-tag">' + mark(false).replace('fill="#ffffff"', 'fill="#0b1421"').replace(/fill="#ffffff"/g, 'fill="#0b1421"').replace(/fill="#c5d9fa"/g, 'fill="#133865"').replace(/stroke="#718dbc"/g, 'stroke="#0b1421"') + '<span>TODAY</span><b>' + DAYS[dow] + '</b></div>'
+      + '<div class="gt-body"><div class="gt-kick">GROWTH IN MOTION · ' + pad(ti + 1) + ' · ' + esc(c.lane) + '</div>'
+      + '<h2 class="gt-std">' + esc(c.standard) + '</h2>'
+      + '<p class="gt-move"><b>The Move:</b> ' + esc(c.move) + '</p></div>'
+      + '<div class="gt-acts" aria-live="polite">'
+      + '<button class="gt-btn solid" data-gt="lock">Lock it in</button>'
+      + '<button class="gt-btn" data-gt="dl">Download</button>'
+      + '<button class="gt-link" data-gt="week">See this week &rarr;</button>'
+      + '</div></div>';
+    if (isLocked()) host.classList.add("done");
+
+    host.addEventListener("click", function (e) {
+      var a = e.target.closest ? e.target.closest("[data-gt]") : null;
+      if (!a) {
+        // tapping the slim locked line opens it back up
+        if (host.classList.contains("done") && e.target.closest && e.target.closest(".gt-body")) host.classList.remove("done");
+        return;
+      }
+      var act = a.getAttribute("data-gt");
+      if (act === "lock") {
+        setLocked();
+        host.classList.add("pop");
+        setTimeout(function () { host.classList.remove("pop"); host.classList.add("done"); }, reduceMotion ? 0 : 450);
+      } else if (act === "dl") {
+        openDownload(current, ti);
+      } else if (act === "week") {
+        var chip = document.querySelector('.tag-chip[data-filter="tools"]');
+        if (chip) chip.click();
+        var sec = document.getElementById("tools");
+        if (sec) sec.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+      }
+    });
+  })();
 
   /* ---------------- feature: this week, gold, in motion ---------------- */
   var feat = document.getElementById("ghMotionFeature");
