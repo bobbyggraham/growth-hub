@@ -334,6 +334,17 @@ body.present .ed:focus{box-shadow:inset 0 -3px 0 var(--pop)}
 .cues b{display:block;font-family:'Oswald',Arial,sans-serif;font-size:24px;font-weight:600;color:var(--ink)}
 .cues span{font-size:18px;color:var(--body)}
 .flip .front .pen.fum::before{background:#fff;border-radius:50%/40%}
+
+/* ===== Watch bar (session recording) ===== */
+#watchbar{position:fixed;top:0;left:0;right:0;height:46px;z-index:9;display:flex;align-items:center;justify-content:center;gap:14px;background:#ebb018;color:#0b1421;font-family:'Open Sans',Arial,sans-serif;font-size:15px;padding:0 16px;box-shadow:0 2px 10px rgba(11,20,33,.15)}
+#watchbar b{font-weight:700}
+#watchbar a{font-family:'Oswald',Arial,sans-serif;font-size:15px;letter-spacing:.5px;background:#0b1421;color:#fff;text-decoration:none;padding:7px 16px;border-radius:7px;white-space:nowrap}
+#watchbar a:hover{background:#133865}
+#watchbar a:focus-visible{outline:2px solid #0b1421;outline-offset:2px}
+body:not(.present):not(.notesonly) #viewport{top:46px}
+body:not(.notesonly) #notes{top:46px}
+body.present #watchbar, body.notesonly #watchbar{display:none}
+@media (max-width:700px){#watchbar span.hide-sm{display:none}}
 </style>
 </head>
 <body>
@@ -409,6 +420,7 @@ body.present .ed:focus{box-shadow:inset 0 -3px 0 var(--pop)}
 <!-- ============ /GROWTH HUB GATE ============ -->
 
 
+<div id="watchbar">&#127909; <span class="hide-sm"><b>Missed it live?</b> The full session recording is in the Growth Hub Drive folder.</span><a href="https://drive.google.com/file/d/1zEEjfU3YwvJoUWZw_NF8eMxSaQixmXW0/view?usp=sharing" target="_blank" rel="noopener">&#9654;&nbsp; Watch Episode 12 &mdash; The Quarterback</a></div>
 <div id="viewport"><div id="deck">
 
 <section class="slide field" data-title="Kickoff" data-bug="Pregame · Kickoff">
