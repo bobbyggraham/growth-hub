@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connect. Don't Sell. — Personal Development | Growth Hub</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='115' fill='%23133865'/><g stroke='%23c5d9fa' stroke-width='22' stroke-linecap='round'><line x1='256' y1='256' x2='256' y2='96'/><line x1='256' y1='256' x2='394.6' y2='176'/><line x1='256' y1='256' x2='394.6' y2='336'/><line x1='256' y1='256' x2='256' y2='416'/><line x1='256' y1='256' x2='117.4' y2='336'/><line x1='256' y1='256' x2='117.4' y2='176'/></g><circle cx='256' cy='96' r='42' fill='%23ffffff'/><circle cx='394.6' cy='176' r='42' fill='%23c5d9fa'/><circle cx='394.6' cy='336' r='42' fill='%23ffffff'/><circle cx='256' cy='416' r='42' fill='%23c5d9fa'/><circle cx='117.4' cy='336' r='42' fill='%23ffffff'/><circle cx='117.4' cy='176' r='42' fill='%23ebb018'/><circle cx='256' cy='256' r='76' fill='%23ebb018'/></svg>">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fsg-deep-navy:#0b1421; --fsg-dark-navy:#133865; --fsg-brand-blue:#365aa0; --fsg-steel-blue:#718dbc;
+    --fsg-light-blue:#c5d9fa; --fsg-light-gray:#ededed; --fsg-gold:#ebb018; --fsg-bright-blue:#4e84de;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Open Sans',Arial,Helvetica,sans-serif; color:var(--fsg-deep-navy); background:#fff; line-height:1.55; }
+  h1,h2,h3,h4 { font-family:'Oswald','Arial Narrow',Arial,sans-serif; color:var(--fsg-dark-navy); }
+  .page { max-width:920px; margin:0 auto; padding:0 40px 48px; }
+
+  .cover { background:var(--fsg-dark-navy); color:#fff; padding:52px 40px 42px; }
+  .cover .inner { max-width:920px; margin:0 auto; }
+  .back { font-family:'Oswald',Arial,sans-serif; font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:#718dbc; text-decoration:none; display:inline-block; margin-bottom:18px; }
+  .wordmark { font-family:'Oswald',Arial,sans-serif; letter-spacing:3px; font-size:15px; text-transform:uppercase; }
+  .wordmark span { color:var(--fsg-gold); }
+  .cover .rule { border-top:2px solid var(--fsg-gold); margin:22px 0 26px; width:120px; }
+  .cover h1 { color:#fff; font-size:46px; line-height:1.08; text-transform:uppercase; letter-spacing:.5px; }
+  .cover h1 em { font-style:normal; color:var(--fsg-gold); }
+  .cover .sub { color:var(--fsg-light-blue); font-size:17px; margin-top:14px; max-width:660px; }
+  .cover .meta { color:var(--fsg-steel-blue); font-size:12px; margin-top:26px; letter-spacing:1px; text-transform:uppercase; }
+  .jump { display:flex; flex-wrap:wrap; gap:8px; margin-top:22px; }
+  .jump a { font-family:'Oswald',Arial,sans-serif; font-size:13px; letter-spacing:1px; text-transform:uppercase; color:#fff; text-decoration:none; border:1px solid var(--fsg-steel-blue); border-radius:999px; padding:5px 14px; }
+  .jump a:hover, .jump a:focus-visible { border-color:var(--fsg-gold); color:var(--fsg-gold); }
+
+  section { margin-top:44px; scroll-margin-top:16px; }
+  h2 { font-size:27px; text-transform:uppercase; letter-spacing:.5px; padding-bottom:8px; border-bottom:2px solid var(--fsg-gold); }
+  h2 .num { color:var(--fsg-gold); margin-right:10px; }
+  h3 { font-size:18px; color:var(--fsg-brand-blue); margin:24px 0 8px; }
+  p { margin:10px 0; font-size:15px; }
+  ul,ol { margin:10px 0 10px 24px; font-size:15px; }
+  li { margin:6px 0; }
+  strong { color:var(--fsg-dark-navy); }
+
+  .callout { background:#eef4fe; border-left:4px solid var(--fsg-gold); padding:14px 18px; margin:18px 0; font-size:14.5px; color:var(--fsg-dark-navy); border-radius:0 4px 4px 0; }
+  .principle { background:var(--fsg-deep-navy); color:#fff; padding:22px 26px; margin:24px 0; border-radius:6px; }
+  .principle h3 { color:var(--fsg-gold); margin:0 0 6px; text-transform:uppercase; letter-spacing:1px; font-size:14px; }
+  .principle p { color:#fff; font-size:18px; font-weight:600; margin:0; }
+  .practice { border:2px dashed var(--fsg-gold); border-radius:8px; padding:14px 18px; margin:18px 0; }
+  .practice .label { font-family:'Oswald',Arial,sans-serif; text-transform:uppercase; letter-spacing:1.5px; font-size:12px; color:#9a6f00; display:block; margin-bottom:4px; }
+  .practice p { margin:4px 0; }
+
+  table { width:100%; border-collapse:collapse; margin:16px 0; font-size:14px; }
+  th { background:var(--fsg-dark-navy); color:#fff; text-align:left; padding:10px 12px; font-weight:700; }
+  td { padding:10px 12px; vertical-align:top; }
+  tr:nth-child(even) td { background:#eef4fe; }
+
+  .arc { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:18px 0; counter-reset:a; }
+  .arc div { background:var(--fsg-light-gray); border-top:4px solid var(--fsg-gold); padding:14px; border-radius:0 0 6px 6px; counter-increment:a; }
+  .arc h4 { font-size:19px; text-transform:uppercase; margin-bottom:4px; }
+  .arc h4::before { content:counter(a) " "; color:var(--fsg-gold); }
+  .arc p { font-size:13.5px; margin:4px 0; }
+
+  .voices { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin:18px 0; }
+  .voice { border:1px solid #d8dee9; border-left:5px solid var(--fsg-brand-blue); border-radius:6px; padding:14px 16px; background:#fff; text-align:left; font:inherit; color:inherit; cursor:pointer; }
+  .voice.on { border-left-color:var(--fsg-gold); background:#fffaf0; box-shadow:0 2px 10px rgba(19,56,101,.12); }
+  .voice:focus-visible { outline:3px solid var(--fsg-bright-blue); outline-offset:2px; }
+  .voice h4 { font-size:20px; text-transform:uppercase; }
+  .voice .goal { font-size:12px; letter-spacing:1px; text-transform:uppercase; color:var(--fsg-steel-blue); font-family:'Oswald',Arial,sans-serif; }
+  .voice p { font-size:13.5px; margin:5px 0 0; }
+  .voice p b { color:var(--fsg-dark-navy); }
+  .say { background:var(--fsg-deep-navy); color:#fff; border-radius:8px; padding:16px 20px; margin:12px 0; }
+  .say .label { font-family:'Oswald',Arial,sans-serif; text-transform:uppercase; letter-spacing:1.5px; font-size:12px; color:var(--fsg-gold); display:block; margin-bottom:4px; }
+  .say p { color:#fff; font-size:18px; margin:0; }
+  .say small { display:block; color:var(--fsg-light-blue); font-size:13.5px; margin-top:6px; }
+
+  .script { background:var(--fsg-light-gray); border-radius:6px; padding:14px 18px; margin:12px 0; font-size:14.5px; }
+  .script .label { font-family:'Oswald',Arial,sans-serif; text-transform:uppercase; letter-spacing:1px; font-size:11px; color:var(--fsg-brand-blue); display:block; margin-bottom:6px; }
+  .three21 { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:18px 0; }
+  .three21 div { border:1px solid #d8dee9; border-radius:6px; padding:14px; }
+  .three21 b.n { display:block; font-family:'Oswald',Arial,sans-serif; font-size:44px; line-height:1; color:var(--fsg-gold); }
+  .three21 h4 { font-size:17px; text-transform:uppercase; margin:2px 0 4px; }
+  .three21 p { font-size:13.5px; margin:4px 0; }
+
+  .score { list-style:none; margin:14px 0; display:grid; gap:8px; }
+  .score li { margin:0; }
+  .score label { display:flex; gap:12px; align-items:flex-start; border:1px solid #d8dee9; border-radius:6px; padding:10px 14px; cursor:pointer; font-size:15px; }
+  .score input { width:20px; height:20px; margin-top:2px; accent-color:var(--fsg-dark-navy); flex:none; }
+  .scoreout { font-family:'Oswald',Arial,sans-serif; font-size:19px; color:var(--fsg-dark-navy); min-height:1.5em; }
+
+  .more { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:18px 0; }
+  .more a { display:block; border:1px solid #d8dee9; border-left:4px solid var(--fsg-brand-blue); border-radius:6px; padding:12px 14px; text-decoration:none; color:inherit; }
+  .more a:hover, .more a:focus-visible { border-left-color:var(--fsg-gold); }
+  .more h4 { font-size:16px; }
+  .more p { font-size:13px; margin:4px 0 0; color:#44546b; }
+
+  .credit { font-size:12px; color:var(--fsg-steel-blue); margin-top:36px; }
+  footer { background:var(--fsg-deep-navy); color:var(--fsg-steel-blue); padding:22px 40px; margin-top:56px; font-size:12px; }
+  footer .inner { max-width:920px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+
+  @media (max-width:720px) { .page{padding:0 16px 40px} .cover{padding:40px 16px 32px} .arc,.voices,.three21,.more{grid-template-columns:1fr} .cover h1{font-size:34px} table{font-size:13px} }
+  @media print { .cover,.principle,.say,th { -webkit-print-color-adjust:exact; print-color-adjust:exact; } .jump{display:none} section{break-inside:avoid} }
+</style>
+</head>
+<body>
+<!-- ============ GROWTH HUB GATE ============ -->
+<style>
+  html.gh-locked > body > :not(#ghGate){display:none !important;}
+  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
+  html:not(.gh-locked) #ghGate{display:none;}
+  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
+  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
+  #ghGate .gh-brand svg{width:30px;height:30px;}
+  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
+  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
+  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;}
+  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
+  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
+  #ghGate input:focus{border-color:#4e84de;}
+  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
+  #ghGate button:hover{filter:brightness(1.06);}
+  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
+  #ghGate .gh-shake{animation:ghshake .3s;}
+  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+<div id="ghGate">
+  <div class="gh-wrap">
+    <div class="gh-brand">
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#c5d9fa" stroke-width="14" stroke-linecap="round" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g><circle cx="150" cy="50" r="26" fill="#ffffff"/><circle cx="236.6" cy="100" r="26" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="26" fill="#ffffff"/><circle cx="150" cy="250" r="26" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="26" fill="#ffffff"/><circle cx="63.4" cy="100" r="26" fill="#c5d9fa"/><circle cx="150" cy="150" r="44" fill="#ebb018"/></svg>
+      <span>Growth Hub</span>
+    </div>
+    <div class="gh-card">
+      <h2>Passcode</h2>
+      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
+      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
+      <button id="ghGo" type="button">Enter the Hub</button>
+      <div class="gh-err" id="ghErr"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
+  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+  if(!unlocked()) document.documentElement.classList.add('gh-locked');
+  function open(){ document.documentElement.classList.remove('gh-locked'); }
+  async function check(){
+    var v=document.getElementById('ghPass').value;
+    var ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        ok=(hex===HASH);
+      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
+    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
+    if(ok){ remember(); open(); }
+    else{
+      var card=document.querySelector('#ghGate .gh-card');
+      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
+      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
+      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    if(unlocked()) return;
+    document.getElementById('ghGo').addEventListener('click', check);
+    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
+  });
+})();
+</script>
+<!-- ============ /GROWTH HUB GATE ============ -->
+
+<div class="cover">
+  <div class="inner">
+    <a class="back" href="../index.html">&larr; Growth Hub</a>
+    <div class="wordmark">Facility Solutions Group <span>|</span> Growth Organization</div>
+    <div class="rule"></div>
+    <h1>Connect. <em>Don't Sell.</em></h1>
+    <div class="sub">How to be dynamic, magnetic, and authentic. A guide to read once and practice every day, in the voice you already have.</div>
+    <div class="jump">
+      <a href="#dynamic">01 Dynamic</a><a href="#magnetic">02 Magnetic</a><a href="#authentic">03 Authentic</a><a href="#practice">Practice plan</a><a href="#score">The scorecard</a>
+    </div>
+    <div class="meta">Personal Development &nbsp;·&nbsp; November 2026 &nbsp;·&nbsp; Read it, then practice it</div>
+  </div>
+</div>
+
+<div class="page">
+
+  <section>
+    <h2>The Conversation That Never Sells</h2>
+    <p>The best customer conversation you will have this year won't include a pitch. You won't walk the line card. You may not say "FSG" more than once. And they will still ask when you can come back.</p>
+    <p>That isn't luck. It's four moves, in order:</p>
+    <div class="arc">
+      <div><h4>Connect</h4><p>They feel like a person, not a prospect. It starts in your first ten words.</p></div>
+      <div><h4>Discover the pain</h4><p>You find the problem they would pay to fix. They do most of the talking.</p></div>
+      <div><h4>Make an impact</h4><p>They leave with something useful: a clearer picture, a number, a next step.</p></div>
+      <div><h4>Earn the next one</h4><p>A reason to come back, and a project to work on together.</p></div>
+    </div>
+    <div class="principle">
+      <h3>The Standard</h3>
+      <p>If you never pitched and they still want the next meeting, you did it right.</p>
+    </div>
+    <h3>It's happening right now: Sky Chefs</h3>
+    <p>We bid Sky Chefs twice, in 2025 and 2026. One site each, through facilities, nobody warmed up. We lost both. Here is the third try, same customer, different approach.</p>
+    <table>
+      <tr><th>The move</th><th>What we did</th></tr>
+      <tr><td><strong>Connect</strong></td><td>A partner, Foodbuy, made the introduction. Before anyone pitched, we built the account plan and ran a short discovery call that was all questions.</td></tr>
+      <tr><td><strong>Discover the pain</strong></td><td>Face to face, we asked about their rebranding strategy. We learned they run 36 locations, every building is different and decades old, and they are consolidating vendors.</td></tr>
+      <tr><td><strong>Make an impact</strong></td><td>They named six priorities themselves: signage, LED, generators, EV chargers, cabling. An NDA got signed and an MSA approved, so working together is easy.</td></tr>
+      <tr><td><strong>Earn the next one</strong></td><td>Their procurement director reopened a closed signage RFP so FSG could respond. The proposal covers 37 sites, and four more projects are on the board.</td></tr>
+    </table>
+    <div class="callout"><strong>Nobody sold.</strong> The quote came last. Watch the whole account move through Engage in <a href="../tools/engage/air-support.html">Episode 13: Air Support</a>.</div>
+    <p>This guide breaks that skill into three things you can practice: be <strong>dynamic</strong>, be <strong>magnetic</strong>, be <strong>authentic</strong>.</p>
+  </section>
+
+  <section id="dynamic">
+    <h2><span class="num">01</span>Dynamic: Use Your Whole Voice</h2>
+    <p><strong>The idea:</strong> your topic keeps someone in the conversation. Your voice decides whether they want the next one. A great point in a flat voice sounds boring, and most of us are flatter than we think.</p>
+
+    <h3>You have four voices. Most people use one.</h3>
+    <p>Tap a voice to see how it should sound, then say the line out loud.</p>
+    <div class="voices" id="voices">
+      <button class="voice on" data-v="0"><span class="goal">To inspire</span><h4>The Motivator</h4><p><b>Sounds like:</b> faster, flowing, louder, open and positive.</p><p><b>Use it when:</b> you open a meeting or share a win.</p></button>
+      <button class="voice" data-v="1"><span class="goal">To explain</span><h4>The Educator</h4><p><b>Sounds like:</b> slower, with pauses so they can keep up.</p><p><b>Use it when:</b> you explain how a rebate, a retrofit, or a schedule works.</p></button>
+      <button class="voice" data-v="2"><span class="goal">To direct</span><h4>The Coach</h4><p><b>Sounds like:</b> short, punchy, firm. No filler words.</p><p><b>Use it when:</b> you give the next step or make the ask.</p></button>
+      <button class="voice" data-v="3"><span class="goal">To connect</span><h4>The Friend</h4><p><b>Sounds like:</b> relaxed, back and forth, lots of ups and downs.</p><p><b>Use it when:</b> the first two minutes, and all of discovery.</p></button>
+    </div>
+    <div class="say" aria-live="polite"><span class="label" id="sayLabel"></span><p id="sayLine"></p><small id="sayHow"></small></div>
+    <div class="callout"><strong>Match the voice to the moment.</strong> Coaching someone who needed a friend costs you trust. Most sellers live in Educator. The connection happens in Friend, and the ask lands in Coach.</div>
+
+    <h3>Three dials to turn</h3>
+    <ul>
+      <li><strong>A dimmer, not a switch.</strong> Don't just get louder. Bring your volume up on the part that matters and down on the part that's personal.</li>
+      <li><strong>Your first five words carry the energy.</strong> "Hey! So good to see you" beats a flat "hey, how's it going." You don't need to be bubbly. You need to sound glad you're there.</li>
+      <li><strong>Own the pause.</strong> Pause after the key number and after the ask. Silence reads as confidence.</li>
+    </ul>
+    <div class="practice"><span class="label">Practice · 5 minutes</span>
+      <p>Record a one-minute story from your week on your phone. Record it again as if you're telling a friend you're excited to see. Play both. Then review the better one three ways: sound off to watch your body, sound only to hear your tone, and once more counting filler words.</p></div>
+  </section>
+
+  <section id="magnetic">
+    <h2><span class="num">02</span>Magnetic: Make It About Them</h2>
+    <p><strong>The idea:</strong> people are pulled toward whoever makes them feel interesting and understood. The most magnetic person in the room is rarely the one talking the most.</p>
+
+    <h3>Find the spark</h3>
+    <p>The usual question gets the usual answer. Ask one they haven't heard a hundred times, then watch for the spark: their voice speeds up and the answers get longer. Stay there.</p>
+    <table>
+      <tr><th>Instead of</th><th>Try</th></tr>
+      <tr><td>How are you?</td><td>What's the best thing that's happened at your sites this week?</td></tr>
+      <tr><td>What do you do?</td><td>What's the most interesting part of your job?</td></tr>
+      <tr><td>How's the project going?</td><td>What's the weirdest thing that's come up on this project?</td></tr>
+      <tr><td>Any needs I can help with?</td><td>What's the one facilities issue that keeps landing on your desk?</td></tr>
+    </table>
+
+    <h3>Three follow-ups before you talk about yourself</h3>
+    <p>When they tell you something that matters, ask at least three questions about it before you add anything of your own. "Tell me more about that" counts. The second and third answers are where the real problem lives. Aim for them talking 70% of the time.</p>
+
+    <h3>Sell the painkiller, never the vitamin</h3>
+    <p>A vitamin is nice to have someday. A painkiller fixes what hurts today. You can't know which one you're holding until they've told you where it hurts, so discover before you describe.</p>
+
+    <h3>The Peak-End Effect</h3>
+    <p>People don't remember a conversation minute by minute. They remember two things: <strong>the peak</strong>, the single strongest moment, and <strong>the end</strong>. Everything else fades. So design both on purpose.</p>
+    <table>
+      <tr><th></th><th>Build it on purpose</th><th>What kills it</th></tr>
+      <tr><td><strong>The peak</strong></td><td>The moment they feel understood. Play it back: "So what I'm hearing is ___. Did I get that right?"</td><td>A twenty-minute capability walk with no high point</td></tr>
+      <tr><td><strong>The end</strong></td><td>One clear next step with a date, said warmly, by name</td><td>"Let me know if you have questions," or ending on Q&amp;A</td></tr>
+    </table>
+    <div class="practice"><span class="label">Practice · every conversation this week</span>
+      <p>Before you walk in, write down two lines: the moment you want them to remember, and the last sentence you'll say. After, write down whether both happened.</p></div>
+  </section>
+
+  <section id="authentic">
+    <h2><span class="num">03</span>Authentic: Say Less, Mean It</h2>
+    <p><strong>The idea:</strong> talking more does not show more value. It shows nerves. Being authentic means being clear, being brief, and being the same person when nothing is on the line.</p>
+
+    <h3>Tell them the time. Don't build the clock.</h3>
+    <p>The customer asked what time it is. They did not ask how the watch works. Lead with the end state, the result they get. Leave the process in your pocket until they ask for it.</p>
+    <table>
+      <tr><th>Building the clock</th><th>Telling the time</th></tr>
+      <tr><td>"First our team does a photometric study, then we spec fixtures, then procurement…"</td><td>"Your lots are lit, your energy bill drops, and your team stops calling about outages."</td></tr>
+      <tr><td>"Let me walk you through how our service model is structured."</td><td>"One call, one partner, every site."</td></tr>
+      <tr><td>Twelve slides on who we are</td><td>One sentence on what changes for them</td></tr>
+    </table>
+
+    <h3>3 · 2 · 1: how to never ramble</h3>
+    <p>Put on the spot? Don't wing it. Pick one of these three shapes and your answer has a beginning and an end.</p>
+    <div class="three21">
+      <div><b class="n">3</b><h4>Steps</h4><p>"There are three steps." Use it for how something happens.</p><p><em>"Three steps: we walk the site, we price it, we schedule around your hours."</em></p></div>
+      <div><b class="n">2</b><h4>Ways</h4><p>"There are two ways to do this." Use it when they have a choice.</p><p><em>"Two ways: all sites this year, or the worst ten first."</em></p></div>
+      <div><b class="n">1</b><h4>Thing</h4><p>"If you remember one thing." Use it for the point.</p><p><em>"The one thing: every dark lot is costing you after sundown."</em></p></div>
+    </div>
+    <div class="callout"><strong>Then stop.</strong> Say the three, the two, or the one, and let the silence work. A fourth point erases the first three.</div>
+
+    <h3>Be the same person off the clock</h3>
+    <ul>
+      <li><strong>Do what you said you'd do.</strong> Especially when you don't feel like it. That's how people learn to trust you, and how you learn to trust yourself.</li>
+      <li><strong>How you made them feel is the brand.</strong> They'll forget what you said and what you sold. They won't forget how they felt.</li>
+      <li><strong>Keep a story bank.</strong> Three or four short, true stories from your week in a note on your phone. Real ones beat rehearsed ones.</li>
+      <li><strong>New isn't fake.</strong> A voice you haven't used yet will feel awkward. That's a skill you haven't practiced, not a person you aren't.</li>
+    </ul>
+    <div class="practice"><span class="label">Practice · 2 minutes, with a partner</span>
+      <p>Have someone throw you a question about anything: your weekend, a product, a customer. Answer in 3-2-1. One thing, two ways, three steps. Switch. Do it five times.</p></div>
+  </section>
+
+  <section>
+    <h2>Do / Don't</h2>
+    <table>
+      <tr><th>Do</th><th>Don't</th></tr>
+      <tr><td>Open with a real question about them</td><td>Open with "How are you?" on autopilot</td></tr>
+      <tr><td>Change voices for the moment</td><td>Stay in Educator for thirty minutes</td></tr>
+      <tr><td>Ask three follow-ups before you share</td><td>Answer questions nobody asked</td></tr>
+      <tr><td>Lead with the result</td><td>Explain the process to prove you're smart</td></tr>
+      <tr><td>End on one next step with a date</td><td>End on "let me know if you have questions"</td></tr>
+      <tr><td>Stop after the third point</td><td>Fill the silence with a fourth</td></tr>
+    </table>
+  </section>
+
+  <section id="practice">
+    <h2>The Practice Plan: One Habit a Week</h2>
+    <p>Reading this changes nothing. Reps do. One habit a week, every conversation, at work and at home.</p>
+    <ol>
+      <li><strong>Week 1 · Dynamic.</strong> Record yourself twice a week. Use all four voices on purpose in one meeting. Fix your first five words.</li>
+      <li><strong>Week 2 · Magnetic.</strong> One spark question and three follow-ups in every conversation. Write down the peak and the end before each meeting.</li>
+      <li><strong>Week 3 · Authentic.</strong> Answer every on-the-spot question in 3-2-1. Catch yourself building the clock and switch to the time.</li>
+      <li><strong>Week 4 · Put it together.</strong> Run one full customer conversation without pitching. Score it below.</li>
+    </ol>
+  </section>
+
+  <section id="score">
+    <h2>The No-Sell Scorecard</h2>
+    <p>Score your last conversation. Be honest. Nobody sees this but you.</p>
+    <ul class="score" id="scoreList">
+      <li><label><input type="checkbox"><span><strong>I connected.</strong> My first ten words were about them, and I sounded glad to be there.</span></label></li>
+      <li><label><input type="checkbox"><span><strong>I discovered the pain.</strong> I can say their problem in one sentence, in their words.</span></label></li>
+      <li><label><input type="checkbox"><span><strong>I made an impact.</strong> They left with something useful they didn't have before.</span></label></li>
+      <li><label><input type="checkbox"><span><strong>I earned the next one.</strong> There's a date on the calendar and something to work on together.</span></label></li>
+      <li><label><input type="checkbox"><span><strong>I never pitched.</strong> They talked more than I did, and I led with results when I spoke.</span></label></li>
+    </ul>
+    <div class="scoreout" id="scoreOut" aria-live="polite"></div>
+  </section>
+
+  <section>
+    <h2>Go Deeper on the Hub</h2>
+    <div class="more">
+      <a href="run-the-room.html"><h4>Show Up &amp; Run the Room</h4><p>Open with the win, stand and deliver, close with a date.</p></a>
+      <a href="speak-clearly.html"><h4>Speak So They Buy</h4><p>The Rule of Three, shapes, and the 4-Mat.</p></a>
+      <a href="start-again-today.html"><h4>Start Again Today</h4><p>How you make people feel when there's nothing to win.</p></a>
+      <a href="train-to-win.html"><h4>Train Your Body &amp; Mind to Win</h4><p>Do what you said, especially when you don't feel like it.</p></a>
+      <a href="burnout-skill-issue.html"><h4>Burnout Is A Skill Issue</h4><p>Work in your zone of genius. Momentum over comfort.</p></a>
+      <a href="maximum-productivity-system.html"><h4>Dangerously Productive Like a CEO</h4><p>Build the system so the practice actually happens.</p></a>
+    </div>
+  </section>
+
+  <p class="credit">Built from the Growth Hub Personal Development plays and adapted for FSG selling motions. Voice and conversation research: Vanessa Van Edwards, Science of People. The four voices and the 3-2-1 framework: Vinh Giang. The peak-end effect: Daniel Kahneman's research on how experiences are remembered.</p>
+
+</div>
+
+<footer>
+  <div class="inner">
+    <div>Facility Solutions Group · Growth Organization · Internal Use</div>
+    <div>— Bobby</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var LINE = "We can have every site walked before the end of the month.";
+  var V = [
+    ["Say it as the Motivator", "Faster and brighter. Lift “every site.” Smile while you say it."],
+    ["Say it as the Educator", "Slow down. Pause after “every site.” Let the last word settle."],
+    ["Say it as the Coach", "Short and firm. Hit each word. No “um,” no trailing off."],
+    ["Say it as the Friend", "Relaxed, like you're across a coffee. Let your voice move up and down."]
+  ];
+  var btns = document.querySelectorAll('#voices .voice');
+  function pick(i){
+    btns.forEach(function(b,j){ b.classList.toggle('on', j===i); b.setAttribute('aria-pressed', j===i); });
+    document.getElementById('sayLabel').textContent = V[i][0];
+    document.getElementById('sayLine').textContent = "“" + LINE + "”";
+    document.getElementById('sayHow').textContent = V[i][1];
+  }
+  btns.forEach(function(b){ b.addEventListener('click', function(){ pick(+b.dataset.v); }); });
+  pick(0);
+
+  var boxes = document.querySelectorAll('#scoreList input'), out = document.getElementById('scoreOut');
+  function score(){
+    var n = 0; boxes.forEach(function(b){ if(b.checked) n++; });
+    out.textContent = n === 0 ? "" : n === 5 ? "5 of 5. That's the conversation. Do it again tomorrow." : n + " of 5. Pick the one you missed and make it the goal for your next conversation.";
+  }
+  boxes.forEach(function(b){ b.addEventListener('change', score); });
+})();
+</script>
+</body>
+</html>
