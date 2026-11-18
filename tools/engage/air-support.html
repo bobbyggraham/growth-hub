@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Engage Live · Air Support</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700&family=Oswald:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff; --side:#f7f8fa; --ink:#0f172a; --muted:#64748b; --line:#e5e7eb; --soft:#f3f4f6;
+  --blue:#2a4fd7; --blue-ink:#2443b8; --pale:#e8eefc; --gold:#b7791f; --goldbg:#fdf3d7;
+  --red:#b4232a; --redbg:#fde4e4; --green:#15803d; --greenbg:#dcfce7; --amber:#b45309; --amberbg:#fef3c7;
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%;background:var(--bg);color:var(--ink);font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:15px}
+body{display:grid;grid-template-columns:216px minmax(0,1fr);min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+h1,h2,h3{font-family:'Barlow Semi Condensed','Barlow',Arial,sans-serif;font-weight:700;letter-spacing:-.2px}
+a{color:var(--blue)}
+button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+/* sidebar */
+.side{background:var(--side);border-right:1px solid var(--line);padding:16px 12px;display:flex;flex-direction:column;gap:4px}
+.brand{display:flex;align-items:center;gap:10px;padding:4px 8px 16px}
+.brand b{font-family:'Barlow Semi Condensed',Arial,sans-serif;font-weight:700;font-size:26px;color:var(--blue);letter-spacing:-1px;font-style:italic}
+.brand span{font-weight:600;font-size:14px;border-left:1px solid var(--line);padding-left:10px}
+.navi{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:transparent;border:0;border-radius:999px;padding:9px 12px;font-weight:600;font-size:15px;color:var(--ink)}
+.navi i{font-style:normal;width:20px;text-align:center;color:var(--muted)}
+.navi small{margin-left:auto;font-weight:600;font-size:11px;color:var(--muted)}
+.navi.on{background:var(--pale);color:var(--blue-ink)} .navi.on i,.navi.on small{color:var(--blue-ink)}
+.navi:disabled{cursor:default;opacity:.5}
+.side .team{margin-top:auto;border-top:1px solid var(--line);padding:12px 8px 0;font-size:12.5px;color:var(--muted);line-height:1.5}
+.side .team b{display:block;color:var(--ink);font-size:13px}
+
+/* main */
+.main{display:flex;flex-direction:column;min-width:0}
+.top{display:flex;align-items:center;gap:14px;padding:10px 22px;flex-wrap:wrap}
+.search{flex:1;min-width:180px;max-width:520px;background:var(--soft);border-radius:999px;padding:9px 16px;color:var(--muted);font-size:14px}
+.ep{font-weight:600;font-size:13px;color:var(--muted);letter-spacing:.3px;margin-left:auto}
+.ep b{color:var(--ink)}
+.chip{font-size:11.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;border-radius:999px;padding:3px 9px;background:var(--amberbg);color:var(--amber)}
+.chip.live{background:var(--greenbg);color:var(--green)}
+.dots{display:flex;gap:4px}
+.dots button{width:16px;height:7px;border-radius:4px;border:0;background:#dbe0e8;padding:0}
+.dots button.done{background:#9fb2ee} .dots button.on{background:var(--blue)}
+
+.body{flex:1;padding:4px 22px 14px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.head{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap}
+.head h1{font-size:clamp(26px,2.6vw,36px);line-height:1.05}
+.head h1 em{font-style:normal;color:var(--blue)}
+.head p{color:var(--muted);font-size:15px;padding-bottom:3px}
+
+/* the growth engine strip */
+.engine{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 128px minmax(0,1fr) 128px minmax(0,1fr) 128px minmax(0,1fr);align-items:stretch;padding-bottom:26px}
+.stage{border:1.5px solid var(--line);border-radius:14px;padding:10px 14px;background:#fff;text-align:left;transition:border-color .4s,box-shadow .4s,background .4s}
+.stage small{display:block;font-size:11.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted)}
+.stage b{display:block;font-family:'Barlow Semi Condensed',Arial,sans-serif;font-size:21px;line-height:1.15}
+.stage span{font-size:13px;color:var(--muted)}
+.stage.seen{border-color:#b9c7f4}
+.stage.on{border-color:var(--blue);background:#f6f8ff;box-shadow:0 4px 14px rgba(42,79,215,.14)}
+.stage.on small{color:var(--blue-ink)}
+.conn{display:flex;flex-direction:column;justify-content:center;gap:6px;padding:0 8px;font-size:11.5px;font-weight:600;color:#a3acba;text-align:center;line-height:1.15}
+.conn div{border-radius:6px;padding:3px 4px;transition:background .4s,color .4s}
+.conn .f.hot{background:var(--pale);color:var(--blue-ink)}
+.conn .b.hot{background:var(--amberbg);color:var(--amber)}
+.token{position:absolute;bottom:0;transform:translateX(-50%);background:var(--blue);color:#fff;border-radius:999px;padding:4px 12px;font-size:12.5px;font-weight:600;white-space:nowrap;box-shadow:0 3px 10px rgba(42,79,215,.35);transition:left 1.1s cubic-bezier(.6,.05,.3,1),opacity .4s,background .4s;opacity:0}
+.token.show{opacity:1} .token.back{background:var(--amber)}
+.token::before{content:"";position:absolute;left:50%;top:-5px;width:10px;height:10px;background:inherit;transform:translateX(-50%) rotate(45deg);border-radius:2px}
+.trail{display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:12.5px;color:var(--muted);min-height:24px}
+.trail b{font-weight:600;color:var(--ink)}
+.trail span{border-radius:999px;padding:2px 9px;background:var(--pale);color:var(--blue-ink);font-weight:600}
+.trail span.b{background:var(--amberbg);color:var(--amber)}
+
+/* work area */
+.work{display:grid;grid-template-columns:minmax(0,1.9fr) minmax(0,1fr);gap:16px;align-items:start;flex:1}
+.work.full{grid-template-columns:1fr}
+.card{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+.tbar{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line);font-weight:600}
+.tbar .cnt{font-size:12px;background:var(--soft);border-radius:999px;padding:1px 8px;color:var(--muted)}
+.tbar .view{border:1.5px solid var(--blue);color:var(--blue-ink);background:var(--pale);border-radius:999px;padding:3px 12px;font-size:13.5px}
+.tbar .cta{margin-left:auto;background:var(--blue);color:#fff;border-radius:8px;padding:5px 12px;font-size:13px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{text-align:left;font-weight:600;background:#f9fafb;padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:middle;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:300px}
+tr:last-child td{border-bottom:0}
+tr.other td{color:#9aa3b2}
+tr.deal td{background:#f3f6ff;font-weight:500}
+tr.deal td:first-child{box-shadow:inset 4px 0 0 var(--blue)}
+tr.deal.back td{background:#fffaf0} tr.deal.back td:first-child{box-shadow:inset 4px 0 0 var(--amber)}
+tr.deal.gone td{background:#fafafa;color:#9aa3b2;text-decoration:line-through;text-decoration-color:#cbd2dc}
+.lk{color:var(--blue)}
+.pill{display:inline-block;border-radius:999px;padding:1px 9px;font-size:12.5px;font-weight:600;background:var(--soft);color:var(--muted)}
+.pill.g{background:var(--greenbg);color:var(--green)} .pill.a{background:var(--amberbg);color:var(--amber)} .pill.b{background:var(--pale);color:var(--blue-ink)} .pill.r{background:var(--redbg);color:var(--red)}
+.left{display:flex;flex-direction:column;gap:12px;min-width:0}
+.act{list-style:none;padding:4px 14px 10px}
+.act li{display:grid;grid-template-columns:54px 1fr;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line);font-size:14px;color:#334155;align-items:baseline}
+.act li:last-child{border-bottom:0}
+.act li:first-child{color:var(--ink);font-weight:500}
+.work.full .box p,.work.full .box li{font-size:16.5px}
+.work.full .box .f{font-size:21px}
+.work.full .box h3{font-size:22px}
+.flash td{animation:flash 1.4s ease}
+@keyframes flash{0%{background:#dbe5ff}100%{}}
+
+.panel{display:flex;flex-direction:column;gap:10px;min-width:0}
+.ask{border-left:4px solid var(--blue);background:#f6f8ff;border-radius:0 12px 12px 0;padding:10px 14px}
+.ask b{display:block;font-size:11.5px;letter-spacing:1px;text-transform:uppercase;color:var(--blue-ink)}
+.ask span{font-family:'Barlow Semi Condensed',Arial,sans-serif;font-weight:600;font-size:clamp(18px,1.55vw,23px);line-height:1.25}
+.box{border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+.box small{display:block;font-size:11.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.box h3{font-size:19px;margin-bottom:2px}
+.box p,.box li{font-size:14.5px;line-height:1.4;color:#334155}
+.box ul{list-style:none;display:grid;gap:3px}
+.box li::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--blue);margin-right:8px;vertical-align:middle}
+.box.warn li::before{background:var(--red)}
+.box .f{font-family:'Barlow Semi Condensed',Arial,sans-serif;font-weight:600;font-size:18px;color:var(--ink);line-height:1.25}
+.box.gold{background:var(--goldbg);border-color:#f0d58a}
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.four{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.stars{display:flex;gap:6px;flex-wrap:wrap}
+.star{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:4px 10px;font-size:13px;display:flex;gap:6px;align-items:center}
+.star i{font-style:normal;color:#cbd2dc;font-size:17px;line-height:1}
+.star.on{border-color:#e2b93b;background:var(--goldbg)} .star.on i{color:#d39b06}
+.verdict{font-weight:600;color:var(--gold);min-height:1.3em;font-size:14.5px}
+.btn{display:inline-block;background:var(--blue);color:#fff;border:0;border-radius:8px;padding:8px 16px;font-weight:600;text-decoration:none;margin:6px 8px 0 0}
+.btn.ghost{background:#fff;color:var(--blue-ink);border:1.5px solid var(--blue)}
+.hero{border:1px solid var(--line);border-radius:14px;padding:22px 26px;background:linear-gradient(120deg,#f6f8ff,#fff 60%)}
+.hero h2{font-size:clamp(34px,4vw,58px);line-height:1}
+.hero h2 em{font-style:normal;color:var(--blue)}
+.hero p{font-size:17px;color:#334155;margin:8px 0;max-width:46em}
+.creed{border-left:4px solid #e2b93b;background:var(--goldbg);border-radius:0 10px 10px 0;padding:8px 14px;margin:10px 0;max-width:40em}
+.creed b{display:block;font-size:11.5px;letter-spacing:1px;text-transform:uppercase;color:var(--gold)}
+.src{font-size:12px;color:var(--muted)}
+
+.nav{display:flex;align-items:center;gap:10px;padding:9px 22px;border-top:1px solid var(--line);flex-wrap:wrap}
+.nav button{background:#fff;border:1.5px solid var(--line);border-radius:8px;padding:6px 14px;font-weight:600}
+.nav button.next{background:var(--blue);border-color:var(--blue);color:#fff}
+.nav button:disabled{opacity:.4;cursor:default}
+.nav .keys{color:var(--muted);font-size:12.5px;margin-left:auto}
+.nav a{font-size:12.5px}
+.notes{display:none;border-top:1px solid var(--line);background:#fafbff;padding:10px 22px;font-size:14.5px;line-height:1.5;color:#334155}
+.notes.on{display:block}
+.notes b{font-size:11.5px;letter-spacing:1px;text-transform:uppercase;color:var(--blue-ink)}
+.notes ul{margin:2px 0 0 18px}
+
+@media (max-width:980px){
+  body{grid-template-columns:1fr}
+  .side{flex-direction:row;flex-wrap:wrap;border-right:0;border-bottom:1px solid var(--line);padding:8px}
+  .brand{padding:4px 8px} .side .team,.navi.x{display:none}
+  .navi{width:auto;padding:6px 10px;font-size:13.5px}
+  .work,.three,.four{grid-template-columns:1fr}
+  .engine{grid-template-columns:1fr;gap:6px;padding-bottom:0} .conn{flex-direction:row} .token{display:none}
+  .card{overflow-x:auto} .nav .keys{display:none}
+}
+@media (prefers-reduced-motion:reduce){ .token{transition:opacity .2s} .flash td{animation:none} }
+</style>
+</head>
+<body>
+<!-- ============ GROWTH HUB GATE ============ -->
+<style>
+  html.gh-locked > body > :not(#ghGate){display:none !important;}
+  #ghGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(170deg,#0b1421 0%,#0e1f38 100%);display:flex;align-items:flex-start;justify-content:center;padding:7vh 20px 40px;overflow-y:auto;}
+  html:not(.gh-locked) #ghGate{display:none;}
+  #ghGate .gh-wrap{width:100%;max-width:640px;text-align:center;color:#fff;}
+  #ghGate .gh-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;}
+  #ghGate .gh-brand svg{width:30px;height:30px;}
+  #ghGate .gh-brand span{font-family:'Oswald',Arial,sans-serif;font-weight:600;font-size:26px;letter-spacing:6px;text-transform:uppercase;}
+  #ghGate .gh-sub{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#718dbc;margin-bottom:52px;}
+  #ghGate .gh-card{border:1px solid #2a4a7a;border-radius:14px;padding:44px 34px 40px;}
+  #ghGate h2{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:28px;letter-spacing:6px;text-transform:uppercase;margin:0 0 14px;}
+  #ghGate .gh-hint{font-family:'Oswald',Arial,sans-serif;font-weight:500;font-size:17px;color:#718dbc;margin:0 0 26px;line-height:1.5;}
+  #ghGate input{width:100%;box-sizing:border-box;background:#0b1421;border:1.5px solid #2a4a7a;border-radius:10px;color:#fff;font-size:22px;letter-spacing:3px;text-align:center;padding:20px 16px;outline:none;font-family:'Open Sans',Arial,sans-serif;}
+  #ghGate input:focus{border-color:#4e84de;}
+  #ghGate button{width:100%;margin-top:18px;background:#ebb018;color:#0b1421;border:none;border-radius:10px;font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:1px;padding:18px;cursor:pointer;min-height:48px;}
+  #ghGate button:hover{filter:brightness(1.06);}
+  #ghGate .gh-err{color:#ebb018;font-size:13px;margin-top:14px;min-height:18px;font-family:'Oswald',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;}
+  #ghGate .gh-shake{animation:ghshake .3s;}
+  @keyframes ghshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+<div id="ghGate">
+  <div class="gh-wrap">
+    <div class="gh-brand">
+      <svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#c5d9fa" stroke-width="14" stroke-linecap="round" stroke-opacity="0.7"><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="236.6" y2="100"/><line x1="150" y1="150" x2="236.6" y2="200"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="63.4" y2="200"/><line x1="150" y1="150" x2="63.4" y2="100"/></g><circle cx="150" cy="50" r="26" fill="#ffffff"/><circle cx="236.6" cy="100" r="26" fill="#c5d9fa"/><circle cx="236.6" cy="200" r="26" fill="#ffffff"/><circle cx="150" cy="250" r="26" fill="#c5d9fa"/><circle cx="63.4" cy="200" r="26" fill="#ffffff"/><circle cx="63.4" cy="100" r="26" fill="#c5d9fa"/><circle cx="150" cy="150" r="44" fill="#ebb018"/></svg>
+      <span>Growth Hub</span>
+    </div>
+    <div class="gh-card">
+      <h2>Passcode</h2>
+      <p class="gh-hint">This hub is for the FSG growth org and our clients. Enter the passcode to load the hub.</p>
+      <input type="password" id="ghPass" autocomplete="off" aria-label="Passcode">
+      <button id="ghGo" type="button">Enter the Hub</button>
+      <div class="gh-err" id="ghErr"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='gh-unlocked', HASH='9f966ce5fd6e1e0c881b6480785fa51a1e1d4b6d4725516b649dffb545302259';
+  function unlocked(){ try{ return sessionStorage.getItem(KEY)==='1'; }catch(e){ return false; } }
+  function remember(){ try{ sessionStorage.setItem(KEY,'1'); }catch(e){} }
+  if(!unlocked()) document.documentElement.classList.add('gh-locked');
+  function open(){ document.documentElement.classList.remove('gh-locked'); }
+  async function check(){
+    var v=document.getElementById('ghPass').value;
+    var ok=false;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        var hex=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        ok=(hex===HASH);
+      } else { ok=(btoa(unescape(encodeURIComponent(v)))==='RlM2IUdyb3d0aCMyNg=='); }
+    }catch(e){ ok=(btoa(v)==='RlM2IUdyb3d0aCMyNg=='); }
+    if(ok){ remember(); open(); }
+    else{
+      var card=document.querySelector('#ghGate .gh-card');
+      document.getElementById('ghErr').textContent='Not it — check with your FSG contact.';
+      card.classList.remove('gh-shake'); void card.offsetWidth; card.classList.add('gh-shake');
+      document.getElementById('ghPass').value=''; document.getElementById('ghPass').focus();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    if(unlocked()) return;
+    document.getElementById('ghGo').addEventListener('click', check);
+    document.getElementById('ghPass').addEventListener('keydown', function(e){ if(e.key==='Enter') check(); });
+    setTimeout(function(){ document.getElementById('ghPass').focus(); }, 150);
+  });
+})();
+</script>
+<!-- ============ /GROWTH HUB GATE ============ -->
+
+<aside class="side" aria-label="Engage">
+  <div class="brand"><b>FSG</b><span>Engage</span></div>
+  <button class="navi" data-go="dash"><i>▦</i>Dashboard</button>
+  <button class="navi x" disabled><i>✦</i>Growth Hub</button>
+  <button class="navi x" disabled><i>☑</i>Task Manager</button>
+  <button class="navi" data-go="leads"><i>▤</i>Leads<small>L1</small></button>
+  <button class="navi" data-go="opps"><i>$</i>Opportunities<small>L2</small></button>
+  <button class="navi x" disabled><i>☺</i>Contacts</button>
+  <button class="navi" data-go="accounts"><i>▥</i>Accounts<small>L3</small></button>
+  <button class="navi" data-go="campaigns"><i>◁</i>Campaigns<small>L0</small></button>
+  <button class="navi x" disabled><i>▭</i>Commission</button>
+  <button class="navi x" disabled><i>▮</i>Reports</button>
+  <div class="team"><b>One Growth Engine</b>Guide · Business Development · Account Manager</div>
+</aside>
+
+<div class="main">
+  <header class="top">
+    <div class="search">Search for people, leads, accounts, opportunities…</div>
+    <span class="chip" id="sampleChip">Live deal · in play</span>
+    <div class="ep">Engage Live · Ep 13 · <b>Air Support</b></div>
+    <div class="dots" id="dots" aria-label="Steps"></div>
+  </header>
+
+  <!-- "Missed it live?" recording callout: placeholder, uncomment and add the Drive link when the session video is uploaded.
+  <div class="creed" style="margin:0 22px 10px"><b>Missed it live?</b><a href="DRIVE_LINK_HERE" target="_blank" rel="noopener">Watch Episode 13</a></div>
+  -->
+
+  <main class="body">
+    <div class="head"><h1 id="title"></h1><p id="sub"></p></div>
+    <div class="engine" id="engine">
+      <button class="stage" data-go="campaigns" id="st0"><small>Level 0 · Marketing</small><b>Campaigns</b><span>demand + data</span></button>
+      <div class="conn" id="c0"><div class="f">intent signal →</div><div class="b">← no fit now</div></div>
+      <button class="stage" data-go="leads" id="st1"><small>Level 1 · Guide</small><b>Leads</b><span>warm + qualify</span></button>
+      <div class="conn" id="c1"><div class="f">qualified need →</div><div class="b">← not ready</div></div>
+      <button class="stage" data-go="opps" id="st2"><small>Level 2 · Business Development</small><b>Opportunities</b><span>pursue + close</span></button>
+      <div class="conn" id="c2"><div class="f">won + managed bar →</div><div class="b">← new pursuit · at risk</div></div>
+      <button class="stage" data-go="accounts" id="st3"><small>Level 3 · Account Manager</small><b>Accounts</b><span>run + grow</span></button>
+      <div class="token" id="token"></div>
+    </div>
+    <div class="trail" id="trail"></div>
+    <div class="work" id="work"></div>
+  </main>
+
+  <div class="notes" id="notes"></div>
+  <footer class="nav">
+    <button id="back">← Back</button>
+    <button id="next" class="next">Next →</button>
+    <button id="notesBtn" aria-pressed="false">Questions (N)</button>
+    <span class="keys">← → to move · N for the question list · tap a stage to jump</span>
+    <a href="engage-live-seasons.html#ep13">Season guide</a>
+    <a href="../../index.html">Growth Hub</a>
+  </footer>
+</div>
+
+<script>
+/* ============================================================
+   AIR SUPPORT — A Day in the Life of a Guide.
+   One real account, Sky Chefs, moving through Engage:
+   Campaigns → Leads → Opportunities → Accounts, and back.
+
+   THE DEAL: edit this block to put in a real one. Set
+   sample:false and the "Sample deal" chip disappears.
+   ============================================================ */
+var GUEST = { name:"Brannon Bourland", title:"Chief Marketing Officer" };
+var DEAL = {
+  sample: false,            // true shows a "Sample deal" chip instead of "Live deal"
+  token: "Sky Chefs"        // short name on the moving chip
+};
+/* Sky Chefs, from the account plan (Oct 18, 2026), the meeting recap (Nov 11, 2026)
+   and the signage proposal (Nov 17, 2026). No prices and no contact details on this page. */
+var OPP = {
+  dca:  ["Sky Chefs","LSG Sky Chefs DCA LED Interior"],
+  ext:  ["Sky Chefs","LSG Sky Chefs – Exterior Lighting"],
+  elec: ["Sky Chefs","Sky Chefs — National Electrical Service Program (Foodbuy)"],
+  sign: ["Sky Chefs","Sky Chefs — Brand Refresh Signage Rollout"],
+  led:  ["Sky Chefs","Sky Chefs — Kitchen & Exterior LED Lighting Program"],
+  ev:   ["Sky Chefs","Sky Chefs — Fleet EV Charging Infrastructure"],
+  sea:  ["Sky Chefs","Sky Chefs — Seattle Automated Kitchen & Innovation Center (2027)"]
+};
+var CAMPS = [["2025 Parking Lot Lighting","Active","Cpc","National"],["2025 EV Charging","Active","Cpc","National"],["2026 Guide Center - Locations Page","Active","Program","Local"]];
+
+var STARS = ["Willing to Engage","Friendly and Collaborative","Knows What They Want","Knows When They Want It","Knows They Want It From YOU"];
+var VIEWS = { campaigns:["Campaigns","Guide"], leads:["Leads","Coffee is for Closer's ☕"], opps:["Opportunities","Always Be Closing 🏆"], accounts:["Accounts","Money in Motion"] };
+var COLS = {
+  campaigns:["Campaign Name","Status","Type","Focus"],
+  leads:["Name","Status","Source","Follow-Up","Campaign","Owner"],
+  opps:["Customer","Opportunity Name","Stage","Follow-Up","FSG Owner","Products"],
+  accounts:["Account","Account Level","Owner","Account Team","Last Touch"]
+};
+function P(t,c){ return '<span class="pill '+(c||'')+'">'+t+'</span>'; }
+
+/* Each step: obj = which Engage list is showing; at = stage the chip sits on (0-3);
+   mv = [from,to] when the deal just moved; row = the deal's row; cards = right panel. */
+var STEPS = [
+ { id:"open", obj:"dash", at:null, title:"Welcome back", sub:"Here's today's episode.",
+   qs:["Brannon, what's the best customer conversation you heard this week, and why did it stick?","Hold the intro. Ask it cold, then welcome everyone."] },
+
+ { id:"line", obj:"dash2", at:null, title:"Marketing nurtures. <em>Sales closes.</em>", sub:"Four words. One Growth Engine.",
+   ask:"Four words. What do they mean, and what do they stop us from doing?",
+   qs:["Where is the line, exactly? When does nurture end and selling start?","What goes wrong when sales cold-prospects an account nurture hasn't warmed?","What goes wrong when nurture starts quoting?"] },
+
+ { id:"lost", log:["L2","2025 and 2026: two bids, one site each, through facilities. Both closed lost."], obj:"opps", at:0, mv:[2,0], back:1, title:"Opportunities", sub:"2 → 0 · two bids, two losses",
+   ask:"We bid Sky Chefs twice and lost twice. What were we missing?",
+   list:[OPP.dca.concat([P("Closed Lost","r"),"05/29/2025","—","Lighting"]), OPP.ext.concat([P("Closed Lost","r"),"07/05/2026","—","Lighting"])], hi:[0,1],
+   cards:[["What happened","Two strikes","An interior LED retrofit at one site in 2025. An exterior lighting job at another in 2026. One site, one line, bid through facilities."],
+          ["What was missing","","Nobody had warmed the account. No sponsor, and no relationship with procurement."],
+          ["Where it went","Back to Level 0","No orphans. The account goes back to nurture until something changes."]],
+   qs:["What does a closed-lost account look like from Marketing's side?","How long do we wait before we try again, and what has to change first?","Whose job is it to go find out why we lost?"] },
+
+ { id:"camp", log:["L0","Oct 15: Sky Chefs asked Foodbuy for a national electrician. Foodbuy introduced FSG."], obj:"campaigns", at:0, title:"Campaigns", sub:"Level 0 · a partner opens the door",
+   ask:"Sky Chefs asked Foodbuy if they had a national electrician. Why did Foodbuy say our name?",
+   list:[["Foodbuy partnership",P("Active","g"),"Program","National"]].concat(CAMPS), hi:[0],
+   cards:[["What happened","Foodbuy made the introduction","October 15. Foodbuy told Sky Chefs' procurement team they had partnered with FSG as their national electrical provider, and connected us."],
+          ["A different door","","The two losses came through facilities, one site at a time. This time the buyer asked for the meeting, with a sponsor vouching for us."],
+          ["Level 0 hands up","","A real company, a real contact, a source, and an intent signal. Not a name on a list."]],
+   qs:["Is a partner like Foodbuy a campaign? How should the team think about it?","What did we do for Foodbuy that made them willing to put their name on us?","What counts as real intent, and what doesn't?"] },
+
+ { id:"lead", log:["L1","Oct 16: Lisa answered the next morning with a window for a call."], obj:"leads", at:1, mv:[0,1], title:"Leads", sub:"0 → 1 · the human touch",
+   ask:"The introduction lands on a Thursday. What happens in the next five days?",
+   list:[["Lisa – Sky Chefs · Director, Indirect Procurement",P("New Lead","b"),"Foodbuy introduction","10/21/2026","Foodbuy partnership","Guide"],
+         ["Joe – Sky Chefs · Category Manager",P("New Lead","b"),"Foodbuy introduction","10/21/2026","Foodbuy partnership","Guide"]], hi:[0],
+   cards:[["Trigger to move","Intent signal","Lisa replied the morning after the introduction and offered a time to talk."],
+          ["New owner","A human, by name","Accept within 1 business day. First customer touch within 2."],
+          ["First move","Homework, then a call","Before anyone pitched anything, we built the account plan."]],
+   qs:["What does the Guide look at before the first call?","What do they refuse to assume?","What are the first ten words of that call?"] },
+
+ { id:"warm", log:["L1","Oct 18–21: account plan built. Thirty-minute discovery call. Questions first."], obj:"leads", at:1, stars:1, title:"Leads", sub:"Level 1 · built the plan, warmed the account",
+   ask:"Why a Guide, and not a rep with a quote?",
+   list:[["Lisa – Sky Chefs · Director, Indirect Procurement",P("Contacting / Follow-Up","b"),"Foodbuy introduction","10/21/2026","Foodbuy partnership","Guide"],
+         ["Joe – Sky Chefs · Category Manager",P("Contacting / Follow-Up","b"),"Foodbuy introduction","10/21/2026","Foodbuy partnership","Guide"]], hi:[0],
+   cards:[["Level 1, by design","Listen more than pitch","The plan for the call: who fixes electrical today, how work gets dispatched, what breaks, how they bring on a supplier. Their problem, not our résumé."],
+          ["What the plan found","","A company mid-reinvention: new ownership, a new CEO, a brand refresh that includes new signage, and a new kitchen opening in 2027."]],
+   qs:["People hear Level 1 and think entry level. Why is it Level 1 by design?","Which star is hardest to light, and what do you do when it stalls?","What does buddy-to-buddy sound like with a procurement director?"] },
+
+ { id:"opp", log:["L2","Handed to Business Development with the account plan. Face-to-face set for Nov 11."], obj:"opps", at:2, mv:[1,2], title:"Opportunities", sub:"1 → 2 · hand up a conversation, not a lead",
+   ask:"What did Level 1 hand Business Development: a lead, or a conversation?",
+   list:[OPP.elec.concat([P("Qualifying","b"),"11/11/2026","Business Development","Electrical"]), OPP.dca.concat([P("Closed Lost","r"),"05/29/2025","—","Lighting"]), OPP.ext.concat([P("Closed Lost","r"),"07/05/2026","—","Lighting"])], hi:[0],
+   cards:[["Trigger to move","An engaged decision-maker","Lisa is the buyer, and she agreed to meet in person."],
+          ["The handoff note","The account plan","<ul><li>What we know</li><li>What they need</li><li>Who we've met</li><li>What's next</li></ul>"],
+          ["Level 1's role after","","Stays on the account team as relationship cover. Business Development accepts within 2 business days."]],
+   qs:["What does a bad handoff look like, and what does it cost the customer?","What do you need back from Business Development after the handoff?","A handoff gets rejected. Is that a failure?"] },
+
+ { id:"meet", log:["L2","Nov 11: face to face. Asked about the rebrand. No pitch. NDA signed, MSA approved."], obj:"opps", at:2, title:"Opportunities", sub:"Level 2 · the meeting where nobody sold",
+   ask:"You sat across from Lisa and never pitched. What did you ask instead?",
+   list:[OPP.elec.concat([P("Qualifying","b"),"11/18/2026","Business Development","Electrical"]), OPP.dca.concat([P("Closed Lost","r"),"05/29/2025","—","Lighting"]), OPP.ext.concat([P("Closed Lost","r"),"07/05/2026","—","Lighting"])], hi:[0],
+   cards:[["What we asked","Their rebranding strategy","Not our capabilities. Their plan, their buildings, their priorities."],
+          ["What we learned","","<ul><li>36 locations, 35,000 to 160,000 sq ft</li><li>Every building is different, and decades old</li><li>They are consolidating vendors for better pricing</li></ul>"],
+          ["What surfaced","Six priorities, not one","Building signage, fluorescent to LED, a generator program, EV chargers, and camera cabling. They told us. We didn't pitch them."]],
+   qs:["How do you prepare questions you don't already know the answer to?","When did you know you'd moved from small talk to what they're really working on?","What would have happened if we'd opened with the line card?"] },
+
+ { id:"rfp", log:["L2","Lisa reopened the signage RFP for FSG. Nov 17: proposal built for 37 Customer Service Centers."], obj:"opps", at:2, title:"Opportunities", sub:"Level 2 · Lisa reopens the RFP",
+   ask:"The signage RFP was closed. Why did Lisa reopen it for us?",
+   list:[OPP.sign.concat([P("Proposing","b"),"11/18/2026","Business Development","Signs"]), OPP.elec.concat([P("Qualifying"),"11/18/2026","Business Development","Electrical"]), OPP.dca.concat([P("Closed Lost","r"),"05/29/2025","—","Lighting"]), OPP.ext.concat([P("Closed Lost","r"),"07/05/2026","—","Lighting"])], hi:[0],
+   cards:[["What happened","We're in the hunt","Lisa reopened the RFP so FSG could respond."],
+          ["Where it stands","In play","A proposal for the brand refresh signage across 37 Customer Service Centers. Response due November 18."],
+          ["Why it worked","","We connected, found what mattered, and gave her a reason to want us in the room. The quote came last."]],
+   qs:["What's the difference between being invited to bid and asking to bid?","What did the two lost bids not have that this one does?","What's the last thing you'll say when the proposal is delivered?"] },
+
+ { id:"acct", log:["L3","Account Manager assigned before the close: MSA signature, Ariba onboarding, the Nov 20 follow-up."], obj:"accounts", at:3, mv:[2,3], title:"Accounts", sub:"2 → 3 · the Account Manager, assigned early",
+   ask:"The deal isn't closed and the Account Manager is already on it. Why so early?",
+   list:[["Sky Chefs, Inc",P("2 → 3","b"),"Business Development","Guide · Account Manager","This week"],["Foodbuy",P("3","g"),"Account Manager","Business Development","This week"]], hi:[0],
+   cards:[["The usual trigger","Won + managed bar","Normally Level 3 takes over after the win."],
+          ["What we did here","Assigned early","The Account Manager is on the team now, making sure no balls are dropped: the MSA out for signature, supplier onboarding in Ariba, and every follow-up date live."],
+          ["Who leads today","Business Development","One account, one leading level. BD closes. The Account Manager is ready to catch it."]],
+   qs:["What gets dropped between a signature and the first install, and who catches it?","How does the customer feel the difference when the Account Manager shows up early?","Finish this for the field: if you want a clean handoff, do this one thing."] },
+
+ { id:"loop", log:["L2","Four more pursuits on the account: electrical service, LED lighting, EV charging, Seattle 2027."], obj:"opps", at:2, mv:[3,2], back:1, title:"Opportunities", sub:"3 → 2 · one account, five pursuits",
+   ask:"Why is this a loop and not a funnel?",
+   list:[OPP.sign.concat([P("Proposing","b"),"11/20/2026","Account Manager","Signs"]), OPP.elec.concat([P("Qualifying"),"—","Business Development","Electrical"]), OPP.led.concat([P("Qualifying"),"—","Business Development","Lighting"]), OPP.ev.concat([P("Qualifying"),"—","Business Development","Energy"]), OPP.sea.concat([P("Qualifying"),"—","Business Development","Electrical"])], hi:[0,1,2,3,4],
+   cards:[["Trigger to move","A new pursuit inside the account","Signs is the first. Electrical service, LED lighting, EV charging, and the 2027 Seattle kitchen each come back to Business Development as their own pursuit."],
+          ["Who leads","One owner, always","The Account Manager holds the relationship. A hunter runs each deal and exits at close."],
+          ["Two rules that don't bend","","<ul><li>No orphans: one level, one named owner</li><li>No double coverage: one leading level</li></ul>"]],
+   qs:["Five opportunities on one account. How do we keep five people from calling Lisa?","When does this account need the Guide Center again?","No orphans, no double coverage. Which one do we break more often today?"] },
+
+ { id:"memo", obj:"coach", at:1, title:"How to be <em>memorable</em>", sub:"Your topic keeps them in the conversation. Your voice brings them back.",
+   ask:"Say your first ten words flat. Now say them the way a Guide says them.",
+   qs:["On a phone call with no face to read, how do you know you hit something they care about?","When a call is dying, what do you do in the next ten seconds?","What's one thing your team has stopped saying on calls?","What's in your story bank right now? Give me one."] },
+
+ { id:"formulas", obj:"coach2", at:1, title:"The <em>formulas</em>", sub:"Fill in the blank. Say it out loud.",
+   ask:"Which one of these would you tape to every monitor in the company?",
+   qs:["Give me a real first ten words from this week.","What question gets a customer talking that they haven't heard a hundred times?","When do you know you've moved from small talk to what they're really worried about?"] },
+
+ { id:"askit", obj:"final", at:3, title:"Stand and deliver <em>like a pro</em>", sub:"The ask.",
+   ask:"Who should ask for the Strategy Guide, and what should they do the day they get it?",
+   qs:["If a rep reads one page, which page?","Close: read the Creed, thank Brannon and the Guide Center by name, tease Episode 14."] }
+];
+
+/* ---------- render ---------- */
+var step=0, starsOn=0;
+var $=function(id){ return document.getElementById(id); };
+var work=$('work'), token=$('token');
+if(DEAL.sample){ $('sampleChip').textContent='Sample deal'; } else { $('sampleChip').className='chip live'; }
+token.textContent=DEAL.token;
+
+function box(c){ return '<div class="box'+(c[3]?' '+c[3]:'')+'"><small>'+c[0]+'</small>'+(c[1]?'<h3>'+c[1]+'</h3>':'')+(c[2].charAt(0)==='<'?c[2]:'<p>'+c[2]+'</p>')+'</div>'; }
+function ask(s){ return s.ask?'<div class="ask"><b>Bobby asks</b><span>'+s.ask+'</span></div>':''; }
+function table(s, moved){
+  var k=s.obj, v=VIEWS[k];
+  var rows=s.list.map(function(r,i){ var deal=s.hi.indexOf(i)>=0;
+    return '<tr class="'+(deal?'deal'+(s.back?' back':'')+(moved?' flash':''):'other')+'">'+r.map(function(c,j){ return '<td'+(deal&&(j===0||(k==="opps"&&j===1))?' class="lk"':'')+'>'+c+'</td>'; }).join('')+'</tr>'; });
+  return '<div class="card"><div class="tbar">'+v[0]+' <span class="cnt">'+rows.length+'</span><span class="view">'+v[1]+' ▾</span><span class="cta">+ Create</span></div>'+
+         '<table><thead><tr>'+COLS[k].map(function(c){ return '<th>'+c+'</th>'; }).join('')+'</tr></thead><tbody>'+rows.join('')+'</tbody></table></div>';
+}
+function activity(){
+  var li=[], i;
+  for(i=step;i>=0;i--) if(STEPS[i].log) li.push('<li><span class="pill '+(/L0|L1/.test(STEPS[i].log[0])?'b':'g')+'">'+STEPS[i].log[0]+'</span><div>'+STEPS[i].log[1]+'</div></li>');
+  return '<div class="card"><div class="tbar">Activity on this record <span class="cnt">'+li.length+'</span><span class="view">'+DEAL.token+'</span></div><ul class="act">'+li.slice(0,5).join('')+'</ul></div>';
+}
+function starsHTML(){
+  return '<div class="box"><small>The 5-Star test · tap to light them</small><div class="stars" id="stars">'+
+    STARS.map(function(x,i){ return '<button class="star'+(i<starsOn?' on':'')+'" data-i="'+i+'"><i>★</i>'+x+'</button>'; }).join('')+'</div><div class="verdict" id="verdict"></div></div>';
+}
+function render(prev){
+  var s=STEPS[step], h='', moved=(prev===step-1&&!!s.mv);
+  $('title').innerHTML=s.title; $('sub').textContent=s.sub;
+  work.className='work'+(/^(dash|dash2|coach|coach2|final)$/.test(s.obj)?' full':'');
+  if(s.obj==="dash"){
+    h='<div class="hero"><h2>Air <em>Support.</em></h2>'+
+      '<p><b>A day in the life of a Guide.</b> Bobby Graham asks. '+GUEST.name+', '+GUEST.title+', answers. Then we follow one real account through Engage: <b>Sky Chefs</b>. Two losses, a partner introduction, a meeting where nobody sold, and a deal in play right now.</p>'+
+      '<div class="creed"><b>The Closer\'s Creed — No. 13</b>“Every closed deal was once a first touch.”</div>'+
+      '<button class="btn" id="go">Start the flow →</button></div>';
+  } else if(s.obj==="dash2"){
+    h='<div class="panel">'+ask(s)+'<div class="three">'+
+      box(["Nurture side · Levels 0 and 1","Marketing + the Guide","<ul><li>Builds trust and readiness before we're commercial</li><li>Never quotes, prices, or pushes a proposal</li><li>Passes a conversation, not a lead</li></ul>"])+
+      box(["Close side · Levels 2 and 3","BD + the Account Manager","<ul><li>Converts readiness into signed work</li><li>Never cold-prospects an account nurture hasn't warmed</li><li>Sends it back when it's not ready. No forced closes.</li></ul>"])+
+      box(["One Growth Engine","A team of three","Guide. Business Development. Account Manager. One record in Engage, and nothing crosses the line without an accepted handoff.","gold"])+'</div></div>';
+  } else if(s.list){
+    h='<div class="left">'+table(s,moved)+activity()+'</div><div class="panel">'+ask(s)+s.cards.map(box).join('')+(s.stars?starsHTML():'')+'</div>';
+  } else if(s.obj==="coach"){
+    h='<div class="panel">'+ask(s)+'<div class="four">'+
+      box(["Voice","","<ul><li>A dimmer, not a switch: vary your volume</li><li>Energy in your first five words</li><li>Drop your voice to land the sentence</li><li>Own the pause</li></ul>"])+
+      box(["Body","","<ul><li>Plant your feet</li><li>Hands visible, chest height</li><li>On camera, the lens is eye contact</li><li>Energy up 10%, more on camera</li></ul>"])+
+      box(["Words","","<ul><li>First ten words: a real question</li><li>Say their name</li><li>Three points, then stop</li><li>Play it back: “So what I'm hearing is…”</li></ul>"])+
+      box(["Never","","<ul><li>“How are you?” on autopilot</li><li>Filling the silence</li><li>Pitching before you know the problem</li><li>“Let me know if you have questions”</li></ul>","warn"])+'</div>'+
+      '<div class="src">Voice and topic research: Science of People. Delivery and words: Show Up &amp; Run the Room and Speak So They Buy, on the hub.</div></div>';
+  } else if(s.obj==="coach2"){
+    h='<div class="panel">'+ask(s)+'<div class="three">'+
+      box(["First ten words","",'<p class="f">“Hi ___. What\'s the one facilities project on your plate for next year?”</p>'])+
+      box(["Go one layer deeper","",'<p class="f">“Tell me more about that.”</p><p>The second answer is where the truth lives.</p>'])+
+      box(["Play it back","",'<p class="f">“So what I\'m hearing is ___. Did I get that right?”</p>'])+
+      box(["Rule of three","",'<p class="f">“I\'m hearing three priorities: ___, ___, and ___.”</p>'])+
+      box(["The 4-MAT","",'<p class="f">Why now · What · How · Now</p><p>End on one action. One domino, never a list.</p>'])+
+      box(["The handoff note","",'<p class="f">What we know · What they need · Who we\'ve met · What\'s next</p>'])+'</div></div>';
+  } else if(s.obj==="final"){
+    h='<div class="panel">'+ask(s)+'<div class="three">'+
+      '<div class="box gold"><small>Ask for the Strategy Guide</small><p>The meeting play and the 5-Star Lead strategy, with the questions and formulas from today. Both are on the hub now.</p><a class="btn" href="../../resources/run-the-room.html">Show Up &amp; Run the Room</a><a class="btn ghost" href="the-hunt.html">The Hunt · 5-Star Leads</a></div>'+
+      box(["Your One Move — before the next episode","","Change your first ten words on every call this week. And when the Guide Center hands you a conversation, accept or reject it in Engage within two business days, with a reason."])+
+      '<div class="box"><small>The Closer\'s Creed — No. 13</small><p class="f">“Every closed deal was once a first touch.”</p><p style="margin-top:6px">Next week · Episode 14 · The Rainmakers — Bobby</p></div></div></div>';
+  }
+  work.innerHTML=h; wire(); chrome(); engine(prev);
+  if(s.stars) verdict();
+}
+function verdict(){ var v=$('verdict'); if(!v) return;
+  v.textContent=starsOn===5?'Five stars. That\'s a conversation worth handing up.':(starsOn===0?'':starsOn+' of 5. Not five stars? You\'ve got work to do.'); }
+
+/* ---------- the engine strip ---------- */
+function engine(prev){
+  var s=STEPS[step], seen=-1, i;
+  for(i=0;i<=step;i++) if(STEPS[i].at!=null) seen=Math.max(seen,STEPS[i].at);
+  for(i=0;i<4;i++) $('st'+i).className='stage'+(s.at===i?' on':(i<=seen?' seen':''));
+  for(i=0;i<3;i++){ var f=$('c'+i).children[0], b=$('c'+i).children[1], hotF=false, hotB=false;
+    if(s.mv){ var lo=Math.min(s.mv[0],s.mv[1]); if(lo===i){ hotF=s.mv[1]>s.mv[0]; hotB=!hotF; } }
+    f.className='f'+(hotF?' hot':''); b.className='b'+(hotB?' hot':''); }
+  if(s.at==null){ token.className='token'; }
+  else {
+    var from=(s.mv&&prev===step-1)?s.mv[0]:s.at;
+    function pos(k){ var e=$('st'+k); return (e.offsetLeft+e.offsetWidth/2)+'px'; }
+    if(from!==s.at){ token.style.transition='none'; token.style.left=pos(from); token.className='token show'+(s.back?' back':''); void token.offsetWidth; token.style.transition=''; }
+    token.style.left=pos(s.at); token.className='token show'+(s.back?' back':'');
+  }
+  var t=[]; for(i=0;i<=step;i++){ var m=STEPS[i].mv; if(m) t.push('<span'+(m[1]<m[0]?' class="b"':'')+'>'+m[0]+' → '+m[1]+'</span>'); }
+  $('trail').innerHTML=t.length?'<b>The journey so far</b>'+t.join(''):'';
+  document.querySelectorAll('.navi[data-go]').forEach(function(b){ var g=b.dataset.go; b.classList.toggle('on', g===s.obj||(g==="dash"&&/^(dash|dash2|coach|coach2|final)$/.test(s.obj))); });
+}
+window.addEventListener('resize',function(){ var s=STEPS[step]; if(s.at!=null){ var e=$('st'+s.at); token.style.left=(e.offsetLeft+e.offsetWidth/2)+'px'; } });
+
+function wire(){
+  var go=$('go'); if(go) go.onclick=function(){ goTo(1); };
+  work.querySelectorAll('#stars .star').forEach(function(b){ b.onclick=function(){ var i=+b.dataset.i; starsOn=(starsOn===i+1)?i:i+1;
+    work.querySelectorAll('#stars .star').forEach(function(x,j){ x.classList.toggle('on',j<starsOn); }); verdict(); }; });
+}
+document.querySelectorAll('[data-go]').forEach(function(b){ b.addEventListener('click',function(){
+  var g=b.dataset.go, i, at=-1;
+  for(i=step+1;i<STEPS.length;i++) if(STEPS[i].obj===g){ at=i; break; }
+  if(at<0) for(i=0;i<STEPS.length;i++) if(STEPS[i].obj===g){ at=i; break; }
+  if(at>=0) goTo(at);
+}); });
+
+/* ---------- chrome ---------- */
+var dots=$('dots');
+STEPS.forEach(function(s,i){ var b=document.createElement('button'); b.setAttribute('aria-label','Step '+(i+1)); b.onclick=function(){ goTo(i); }; dots.appendChild(b); });
+function chrome(){
+  dots.querySelectorAll('button').forEach(function(b,i){ b.className=i===step?'on':(i<step?'done':''); });
+  $('back').disabled=step===0; $('next').disabled=step===STEPS.length-1;
+  $('notes').innerHTML='<b>Follow-ups</b><ul>'+STEPS[step].qs.map(function(q){ return '<li>'+q+'</li>'; }).join('')+'</ul>'+
+    (DEAL.sample&&STEPS[step].list?'<p class="src" style="margin-top:4px">This is a sample deal. Swap in a real one in the DEAL block before the session.</p>':'');
+}
+function goTo(i){ var prev=step; step=Math.max(0,Math.min(STEPS.length-1,i)); render(prev); try{ history.replaceState(null,'','#'+(step+1)); }catch(e){} }
+$('back').onclick=function(){ goTo(step-1); };
+$('next').onclick=function(){ goTo(step+1); };
+function toggleNotes(){ var n=$('notes'), on=!n.classList.contains('on'); n.classList.toggle('on',on); $('notesBtn').setAttribute('aria-pressed',on); }
+$('notesBtn').onclick=toggleNotes;
+document.addEventListener('keydown',function(e){
+  if(document.documentElement.classList.contains('gh-locked')) return;
+  if(e.target&&/INPUT|TEXTAREA/.test(e.target.tagName)) return;
+  if(e.metaKey||e.ctrlKey||e.altKey) return;
+  var k=e.key;
+  if(k==='ArrowRight'||k==='PageDown'){ e.preventDefault(); goTo(step+1); }
+  else if(k==='ArrowLeft'||k==='PageUp'){ e.preventDefault(); goTo(step-1); }
+  else if(k==='n'||k==='N') toggleNotes();
+});
+var h0=parseInt((location.hash||'').slice(1),10);
+if(h0>1&&h0<=STEPS.length){ step=h0-1; }
+render(-9);
+</script>
+</body>
+</html>
