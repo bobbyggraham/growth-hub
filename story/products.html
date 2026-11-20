@@ -345,6 +345,14 @@ const R = {
   signsplay:   {name:'FSG Signs — The Play', kind:'Sales Play · Internal', href:'../how/signs.html'},
   signsoverview:{name:'FSG Signs — Product Overview', kind:'Guide · Internal', href:'../how/signs-product-overview.html'},
   signsdelivery:{name:'How We Deliver a Sign Program', kind:'Guide · 9 stages · Internal', href:'../how/signs-delivery-method.html'},
+  signswarranty:{name:'FSG Signs Limited Warranty', kind:'PDF · One page · Send with every sign proposal', href:'../assets/signs/FSG_Signs_Limited_Warranty.pdf', pdf:'../assets/signs/FSG_Signs_Limited_Warranty.pdf'},
+  signssurvey: {name:'Stage 2 — Site Survey', kind:'How We Deliver a Sign Program · Internal', href:'../how/signs-delivery-method.html#s2'},
+  signsbrandbook:{name:'Stages 3–4 — Brandbook', kind:'How We Deliver a Sign Program · Internal', href:'../how/signs-delivery-method.html#s3'},
+  signspermit: {name:'Stage 7 — Permitting', kind:'How We Deliver a Sign Program · Internal', href:'../how/signs-delivery-method.html#s7'},
+  signsproduction:{name:'Stage 8 — Production & Install', kind:'How We Deliver a Sign Program · Internal', href:'../how/signs-delivery-method.html#s8'},
+  signssupport:{name:'Stage 9 — Product Support', kind:'How We Deliver a Sign Program · Internal', href:'../how/signs-delivery-method.html#s9'},
+  signsdiscovery:{name:'FSG Signs — Discovery Questions', kind:'Sales Play · Internal', href:'../how/signs.html#discovery'},
+  signspricing:{name:'FSG Signs — How to Price It', kind:'Sales Play · Internal', href:'../how/signs.html#pricing'},
   culture:     {name:'The Institution & Culture', kind:'Deck', href:'institution-culture.html'},
   lightplay:   {name:'FSG Lighting Design Playbook', kind:'Sales Play', href:'../plays/lighting-design-playbook.html'},
   cstore:      {name:'C-Store Playbook', kind:'Sales Play', href:'../plays/c-store.html'},
@@ -381,9 +389,9 @@ const LINES = [
  {name:'Signs', tag:'"Impossible to miss."',
   cells:{
    construction:{desc:'We survey, design, permit, fabricate and install — one storefront or a national rebrand. Built in our 95,000 sq ft San Antonio shop, installed by our crews and 2,000+ affiliated installers, with power at the sign handled by the same team.',
-     types:['Rebrand rollouts','Channel letters','Monuments & pylons','Wayfinding & ADA','Site surveys','Fabrication','Install','Permitting'], proofs:['Wesco','HEB','Duluth Trading','Applebee\'s','Valero'], res:['signsdeck','signsplay','signsdelivery','signsoverview','master','sunoco','cstore']},
+     types:['Rebrand rollouts','Channel letters','Monuments & pylons','Wayfinding & ADA','Site surveys','Fabrication','Install','Permitting'], proofs:['Wesco','HEB','Duluth Trading','Applebee\'s','Valero'], res:['signsdeck','signsplay','signsdelivery','signsoverview','signswarranty','master','sunoco','cstore']},
    service:{desc:'We keep the brand lit at every location — maintenance, repair, re-facing, lighting upgrades, surveys and permitting managed as one program, backed by a lifetime warranty on the LEDs, 10 years on the LED drivers and 5 years on the sign.',
-     types:['Maintenance','Repair','Permitting & surveys','Permitting','Retrofits','National rollouts','Lighting upgrades'], proofs:['HEB'], res:['signsdeck','signsplay','signsdelivery','nsa','master']},
+     types:['Maintenance','Repair','Permitting & surveys','Permitting','Retrofits','National rollouts','Lighting upgrades'], proofs:['HEB'], res:['signswarranty','signsdeck','signsplay','signsdelivery','nsa','master']},
    distribution:{desc:'We build the package and ship it to site — brand sign packages and components, install-ready for any qualified crew.',
      types:['Brand packages','Components','Delivered to site'], proofs:[], res:['signsdeck','signsoverview','master']}
   }},
@@ -486,15 +494,25 @@ const TYPERES = {
  "National rollouts":       ['uwp','uwppdf'],
  "Lamp & ballast programs": ['uwp','uwppdf'],
  "Emergency lighting":      ['uwp','uwppdf'],
- "Rebrand rollouts":        ['signsdeck','signsdelivery','signsplay'],
- "Channel letters":         ['signsoverview'],
- "Monuments & pylons":      ['signsoverview'],
- "Wayfinding & ADA":        ['signsoverview'],
- "Site surveys":            ['signsdelivery'],
- "Permitting":              ['signsdelivery'],
- "Fabrication":             ['signsoverview'],
- "Install":                 ['signsdelivery'],
- "Lighting upgrades":       ['signsoverview']
+ // Signs — keyed "Signs|<type>" so shared names (Retrofits, National rollouts,
+ // Maintenance) show sign content, not lighting content. Checked before the bare name.
+ "Signs|Rebrand rollouts":     ['signsdeck','signsdelivery','signsplay','signspricing','sunoco'],
+ "Signs|Channel letters":      ['signsoverview','signswarranty','signsdeck'],
+ "Signs|Monuments & pylons":   ['signsoverview','signssurvey','signswarranty'],
+ "Signs|Wayfinding & ADA":     ['signsoverview','signssurvey'],
+ "Signs|Site surveys":         ['signssurvey','signsdelivery','signsdiscovery'],
+ "Signs|Fabrication":          ['signsoverview','signsproduction','signswarranty'],
+ "Signs|Install":              ['signsproduction','signsdelivery','signswarranty'],
+ "Signs|Permitting":           ['signspermit','signsdelivery'],
+ "Signs|Maintenance":          ['signswarranty','signssupport','nsa'],
+ "Signs|Repair":               ['signswarranty','signssupport','nsa'],
+ "Signs|Permitting & surveys": ['signssurvey','signspermit'],
+ "Signs|Retrofits":            ['signsoverview','signswarranty','signssurvey'],
+ "Signs|National rollouts":    ['signsdeck','signsdelivery','signspricing','nsa'],
+ "Signs|Lighting upgrades":    ['signsoverview','signswarranty'],
+ "Signs|Brand packages":       ['signsbrandbook','signsoverview','signsdeck'],
+ "Signs|Components":           ['signsoverview'],
+ "Signs|Delivered to site":    ['signsproduction','signsdelivery']
 };
 
 // ================= MATRIX RENDER =================
@@ -595,7 +613,7 @@ function openType(t){
   document.getElementById('tyMode').textContent = CUR.line + ' \u00B7 ' + CUR.mode + ' \u00B7 Type of Work';
   document.getElementById('tyTitle').textContent = t;
   document.getElementById('tyDef').textContent = TYPEDEFS[t] || '';
-  const keys = TYPERES[t] || [];
+  const keys = TYPERES[CUR.line + '|' + t] || TYPERES[t] || [];
   const lbl = document.getElementById('tyResLabel'), box = document.getElementById('tyRes'), coming = document.getElementById('tyComing');
   if(keys.length){
     lbl.style.display='block';
