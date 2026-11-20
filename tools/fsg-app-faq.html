@@ -283,6 +283,12 @@
    One entry per training guide. File goes in tools/engage/, entry
    goes here, done — the card and search pick it up automatically. */
 var GUIDES = [
+  { file: "engage/engage-contract-commissions.html",
+    title: "Engage Contract Commissions — How It Works",
+    pill: "Guide",
+    gold: true,
+    desc: "You sign it, you enter it. The rep adds the contract on the Closed Won opportunity's Orders tab and uploads the signed contract, a VP approves, Engage creates a commission record per rep, and the rep and manager each approve before payroll. For contracts executed October 2026 and later.",
+    tags: "contract commissions engage contract how it works add contract orders tab closed won opportunity upload signed contract draft executed manager approval vp approve contract execution date commission month commission record change requested pending approved payroll invoice number pre-tax rebuild erp contested closed month who gets paid contract execution trigger how do i enter a contract who approves contracts" },
   { file: "engage/air-support.html",
     title: "Air Support — A Day in the Life of a Guide",
     pill: "Engage Live · Ep 13",
@@ -418,6 +424,14 @@ var GUIDES = [
    q = the question as a rep would type it · a = the short answer (HTML ok)
    link = the guide that goes deeper · tags = extra words people search with */
 var ASKS = [
+  { q: "How do I enter a signed contract in Engage?",
+    a: "You enter it yourself — no more mass uploads, starting October 2026. Open the <b>Closed Won opportunity</b>, click the <b>Orders</b> tab, then <b>Add Contract</b>. Name it something people recognize (it shows as Invoice # on statements), enter the <b>pre-tax amount</b>, the <b>execution date</b> (this sets the commission month), and each rep with their percent — <b>0.3 means 0.30%</b>. Save, open the contract from the grid, and <b>upload the signed contract</b>. A VP can't approve until it's attached.",
+    link: "engage/engage-contract-commissions.html", label: "Engage Contract Commissions — How It Works",
+    tags: "enter contract add contract signed contract upload contract orders tab closed won opportunity draft contract name pre-tax amount execution date commission month rep percent how do i enter a contract where do contracts go" },
+  { q: "Who approves contracts and contract commissions?",
+    a: "Three approvals, in order. First a <b>VP or above</b> approves the contract itself (Engage checks by job code — everyone else sees Approve grayed out). That approval creates a <b>commission record per rep</b>. Then the <b>rep</b> and the <b>rep's manager</b> each set that record to <b>Approved</b> or <b>Change Requested</b> before it goes to payroll — in either order. The manager comes from payroll, not Engage. And fix errors <b>before</b> the VP approves: after approval, contract records can't be rebuilt from Engage.",
+    link: "engage/engage-contract-commissions.html", label: "Engage Contract Commissions — How It Works",
+    tags: "who approves contracts vp approval manager approval rep approval commission record change requested pending approved payroll job code rebuild erp contested closed month contract commissions" },
   { q: "How do I open a new opportunity from a contact on my account?",
     a: "Open the <b>account</b>, go to the <b>Contact</b> who owns the need, and open the opportunity from there. Engage links it for you — the account, the contact as stakeholder, and you as FSG Owner — so there's no re-keying and no orphan deal. Start from your <b>account plan</b>: pick an item in <b>Next</b>, use the <b>Deal Coach</b> wedge and questions, then open it from the contact so Next becomes Doing.",
     link: "engage/own-your-pipeline.html", label: "Own Your Pipeline — Account Plans",
