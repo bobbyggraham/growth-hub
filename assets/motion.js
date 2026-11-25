@@ -6,7 +6,8 @@
      #ghMotionFeature  gold "This Week" spotlight (rotates the week's cards)
      #ghMotionGrid     every card, behind the Growth chip only
    Standard look = the Growth in Motion card. Navy. Gold. Done.
-   People first: cards sign "— Bobby" only, no title. Wallpapers carry no
+   People first: cards sign "— Bobby" only, no title. A card can credit a
+   teammate instead with  by: "Name · Role"  (shown everywhere the card shows). Wallpapers carry no
    name, title, or stamp. It's theirs once they save it.
    ============================================================ */
 (function () {
@@ -15,12 +16,23 @@
   /* ---------------- DATA ----------------
      week:  Monday of the posting week, YYYY-MM-DD
      cards: lane (RESULTS|PEOPLE|VISION|DEVELOPMENT|EXECUTION|FINANCE|VALUE),
-            standard (the line), move (the technique), tone (navy|deep|light)  */
+            standard (the line), move (the technique), tone (navy|deep|light),
+            by (optional): credit a teammate's quote, e.g. "Stephanie Cone · Guide"  */
   var WEEKS = [
     /* ================= ADD NEW APPROVED WEEKS HERE (newest first) =================
        Paste the week block Paula hands you after Monday review right below
        this marker. Nothing else in this file changes.
        ============================================================================ */
+    { week: "2026-11-23", cards: [
+      { lane: "PEOPLE", tone: "navy", standard: "Be curious. And a little bit nosey.", move: "Ask the second question, then the third. The real need usually sits behind the first answer.", by: "Stephanie Cone · Guide" },
+      { lane: "VISION", tone: "deep", standard: "Tell yourself the truth first. Then fix it.", move: "Pull your last lost deal. Write down one thing you controlled that cost you the job. Change it on the next one." },
+      { lane: "EXECUTION", tone: "light", standard: "Skip the blame. Make the adjustment.", move: "When a job goes sideways this week, open with what you'll do differently, not who dropped it." },
+      { lane: "RESULTS", tone: "navy", standard: "Anyone's grateful on a winning week. Be grateful on the hard one.", move: "Before Thursday, thank one customer who pushed you hard this year. Tell them what it made you better at." },
+      { lane: "PEOPLE", tone: "deep", standard: "Thank the people nobody sees.", move: "Call out one person behind the scenes (estimating, scheduling, the crew) by name, in front of the team." },
+      { lane: "VALUE", tone: "light", standard: "Your first ten words decide if they keep listening.", move: "Write the opener for your next pitch. Lead with their problem, not our company." },
+      { lane: "DEVELOPMENT", tone: "navy", standard: "Hard feedback is a skill. Practice it.", move: "Give one teammate a specific, kind, honest note this week: one thing to keep, one thing to change." },
+      { lane: "EXECUTION", tone: "deep", standard: "End the day with an honest scorecard.", move: "Two minutes before you log off: what went right, what went wrong, what changes tomorrow." }
+    ]},
     { week: "2026-11-16", cards: [
       { lane: "RESULTS", tone: "navy", standard: "Lead with the job, not the adjectives.", move: "Next intro, skip \"we're the best.\" Name one finished job like theirs and what it changed for them." },
       { lane: "EXECUTION", tone: "deep", standard: "Say the finish line first.", move: "Open your next meeting with one sentence: by the end, we'll have decided ___. Then start on time, even with two people in the room." },
@@ -78,6 +90,7 @@
 
   /* ---------------- helpers ---------------- */
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function byline(c) { return c && c.by ? c.by : "Bobby"; }
   function pad(n) { return n < 10 ? "0" + n : "" + n; }
   var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   function weekLabel(iso) { var p = iso.split("-"); return "Week of " + MONTHS[+p[1] - 1] + " " + (+p[2]); }
@@ -146,6 +159,9 @@
     + ".gim-x{position:absolute;top:8px;right:8px;width:44px;height:44px;border:0;background:transparent;color:inherit;font-size:28px;cursor:pointer;}"
     + ".gim-rule{height:2px;background:#ebb018;margin:14px 0 10px;}"
     + ".gim-who{font:800 15px/1.2 'Open Sans',Arial,sans-serif;}"
+    + ".gim-by{font:600 13px/1.3 'Open Sans',Arial,sans-serif;color:#ebb018;margin:-6px 0 14px;letter-spacing:.3px;}"
+    + ".card.gim-mini .gim-by{margin:2px 0 6px;font-size:12px;}"
+    + ".card.gim-mini.t-light .gim-by,.gim-big.t-light .gim-by{color:#365aa0;}"
     + ".gim-ple{font:700 11px/1 Nunito,'Open Sans',Arial,sans-serif;letter-spacing:3px;color:#ebb018;}"
     + ".gim-dl{position:relative;width:min(560px,100%);max-height:92vh;overflow:auto;background:#0b1421;color:#fff;border-radius:14px;padding:26px 22px 20px;box-sizing:border-box;border:2px solid #ebb018;}"
     + ".gim-dl .gim-x{color:#fff;}"
@@ -184,7 +200,7 @@
       + '<h3 class="gim-std">' + esc(c.standard) + '</h3>'
       + '<div class="gim-lab">THE MOVE</div><p class="gim-move">' + esc(c.move) + '</p></div>'
       + '<div><div class="gim-rule"></div><div style="display:flex;justify-content:space-between;align-items:flex-end;gap:10px;flex-wrap:wrap;">'
-      + '<div class="gim-who">— Bobby</div>'
+      + '<div class="gim-who">— ' + esc(byline(c)) + '</div>'
       + '<span class="gim-ple">PROTECT · LAND · EXPAND</span></div>'
       + '<div class="gim-sign">Prepared by Lumen | FSG Business Development AI</div>'
       + '<button class="gim-btn solid" data-act="dl" style="margin-top:14px;align-self:flex-start">Download</button></div></div>';
@@ -269,7 +285,14 @@
     y += 30 + stdSize;
     ctx.fillStyle = t.fg; ctx.font = "700 " + stdSize + "px Oswald, 'Arial Narrow', Arial, sans-serif";
     lines.forEach(function (ln, k) { ctx.fillText(ln, M, y + k * stdSize * 1.06); });
-    y += (lines.length - 1) * stdSize * 1.06 + (phone ? 110 : 90);
+    if (c.by) {
+      y += (lines.length - 1) * stdSize * 1.06 + (phone ? 80 : 66);
+      ctx.fillStyle = "#ebb018"; ctx.font = "600 " + (phone ? 40 : 34) + "px 'Open Sans', Arial, sans-serif";
+      ctx.fillText("— " + c.by, M, y);
+      y += phone ? 110 : 90;
+    } else {
+      y += (lines.length - 1) * stdSize * 1.06 + (phone ? 110 : 90);
+    }
     ctx.fillStyle = "#ebb018"; ctx.font = "800 28px 'Open Sans', Arial, sans-serif";
     spaced(ctx, "THE MOVE", M, y, 6);
     y += 30 + moveSize;
@@ -337,6 +360,7 @@
         html += '<a href="#" class="card gim-mini t-' + esc(c.tone || "navy") + '" data-section="tools" data-chip-only="true" data-gim-week="' + esc(w.week) + '" data-gim-i="' + i + '" data-tags="' + esc(tags.toLowerCase()) + '">'
           + '<div class="gim-top"><span>' + esc(c.lane) + '</span><span>' + esc(weekLabel(w.week)) + ' · ' + pad(i + 1) + '</span></div>'
           + '<h3>' + esc(c.standard) + '</h3>'
+          + (c.by ? '<div class="gim-by">— ' + esc(c.by) + '</div>' : '')
           + '<p>' + esc(c.move) + '</p>'
           + '<span class="card-cta">Open card</span></a>';
       });
@@ -378,6 +402,8 @@
       + ".gt-kick{font:800 10.5px/1 'Open Sans',Arial,sans-serif;letter-spacing:2.5px;margin-bottom:6px;opacity:.85;}"
       + ".gt-std{font:700 clamp(18px,2.6vw,26px)/1.1 Oswald,'Arial Narrow',Arial,sans-serif;text-transform:uppercase;margin:0 0 4px;color:#0b1421;}"
       + ".gt-move{font:400 14px/1.45 'Open Sans',Arial,sans-serif;margin:0;color:#0b1421;}"
+      + ".gt-by{font:700 12.5px/1.3 'Open Sans',Arial,sans-serif;color:#0b1421;margin:0 0 6px;opacity:.8;}"
+      + "#ghToday.done .gt-by{display:none;}"
       + ".gt-acts{flex:none;display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end;}"
       + ".gt-btn{font:800 12px/1 'Open Sans',Arial,sans-serif;letter-spacing:.5px;border-radius:999px;padding:12px 16px;min-height:44px;cursor:pointer;border:2px solid #0b1421;background:transparent;color:#0b1421;transition:background .2s,color .2s;}"
       + ".gt-btn:hover,.gt-btn:focus-visible{background:#0b1421;color:#ebb018;}"
@@ -404,6 +430,7 @@
       + '<div class="gt-tag">' + mark(false).replace('fill="#ffffff"', 'fill="#0b1421"').replace(/fill="#ffffff"/g, 'fill="#0b1421"').replace(/fill="#c5d9fa"/g, 'fill="#133865"').replace(/stroke="#718dbc"/g, 'stroke="#0b1421"') + '<span>TODAY</span><b>' + DAYS[dow] + '</b></div>'
       + '<div class="gt-body"><div class="gt-kick">GROWTH IN MOTION · ' + pad(ti + 1) + ' · ' + esc(c.lane) + '</div>'
       + '<h2 class="gt-std">' + esc(c.standard) + '</h2>'
+      + (c.by ? '<div class="gt-by">— ' + esc(c.by) + '</div>' : '')
       + '<p class="gt-move"><b>The Move:</b> ' + esc(c.move) + '</p></div>'
       + '<div class="gt-acts" aria-live="polite">'
       + '<button class="gt-btn solid" data-gt="lock">Lock it in</button>'
@@ -444,6 +471,7 @@
     slides += '<div class="gim-slide' + (i === 0 ? " on" : "") + '" aria-hidden="' + (i === 0 ? "false" : "true") + '">'
       + '<div class="gim-lab">THE STANDARD · ' + pad(i + 1) + '/' + pad(n) + '<span class="gim-lane">' + esc(c.lane) + '</span></div>'
       + '<h3 class="gim-std">' + esc(c.standard) + '</h3>'
+      + (c.by ? '<div class="gim-by">— ' + esc(c.by) + '</div>' : '')
       + '<div class="gim-lab">THE MOVE</div><p class="gim-move">' + esc(c.move) + '</p></div>';
     dots += '<button class="gim-dot' + (i === 0 ? " on" : "") + '" aria-label="Card ' + (i + 1) + '"><span></span></button>';
   });
@@ -457,7 +485,7 @@
     + '<div class="gim-acts"><button class="gim-btn" data-act="pause">Pause</button>'
     + '<button class="gim-btn" data-act="download">Download</button>'
     + '<button class="gim-btn solid" data-act="all">All ' + n + ' cards &rarr;</button></div></div>'
-    + '<div class="gim-sign">— Bobby &nbsp;|&nbsp; Prepared by Lumen | FSG Business Development AI</div>'
+    + '<div class="gim-sign"><span class="gim-signby">— ' + esc(byline(current.cards[0])) + '</span> &nbsp;|&nbsp; Prepared by Lumen | FSG Business Development AI</div>'
     + '</div></div>';
 
   var slideEls = feat.querySelectorAll(".gim-slide"), dotEls = feat.querySelectorAll(".gim-dot");
@@ -469,6 +497,7 @@
       slideEls[k].setAttribute("aria-hidden", k === idx ? "false" : "true");
       dotEls[k].classList.toggle("on", k === idx);
     }
+    var sb = feat.querySelector(".gim-signby"); if (sb) sb.textContent = "— " + byline(current.cards[idx]);
     restartBar();
   }
   function restartBar() {
